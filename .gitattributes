@@ -2,3 +2,9 @@
 src/hybrid_tsad/model.py -text
 src/hybrid_tsad/data.py -text
 src/hybrid_tsad/protocol.py -text
+
+# Preserve frozen evaluation source/test byte identities across clones.
+src/hybrid_tsad/engine/multi_evaluation.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/official_affiliation.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/run_statistics.py -text whitespace=cr-at-eol
+tests/test_run_statistics.py -text whitespace=cr-at-eol

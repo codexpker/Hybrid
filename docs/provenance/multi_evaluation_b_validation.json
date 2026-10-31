@@ -1,0 +1,123 @@
+{
+  "stage": "HYBRID-TEP100-READOUT-B",
+  "status": "DEVELOPER_STAGE_COMPLETED_PENDING_INDEPENDENT_REVIEW",
+  "baseline_commit": "7931ffe",
+  "scope": "SYNTHETIC_CPU_ENGINEERING_ONLY_NO_REAL_TARGET_NO_GPU_NO_TRAINING",
+  "files": {
+    "src/hybrid_tsad/engine/multi_evaluation.py": "8a7ab0780554e3a83164a388367c5d83915c637bd498fd05b6bb4aba505b3b73",
+    "src/hybrid_tsad/engine/official_affiliation.py": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+    "src/hybrid_tsad/engine/run_statistics.py": "4f26305938f237052b30313b562cf96f8d87e731e6d4cc26c1844faa547a80af",
+    "tests/test_run_statistics.py": "9530c45adf08cbae3cbfda912e308e281e8552d25ceb6e0f2448794f2ca4cdb8",
+    "configs/readout_evaluate.example.json": "1a7ec9def3453b5b543bef5936d77e177096d7d7c00d23248ff013ac3bf9ab14",
+    "configs/official_affiliation_identity.example.json": "4b9afa5ccb52487a156f7058f5f314acc7bf959eaf3f738d9eb5d69664b43af8",
+    "docs/multi_entity_evaluation.md": "42f526f5b8d0324a6248ce6b712891b6691297d58f34a00cdd419d0c8ba54461"
+  },
+  "unchanged_raw_bytes": {
+    "src/hybrid_tsad/model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "src/hybrid_tsad/data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "src/hybrid_tsad/protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "src/hybrid_tsad/engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126",
+    "src/hybrid_tsad/engine/multi_readout.py": "dd88c2fad128ded682a1214acef6fc6f1dc39a5589d984d69a89ab98eec50a2a",
+    "src/hybrid_tsad/engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2"
+  },
+  "source_mapping": [
+    {
+      "package_function": "multi_evaluation.maximum_matching_count",
+      "source_file": "research_workspace/scripts/hybrid_event_matching_contract.py",
+      "source_sha256": "9e2ceafd8a76e0117cf5a98cd25556a7c8118f23e8643d7572b96a79b20c56ae",
+      "source_lines": [
+        41,
+        55
+      ],
+      "ast_sha256": "ec2b9202997b2ab520cfcb861c5236946ebe53cd3e88c4ef5dae37bde3c9bbba",
+      "reuse": "project-owned function, AST-identical; no official source copied"
+    },
+    {
+      "package_function": "multi_evaluation.evaluate_group",
+      "reuse": "existing audited evaluate_fixed_scores and A verify_label_unlock; labels only after complete seal"
+    },
+    {
+      "package_function": "run_statistics.run_cluster_statistics",
+      "reuse": "independently implemented exact frozen TEP seed/entity macro and run-cluster estimand; deliberately does not call PSM weighted pooled AP/timeblocks"
+    }
+  ],
+  "official_affiliation": {
+    "existing_identity_source": "research_workspace/independent_audit/HY10K-PSM-READOUT/aff_source.json",
+    "files": {
+      "_integral_interval.py": "8177e69eccb0ae4ea76b2f54f6799ae61758b5a103603fae3d1a3a8d331e7cda",
+      "_single_ground_truth_event.py": "a04b5daa0fb0ef68893807c7ab5d4353b43f0d5231ae06ef0006b2e6cf939165",
+      "__init__.py": "15c801cfb3a60060383c096e5afd2b01a57c7d65bb2a0a6fa012dddd417c01d7",
+      "generics.py": "16743b204d24feb8ba9deaabceb7b0cf900520136e8a3b77e499448fcaafbfc9",
+      "metrics.py": "1442b1dc6801e3c12db39c9b04a54e56ec29a5de2755eb2f5821f1183aa813e0",
+      "_affiliation_zone.py": "3b289bf11cebe614afabe353c873de90ba9debf8831aef8f73532870dce01ba2"
+    },
+    "license": {
+      "status": "UNVERIFIED_EXISTING_LOCAL_DEPENDENCY",
+      "source": "HY10K-PSM-READOUT/aff_source.json; no redistribution",
+      "redistribute": false
+    },
+    "source_copied": false,
+    "overall_Aff_F1": null
+  },
+  "tests": {
+    "local": {
+      "tests": 5,
+      "passed": 4,
+      "skipped": 1,
+      "seconds": 0.162,
+      "skip_reason": "no torch; external official dependency unavailable locally",
+      "compileall": true,
+      "example_config_preview": true
+    },
+    "remote_final": {
+      "scope": "SYNTHETIC_CPU_ENGINEERING_ONLY_NO_REAL_QUERY",
+      "cuda_visible_devices": "",
+      "threads": 2,
+      "python": "3.12.13",
+      "torch": "2.8.0+cu128",
+      "numpy": "1.26.4",
+      "sklearn": "1.7.2",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.9963030359940603,
+      "successful": true,
+      "synthetic_archive": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout_b_v3/synthetic_archive"
+    },
+    "prior_A_and_B_regression": {
+      "tests": 14,
+      "failures": 0,
+      "seconds": 8.293,
+      "remote_project": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout_b_v2",
+      "scope": "A9+B5 prior report-only additions; final B5 rerun separately"
+    },
+    "wheel": {
+      "sha256": "444f10df4e5cb1c2705279bd88b436ed14073f57af9021dc9459adec8856b971",
+      "new_module_raw_bytes_equal": true,
+      "no_dependencies_installed": true
+    }
+  },
+  "evidence": {
+    "remote_project": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout_b_v3",
+    "local_synthetic_archive": "build/readout_b_synthetic_archive.zip",
+    "synthetic_archive_sha256": "8469bf3ae7fae497a8da0f6f67ba4e78c2b1aedec1e8d27a30cd25147281453f",
+    "source_snapshot": "build/readout_b_final.zip",
+    "source_snapshot_sha256": "b4d6d6a906fd38cee19e8458e9085f4e1df26208279f32e532d36502f883a0bf",
+    "stdout": "build/readout_b_final_stdout.txt",
+    "stdout_sha256": "791eedb0d4edf48a34658cb15eb902ff4ee2b7608900ea71a1ecec9bb3ab7bc5",
+    "evaluation_manifest_sha256": "9bb2d35d4a763eb6e06185169be4bee889067cf15ea5b3f65b6925bf25cf064c",
+    "metric_rows": 72,
+    "event_rows": 72,
+    "archived_result_files": 86,
+    "synthetic_profiles": "2fault x2run x3seed x6method; separate 20x20 macro fixture; never a real release"
+  },
+  "no_cli_or_A_changes": true,
+  "remaining": [
+    "independent B review",
+    "actual TEP target stages require separate primary release; no real query executed",
+    "operating-condition stratification requires frozen metadata; missing values remain explicit",
+    "no official cross-entity Aff aggregation defined",
+    "U/F adaptation and scientific benefit evidence not part of B"
+  ]
+}
