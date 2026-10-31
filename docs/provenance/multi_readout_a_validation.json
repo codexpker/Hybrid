@@ -1,0 +1,28 @@
+{
+  "stage": "A: native multi-entity shards and all-bank score sealing; B evaluation follows",
+  "status": "DEVELOPER_COMPLETED_PENDING_INDEPENDENT_REVIEW",
+  "files_sha256": {
+    "src/hybrid_tsad/engine/readout_manifest.py": "806bfa0e721aa4b66516f992709635b1045d94176b98a2488c7405bb3676ced6",
+    "src/hybrid_tsad/engine/readout_controls.py": "dccd0126dc3ae72049e91dc6e1fe76df1ebed38ab852a00faf07ad77d837d619",
+    "src/hybrid_tsad/engine/multi_readout.py": "fa00217599071976df6a45231ea26fd7b866521a12abe242076de79437103a0c",
+    "src/hybrid_tsad/cli.py": "0070cedcc45351adbf8e21548c12486e2f4386330f7593b8e2d6093e0410b59c",
+    "tests/test_multi_readout.py": "cfd9f6f557c7440864ef39921eb1a8e083cb42a9423f1e716a6a85ddc5ca3971",
+    "configs/readout_controls.example.json": "9c80f4f36856985e2cc53ba43e544e88cd2dbd0378d3e543caaa9cf73882467a",
+    "configs/readout_infer.example.json": "e9f2ccfb76261427397690b56c7e3db048e4e0dfa06b1bf313eac85dedad2923",
+    "configs/readout_seal.example.json": "0fcaae9249b3f4fd713a59ab6604a33a7d742403c8167271aa0f97e4fff5c3f6"
+  },
+  "synthetic_profile": "2fault x2run x3seed x3mode =36 neural banks; 72 fixed score archives; channels52/history100/horizon5",
+  "no_actual_target_values_or_labels": true,
+  "scientific_training": false,
+  "gpu_used": false,
+  "independent_review": "pending",
+  "core_and_training_source_gate_modified": false,
+  "remote_cpu": {
+    "new_directory": "projects/hybrid_ad_package_validation_20261031_readout_a_v3",
+    "tests": 5,
+    "passed": 5,
+    "seconds": 1.355,
+    "cuda_visible_devices": "",
+    "torch_threads": 2
+  }
+}

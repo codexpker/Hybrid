@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-01",
+  "status": "DEVELOPER_FIXED_PENDING_INDEPENDENT_REVIEW",
+  "before_sha256": {
+    "src/hybrid_tsad/engine/multi_readout.py": "033e8d5adf3bfc905f8f0ccb90fbc255267fa7417c1874a64435d6256534847e",
+    "tests/test_multi_readout.py": "d8432bb419a5a98fa096ec254ae292f09d6e6ab8ef97fc69ac445f9e24943aca"
+  },
+  "after_sha256": {
+    "src/hybrid_tsad/engine/multi_readout.py": "dd88c2fad128ded682a1214acef6fc6f1dc39a5589d984d69a89ab98eec50a2a",
+    "tests/test_multi_readout.py": "652e9e3e4c9847ac1bbfa451e29e5fc9ac2ca5d4999bceeff05c2c4a9fb71c63"
+  },
+  "patch_sha256": "0f9d3038e2d95b4f63104426b7eea83c52779b74f59c8b407659178a160c6a2a",
+  "preserved_audit_cuda_order_source_sha256": "ee78a3688c8f4ade2ae02081ac5725cf102bd88f940322301705efe8f14bb279",
+  "preserved_original_A_failures_sha256": {
+    "unbound_simple_rows.json": "12ed0d1dcedf3a3744604f4edb75f93839eae711a2f2e1fa471dd841f6cf6511",
+    "physical_target_failure.json": "1d39b8ace8ab59aa8d1d2aea8db1fe0533679d294a74ff6e05c99e566a635428",
+    "control_units_failure.json": "bb04866e5b664dce1325f199bcd0170f888ae9bb37d5b6e95855668eeefcf885"
+  },
+  "remote_cpu": {
+    "directory": "projects/hybrid_ad_package_validation_20261031_readout_cuda_setup_v1",
+    "tests": 9,
+    "passed": 9,
+    "seconds": 5.932,
+    "cuda_visible_devices": "",
+    "torch_threads": 2,
+    "timeout_seconds": 60
+  },
+  "local": {
+    "tests": 9,
+    "passed": 1,
+    "skipped": 8,
+    "seconds": 0.04,
+    "compileall": "PASS"
+  },
+  "setup_order": [
+    "set_device",
+    "init",
+    "reset_peak_memory_stats",
+    "model"
+  ],
+  "real_cuda_backend_called": false,
+  "random_warmup_or_extra_forward": false,
+  "core_unchanged": {
+    "model.py": true,
+    "data.py": true,
+    "protocol.py": true
+  },
+  "readout_controls_unchanged": true,
+  "B_status": "draft only; paused pending A audit",
+  "real_target_or_labels": false,
+  "training": false,
+  "production_run_modified": false
+}

@@ -54,6 +54,10 @@ def main(argv=None):
         operation.add_argument("--execute", action="store_true")
         if name == "evaluate":
             operation.add_argument("--allow-labels", action="store_true")
+    readout = sub.add_parser("readout", help="Multi-entity fixed readout; default preview only")
+    readout.add_argument("--config", required=True)
+    readout.add_argument("--execute", action="store_true")
+    readout.add_argument("--allow-labels", action="store_true")
     # Parse passthrough after -- separately so --script remains an ordinary option.
     raw = list(sys.argv[1:] if argv is None else argv)
     passthrough = []
@@ -84,6 +88,9 @@ def main(argv=None):
             from .engine.pipeline import run_operation
             result = run_operation(args.config, args.command, execute=args.execute,
                                    allow_labels=getattr(args, "allow_labels", False))
+        elif args.command == "readout":
+            from .engine.multi_readout import run_readout
+            result = run_readout(args.config, execute=args.execute, allow_labels=args.allow_labels)
         elif args.command == "legacy":
             from .legacy import execute, legacy_command
             command = legacy_command(args.kind, args.script, passthrough)

@@ -1,0 +1,49 @@
+--- a/src/hybrid_tsad/engine/multi_readout.py
++++ b/src/hybrid_tsad/engine/multi_readout.py
+@@ -98,7 +98,10 @@
+     for cell in cells:
+         entity_started=time.perf_counter()
+         cuda_device=torch.device(device)
+-        if cuda_device.type=="cuda":torch.cuda.reset_peak_memory_stats(cuda_device)
++        if cuda_device.type=="cuda":
++            torch.cuda.set_device(cuda_device)
++            torch.cuda.init()
++            torch.cuda.reset_peak_memory_stats(cuda_device)
+         seed,mode,entity=cell["seed"],cell["mode"],cell["entity"]
+         spec=models[seed,mode];q=entities[entity]
+         checkpoint=checked(spec["checkpoint"],catalog_path)
+--- a/tests/test_multi_readout.py
++++ b/tests/test_multi_readout.py
+@@ -227,6 +227,32 @@
+         self.assertGreaterEqual(metadata["forward_p50_seconds"],0)
+         self.assertGreaterEqual(metadata["forward_p95_seconds"],metadata["forward_p50_seconds"])
+         self.assertGreaterEqual(first["banks"][key]["whole_entity_seconds"],metadata["seconds"])
++
++    def test_cold_cuda_setup_precedes_peak_reset_and_model_without_forward_warmup(self):
++        import torch
++        from hybrid_tsad.engine.multi_readout import infer_shard
++        cells=json.loads(self.whitelist.read_text());path=self.root/"cuda_one_cell.json";path.write_text(json.dumps(cells[:1]))
++        events=[]
++        def reset(device):
++            self.assertEqual(events,[("set_device","cuda:0"),("init",None)])
++            events.append(("reset",str(device)))
++        def factory(*args,**kwargs):
++            self.assertEqual(events[:3],[("set_device","cuda:0"),("init",None),("reset","cuda:0")])
++            events.append(("model",None))
++            # Only a CPU fixture; no CUDA device or random warmup is used.
++            return self.factory(*args,**kwargs)
++        with patch.object(torch.cuda,"set_device",side_effect=lambda d:events.append(("set_device",str(d)))), \
++             patch.object(torch.cuda,"init",side_effect=lambda:events.append(("init",None))), \
++             patch.object(torch.cuda,"reset_peak_memory_stats",side_effect=reset), \
++             patch.object(torch.cuda,"max_memory_allocated",return_value=42), \
++             patch.object(torch.cuda,"manual_seed_all",return_value=None):
++            infer_shard(self.catalog,self.query,path,self.root/"mock_cold_cuda",profile=self.profile,scope="shard",device="cuda:0",predictor_factory=factory)
++        self.assertEqual(events,[("set_device","cuda:0"),("init",None),("reset","cuda:0"),("model",None)])
++        with patch.object(torch.cuda,"set_device",side_effect=AssertionError("CPU branch selected CUDA")), \
++             patch.object(torch.cuda,"init",side_effect=AssertionError("CPU branch initialized CUDA")), \
++             patch.object(torch.cuda,"reset_peak_memory_stats",side_effect=AssertionError("CPU branch reset CUDA")), \
++             patch.object(torch.cuda,"manual_seed_all",return_value=None):
++            self.infer(path,name="cpu_no_cuda_setup")
+ 
+     def test_physical_target_origin_and_history_scale_forgery_refused_before_labels(self):
+         import numpy as np

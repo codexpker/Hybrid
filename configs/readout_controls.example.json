@@ -1,0 +1,74 @@
+{
+  "engine_schema_version": 4,
+  "operation": "readout-controls",
+  "contract": {
+    "path": "../../external/tep100_readout_assets/CONTRACT.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "approval": {
+    "path": "../../external/tep100_readout_assets/PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "inputs": {
+    "definition": {
+      "path": "../../external/tep100_readout_assets/source_definition.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "profile": {
+      "name": "TEP100",
+      "faults": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "runs": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "points": 960,
+      "channels": 52,
+      "event_start": 160,
+      "sample_interval_minutes": 3
+    },
+    "scope": "full"
+  },
+  "output": "../../external/new_tep100_controls",
+  "score_space": "fixed_native_late_canonical_source_controls_v1"
+}

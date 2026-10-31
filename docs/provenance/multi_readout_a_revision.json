@@ -1,0 +1,51 @@
+{
+  "status": "DEVELOPER_FIXED_PENDING_INDEPENDENT_REVIEW",
+  "date": "2026-10-31",
+  "before_sha256": {
+    "src/hybrid_tsad/engine/readout_controls.py": "dccd0126dc3ae72049e91dc6e1fe76df1ebed38ab852a00faf07ad77d837d619",
+    "src/hybrid_tsad/engine/multi_readout.py": "fa00217599071976df6a45231ea26fd7b866521a12abe242076de79437103a0c",
+    "tests/test_multi_readout.py": "cfd9f6f557c7440864ef39921eb1a8e083cb42a9423f1e716a6a85ddc5ca3971"
+  },
+  "after_sha256": {
+    "src/hybrid_tsad/engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126",
+    "src/hybrid_tsad/engine/multi_readout.py": "033e8d5adf3bfc905f8f0ccb90fbc255267fa7417c1874a64435d6256534847e",
+    "tests/test_multi_readout.py": "d8432bb419a5a98fa096ec254ae292f09d6e6ab8ef97fc69ac445f9e24943aca"
+  },
+  "patch_sha256": "c7f9198e43aad1ca5145a1e451863724902f7410245380900cf9d95af7646052",
+  "failure_evidence_sha256": {
+    "REVIEW.md": "ee64a90fd222ee077737b35b539ee9134febe2dde2ceccbcc38b31b5f776607f",
+    "unbound_simple_rows.json": "12ed0d1dcedf3a3744604f4edb75f93839eae711a2f2e1fa471dd841f6cf6511",
+    "physical_target_failure.json": "1d39b8ace8ab59aa8d1d2aea8db1fe0533679d294a74ff6e05c99e566a635428",
+    "control_units_failure.json": "bb04866e5b664dce1325f199bcd0170f888ae9bb37d5b6e95855668eeefcf885"
+  },
+  "remote_cpu": {
+    "directory": "projects/hybrid_ad_package_validation_20261031_readout_a_revision_v1",
+    "tests": 8,
+    "passed": 8,
+    "seconds": 5.717,
+    "cuda_visible_devices": "",
+    "torch_threads": 2
+  },
+  "local": {
+    "tests": 8,
+    "passed": 1,
+    "skipped": 7,
+    "seconds": 0.04,
+    "compileall": "PASS"
+  },
+  "history_scale_tolerance": {
+    "rtol": 2e-06,
+    "atol": 2e-06,
+    "formula": "unchanged HybridPredictor.preprocess CPU; fixed before real target readout"
+  },
+  "core_unchanged": {
+    "model.py": true,
+    "data.py": true,
+    "protocol.py": true
+  },
+  "B_status": "draft paused; not delivered or accepted",
+  "real_target_values_labels": false,
+  "gpu": false,
+  "scientific_training": false,
+  "production_run_modified": false
+}
