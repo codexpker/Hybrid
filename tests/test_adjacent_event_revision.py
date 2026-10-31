@@ -1,0 +1,54 @@
+"""Only the frozen review's adjacent split counterexample; synthetic data."""
+import importlib.util
+import unittest
+
+HAS_NUMPY = importlib.util.find_spec("numpy") is not None
+HAS_SKLEARN = importlib.util.find_spec("sklearn") is not None
+
+
+@unittest.skipUnless(HAS_NUMPY, "existing NumPy required")
+class AdjacentEventRevisionTests(unittest.TestCase):
+    @staticmethod
+    def event(eid, start, end):
+        return dict(event_id=eid, start=start, end_exclusive=end, total_points=end-start,
+                    scored_points=end-start, eligible_complete=True)
+
+    def test_visible_contiguous_positive_split_rejected(self):
+        import numpy as np
+        from hybrid_tsad.engine.evaluation import validate_coverage
+        index, labels = np.arange(4), np.array([0, 1, 1, 0])
+        merged = [self.event("a", 1, 3)]
+        split = [self.event("a", 1, 2), self.event("b", 2, 3)]
+        self.assertEqual(len(validate_coverage(index, labels, merged)), 1)
+        with self.assertRaisesRegex(ValueError, "contiguous scored positive run"):
+            validate_coverage(index, labels, split)
+        self.assertTrue(np.array_equal(labels, [0, 1, 1, 0]))
+
+    def test_normal_separator_and_observed_time_gap_are_not_joined(self):
+        import numpy as np
+        from hybrid_tsad.engine.evaluation import validate_coverage
+        self.assertEqual(len(validate_coverage(np.arange(5), np.array([0, 1, 0, 1, 0]),
+                                               [self.event("a", 1, 2), self.event("b", 3, 4)])), 2)
+        # Scored subsets do not establish labels inside the missing raw interval.
+        self.assertEqual(len(validate_coverage(np.array([0, 1, 4, 5]), np.array([0, 1, 1, 0]),
+                                               [self.event("a", 1, 2), self.event("b", 4, 5)])), 2)
+
+    @unittest.skipUnless(HAS_SKLEARN, "existing scikit-learn required")
+    def test_same_labels_scores_split_refused_and_true_separated_events_pass(self):
+        import numpy as np
+        from hybrid_tsad.engine.evaluation import evaluate_fixed_scores
+        index, labels, scores = np.arange(4), np.array([0, 1, 1, 0]), np.array([.1, .9, .2, .1])
+        merged = evaluate_fixed_scores(index, labels, scores, .5, [self.event("a", 1, 3)])
+        self.assertEqual(merged["metrics"]["complete_events"], 1)
+        self.assertEqual(merged["metrics"]["complete_event_recall_any_hit_aux"], 1.0)
+        with self.assertRaisesRegex(ValueError, "contiguous scored positive run"):
+            evaluate_fixed_scores(index, labels, scores, .5, [self.event("a", 1, 2), self.event("b", 2, 3)])
+        separate = evaluate_fixed_scores(np.arange(5), np.array([0, 1, 0, 1, 0]),
+                                          np.array([.1, .9, .1, .2, .1]), .5,
+                                          [self.event("a", 1, 2), self.event("b", 3, 4)])
+        self.assertEqual(separate["metrics"]["complete_events"], 2)
+        self.assertEqual(separate["metrics"]["complete_event_recall_any_hit_aux"], .5)
+
+
+if __name__ == "__main__":
+    unittest.main()

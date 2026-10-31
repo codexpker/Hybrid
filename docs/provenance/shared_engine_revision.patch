@@ -1,0 +1,294 @@
+--- a/src/hybrid_tsad/engine/evaluation.py
++++ b/src/hybrid_tsad/engine/evaluation.py
+@@ -11,17 +11,56 @@
+ from .statistics import ap_cache, weighted_ap
+ 
+ 
++def validate_coverage(index, labels, coverage):
++    """Reject contradictory event eligibility; never repair labels or boundaries."""
++    if not isinstance(coverage, list):
++        raise ValueError("Coverage must be a list")
++    required = {"event_id", "start", "end_exclusive", "eligible_complete", "scored_points", "total_points"}
++    seen, previous_end = set(), -1
++    mapped = np.zeros(len(index), bool)
++    result = []
++    for row in coverage:
++        if not isinstance(row, dict) or not required <= set(row):
++            raise ValueError("Coverage record is missing required fields")
++        eid = row["event_id"]
++        if not isinstance(eid, str) or not eid or len(eid) > 64 or eid in seen:
++            raise ValueError("Coverage event IDs must be unique nonempty strings of at most 64 characters")
++        seen.add(eid)
++        for key in ("start", "end_exclusive", "scored_points", "total_points"):
++            if type(row[key]) is not int:
++                raise ValueError("Coverage boundaries and counts must be integers")
++        start, end = row["start"], row["end_exclusive"]
++        if start < 0 or end <= start or start < previous_end:
++            raise ValueError("Coverage intervals must be ordered, positive-length and nonoverlapping")
++        previous_end = end
++        if type(row["eligible_complete"]) is not bool or row["total_points"] != end - start:
++            raise ValueError("Coverage complete flag/total_points contradict the original interval")
++        ix = np.flatnonzero((index >= start) & (index < end))
++        if row["scored_points"] != len(ix) or not np.all(labels[ix] == 1):
++            raise ValueError("Coverage scored count or positive-label mapping contradicts scored indices")
++        actual_complete = len(ix) == end - start
++        if row["eligible_complete"] != actual_complete:
++            raise ValueError("Coverage complete eligibility contradicts full original-index coverage")
++        if actual_complete and not np.array_equal(index[ix], np.arange(start, end)):
++            raise ValueError("Complete event has missing original time indices")
++        mapped[ix] = True
++        result.append(SimpleNamespace(**row))
++    if not np.array_equal(mapped, labels == 1):
++        raise ValueError("Positive scored labels are missing from coverage")
++    return result
++
++
+ def evaluate_fixed_scores(index, labels, score, threshold, coverage, *, affiliation=None):
+-    from sklearn.metrics import average_precision_score, roc_auc_score
+ 
+     index, y, s = np.asarray(index), np.asarray(labels), np.asarray(score)
+     if index.ndim != 1 or y.shape != index.shape or s.shape != index.shape:
+         raise ValueError("Index, labels and score must be equal one-dimensional arrays")
+-    if not len(index) or np.any(np.diff(index) <= 0) or not np.isfinite(s).all():
++    if not len(index) or not np.issubdtype(index.dtype, np.integer) or np.any(np.diff(index) <= 0) or not np.isfinite(s).all():
+         raise ValueError("Need finite scores and strictly increasing original time indices")
+     if not np.array_equal(np.unique(y), [0, 1]) or not np.isfinite(threshold):
+         raise ValueError("Fixed evaluation requires both binary classes and a finite source threshold")
+-    coverage = [SimpleNamespace(**e) for e in coverage]
++    coverage = validate_coverage(index, y, coverage)
++    from sklearn.metrics import average_precision_score, roc_auc_score
+     complete = [e for e in coverage if e.eligible_complete]
+     event_id = np.full(len(index), "", dtype="<U64")
+     for e in coverage:
+@@ -35,7 +74,8 @@
+     hits = matched_count = predicted_count = normal_fragments = 0
+     events, alarms, affinity = [], [], []
+     aff_f1 = float("nan")
+-    for bi, ix in enumerate(real_blocks(index, event_valid)):
++    blocks = real_blocks(index, event_valid)
++    for bi, ix in enumerate(blocks):
+         pe = [(int(index[ix[lo]]), int(index[ix[hi - 1]]) + 1)
+               for lo, hi in binary_events(pred[ix])]
+         truth = [(e.event_id, e.start, e.end_exclusive) for e in complete
+@@ -47,12 +87,21 @@
+             alarms.append(dict(block=bi, start=lo, end_exclusive=hi, matched_event=hit))
+         normal_fragments += len(binary_events(pred[ix] & (y[ix] == 0)))
+         if affiliation is not None:
+-            ar = affiliation(binary_events(pred[ix]), binary_events(y[ix]), (0, len(ix)))
+-            p, r = float(ar["precision"]), float(ar["recall"])
+-            aff_f1 = 2 * p * r / (p + r) if np.isfinite(p) and np.isfinite(r) and p + r > 0 else float("nan")
++            gt = binary_events(y[ix])
++            p = r = block_f1 = float("nan")
++            reason = "NO_GROUND_TRUTH_EVENTS"
++            if gt:
++                ar = affiliation(binary_events(pred[ix]), gt, (0, len(ix)))
++                p, r = float(ar["precision"]), float(ar["recall"])
++                block_f1 = 2 * p * r / (p + r) if np.isfinite(p) and np.isfinite(r) and p + r > 0 else float("nan")
++                reason = None if np.isfinite(block_f1) else "OFFICIAL_UNDEFINED"
+             affinity.append(dict(block=bi, start=int(index[ix[0]]), end_exclusive=int(index[ix[-1]]) + 1,
+-                                 Aff_P=p, Aff_R=r, Aff_F1=aff_f1,
+-                                 reason=None if np.isfinite(aff_f1) else "OFFICIAL_UNDEFINED"))
++                                 Aff_P=p, Aff_R=r, Aff_F1=block_f1, reason=reason))
++    aff_reason = "NOT_EVALUATED_EXTERNAL_CALLBACK_REQUIRED"
++    if affiliation is not None:
++        aff_reason = "MULTIPLE_REAL_BLOCKS_NO_GLOBAL_AGGREGATION" if len(blocks) > 1 else "NO_VALID_BLOCKS"
++        if len(blocks) == 1:
++            aff_f1, aff_reason = affinity[0]["Aff_F1"], affinity[0]["reason"]
+     for e in coverage:
+         eligible = bool(e.eligible_complete)
+         ix = np.flatnonzero((event_id == e.event_id) & pred)
+@@ -72,6 +121,7 @@
+                    predicted_events=predicted_count,
+                    one_to_one_event_precision=matched_count / predicted_count if predicted_count else float("nan"),
+                    normal_alarm_fragments=normal_fragments, Aff_F1=aff_f1,
++                   Aff_F1_reason=aff_reason,
+                    affiliation_status="CALLBACK_USED" if affiliation is not None else "NOT_EVALUATED_EXTERNAL_CALLBACK_REQUIRED",
+                    delay_units="original sample points; no reliable physical clock")
+     return {"metrics": metrics, "events": events, "alarms": alarms, "affinity": affinity,
+--- a/src/hybrid_tsad/engine/pipeline.py
++++ b/src/hybrid_tsad/engine/pipeline.py
+@@ -5,9 +5,10 @@
+ import re
+ 
+ from ..config import read_json, resolve_path, sha256
++from .identity import SCORE_SPACE, operation_manifest, verify_scoring
+ 
+-REQUIRED_INPUTS = {"train": {"runner"}, "infer": {"official", "checkpoint", "array", "query"},
+-                   "evaluate": {"bank", "labels", "coverage"}, "calibrate": {"bank"}}
++REQUIRED_INPUTS = {"train": {"runner"}, "infer": {"official", "checkpoint", "array", "query", "calibration"},
++                   "evaluate": {"bank", "bank_metadata", "labels", "coverage", "calibration"}, "calibrate": {"bank"}}
+ PARAMETERS = {"train": ({"run", "job"}, set()),
+               "infer": ({"seed", "mode", "source_scale", "mask_seed", "readout_job", "job"}, {"device"}),
+               "evaluate": ({"threshold"}, set()), "calibrate": ({"bank_role"}, set())}
+@@ -15,10 +16,12 @@
+ 
+ def load_operation(path, operation):
+     cfg = read_json(path)
+-    if set(cfg) != {"engine_schema_version", "operation", "contract", "approval", "inputs", "parameters", "output"}:
++    if set(cfg) != {"engine_schema_version", "operation", "contract", "approval", "inputs", "parameters", "output", "score_space"}:
+         raise ValueError("Engine config requires version/operation/contract/approval/inputs/parameters/output")
+-    if cfg["engine_schema_version"] != 1 or type(cfg["engine_schema_version"]) is not int or cfg["operation"] != operation:
++    if cfg["engine_schema_version"] != 2 or type(cfg["engine_schema_version"]) is not int or cfg["operation"] != operation:
+         raise ValueError("Engine schema version or operation mismatch")
++    if cfg["score_space"] != (None if operation == "train" else SCORE_SPACE):
++        raise ValueError("Unsupported operation score-space; no implicit legacy score mapping")
+     if not isinstance(cfg["parameters"], dict) or set(cfg["inputs"]) != REQUIRED_INPUTS[operation]:
+         raise ValueError("Wrong operation input names or parameters type")
+     required, optional = PARAMETERS[operation]
+@@ -48,27 +51,34 @@
+     return value
+ 
+ 
+-def check_operation_inputs(records, paths):
++def check_operation_inputs(records, paths, cfg, output):
+     for name, p in paths.items():
+         if not p.is_file() or sha256(p) != records[name]["sha256"]:
+             raise ValueError(f"External input identity mismatch: {name}")
+     approval = read_json(paths["approval"])
+     if approval.get("status") != "APPROVED" or approval.get("contract_sha256") != records["contract"]["sha256"]:
+         raise ValueError("Approval must approve the exact external contract SHA256")
++    _, digest = operation_manifest(cfg, paths, output)
++    if approval.get("operation_manifest_sha256") != digest:
++        raise ValueError("Approval does not bind this exact operation manifest SHA256")
++    if cfg["operation"] in ("infer", "evaluate"):
++        verify_scoring(cfg, paths)
+ 
+ 
+ def run_operation(path, operation, *, execute=False, allow_labels=False):
+     cfg, records, paths, output = load_operation(path, operation)
++    manifest, digest = operation_manifest(cfg, paths, output)
+     if not execute:
+         return {"executed": False, "operation": operation, "paths": {k: str(v) for k, v in paths.items()},
+                 "output": str(output) if output else None,
++                "operation_manifest": manifest, "operation_manifest_sha256": digest,
+                 "scope": "schema/path preview only; no data, labels, checkpoint or training opened",
+                 "implementation": "external frozen training loop bridge" if operation == "train" else "shared package engine"}
+     if operation == "evaluate" and not allow_labels:
+         raise ValueError("Evaluation execution requires --allow-labels after all fixed scores are archived")
+     if output is not None and output.exists():
+         raise ValueError("Output must be a new directory; existing artifacts are immutable")
+-    check_operation_inputs(records, paths)
++    check_operation_inputs(records, paths, cfg, output)
+     parameters = cfg["parameters"]
+     if operation == "train":
+         from ..legacy import execute as execute_legacy, legacy_command
+@@ -106,6 +116,8 @@
+                                     query_array_sha256=records["array"]["sha256"],
+                                     forward_p50_seconds=float(np.median(times)),
+                                     forward_p95_seconds=float(np.quantile(times, .95)))
++        report.update(score_space=cfg["score_space"], score_field="standardized_score",
++                      source_calibration_sha256=records["calibration"]["sha256"], operation_manifest_sha256=digest)
+         # Input identities must remain stable after collection and before writing.
+         if any(sha256(p) != records[k]["sha256"] for k, p in paths.items()):
+             raise ValueError("Input changed during inference")
+@@ -116,6 +128,8 @@
+             raise ValueError("Only explicitly declared source_cal banks may fit calibration")
+         with np.load(paths["bank"], allow_pickle=False) as bank:
+             arrays, report = calibrate_source(bank)
++        report.update(calibration_schema_version=1, role="source_cal", score_space=cfg["score_space"],
++                      source_bank_sha256=records["bank"]["sha256"], operation_manifest_sha256=digest)
+         output.mkdir(parents=True, exist_ok=False)
+         np.savez_compressed(output / "cal_scores.npz", **arrays)
+         (output / "source_calibration.json").write_text(json.dumps(report, indent=2, allow_nan=False), encoding="utf-8")
+@@ -125,6 +139,9 @@
+         # All score inputs were hashed above before opening labels. No selection.
+         with np.load(paths["bank"], allow_pickle=False) as bank:
+             index, score = bank["time_index"].copy(), bank["standardized_score"].copy()
++            calibration = verify_scoring(cfg, paths)
++            if "raw_score" not in bank or not np.array_equal(score, bank["raw_score"] / calibration["normal_error_scale"]):
++                raise ValueError("Bank values do not obey the frozen raw_score/source_scale score-space")
+         y = np.load(paths["labels"], mmap_mode="r", allow_pickle=False)[index]
+         result = evaluate_fixed_scores(index, y, score, parameters["threshold"], read_json(paths["coverage"]))
+         valid = result.pop("complete_event_valid")
+--- a/src/hybrid_tsad/engine/bank.py
++++ b/src/hybrid_tsad/engine/bank.py
+@@ -79,6 +79,7 @@
+     output.mkdir(parents=True, exist_ok=False)
+     np.savez_compressed(output / "predictions_and_scores.npz", **arrays)
+     np.savez_compressed(output / "rng_states.npz", before_each_block=rng_states)
++    metadata = {**metadata, "bank_sha256": sha256(output / "predictions_and_scores.npz")}
+     (output / "inference.json").write_text(json.dumps(metadata, indent=2, allow_nan=False), encoding="utf-8")
+     return {p.name: sha256(p) for p in output.iterdir() if p.is_file()}
+ 
+--- a/src/hybrid_tsad/engine/identity.py
++++ b/src/hybrid_tsad/engine/identity.py
+@@ -0,0 +1,66 @@
++"""Canonical operation approval and source-calibration/score-space identity."""
++import hashlib
++import json
++import math
++import re
++
++from ..config import read_json
++
++SCORE_SPACE = "history_normalized_abs_channelmean_div_source_median_v1"
++
++
++def operation_manifest(cfg, paths, output):
++    """Approval record and its digest are excluded to avoid a self-reference."""
++    parameters = dict(cfg["parameters"])
++    manifest = {"manifest_schema_version": 1, "engine_schema_version": cfg["engine_schema_version"],
++                "operation": cfg["operation"], "score_space": cfg["score_space"],
++                "contract": {"path": str(paths["contract"]), "sha256": cfg["contract"]["sha256"]},
++                "inputs": {name: {"path": str(paths[name]), "sha256": record["sha256"]}
++                           for name, record in cfg["inputs"].items()},
++                "parameters": parameters, "output": str(output) if output else None}
++    encoded = json.dumps(manifest, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
++    return manifest, hashlib.sha256(encoded.encode("utf-8")).hexdigest()
++
++
++def source_calibration(path):
++    value = read_json(path)
++    required = {"calibration_schema_version", "role", "score_space", "source_bank_sha256",
++                "normal_error_scale", "threshold99", "operation_manifest_sha256"}
++    if not isinstance(value, dict) or not required <= set(value):
++        raise ValueError("Source calibration artifact lacks its identity fields")
++    if (type(value["calibration_schema_version"]) is not int or value["calibration_schema_version"] != 1
++            or value["role"] != "source_cal" or value["score_space"] != SCORE_SPACE):
++        raise ValueError("Unsupported calibration role/version/score-space; no implicit legacy mapping")
++    for key in ("source_bank_sha256", "operation_manifest_sha256"):
++        if not isinstance(value[key], str) or not re.fullmatch(r"[0-9a-f]{64}", value[key]):
++            raise ValueError("Calibration source/operation SHA is malformed")
++    for key in ("normal_error_scale", "threshold99"):
++        if (type(value[key]) not in (float, int) or not math.isfinite(value[key])
++                or value[key] < 0 or key == "normal_error_scale" and value[key] == 0):
++            raise ValueError("Calibration requires finite scale>0 and threshold>=0")
++    return value
++
++
++def verify_scoring(cfg, paths):
++    """Run before inference, loading a score bank, or opening evaluator labels."""
++    calibration = source_calibration(paths["calibration"])
++    key = "source_scale" if cfg["operation"] == "infer" else "threshold"
++    if type(cfg["parameters"][key]) not in (float, int) or not math.isfinite(cfg["parameters"][key]):
++        raise ValueError("Explicit score scale/threshold must be finite numeric values")
++    if cfg["score_space"] != calibration["score_space"]:
++        raise ValueError("Configured score-space differs from source calibration")
++    if cfg["operation"] == "infer":
++        if cfg["parameters"]["source_scale"] != calibration["normal_error_scale"]:
++            raise ValueError("Configured source_scale differs from fixed source calibration")
++    else:
++        if cfg["parameters"]["threshold"] != calibration["threshold99"]:
++            raise ValueError("Configured threshold differs from fixed source calibration")
++        metadata = read_json(paths["bank_metadata"])
++        if (metadata.get("bank_sha256") != cfg["inputs"]["bank"]["sha256"]
++                or metadata.get("source_calibration_sha256") != cfg["inputs"]["calibration"]["sha256"]
++                or metadata.get("score_space") != cfg["score_space"]
++                or metadata.get("score_field") != "standardized_score"
++                or type(metadata.get("source_scale")) not in (float, int)
++                or metadata.get("source_scale") != calibration["normal_error_scale"]):
++            raise ValueError("Bank score units/calibration identity do not match the approved score-space")
++    return calibration
+--- a/src/hybrid_tsad/cli.py
++++ b/src/hybrid_tsad/cli.py
+@@ -73,8 +73,8 @@
+                     raise ValueError("Unknown engine operation")
+                 result = run_operation(args.path, operation)
+                 if args.check_paths:
+-                    _, records, paths, _ = load_operation(args.path, operation)
+-                    check_operation_inputs(records, paths)
++                    cfg, records, paths, output = load_operation(args.path, operation)
++                    check_operation_inputs(records, paths, cfg, output)
+                 result.update(valid=True, paths_checked=args.check_paths)
+             else:
+                 result = validate_config(args.path, args.check_paths)

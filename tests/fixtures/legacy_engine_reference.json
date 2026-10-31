@@ -1,0 +1,20 @@
+{
+  "plan": {
+    "source_file": "scripts/hybrid_10k_wave.py",
+    "source_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394",
+    "excerpt_sha256": "5ea4682cc21a0e6f91db991ac8ff0d3063e50757090ae906675f61c718a26cda",
+    "source": "for role,total,offset in [('fit',640000,0),('select',256,50000),('cal',256,60000)]:\n   rng=np.random.default_rng(sample_seed+offset);rr=[];bb=[];cc=[];drawn=0;rejected=0\n   pools={s:[j for j,r in enumerate(rows) if r['role']==role and r['dataset']==s] for s in sources}\n   assert all(pools.values())\n   for n in range(total):\n    domain=sources[(n//64)%len(sources)]\n    for _ in range(1000):\n     j=int(rng.choice(pools[domain]));r=rows[j];b=int(r['forecast_origins'][rng.integers(len(r['forecast_origins']))]);c=int(rng.integers(len(r['columns'])))\n     ar=sampler.array(r);x=ar[b-400:b,c];y=ar[b:b+5,c];drawn+=1\n     ok=np.isfinite(x[0]) and not np.isinf(x).any() and not np.isinf(y).any() and np.isfinite(y).any()\n     if ok:break\n     rejected+=1\n    else:raise ValueError('No eligible source tuple; never relax quality or role rules')\n    rr.append(j);bb.append(b);cc.append(c)\n   arrays[role+'_record']=np.array(rr,dtype='uint16');arrays[role+'_origin']=np.array(bb,dtype='uint32');arrays[role+'_channel']=np.array(cc,dtype='uint8')\n   quality[role]={'requested':total,'drawn':drawn,'rejected':rejected,'rng_seed':sample_seed+offset}\n   print('PLAN',planname,role,total,flush=True)"
+  },
+  "calibration": {
+    "source_file": "scripts/hybrid_10k_wave.py",
+    "source_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394",
+    "excerpt_sha256": "571124706d0f2b8cc220ad9990887431bf2fbdb29efe9c65e2b349074eca26c1",
+    "source": "cal=np.load(out/'cal_primary.npz');e=np.abs(cal['prediction']-cal['target'])/cal['history_scale'];valid=cal['valid_target'];pointvalid=valid.any(-1)\npoint=np.divide(np.where(valid,e,0).sum(-1),valid.sum(-1),out=np.full(pointvalid.shape,np.nan,dtype='float32'),where=pointvalid)\nscale=max(float(np.median(point[pointvalid])),1e-8);scores=point/scale;np.savez_compressed(out/'cal_scores.npz',raw_residual=point,standardized_score=scores,valid=pointvalid)"
+  },
+  "forecast": {
+    "source_file": "scripts/run_hybrid_10k_psm_inference.py",
+    "source_sha256": "ce37f1f025c5ad29e3ffe537d582f703fed39f5d7650bdd1b33141e5c67b3866",
+    "excerpt_sha256": "b0578f7ddd0ef1857f74910b9bfdcfea39ee1a64fe182072435dba4bf5d8ec3e",
+    "source": "for i,b in enumerate(q['origins']):\n            x = torch.tensor(data[None,b-400:b].copy(),device='cuda')\n            before = torch.cuda.get_rng_state(); states.append(before.cpu().numpy())\n            torch.cuda.synchronize(); ts=time.perf_counter(); o=model(x)\n            torch.cuda.synchronize(); times.append(time.perf_counter()-ts)\n            pred=o['prediction'].cpu().numpy()[0]; scale=o['scale'].cpu().numpy()[0]\n            target=data[b:b+5].copy()\n            residual=np.abs(pred-target)/scale\n            score=score_block(pred,target,scale,spec['source_scale'])\n            assert np.isfinite(residual).all() and np.isfinite(score).all()\n            if i<2:\n                after=torch.cuda.get_rng_state();torch.cuda.set_rng_state(before)\n                replay=model(x);assert torch.equal(o['prediction'],replay['prediction'])\n                torch.cuda.set_rng_state(after)\n                if a.job.endswith('_s2'):\n                    with np.load(a.run/'l0'/spec['mode']/'two_blocks.npz') as old:\n                        assert np.array_equal(pred,old['prediction'][i*5:i*5+5])\n            for key,value in [('prediction',pred),('target',target),\n                              ('history_scale_by_block',scale),\n                              ('normalized_channel_residual',residual),\n                              ('raw_score',residual.mean(-1)),('standardized_score',score)]:\n                values[key].append(value)\n            indices.extend(range(b,b+5))\n            assert torch.cuda.max_memory_allocated()<30*1024**3\n            if i%1000==0:print(a.job,i,len(q['origins']),flush=True)"
+  }
+}

@@ -12,6 +12,7 @@ dependencies = []
 
 [project.optional-dependencies]
 data = ["numpy", "pandas"]
+evaluation = ["numpy", "scikit-learn"]
 model = ["numpy", "pandas", "torch", "torch-frft"]
 
 [project.scripts]

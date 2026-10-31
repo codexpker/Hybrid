@@ -1,0 +1,11 @@
+{
+  "audit_directory": "research_workspace/independent_audit/HYBRID-SHARED-ENGINE",
+  "original_verdict": "REQUIRES_REVISION",
+  "original_files_unchanged_sha256": {
+    "REVIEW.md": "3e0e05045d8ae87cc954b9dbf0f118be97d3b73f5046391684d77288ec1814d8",
+    "adversarial_results.json": "350092e95e385147c3f3c6f0d84607b8c356e583f9bd2e5b8cb96d8275a610d7",
+    "provenance_results.json": "0b96050249906e1cda00b1671d6473b553c12c669fac5e70dbaffa278ea28a58"
+  },
+  "diff": "shared_engine_revision.patch",
+  "diff_sha256": "c6e7a5b364ee6a43297f7b29762fa633b689652cb0fc2d674b159af24d5ff6f7"
+}

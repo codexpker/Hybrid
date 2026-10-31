@@ -45,7 +45,7 @@ forecast = output["prediction"]  # [batch,5,channels]
 
 ## 训练与完整读出的迁移范围
 
-核心model/data/protocol已逐字节复制，预测API可调用。训练/采样计划/源验证/校准/推理银行/标签开锁/统计流程仍由外置冻结runner承担，没有宣称全流程已迁入新包。统一CLI可显式桥接已有两个runner，默认仅输出命令：
+核心model/data/protocol逐字节保留，预测API可调用。第二工程阶段已将源计划/源cal、forecast银行、事件与AP统计归入共享`hybrid_tsad.engine`，并提供真实infer/calibrate/evaluate操作；train仍转交外置冻结优化循环。完整科研门禁与统计装配尚未全部迁入，范围及统一配置见[共享引擎说明](docs/shared_engine.md)。原legacy显式桥仍可使用，默认仅输出命令：
 
 ```powershell
 python -m hybrid_tsad legacy source-wave --script ../scripts/hybrid_10k_wave.py -- --help
@@ -54,12 +54,16 @@ python -m hybrid_tsad legacy readout --script ../scripts/run_hybrid_10k_psm_infe
 
 readout桥锁定已恢复的implementation_v2版本（ce37f1…），拒绝已知job键冲突的旧v1（3cd868…）；已只读核对远端两个版本SHA。桥接会校验指定外部脚本的固定SHA；不会复制/修改原脚本、run或snapshot。需要执行时，显式加入 `--execute`，`--` 后参数逐字传给原runner，用同一Python解释器启动。例中的`--help`仅打印原runner帮助。source-wave支持原prepare/gate/train，readout使用原run/job参数。任何真实训练/读出仍须已有合同、主审批、预算、冻结run完整输入及相邻依赖；桥接不检查或替代这些科研门禁。readout还需要原相邻`hybrid_readout_guard.py`，source-wave使用run内implementation快照，**不会自动改为本包新代码**。本轮未执行任何训练或读出桥接，不修复旧runner，也不兼容SHA不符的新版本。
 
-下一工程阶段应先迁入原runner的通用职责，保持计划、RNG、step、state_dict、源校准与输出身份，再在合成/冻结银行上验证数值等价；未完成前继续原已批准流程。少样本适配、跨域训练一键流水线与通用数据重定位器尚未迁入，不能据本工程宣称完成两阶段训练。
+后续工程阶段仍需迁入原优化循环及完整多bank科研门禁，保持计划、RNG、step、state_dict、源校准与输出身份；既有合法run继续原已批准流程。少样本适配、跨域训练一键流水线与通用数据重定位器尚未迁入，不能据本工程宣称完成两阶段训练。
 
 ## 目录与验证
 
-`src/hybrid_tsad` 为安装包；`configs` 为库存配置；`tests` 为标准库测试和可选CPU模型兼容测试；`docs/provenance` 为来源及迁移记录。历史索引见 `docs/provenance/history_index.md`，来源SHA见包内 `core_provenance.json`。
+`src/hybrid_tsad` 为安装包；`configs` 为库存/操作配置；`tests` 为标准库测试和可选CPU模型兼容测试；`docs/provenance` 为来源及迁移记录。历史索引见 `docs/provenance/history_index.md`，来源SHA见包内 `core_provenance.json`。
 
 标准测试不需要torch，不运行训练。可选模型测试仅在已有torch且设置 `HYBRID_OFFICIAL_FILE`、`HYBRID_LEGACY_MODEL` 指向现存旧实现时运行（同工作区可自动识别旧实现）：比对原模型全部state_dict、strict加载与相同CPU/RNG输入下三模式预测。没有这些条件明确SKIP，不声称数值验证通过。`verify-core` 仅证明三个核心文件字节相同；`inspect-run` 仅读目录和限定JSON元数据，不加载数组、检查点、标签或复算指标，且不把元数据status解释为审查通过。
 
 本次实际验收：本机11项通过、1项模型条件跳过；另经授权在已有远端环境仅用CPU完成三模式旧实现/API、strict state_dict与checkpoint加载兼容检查，同输入同RNG预测逐元素相同。wheel构建及独立target安装验证通过。详见 `docs/provenance/migration.md` 与 `validation_results.json`；这不是全量训练/读出迁移验收。
+
+共享引擎命令默认只预览：`python -m hybrid_tsad infer --config configs/infer.example.json`，同样支持train/calibrate/evaluate。实际执行需外置合同、批准与输入SHA及`--execute`；evaluate另需`--allow-labels`。示例SHA/阈值是占位，不能直接用于研究。第二阶段合成验证结果见`docs/provenance/shared_engine_validation.json`。
+
+共享引擎已通过限定范围的独立工程审查：多块Aff整体NA、coverage资格及连续事件边界严格核验、schema2批准manifest与源cal/score-space绑定。操作预览会输出待批准manifest SHA；旧v1操作配置拒绝执行。原失败证据与修复diff见`docs/provenance/shared_engine_revision.md`及`adjacent_event_revision.md`。独立CPU测试25项通过，主本机37项中29通过、8因可选依赖跳过。验收不代表完整训练迁移或检测增益成立。

@@ -7,7 +7,7 @@ import platform
 import sys
 
 from . import __version__
-from .config import validate_config
+from .config import read_json, validate_config
 from .inspection import inspect_run, verify_core
 
 
@@ -48,6 +48,12 @@ def main(argv=None):
     legacy.add_argument("kind", choices=("source-wave", "readout"))
     legacy.add_argument("--script", required=True)
     legacy.add_argument("--execute", action="store_true", help="Execute; requires existing experiment approval")
+    for name in ("train", "infer", "evaluate", "calibrate"):
+        operation = sub.add_parser(name, help="Unified engine config; default preview, explicit execution only")
+        operation.add_argument("--config", required=True)
+        operation.add_argument("--execute", action="store_true")
+        if name == "evaluate":
+            operation.add_argument("--allow-labels", action="store_true")
     # Parse passthrough after -- separately so --script remains an ordinary option.
     raw = list(sys.argv[1:] if argv is None else argv)
     passthrough = []
@@ -59,9 +65,25 @@ def main(argv=None):
         if args.command == "check-env":
             result = check_env(args.require_model)
         elif args.command == "config":
-            result = validate_config(args.path, args.check_paths)
+            raw_config = read_json(args.path)
+            if isinstance(raw_config, dict) and "engine_schema_version" in raw_config:
+                from .engine.pipeline import check_operation_inputs, load_operation, run_operation
+                operation = raw_config.get("operation")
+                if operation not in ("train", "infer", "evaluate", "calibrate"):
+                    raise ValueError("Unknown engine operation")
+                result = run_operation(args.path, operation)
+                if args.check_paths:
+                    cfg, records, paths, output = load_operation(args.path, operation)
+                    check_operation_inputs(records, paths, cfg, output)
+                result.update(valid=True, paths_checked=args.check_paths)
+            else:
+                result = validate_config(args.path, args.check_paths)
         elif args.command == "inspect-run":
             result = inspect_run(args.path)
+        elif args.command in ("train", "infer", "evaluate", "calibrate"):
+            from .engine.pipeline import run_operation
+            result = run_operation(args.config, args.command, execute=args.execute,
+                                   allow_labels=getattr(args, "allow_labels", False))
         elif args.command == "legacy":
             from .legacy import execute, legacy_command
             command = legacy_command(args.kind, args.script, passthrough)
@@ -73,6 +95,6 @@ def main(argv=None):
             result = verify_core(args.source_root)
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return 0 if result.get("valid", True) else 1
-    except (OSError, ValueError, TypeError) as exc:
+    except (OSError, ValueError, TypeError, ImportError, KeyError) as exc:
         print(json.dumps({"valid": False, "error": str(exc)}, ensure_ascii=False), file=sys.stderr)
         return 2

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-31",
+  "status": "DEVELOPER_FIXED_PENDING_INDEPENDENT_REVIEW",
+  "files": {
+    "src/hybrid_tsad/engine/evaluation.py": "db822339c82c58c70ad4540406309c09e222e20d8cc27ba11509d8bb3437e762",
+    "src/hybrid_tsad/engine/pipeline.py": "cc0c0bbc2805894644478742a030b6e5735489b593f9180be53591383a5200dd",
+    "src/hybrid_tsad/engine/identity.py": "b386c5ad61eaca4baaa66388b26744438de56c9079d958910016af3cda0e7c8a",
+    "src/hybrid_tsad/engine/bank.py": "8755d3fbf4a0d979eca15d3d7b9ffb8e9e3c2cb4a8e3ba12527cd35deb8a5595",
+    "src/hybrid_tsad/cli.py": "df5cf28d795fd28fa2c2e9086b1baae3a61067d79fd6c0a60b819e3a1f31508b",
+    "tests/test_revision_guards.py": "9e88b129998ecb014798e4fcf877f7a80f567f41191171b9d0dd0a61bd2b2289",
+    "tests/test_shared_engine.py": "ed0057a6edffafe92ab52a98e6559bcc79339bb77f55ffa003bb130045ec96a7",
+    "tests/test_model_compatibility.py": "61134b7ba43621accf9b94f783b00de860661f7f18a347819c728ea107b0529b",
+    "tests/engine_fixture_support.py": "defde839c07b4e6293fc3f291e930b9a8f49fba0c7a03e54867284758e6803a2"
+  },
+  "local_tests": {
+    "total": 34,
+    "passed": 27,
+    "skipped": 7,
+    "seconds": 0.921
+  },
+  "remote_cpu_tests": {
+    "total": 22,
+    "passed": 22,
+    "seconds": 0.97,
+    "cuda_visible_devices": "",
+    "torch_threads": 2
+  },
+  "core_changed": false,
+  "training": false,
+  "real_query_labels_loaded": false
+}

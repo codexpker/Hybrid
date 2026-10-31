@@ -1,0 +1,47 @@
+[
+  {
+    "package_file": "events.py",
+    "function": "real_blocks",
+    "source_file": "scripts/hybrid_event_matching_contract.py",
+    "source_sha256": "9e2ceafd8a76e0117cf5a98cd25556a7c8118f23e8643d7572b96a79b20c56ae",
+    "function_ast_sha256": "e4553eb43c06554e17cd6fcc817afb09e73fd2bd7229a5d2e1e8e121f71fe405",
+    "source_start_line": 11,
+    "source_end_line": 16
+  },
+  {
+    "package_file": "events.py",
+    "function": "binary_events",
+    "source_file": "scripts/hybrid_event_matching_contract.py",
+    "source_sha256": "9e2ceafd8a76e0117cf5a98cd25556a7c8118f23e8643d7572b96a79b20c56ae",
+    "function_ast_sha256": "c157286bc47b6f4669f670acc645b7ded8d413f855160771b653e07513bf9151",
+    "source_start_line": 19,
+    "source_end_line": 22
+  },
+  {
+    "package_file": "events.py",
+    "function": "greedy_assign",
+    "source_file": "scripts/hybrid_event_matching_contract.py",
+    "source_sha256": "9e2ceafd8a76e0117cf5a98cd25556a7c8118f23e8643d7572b96a79b20c56ae",
+    "function_ast_sha256": "6f8f2c882e61fa62736c6a282fffbd090601b3865fe8899fe6d5bf36c0e49d6a",
+    "source_start_line": 25,
+    "source_end_line": 38
+  },
+  {
+    "package_file": "statistics.py",
+    "function": "ap_cache",
+    "source_file": "scripts/evaluate_hybrid_10k_psm_readout.py",
+    "source_sha256": "1ab3b34ee79b3d05e486f87d9e8f5205e924bffff8d842df3eb63511a51f295c",
+    "function_ast_sha256": "7f5c681b5bc15d61ca1bfd7bfc43c9da3be9f13dbe6ab83b8da1c528c5eeb5b5",
+    "source_start_line": 22,
+    "source_end_line": 25
+  },
+  {
+    "package_file": "statistics.py",
+    "function": "weighted_ap",
+    "source_file": "scripts/evaluate_hybrid_10k_psm_readout.py",
+    "source_sha256": "1ab3b34ee79b3d05e486f87d9e8f5205e924bffff8d842df3eb63511a51f295c",
+    "function_ast_sha256": "32f4d0c08351a3c79daeca9ece47ed22b9bdcf6e63c280299f50ab7463f2c0ca",
+    "source_start_line": 28,
+    "source_end_line": 33
+  }
+]

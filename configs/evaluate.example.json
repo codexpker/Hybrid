@@ -1,0 +1,39 @@
+{
+  "engine_schema_version": 2,
+  "contract": {
+    "path": "../../external/example_assets/CONTRACT.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "approval": {
+    "path": "../../external/example_assets/PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "operation": "evaluate",
+  "inputs": {
+    "bank": {
+      "path": "../../external/example_assets/predictions_and_scores.npz",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "labels": {
+      "path": "../../external/example_assets/labels.npy",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "coverage": {
+      "path": "../../external/example_assets/event_coverage.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "calibration": {
+      "path": "../../external/example_assets/source_calibration.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "bank_metadata": {
+      "path": "../../external/example_assets/inference.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "threshold": 1.0
+  },
+  "output": "../../external/new_fixed_evaluation",
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-31",
+  "scope": "second finite engineering stage; developer self-check, not new scientific evidence",
+  "local": {
+    "python": "3.12.14",
+    "unittest_total": 22,
+    "passed": 18,
+    "skipped": 4,
+    "skip_reasons": ["torch absent for two model tests and forecast-loop test", "scikit-learn absent for fixed-metric/bootstrap test"],
+    "seconds": 0.439,
+    "compileall": "PASS",
+    "wheel_build": "PASS",
+    "isolated_install_no_deps": "PASS",
+    "installed_cli_operation_previews": ["evaluate", "calibrate"],
+    "installed_core_hash_verification": "PASS"
+  },
+  "remote_cpu": {
+    "new_validation_directory": "projects/hybrid_ad_package_validation_20261031_engine_v1",
+    "existing_environment": "envs/timeradar_author_core_20261028_r2",
+    "cuda_visible_devices": "",
+    "torch_threads": 2,
+    "timeout_seconds": 60,
+    "unittest_total": 10,
+    "passed": 10,
+    "skipped": 0,
+    "test_seconds": 0.923,
+    "evaluate_pipeline_followup": {"passed": 1, "seconds": 0.670, "scope": "synthetic labels only; JSON and coordinate outputs verified"},
+    "scope": "test_shared_engine plus actual synthetic inference operation; no model optimization or real query labels"
+  },
+  "equivalence": {
+    "source_plan": "exact arrays, integer dtypes, domain order, quality rejection counts and seed offsets versus frozen prepare excerpt; synthetic fit/select/cal=130/17/19",
+    "source_calibration": "raw/standardized scores, validity, median scale and quantile threshold exactly match frozen train statements",
+    "forecast_bank": "all numeric bank arrays and before-each-block RNG states exactly match frozen v2 loop with CPU device/RNG/synchronize adaptation",
+    "source_event_and_ap_helpers": "five original function AST SHA identities match provenance manifest",
+    "bootstrap": "weighted AP differences match explicit repeated-block sklearn AP to 12 decimal places on synthetic draws",
+    "pipeline": "synthetic source-calibration, random-weight hybrid inference to forecast bank, and fixed synthetic-label evaluation to JSON/coordinate outputs succeeded",
+    "core_files": "model/data/protocol unchanged; original provenance hashes retained"
+  },
+  "remaining": [
+    "Package-native optimizer/source validation loop; train command still bridges hash-pinned external source-wave runner",
+    "All-method inference completeness and scientific label-opening/recovery release gates",
+    "Complete official Affiliation adapter, multi-seed CSV aggregation and historical control integration",
+    "U/F adaptation and generalized source-manifest relocation"
+  ],
+  "training_launched": false,
+  "gpu_used": false,
+  "real_query_labels_loaded": false,
+  "original_runs_modified": false,
+  "new_dependencies_installed": false
+}

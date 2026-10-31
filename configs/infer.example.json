@@ -1,0 +1,45 @@
+{
+  "engine_schema_version": 2,
+  "contract": {
+    "path": "../../external/example_assets/CONTRACT.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "approval": {
+    "path": "../../external/example_assets/PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "operation": "infer",
+  "inputs": {
+    "official": {
+      "path": "../../external/example_assets/TimeRadar.py",
+      "sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317"
+    },
+    "checkpoint": {
+      "path": "../../external/example_assets/step10000.pt",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "array": {
+      "path": "../../external/example_assets/query.npy",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "query": {
+      "path": "../../external/example_assets/query_record.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "calibration": {
+      "path": "../../external/example_assets/source_calibration.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "seed": 0,
+    "mode": "hybrid",
+    "source_scale": 1.0,
+    "mask_seed": 84551,
+    "readout_job": "example_readout",
+    "job": "example_training_job",
+    "device": "cpu"
+  },
+  "output": "../../external/new_inference_bank",
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
+}

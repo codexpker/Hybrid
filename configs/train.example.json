@@ -1,0 +1,24 @@
+{
+  "engine_schema_version": 2,
+  "contract": {
+    "path": "../../external/example_assets/CONTRACT.md",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "approval": {
+    "path": "../../external/example_assets/PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "operation": "train",
+  "inputs": {
+    "runner": {
+      "path": "../../scripts/hybrid_10k_wave.py",
+      "sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394"
+    }
+  },
+  "parameters": {
+    "run": "../../external/example_assets",
+    "job": "example_training_job"
+  },
+  "output": null,
+  "score_space": null
+}

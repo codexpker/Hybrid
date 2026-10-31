@@ -7,6 +7,7 @@ import unittest
 import tempfile
 
 from hybrid_tsad.config import OFFICIAL_SHA, sha256
+from engine_fixture_support import approve_fixture, calibration_file
 
 OFFICIAL = os.environ.get("HYBRID_OFFICIAL_FILE")
 HAS_TORCH = importlib.util.find_spec("torch") is not None
@@ -17,6 +18,44 @@ LEGACY = Path(os.environ.get("HYBRID_LEGACY_MODEL",
 @unittest.skipUnless(HAS_TORCH and OFFICIAL and LEGACY.is_file(),
                      "requires torch, HYBRID_OFFICIAL_FILE and existing HYBRID_LEGACY_MODEL/reference source")
 class ModelCompatibilityTests(unittest.TestCase):
+    def test_inference_pipeline_executes_on_synthetic_inputs_cpu(self):
+        import numpy as np
+        import torch
+        from hybrid_tsad.api import create_predictor
+        from hybrid_tsad.engine.pipeline import run_operation
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            contract = root / "contract.md"
+            contract.write_text("synthetic engineering fixture; no training")
+            approval = root / "approval.json"
+            approval.write_text(json.dumps({"status": "APPROVED", "contract_sha256": sha256(contract)}))
+            torch.manual_seed(41)
+            model = create_predictor(OFFICIAL, device="cpu")
+            checkpoint = root / "random_fixture.pt"
+            torch.save(model.state_dict(), checkpoint)
+            data = root / "synthetic.npy"
+            np.save(data, np.linspace(0, 1, 410, dtype="float32")[:, None])
+            query = root / "query.json"
+            query.write_text(json.dumps({"history": 400, "horizon": 5, "origins": [400, 405],
+                                         "expected_time_index": list(range(400, 410))}))
+            record = lambda p: {"path": str(p), "sha256": sha256(p)}
+            calibration = calibration_file(root / "source_calibration.json", scale=.7, threshold=1.0)
+            cfg = dict(engine_schema_version=1, operation="infer", contract=record(contract), approval=record(approval),
+                       inputs=dict(official=record(Path(OFFICIAL)), checkpoint=record(checkpoint), array=record(data),
+                                   query=record(query), calibration=record(calibration)),
+                       parameters=dict(mode="hybrid", device="cpu", seed=41, source_scale=.7, mask_seed=53,
+                                       readout_job="synthetic", job="fixture_not_training"), output=str(root / "bank"))
+            path = root / "operation.json"
+            approve_fixture(cfg, path)
+            result = run_operation(path, "infer", execute=True)
+            self.assertTrue(result["executed"])
+            with np.load(root / "bank/predictions_and_scores.npz") as bank:
+                self.assertTrue(np.array_equal(bank["time_index"], np.arange(400, 410)))
+                self.assertEqual(bank["prediction"].shape, (10, 1))
+            report = json.loads((root / "bank/inference.json").read_text())
+            self.assertFalse(report["labels_opened"])
+            self.assertFalse(report["training"])
+
     def test_legacy_state_dict_and_prediction_replay(self):
         import torch
         from hybrid_tsad.api import create_predictor, predict

@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-31",
+  "status": "DEVELOPER_FIXED_PENDING_INDEPENDENT_REVIEW",
+  "before_evaluation_sha256": "db822339c82c58c70ad4540406309c09e222e20d8cc27ba11509d8bb3437e762",
+  "files": {
+    "src/hybrid_tsad/engine/evaluation.py": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+    "tests/test_adjacent_event_revision.py": "b549109bb017a376b2a49cdc9e8fe703644920eb8269b13c7f335b48cbafb38c",
+    "docs/provenance/adjacent_event_revision.patch": "e7dab3a5434de6862e5b21821f82d2db91ed8cb79071ded79472a818ec967c77"
+  },
+  "frozen_audit_sha256": {
+    "REVIEW_REVISION.md": "d1fdb73371f0a555a9c01fb654add477911192ef4d3c815edf49cb6b6d428d8a",
+    "revision_adversarial_results.json": "4f5e8b665f6b27737c11dcf4a36d6009cf2c02c61f393fcf7e3fd3e0f33154e2"
+  },
+  "other_prior_reviewed_files_unchanged": {
+    "src/hybrid_tsad/engine/pipeline.py": true,
+    "src/hybrid_tsad/engine/identity.py": true,
+    "src/hybrid_tsad/engine/bank.py": true,
+    "src/hybrid_tsad/cli.py": true,
+    "tests/test_revision_guards.py": true,
+    "tests/test_shared_engine.py": true,
+    "tests/test_model_compatibility.py": true,
+    "tests/engine_fixture_support.py": true
+  },
+  "core_sha_matches": {
+    "model.py": true,
+    "data.py": true,
+    "protocol.py": true
+  },
+  "local_tests": {
+    "total": 37,
+    "passed": 29,
+    "skipped": 8,
+    "seconds": 0.756,
+    "compileall": "PASS"
+  },
+  "remote_cpu_tests": {
+    "total": 25,
+    "passed": 25,
+    "seconds": 0.986,
+    "cuda_visible_devices": "",
+    "torch_threads": 2
+  },
+  "training": false,
+  "real_query_labels_loaded": false,
+  "scope": "visible scored contiguous positives only; full original boundaries remain upper frozen-label evidence responsibility"
+}
