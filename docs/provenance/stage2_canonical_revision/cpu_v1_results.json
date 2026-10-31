@@ -1,0 +1,13 @@
+{
+  "scope": "SYNTHETIC_CPU_ENGINEERING_ONLY",
+  "tests": 9,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "seconds": 14.667937290039845,
+  "python": "3.12.13",
+  "torch": "2.8.0+cu128",
+  "threads": 2,
+  "CUDA_VISIBLE_DEVICES": "",
+  "successful": true
+}

@@ -1,0 +1,1608 @@
+--- before/src/hybrid_tsad/cli.py
++++ after/src/hybrid_tsad/cli.py
+@@ -58,6 +58,11 @@
+     readout.add_argument("--config", required=True)
+     readout.add_argument("--execute", action="store_true")
+     readout.add_argument("--allow-labels", action="store_true")
++    stage2 = sub.add_parser("stage2", help="Head-only U stage5 config; preview unless explicitly approved")
++    stage2_inputs=stage2.add_mutually_exclusive_group(required=True)
++    stage2_inputs.add_argument("--config")
++    stage2_inputs.add_argument("--runtime-identity",action="store_true",help="Print current source SHA identity without torch/data")
++    stage2.add_argument("--execute", action="store_true")
+     # Parse passthrough after -- separately so --script remains an ordinary option.
+     raw = list(sys.argv[1:] if argv is None else argv)
+     passthrough = []
+@@ -91,6 +96,14 @@
+         elif args.command == "readout":
+             from .engine.multi_readout import run_readout
+             result = run_readout(args.config, execute=args.execute, allow_labels=args.allow_labels)
++        elif args.command == "stage2":
++            if args.runtime_identity:
++                if args.execute:raise ValueError("Runtime identity is read-only")
++                from .engine.stage2_identity import runtime_identity
++                result=runtime_identity()
++            else:
++                from .engine.stage2 import run_stage2
++                result = run_stage2(args.config, execute=args.execute)
+         elif args.command == "legacy":
+             from .legacy import execute, legacy_command
+             command = legacy_command(args.kind, args.script, passthrough)
+--- /dev/null
++++ after/src/hybrid_tsad/engine/stage2_identity.py
+@@ -0,0 +1,199 @@
++"""Separate Stage2 operation identity. Never relax the source/Z policy."""
++import hashlib
++import json
++from pathlib import Path
++import re
++
++from ..config import OFFICIAL_SHA, read_json, resolve_path, sha256
++from .identity import operation_manifest, SCORE_SPACE
++
++STAGE = "U_NORMAL_HEAD"
++CONTRACT_SHA = "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af"
++RECIPE_CANONICAL_SHA = "e997ac28c6a38c48b1f78495ef6aadb82a59d6e415ef50f8b32ce84e7f91cb5d"
++NORMAL_RAW_SHA = "12d1055b852763fac09ef36bd7c9612a800c8bf7b6f75f344d12119206f9e940"
++NORMAL_CACHE_SHA = "43cff9a26cbcf15ffbf66fd40db1b9b10ee114ebd9e8fbbcb10b741b99b15fdd"
++LINEAGE_SHA = "39dbfa5849ee0ad1a555d58e76e6046f056b1e44d033aa89a5d720b921d0edb8"
++PARENT_MANIFEST_SHA = "9799d406d7297cebda845e9b78a5583f387194c02271536f5387540931b8fc26"
++PREPARATION_SHA = "f73fb60b113b18cdc43a9e816d37a2477af65220d3ad88dcfe1d9a80b1c4f291"
++SOURCE_REFERENCES_SHA = "095bd53b7b9a5faf04428270c635c28264094359afc6f2b5743497f287640236"
++L0_REQUIREMENTS_SHA = "efd079dad5b5e6743333ac54a3b8abc28b2e959f4654aa2408b9dff728d55be0"
++PAIR = {f"u_normal_head_hybrid_s0_{i}" for i in ("source_pretrained", "random_init")}
++BASE_INPUTS = {"recipe", "preparation", "target_manifest", "target_plan", "source_references", "source_cal_trace", "runtime"}
++HEAD_NAMES = ("head.weight", "head.bias")
++
++
++def canonical_sha(value):
++    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()).hexdigest()
++
++
++def load_stage2(path):
++    cfg = read_json(path)
++    if (set(cfg) != {"engine_schema_version", "operation", "stage", "contract", "approval", "inputs", "parameters", "output", "score_space"}
++            or cfg["engine_schema_version"] != 5 or cfg["stage"] != STAGE
++            or cfg["operation"] not in ("stage2-train", "stage2-calibrate", "stage2-l0") or cfg["score_space"] != SCORE_SPACE):
++        raise ValueError("Stage2 requires its own schema5 stage/operation/score-space")
++    expected = BASE_INPUTS | ({"entry_gate"} if cfg["operation"] == "stage2-train" else {"requirements"} if cfg["operation"] == "stage2-l0" else {"checkpoint", "checkpoint_metadata", "training_summary"})
++    if set(cfg["inputs"]) != expected or set(cfg["parameters"]) != {"job_id", "device"}:
++        raise ValueError("Stage2 inputs/parameters are fixed; no labels/query/step override")
++    if (not re.fullmatch(r"u_normal_head_(temporal|tf|hybrid)_s[012]_(source_pretrained|random_init)", cfg["parameters"]["job_id"])
++            or cfg["parameters"]["device"] not in ("cpu", "cuda:0")):
++        raise ValueError("Unapproved Stage2 job/device")
++    records = {"contract": cfg["contract"], "approval": cfg["approval"], **cfg["inputs"]}
++    for ref in records.values():
++        if set(ref) != {"path", "sha256"} or not re.fullmatch("[0-9a-f]{64}", ref["sha256"]):
++            raise ValueError("Operation assets require exact path/SHA records")
++    paths = {name: resolve_path(ref["path"], path) for name, ref in records.items()}
++    output = resolve_path(cfg["output"], path)
++    manifest, _ = operation_manifest(cfg, paths, output)
++    manifest.update(stage=STAGE, permissions="known-normal head only; no query/labels/F")
++    return cfg, paths, output, manifest, canonical_sha(manifest)
++
++
++def runtime_identity():
++    root=Path(__file__).resolve().parents[1]
++    return dict(stage=STAGE,files={"src/hybrid_tsad/"+str(p.relative_to(root)).replace('\\','/'):sha256(p) for p in sorted(root.rglob('*.py'))})
++
++
++def input_identity(cfg):
++    return {name:cfg['inputs'][name]['sha256'] for name in ('recipe','target_manifest','target_plan','source_references','source_cal_trace','runtime')}
++
++
++class Assets:
++    def __init__(self):
++        self.hashes = {}
++
++    def file(self, ref, base):
++        if (not isinstance(ref, dict) or not {"path", "sha256"} <= set(ref)
++                or set(ref) - {"path", "sha256", "bytes"} or not re.fullmatch("[0-9a-f]{64}", ref["sha256"])):
++            raise ValueError("Malformed external Stage2 asset record")
++        p = resolve_path(ref["path"], base)
++        if p in self.hashes and self.hashes[p] != ref["sha256"]:
++            raise ValueError("Conflicting asset identities")
++        if p not in self.hashes and (not p.is_file() or sha256(p) != ref["sha256"]):
++            raise ValueError("Stage2 external input SHA mismatch: " + p.name)
++        if "bytes" in ref and p.stat().st_size != ref["bytes"]:
++            raise ValueError("Stage2 asset byte count mismatch")
++        self.hashes[p] = ref["sha256"]
++        return p
++
++    def same(self, a, b, base_a, base_b):
++        if self.file(a, base_a) != self.file(b, base_b) or a["sha256"] != b["sha256"]:
++            raise ValueError("Stage2 asset does not match its prepared identity")
++
++    def recheck(self):
++        if any(sha256(p) != h for p, h in self.hashes.items()):
++            raise ValueError("Frozen Stage2 inputs changed during execution")
++
++
++def validate_assets(cfg, paths):
++    """Only called after explicit approval; returns no query/label accessor."""
++    from .stage2_data import validate_target, validate_source_trace
++    assets = Assets()
++    for name, ref in {"contract": cfg["contract"], "approval": cfg["approval"], **cfg["inputs"]}.items():
++        assets.file({"path": str(paths[name]), "sha256": ref["sha256"]}, paths[name])
++    if cfg["contract"]["sha256"] != CONTRACT_SHA:
++        raise ValueError("Stage2 contract is not the accepted U_NORMAL_HEAD contract")
++    if read_json(paths['runtime'])!=runtime_identity():raise ValueError('Stage2 runtime bytes differ from the approved snapshot')
++    recipe = read_json(paths["recipe"])
++    if canonical_sha(recipe) != RECIPE_CANONICAL_SHA:
++        raise ValueError("Stage2 recipe changed; no budget/loss/score override")
++    prep = read_json(paths["preparation"])
++    if sha256(paths["preparation"])!=PREPARATION_SHA or sha256(paths["source_references"])!=SOURCE_REFERENCES_SHA:
++        raise ValueError("Stage2 original matrix/source-parent reference identity changed")
++    if prep.get("schema_version") != "RESEARCH_PREPARATION_V1_NOT_ENGINE_OPERATION" or prep.get("stage") != STAGE:
++        raise ValueError("Stage2 preparation is not the fixed metadata matrix")
++    jobs = prep["jobs"]
++    ids = {f"u_normal_head_{m}_s{s}_{i}" for m in ("temporal", "tf", "hybrid") for s in range(3) for i in ("source_pretrained", "random_init")}
++    if len(jobs) != 18 or {j["job_id"] for j in jobs} != ids:
++        raise ValueError("Static Stage2 matrix must retain all18 jobs; it is not permission")
++    job = next(j for j in jobs if j["job_id"] == cfg["parameters"]["job_id"])
++    mode, seed, init = job["mode"], job["seed"], job["initialization"]
++    if job["job_id"] != f"u_normal_head_{mode}_s{seed}_{init}" or job["stage"] != STAGE or job["head_reset_after_load"] is not False:
++        raise ValueError("Job identity/head reset contradicts preparation")
++    if (init == "random_init" and (job["initial_checkpoint"] is not None or job["random_init_seed"] != seed)
++            or init == "source_pretrained" and job["random_init_seed"] is not None):
++        raise ValueError("Random whole initialization cannot load a parent/head")
++    assets.same({"path":str(paths["target_manifest"]),"sha256":cfg["inputs"]["target_manifest"]["sha256"]}, prep["target_manifest"], paths["target_manifest"], paths["preparation"])
++    for name in ("target_plan", "source_cal_trace"):
++        resolved={"path":str(paths[name]),"sha256":cfg["inputs"][name]["sha256"]}
++        assets.same(resolved, prep["plans"][str(seed)][name], paths[name], paths["preparation"])
++        assets.same(resolved, job[name], paths[name], paths["preparation"])
++    refs = read_json(paths["source_references"])
++    if prep["plans"][str(seed)]["original_source_assets"] != refs["source_assets"][str(seed)]:
++        raise ValueError("Preparation source assets differ from original source references")
++    original = read_json(assets.file(refs["parent_catalog_definition"], paths["source_references"]))
++    if any(refs[k] != original[k] for k in ("models", "source_assets", "official")):
++        raise ValueError("Stage2 references differ from the original source definition")
++    parents = refs["models"]
++    if len(parents) != 9 or {(r["seed"], r["mode"]) for r in parents} != {(s, m) for s in range(3) for m in ("temporal", "tf", "hybrid")}:
++        raise ValueError("Original nine parent identities are incomplete")
++    parent = next(r for r in parents if r["seed"] == seed and r["mode"] == mode)
++    for name in ("checkpoint", "checkpoint_metadata", "calibration", "cal_bank", "cal_scores"):
++        assets.file(parent[name], paths["source_references"])
++    assets.same(job["paired_reference_parent"], parent["checkpoint"], paths["preparation"], paths["source_references"])
++    if init == "source_pretrained":assets.same(job["initial_checkpoint"], parent["checkpoint"], paths["preparation"], paths["source_references"])
++    metadata = read_json(assets.file(parent["checkpoint_metadata"], paths["source_references"]))
++    expected = dict(checkpoint_sha256=parent["checkpoint"]["sha256"], mode=mode, seed=seed, history=100, horizon=5,
++                    copies=2, temporal_depth=4, step=10000, excluded_target="TEP")
++    if (any(metadata.get(k) != v for k, v in expected.items()) or set(metadata.get("source_domains", [])) != {"PSM", "SMD_SUBSET"}
++            or metadata.get("stage") not in (None, "SOURCE_PRETRAIN") or "adaptation_target" in metadata):
++        raise ValueError("Wrong parent: Stage2/target-adapted checkpoint cannot be a source/Z parent")
++    official = assets.file(refs["official"], paths["source_references"])
++    if sha256(official) != OFFICIAL_SHA:raise ValueError("External official implementation changed")
++    target, plan = validate_target(paths["target_manifest"], paths["target_plan"], seed, assets)
++    source = validate_source_trace(refs, paths["source_references"], paths["source_cal_trace"], seed, metadata, assets)
++    if cfg['operation']=='stage2-l0':
++        req=read_json(paths['requirements'])
++        if (sha256(paths['requirements'])!=L0_REQUIREMENTS_SHA or req.get('stage')!=STAGE or job['job_id'] not in PAIR
++                or {j['job_id'] for j in req['allowed_jobs_if_separately_released']}!=PAIR):
++            raise ValueError('L0_DISCARD only accepts the original requirements and fixed hybrid seed0 pair')
++        for n,key in [('target_manifest','target_normal_manifest'),('target_plan','target_plan'),('source_cal_trace','source_cal_trace')]:
++            assets.same({'path':str(paths[n]),'sha256':cfg['inputs'][n]['sha256']},req['shared_inputs'][key],paths[n],paths['requirements'])
++        assets.same({'path':str(paths['contract']),'sha256':cfg['contract']['sha256']},req['contract'],paths['contract'],paths['requirements'])
++    return dict(assets=assets, recipe=recipe, preparation=prep, job=job, parent=parent, parent_metadata=metadata,
++                refs=refs, official=official, target=target, plan=plan, source=source, paths=paths)
++
++
++def approve_stage2(cfg, paths, output, digest):
++    if output.exists():raise ValueError("Stage2 output must be a new immutable directory")
++    if sha256(paths["approval"]) != cfg["approval"]["sha256"] or sha256(paths["contract"]) != cfg["contract"]["sha256"]:
++        raise ValueError("Stage2 approval/contract SHA mismatch")
++    a = read_json(paths["approval"])
++    permissions = dict(train=cfg["operation"] == "stage2-train", calibrate=cfg["operation"] == "stage2-calibrate",l0=cfg['operation']=='stage2-l0', query=False, labels=False, F=False)
++    if (a.get("status") != "APPROVED" or a.get("stage") != STAGE or a.get("contract_sha256") != cfg["contract"]["sha256"]
++            or a.get("operation_manifest_sha256") != digest or cfg["parameters"]["job_id"] not in a.get("allowed_jobs", [])
++            or a.get("permissions") != permissions or not all(type(v) is bool for v in a.get("permissions", {}).values())):
++        raise ValueError("Stage2 approval does not bind this exact operation/job/permissions")
++    if a.get('scope')=='SYNTHETIC_ENGINEERING_ONLY' and cfg['parameters']['device']!='cpu':
++        raise ValueError('Synthetic fixture approvals are CPU-only')
++    if cfg['operation']=='stage2-l0' and (cfg['parameters']['job_id'] not in PAIR
++            or a.get('scope')!='U_NORMAL_HEAD_L0_DISCARD_ONLY' and not (a.get('scope')=='SYNTHETIC_ENGINEERING_ONLY' and cfg['parameters']['device']=='cpu')):
++        raise ValueError('L0 requires explicit U_NORMAL_HEAD_L0_DISCARD_ONLY scope')
++    if cfg["operation"] == "stage2-train":
++        gate_path = paths["entry_gate"]
++        if sha256(gate_path) != cfg["inputs"]["entry_gate"]["sha256"]:raise ValueError("Stage2 entry gate SHA mismatch")
++        gate = read_json(gate_path)
++        synthetic = a.get("scope") == "SYNTHETIC_ENGINEERING_ONLY" and cfg["parameters"]["device"] == "cpu"
++        if (gate.get("stage") != STAGE or cfg["parameters"]["job_id"] not in gate.get("allowed_jobs", [])
++                or gate.get("status") != ("CPU_ENGINEERING_ONLY" if synthetic else "PRIMARY_ACCEPTED_STAGE2_L0")
++                or gate.get('accepted_inputs_by_job',{}).get(cfg['parameters']['job_id'])!=input_identity(cfg)):
++            raise ValueError("Formal Stage2 requires a separately accepted discarded-weight L0 gate")
++        if not synthetic:
++            g=Assets();g.file(gate['independent_review'],gate_path)
++            if not set(gate['allowed_jobs'])<=PAIR:
++                accepted=read_json(g.file(gate['formal_pair_acceptance'],gate_path))
++                if accepted.get('status')!='PRIMARY_ACCEPTED_FORMAL_PAIR' or accepted.get('stage')!=STAGE:
++                    raise ValueError('Additional jobs need a new named acceptance after the formal pair')
++            if set(gate['l0_reports'])!=PAIR:raise ValueError('Primary entry acceptance requires both original L0 reports')
++            for job,ref in gate['l0_reports'].items():
++                report=read_json(g.file(ref,gate_path))
++                if (report.get('status')!='U_NORMAL_HEAD_L0_DISCARD_COMPLETE' or report.get('job_id')!=job
++                        or report.get('GPU_executed') is not True or report.get('weights_discarded') is not True
++                        or report.get('steps')!=5 or report.get('query_or_labels_read') is not False
++                        or report.get('inputs')!=gate['l0_input_identity'] or report.get('frozen_before')!=report.get('frozen_after')
++                        or not report.get('diagnostics',{}).get('rng_restored') or not report.get('module_flags_preserved')):
++                    raise ValueError('L0 report does not establish the accepted discarded-weight diagnostic')
++            if gate['l0_input_identity']['runtime']!=cfg['inputs']['runtime']['sha256'] or gate['l0_input_identity']['recipe']!=cfg['inputs']['recipe']['sha256']:
++                raise ValueError('Accepted L0 used a different runtime/recipe')
++            a['_entry_assets']=g.hashes
++    return a
+--- /dev/null
++++ after/src/hybrid_tsad/engine/stage2_data.py
+@@ -0,0 +1,134 @@
++"""Execution-side normal-target/source trace access. No label/query loader."""
++import copy
++import numpy as np
++
++from ..config import read_json
++
++ROLES = {'fit': list(range(1, 21)) + list(range(51, 61)), 'select': list(range(61, 81)), 'cal': list(range(81, 101))}
++
++
++def traces(seed):
++    result = {}
++    for role, offset, size in [('fit', 191100, 64000), ('select', 191200, 256)]:
++        rng = np.random.default_rng(offset + seed)
++        runs = np.asarray(ROLES[role], dtype=np.uint16)
++        # Uniform over legal run/origin/channel triples, with replacement.
++        code = rng.integers(len(runs) * 80 * 52, size=size, dtype=np.int64)
++        result[role + '_run'] = runs[code // (80 * 52)]
++        result[role + '_origin'] = (100 + 5 * ((code // 52) % 80)).astype(np.uint16)
++        result[role + '_channel'] = (code % 52).astype(np.uint8)
++    # Calibration is B1,C52: 256 distinct multichannel origins, balanced by run.
++    # Sixteen runs contribute 13 origins and four runs contribute 12, selected
++    # by a seeded run permutation; no labels, model predictions, or loss used.
++    rng = np.random.default_rng(191300 + seed)
++    runs = np.array(ROLES['cal'], dtype=np.uint16)
++    order = rng.permutation(20)
++    rr, oo = [], []
++    for rank, j in enumerate(order):
++        n = 13 if rank < 16 else 12
++        origins = 100 + 5 * rng.choice(80, size=n, replace=False)
++        rr.extend([int(runs[j])] * n)
++        oo.extend(map(int, origins))
++    result['cal_run'] = np.array(rr, dtype=np.uint16)
++    result['cal_origin'] = np.array(oo, dtype=np.uint16)
++    return result
++
++
++def validate_target(manifest_path, plan_path, seed, assets):
++    from . import stage2_identity as policy
++    m = read_json(manifest_path)
++    if (m.get('schema_version') != 'U_NORMAL_HEAD_PREPARATION_V1' or m.get('stage') != policy.STAGE
++            or m.get('data_prior') != 'KNOWN_NORMAL_TRAIN' or m.get('roles') != ROLES
++            or m.get('excluded_training_run_numbers') != list(range(21, 51))
++            or m.get('faulty_testing_access_allowed') is not False or m.get('original_manifests_modified') is not False):
++        raise ValueError('Target manifest stage/roles/permissions changed')
++    parent_path = assets.file(m['parent_manifest'], manifest_path)
++    lineage_path = assets.file(m['normal_lineage'], manifest_path)
++    cache_path = assets.file(m['cache'], manifest_path)
++    if (m['parent_manifest']['sha256'] != policy.PARENT_MANIFEST_SHA or m['normal_lineage']['sha256'] != policy.LINEAGE_SHA
++            or m['cache']['sha256'] != policy.NORMAL_CACHE_SHA):
++        raise ValueError('Target normal parent/lineage/cache differs from fixed public assets')
++    lineage = read_json(lineage_path)
++    if lineage.get('status') != 'PASS' or lineage['raw']['sha256'] != policy.NORMAL_RAW_SHA:
++        raise ValueError('Normal raw/cache lineage has not passed')
++    assets.file(lineage['raw'], lineage_path)
++    assets.same(lineage['cache'], m['cache'], lineage_path, manifest_path)
++    parent = read_json(parent_path)
++    original = {r['selector']['simulationRun']: r for r in parent['records'] if r['dataset'] == 'TEP'}
++    expected = []
++    for role, runs in ROLES.items():
++        for run in runs:
++            r = copy.deepcopy(original[run])
++            if (r['selector'] != {'faultNumber': 0, 'simulationRun': run} or r['cache_row'] != run-1
++                    or r['history'] != 100 or r['horizon'] != 5 or r['local_start'] != 0 or r['local_end_exclusive'] != 500
++                    or r['forecast_origins'] != list(range(100, 496, 5)) or len(r['columns']) != 52):
++                raise ValueError('Target normal parent run/footprint changed')
++            r.update(parent_role=r['role'], role=role, stage=policy.STAGE, array_path=str(cache_path), source_identity=policy.NORMAL_RAW_SHA)
++            if assets.file({'path': r['source'], 'sha256': r['source_identity']}, manifest_path) != assets.file(lineage['raw'], lineage_path):
++                raise ValueError('Target source is not the fixed fault-free training file')
++            expected.append(r)
++    if m['records'] != expected:
++        raise ValueError('Target role/run/footprint records differ from the frozen parent')
++    with np.load(plan_path, allow_pickle=False) as f:plan = {k: f[k].copy() for k in f.files}
++    rebuilt = traces(seed)
++    if set(plan) != set(rebuilt) or any(plan[k].dtype != rebuilt[k].dtype or not np.array_equal(plan[k], rebuilt[k]) for k in plan):
++        raise ValueError('Target trace differs from fixed PCG64 seed/role/run/origin/channel plan')
++    return m, plan
++
++
++def validate_source_trace(refs, base, trace_path, seed, parent_metadata, assets):
++    src = refs['source_assets'][str(seed)]
++    paths = {k: assets.file(v, base) for k, v in src.items()}
++    rows = read_json(paths['rows']);manifest = read_json(paths['source_manifest']);inputs = read_json(paths['source_inputs'])
++    if (rows != manifest['records'] or any(r['dataset'] not in ('PSM', 'SMD_SUBSET') or r['history'] != 100 for r in rows)
++            or parent_metadata['source_manifest_sha256'] != src['source_manifest']['sha256']
++            or parent_metadata['shared_plan_sha256'] != src['plan']['sha256']):
++        raise ValueError('Original source-cal manifest/parent/trace identity changed')
++    from ..config import resolve_path
++    if resolve_path(inputs['manifest'], paths['source_inputs']) != paths['source_manifest']:
++        raise ValueError('Source input manifest changed')
++    for p, h in inputs['hashes'].items():assets.file({'path': p, 'sha256': h}, paths['source_inputs'])
++    needed = {str(paths['source_manifest'])} | {r['source'] for r in rows}
++    if not needed <= set(inputs['hashes']):raise ValueError('Actual source-cal raw paths lack fixed hashes')
++    with np.load(paths['plan'], allow_pickle=False) as f:original = {k: f[k].copy() for k in ('cal_record', 'cal_origin', 'cal_channel')}
++    with np.load(trace_path, allow_pickle=False) as f:trace = {k: f[k].copy() for k in f.files}
++    if (set(trace) != set(original) or any(trace[k].dtype != original[k].dtype or not np.array_equal(trace[k], original[k]) for k in original)
++            or trace['cal_record'].shape != (256,) or trace['cal_record'].dtype != np.uint16
++            or trace['cal_origin'].dtype != np.uint32 or trace['cal_channel'].dtype != np.uint8):
++        raise ValueError('Source-cal trace is not the original256 C1 trace')
++    for ri, b, c in zip(trace['cal_record'], trace['cal_origin'], trace['cal_channel']):
++        if ri >= len(rows):raise ValueError('Source-cal record outside manifest')
++        r = rows[int(ri)]
++        if (r['role'] != 'cal' or int(b) not in r['forecast_origins'] or not 0 <= c < len(r['columns'])
++                or int(b)-100 < r['local_start'] or int(b)+5 > r['local_end_exclusive']):
++            raise ValueError('Source-cal role/channel/footprint changed')
++    return dict(paths=paths, rows=rows, trace=trace)
++
++
++class TargetNormal:
++    def __init__(self, manifest, plan, cache_path):
++        self.manifest, self.plan = manifest, plan
++        self.data = np.load(cache_path, mmap_mode='r', allow_pickle=False)
++        if self.data.shape != (100, 500, 52) or self.data.dtype != np.float32:
++            raise ValueError('Normal target cache shape/dtype mismatch')
++        if not np.isfinite(self.data[np.asarray(sum(ROLES.values(), []))-1]).all():
++            raise ValueError('Authorized normal target values are nonfinite; no repair/rejection relaxation')
++
++    def batch(self, role, start, *, device, n=64):
++        import torch
++        if role not in ('fit', 'select'):raise ValueError('C1 target batch only accepts fit/select')
++        runs, origins, channels = (self.plan[role+'_'+k][start:start+n] for k in ('run', 'origin', 'channel'))
++        if len(runs) != n:raise ValueError('Incomplete C1 target trace batch')
++        if (not np.isin(runs,ROLES[role]).all() or not np.isin(origins,np.arange(100,496,5)).all()
++                or np.any(channels<0) or np.any(channels>=52)):
++            raise ValueError('Target batch role/run/channel/footprint violation')
++        x = np.stack([self.data[int(r)-1, int(b)-100:int(b), int(c)] for r, b, c in zip(runs, origins, channels)])[:, :, None]
++        y = np.stack([self.data[int(r)-1, int(b):int(b)+5, int(c)] for r, b, c in zip(runs, origins, channels)])[:, :, None]
++        return torch.tensor(x, device=device), torch.tensor(y, device=device)
++
++    def cal_block(self, index, *, device):
++        import torch
++        r, b = int(self.plan['cal_run'][index]), int(self.plan['cal_origin'][index])
++        if r not in ROLES['cal'] or b not in range(100,496,5):raise ValueError('Target calibration role/footprint violation')
++        return (torch.tensor(self.data[r-1:r, b-100:b].copy(), device=device),
++                self.data[r-1, b:b+5].copy(), r, b)
+--- /dev/null
++++ after/src/hybrid_tsad/engine/stage2.py
+@@ -0,0 +1,473 @@
++"""Head-only Stage2 kernels and explicit train/calibrate routes; no query route."""
++from contextlib import contextmanager
++import hashlib
++import math
++from pathlib import Path
++import time
++
++from ..config import read_json, sha256
++from .readout_manifest import json_write, record
++from .stage2_identity import (STAGE, HEAD_NAMES, load_stage2, approve_stage2, validate_assets)
++
++
++def learning_rate(step):
++    if type(step) is not int or not 1 <= step <= 1000:raise ValueError('Stage2 step is one-based1..1000')
++    return .0003 * min(step/100, 1) * (1 if step <= 100 else .5*(1+math.cos(math.pi*(step-100)/900)))
++
++
++def module_modes(model):
++    return {name: module.training for name, module in model.named_modules()}
++
++
++def frozen_hashes(model):
++    def digest(t):
++        t=t.detach().cpu().contiguous()
++        return hashlib.sha256(str(t.dtype).encode()+str(tuple(t.shape)).encode()+t.numpy().tobytes()).hexdigest()
++    return {**{'parameter:'+n:digest(p) for n,p in model.named_parameters() if n not in HEAD_NAMES},
++            **{'buffer:'+n:digest(b) for n,b in model.named_buffers()}}
++
++
++def configure_head_only(model):
++    import torch
++    params=dict(model.named_parameters())
++    if (not set(HEAD_NAMES) <= set(params) or not isinstance(model.head,torch.nn.Linear)
++            or model.head.in_features!=128 or model.head.out_features!=5
++            or sum(params[n].numel() for n in HEAD_NAMES)!=645 or any(params[n].dtype!=torch.float32 for n in HEAD_NAMES)):
++        raise ValueError('Stage2 requires the existing645-parameter Linear128to5 head')
++    model.eval()
++    for name,p in params.items():p.requires_grad_(name in HEAD_NAMES);p.grad=None
++    model.head.train()
++    assert_head_modes(model)
++    return [params[n] for n in HEAD_NAMES]
++
++
++def assert_head_modes(model):
++    if any(m.training != (n=='head') for n,m in model.named_modules()):
++        raise ValueError('Frozen modules must remain eval and only head training')
++
++
++def seed_job(seed,device):
++    import torch
++    torch.random.default_generator.manual_seed(seed)
++    if torch.device(device).type=='cuda':
++        with torch.cuda.device(device):torch.cuda.manual_seed(seed)
++
++
++@contextmanager
++def evaluation_scope(model,device,mask_seed=84551):
++    """One reset per call, preserving every module flag and caller RNG."""
++    import torch
++    import random
++    import numpy as np
++    device=torch.device(device)
++    devices=[device.index if device.index is not None else torch.cuda.current_device()] if device.type=='cuda' else []
++    modes=module_modes(model)
++    python_rng,numpy_rng=random.getstate(),np.random.get_state()
++    try:
++        model.eval()
++        with torch.no_grad(),torch.random.fork_rng(devices=devices):
++            seed_job(mask_seed,device)
++            yield
++    finally:
++        random.setstate(python_rng);np.random.set_state(numpy_rng)
++        for name,module in model.named_modules():module.training=modes[name]
++
++
++def head_only_step(model,optimizer,x,y,step):
++    """The shared L0/formal kernel. No model.train(), no inference_mode()."""
++    import torch
++    from ..model import objective
++    assert_head_modes(model)
++    if x.shape!=(64,100,1) or y.shape!=(64,5,1) or x.dtype!=torch.float32 or y.dtype!=torch.float32:raise ValueError('Head update requires float32 B64/H100/C1/P5')
++    lr=learning_rate(step)
++    for group in optimizer.param_groups:group['lr']=lr
++    if {id(p) for g in optimizer.param_groups for p in g['params']}!={id(p) for n,p in model.named_parameters() if n in HEAD_NAMES}:
++        raise ValueError('Optimizer may contain only existing head parameters')
++    optimizer.zero_grad(set_to_none=True)
++    output=model(x)
++    total,parts=objective(output,y)
++    head=[p for n,p in model.named_parameters() if n in HEAD_NAMES]
++    tf_gradient=None
++    tf_path='NO_GRAD_CONNECTION'
++    if parts['tf'].requires_grad:
++        gradients=torch.autograd.grad(parts['tf'],head,allow_unused=True,retain_graph=True)
++        connected=[g for g in gradients if g is not None]
++        tf_gradient=max((float(g.abs().max()) for g in connected),default=None)
++        tf_path='ZERO_GRAD_CONNECTION' if connected else 'NO_HEAD_CONNECTION'
++        if tf_gradient not in (None,0.):raise ValueError('Frozen TF auxiliary unexpectedly differentiates the head')
++    if not torch.isfinite(total):raise ValueError('Nonfinite Stage2 objective')
++    total.backward()
++    gradients={n:float(p.grad.abs().max()) for n,p in model.named_parameters() if n in HEAD_NAMES and p.grad is not None}
++    if (set(gradients)!=set(HEAD_NAMES) or any(p.grad is not None for n,p in model.named_parameters() if n not in HEAD_NAMES)
++            or any(not torch.isfinite(p.grad).all() for p in head)):
++        raise ValueError('Invalid head/frozen gradient path')
++    norm=float(torch.nn.utils.clip_grad_norm_(head,1))
++    if not math.isfinite(norm):raise ValueError('Nonfinite head gradient norm')
++    after_clip={n:float(p.grad.abs().max()) for n,p in model.named_parameters() if n in HEAD_NAMES}
++    optimizer.step()
++    return dict(step=step,lr=lr,total_loss=float(total.detach()),future_loss=float(parts['future'].detach()),
++                TF_aux=float(parts['tf'].detach()),TF_head_gradient_max=tf_gradient,
++                TF_aux_requires_grad=parts['tf'].requires_grad,TF_head_gradient_path=tf_path,
++                head_gradient_max=gradients,head_gradient_max_after_clip=after_clip,gradient_norm=norm)
++
++
++def evaluate_c1(model,batch,*,device,count=256):
++    """Select/source-cal C1 evaluation in trace order; count64 supports L0."""
++    import numpy as np
++    import torch
++    from ..model import objective
++    if count not in (64,256):raise ValueError('C1 evaluation is fixed256 or explicit discarded L0 prefix64')
++    arrays={k:[] for k in ('prediction','target','history_scale','valid_target')};losses=[]
++    with evaluation_scope(model,device):
++        for start in range(0,count,64):
++            x,y=batch(start)
++            if x.shape!=(64,100,1) or y.shape!=(64,5,1):raise ValueError('C1 evaluation shape mismatch')
++            o=model(x);total,parts=objective(o,y)
++            if not torch.isfinite(total):raise ValueError('Nonfinite C1 evaluation loss')
++            losses.append([float(total),float(parts['future']),float(parts['tf'])])
++            for k,v in (('prediction',o['prediction']),('target',y),('history_scale',o['scale']),('valid_target',torch.isfinite(y))):
++                arrays[k].append(v.cpu().numpy())
++    arrays={k:np.concatenate(v) for k,v in arrays.items()}
++    valid=arrays['valid_target'];error=(arrays['prediction']-arrays['target'])[valid]
++    return dict(total_loss=float(np.mean(losses,axis=0)[0]),future_loss=float(np.mean(losses,axis=0)[1]),
++                TF_aux=float(np.mean(losses,axis=0)[2]),physical_MAE=float(np.abs(error).mean()),
++                physical_RMSE=float(np.sqrt((error**2).mean())),normalized_MAE=float((np.abs(arrays['prediction']-arrays['target'])/arrays['history_scale'])[valid].mean()),
++                windows=count,scope='L0_ONLY' if count==64 else 'FORMAL_CAL_OR_SELECT'),arrays
++
++
++def evaluate_target_cal(model,target,source_scale,*,device,count=256):
++    """B1C52 pool in frozen order, including nonmonotone origins; never a query."""
++    import numpy as np
++    from ..protocol import score_block
++    if count not in (2,256):raise ValueError('Target cal is fixed256 or explicit discarded L0 prefix2')
++    arrays={k:[] for k in ('prediction','target','history_scale','canonical_score','run','origin')}
++    with evaluation_scope(model,device):
++        for i in range(count):
++            x,y,run,origin=target.cal_block(i,device=device)
++            if x.shape!=(1,100,52) or y.shape!=(5,52):raise ValueError('Target calibration is B1/H100/C52/P5')
++            o=model(x);p=o['prediction'].cpu().numpy()[0];scale=o['scale'].cpu().numpy()[0]
++            # Exactly the existing score_block. No target scalar is fitted/divided.
++            score=score_block(p,y,scale,source_scale)
++            if score.dtype!=np.float32 or not np.isfinite(score).all():raise ValueError('Canonical target score must be finite float32')
++            for k,v in (('prediction',p),('target',y),('history_scale',scale),('canonical_score',score),('run',run),('origin',origin)):
++                arrays[k].append(v)
++    return {k:np.asarray(v) for k,v in arrays.items()}
++
++
++def create_stage2_model(a,device):
++    from ..api import create_predictor
++    from .stage2_identity import Assets
++    job=a['job'];seed_job(job['seed'],device)
++    parent_path=a['assets'].file(a['parent']['checkpoint'],a['paths']['source_references'])
++    parent_metadata=a['assets'].file(a['parent']['checkpoint_metadata'],a['paths']['source_references'])
++    kwargs=dict(mode=job['mode'],history=100,copies=2,temporal_depth=4,device=device)
++    if job['initialization']=='source_pretrained':kwargs.update(checkpoint=parent_path,checkpoint_metadata=parent_metadata)
++    # random_init never calls torch.load and never borrows the parent head.
++    model=create_predictor(a['official'],**kwargs)
++    configure_head_only(model)
++    return model
++
++
++def _identity(a,digest,checkpoint_sha):
++    job=a['job']
++    return dict(stage=STAGE,checkpoint_sha256=checkpoint_sha,mode=job['mode'],seed=job['seed'],history=100,horizon=5,copies=2,temporal_depth=4,
++        step=1000,initialization=job['initialization'],parent_checkpoint_sha256=a['parent']['checkpoint']['sha256'],
++        initial_checkpoint_sha256=a['parent']['checkpoint']['sha256'] if job['initialization']=='source_pretrained' else None,
++        parent_weights_loaded=job['initialization']=='source_pretrained',
++        pretraining_domains=['PSM','SMD_SUBSET'] if job['initialization']=='source_pretrained' else [],
++        pretraining_excluded_target='TEP' if job['initialization']=='source_pretrained' else None,adaptation_target='TEP',
++        paired_reference_parent=a['parent']['checkpoint'],target_labels_used=False,query_access=False,
++        target_manifest_sha256=sha256(a['paths']['target_manifest']),target_plan_sha256=sha256(a['paths']['target_plan']),
++        source_cal_trace_sha256=sha256(a['paths']['source_cal_trace']),source_references_sha256=sha256(a['paths']['source_references']),
++        recipe_sha256=sha256(a['paths']['recipe']),runtime_sha256=sha256(a['paths']['runtime']),
++        trainable_parameters=list(HEAD_NAMES),trainable_count=645,operation_manifest_sha256=digest)
++
++
++def _snapshot(output,cfg,manifest,a):
++    output.mkdir(parents=True,exist_ok=False)
++    json_write(output/'operation.json',cfg);json_write(output/'operation_manifest.json',manifest)
++    hashes={}
++    for p in sorted(Path(__file__).resolve().parents[1].rglob('*.py')):
++        name=str(p.relative_to(Path(__file__).resolve().parents[1])).replace('\\','/');hashes[name]=sha256(p)
++        q=output/'implementation'/name;q.parent.mkdir(parents=True,exist_ok=True);q.write_bytes(p.read_bytes())
++    json_write(output/'provenance.json',dict(package_code=hashes,external_inputs={str(p):h for p,h in a['assets'].hashes.items()},upstream_copied=False))
++    return hashes
++
++
++def _finish(a,code):
++    a['assets'].recheck()
++    package=Path(__file__).resolve().parents[1]
++    if any(sha256(package/name)!=h for name,h in code.items()):raise ValueError('Stage2 package changed during execution')
++
++
++def diagnostic_replay(model,x,y,device):
++    """No optimizer step. Compare real gradient paths under restored actual RNG."""
++    import random
++    import numpy as np
++    import torch
++    from ..model import objective
++    head=[p for n,p in model.named_parameters() if n in HEAD_NAMES]
++    cpu=torch.get_rng_state().clone();cuda=torch.cuda.get_rng_state(device).clone() if torch.device(device).type=='cuda' else None
++    py=random.getstate();nr=np.random.get_state();flags=module_modes(model)
++    def restore():
++        torch.set_rng_state(cpu)
++        if cuda is not None:torch.cuda.set_rng_state(cuda,device)
++        random.setstate(py);np.random.set_state(nr)
++    def pass_once(target,total_gradient):
++        o=model(x);loss,parts=objective(o,target)
++        grads=torch.autograd.grad(loss if total_gradient else parts['future'],head)
++        return o,float(loss),[g.detach().cpu().clone() for g in grads],parts['tf'].requires_grad
++    try:
++        a,total,g1,tf_connected=pass_once(y,True);restore()
++        b,_,g2,_=pass_once(y,False);restore()
++        c,perturbed,_,_=pass_once(y+10*a['scale'].detach(),True)
++        if (not all(torch.equal(u,v) for u,v in zip(g1,g2)) or not torch.equal(a['prediction'],b['prediction'])
++                or not torch.equal(a['prediction'],c['prediction']) or not torch.equal(a['tf_history_normalized'],c['tf_history_normalized'])
++                or total==perturbed):
++            raise ValueError('L0 gradient/mask/future-only replay assertion failed')
++        return dict(total_head_grad_equals_future_only=True,prediction_replay_bitexact=True,
++            future_perturbation_changes_loss_only=True,TF_aux_has_grad_connection=tf_connected,
++            rng_restored=True,extra_optimizer_steps=0)
++    finally:
++        restore()
++        if module_modes(model)!=flags:raise ValueError('L0 diagnostics changed module flags')
++
++
++def rng_identity(device):
++    import random
++    import numpy as np
++    import torch
++    def h(value):return hashlib.sha256(value).hexdigest()
++    nr=np.random.get_state()
++    return dict(torch_cpu=h(torch.get_rng_state().numpy().tobytes()),
++        torch_device=h(torch.cuda.get_rng_state(device).cpu().numpy().tobytes()) if torch.device(device).type=='cuda' else None,
++        numpy=h(nr[0].encode()+nr[1].tobytes()+repr(nr[2:]).encode()),python=h(repr(random.getstate()).encode()))
++
++
++def source_scale_only(bank):
++    """Exact source.calibrate_source prefix, without fitting any L0 threshold."""
++    import numpy as np
++    e = np.abs(bank["prediction"] - bank["target"]) / bank["history_scale"]
++    valid = bank["valid_target"]
++    pointvalid = valid.any(-1)
++    point = np.divide(np.where(valid, e, 0).sum(-1), valid.sum(-1),
++                      out=np.full(pointvalid.shape, np.nan, dtype="float32"), where=pointvalid)
++    scale = max(float(np.median(point[pointvalid])), 1e-8)
++    return scale
++
++
++def l0_discard(a,output,*,device,cfg,digest):
++    """Exactly five updates; no formal checkpoint/calibration or reusable state."""
++    import numpy as np
++    import torch
++    from .stage2_data import TargetNormal
++    from .stage2_identity import input_identity
++    from .training import source_batch
++    from ..data import ManifestSampler
++    started=time.monotonic()
++    target=TargetNormal(a['target'],a['plan'],a['assets'].file(a['target']['cache'],a['paths']['target_manifest']))
++    model=create_stage2_model(a,device);head=configure_head_only(model)
++    initial={n:p.detach().cpu().clone() for n,p in model.named_parameters() if n in HEAD_NAMES}
++    before=frozen_hashes(model);flags=module_modes(model);requires={n:p.requires_grad for n,p in model.named_parameters()}
++    opt=torch.optim.AdamW(head,lr=.0003,weight_decay=.01);curve=[]
++    for step in range(1,6):
++        x,y=target.batch('fit',(step-1)*64,device=device)
++        old={n:p.detach().cpu().clone() for n,p in model.named_parameters() if n in HEAD_NAMES}
++        row=head_only_step(model,opt,x,y,step)
++        row['head_update_max']={n:float((p.detach().cpu()-old[n]).abs().max()) for n,p in model.named_parameters() if n in HEAD_NAMES}
++        if any(v<=0 for v in row['head_update_max'].values()) or any(v<=0 for v in row['head_gradient_max'].values()):raise ValueError('L0 has no effective head update')
++        curve.append(row)
++        if time.monotonic()-started>120:raise ValueError('L0_DISCARD120second budget exceeded')
++    rng_after_updates=rng_identity(device)
++    diagnostics=diagnostic_replay(model,x,y,device)
++    select,select_arrays=evaluate_c1(model,lambda start:target.batch('select',start,device=device),device=device,count=64)
++    src=a['source'];sampler=ManifestSampler(src['paths']['source_manifest'],exclude_dataset='TEP')
++    source_metrics,source_arrays=evaluate_c1(model,lambda start:source_batch(sampler,src['trace'],src['rows'],'cal',start,device=device,history=100),device=device,count=64)
++    temporary_source_unit=source_scale_only(source_arrays)
++    target_arrays=evaluate_target_cal(model,target,temporary_source_unit,device=device,count=2)
++    rng_after_evaluations=rng_identity(device)
++    if rng_after_updates!=rng_after_evaluations:raise ValueError('L0 select/cal consumed training RNG')
++    after=frozen_hashes(model)
++    if (before!=after or module_modes(model)!=flags or {n:p.requires_grad for n,p in model.named_parameters()}!=requires):
++        raise ValueError('L0 frozen values/module modes/requires_grad changed')
++    if time.monotonic()-started>120:raise ValueError('L0_DISCARD120second budget exceeded')
++    np.savez_compressed(output/'L0_ONLY_source_routes.npz',**source_arrays)
++    np.savez_compressed(output/'L0_ONLY_target_routes.npz',**target_arrays)
++    np.savez_compressed(output/'L0_ONLY_select_routes.npz',**select_arrays)
++    changes={n:float((p.detach().cpu()-initial[n]).abs().max()) for n,p in model.named_parameters() if n in HEAD_NAMES}
++    result=dict(status='U_NORMAL_HEAD_L0_DISCARD_COMPLETE',stage=STAGE,job_id=a['job']['job_id'],steps=5,exposure_windows=320,
++        primary_checkpoint_written=False,optimizer_state_written=False,weights_discarded=True,calibration_reusable=False,
++        diagnostic_calibration_status='L0_ONLY_NON_REUSABLE_NO_THRESHOLD_FITTED',temporary_source_unit=temporary_source_unit,
++        source_first64_domains=sorted({src['rows'][int(i)]['dataset'] for i in src['trace']['cal_record'][:64]}),
++        source_prefix_is_full_domain_coverage=False,curve=curve,head_changes=changes,frozen_before=before,frozen_after=after,
++        module_flags_preserved=True,module_modes=flags,requires_grad=requires,diagnostics=diagnostics,
++        rng_after_updates=rng_after_updates,rng_after_evaluations=rng_after_evaluations,
++        select=select,source_diagnostic=source_metrics,target_cal_order=[dict(run=int(r),origin=int(b)) for r,b in zip(target_arrays['run'],target_arrays['origin'])],
++        inputs=input_identity(cfg),parent_checkpoint_sha256=a['parent']['checkpoint']['sha256'],initialization=a['job']['initialization'],
++        parent_weights_loaded=a['job']['initialization']=='source_pretrained',operation_manifest_sha256=digest,
++        GPU_executed=torch.device(device).type=='cuda',peak_allocated_bytes=torch.cuda.max_memory_allocated(device) if torch.device(device).type=='cuda' else None,
++        peak_reserved_bytes=torch.cuda.max_memory_reserved(device) if torch.device(device).type=='cuda' else None,
++        seconds=time.monotonic()-started,query_or_labels_read=False)
++    del model,opt,head,target
++    return result
++
++
++def train(a,output,*,device,digest):
++    """Formal1000 only. Discarded L0 calls the kernels, not this loop."""
++    import numpy as np
++    import torch
++    from .stage2_data import TargetNormal
++    target=TargetNormal(a['target'],a['plan'],a['assets'].file(a['target']['cache'],a['paths']['target_manifest']))
++    model=create_stage2_model(a,device);head=configure_head_only(model);frozen=frozen_hashes(model)
++    initial={n:p.detach().cpu().clone() for n,p in model.named_parameters() if n in HEAD_NAMES}
++    optimizer=torch.optim.AdamW(head,lr=.0003,weight_decay=.01)
++    curve=[];selection=[];best=float('inf');best_step=None;started=time.perf_counter()
++    for step in range(1,1001):
++        x,y=target.batch('fit',(step-1)*64,device=device)
++        curve.append(head_only_step(model,optimizer,x,y,step))
++        if step%100==0:
++            metrics,arrays=evaluate_c1(model,lambda start:target.batch('select',start,device=device),device=device)
++            assert_head_modes(model)
++            if frozen_hashes(model)!=frozen:raise ValueError('Frozen backbone/buffer changed during adaptation')
++            selection.append(dict(step=step,**metrics));np.savez_compressed(output/f'select_step{step}.npz',**arrays)
++            if metrics['future_loss']<best:
++                best,best_step=metrics['future_loss'],step;torch.save(model.state_dict(),output/'best.pt')
++        if torch.device(device).type=='cuda' and torch.cuda.max_memory_allocated(device)>20*1024**3:raise ValueError('Stage2 exceeded20GiB')
++    changes={n:float((p.detach().cpu()-initial[n]).abs().max()) for n,p in model.named_parameters() if n in HEAD_NAMES}
++    if any(v==0 for v in changes.values()):raise ValueError('Head parameter did not actually update')
++    checkpoint=output/'step1000.pt';torch.save(model.state_dict(),checkpoint)
++    torch.save({'optimizer':optimizer.state_dict(),'step':1000},output/'head_optimizer_step1000.pt')
++    meta=_identity(a,digest,sha256(checkpoint));meta.update(frozen_before=frozen,frozen_after=frozen_hashes(model),head_parameter_changes=changes)
++    json_write(output/'checkpoint_metadata.json',meta);json_write(output/'curve.json',curve);json_write(output/'select.json',selection)
++    return dict(status='U_NORMAL_HEAD_STEP1000_COMPLETE',stage=STAGE,job_id=a['job']['job_id'],primary=record(checkpoint),
++        checkpoint_metadata=record(output/'checkpoint_metadata.json'),steps=1000,exposure_windows=64000,trainable_count=645,
++        best_step_supplement=best_step,best_checkpoint_supplement=record(output/'best.pt'),optimizer_checkpoint=record(output/'head_optimizer_step1000.pt'),
++        primary_step=1000,head_changes=changes,frozen_hashes=frozen,head_mode_after_select=module_modes(model),
++        seconds=time.perf_counter()-started,query_access=False,labels_used=False,identity=meta)
++
++
++def validate_child(a,paths):
++    m=read_json(paths['checkpoint_metadata']);summary=read_json(paths['training_summary'])
++    archive_root=paths['training_summary'].parent
++    archive_path=archive_root/'archive_manifest.json'
++    if ((archive_root/'failure.json').exists() or not archive_path.is_file()
++            or paths['checkpoint'].parent!=archive_root or paths['checkpoint_metadata'].parent!=archive_root):
++        raise ValueError('Stage2 training identity mismatch: incomplete or foreign archive')
++    a['assets'].file(record(archive_path),archive_path)
++    archive=read_json(archive_path)
++    if (archive.get('status')!='STAGE2_ARCHIVE_COMPLETE' or archive.get('stage')!=STAGE or archive.get('operation')!='stage2-train'
++            or any(archive['files'].get(p.name)!=sha256(p) for p in (paths['checkpoint'],paths['checkpoint_metadata'],paths['training_summary']))):
++        raise ValueError('Stage2 training identity mismatch: frozen archive changed')
++    expected=_identity(a,m.get('operation_manifest_sha256'),sha256(paths['checkpoint']))
++    if (any(m.get(k)!=v for k,v in expected.items()) or 'excluded_target' in m or m.get('frozen_before')!=m.get('frozen_after')
++            or summary.get('status')!='U_NORMAL_HEAD_STEP1000_COMPLETE' or summary.get('job_id')!=a['job']['job_id']
++            or summary.get('identity')!=m or summary.get('primary')!=record(paths['checkpoint'])
++            or summary.get('checkpoint_metadata')!=record(paths['checkpoint_metadata']) or summary.get('steps')!=1000):
++        raise ValueError('Stage2 checkpoint/parent/target/trace/training identity mismatch')
++    return m
++
++
++def calibration_tracks(source_path,target_path,checkpoint_sha):
++    """Validate units/roles and expose two thresholds over ONE canonical object.
++
++    No new score array, ranking metric, query accessor or inference is created.
++    """
++    import numpy as np
++    from .stage2_identity import Assets
++    from .source import calibrate_source
++    a=Assets();s=read_json(source_path);t=read_json(target_path)
++    if (s.get('stage')!=STAGE or t.get('stage')!=STAGE or s.get('role')!='source_cal_after_adaptation'
++            or t.get('role')!='target_threshold_only' or s.get('fitted_checkpoint_sha256')!=checkpoint_sha
++            or t.get('fitted_checkpoint_sha256')!=checkpoint_sha or t.get('target_global_rescale') is not False
++            or t.get('runtime_sha256')!=s.get('runtime_sha256') or t.get('operation_manifest_sha256')!=s.get('operation_manifest_sha256')
++            or set(t)!={'schema_version','stage','role','fitted_checkpoint_sha256','source_calibration','source_error_scale',
++                          'target_manifest_sha256','target_plan_sha256','canonical_scores','threshold99','target_global_rescale','pool_is_contiguous_event',
++                          'runtime_sha256','operation_manifest_sha256'}):
++        raise ValueError('Stage2 calibration role/fitted checkpoint/target-rescale mismatch')
++    if a.file(t['source_calibration'],target_path)!=Path(source_path).resolve():raise ValueError('Target threshold source identity mismatch')
++    with np.load(a.file(s['source_bank'],source_path),allow_pickle=False) as bank:expected,params=calibrate_source(bank)
++    with np.load(a.file(s['canonical_scores'],source_path),allow_pickle=False) as scores:
++        if (set(scores.files)!=set(expected) or any(not np.array_equal(scores[k],v,equal_nan=True) for k,v in expected.items())
++                or s['normal_error_scale']!=params['normal_error_scale'] or s['threshold99']!=params['threshold99']):
++            raise ValueError('Source canonical units differ from the fixed calibration bank')
++    if t['source_error_scale']!=s['normal_error_scale']:raise ValueError('Target cannot replace the fitted source scale')
++    score_ref=t['canonical_scores'];score_path=a.file(score_ref,target_path)
++    with np.load(score_path,allow_pickle=False) as bank:
++        score=bank['canonical_score']
++        if score.dtype!=np.float32 or score.shape!=(256,5) or not np.isfinite(score).all() or t['threshold99']!=float(np.quantile(score,.99,method='linear')):
++            raise ValueError('Target threshold differs from the single canonical float32 object')
++    return dict(scope='target_normal_calibration_pool_only_no_query_score_created',source=dict(score_object=score_ref,threshold=s['threshold99']),
++                target=dict(score_object=score_ref,threshold=t['threshold99']))
++
++
++def calibrate(a,output,*,device,digest):
++    import numpy as np
++    import torch
++    from ..api import create_predictor
++    from ..data import ManifestSampler
++    from .training import source_batch
++    from .source import calibrate_source
++    from .stage2_data import TargetNormal
++    m=validate_child(a,a['paths'])
++    model=create_predictor(a['official'],mode=a['job']['mode'],history=100,checkpoint=a['paths']['checkpoint'],
++        checkpoint_metadata=a['paths']['checkpoint_metadata'],device=device)
++    configure_head_only(model);before=frozen_hashes(model)
++    if before!=m['frozen_after']:raise ValueError('Loaded Stage2 frozen backbone identity mismatch')
++    src=a['source'];sampler=ManifestSampler(src['paths']['source_manifest'],exclude_dataset='TEP')
++    source_metrics,source=evaluate_c1(model,lambda start:source_batch(sampler,src['trace'],src['rows'],'cal',start,device=device,history=100),device=device)
++    scores,source_cal=calibrate_source(source)
++    np.savez_compressed(output/'source_cal_bank.npz',**source);np.savez_compressed(output/'source_canonical_scores.npz',**scores)
++    source_identity=dict(schema_version=1,stage=STAGE,role='source_cal_after_adaptation',fitted_checkpoint_sha256=m['checkpoint_sha256'],
++        runtime_sha256=m['runtime_sha256'],operation_manifest_sha256=digest,
++        source_cal_trace_sha256=sha256(a['paths']['source_cal_trace']),source_references_sha256=sha256(a['paths']['source_references']),
++        source_bank=record(output/'source_cal_bank.npz'),canonical_scores=record(output/'source_canonical_scores.npz'),**source_cal)
++    json_write(output/'source_calibration.json',source_identity)
++    target=TargetNormal(a['target'],a['plan'],a['assets'].file(a['target']['cache'],a['paths']['target_manifest']))
++    target_arrays=evaluate_target_cal(model,target,source_cal['normal_error_scale'],device=device)
++    np.savez_compressed(output/'target_cal_bank.npz',**{k:v for k,v in target_arrays.items() if k!='canonical_score'})
++    np.savez_compressed(output/'target_canonical_scores.npz',canonical_score=target_arrays['canonical_score'],run=target_arrays['run'],origin=target_arrays['origin'])
++    target_identity=dict(schema_version=1,stage=STAGE,role='target_threshold_only',fitted_checkpoint_sha256=m['checkpoint_sha256'],
++        runtime_sha256=m['runtime_sha256'],operation_manifest_sha256=digest,
++        source_calibration=record(output/'source_calibration.json'),source_error_scale=source_cal['normal_error_scale'],
++        target_manifest_sha256=sha256(a['paths']['target_manifest']),target_plan_sha256=sha256(a['paths']['target_plan']),
++        canonical_scores=record(output/'target_canonical_scores.npz'),threshold99=float(np.quantile(target_arrays['canonical_score'],.99,method='linear')),
++        target_global_rescale=False,pool_is_contiguous_event=False)
++    json_write(output/'target_threshold.json',target_identity)
++    tracks=calibration_tracks(output/'source_calibration.json',output/'target_threshold.json',m['checkpoint_sha256'])
++    if before!=frozen_hashes(model):raise ValueError('Frozen state changed during calibration')
++    assert_head_modes(model)
++    return dict(status='U_NORMAL_HEAD_CALIBRATION_COMPLETE',stage=STAGE,fitted_checkpoint_sha256=m['checkpoint_sha256'],
++        source=record(output/'source_calibration.json'),target=record(output/'target_threshold.json'),source_metrics=source_metrics,
++        canonical_policy='one source-canonical score object per pool/model; S/T only change threshold',
++        threshold_tracks=tracks,module_modes_after_cal=module_modes(model),operation_manifest_sha256=digest,query_access=False,labels_used=False)
++
++
++def run_stage2(config_path,*,execute=False):
++    invoked=time.monotonic()
++    cfg,paths,output,manifest,digest=load_stage2(config_path)
++    if not execute:return dict(executed=False,operation_manifest=manifest,operation_manifest_sha256=digest,scope='preview only; no weights/data/labels opened')
++    approval=approve_stage2(cfg,paths,output,digest)
++    a=validate_assets(cfg,paths)
++    a['assets'].hashes.update(approval.get('_entry_assets',{}))
++    import torch
++    torch.set_num_threads(2);device=cfg['parameters']['device']
++    if device=='cuda:0':
++        if not torch.cuda.is_available():raise ValueError('Approved CUDA device unavailable; no fallback')
++        torch.cuda.set_device(device);torch.cuda.init();torch.cuda.reset_peak_memory_stats(device)
++    code=_snapshot(output,cfg,manifest,a)
++    try:
++        if cfg['operation']=='stage2-train':result=train(a,output,device=device,digest=digest)
++        elif cfg['operation']=='stage2-calibrate':result=calibrate(a,output,device=device,digest=digest)
++        else:result=l0_discard(a,output,device=device,cfg=cfg,digest=digest)
++        if torch.device(device).type=='cuda' and torch.cuda.max_memory_allocated(device)>20*1024**3:raise ValueError('Stage2 exceeded20GiB')
++        if cfg['operation']=='stage2-l0' and time.monotonic()-invoked>120:raise ValueError('L0 operation including checks exceeded120seconds')
++        result['operation_body_seconds']=time.monotonic()-invoked
++        result['timing_scope']='includes input checks/model/computation/output before final summary; OS startup/exit receipt external'
++        _finish(a,code);json_write(output/'summary.json',result)
++        json_write(output/'archive_manifest.json',dict(status='STAGE2_ARCHIVE_COMPLETE',stage=STAGE,operation=cfg['operation'],
++            files={str(p.relative_to(output)).replace('\\','/'):sha256(p) for p in output.rglob('*') if p.is_file()},
++            scientific_training_evidence=False if approval.get('scope')=='SYNTHETIC_ENGINEERING_ONLY' else None))
++        return result
++    except Exception as exc:
++        json_write(output/'failure.json',dict(status='STAGE2_FAILED_NO_COMPLETE_SUMMARY',error=str(exc)))
++        raise
+--- /dev/null
++++ after/tests/test_stage2.py
+@@ -0,0 +1,363 @@
++"""Synthetic CPU Stage2 tests. No real target data, GPU, query or labels."""
++from contextlib import ExitStack,contextmanager
++import importlib.util
++import json
++import os
++from pathlib import Path
++import tempfile
++from types import SimpleNamespace
++import unittest
++from unittest.mock import patch
++
++from hybrid_tsad.config import sha256
++from hybrid_tsad.engine.readout_manifest import record
++from hybrid_tsad.engine.stage2_identity import load_stage2,approve_stage2
++
++HAS_TORCH=importlib.util.find_spec('torch') is not None
++HAS_NUMPY=importlib.util.find_spec('numpy') is not None
++ROOT=Path(__file__).resolve().parents[1]
++OFFICIAL=os.environ.get('HYBRID_OFFICIAL_FILE')
++
++
++def write(path,value):
++    path.write_text(json.dumps(value),encoding='utf-8');return path
++
++
++class Stage2SchemaTests(unittest.TestCase):
++    def test_preview_is_separate_stage_and_no_fixture_steps_or_query_route(self):
++        from hybrid_tsad.engine.stage2 import run_stage2,learning_rate
++        for op in ('stage2-train','stage2-calibrate','stage2-l0'):
++            result=run_stage2(ROOT/'configs'/(op+'.example.json'))
++            self.assertFalse(result['executed']);self.assertEqual(result['operation_manifest']['stage'],'U_NORMAL_HEAD')
++        self.assertAlmostEqual(learning_rate(1),.000003,places=18)
++        self.assertEqual(learning_rate(100),.0003);self.assertEqual(learning_rate(1000),0.)
++        self.assertGreater(learning_rate(101),learning_rate(999))
++        with self.assertRaises(ValueError):learning_rate(0)
++        with tempfile.TemporaryDirectory() as t:
++            cfg=json.loads((ROOT/'configs/stage2-train.example.json').read_text())
++            cfg['parameters']['steps']=5;p=write(Path(t)/'bad.json',cfg)
++            with self.assertRaisesRegex(ValueError,'step override'):load_stage2(p)
++            cfg['parameters'].pop('steps');cfg['operation']='stage2-query';write(p,cfg)
++            with self.assertRaisesRegex(ValueError,'schema5'):load_stage2(p)
++
++
++def toy_factory(official,*,mode,history,copies=2,temporal_depth=4,checkpoint=None,checkpoint_metadata=None,device='cpu'):
++    import torch
++    from hybrid_tsad.api import verify_checkpoint_contract
++    from hybrid_tsad.model import HybridPredictor
++    class Toy(torch.nn.Module):
++        def __init__(self):
++            super().__init__();self.history=history;self.mode=mode
++            self.backbone=torch.nn.Linear(100,128);self.dropout=torch.nn.Dropout(.5);self.head=torch.nn.Linear(128,5)
++            self.register_buffer('fixed_buffer',torch.tensor([3.]))
++        def forward(self,x):
++            z,valid,mean,scale=HybridPredictor.preprocess(self,x)
++            b,h,c=z.shape;q=self.dropout(self.backbone(z.permute(0,2,1).reshape(b*c,h)))
++            pred=self.head(q).reshape(b,c,5).permute(0,2,1)
++            rec=None if mode=='temporal' else (z+torch.rand_like(z)*.01).unsqueeze(0).expand(2,-1,-1,-1)
++            return dict(prediction_normalized=pred,prediction=pred*scale+mean,mean=mean,scale=scale,
++                        tf_reconstruction=rec,tf_history_normalized=z,tf_valid=valid)
++    model=Toy().to(device)
++    if checkpoint is not None:
++        verify_checkpoint_contract(checkpoint,checkpoint_metadata,history=history,mode=mode,copies=copies,temporal_depth=temporal_depth)
++        model.load_state_dict(torch.load(checkpoint,map_location=device,weights_only=True),strict=True)
++    return model.eval()
++
++
++class Fixture:
++    def __init__(self,root):
++        import numpy as np
++        import torch
++        from hybrid_tsad.engine.stage2_data import ROLES,traces
++        from test_multi_readout import source_fixture_catalog
++        self.root=root;self.contract=root/'contract.md';self.contract.write_text('SYNTHETIC ONLY NOT A SCIENTIFIC RELEASE')
++        official=root/'official.py';official.write_text('synthetic placeholder; never imported')
++        models=[]
++        for seed in range(3):
++            for mode in ('temporal','tf','hybrid'):
++                torch.manual_seed(1000+seed)
++                model=toy_factory(official,mode=mode,history=100)
++                cp=root/f'parent_{mode}_{seed}.pt';torch.save(model.state_dict(),cp)
++                meta=write(root/f'parent_{mode}_{seed}.json',dict(checkpoint_sha256=sha256(cp),history=100,horizon=5,
++                    mode=mode,copies=2,temporal_depth=4,seed=seed,step=10000,excluded_target='TEP',source_domains=['PSM','SMD_SUBSET'],operation_manifest_sha256='a'*64))
++                models.append(dict(seed=seed,mode=mode,checkpoint=record(cp),checkpoint_metadata=record(meta)))
++        profile=dict(name='SYNTHETIC',faults=[1],runs=[31],points=120,channels=52,event_start=110,sample_interval_minutes=3)
++        source_fixture_catalog(root/'source',profile,record(official),models)
++        definition=root/'source/definition.json';refs=json.loads(definition.read_text());refs['parent_catalog_definition']=record(definition)
++        self.refs=write(root/'source_refs.json',refs)
++        raw=root/'TEP_FaultFree_Training.RData';raw.write_text('synthetic raw identity only; no RData decoding')
++        data=np.random.default_rng(9123).normal(size=(100,500,52)).astype('float32')
++        data[20:50]=np.nan  # Unauthorized rows must never be sampled/read for model calls.
++        cache=root/'normal.npy';np.save(cache,data)
++        lineage=write(root/'lineage.json',dict(status='PASS',raw=record(raw),cache=record(cache)))
++        columns=[f'xmeas_{i}' for i in range(1,42)]+[f'xmv_{i}' for i in range(1,12)]
++        parent_rows=[dict(dataset='TEP',entity=f'normal_training_run_{r}',role='fit' if r<=60 else 'select' if r<=80 else 'cal',
++            selector=dict(faultNumber=0,simulationRun=r),cache_row=r-1,source=str(raw),columns=columns,
++            history=100,horizon=5,local_start=0,local_end_exclusive=500,forecast_origins=list(range(100,496,5))) for r in range(1,101)]
++        parent_manifest=write(root/'parent_manifest.json',dict(records=parent_rows))
++        records=[]
++        for role,runs in ROLES.items():
++            for r in runs:
++                row=dict(parent_rows[r-1]);row.update(parent_role=row['role'],role=role,stage='U_NORMAL_HEAD',array_path=str(cache),source_identity=sha256(raw));records.append(row)
++        self.target=write(root/'target.json',dict(schema_version='U_NORMAL_HEAD_PREPARATION_V1',stage='U_NORMAL_HEAD',
++            data_prior='KNOWN_NORMAL_TRAIN',roles=ROLES,excluded_training_run_numbers=list(range(21,51)),
++            faulty_testing_access_allowed=False,original_manifests_modified=False,parent_manifest=record(parent_manifest),
++            normal_lineage=record(lineage),cache=record(cache),records=records))
++        plans={}
++        for seed in range(3):
++            p=root/f'plan{seed}.npz';np.savez_compressed(p,**traces(seed))
++            source=refs['source_assets'][str(seed)]
++            with np.load(source['plan']['path']) as z:trace={k:z[k] for k in ('cal_record','cal_origin','cal_channel')}
++            s=root/f'source_trace{seed}.npz';np.savez_compressed(s,**trace)
++            plans[str(seed)]=dict(target_plan=record(p),source_cal_trace=record(s),original_source_assets=source)
++        jobs=[]
++        for m in refs['models']:
++            for init in ('source_pretrained','random_init'):
++                seed=m['seed'];mode=m['mode']
++                jobs.append(dict(job_id=f'u_normal_head_{mode}_s{seed}_{init}',stage='U_NORMAL_HEAD',mode=mode,seed=seed,initialization=init,
++                    initial_checkpoint=m['checkpoint'] if init=='source_pretrained' else None,paired_reference_parent=m['checkpoint'],
++                    head_reset_after_load=False,random_init_seed=seed if init=='random_init' else None,
++                    target_plan=plans[str(seed)]['target_plan'],source_cal_trace=plans[str(seed)]['source_cal_trace']))
++        self.prep=write(root/'preparation.json',dict(schema_version='RESEARCH_PREPARATION_V1_NOT_ENGINE_OPERATION',stage='U_NORMAL_HEAD',
++            target_manifest=record(self.target),plans=plans,jobs=jobs))
++        from hybrid_tsad.engine.stage2_identity import runtime_identity
++        self.runtime=write(root/'runtime.json',runtime_identity())
++        accepted={j['job_id']:{'recipe':sha256(ROOT/'configs/stage2_u_normal_head.recipe.json'),'target_manifest':sha256(self.target),
++            'target_plan':j['target_plan']['sha256'],'source_cal_trace':j['source_cal_trace']['sha256'],
++            'source_references':sha256(self.refs),'runtime':sha256(self.runtime)} for j in jobs}
++        self.gate=write(root/'gate.json',dict(stage='U_NORMAL_HEAD',status='CPU_ENGINEERING_ONLY',allowed_jobs=[j['job_id'] for j in jobs],
++            accepted_inputs_by_job=accepted,weights_discarded=True,query_or_labels_read=False,GPU_executed=False))
++        self.requirements=write(root/'requirements.json',dict(stage='U_NORMAL_HEAD',contract=record(self.contract),
++            allowed_jobs_if_separately_released=[dict(job_id=j['job_id']) for j in jobs if j['mode']=='hybrid' and j['seed']==0],
++            shared_inputs=dict(target_normal_manifest=record(self.target),target_plan=plans['0']['target_plan'],source_cal_trace=plans['0']['source_cal_trace'])))
++        self.pins=dict(CONTRACT_SHA=sha256(self.contract),NORMAL_RAW_SHA=sha256(raw),NORMAL_CACHE_SHA=sha256(cache),
++            LINEAGE_SHA=sha256(lineage),PARENT_MANIFEST_SHA=sha256(parent_manifest),PREPARATION_SHA=sha256(self.prep),
++            SOURCE_REFERENCES_SHA=sha256(self.refs),OFFICIAL_SHA=sha256(official),L0_REQUIREMENTS_SHA=sha256(self.requirements))
++        self.plans=plans
++
++    @contextmanager
++    def context(self):
++        with ExitStack() as s:
++            for k,v in self.pins.items():s.enter_context(patch('hybrid_tsad.engine.stage2_identity.'+k,v))
++            s.enter_context(patch('hybrid_tsad.api.create_predictor',side_effect=toy_factory))
++            yield
++
++    def operation(self,op,init='source_pretrained',*,trained=None,name=None):
++        name=name or op+'_'+init
++        approval=write(self.root/(name+'_approval.json'),{})
++        inputs=dict(recipe=record(ROOT/'configs/stage2_u_normal_head.recipe.json'),preparation=record(self.prep),
++            target_manifest=record(self.target),target_plan=self.plans['0']['target_plan'],source_references=record(self.refs),source_cal_trace=self.plans['0']['source_cal_trace'],runtime=record(self.runtime))
++        if op=='stage2-train':inputs['entry_gate']=record(self.gate)
++        elif op=='stage2-l0':inputs['requirements']=record(self.requirements)
++        else:
++            inputs.update(checkpoint=record(trained/'step1000.pt'),checkpoint_metadata=record(trained/'checkpoint_metadata.json'),training_summary=record(trained/'summary.json'))
++        cfg=dict(engine_schema_version=5,operation=op,stage='U_NORMAL_HEAD',contract=record(self.contract),approval=record(approval),
++            inputs=inputs,parameters=dict(job_id=f'u_normal_head_hybrid_s0_{init}',device='cpu'),output=str(self.root/(name+'_output')),
++            score_space='history_normalized_abs_channelmean_div_source_median_v1')
++        p=write(self.root/(name+'.json'),cfg);*_,digest=load_stage2(p)
++        write(approval,dict(status='APPROVED',stage='U_NORMAL_HEAD',scope='SYNTHETIC_ENGINEERING_ONLY',contract_sha256=sha256(self.contract),
++            operation_manifest_sha256=digest,allowed_jobs=[cfg['parameters']['job_id']],permissions=dict(train=op=='stage2-train',calibrate=op=='stage2-calibrate',l0=op=='stage2-l0',query=False,labels=False,F=False)))
++        cfg['approval']=record(approval);write(p,cfg);return p
++
++
++@unittest.skipUnless(HAS_TORCH and HAS_NUMPY,'existing torch/numpy required; synthetic CPU only')
++class Stage2CPUTests(unittest.TestCase):
++    def setUp(self):
++        import torch
++        torch.set_num_threads(2);self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.f=Fixture(Path(self.tmp.name))
++
++    def test_full1000_train_both_initializations_then_source_target_cal_one_object(self):
++        import numpy as np
++        import torch
++        from hybrid_tsad.engine.stage2 import run_stage2,calibration_tracks
++        from hybrid_tsad.engine.identity import source_calibration
++        with self.f.context():
++            for init in ('source_pretrained','random_init'):
++                path=self.f.operation('stage2-train',init);report=run_stage2(path,execute=True)
++                self.assertEqual(report['steps'],1000);self.assertEqual(report['trainable_count'],645)
++                self.assertTrue(all(v>0 for v in report['head_changes'].values()))
++                self.assertTrue(report['head_mode_after_select']['head']);self.assertFalse(report['head_mode_after_select']['dropout'])
++                out=Path(json.loads(path.read_text())['output'])
++                curve=json.loads((out/'curve.json').read_text());self.assertEqual(len(curve),1000)
++                self.assertEqual(curve[99]['lr'],.0003);self.assertEqual(curve[-1]['lr'],0.)
++                self.assertTrue(all(r['TF_head_gradient_path']=='NO_GRAD_CONNECTION' for r in curve))
++                self.assertEqual(report['identity']['frozen_before'],report['identity']['frozen_after']);self.assertNotIn('excluded_target',report['identity'])
++                calpath=self.f.operation('stage2-calibrate',init,trained=out);cal=run_stage2(calpath,execute=True)
++                calout=Path(json.loads(calpath.read_text())['output']);self.assertFalse(cal['query_access'])
++                self.assertEqual(cal['threshold_tracks']['source']['score_object'],cal['threshold_tracks']['target']['score_object'])
++                self.assertIs(cal['threshold_tracks']['source']['score_object'],cal['threshold_tracks']['target']['score_object'])
++                self.assertTrue(cal['module_modes_after_cal']['head']);self.assertFalse(cal['module_modes_after_cal']['dropout'])
++                with np.load(calout/'target_canonical_scores.npz') as z:
++                    self.assertEqual(z['canonical_score'].dtype,np.float32);self.assertEqual(z['canonical_score'].shape,(256,5))
++                    self.assertTrue(np.array_equal(z['origin'][:2],[465,100]));self.assertTrue(np.array_equal(z['run'][:2],[95,95]))
++                with self.assertRaises(ValueError):source_calibration(calout/'target_threshold.json')
++                from hybrid_tsad.engine.readout_controls import prepare_catalog
++                definition=json.loads((self.f.root/'source/definition.json').read_text())
++                selected=next(r for r in definition['models'] if r['mode']=='hybrid' and r['seed']==0)
++                selected.update(checkpoint=record(out/'step1000.pt'),checkpoint_metadata=record(out/'checkpoint_metadata.json'))
++                bad_z=write(self.f.root/('bad_Z_'+init+'.json'),definition)
++                with self.assertRaisesRegex(ValueError,'not TEP-excluded100'):
++                    prepare_catalog(bad_z,self.f.root/('bad_Z_output_'+init),dict(name='SYNTHETIC'))
++                target=json.loads((calout/'target_threshold.json').read_text());target['source_error_scale']*=2;write(calout/'wrong_target.json',target)
++                with self.assertRaisesRegex(ValueError,'replace the fitted source scale'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'wrong_target.json',report['identity']['checkpoint_sha256'])
++                target=json.loads((calout/'target_threshold.json').read_text());target['threshold99']+=1;write(calout/'wrong_threshold.json',target)
++                with self.assertRaisesRegex(ValueError,'single canonical'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'wrong_threshold.json',report['identity']['checkpoint_sha256'])
++                target['normal_error_scale']=2;write(calout/'extra_target_scale.json',target)
++                with self.assertRaisesRegex(ValueError,'target-rescale'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'extra_target_scale.json',report['identity']['checkpoint_sha256'])
++                with self.assertRaisesRegex(ValueError,'fitted checkpoint'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'target_threshold.json','0'*64)
++                wrong=self.f.operation('stage2-calibrate',init,trained=out,name='wrong_checkpoint_'+init)
++                v=json.loads(wrong.read_text());v['inputs']['checkpoint']=report['identity']['paired_reference_parent'];write(wrong,v)
++                _,_,_,_,digest=load_stage2(wrong);ap=Path(v['approval']['path']);aa=json.loads(ap.read_text());aa['operation_manifest_sha256']=digest;write(ap,aa);v['approval']=record(ap);write(wrong,v)
++                with self.assertRaisesRegex(ValueError,'training identity mismatch'):run_stage2(wrong,execute=True)
++
++    def test_l0_fixed_pair_five_updates_discard_routes_no_checkpoints_and_no_authority(self):
++        import torch
++        from hybrid_tsad.engine.stage2 import run_stage2
++        with self.f.context():
++            for init in ('source_pretrained','random_init'):
++                p=self.f.operation('stage2-l0',init);cfg,paths,*_=load_stage2(p)
++                with patch.object(torch,'save',side_effect=AssertionError('L0 wrote reusable model/optimizer')):
++                    r=run_stage2(p,execute=True)
++                out=Path(cfg['output']);self.assertEqual(r['steps'],5);self.assertTrue(r['weights_discarded'])
++                self.assertFalse(list(out.rglob('*.pt')));self.assertFalse((out/'source_calibration.json').exists())
++                self.assertEqual(r['target_cal_order'],[dict(run=95,origin=465),dict(run=95,origin=100)])
++                self.assertEqual(r['source_first64_domains'],['PSM']);self.assertFalse(r['source_prefix_is_full_domain_coverage'])
++                self.assertEqual(r['rng_after_updates'],r['rng_after_evaluations']);self.assertEqual(r['frozen_before'],r['frozen_after'])
++                self.assertTrue(r['diagnostics']['total_head_grad_equals_future_only']);self.assertFalse(r['GPU_executed'])
++                self.assertFalse(r['calibration_reusable']);self.assertTrue(r['module_flags_preserved'])
++                # A raw diagnostic report cannot promote itself to formal training.
++                train=self.f.operation('stage2-train',init,name='bad_gate_'+init);v=json.loads(train.read_text())
++                v['inputs']['entry_gate']=record(out/'summary.json');write(train,v)
++                _,_,_,_,digest=load_stage2(train);approval=Path(v['approval']['path']);a=json.loads(approval.read_text())
++                a['operation_manifest_sha256']=digest;write(approval,a);v['approval']=record(approval);write(train,v)
++                with self.assertRaisesRegex(ValueError,'separately accepted'):
++                    run_stage2(train,execute=True)
++
++    def test_runtime_l0_scope_and_cpu_fixture_cannot_be_approved_as_gpu(self):
++        from hybrid_tsad.engine.stage2 import run_stage2
++        from hybrid_tsad.engine.stage2_identity import validate_assets
++        with self.f.context():
++            p=self.f.operation('stage2-l0');cfg,paths,out,_,_=load_stage2(p)
++            cfg['parameters']['device']='cuda:0';write(p,cfg);_,_,_,_,digest=load_stage2(p)
++            approval=Path(cfg['approval']['path']);a=json.loads(approval.read_text());a['operation_manifest_sha256']=digest;write(approval,a)
++            cfg['approval']=record(approval);write(p,cfg)
++            with self.assertRaisesRegex(ValueError,'CPU-only'):run_stage2(p,execute=True)
++            p=self.f.operation('stage2-train',name='runtime_bad');cfg,paths,*_=load_stage2(p)
++            runtime=json.loads(self.f.runtime.read_text());runtime['files']['src/hybrid_tsad/model.py']='0'*64
++            bad=write(self.f.root/'wrong_runtime.json',runtime);cfg['inputs']['runtime']=record(bad);paths['runtime']=bad
++            with self.assertRaisesRegex(ValueError,'runtime bytes'):validate_assets(cfg,paths)
++
++    def test_wrong_parent_stage_is_rejected_even_after_updating_asset_records(self):
++        from hybrid_tsad.engine.stage2_identity import validate_assets
++        with self.f.context():
++            p=self.f.operation('stage2-train');cfg,paths,*_=load_stage2(p)
++            refs=json.loads(self.f.refs.read_text());parent=next(r for r in refs['models'] if r['seed']==0 and r['mode']=='hybrid')
++            meta_path=Path(parent['checkpoint_metadata']['path']);m=json.loads(meta_path.read_text());m['stage']='U_NORMAL_HEAD';write(meta_path,m)
++            parent['checkpoint_metadata']=record(meta_path)
++            definition=Path(refs['parent_catalog_definition']['path']);d=json.loads(definition.read_text());d['models']=refs['models'];write(definition,d)
++            refs['parent_catalog_definition']=record(definition);write(self.f.refs,refs);cfg['inputs']['source_references']=record(self.f.refs)
++            with patch('hybrid_tsad.engine.stage2_identity.SOURCE_REFERENCES_SHA',sha256(self.f.refs)),self.assertRaisesRegex(ValueError,'Wrong parent'):
++                validate_assets(cfg,paths)
++
++    def test_formal_loop_detects_buffer_drift_without_publishing_primary(self):
++        from hybrid_tsad.engine.stage2 import run_stage2
++        with self.f.context():
++            def corrupt_factory(*args,**kwargs):
++                model=toy_factory(*args,**kwargs);forward=model.forward
++                def changed(x):
++                    model.fixed_buffer.add_(1)
++                    return forward(x)
++                model.forward=changed;return model
++            p=self.f.operation('stage2-train',name='buffer_corruption')
++            with patch('hybrid_tsad.api.create_predictor',side_effect=corrupt_factory),self.assertRaisesRegex(ValueError,'Frozen backbone/buffer'):
++                run_stage2(p,execute=True)
++            out=Path(json.loads(p.read_text())['output'])
++            self.assertTrue((out/'failure.json').exists());self.assertFalse((out/'summary.json').exists());self.assertFalse((out/'step1000.pt').exists())
++
++    def test_warmstart_head_retained_random_never_loads_parent_and_eval_rng_modes_restore(self):
++        import numpy as np
++        import torch
++        from hybrid_tsad.engine.stage2_identity import validate_assets
++        from hybrid_tsad.engine.stage2 import create_stage2_model,configure_head_only,head_only_step,evaluate_c1,evaluate_target_cal,module_modes,frozen_hashes
++        from hybrid_tsad.engine.stage2_data import TargetNormal
++        with self.f.context():
++            p=self.f.operation('stage2-train');cfg,paths,*_=load_stage2(p);a=validate_assets(cfg,paths)
++            model=create_stage2_model(a,'cpu');state=torch.load(a['parent']['checkpoint']['path'],weights_only=True)
++            self.assertTrue(torch.equal(model.head.weight,state['head.weight']))
++            target=TargetNormal(a['target'],a['plan'],a['target']['cache']['path'])
++            old=frozen_hashes(model);flags=module_modes(model);rng=torch.get_rng_state().clone()
++            _,first=evaluate_c1(model,lambda i:target.batch('select',i,device='cpu'),device='cpu',count=64)
++            self.assertTrue(torch.equal(rng,torch.get_rng_state()));self.assertEqual(module_modes(model),flags)
++            _,second=evaluate_c1(model,lambda i:target.batch('select',i,device='cpu'),device='cpu',count=64)
++            self.assertTrue(np.array_equal(first['prediction'],second['prediction']))
++            evaluate_target_cal(model,target,1.,device='cpu',count=2)
++            self.assertTrue(torch.equal(rng,torch.get_rng_state()));self.assertEqual(module_modes(model),flags)
++            x,y=target.batch('fit',0,device='cpu');optimizer=torch.optim.AdamW(configure_head_only(model),lr=.0003,weight_decay=.01)
++            result=head_only_step(model,optimizer,x,y,1);self.assertGreater(result['head_gradient_max']['head.weight'],0)
++            self.assertEqual(frozen_hashes(model),old)
++            p=self.f.operation('stage2-train','random_init');cfg,paths,*_=load_stage2(p);a=validate_assets(cfg,paths)
++            with patch.object(torch,'load',side_effect=AssertionError('random path loaded weights')):
++                random=create_stage2_model(a,'cpu')
++            self.assertFalse(torch.equal(random.head.weight,state['head.weight']))
++
++    def test_roles_trace_parent_permission_and_future_only_target_rejections(self):
++        import numpy as np
++        import torch
++        from hybrid_tsad.engine.stage2_identity import validate_assets
++        from hybrid_tsad.engine.stage2 import run_stage2,create_stage2_model,evaluation_scope
++        from hybrid_tsad.engine.stage2_data import TargetNormal
++        from hybrid_tsad.model import objective
++        with self.f.context():
++            p=self.f.operation('stage2-train');cfg,paths,out,_,digest=load_stage2(p);a=validate_assets(cfg,paths)
++            changed=json.loads(p.read_text());changed['parameters']['device']='cuda:0';write(p,changed)
++            parsed,pp,oo,_,dd=load_stage2(p)
++            with self.assertRaisesRegex(ValueError,'exact operation'):approve_stage2(parsed,pp,oo,dd)
++            t=TargetNormal(a['target'],a['plan'],a['target']['cache']['path']);original_run=int(t.plan['fit_run'][0]);t.plan['fit_run'][0]=21
++            with self.assertRaisesRegex(ValueError,'role/run'):t.batch('fit',0,device='cpu')
++            t.plan['fit_run'][0]=original_run
++            with np.load(paths['target_plan']) as z:bad={k:z[k].copy() for k in z.files}
++            bad['select_run'][0]=1;badpath=self.f.root/'bad_trace.npz';np.savez(badpath,**bad)
++            from hybrid_tsad.engine.stage2_data import validate_target
++            with self.assertRaisesRegex(ValueError,'fixed PCG64'):validate_target(paths['target_manifest'],badpath,0,a['assets'])
++            m=json.loads(self.f.target.read_text());m['records'][0]['role']='cal';badmanifest=write(self.f.root/'bad_target.json',m)
++            with self.assertRaisesRegex(ValueError,'records differ'):validate_target(badmanifest,paths['target_plan'],0,a['assets'])
++            model=create_stage2_model(a,'cpu');x,y=t.batch('select',0,device='cpu')
++            with evaluation_scope(model,'cpu'):o1=model(x)
++            with evaluation_scope(model,'cpu'):o2=model(x)
++            self.assertTrue(torch.equal(o1['prediction_normalized'],o2['prediction_normalized']))
++            l1=objective(o1,y)[0];l2=objective(o2,y+10)[0];self.assertNotEqual(float(l1),float(l2))
++            parent=Path(a['parent']['checkpoint_metadata']['path']);meta=json.loads(parent.read_text());meta['stage']='U_NORMAL_HEAD';write(parent,meta)
++            # Even updating a ref must not turn an adapted child into an original parent.
++            with self.assertRaisesRegex(ValueError,'SHA mismatch'):validate_assets(cfg,paths)
++
++
++@unittest.skipUnless(HAS_TORCH and OFFICIAL,'existing torch plus external pinned official source; no CUDA')
++class ActualCoreStage2Tests(unittest.TestCase):
++    def test_three_real_modes_existing_head_gradient_buffers_and_no_future_input(self):
++        import torch
++        from hybrid_tsad.model import HybridPredictor
++        from hybrid_tsad.engine.stage2 import (configure_head_only,head_only_step,frozen_hashes,evaluation_scope,module_modes,
++            diagnostic_replay,evaluate_c1,evaluate_target_cal,source_scale_only)
++        torch.set_num_threads(2)
++        for mode in ('temporal','tf','hybrid'):
++            torch.manual_seed(71);model=HybridPredictor(OFFICIAL,history=100,mode=mode);head=configure_head_only(model)
++            self.assertEqual(sum(p.numel() for p in head),645);before=frozen_hashes(model);flags=module_modes(model)
++            x=torch.randn(64,100,1);y=torch.randn(64,5,1)
++            with evaluation_scope(model,'cpu'):a=model(x)
++            with evaluation_scope(model,'cpu'):b=model(x)
++            self.assertTrue(torch.equal(a['prediction_normalized'],b['prediction_normalized']))
++            opt=torch.optim.AdamW(head,lr=.0003,weight_decay=.01)
++            for step in range(1,6):result=head_only_step(model,opt,x,y,step)
++            self.assertIn(result['TF_head_gradient_max'],(None,0.));self.assertGreater(result['head_gradient_max']['head.weight'],0)
++            self.assertTrue(diagnostic_replay(model,x,y,'cpu')['rng_restored'])
++            _,source=evaluate_c1(model,lambda _: (x,y),device='cpu',count=64)
++            xx=torch.randn(1,100,52);yy=torch.randn(5,52).numpy()
++            class Pool:
++                def cal_block(self,index,*,device):return xx,yy,95,[465,100][index]
++            target=evaluate_target_cal(model,Pool(),source_scale_only(source),device='cpu',count=2)
++            self.assertEqual(target['origin'].tolist(),[465,100])
++            self.assertEqual(before,frozen_hashes(model));self.assertEqual(flags,module_modes(model))
+--- /dev/null
++++ after/configs/stage2_u_normal_head.recipe.json
+@@ -0,0 +1,148 @@
++{
++  "stage": "U_NORMAL_HEAD",
++  "recipe_schema_version": 1,
++  "architecture": {
++    "history": 100,
++    "horizon": 5,
++    "copies": 2,
++    "temporal_depth": 4
++  },
++  "optimizer": {
++    "name": "AdamW",
++    "steps": 1000,
++    "batch": 64,
++    "learning_rate": 0.0003,
++    "weight_decay": 0.01,
++    "warmup_steps": 100,
++    "clip_norm": 1,
++    "select_every": 100
++  },
++  "lr_convention": "one_based: lr(step)=3e-4*min(step/100,1)*(1 if step<=100 else .5*(1+cos(pi*(step-100)/900))); optimizer uses this LR before update; step1000 LR=0",
++  "trainable_parameters": [
++    "head.weight",
++    "head.bias"
++  ],
++  "trainable_count": 645,
++  "backbone_mode": "eval",
++  "all_buffers_frozen": true,
++  "loss": {
++    "future_huber_delta": 1,
++    "future_weight": 1,
++    "tf_weight": 0.1,
++    "selection": "future_huber_only",
++    "TF_to_head_gradient": 0
++  },
++  "primary": "step1000",
++  "best": "normal_select_supplement_only",
++  "target_cal_policy": "same_source_canonical_float32_score_units_q99_only_no_target_rescale",
++  "permissions": {
++    "target": "TEP",
++    "prior": "KNOWN_NORMAL_TRAIN",
++    "query": false,
++    "labels": false,
++    "F": false
++  },
++  "roles": {
++    "fit": [
++      1,
++      2,
++      3,
++      4,
++      5,
++      6,
++      7,
++      8,
++      9,
++      10,
++      11,
++      12,
++      13,
++      14,
++      15,
++      16,
++      17,
++      18,
++      19,
++      20,
++      51,
++      52,
++      53,
++      54,
++      55,
++      56,
++      57,
++      58,
++      59,
++      60
++    ],
++    "select": [
++      61,
++      62,
++      63,
++      64,
++      65,
++      66,
++      67,
++      68,
++      69,
++      70,
++      71,
++      72,
++      73,
++      74,
++      75,
++      76,
++      77,
++      78,
++      79,
++      80
++    ],
++    "cal": [
++      81,
++      82,
++      83,
++      84,
++      85,
++      86,
++      87,
++      88,
++      89,
++      90,
++      91,
++      92,
++      93,
++      94,
++      95,
++      96,
++      97,
++      98,
++      99,
++      100
++    ]
++  },
++  "trace": {
++    "fit_windows": 64000,
++    "select_C1": 256,
++    "cal_B1_C52_origins": 256,
++    "fit_seed_offset": 191100,
++    "select_seed_offset": 191200,
++    "cal_seed_offset": 191300,
++    "mask_seed": 84551
++  },
++  "calibration": {
++    "source_trace_C1": 256,
++    "source_batch": 64,
++    "target_batch": 1,
++    "target_channels": 52,
++    "quantile": 0.99,
++    "quantile_method": "linear"
++  },
++  "release_note": "Static18jobs is not execution permission. All real operations require exact contract and primary operation approval. CPU fixtures are engineering evidence only.",
++  "evaluation_rng": {
++    "scope": "one_seed84551_at_start_of_each_select_source_cal_target_cal_call_restore_cpu_selected_device_rng_and_all_module_modes",
++    "select_order": "fixed256_C1_trace_order_batch64",
++    "source_cal_order": "original256_C1_trace_order_batch64",
++    "target_cal_order": "fixed256_multichannel_trace_order_batch1_never_sort_or_reset_per_origin",
++    "target_cal_pool": "not_a_contiguous_query_event_no_fictitious_time_axis"
++  }
++}
+--- /dev/null
++++ after/configs/stage2-train.example.json
+@@ -0,0 +1,53 @@
++{
++  "engine_schema_version": 5,
++  "operation": "stage2-train",
++  "stage": "U_NORMAL_HEAD",
++  "contract": {
++    "path": "../../external/stage2/CONTRACT.md",
++    "sha256": "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af"
++  },
++  "approval": {
++    "path": "../../external/stage2/PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "recipe": {
++      "path": "stage2_u_normal_head.recipe.json",
++      "sha256": "fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78"
++    },
++    "preparation": {
++      "path": "../../external/stage2/preparation.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_manifest": {
++      "path": "../../external/stage2/target_manifest.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_plan": {
++      "path": "../../external/stage2/target_plan.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_references": {
++      "path": "../../external/stage2/source_references.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_cal_trace": {
++      "path": "../../external/stage2/source_cal_trace.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "entry_gate": {
++      "path": "../../external/stage2/GPU_L0_ACCEPTED.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "runtime": {
++      "path": "../../external/stage2/RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "job_id": "u_normal_head_hybrid_s0_source_pretrained",
++    "device": "cpu"
++  },
++  "output": "../../external/new_stage2_stage2-train",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}
+--- /dev/null
++++ after/configs/stage2-calibrate.example.json
+@@ -0,0 +1,61 @@
++{
++  "engine_schema_version": 5,
++  "operation": "stage2-calibrate",
++  "stage": "U_NORMAL_HEAD",
++  "contract": {
++    "path": "../../external/stage2/CONTRACT.md",
++    "sha256": "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af"
++  },
++  "approval": {
++    "path": "../../external/stage2/PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "recipe": {
++      "path": "stage2_u_normal_head.recipe.json",
++      "sha256": "fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78"
++    },
++    "preparation": {
++      "path": "../../external/stage2/preparation.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_manifest": {
++      "path": "../../external/stage2/target_manifest.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_plan": {
++      "path": "../../external/stage2/target_plan.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_references": {
++      "path": "../../external/stage2/source_references.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_cal_trace": {
++      "path": "../../external/stage2/source_cal_trace.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "checkpoint": {
++      "path": "../../external/stage2/checkpoint.pt",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "checkpoint_metadata": {
++      "path": "../../external/stage2/checkpoint_metadata.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "training_summary": {
++      "path": "../../external/stage2/training_summary.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "runtime": {
++      "path": "../../external/stage2/RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "job_id": "u_normal_head_hybrid_s0_source_pretrained",
++    "device": "cpu"
++  },
++  "output": "../../external/new_stage2_stage2-calibrate",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}
+--- /dev/null
++++ after/configs/stage2-l0.example.json
+@@ -0,0 +1,53 @@
++{
++  "engine_schema_version": 5,
++  "operation": "stage2-l0",
++  "stage": "U_NORMAL_HEAD",
++  "contract": {
++    "path": "../../external/stage2/CONTRACT.md",
++    "sha256": "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af"
++  },
++  "approval": {
++    "path": "../../external/stage2/PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "recipe": {
++      "path": "stage2_u_normal_head.recipe.json",
++      "sha256": "fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78"
++    },
++    "preparation": {
++      "path": "../../external/stage2/preparation.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_manifest": {
++      "path": "../../external/stage2/target_manifest.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "target_plan": {
++      "path": "../../external/stage2/target_plan.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_references": {
++      "path": "../../external/stage2/source_references.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "source_cal_trace": {
++      "path": "../../external/stage2/source_cal_trace.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "runtime": {
++      "path": "../../external/stage2/RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "requirements": {
++      "path": "../../external/stage2/L0_DISCARD_REQUIREMENTS.json",
++      "sha256": "efd079dad5b5e6743333ac54a3b8abc28b2e959f4654aa2408b9dff728d55be0"
++    }
++  },
++  "parameters": {
++    "job_id": "u_normal_head_hybrid_s0_source_pretrained",
++    "device": "cpu"
++  },
++  "output": "../../external/new_stage2_l0_discard",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}
+--- /dev/null
++++ after/docs/stage2_u_normal_head.md
+@@ -0,0 +1,68 @@
++# Stage2：已知正常数据的现有预测头适配
++
++本入口实现 `U_NORMAL_HEAD` 合同，不代表完整 U、混合污染鲁棒性或 F。
++既有 Z/source 路径及其排除 TEP 的守卫保持原样；U 使用独立 schema5 和身份。
++本轮只验收合成 CPU 工程行为，真实 GPU L0、目标训练及校准均未执行。
++
++## 配置与入口
++
++```text
++python -m hybrid_tsad stage2 --runtime-identity
++python -m hybrid_tsad stage2 --config configs/stage2-l0.example.json
++python -m hybrid_tsad stage2 --config configs/stage2-train.example.json
++python -m hybrid_tsad stage2 --config configs/stage2-calibrate.example.json
++```
++
++默认只输出操作清单，不打开数据或权重。示例中的零 SHA 是待装配占位符；
++`--execute` 仍需逐文件 SHA、合同、配方、具名 job、运行源码身份与精确操作审批。
++审批清单包含操作、输入、参数、输出和分数空间，不包含 approval 自指。
++`--runtime-identity` 输出包内 Python 文件原字节 SHA，不代替运行环境/硬件回执。
++静态 18 job 矩阵及 PENDING L0 需求均不构成执行授权。
++
++正式训练固定 1000×64、warmup100/cosine、lr3e-4、wd.01、clip1，无任意步数开关。
++只允许现有 `head.weight/head.bias` 共645参数更新，其他参数及 buffer 冻结，
++backbone 保持 eval、head 保持 train。直接调用 `model(history)` 保留 head 梯度；
++未来目标只进入损失。TF 辅助损失的实际无 head 梯度路径单列记录，不伪造连接。
++预训练路加载整套配对 parent（含原 head）；随机路完整随机初始化且不加载 parent。
++主 checkpoint 固定 step1000，正常 select 的 best 仅为补充产物。
++
++## 数据与随机边界
++
++只允许冻结正常 Training 缓存：fit run1..20/51..60、select61..80、cal81..100。
++manifest、原始缓存身份、来源链和三 seed trace 均核对；不提供 Testing/query/label 访问器。
++输入历史 H100、预测 P5；fit/select 为 C1，target-cal 为 B1C52。
++每次 select/source-cal/target-cal 调用开始仅设置84551一次，严格原 plan 顺序，
++结束恢复训练 RNG 及全部 module 模式。target-cal 是校准池，不能解释为连续事件；
++seed0 前两项 run95/origin465、100 不得排序。
++
++适配后重新用原 source-cal trace 计算 source 尺度和 q99。
++每个输入池/模型只保存一套 source-canonical float32 分数；target 仅在同单位拟合 q99，
++不另拟合目标全局尺度。S/T 阈值轨引用同一对象，当前入口不生成 query 分数或 AP/ROC。
++U metadata 区分预训练排除目标、适配目标、是否实际加载 parent，绑定拟合 checkpoint、
++manifest、trace、配方、运行源码和操作清单。U 权重不能作为旧 Z parent，target 阈值不能伪装为 source-cal。
++后续校准只接受完整正式训练归档及其主 checkpoint，拒绝失败、缺件或身份变动的归档。
++
++## 独立 L0 丢弃入口
++
++`stage2-l0` 仅接受原需求中的 hybrid/seed0 预训练与随机 pair。
++固定5×64更新，仍使用1000/W100调度步1..5；正常 select64 C1、source-cal64 C1、target-cal2 C52。
++source 前64项全为 PSM，只验证该前缀，不冒称覆盖 SMD。
++使用正式路径共享的 head 一步、数据权限、评估与随机核；模型/优化器状态丢弃，
++不写 checkpoint、可复用 calibration 或正式阈值，仅写 `L0_ONLY` 诊断数组与回执。
++记录梯度、参数更新、冻结哈希、模式、未来扰动及 RNG 恢复；120秒操作体限制，
++CUDA峰值20GiB拒绝检查。进程启动/退出和完整外部资源计量仍由执行壳提供。
++
++真实 L0 需 `U_NORMAL_HEAD_L0_DISCARD_ONLY` 精确审批；合成审批只允许 CPU。
++正式 train 还要求主接受的独立 L0 gate，绑定 pair 两份报告、独审、输入与运行身份。
++报告自述 `GPU_executed` 本身不能授权。首 pair 以外16 job 还需正式 pair 主验收与新的具名审批。
++
++## 验证范围与未迁移项
++
++本轮 CPU 回执与逐文件 SHA 见 [交付索引](provenance/stage2_u_normal_head_validation.json)。
++合成完整1000步使用645头的轻量 fixture；另直接以外置官方源构造现有 temporal/tf/hybrid
++核心，各做5×64 CPU更新及源/目标形状通路检查。未读取真实目标值或标签，未运行 GPU。
++测试中的固定数据 SHA 替换只存在于 fixture，不能成为真实审批资产。
++
++尚缺真实 GPU L0 的耗时/峰值/设备/退出回执和独审，以及另签的正式 pair。
++其余16 job、U query 读出、F、全参数适配、adapter 和恢复中断训练不属于本入口本轮交付。
++不能把本轮 head-only 工程有效性写成检测收益、混合污染鲁棒性或完整两阶段方法结论。

@@ -14,3 +14,16 @@ src/hybrid_tsad/engine/readout_manifest.py -text whitespace=cr-at-eol
 tests/test_physical_validation.py -text whitespace=cr-at-eol
 # Frozen unified-diff evidence contains required context-line spaces.
 docs/provenance/physical_backend_revision.patch -text -whitespace
+
+# Preserve independently audited Stage2 source/config/evidence bytes.
+src/hybrid_tsad/cli.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2_data.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2_identity.py -text whitespace=cr-at-eol
+tests/test_stage2.py -text whitespace=cr-at-eol
+configs/stage2*.json -text whitespace=cr-at-eol
+docs/stage2_u_normal_head.md -text whitespace=cr-at-eol
+docs/provenance/stage2_u_normal_head_validation.json -text whitespace=cr-at-eol
+docs/provenance/stage2_u_normal_head/** -text -whitespace
+docs/provenance/stage2_canonical_revision/** -text -whitespace
+docs/provenance/stage2_independent_review/** -text whitespace=cr-at-eol

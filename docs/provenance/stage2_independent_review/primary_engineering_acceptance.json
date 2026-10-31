@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-10-31T20:22:48.515696+00:00",
+  "status": "PRIMARY_ACCEPTED_FINITE_CPU_ENGINEERING",
+  "stage": "U_NORMAL_HEAD",
+  "contract_sha256": "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af",
+  "audited_stage2_sha256": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+  "audited_wrapper_sha256": "bd7ad22a2332953e74e1b66cce85ddad8d51b8ab92b40f24e37f2d5577136398",
+  "evidence_sha256": {
+    "verdict.json": "5e4e927db37101e0c63a2272d5cb019d6752a4dce021cad08405b00d13c68f89",
+    "REVIEW.md": "ad5d3db4573a9f0dd226271e2d9944c32541384e9363b95a05f93ce26bf8b442",
+    "kernel_audit.json": "aba2b1118de6af3ebe33c31ed6be452dd1c9478c714f6dc4898b50125f47a3f3",
+    "l0_entry_audit.json": "faf11fa33959ee9dcf4b07fb98e84bfa0b97fed8955843f18d70104ca7fa44b6",
+    "canonical_revision_audit.json": "3018e4f9cb639b43d63fc238567d70e008550370c354309bca8edbeb21f2acb0",
+    "lifecycle_shell_v2/independent_audit.json": "557bd7ffe894a08dd5200b255114c21a7b47a4dfa641202599c674a2195608a2"
+  },
+  "closed_blockers": [
+    "child without supervisor lineage/own timeout",
+    "scientific entry absent from runtime hash coverage",
+    "target canonical rescale plus rehashed q99 accepted"
+  ],
+  "scope": "Only permits separately binding and releasing fixed5-step discarded pair GPU L0; not formal training or actual calibrated model results",
+  "actual_GPU_L0": false,
+  "formal_training_released": false,
+  "query_or_labels_released": false,
+  "scientific_state": "HOLD",
+  "innovation": "UNSUPPORTED",
+  "independence": "same-family role-independent provisional, not external/double-blind",
+  "connection_status": "Independent final upload and primary SSH timed out; local audit files complete; actual release not yet issued"
+}

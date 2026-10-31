@@ -1,0 +1,14 @@
+test_three_real_modes_existing_head_gradient_buffers_and_no_future_input (test_stage2.ActualCoreStage2Tests.test_three_real_modes_existing_head_gradient_buffers_and_no_future_input) ... ok
+test_formal_loop_detects_buffer_drift_without_publishing_primary (test_stage2.Stage2CPUTests.test_formal_loop_detects_buffer_drift_without_publishing_primary) ... ok
+test_full1000_train_both_initializations_then_source_target_cal_one_object (test_stage2.Stage2CPUTests.test_full1000_train_both_initializations_then_source_target_cal_one_object) ... ok
+test_l0_fixed_pair_five_updates_discard_routes_no_checkpoints_and_no_authority (test_stage2.Stage2CPUTests.test_l0_fixed_pair_five_updates_discard_routes_no_checkpoints_and_no_authority) ... ok
+test_roles_trace_parent_permission_and_future_only_target_rejections (test_stage2.Stage2CPUTests.test_roles_trace_parent_permission_and_future_only_target_rejections) ... ok
+test_runtime_l0_scope_and_cpu_fixture_cannot_be_approved_as_gpu (test_stage2.Stage2CPUTests.test_runtime_l0_scope_and_cpu_fixture_cannot_be_approved_as_gpu) ... ok
+test_warmstart_head_retained_random_never_loads_parent_and_eval_rng_modes_restore (test_stage2.Stage2CPUTests.test_warmstart_head_retained_random_never_loads_parent_and_eval_rng_modes_restore) ... ok
+test_wrong_parent_stage_is_rejected_even_after_updating_asset_records (test_stage2.Stage2CPUTests.test_wrong_parent_stage_is_rejected_even_after_updating_asset_records) ... ok
+test_preview_is_separate_stage_and_no_fixture_steps_or_query_route (test_stage2.Stage2SchemaTests.test_preview_is_separate_stage_and_no_fixture_steps_or_query_route) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 14.650s
+
+OK

@@ -1,0 +1,15 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "no_git_operations": true,
+  "no_GPU_real_target_or_labels": true,
+  "report": {
+    "path": "docs\\provenance\\stage2_u_normal_head_validation.json",
+    "sha256": "349212a3973e054b73900dfd93a86de757aeb8042d6f0c09322295744c8fb1ad"
+  },
+  "patch": {
+    "path": "docs\\provenance\\stage2_u_normal_head\\candidate.patch",
+    "sha256": "35f3e3ecd385a03efc9300c340480581f8f10d894d94625d2027198afcb66590"
+  },
+  "validated_raw_zip_sha256": "47c11d7280315f866ccaedcb915e40d25afc84cb9c0ada24a299ebe565af31ff",
+  "package_src_matches_tested_raw_zip": true
+}

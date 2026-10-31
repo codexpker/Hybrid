@@ -1,0 +1,37 @@
+{
+  "status": "PASS_ORIGINAL_CANONICAL_COUNTEREXAMPLE_CLOSED",
+  "old_schema1_failures_preserved": true,
+  "new_schema2_complete_positive_path": true,
+  "single_score_object_for_two_thresholds": true,
+  "negative_cases": [
+    {
+      "case": "original_schema1_correct_rejected_without_bank_evidence",
+      "error": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch"
+    },
+    {
+      "case": "original_schema1_rescaled_failure_preserved_and_rejected",
+      "error": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch"
+    },
+    {
+      "case": "same_original_x2_plus_rehashed_q99_source_units_unchanged",
+      "error": "Target canonical scores differ from the bound physical calibration bank or trace"
+    },
+    {
+      "case": "wrong_plan_sha",
+      "error": "Target calibration manifest/trace identity mismatch"
+    },
+    {
+      "case": "wrong_fitted_seed",
+      "error": "Target calibration fitted checkpoint/trace identity mismatch"
+    },
+    {
+      "case": "reversed_bank_order",
+      "error": "Target calibration bank shape or frozen trace order mismatch"
+    }
+  ],
+  "source_units_raw_score_formula_unchanged": true,
+  "synthetic_CPU_only": true,
+  "real_target_or_query_or_GPU": false,
+  "new_full_toy_training_steps": 1000,
+  "scope": "Only consumer physical-bank/trace and producer evidence changes; original three-core/kernel/L0/gates unchanged"
+}

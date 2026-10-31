@@ -1,0 +1,78 @@
+{
+  "status": "FROZEN_CANONICAL_REVISION_FOR_INDEPENDENT_REVIEW",
+  "original_stage2_sha256": "1f5688dcf0dcf03b17e84397985fe5f01752e6ff9a0324d7916d7944f34d115a",
+  "changed_files": {
+    "src/hybrid_tsad/engine/stage2.py": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+    "tests/test_stage2.py": "b9eb54fb3f7cdbfba4ed698f53654094f090d5a63d838b99592cd7430d1c780d"
+  },
+  "changed_functions": [
+    "calibration_tracks",
+    "calibrate"
+  ],
+  "unchanged": {
+    "model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+    "engine/source_gate.py": "5f8ba2f4fd3c59893df4ea9446b547810e965248ad7a3d8fb577db1909a23a65",
+    "engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126"
+  },
+  "original_failure_preserved": {
+    "path": "research_workspace/independent_audit/HYBRID-TEP100-U-NORMAL-HEAD-ENGINE/canonical_failure",
+    "files": {
+      "canonical_audit.json": "c1ddb7ef8ed2aeee670fc2d921ad5374f7c563589de9d0bcc81d5e9719ba46f2",
+      "audit_canonical.py": "d3f953462a756834b23083d8a97a0ba0316114bcae9447d28993e7dac4a1ad13",
+      "target_threshold_rescaled.json": "43a5aecd4325110e4882b08cd95abc483c02c27e451af12c74f02301a1a3a632"
+    }
+  },
+  "behavior": "Schema2 requires hash-bound physical calibration bank, fixed manifest/trace/seed and fitted checkpoint metadata. Recompute original score_block per window bitexact in original plan order before unchanged q99 check. Schema1 rejected without automatic reconstruction.",
+  "test_results": {
+    "scope": "SYNTHETIC_CPU_ENGINEERING_ONLY",
+    "tests": 9,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 14.75046507397201,
+    "python": "3.12.13",
+    "torch": "2.8.0+cu128",
+    "threads": 2,
+    "CUDA_VISIBLE_DEVICES": "",
+    "successful": true
+  },
+  "additional_negative_assertions": [
+    "original x2 canonical + new file SHA/q99 while source scale and false global-rescale flag remain unchanged",
+    "physical calibration bank order changed",
+    "target trace identity changed",
+    "fitted checkpoint metadata seed changed"
+  ],
+  "positive": "Both initialization full1000 synthetic train -> new source/target-cal -> canonical tracks, unchanged source units and original nonmonotone order",
+  "old_schema1_replay": {
+    "scope": "old independent synthetic artifacts read only; schema1 lacks required bank binding; no model/GPU/labels",
+    "results": {
+      "original_correct_schema1": {
+        "rejected": true,
+        "reason": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch",
+        "input_sha256": "cc7b57a38595e3268654d219ab3e673ad97c49e1e9cb123e8d67213ba57ed071"
+      },
+      "original_rescaled_schema1": {
+        "rejected": true,
+        "reason": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch",
+        "input_sha256": "43a5aecd4325110e4882b08cd95abc483c02c27e451af12c74f02301a1a3a632"
+      }
+    }
+  },
+  "compile": true,
+  "package_and_tests_equal_tested_raw_zip": true,
+  "raw_zip_sha256": "88465c35f3f72731e66eca77770c023b2752c4b461022a7c4a683d482ca29b2b",
+  "scope": "CPU synthetic only; no GPU, real target train/cal, query, labels or Git",
+  "not_repeated": "Original 51 prior regression tests unchanged and preserved in previous report; this bounded revision reran all9 Stage2 tests after final new bytes. No new numerical kernel modified.",
+  "artifacts": {
+    "cpu_v1_results.json": "cbf315f27d1bbf38e1eddaeb39ffbfec307647e537e1318f59991c8c86ad0f95",
+    "cpu_v1_stdout.txt": "2903bd5f94de6391388e0f5542f6a6864ae2b0f720e41fe31bf2c6c9cdb5a040",
+    "cpu_v2_results.json": "d74f436e2fb5b2f0335116a6a207bbae81b9ba39bafeb65f01ef696ab74acd45",
+    "cpu_v2_stdout.txt": "21826d60a6e8155f37e1c7a95e3bb95e083d992ee3219b80d11570acd2752353",
+    "original_audit_replay.json": "3df746f174eec7a0ae2141ee0a61c19bae63e236ceb534b26da09310e67ef909",
+    "README.md": "6416d72bfc03606fa1d5c0ef33047c4f8c0a3f2eb9b0723be9d0670d0bb7d26a",
+    "revision.patch": "476c02d02a6bf0c1c984cb7dfe33851d552371ca65a02aeec158f89234b7b21a"
+  }
+}

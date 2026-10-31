@@ -1,0 +1,166 @@
+{
+  "status": "PASS_INDEPENDENT_THREE_REAL_CORE_CPU_STEP_ORACLE",
+  "cases": [
+    {
+      "mode": "temporal",
+      "steps": [
+        {
+          "step": 1,
+          "LR": 2.9999999999999997e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 2,
+          "LR": 5.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 3,
+          "LR": 8.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 4,
+          "LR": 1.1999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 5,
+          "LR": 1.4999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        }
+      ],
+      "head645": true,
+      "all_params_and_AdamW_states_oracle_bitexact": true,
+      "frozen_and_flags_exact": true,
+      "diagnostics": {
+        "total_head_grad_equals_future_only": true,
+        "prediction_replay_bitexact": true,
+        "future_perturbation_changes_loss_only": true,
+        "TF_aux_has_grad_connection": false,
+        "rng_restored": true,
+        "extra_optimizer_steps": 0
+      },
+      "all_eval_RNG_restored": true
+    },
+    {
+      "mode": "tf",
+      "steps": [
+        {
+          "step": 1,
+          "LR": 2.9999999999999997e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 2,
+          "LR": 5.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 3,
+          "LR": 8.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 4,
+          "LR": 1.1999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 5,
+          "LR": 1.4999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        }
+      ],
+      "head645": true,
+      "all_params_and_AdamW_states_oracle_bitexact": true,
+      "frozen_and_flags_exact": true,
+      "diagnostics": {
+        "total_head_grad_equals_future_only": true,
+        "prediction_replay_bitexact": true,
+        "future_perturbation_changes_loss_only": true,
+        "TF_aux_has_grad_connection": false,
+        "rng_restored": true,
+        "extra_optimizer_steps": 0
+      },
+      "all_eval_RNG_restored": true
+    },
+    {
+      "mode": "hybrid",
+      "steps": [
+        {
+          "step": 1,
+          "LR": 2.9999999999999997e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 2,
+          "LR": 5.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 3,
+          "LR": 8.999999999999999e-06,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 4,
+          "LR": 1.1999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        },
+        {
+          "step": 5,
+          "LR": 1.4999999999999999e-05,
+          "TF_head_path": "NO_GRAD_CONNECTION",
+          "TF_aux_requires_grad": false,
+          "TF_head_gradient_max": null
+        }
+      ],
+      "head645": true,
+      "all_params_and_AdamW_states_oracle_bitexact": true,
+      "frozen_and_flags_exact": true,
+      "diagnostics": {
+        "total_head_grad_equals_future_only": true,
+        "prediction_replay_bitexact": true,
+        "future_perturbation_changes_loss_only": true,
+        "TF_aux_has_grad_connection": false,
+        "rng_restored": true,
+        "extra_optimizer_steps": 0
+      },
+      "all_eval_RNG_restored": true
+    }
+  ],
+  "CPU_seconds": 6.0402894410071895,
+  "real_data_or_weights_or_GPU": false,
+  "synthetic_inputs_only": true,
+  "optimizer_steps_per_mode": 5,
+  "no_production_weights_or_package_modified": true
+}

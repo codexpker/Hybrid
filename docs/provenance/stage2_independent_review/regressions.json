@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "tests": 60,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "seconds": 30.78817551699467,
+  "real_data_or_GPU": false
+}

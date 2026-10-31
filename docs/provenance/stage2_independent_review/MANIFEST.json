@@ -1,0 +1,13 @@
+{
+  "scope": "Finite CPU engineering evidence only; actual GPU L0 and formal U remain unexecuted",
+  "files": {
+    "canonical_revision_audit.json": "3018e4f9cb639b43d63fc238567d70e008550370c354309bca8edbeb21f2acb0",
+    "kernel_audit.json": "aba2b1118de6af3ebe33c31ed6be452dd1c9478c714f6dc4898b50125f47a3f3",
+    "l0_entry_audit.json": "faf11fa33959ee9dcf4b07fb98e84bfa0b97fed8955843f18d70104ca7fa44b6",
+    "lifecycle_v2_independent_audit.json": "557bd7ffe894a08dd5200b255114c21a7b47a4dfa641202599c674a2195608a2",
+    "primary_engineering_acceptance.json": "67e563c84547b6fa7858ae6f1ccfc72853e6947950f330d059cfdf44472edf70",
+    "regressions.json": "0072f359997fc27da177d5c85b9b72c488b576543e7d8274ebdbc019b30d3bde",
+    "REVIEW.md": "ad5d3db4573a9f0dd226271e2d9944c32541384e9363b95a05f93ce26bf8b442",
+    "verdict.json": "5e4e927db37101e0c63a2272d5cb019d6752a4dce021cad08405b00d13c68f89"
+  }
+}

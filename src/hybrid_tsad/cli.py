@@ -58,6 +58,11 @@ def main(argv=None):
     readout.add_argument("--config", required=True)
     readout.add_argument("--execute", action="store_true")
     readout.add_argument("--allow-labels", action="store_true")
+    stage2 = sub.add_parser("stage2", help="Head-only U stage5 config; preview unless explicitly approved")
+    stage2_inputs=stage2.add_mutually_exclusive_group(required=True)
+    stage2_inputs.add_argument("--config")
+    stage2_inputs.add_argument("--runtime-identity",action="store_true",help="Print current source SHA identity without torch/data")
+    stage2.add_argument("--execute", action="store_true")
     # Parse passthrough after -- separately so --script remains an ordinary option.
     raw = list(sys.argv[1:] if argv is None else argv)
     passthrough = []
@@ -91,6 +96,14 @@ def main(argv=None):
         elif args.command == "readout":
             from .engine.multi_readout import run_readout
             result = run_readout(args.config, execute=args.execute, allow_labels=args.allow_labels)
+        elif args.command == "stage2":
+            if args.runtime_identity:
+                if args.execute:raise ValueError("Runtime identity is read-only")
+                from .engine.stage2_identity import runtime_identity
+                result=runtime_identity()
+            else:
+                from .engine.stage2 import run_stage2
+                result = run_stage2(args.config, execute=args.execute)
         elif args.command == "legacy":
             from .legacy import execute, legacy_command
             command = legacy_command(args.kind, args.script, passthrough)

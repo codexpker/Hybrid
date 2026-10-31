@@ -1,0 +1,15 @@
+{
+  "scope": "old independent synthetic artifacts read only; schema1 lacks required bank binding; no model/GPU/labels",
+  "results": {
+    "original_correct_schema1": {
+      "rejected": true,
+      "reason": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch",
+      "input_sha256": "cc7b57a38595e3268654d219ab3e673ad97c49e1e9cb123e8d67213ba57ed071"
+    },
+    "original_rescaled_schema1": {
+      "rejected": true,
+      "reason": "Stage2 calibration role/fitted checkpoint/target-rescale mismatch",
+      "input_sha256": "43a5aecd4325110e4882b08cd95abc483c02c27e451af12c74f02301a1a3a632"
+    }
+  }
+}

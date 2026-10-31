@@ -1,0 +1,61 @@
+{
+  "engine_schema_version": 5,
+  "operation": "stage2-calibrate",
+  "stage": "U_NORMAL_HEAD",
+  "contract": {
+    "path": "../../external/stage2/CONTRACT.md",
+    "sha256": "f345106750b89e6f7da3d0788ed51cb5aa636a1043c70f50781a2456e82e80af"
+  },
+  "approval": {
+    "path": "../../external/stage2/PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "inputs": {
+    "recipe": {
+      "path": "stage2_u_normal_head.recipe.json",
+      "sha256": "fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78"
+    },
+    "preparation": {
+      "path": "../../external/stage2/preparation.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "target_manifest": {
+      "path": "../../external/stage2/target_manifest.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "target_plan": {
+      "path": "../../external/stage2/target_plan.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "source_references": {
+      "path": "../../external/stage2/source_references.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "source_cal_trace": {
+      "path": "../../external/stage2/source_cal_trace.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "checkpoint": {
+      "path": "../../external/stage2/checkpoint.pt",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "checkpoint_metadata": {
+      "path": "../../external/stage2/checkpoint_metadata.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "training_summary": {
+      "path": "../../external/stage2/training_summary.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "runtime": {
+      "path": "../../external/stage2/RUNTIME_IDENTITY.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "job_id": "u_normal_head_hybrid_s0_source_pretrained",
+    "device": "cpu"
+  },
+  "output": "../../external/new_stage2_stage2-calibrate",
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
+}

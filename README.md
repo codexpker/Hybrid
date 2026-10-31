@@ -4,6 +4,14 @@
 
 先读[研究范围与尚缺部分](docs/research_scope.md)和[官方源码对应表](docs/provenance/references.md)。FRFT本身已含时域信息，新增时域分支的必要性仍须检验；当前多源正常数据预训练不等于已经解决异常污染的无标签学习。
 
+## 最新工程阶段（2026-11-01）
+
+已增加[已知正常数据的预测头适配入口](docs/stage2_u_normal_head.md)：固定现有645参数头，主干、原核心和评分数学不变。三种操作共用`stage2 --config`：1000步正式训练、源/目标阈值校准，以及独立五步丢弃L0；默认都只预览。
+
+[有限独立工程审查](docs/provenance/stage2_independent_review/REVIEW.md)已通过；包括真实三模式CPU步进对照、两初始化合成L0和三个已修复反例。职责独立但同模型家族，不称外部审稿。目标分数[校准修订](docs/provenance/stage2_canonical_revision/README.md)要求从绑定原始预测银行逐点复算，两个阈值轨共用同一canonical分数对象。
+
+**实际GPU L0、正式目标适配与新query尚未执行。** 本控制使用已知正常数据，不是混合异常污染鲁棒或完整U/F成果，也不提供异常检测增益证据。服务器SSH当前超时，原始TimeRadar复现及已接受的Z负结果保留，不重新运行。
+
 ## 安装与入口
 
 Python ≥3.10。管理 CLI 仅使用标准库，可使用已有 Python：

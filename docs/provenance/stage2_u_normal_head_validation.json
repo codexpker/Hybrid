@@ -1,0 +1,149 @@
+{
+  "stage": "U_NORMAL_HEAD",
+  "status": "CANDIDATE_FROZEN_FOR_INDEPENDENT_REVIEW",
+  "baseline_commit": "77aa33a24e240e5ba9f2505f87a3794dc3363fc1",
+  "scientific_training_evidence": false,
+  "query_access": false,
+  "labels_access": false,
+  "GPU_executed": false,
+  "files": {
+    "src/hybrid_tsad/cli.py": "4e71b228e6fb0ff488967df9670930d156881b46ad8aa8f2a46662ae5efc85cb",
+    "src/hybrid_tsad/engine/stage2_identity.py": "8f403510601aed2ec964003864f5a78c786b31f41883aec1f8603e46b481afed",
+    "src/hybrid_tsad/engine/stage2_data.py": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+    "src/hybrid_tsad/engine/stage2.py": "1f5688dcf0dcf03b17e84397985fe5f01752e6ff9a0324d7916d7944f34d115a",
+    "tests/test_stage2.py": "8378da20372b39bfc8aff1cb466b7cba61e598cfa069dcfbc09ef7e1f43fbcc2",
+    "configs/stage2_u_normal_head.recipe.json": "fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78",
+    "configs/stage2-train.example.json": "70fe258ff3b1a74d7e38dd5718ccf87289ab54084ae9584390bd8f048a078b31",
+    "configs/stage2-calibrate.example.json": "4b0fde15e2bedbc6003309876cda211854114acdbfef211fb0a43847cd5a0d92",
+    "configs/stage2-l0.example.json": "b4e3b579e3d424b7834e646ca00dbc520723169ae1341ec52abceb965319b6d8",
+    "docs/stage2_u_normal_head.md": "aa1fe7ed6c9d414ed33767ecf2495a668eb7335b4befa7bb6119fb812ccea95a"
+  },
+  "unchanged": {
+    "model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+    "engine/source_gate.py": "5f8ba2f4fd3c59893df4ea9446b547810e965248ad7a3d8fb577db1909a23a65",
+    "engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126"
+  },
+  "cli_before_sha256": "0070cedcc45351adbf8e21548c12486e2f4386330f7593b8e2d6093e0410b59c",
+  "provenance": [
+    {
+      "kind": "AST_IDENTICAL_PROJECT_OWNED_FUNCTION",
+      "source": "research_workspace/preparations/hybrid_tep100_u_normal_head_20261101_v1/prepare_assets.py",
+      "source_file_sha256": "e7f9ae9c43ba0b7e8765f294cbdf0ae5d7bada5cc14ef30e8789ad3c1064a60c",
+      "source_function": "traces",
+      "source_line": 36,
+      "destination": "src/hybrid_tsad/engine/stage2_data.py:traces",
+      "destination_line": 10,
+      "ast_sha256": "817d1078a1f271bd537452fe9d8dfbf28f1a01ef51288af1e0eba8573209b157"
+    },
+    {
+      "kind": "AST_IDENTICAL_FIVE_ASSIGNMENTS_NO_L0_THRESHOLD",
+      "source": "src/hybrid_tsad/engine/source.py:calibrate_source",
+      "source_file_sha256": "5c4105f02d58c02b770f8edbe8a86b051bd6ca8f66f0b7f728aba1f622569b9c",
+      "source_line": 56,
+      "destination": "src/hybrid_tsad/engine/stage2.py:source_scale_only",
+      "destination_line": 247
+    },
+    {
+      "kind": "DIRECT_REUSE_UNCHANGED_API_CORE_AND_OBJECTIVE",
+      "detail": "Existing create_predictor, HybridPredictor, objective, score_block, source_batch and calibrate_source. New head-only permission, LR and loops implement separately accepted U recipe; no claim of equivalence to full-parameter source optimization. External official source is not redistributed."
+    }
+  ],
+  "tests": {
+    "current_stage2": {
+      "scope": "SYNTHETIC_CPU_ENGINEERING_ONLY; no actual target data, query, labels or CUDA",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 14.002625665976666,
+      "python": "3.12.13",
+      "torch": "2.8.0+cu128",
+      "threads": 2,
+      "CUDA_VISIBLE_DEVICES": "",
+      "successful": true
+    },
+    "prior_regression": {
+      "scope": "existing synthetic engineering regressions only; no real target, labels, GPU",
+      "patterns": [
+        "test_multi_readout.py",
+        "test_run_statistics.py",
+        "test_physical_validation.py",
+        "test_revision_guards.py",
+        "test_adjacent_event_revision.py",
+        "test_native_training.py",
+        "test_source_gate.py"
+      ],
+      "tests": 51,
+      "failures": 0,
+      "errors": 0,
+      "skips": 1,
+      "seconds": 15.496601246006321,
+      "successful": true
+    },
+    "official_callback_resolved_skip": {
+      "scope": "previously skipped synthetic official callback only; no real data, GPU",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 2.3558570679742843,
+      "successful": true
+    },
+    "unique_tests": 60,
+    "unique_pass": 60,
+    "final_unresolved_skips": 0,
+    "local": {
+      "compile": true,
+      "cli_preview": [
+        {
+          "config": "configs/stage2-l0.example.json",
+          "preview_only": true,
+          "operation_manifest_sha256": "c0529bde2888500e4a885077dcfbc9d4b87c4d29b81d00832a48772ca70653c2"
+        },
+        {
+          "config": "configs/stage2-train.example.json",
+          "preview_only": true,
+          "operation_manifest_sha256": "b0f6950805de3d7f342ea7d8ffe8e188723756ee0c46a8e2ecff02ff3a1e3d44"
+        },
+        {
+          "config": "configs/stage2-calibrate.example.json",
+          "preview_only": true,
+          "operation_manifest_sha256": "bd9bc61bf4429d10514a4bce72d2febcd43df9354c0967e06c679a7169f211b4"
+        }
+      ],
+      "runtime_identity_without_torch": true,
+      "local_python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+      "scope": "no data/weights opened by CLI preview; no torch installed locally"
+    }
+  },
+  "test_warning": "Torch warns on float(loss) in diagnostic replay scalar logging; tests pass. No loss/gradient or RNG path was changed to hide warning.",
+  "commands": {
+    "remote_environment": "existing timeradar_author_core_20261028_r2, Python3.12.13/Torch2.8.0+cu128",
+    "limits": "CUDA_VISIBLE_DEVICES empty; torch.set_num_threads(2); timeout60s per independent invocation",
+    "current_snapshot": "hybrid_ad_package_validation_20261101_stage2_v3",
+    "source": "raw-byte ZIP excluding __pycache__; all package/tests/configs only",
+    "tests": "test_stage2.py; prior seven selected test files; one initially skipped official callback rerun with external pinned Aff directory"
+  },
+  "limitations": [
+    "No real target normal array, parent-weight execution or actual source-cal run in this stage; all full-loop tests are synthetic fixtures.",
+    "Actual unchanged temporal/tf/hybrid each performed five B64C1 CPU head updates plus synthetic C52 calibration routes; no GPU.",
+    "GPU L0 requires separate precise approval and independent audit; output has no authority to release formal jobs.",
+    "OS startup/exit and complete hardware/environment budget receipts require external executor shell. Runtime identity checks Python source bytes only.",
+    "Only head645 known-normal control; not mixed contamination robustness, full U, F or query evaluation.",
+    "No interrupted-training resume in this bounded stage."
+  ],
+  "artifacts": {
+    "candidate.patch": "35f3e3ecd385a03efc9300c340480581f8f10d894d94625d2027198afcb66590",
+    "cpu_test_results.json": "d4f4bbba723a61666c59f2a761670de1d3f73e65cc3b9485cde9b5db88fb3fc4",
+    "cpu_test_stdout.txt": "abeab9a3329d0f0784001cef63a14e219f6f5da1af27297fe4fc5054fb3db618",
+    "local_static_results.json": "684cd2d486bdbc6b29dac95ba623fe66b3d181a811d8b16661f61deb64eb8263",
+    "official_callback_results.json": "13a89f1aed9c99412c8c101fcea542a0100a7e569f806f86d5f13084c1bdcf9c",
+    "official_callback_stdout.txt": "c37e222b7d06eee2f68ece31df4c6b5bfffc0bc33eb2362e13f2e8a77b9405f0",
+    "prior_regression_results.json": "5b564ab16ac5afcaf8eabe47300bfbb58ef0243774d188a856cd7e99a583be98",
+    "prior_regression_stdout.txt": "d647babc079cb9735ccb9591c0712ff8ca188d2021377aebdc48bc2ec134862a",
+    "runtime_identity.json": "748ed15eefd81829929278a6f7696b911f4d14918e4ad29afc0a04c8b4b8b8ee"
+  }
+}

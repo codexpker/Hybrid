@@ -1,0 +1,18 @@
+{
+  "scope": "existing synthetic engineering regressions only; no real target, labels, GPU",
+  "patterns": [
+    "test_multi_readout.py",
+    "test_run_statistics.py",
+    "test_physical_validation.py",
+    "test_revision_guards.py",
+    "test_adjacent_event_revision.py",
+    "test_native_training.py",
+    "test_source_gate.py"
+  ],
+  "tests": 51,
+  "failures": 0,
+  "errors": 0,
+  "skips": 1,
+  "seconds": 15.496601246006321,
+  "successful": true
+}

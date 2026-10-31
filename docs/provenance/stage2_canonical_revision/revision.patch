@@ -1,0 +1,110 @@
+--- frozen_original/src/hybrid_tsad/engine/stage2.py
++++ canonical_revision/src/hybrid_tsad/engine/stage2.py
+@@ -375,14 +375,17 @@
+     import numpy as np
+     from .stage2_identity import Assets
+     from .source import calibrate_source
++    from .stage2_data import validate_target
++    from ..protocol import score_block
+     a=Assets();s=read_json(source_path);t=read_json(target_path)
+     if (s.get('stage')!=STAGE or t.get('stage')!=STAGE or s.get('role')!='source_cal_after_adaptation'
+             or t.get('role')!='target_threshold_only' or s.get('fitted_checkpoint_sha256')!=checkpoint_sha
+             or t.get('fitted_checkpoint_sha256')!=checkpoint_sha or t.get('target_global_rescale') is not False
++            or t.get('schema_version')!=2 or t.get('pool_is_contiguous_event') is not False
+             or t.get('runtime_sha256')!=s.get('runtime_sha256') or t.get('operation_manifest_sha256')!=s.get('operation_manifest_sha256')
+             or set(t)!={'schema_version','stage','role','fitted_checkpoint_sha256','source_calibration','source_error_scale',
+                           'target_manifest_sha256','target_plan_sha256','canonical_scores','threshold99','target_global_rescale','pool_is_contiguous_event',
+-                          'runtime_sha256','operation_manifest_sha256'}):
++                          'runtime_sha256','operation_manifest_sha256','target_cal_bank','target_manifest','target_plan','seed','fitted_checkpoint_metadata'}):
+         raise ValueError('Stage2 calibration role/fitted checkpoint/target-rescale mismatch')
+     if a.file(t['source_calibration'],target_path)!=Path(source_path).resolve():raise ValueError('Target threshold source identity mismatch')
+     with np.load(a.file(s['source_bank'],source_path),allow_pickle=False) as bank:expected,params=calibrate_source(bank)
+@@ -391,11 +394,32 @@
+                 or s['normal_error_scale']!=params['normal_error_scale'] or s['threshold99']!=params['threshold99']):
+             raise ValueError('Source canonical units differ from the fixed calibration bank')
+     if t['source_error_scale']!=s['normal_error_scale']:raise ValueError('Target cannot replace the fitted source scale')
++    if (type(t['seed']) is not int or t['seed'] not in (0,1,2)
++            or t['target_manifest']['sha256']!=t['target_manifest_sha256'] or t['target_plan']['sha256']!=t['target_plan_sha256']):
++        raise ValueError('Target calibration manifest/trace identity mismatch')
++    fitted=read_json(a.file(t['fitted_checkpoint_metadata'],target_path))
++    if (fitted.get('stage')!=STAGE or fitted.get('checkpoint_sha256')!=checkpoint_sha
++            or any(fitted.get(k)!=t[k] for k in ('seed','target_manifest_sha256','target_plan_sha256','runtime_sha256'))):
++        raise ValueError('Target calibration fitted checkpoint/trace identity mismatch')
++    _,plan=validate_target(a.file(t['target_manifest'],target_path),a.file(t['target_plan'],target_path),t['seed'],a)
++    with np.load(a.file(t['target_cal_bank'],target_path),allow_pickle=False) as raw:
++        if (set(raw.files)!={'prediction','target','history_scale','run','origin'}
++                or any(raw[k].dtype!=np.float32 or raw[k].shape!=shape for k,shape in
++                       [('prediction',(256,5,52)),('target',(256,5,52)),('history_scale',(256,1,52))])
++                or any(not np.array_equal(raw[k],plan['cal_'+k]) for k in ('run','origin'))):
++            raise ValueError('Target calibration bank shape or frozen trace order mismatch')
++        expected_target=np.stack([score_block(p,y,scale,s['normal_error_scale'])
++            for p,y,scale in zip(raw['prediction'],raw['target'],raw['history_scale'])])
+     score_ref=t['canonical_scores'];score_path=a.file(score_ref,target_path)
+     with np.load(score_path,allow_pickle=False) as bank:
+         score=bank['canonical_score']
++        if (set(bank.files)!={'canonical_score','run','origin'}
++                or any(not np.array_equal(bank[k],plan['cal_'+k]) for k in ('run','origin'))
++                or not np.array_equal(score,expected_target)):
++            raise ValueError('Target canonical scores differ from the bound physical calibration bank or trace')
+         if score.dtype!=np.float32 or score.shape!=(256,5) or not np.isfinite(score).all() or t['threshold99']!=float(np.quantile(score,.99,method='linear')):
+             raise ValueError('Target threshold differs from the single canonical float32 object')
++    a.recheck()
+     return dict(scope='target_normal_calibration_pool_only_no_query_score_created',source=dict(score_object=score_ref,threshold=s['threshold99']),
+                 target=dict(score_object=score_ref,threshold=t['threshold99']))
+ 
+@@ -426,10 +450,13 @@
+     target_arrays=evaluate_target_cal(model,target,source_cal['normal_error_scale'],device=device)
+     np.savez_compressed(output/'target_cal_bank.npz',**{k:v for k,v in target_arrays.items() if k!='canonical_score'})
+     np.savez_compressed(output/'target_canonical_scores.npz',canonical_score=target_arrays['canonical_score'],run=target_arrays['run'],origin=target_arrays['origin'])
+-    target_identity=dict(schema_version=1,stage=STAGE,role='target_threshold_only',fitted_checkpoint_sha256=m['checkpoint_sha256'],
++    target_identity=dict(schema_version=2,stage=STAGE,role='target_threshold_only',fitted_checkpoint_sha256=m['checkpoint_sha256'],
+         runtime_sha256=m['runtime_sha256'],operation_manifest_sha256=digest,
+         source_calibration=record(output/'source_calibration.json'),source_error_scale=source_cal['normal_error_scale'],
+         target_manifest_sha256=sha256(a['paths']['target_manifest']),target_plan_sha256=sha256(a['paths']['target_plan']),
++        target_manifest=record(a['paths']['target_manifest']),target_plan=record(a['paths']['target_plan']),seed=a['job']['seed'],
++        fitted_checkpoint_metadata=record(a['paths']['checkpoint_metadata']),
++        target_cal_bank=record(output/'target_cal_bank.npz'),
+         canonical_scores=record(output/'target_canonical_scores.npz'),threshold99=float(np.quantile(target_arrays['canonical_score'],.99,method='linear')),
+         target_global_rescale=False,pool_is_contiguous_event=False)
+     json_write(output/'target_threshold.json',target_identity)
+--- frozen_original/tests/test_stage2.py
++++ canonical_revision/tests/test_stage2.py
+@@ -207,6 +207,38 @@
+                 target['normal_error_scale']=2;write(calout/'extra_target_scale.json',target)
+                 with self.assertRaisesRegex(ValueError,'target-rescale'):
+                     calibration_tracks(calout/'source_calibration.json',calout/'extra_target_scale.json',report['identity']['checkpoint_sha256'])
++                # Original audit counterexample: leave physical bank/source units intact,
++                # multiply only canonical scores and update NPZ SHA plus matching q99.
++                target=json.loads((calout/'target_threshold.json').read_text())
++                self.assertEqual(target['schema_version'],2)
++                self.assertEqual(target['target_cal_bank'],record(calout/'target_cal_bank.npz'))
++                with np.load(calout/'target_canonical_scores.npz') as z:tampered={k:z[k].copy() for k in z.files}
++                tampered['canonical_score']*=np.float32(2)
++                doubled=calout/'doubled_scores.npz';np.savez_compressed(doubled,**tampered)
++                target['canonical_scores']=record(doubled);target['threshold99']=float(np.quantile(tampered['canonical_score'],.99,method='linear'))
++                write(calout/'rescaled_false_flag.json',target)
++                with self.assertRaisesRegex(ValueError,'bound physical calibration bank'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'rescaled_false_flag.json',report['identity']['checkpoint_sha256'])
++                # Even consistent reordering of physical bank and score object is not
++                # the approved nonmonotone target-cal plan.
++                with np.load(calout/'target_cal_bank.npz') as z:reordered={k:z[k][::-1].copy() for k in z.files}
++                changed_bank=calout/'reordered_bank.npz';np.savez_compressed(changed_bank,**reordered)
++                target=json.loads((calout/'target_threshold.json').read_text());target['target_cal_bank']=record(changed_bank)
++                write(calout/'wrong_bank_order.json',target)
++                with self.assertRaisesRegex(ValueError,'frozen trace order'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'wrong_bank_order.json',report['identity']['checkpoint_sha256'])
++                target=json.loads((calout/'target_threshold.json').read_text());target['target_plan_sha256']='0'*64
++                write(calout/'wrong_trace_identity.json',target)
++                with self.assertRaisesRegex(ValueError,'manifest/trace identity'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'wrong_trace_identity.json',report['identity']['checkpoint_sha256'])
++                target=json.loads((calout/'target_threshold.json').read_text())
++                wrong_fitted=json.loads((out/'checkpoint_metadata.json').read_text());wrong_fitted['seed']=1
++                wrong_fitted_path=write(calout/'wrong_fitted_metadata.json',wrong_fitted)
++                target['fitted_checkpoint_metadata']=record(wrong_fitted_path);write(calout/'wrong_fitted_trace.json',target)
++                with self.assertRaisesRegex(ValueError,'fitted checkpoint/trace'):
++                    calibration_tracks(calout/'source_calibration.json',calout/'wrong_fitted_trace.json',report['identity']['checkpoint_sha256'])
++                correct=calibration_tracks(calout/'source_calibration.json',calout/'target_threshold.json',report['identity']['checkpoint_sha256'])
++                self.assertEqual(correct['target']['score_object'],record(calout/'target_canonical_scores.npz'))
+                 with self.assertRaisesRegex(ValueError,'fitted checkpoint'):
+                     calibration_tracks(calout/'source_calibration.json',calout/'target_threshold.json','0'*64)
+                 wrong=self.f.operation('stage2-calibrate',init,trained=out,name='wrong_checkpoint_'+init)

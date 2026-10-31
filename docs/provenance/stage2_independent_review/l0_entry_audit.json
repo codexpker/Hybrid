@@ -1,0 +1,42 @@
+{
+  "status": "PASS_INDEPENDENT_SHARED_L0_AND_PERMISSION_PATH",
+  "cases": [
+    {
+      "init": "source_pretrained",
+      "real_optimizer_step_calls": 5,
+      "cal_order_exact": true,
+      "raw_cal_score_math_exact": true,
+      "no_state_save": true,
+      "RNG_and_frozen_exact": true,
+      "output": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-NORMAL-HEAD-ENGINE/independent_l0_entry/independent_source_pretrained_output"
+    },
+    {
+      "init": "random_init",
+      "real_optimizer_step_calls": 5,
+      "cal_order_exact": true,
+      "raw_cal_score_math_exact": true,
+      "no_state_save": true,
+      "RNG_and_frozen_exact": true,
+      "output": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-NORMAL-HEAD-ENGINE/independent_l0_entry/independent_random_init_output"
+    }
+  ],
+  "negative_cases": [
+    {
+      "case": "raw_CPU_L0_cannot_grant_formal_source_pretrained",
+      "error": "Formal Stage2 requires a separately accepted discarded-weight L0 gate"
+    },
+    {
+      "case": "raw_CPU_L0_cannot_grant_formal_random_init",
+      "error": "Formal Stage2 requires a separately accepted discarded-weight L0 gate"
+    },
+    {
+      "case": "CPU_fixture_cannot_be_GPU_release",
+      "error": "Synthetic fixture approvals are CPU-only"
+    }
+  ],
+  "synthetic_CPU_only": true,
+  "real_target_values_or_GPU": false,
+  "formal_training_executed": false,
+  "model_optimizer_updates_total": 10,
+  "extra_diagnostic_optimizer_steps": 0
+}

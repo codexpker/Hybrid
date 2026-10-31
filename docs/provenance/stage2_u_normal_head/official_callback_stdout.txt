@@ -1,0 +1,6 @@
+test_complete_synthetic_group_uses_official_per_entity_and_run_clusters (test_run_statistics.MultiEntityEvaluationTests.test_complete_synthetic_group_uses_official_per_entity_and_run_clusters) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 2.356s
+
+OK

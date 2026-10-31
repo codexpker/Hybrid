@@ -1,0 +1,13 @@
+{
+  "status": "PASS_FINITE_SHELL_V2_ORIGINAL_COUNTEREXAMPLES_CLOSED",
+  "wrapper_sha256": "bd7ad22a2332953e74e1b66cce85ddad8d51b8ab92b40f24e37f2d5577136398",
+  "empty_child_directory_rejected": "Child requires real supervisor launch.json",
+  "unlisted_changed_entry_rejected": "Runtime identity must cover the entire actual Python set including Stage2 entry",
+  "actual_direct_child_CLI_rejected_before_torch": true,
+  "CLI_OS_return_code": 2,
+  "SIGALRM_120_before_child_preflight_verified": true,
+  "hard_exit124_handler_verified": true,
+  "positive_GPU_lifecycle_not_executed": true,
+  "real_values_models_or_GPU": false,
+  "limitations": "Timer ordering and exit are instrumented CPU checks; actual timeout/OS/allocator success awaits separately approved L0."
+}
