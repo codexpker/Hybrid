@@ -1,11 +1,23 @@
 """Thin prediction API over the byte-identical core; no new model or scorer."""
 from pathlib import Path
 
-from .config import OFFICIAL_SHA, sha256, validate_config
+from .config import OFFICIAL_SHA, read_json, sha256, validate_config
+
+
+def verify_checkpoint_contract(checkpoint, metadata, *, history, mode, copies=2, temporal_depth=4):
+    if metadata is None:
+        if history != 400:
+            raise ValueError("A history100 checkpoint requires explicit hash-bound checkpoint metadata")
+        return
+    value = read_json(metadata)
+    expected = dict(checkpoint_sha256=sha256(checkpoint), history=history, horizon=5,
+                    mode=mode, copies=copies, temporal_depth=temporal_depth)
+    if any(value.get(k) != v for k, v in expected.items()):
+        raise ValueError("Checkpoint identity/history/architecture differs from the inference contract")
 
 
 def create_predictor(official_file, *, mode="hybrid", history=400, copies=2,
-                     temporal_depth=4, checkpoint=None, device="cpu"):
+                     temporal_depth=4, checkpoint=None, checkpoint_metadata=None, device="cpu"):
     """Construct the existing model; optionally load a plain legacy state_dict strictly.
 
     No upstream code is bundled. The caller must supply the pinned official file
@@ -15,6 +27,9 @@ def create_predictor(official_file, *, mode="hybrid", history=400, copies=2,
     official_file = Path(official_file).resolve()
     if sha256(official_file) != OFFICIAL_SHA:
         raise ValueError("Official file SHA256 mismatch")
+    if checkpoint is not None:
+        verify_checkpoint_contract(checkpoint, checkpoint_metadata, history=history, mode=mode,
+                                   copies=copies, temporal_depth=temporal_depth)
     import torch
     from .model import HybridPredictor
 
@@ -27,11 +42,12 @@ def create_predictor(official_file, *, mode="hybrid", history=400, copies=2,
     return model.eval()
 
 
-def predictor_from_config(config_file, *, checkpoint=None, device="cpu"):
+def predictor_from_config(config_file, *, checkpoint=None, checkpoint_metadata=None, device="cpu"):
     """Use model fields and external official path from a validated inventory."""
     cfg = validate_config(config_file)
     return create_predictor(cfg["resolved_paths"]["official_file"],
-                            checkpoint=checkpoint, device=device, **cfg["config"]["model"])
+                            checkpoint=checkpoint, checkpoint_metadata=checkpoint_metadata,
+                            device=device, **cfg["config"]["model"])
 
 
 def predict(model, history):

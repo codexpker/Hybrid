@@ -1,7 +1,8 @@
 """Frozen source sampling and calibration extracted from hybrid_10k_wave.py.
 
-history=400, horizon=5, domain batch=64, rejection policy and RNG offsets are
-unchanged. Small role_sizes is for synthetic engineering fixtures only.
+Default history400, horizon5, domain batch64, rejection policy and RNG offsets
+are unchanged. History100 requires matching rows/contract. Small role_sizes is
+for synthetic engineering fixtures only.
 """
 import numpy as np
 
@@ -11,7 +12,9 @@ def read_plan(path):
         return {key: stream[key] for key in stream.files}
 
 
-def draw_source_plan(sampler, rows, sources, sample_seed, *, role_sizes=None):
+def draw_source_plan(sampler, rows, sources, sample_seed, *, role_sizes=None, history=400):
+    if history not in (100, 400) or any(r.get("history", history) != history for r in rows):
+        raise ValueError("Source-plan rows and requested history100/400 must agree")
     role_sizes = role_sizes or {"fit": 640000, "select": 256, "cal": 256}
     arrays = {}
     quality = {}
@@ -31,7 +34,7 @@ def draw_source_plan(sampler, rows, sources, sample_seed, *, role_sizes=None):
                 b = int(r["forecast_origins"][rng.integers(len(r["forecast_origins"]))])
                 c = int(rng.integers(len(r["columns"])))
                 ar = sampler.array(r)
-                x, y = ar[b - 400:b, c], ar[b:b + 5, c]
+                x, y = ar[b - history:b, c], ar[b:b + 5, c]
                 drawn += 1
                 ok = np.isfinite(x[0]) and not np.isinf(x).any() and not np.isinf(y).any() and np.isfinite(y).any()
                 if ok:

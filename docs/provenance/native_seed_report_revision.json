@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-31",
+  "status": "DEVELOPER_FIXED_PENDING_INDEPENDENT_REVIEW",
+  "training_before_sha256": "4be47ac3ce9c5cc06b468fb636281d9203df105aea0d0318944b6cbaa6381f54",
+  "training_after_sha256": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+  "tests_sha256": "7e954cda19602eb961981a7d695c369ba9a657a1c7c0644890b6a86ee704c594",
+  "patch_sha256": "45953951e13ef28ad0bcebbf0e30a9eeee1a2177cebb6a73e10046c2001905c9",
+  "failure_evidence_path": "research_workspace/independent_audit/HYBRID-NATIVE-TEP100/seed_summary_failure.json",
+  "failure_evidence_sha256": "f848cdde1f18abc7d9325c91f431a74f8b32e0d83ddd97e5b9a0b9a57947a78d",
+  "remote_cpu": {
+    "total": 8,
+    "passed": 8,
+    "seconds": 8.425,
+    "cuda_visible_devices": "",
+    "torch_threads": 2,
+    "timeout_seconds": 60
+  },
+  "local": {
+    "total": 8,
+    "passed": 3,
+    "skipped_torch_absent": 5,
+    "seconds": 1.072,
+    "compileall": "PASS"
+  },
+  "actual_500_step_output_cases": [
+    "no spec seed (global fallback3)",
+    "spec seed0 overrides global3",
+    "spec seed1 overrides global3",
+    "spec seed2 overrides global3",
+    "report spec seed conflicts with initialized seed: rejected before metadata/summary"
+  ],
+  "core_hash_matches": {
+    "model.py": true,
+    "data.py": true,
+    "protocol.py": true
+  },
+  "scientific_training": false,
+  "synthetic_cpu_optimizer_updates": true,
+  "query_values_or_labels_opened": false,
+  "source_gate_files_edited": false,
+  "git_operations": false
+}

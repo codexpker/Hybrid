@@ -18,8 +18,8 @@ def record(path):
 
 
 def approve_fixture(cfg, path):
-    cfg["engine_schema_version"] = 2
-    cfg["score_space"] = None if cfg["operation"] == "train" else SCORE_SPACE
+    cfg["engine_schema_version"] = 3 if cfg.get("engine_schema_version") == 3 else 2
+    cfg["score_space"] = SCORE_SPACE
     path.write_text(json.dumps(cfg))
     parsed, _, paths, output = load_operation(path, cfg["operation"])
     _, digest = operation_manifest(parsed, paths, output)

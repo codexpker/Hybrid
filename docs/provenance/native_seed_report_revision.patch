@@ -1,0 +1,108 @@
+--- a/src/hybrid_tsad/engine/training.py
++++ b/src/hybrid_tsad/engine/training.py
+@@ -236,15 +236,23 @@
+     (output / "source_calibration.json").write_text(json.dumps(calibration, indent=2, allow_nan=False))
+     delta = {n: float((p.detach().cpu() - initial[n]).abs().max()) for n, p in model.named_parameters()}
+     assert all(delta[n] == 0 for n, p in model.named_parameters() if not p.requires_grad)
++    report_spec = dict(spec)
++    if "seed" in report_spec and report_spec["seed"] != seed:
++        raise ValueError("Frozen job seed differs from the actual training seed")
++    report_spec.pop("seed", None)
+     checkpoint_meta = dict(checkpoint_sha256=sha256(output / "step10000.pt"), history=history, horizon=5,
+-                           mode=spec["mode"], copies=2, temporal_depth=4, step=10000)
++                           mode=report_spec["mode"], copies=2, temporal_depth=4, step=10000, seed=seed,
++                           source_domains=list(report_spec["sources"]), excluded_target=cfg["target"],
++                           source_manifest_sha256=sha256(paths["source_manifest"]), shared_plan_sha256=sha256(paths["plan"]),
++                           training_config_sha256=sha256(paths["wave_config"]), operation_manifest_sha256=operation_digest)
++    checkpoint_meta["weight_sha256"] = checkpoint_meta["checkpoint_sha256"]
+     (output / "checkpoint_metadata.json").write_text(json.dumps(checkpoint_meta, indent=2))
+     if any(sha256(package_root / name) != h for name, h in code_hashes.items()):
+         raise ValueError("Package code changed during the frozen source run")
+     if (any(sha256(path) != input_hashes[name] for name, path in paths.items())
+             or any(sha256(path) != h for path, h in inputs["hashes"].items())):
+         raise ValueError("Frozen inputs changed during source training")
+-    summary = dict(status="SOURCE_10K_COMPLETE", job=job, **spec, **model.parameter_counts(), steps=10000,
++    summary = dict(status="SOURCE_10K_COMPLETE", job=job, **report_spec, **model.parameter_counts(), steps=10000,
+                    exposure_windows=640000, seed=seed, best_step=best_step, primary_step=10000, history=history,
+                    seconds=time.time()-started, peak_allocated_bytes=torch.cuda.max_memory_allocated(device) if is_cuda else None,
+                    plan_sha256=sha256(paths["plan"]), normal_error_scale=calibration["normal_error_scale"],
+--- a/tests/test_native_training.py
++++ b/tests/test_native_training.py
+@@ -164,6 +164,17 @@
+         return SyntheticPredictor
+ 
+     def test_real_old_and_native_loop_500_synthetic_steps_match(self):
++        self._compare_real_loops()
++
++    def test_seeded_jobs_actual_loop_summary_and_metadata(self):
++        for seed in (0, 1, 2):
++            with self.subTest(seed=seed):
++                self._compare_real_loops(job_seed=seed)
++
++    def test_conflicting_report_seed_rejected_by_actual_loop(self):
++        self._compare_real_loops(job_seed=2, conflicting_report_seed=True)
++
++    def _compare_real_loops(self, job_seed=None, conflicting_report_seed=False):
+         import math
+         import time
+         import numpy as np
+@@ -195,6 +206,12 @@
+             official.write_text("synthetic fixture, not upstream source")
+             cfg = dict(target="PSM", history=400, seed=3, mask_seed=84551,
+                        jobs={"synthetic": dict(mode="hybrid", plan="synthetic", sources=["SMD_SUBSET"])})
++            if job_seed is not None:
++                cfg["jobs"]["synthetic"]["seed"] = job_seed
++            wave_config = root / "wave_config.json"
++            wave_config.write_text(json.dumps(cfg))
++            source_manifest = root / "source_manifest.json"
++            source_manifest.write_text(json.dumps({"records": rows}))
+             inputs = dict(manifest="fixture", official=str(official), hashes={str(official): sha256(official)})
+             namespace = dict(np=np, torch=torch, json=json, math=math, time=time, sha=sha256,
+                              read_plan=native.read_plan,
+@@ -223,11 +240,24 @@
+             native_source = inspect.getsource(native.run_native_training).replace("range(1, 10001)", "range(1, 501)")
+             native_namespace = dict(native.__dict__)
+             native_namespace["validate_training_assets"] = lambda paths, job: (cfg, inputs, cfg["jobs"][job], rows, plan)
++            if conflicting_report_seed:
++                original_calibrate = native.calibrate_source
++                def conflict_after_calibration(bank):
++                    result = original_calibrate(bank)
++                    cfg["jobs"]["synthetic"]["seed"] = (job_seed if job_seed is not None else cfg["seed"]) + 1
++                    return result
++                native_namespace["calibrate_source"] = conflict_after_calibration
+             exec(compile(native_source, "native_loop_synthetic_500_step_adaptation", "exec"), native_namespace)
+             output = root / "native"
+             with patch("hybrid_tsad.model.HybridPredictor", Toy), patch("hybrid_tsad.data.ManifestSampler", lambda *a, **kw: sampler):
+-                native_namespace["run_native_training"]({"official": official, "plan": plan_path}, output,
+-                                                         job="synthetic", device="cpu", operation_digest="a"*64)
++                paths = {"official": official, "plan": plan_path, "wave_config": wave_config, "source_manifest": source_manifest}
++                if conflicting_report_seed:
++                    with self.assertRaisesRegex(ValueError, "actual training seed"):
++                        native_namespace["run_native_training"](paths, output, job="synthetic", device="cpu", operation_digest="a"*64)
++                    self.assertFalse((output / "summary.json").exists())
++                    self.assertFalse((output / "checkpoint_metadata.json").exists())
++                    return
++                native_namespace["run_native_training"](paths, output, job="synthetic", device="cpu", operation_digest="a"*64)
+             self.assertTrue(torch.equal(old_rng, torch.get_rng_state()))
+             self.assertTrue(np.array_equal(old_numpy[1], np.random.get_state()[1]))
+             for name in ("step10000.pt", "best.pt", "optimizer_step10000.pt"):
+@@ -243,6 +273,19 @@
+             for row in old_curve + new_curve:
+                 row.pop("seconds")
+             self.assertEqual(old_curve, new_curve)
++            summary = json.loads((output / "summary.json").read_text())
++            metadata = json.loads((output / "checkpoint_metadata.json").read_text())
++            expected_seed = cfg["seed"] if job_seed is None else job_seed
++            self.assertEqual(summary["seed"], expected_seed)
++            self.assertEqual(metadata["seed"], expected_seed)
++            self.assertEqual(metadata["source_domains"], cfg["jobs"]["synthetic"]["sources"])
++            self.assertEqual(metadata["excluded_target"], cfg["target"])
++            self.assertEqual(metadata["weight_sha256"], sha256(output / "step10000.pt"))
++            self.assertEqual(metadata["checkpoint_sha256"], metadata["weight_sha256"])
++            self.assertEqual(metadata["source_manifest_sha256"], sha256(source_manifest))
++            self.assertEqual(metadata["shared_plan_sha256"], sha256(plan_path))
++            self.assertEqual(metadata["training_config_sha256"], sha256(wave_config))
++            self.assertEqual(metadata["operation_manifest_sha256"], "a"*64)
+ 
+     def test_lr_boundaries_and_checkpoint_rng_restore(self):
+         import math

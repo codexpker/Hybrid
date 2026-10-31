@@ -4,7 +4,7 @@
 
 ## 统一操作配置
 
-`core.example.json`仍是模型库存配置；修复后的操作配置使用`engine_schema_version: 2`（旧v1执行拒绝），由相同的`config validate`入口识别。四个操作有各自示例；默认只解析配置和路径，不打开数据、checkpoint或标签：
+`core.example.json`仍是模型库存配置；操作配置calibrate/evaluate使用schema2，native train使用schema3，infer schema3显式绑定history和checkpoint metadata（schema2只保留原400兼容；旧v1执行拒绝），由相同的`config validate`入口识别。四个操作有各自示例；默认只解析配置和路径，不打开数据、checkpoint或标签：
 
 ```powershell
 python -m hybrid_tsad config validate configs/infer.example.json
@@ -20,7 +20,7 @@ python -m hybrid_tsad evaluate --config configs/evaluate.example.json
 
 |操作|实际执行实现|保留边界|
 |---|---|---|
-|train|调用固定SHA外置source-wave原train函数；要求run自身CONTRACT.md与PRIMARY_APPROVAL.json|仍是legacy优化循环，不改训练预算/计划/快照；本轮未执行|
+|train|schema3调用包内共享固定预算优化/source evaluate循环|10000×64预算不变；仅完成合成CPU对照，真实训练未执行；legacy另保留|
 |infer|包原生读取固定checkpoint和数值array，调用原模型，逐400历史→5未来块写出预测/分数/RNG银行|默认CPU；保持顺序、评分、首两块RNG重放；不读取标签|
 |calibrate|包原生对明确标记source_cal的预测银行应用原源cal公式|输入须由上层证实是合法源校准，标记本身不是泄漏审计|
 |evaluate|包原生对固定分数和源阈值计算点/事件结果，保持真实时间间断|不选阈值、不做point-adjust；CLI未接Affiliation外部实现，明确NOT_EVALUATED|
@@ -65,3 +65,5 @@ from hybrid_tsad.engine.evaluation import evaluate_fixed_scores, paired_block_di
 独立审查修订：多真实块Aff只保留分块值，整体为NA并说明MULTIPLE_REAL_BLOCKS_NO_GLOBAL_AGGREGATION，禁止取最后块/自造平均；无GT块不调用官方callback并记录NO_GROUND_TRUTH_EVENTS。仅合法单真实有效块可使用其整体Aff值。原三项失败证据、修复diff与新增拒绝测试见`docs/provenance/shared_engine_revision.md`。旧run及其批准文件不补改为schema2；train新绑定用于未来合法新run，不能为迁移重写历史审批。
 
 二值连续事件单项回审修订：原索引相邻且均为阳性的评分点不得跨coverage owner；错误拆ID拒绝，不自动合并或改标签。真实正常分隔仍通过，索引缺口不推测。评分域外原边界仍须上层冻结完整标签/原事件清单SHA；局部validator不构成全局认证。新diff和回归见`docs/provenance/adjacent_event_revision.md`，待独立回审。
+
+后续native阶段：原优化/source evaluate循环现已迁入候选，见`docs/native_training.md`；上面的“尚未迁移”保留作为上一工程阶段历史范围。当前仍缺完整prepare/作业恢复/科研门禁，不将native候选写成独审PASS。

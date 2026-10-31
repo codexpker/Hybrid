@@ -1,24 +1,48 @@
 {
-  "engine_schema_version": 2,
+  "engine_schema_version": 3,
+  "operation": "train",
   "contract": {
-    "path": "../../external/example_assets/CONTRACT.md",
+    "path": "../../external/native_source_assets/CONTRACT.md",
     "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
   },
   "approval": {
-    "path": "../../external/example_assets/PRIMARY_APPROVAL.json",
+    "path": "../../external/native_source_assets/PRIMARY_APPROVAL.json",
     "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
   },
-  "operation": "train",
   "inputs": {
-    "runner": {
-      "path": "../../scripts/hybrid_10k_wave.py",
-      "sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394"
+    "wave_config": {
+      "path": "../../external/native_source_assets/wave_config.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "source_inputs": {
+      "path": "../../external/native_source_assets/inputs.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "source_manifest": {
+      "path": "../../external/native_source_assets/source_manifest.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "plan": {
+      "path": "../../external/native_source_assets/plan.npz",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "rows": {
+      "path": "../../external/native_source_assets/rows.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "official": {
+      "path": "../../external/native_source_assets/TimeRadar.py",
+      "sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317"
+    },
+    "entry_gate": {
+      "path": "../../external/native_source_assets/entry_gate.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
   "parameters": {
-    "run": "../../external/example_assets",
-    "job": "example_training_job"
+    "job": "example_hybrid",
+    "device": "cpu"
   },
-  "output": null,
-  "score_space": null
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1",
+  "output": "../../external/new_native_source_run"
 }

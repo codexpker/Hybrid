@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-31",
+  "baseline_commit": "f7858a4",
+  "status": "DEVELOPER_COMPLETED_PENDING_INDEPENDENT_REVIEW",
+  "source_file": "scripts/hybrid_10k_wave.py",
+  "source_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394",
+  "source_functions": [
+    {
+      "function": "batch",
+      "source_start_line": 61,
+      "source_end_line": 65,
+      "source_file_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394"
+    },
+    {
+      "function": "evaluate",
+      "source_start_line": 66,
+      "source_end_line": 73,
+      "source_file_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394"
+    },
+    {
+      "function": "train",
+      "source_start_line": 96,
+      "source_end_line": 127,
+      "source_file_sha256": "00ed75a4c1da76600d573be67dead4179b455131610607d7b1cea3bb0dc8e394"
+    }
+  ],
+  "files_sha256": {
+    "src/hybrid_tsad/engine/training.py": "4be47ac3ce9c5cc06b468fb636281d9203df105aea0d0318944b6cbaa6381f54",
+    "src/hybrid_tsad/engine/pipeline.py": "c11b81bc20ebb6c82577437ef2305979156577ba7863c0e86cda9f2dd3fe140d",
+    "src/hybrid_tsad/engine/source.py": "5c4105f02d58c02b770f8edbe8a86b051bd6ca8f66f0b7f728aba1f622569b9c",
+    "src/hybrid_tsad/engine/bank.py": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+    "src/hybrid_tsad/engine/identity.py": "28a099c598fcd0e03169fdbf14c9fc85ab2d119293a92481e4ef5c78475d1284",
+    "src/hybrid_tsad/api.py": "7e52be356ef05f79350fbf1c1a7e839d6c624afe63c98b73d08b6cd4859a449e",
+    "tests/test_native_training.py": "bdb181c6d316d69a0c9e51729f22156f99c842169fa02e8996c3beb884c4c0f1",
+    "tests/engine_fixture_support.py": "635e26692934c04c238efd13a9505820b4a9350b34e62a0d1a95599222f682e4",
+    "tests/fixtures/native_train_reference.json": "c68213294222011807b75677fc3305d66f3df8cb95d7740a50c7ef07cb280e8d",
+    "configs/train.example.json": "747b2a8dca603605079e799c7c13302288b3cf6790b159e954ad9f78ce98c0bd",
+    "configs/infer.example.json": "940c549d70a0bf2306abbc469076c0835738653a28928950e710a6da7572e13f"
+  },
+  "core_original_sha_matches": {
+    "model.py": true,
+    "data.py": true,
+    "protocol.py": true
+  },
+  "local": {
+    "total": 43,
+    "passed": 32,
+    "skipped": 11,
+    "seconds": 1.527,
+    "compileall": "PASS"
+  },
+  "remote_cpu": {
+    "new_directory": "projects/hybrid_ad_package_validation_20261031_native_v3",
+    "total": 43,
+    "passed": 43,
+    "skipped": 0,
+    "seconds": 5.1,
+    "cuda_visible_devices": "",
+    "torch_threads": 2,
+    "torch": "2.8.0+cu128",
+    "timeout_seconds": 60
+  },
+  "history400_equivalence": {
+    "reference": "full original batch/evaluate/train excerpts, not a duplicate of new helper",
+    "test_adaptations": [
+      "old CUDA device/RNG scope mapped to CPU",
+      "old and native fixed10000 loops shortened to500 for synthetic fixture only",
+      "two-scalar stochastic fixture model plus unchanged core objective"
+    ],
+    "exact": [
+      "batch/trace arrays",
+      "LR boundaries 1/499/500/501/10000",
+      "all numerical curve columns except elapsed seconds",
+      "active/inactive parameters",
+      "AdamW state",
+      "best and primary checkpoint states",
+      "source select/cal banks and calibration",
+      "post-loop torch CPU and NumPy RNG"
+    ],
+    "first_source_select_loss": 0.3112330809235573
+  },
+  "history100_checks": [
+    "original core synthetic CPU optimizer updates and RNG/optimizer restoration",
+    "past100/future5 shapes and footprint",
+    "changing future values leaves input history unchanged",
+    "15-point bank time indices/RNG replay",
+    "400-checkpoint metadata cannot satisfy100; source/cal/query history mismatch rejected"
+  ],
+  "synthetic_optimizer_updates_performed": true,
+  "scientific_training_launched": false,
+  "gpu_used": false,
+  "real_query_labels_loaded": false,
+  "old_runs_modified": false,
+  "new_dependencies_installed": false,
+  "limitations": [
+    "No CUDA or complete10000-step equivalence run",
+    "No scientific TEP fold or data split selected here; concrete external TEP contract still upper executor responsibility",
+    "Checkpoint tensor keys/shapes alone do not establish training history; approved metadata provenance must be traced",
+    "Kernel RNG-state roundtrip is not complete job resume",
+    "Prepare/entity admission/all-bank scientific gates/U-F adaptation remain outside this stage"
+  ],
+  "final_native_io_regression": {
+    "new_directory": "projects/hybrid_ad_package_validation_20261031_native_v4",
+    "total": 6,
+    "passed": 6,
+    "seconds": 3.279,
+    "scope": "native-loop exact numerical/RNG/checkpoint and history/asset tests after adding frozen JSON/code/input identity snapshots; CPU only"
+  },
+  "build": {
+    "compileall": "PASS",
+    "wheel_build": "PASS",
+    "isolated_install_no_deps": "PASS",
+    "installed_native_source_hash": "PASS",
+    "installed_core_hashes": "PASS",
+    "installed_train_preview": "native package optimizer; no execution",
+    "wheel_sha256": "77628fc31cd85911d64f0894cb69a906fd286f0af21c93b4d771fd7b64df5cc0"
+  }
+}

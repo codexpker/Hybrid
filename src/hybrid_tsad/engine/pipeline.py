@@ -7,9 +7,10 @@ import re
 from ..config import read_json, resolve_path, sha256
 from .identity import SCORE_SPACE, operation_manifest, verify_scoring
 
-REQUIRED_INPUTS = {"train": {"runner"}, "infer": {"official", "checkpoint", "array", "query", "calibration"},
+REQUIRED_INPUTS = {"train": {"wave_config", "source_inputs", "source_manifest", "plan", "rows", "official", "entry_gate"},
+                   "infer": {"official", "checkpoint", "array", "query", "calibration"},
                    "evaluate": {"bank", "bank_metadata", "labels", "coverage", "calibration"}, "calibrate": {"bank"}}
-PARAMETERS = {"train": ({"run", "job"}, set()),
+PARAMETERS = {"train": ({"job", "device"}, set()),
               "infer": ({"seed", "mode", "source_scale", "mask_seed", "readout_job", "job"}, {"device"}),
               "evaluate": ({"threshold"}, set()), "calibrate": ({"bank_role"}, set())}
 
@@ -18,15 +19,22 @@ def load_operation(path, operation):
     cfg = read_json(path)
     if set(cfg) != {"engine_schema_version", "operation", "contract", "approval", "inputs", "parameters", "output", "score_space"}:
         raise ValueError("Engine config requires version/operation/contract/approval/inputs/parameters/output")
-    if cfg["engine_schema_version"] != 2 or type(cfg["engine_schema_version"]) is not int or cfg["operation"] != operation:
+    version = cfg["engine_schema_version"]
+    allowed_versions = (3,) if operation == "train" else ((2, 3) if operation == "infer" else (2,))
+    if version not in allowed_versions or type(version) is not int or cfg["operation"] != operation:
         raise ValueError("Engine schema version or operation mismatch")
-    if cfg["score_space"] != (None if operation == "train" else SCORE_SPACE):
+    if cfg["score_space"] != SCORE_SPACE:
         raise ValueError("Unsupported operation score-space; no implicit legacy score mapping")
-    if not isinstance(cfg["parameters"], dict) or set(cfg["inputs"]) != REQUIRED_INPUTS[operation]:
+    expected_inputs = REQUIRED_INPUTS[operation] | ({"checkpoint_metadata"} if operation == "infer" and version == 3 else set())
+    if not isinstance(cfg["parameters"], dict) or set(cfg["inputs"]) != expected_inputs:
         raise ValueError("Wrong operation input names or parameters type")
     required, optional = PARAMETERS[operation]
+    if operation == "infer" and version == 3:
+        required = required | {"history"}
     if not required <= set(cfg["parameters"]) or set(cfg["parameters"]) - required - optional:
         raise ValueError("Missing or unknown operation parameter")
+    if operation == "infer" and version == 3 and cfg["parameters"]["history"] not in (100, 400):
+        raise ValueError("Inference supports only approved history100/400 contracts")
     records = {"contract": cfg["contract"], "approval": cfg["approval"], **cfg["inputs"]}
     paths = {}
     for name, record in records.items():
@@ -35,7 +43,7 @@ def load_operation(path, operation):
             raise ValueError(f"{name} requires a path and lowercase SHA256")
         paths[name] = resolve_path(record["path"], path)
     output = resolve_path(cfg["output"], path) if cfg["output"] is not None else None
-    if operation != "train" and output is None:
+    if output is None:
         raise ValueError("This operation requires a new external output directory")
     return cfg, records, paths, output
 
@@ -73,7 +81,7 @@ def run_operation(path, operation, *, execute=False, allow_labels=False):
                 "output": str(output) if output else None,
                 "operation_manifest": manifest, "operation_manifest_sha256": digest,
                 "scope": "schema/path preview only; no data, labels, checkpoint or training opened",
-                "implementation": "external frozen training loop bridge" if operation == "train" else "shared package engine"}
+                "implementation": "shared package native source optimizer" if operation == "train" else "shared package engine"}
     if operation == "evaluate" and not allow_labels:
         raise ValueError("Evaluation execution requires --allow-labels after all fixed scores are archived")
     if output is not None and output.exists():
@@ -81,27 +89,23 @@ def run_operation(path, operation, *, execute=False, allow_labels=False):
     check_operation_inputs(records, paths, cfg, output)
     parameters = cfg["parameters"]
     if operation == "train":
-        from ..legacy import execute as execute_legacy, legacy_command
-        run = resolve_path(parameters["run"], path)
-        if (paths["contract"] != run / "CONTRACT.md" or paths["approval"] != run / "PRIMARY_APPROVAL.json"
-                or output is not None):
-            raise ValueError("Legacy training requires its own frozen run approval and no new output override")
-        command = legacy_command("source-wave", paths["runner"],
-                                 ["train", "--run", str(run), "--job", parameters["job"]])
-        code = execute_legacy(command)
-        return {"executed": True, "operation": operation, "returncode": code, "valid": code == 0,
-                "implementation": "external frozen training loop bridge"}
+        from .training import run_native_training
+        summary = run_native_training(paths, output, job=parameters["job"], device=parameters["device"], operation_digest=digest)
+        return {"executed": True, "operation": operation, "output": str(output), "summary": summary,
+                "implementation": "shared package native source optimizer"}
     import numpy as np
     if operation == "infer":
         import torch
         from ..api import create_predictor
         from .bank import collect_forecasts, inference_metadata, write_bank
         query = read_json(paths["query"])
-        if query["history"] != 400 or query["horizon"] != 5:
-            raise ValueError("Shared bank engine retains the frozen 400/5 contract")
+        history = parameters.get("history", 400)
+        if query["history"] != history or query["horizon"] != 5:
+            raise ValueError("Source/inference/query history contract mismatch; horizon remains5")
         torch.set_num_threads(2)
         torch.manual_seed(parameters["seed"])
         model = create_predictor(paths["official"], checkpoint=paths["checkpoint"],
+                                 checkpoint_metadata=paths.get("checkpoint_metadata"), history=history,
                                  mode=parameters["mode"], device=parameters.get("device", "cpu"))
         data = np.load(paths["array"], mmap_mode="r", allow_pickle=False)
         arrays, rng_states, times = collect_forecasts(
@@ -117,7 +121,7 @@ def run_operation(path, operation, *, execute=False, allow_labels=False):
                                     forward_p50_seconds=float(np.median(times)),
                                     forward_p95_seconds=float(np.quantile(times, .95)))
         report.update(score_space=cfg["score_space"], score_field="standardized_score",
-                      source_calibration_sha256=records["calibration"]["sha256"], operation_manifest_sha256=digest)
+                      source_calibration_sha256=records["calibration"]["sha256"], operation_manifest_sha256=digest, history=history)
         # Input identities must remain stable after collection and before writing.
         if any(sha256(p) != records[k]["sha256"] for k, p in paths.items()):
             raise ValueError("Input changed during inference")

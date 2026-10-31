@@ -1,5 +1,5 @@
 {
-  "engine_schema_version": 2,
+  "engine_schema_version": 3,
   "contract": {
     "path": "../../external/example_assets/CONTRACT.md",
     "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
@@ -29,6 +29,10 @@
     "calibration": {
       "path": "../../external/example_assets/source_calibration.json",
       "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "checkpoint_metadata": {
+      "path": "../../external/native_source_assets/checkpoint_metadata.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
   "parameters": {
@@ -38,7 +42,8 @@
     "mask_seed": 84551,
     "readout_job": "example_readout",
     "job": "example_training_job",
-    "device": "cpu"
+    "device": "cpu",
+    "history": 400
   },
   "output": "../../external/new_inference_bank",
   "score_space": "history_normalized_abs_channelmean_div_source_median_v1"

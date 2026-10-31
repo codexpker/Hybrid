@@ -11,20 +11,21 @@ from ..protocol import score_block
 
 def collect_forecasts(model, data, origins, source_scale, *, mask_seed,
                       expected_index=None, replay_first2=True):
-    """Collect past400→next5 forecasts with no labels or optimizer.
+    """Collect contracted past100/400→next5 forecasts with no labels or optimizer.
 
     CPU is an engineering validation path. CUDA uses the original device RNG
     before each block; model initialization/checkpoint loading precedes this call.
     """
     import torch
 
-    if model.training or model.history != 400:
-        raise ValueError("Frozen forecast collection requires eval model and history=400")
+    if model.training or model.history not in (100, 400):
+        raise ValueError("Frozen forecast collection requires eval model and history100/400")
+    history = model.history
     device = next(model.parameters()).device
     is_cuda = device.type == "cuda"
     origins = list(origins)
-    if not origins or any(b < 400 or b + 5 > len(data) for b in origins):
-        raise ValueError("Origins must have complete past400/next5 footprints")
+    if not origins or any(b < history or b + 5 > len(data) for b in origins):
+        raise ValueError("Origins must have complete contracted past/next5 footprints")
     if any(b + 5 > c for b, c in zip(origins, origins[1:])):
         raise ValueError("Forecast blocks must be ordered and disjoint")
     get_rng = (lambda: torch.cuda.get_rng_state(device)) if is_cuda else torch.get_rng_state
@@ -36,7 +37,7 @@ def collect_forecasts(model, data, origins, source_scale, *, mask_seed,
     states, indices, times = [], [], []
     with torch.no_grad():
         for i, b in enumerate(origins):
-            x = torch.tensor(data[None, b - 400:b].copy(), device=device)
+            x = torch.tensor(data[None, b - history:b].copy(), device=device)
             before = get_rng()
             states.append(before.cpu().numpy())
             synchronize()

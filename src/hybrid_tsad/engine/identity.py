@@ -28,9 +28,13 @@ def source_calibration(path):
                 "normal_error_scale", "threshold99", "operation_manifest_sha256"}
     if not isinstance(value, dict) or not required <= set(value):
         raise ValueError("Source calibration artifact lacks its identity fields")
-    if (type(value["calibration_schema_version"]) is not int or value["calibration_schema_version"] != 1
+    if (type(value["calibration_schema_version"]) is not int or value["calibration_schema_version"] not in (1, 2)
             or value["role"] != "source_cal" or value["score_space"] != SCORE_SPACE):
         raise ValueError("Unsupported calibration role/version/score-space; no implicit legacy mapping")
+    if value["calibration_schema_version"] == 2 and value.get("history") not in (100, 400):
+        raise ValueError("Calibration v2 requires explicit contract history100/400")
+    if value["calibration_schema_version"] == 1 and value.get("history", 400) != 400:
+        raise ValueError("Legacy calibration v1 belongs only to the history400 contract")
     for key in ("source_bank_sha256", "operation_manifest_sha256"):
         if not isinstance(value[key], str) or not re.fullmatch(r"[0-9a-f]{64}", value[key]):
             raise ValueError("Calibration source/operation SHA is malformed")
@@ -50,8 +54,18 @@ def verify_scoring(cfg, paths):
     if cfg["score_space"] != calibration["score_space"]:
         raise ValueError("Configured score-space differs from source calibration")
     if cfg["operation"] == "infer":
+        history = cfg["parameters"].get("history", 400)
+        if calibration.get("history", 400) != history:
+            raise ValueError("Source calibration and inference history differ")
         if cfg["parameters"]["source_scale"] != calibration["normal_error_scale"]:
             raise ValueError("Configured source_scale differs from fixed source calibration")
+        if cfg["engine_schema_version"] == 3:
+            from ..api import verify_checkpoint_contract
+            verify_checkpoint_contract(paths["checkpoint"], paths["checkpoint_metadata"],
+                                       history=history, mode=cfg["parameters"]["mode"])
+            query = read_json(paths["query"])
+            if query.get("history") != history or query.get("horizon") != 5:
+                raise ValueError("Source/checkpoint/query history contract mismatch")
     else:
         if cfg["parameters"]["threshold"] != calibration["threshold99"]:
             raise ValueError("Configured threshold differs from fixed source calibration")
@@ -63,4 +77,6 @@ def verify_scoring(cfg, paths):
                 or type(metadata.get("source_scale")) not in (float, int)
                 or metadata.get("source_scale") != calibration["normal_error_scale"]):
             raise ValueError("Bank score units/calibration identity do not match the approved score-space")
+        if metadata.get("history", 400) != calibration.get("history", 400):
+            raise ValueError("Bank and source calibration history differ")
     return calibration
