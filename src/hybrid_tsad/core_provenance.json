@@ -1,0 +1,21 @@
+{
+  "captured_date": "2026-10-31",
+  "method": "byte-for-byte copy; no core edits",
+  "files": [
+    {
+      "original_file": "src/hybrid_tsad/model.py",
+      "package_file": "model.py",
+      "sha256": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41"
+    },
+    {
+      "original_file": "src/hybrid_tsad/data.py",
+      "package_file": "data.py",
+      "sha256": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328"
+    },
+    {
+      "original_file": "src/hybrid_tsad/protocol.py",
+      "package_file": "protocol.py",
+      "sha256": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed"
+    }
+  ]
+}

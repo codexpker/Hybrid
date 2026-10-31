@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-31",
+  "scope": "engineering self-check; not independent scientific audit",
+  "local": {
+    "python": "3.12.14",
+    "torch_installed": false,
+    "unittest_passed": 11,
+    "unittest_model_skipped": 1,
+    "compileall": "PASS",
+    "wheel_build": "PASS",
+    "isolated_target_install_no_deps": "PASS",
+    "installed_cli": ["check-env", "verify-core with original source-root", "config validate", "inspect-run historical wave3"],
+    "new_dependencies_installed": false
+  },
+  "remote_cpu": {
+    "torch": "2.8.0+cu128",
+    "cuda_visible_devices": "",
+    "torch_threads": 2,
+    "test_seconds": 0.972,
+    "legacy_model_sha256": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "official_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+    "initialization_seed": 41,
+    "prediction_seed": 53,
+    "input_shape": [1, 400, 1],
+    "output_shape": [1, 5, 1],
+    "checks": [
+      {"mode": "temporal", "state_dict_keys": 166, "strict_load": true, "checkpoint_load": true, "prediction_bit_exact": true},
+      {"mode": "tf", "state_dict_keys": 166, "strict_load": true, "checkpoint_load": true, "prediction_bit_exact": true},
+      {"mode": "hybrid", "state_dict_keys": 166, "strict_load": true, "checkpoint_load": true, "prediction_bit_exact": true}
+    ],
+    "training": false,
+    "device": "cpu",
+    "existing_runs_changed": false,
+    "new_dependencies_installed": false
+  },
+  "limitations": [
+    "Synthetic CPU prediction compatibility only, not full frozen checkpoint/readout equivalence",
+    "Legacy runners are external bridges, not package-native training/inference migration",
+    "External official/source/weight/data licensing not resolved by hash checks"
+  ]
+}

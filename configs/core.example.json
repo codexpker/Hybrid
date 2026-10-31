@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "model": {"mode": "hybrid", "history": 400, "copies": 2, "temporal_depth": 4},
+  "research": {
+    "target": "PSM",
+    "sources": ["SMD_SUBSET", "TEP"],
+    "seed": 0,
+    "contract": "../../experiments/contracts/HYBRID_10K_WAVE3_20261031.md"
+  },
+  "paths": {
+    "source_manifest": "../../results/hybrid_preflight_20261031_v1/split_manifest.json",
+    "query_manifest": "../../results/hybrid_protocol_freeze_20261031_v1/query_manifest.json",
+    "run_root": "../../runs"
+  },
+  "upstream": {
+    "official_file": "../../external/TimeRadar/models/TimeRadar.py",
+    "sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317"
+  }
+}

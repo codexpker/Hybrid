@@ -1,0 +1,4 @@
+# Preserve exact baseline bytes (including line endings) across clones.
+src/hybrid_tsad/model.py -text
+src/hybrid_tsad/data.py -text
+src/hybrid_tsad/protocol.py -text
