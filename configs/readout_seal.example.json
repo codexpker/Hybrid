@@ -21,6 +21,10 @@
     "shards": {
       "path": "../../external/tep100_readout_assets/completed_shards.json",
       "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "execution_evidence": {
+      "path": "../../external/tep100_readout_assets/PREPROCESS_BACKEND_PROVENANCE_CANDIDATE.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
   "parameters": {
@@ -74,6 +78,10 @@
       "channels": 52,
       "event_start": 160,
       "sample_interval_minutes": 3
+    },
+    "physical_validation": {
+      "backend": "original_cuda_a40_float32_v1",
+      "device": "cuda:0"
     }
   },
   "output": "../../external/new_tep100_seal",

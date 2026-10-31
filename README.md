@@ -84,3 +84,5 @@ readout桥锁定已恢复的implementation_v2版本（ce37f1…），拒绝已�
 - 共享引擎阶段：独立CPU25项通过；对应当时主本机37项中29通过、8跳过。多块Aff整体NA、coverage/连续事件边界和源cal/score-space批准绑定的修复见[共享修订](docs/provenance/shared_engine_revision.md)及[事件边界修订](docs/provenance/adjacent_event_revision.md)。
 - 原生train/source_gate/A：均已通过各自限定独审，范围见上表。原循环来源、合成等价/seed报告修复及A原始反例与修订保留在[原生来源记录](docs/provenance/native_training_validation.json)、[seed报告修订](docs/provenance/native_seed_report_revision.md)、[A绑定修订](docs/provenance/multi_readout_a_revision.md)和[A冷启动修订](docs/provenance/readout_cold_cuda_revision.md)；其中早期文件的待审状态是历史记录，不回写成当时已验收。
 - B：有限合成CPU独审通过，四份独立复核报告的范围/SHA及旧dist边界见[B限定验收](docs/provenance/multi_evaluation_b_acceptance.md)。[开发验证记录](docs/provenance/multi_evaluation_b_validation.json)保留当时待审状态，不回写历史；真实TEP评价仍须完整封存和主label release，不据合成指标声称检测增益。
+
+物理尺度核验已改为[显式生产后端与执行证据绑定](docs/physical_validation_backend.md)，见[有限主验收](docs/provenance/physical_backend_acceptance.md)。真实TEP seal/evaluate需配置固定CUDA参考；原模型/银行/分数不变，全部400实体仍须具体运行验收，不能用CPU跨后端重算冒作CUDA身份基准。

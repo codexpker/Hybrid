@@ -1,0 +1,617 @@
+--- a/src/hybrid_tsad/engine/physical_validation.py
++++ b/src/hybrid_tsad/engine/physical_validation.py
+@@ -0,0 +1,185 @@
++"""Explicit original-preprocess backend and read-only execution evidence binding.
++
++This module never selects a backend by comparing scores or trying alternatives.
++CPU defaults are only for synthetic compatibility; real TEP requires provenance.
++"""
++from pathlib import Path
++from datetime import datetime
++import shlex
++
++from ..config import read_json, sha256
++from .readout_manifest import checked, record, load_readout_operation, entity_profile, validate_whitelist, native_key
++
++CPU_BACKEND = "original_cpu_float32_v1"
++CUDA_BACKEND = "original_cuda_a40_float32_v1"
++CUDA_RUNTIME = {"torch_version": "2.8.0+cu128", "cuda_version": "12.8",
++                "gpu_name": "NVIDIA A40", "compute_capability": [8, 6]}
++ORIGINAL_A_CODE_IDENTITY_SHA = "41acaeb0c4e38948972e4c02321904335ae9e3c0330c773c11024a62261029e1"
++
++
++def physical_validation_spec(value, profile):
++    if value is None:
++        if profile["name"] != "SYNTHETIC":
++            raise ValueError("Real TEP physical validation requires an explicit approved backend")
++        return {"backend": CPU_BACKEND, "device": "cpu"}
++    if not isinstance(value, dict) or set(value) != {"backend", "device"}:
++        raise ValueError("Physical validation requires exactly backend/device")
++    backend, device = value["backend"], value["device"]
++    if backend == CPU_BACKEND:
++        if device != "cpu" or profile["name"] != "SYNTHETIC":
++            raise ValueError("CPU default is only a synthetic engineering validation backend")
++    elif backend == CUDA_BACKEND:
++        if device != "cuda:0" or profile["channels"] != 52:
++            raise ValueError("Original CUDA validation is fixed to cuda:0 B1x100x52 float32")
++    else:
++        raise ValueError("Unapproved physical validation backend; no fallback")
++    return dict(value)
++
++
++def validate_physical_runtime(spec):
++    """Check the selected runtime before reading values; no forward or RNG call."""
++    if spec["backend"] == CPU_BACKEND:
++        return
++    if spec["backend"] != CUDA_BACKEND:
++        raise ValueError("Unapproved physical validation backend; no fallback")
++    import torch
++    if not torch.cuda.is_available():
++        raise ValueError("Required original CUDA validation backend unavailable; no CPU fallback")
++    if (str(torch.__version__) != CUDA_RUNTIME["torch_version"]
++            or torch.version.cuda != CUDA_RUNTIME["cuda_version"]
++            or torch.cuda.get_device_name(spec["device"]) != CUDA_RUNTIME["gpu_name"]
++            or list(torch.cuda.get_device_capability(spec["device"])) != CUDA_RUNTIME["compute_capability"]
++            or torch.is_autocast_enabled("cuda")):
++        raise ValueError("Physical validation runtime differs from the approved A40 float32 backend")
++
++
++def bind_execution_evidence(evidence_path, shard_list_path, native_banks, catalog_path, query_path, profile, spec):
++    """Validate original operation/launch/runtime records, never bank self-report.
++
++    The concrete evidence schema is checked below. Missing or UNVERIFIED math
++    provenance blocks execution. Historical OS wait-exit telemetry is not needed
++    to establish which preprocessing formula produced a completed hashed bank.
++    """
++    if spec["backend"] == CPU_BACKEND:
++        if evidence_path is not None:
++            raise ValueError("Synthetic CPU validation does not accept production execution evidence")
++        return None
++    if evidence_path is None:
++        raise ValueError("Original CUDA bank validation requires frozen execution evidence")
++    return _bind_cuda_execution(evidence_path, shard_list_path, native_banks, catalog_path, query_path, profile)
++
++
++def _bind_cuda_execution(evidence_path, shard_list_path, native_banks, catalog_path, query_path, profile):
++    evidence_record=record(evidence_path)
++    evidence=read_json(evidence_path)
++    if (evidence.get("schema_version")!=1 or evidence.get("profile")!=profile
++            or evidence.get("evidence_not_approval") is not True
++            or evidence.get("status")!="CANDIDATE_NOT_PRIMARY_APPROVED_METADATA_DERIVATION_ONLY"):
++        raise ValueError("Invalid frozen CUDA execution evidence; evidence is not an approval")
++    if shard_list_path is None:raise ValueError("CUDA validation requires the original frozen shard list")
++    source_root=Path(evidence["runtime_source_root"])
++    identity_path=checked(evidence["original_code_identity"],evidence_path)
++    if sha256(identity_path)!=ORIGINAL_A_CODE_IDENTITY_SHA:
++        raise ValueError("Original inference code identity is not the audited A snapshot")
++    identity=read_json(identity_path)
++    expected_code={str((source_root.parent/name).resolve()):digest for name,digest in identity["files"].items()}
++    actual_code={str(checked(r,evidence_path)):r["sha256"] for r in evidence["actual_runtime_files"]}
++    if (len(actual_code)!=len(evidence["actual_runtime_files"]) or actual_code!=expected_code):
++        raise ValueError("Executed source bytes do not match the original A identity")
++    for ref in evidence["original_core_files"].values():
++        if str(checked(ref,evidence_path)) not in expected_code or ref["sha256"]!=expected_code[str(checked(ref,evidence_path))]:
++            raise ValueError("Original core provenance changed")
++    prior=evidence["historical_versions"]["prior_frozen_record"]
++    environment=read_json(checked(prior["environment"],evidence_path))
++    prior_commands=read_json(checked(prior["commands"],evidence_path))
++    if environment.get("torch")!=CUDA_RUNTIME["torch_version"] or environment.get("cuda")!=CUDA_RUNTIME["cuda_version"]:
++        raise ValueError("Prior recorded environment does not match the approved validation runtime")
++    # Prior environment is a reference, never re-labelled as per-job telemetry.
++    if (evidence["historical_versions"].get("job_time_Torch")!="UNVERIFIED"
++            or evidence["historical_versions"].get("job_time_CUDA")!="UNVERIFIED"):
++        raise ValueError("Historical job versions must preserve the documented UNVERIFIED limitation")
++    shard_refs=read_json(shard_list_path)
++    expected_shards={str(checked(r,shard_list_path)):r["sha256"] for r in shard_refs}
++    rows=evidence["shards"]
++    if (len(expected_shards)!=len(shard_refs) or len(rows)!=len(expected_shards)
++            or profile["name"]=="TEP100" and len(rows)!=5):
++        raise ValueError("CUDA evidence must cover every original shard exactly once")
++    entities=entity_profile(read_json(query_path),profile)
++    seen_shards=set();seen_banks=set();seen_names=set()
++    for row in rows:
++        shard_path=checked(row["shard_manifest"],evidence_path)
++        if (str(shard_path) in seen_shards or row["name"] in seen_names
++                or expected_shards.get(str(shard_path))!=row["shard_manifest"]["sha256"]):
++            raise ValueError("CUDA execution evidence has duplicate/foreign shard identities")
++        seen_shards.add(str(shard_path));seen_names.add(row["name"])
++        shard=read_json(shard_path,max_bytes=64*1024*1024)
++        operation_path=checked(row["infer_operation"],evidence_path)
++        cfg,paths,output,_,digest=load_readout_operation(operation_path)
++        if (cfg["operation"]!="readout-infer" or cfg["parameters"]!={"profile":profile,"scope":"shard","device":"cuda:0"}
++                or record(paths["catalog"])!=record(catalog_path) or record(paths["query_manifest"])!=record(query_path)
++                or record(paths["approval"])!=row["approval"] or cfg["approval"]!=row["approval"]
++                or record(paths["whitelist"])!=row["whitelist"] or cfg["inputs"]["whitelist"]!=row["whitelist"]
++                or shard_path!=output/"shard_manifest.json"):
++            raise ValueError("Original approved CUDA operation does not bind this exact shard/input/output")
++        for name,ref in {"contract":cfg["contract"],"approval":cfg["approval"],**cfg["inputs"]}.items():checked(ref,operation_path)
++        approval=read_json(checked(row["approval"],evidence_path))
++        if (approval.get("status")!="APPROVED" or approval.get("operation_manifest_sha256")!=digest
++                or approval.get("contract_sha256")!=cfg["contract"]["sha256"]):
++            raise ValueError("Original inference approval does not bind its operation digest")
++        if row["runtime"]!=evidence["original_code_identity"] or row["runtime_source_root"]!=str(source_root):
++            raise ValueError("Launch source snapshot identity differs from the frozen code evidence")
++        launch=read_json(checked(row["launch"],evidence_path))
++        selector=row["launch_selector"]
++        if selector!="top-level":
++            if selector!="jobs."+row["name"]:raise ValueError("Unsupported launch selector")
++            launch=launch["jobs"][row["name"]]
++        command=launch["command"]
++        if (len(command)<11 or command[:1]!=["timeout"] or command[3]!="env"
++                or command[-6:]!=["-m","hybrid_tsad","readout","--config",str(operation_path),"--execute"]):
++            raise ValueError("Actual launch command does not execute the approved readout operation")
++        assignments=command[4:-7]
++        env=dict(item.split("=",1) for item in assignments if "=" in item)
++        if (len(env)!=len(assignments) or set(env)!={"CUDA_VISIBLE_DEVICES","PYTHONPATH","OMP_NUM_THREADS","OPENBLAS_NUM_THREADS"}
++                or env["PYTHONPATH"]!=str(source_root) or env["OMP_NUM_THREADS"]!="2" or env["OPENBLAS_NUM_THREADS"]!="2"
++                or env["CUDA_VISIBLE_DEVICES"] not in ("0","1","2","3")
++                or type(launch["GPU"]) is not int or launch["GPU"]!=int(env["CUDA_VISIBLE_DEVICES"])
++                or row["physical_gpu_index_from_original_CUDA_VISIBLE_DEVICES"]!=launch["GPU"]
++                or type(row["physical_gpu_index_from_original_CUDA_VISIBLE_DEVICES"]) is not int
++                or command[-7] not in shlex.split(prior_commands["prepare"])
++                or command[-7] not in shlex.split(prior_commands["verify"])):
++            raise ValueError("Actual CUDA device/interpreter/source mapping is not bound to original launch evidence")
++        if (row["backend_type"]!="cuda" or row["logical_device_from_original_operation"]!="cuda:0"
++                or row["recorded_input_contract"]["shape"]!=[1,100,52]
++                or row["recorded_input_contract"]["dtype"]!="float32" or row["recorded_input_contract"]["history"]!=100):
++            raise ValueError("CUDA provenance input/backend contract changed")
++        release_path=checked(row["release"],evidence_path);release=read_json(release_path)
++        if row["release"]==row["approval"]:
++            release_time=approval["approved_at_utc"]  # pilot has no separate release file
++        else:
++            if (release.get("status")!="REMAINING3597_RELEASED" or release["operation_digests"].get(row["name"])!=digest
++                    or release.get("labels_released") is not False):
++                raise ValueError("Original primary release does not cover this operation")
++            release_time=release["released_at_utc"]
++        if not (datetime.fromisoformat(approval["approved_at_utc"])<=datetime.fromisoformat(launch["launched_utc"])
++                and datetime.fromisoformat(release_time)<=datetime.fromisoformat(launch["launched_utc"])):
++            raise ValueError("Original approval/release does not precede launch")
++        cells=validate_whitelist(read_json(paths["whitelist"]),entities,"shard")
++        keys={native_key(c["seed"],c["mode"],c["entity"]) for c in cells}
++        log=read_json(checked(row["stdout_log"],evidence_path),max_bytes=64*1024*1024)
++        if (shard!=log or shard.get("status")!="SHARD_ONLY_LABELS_LOCKED" or shard.get("labels_opened") is not False
++                or shard["profile"]!=profile or shard["whitelist"]!=cells or set(shard["banks"])!=keys
++                or set(row["bank_keys"])!=keys or len(row["bank_keys"])!=len(keys) or row["bank_count"]!=len(keys)
++                or shard["catalog_sha256"]!=sha256(catalog_path) or shard["query_manifest_sha256"]!=sha256(query_path)):
++            raise ValueError("Original completion JSON/log/whitelist/bank population differs")
++        metadata={r["key"]:r["metadata"] for r in row["bank_metadata_bindings"]}
++        if set(metadata)!=keys or len(metadata)!=len(row["bank_metadata_bindings"]):
++            raise ValueError("Execution evidence metadata coverage is incomplete/duplicate")
++        for key in keys:
++            if key in seen_banks or key not in native_banks:raise ValueError("Execution evidence bank population changed")
++            seen_banks.add(key)
++            if (metadata[key]!=shard["banks"][key]["metadata"]
++                    or any(shard["banks"][key][part]!=native_banks[key][part] for part in ("bank","rng","metadata"))):
++                raise ValueError("Sealed bank hashes differ from actual launched shard outputs")
++    if seen_banks!=set(native_banks):raise ValueError("Execution evidence does not bind every native bank")
++    if record(evidence_path)!=evidence_record:raise ValueError("Execution evidence changed during validation")
++    return evidence_record
+--- a/src/hybrid_tsad/engine/multi_readout.py
++++ b/src/hybrid_tsad/engine/multi_readout.py
+@@ -9,6 +9,8 @@
+ from ..config import OFFICIAL_SHA, read_json, sha256
+ from .bank import collect_forecasts, inference_metadata, write_bank
+ from .identity import source_calibration
++from .physical_validation import (bind_execution_evidence, physical_validation_spec,
++                                  validate_physical_runtime)
+ from .readout_controls import prepare_catalog, simple_bank, validate_catalog_evidence
+ from .readout_manifest import (METHODS, MODES, SEEDS, approve_readout_inputs, checked,
+                               entity_profile, expected_native, expected_scores, json_write,
+@@ -19,15 +21,17 @@
+ HISTORY_SCALE_ATOL = 2e-6
+ 
+ 
+-def physical_reference(q,profile):
++def physical_reference(q,profile,*,physical_validation=None):
+     """Read-only original values and the unchanged core preprocessing formula.
+ 
+-    The fixed tolerance is only for float32 CPU/GPU reduction differences.
++    Reference reductions use the explicitly approved production backend.
+     No score/threshold/label can choose a different normalization version.
+     """
+     import torch
+     from types import SimpleNamespace
+     from ..model import HybridPredictor
++    spec=physical_validation_spec(physical_validation,profile)
++    validate_physical_runtime(spec)
+     path=Path(q["array_path"])
+     if sha256(path)!=q["array_sha256_from_frozen_parent"]:
+         raise ValueError("Original physical query array identity mismatch")
+@@ -40,9 +44,9 @@
+     scales=[]
+     with torch.no_grad():
+         for b in origins:
+-            history=torch.tensor(data[None,b-100:b].copy(),device="cpu")
++            history=torch.tensor(data[None,b-100:b].copy(),device=spec["device"])
+             _,_,_,scale=HybridPredictor.preprocess(SimpleNamespace(history=100),history)
+-            scales.append(scale.numpy()[0])
++            scales.append(scale.cpu().numpy()[0])
+     index=np.concatenate([np.arange(b,b+5) for b in origins])
+     return data,index,np.stack(scales)
+ 
+@@ -187,12 +191,15 @@
+     return catalog,entities,banks,controls
+ 
+ 
+-def seal_scores(shard_list_path,catalog_path,query_path,output,*,profile):
++def seal_scores(shard_list_path,catalog_path,query_path,output,*,profile,physical_validation=None,execution_evidence_path=None):
++    spec=physical_validation_spec(physical_validation,profile)
+     catalog,entities,banks,controls=collect_complete_native(shard_list_path,catalog_path,query_path,profile)
++    evidence=bind_execution_evidence(execution_evidence_path,shard_list_path,banks,catalog_path,query_path,profile,spec)
++    validate_physical_runtime(spec)
+     output=Path(output);output.mkdir(parents=True,exist_ok=False)
+     scores={}
+     for entity,q in entities.items():
+-        reference=physical_reference(q,profile)
++        reference=physical_reference(q,profile,physical_validation=spec)
+         data,index,_=reference
+         native={}
+         for seed in SEEDS:
+@@ -237,12 +244,22 @@
+           "profile":profile,"catalog":record(catalog_path),"query_manifest":record(query_path),
+           "native_banks":{k:{n:v[n] for n in ("bank","rng","metadata")} for k,v in banks.items()},"scores":scores,
+           "counts":{"native":len(banks),"scores":len(scores)},"overall_Aff_F1":None}
++    if evidence is not None:checked(evidence,execution_evidence_path)
++    seal.update(physical_validation=spec,execution_evidence=evidence)
++    if evidence is not None:seal["source_shards"]=record(shard_list_path)
+     json_write(output/"group_seal.json",seal)
+     return seal
+ 
+ 
+-def verify_label_unlock(seal_path,catalog_path,query_path,profile):
++def verify_label_unlock(seal_path,catalog_path,query_path,profile,*,physical_validation=None):
++    spec=physical_validation_spec(physical_validation,profile)
+     seal=read_json(seal_path,max_bytes=32*1024*1024)
++    if seal.get("physical_validation",physical_validation_spec(None,{"name":"SYNTHETIC"}))!=spec:
++        raise ValueError("Seal/evaluate physical validation backend mismatch")
++    evidence_path=checked(seal["execution_evidence"],seal_path) if seal.get("execution_evidence") is not None else None
++    shards_path=checked(seal["source_shards"],seal_path) if "source_shards" in seal else None
++    bind_execution_evidence(evidence_path,shards_path,seal["native_banks"],catalog_path,query_path,profile,spec)
++    validate_physical_runtime(spec)
+     catalog,models,controls=load_catalog(catalog_path,require_full=True)
+     entities=entity_profile(read_json(query_path),profile)
+     if (seal["status"]!="ALL_FIXED_SCORES_SEALED_LABELS_LOCKED" or seal["complete_group"] is not True
+@@ -260,7 +277,7 @@
+         if (entity not in entities or key!=native_key(metadata.get("seed"),metadata.get("mode"),entity)
+                 or metadata.get("checkpoint_sha256")!=models[metadata["seed"],metadata["mode"]]["checkpoint"]["sha256"]):
+             raise ValueError("Native bank metadata entity is outside the locked query group")
+-        if entity not in references:references[entity]=physical_reference(entities[entity],profile)
++        if entity not in references:references[entity]=physical_reference(entities[entity],profile,physical_validation=spec)
+         verify_physical_bank(checked(value["bank"],seal_path),entities[entity],profile,references[entity])
+     for key,value in seal["scores"].items():
+         path=checked(value["file"],seal_path)
+@@ -291,8 +308,10 @@
+         return infer_shard(paths["catalog"],paths["query_manifest"],paths["whitelist"],output,
+                            profile=profile,scope=cfg["parameters"]["scope"],device=cfg["parameters"]["device"])
+     if cfg["operation"]=="readout-seal":
+-        return seal_scores(paths["shards"],paths["catalog"],paths["query_manifest"],output,profile=profile)
++        return seal_scores(paths["shards"],paths["catalog"],paths["query_manifest"],output,profile=profile,
++                           physical_validation=cfg["parameters"].get("physical_validation"),execution_evidence_path=paths.get("execution_evidence"))
+     if not allow_labels:
+         raise ValueError("Evaluation requires explicit --allow-labels after all-bank seal")
+     from .multi_evaluation import evaluate_group
+-    return evaluate_group(paths["seal"],paths["catalog"],paths["query_manifest"],paths["affiliation"],output,profile=profile)
++    return evaluate_group(paths["seal"],paths["catalog"],paths["query_manifest"],paths["affiliation"],output,profile=profile,
++                          physical_validation=cfg["parameters"].get("physical_validation"))
+--- a/src/hybrid_tsad/engine/readout_manifest.py
++++ b/src/hybrid_tsad/engine/readout_manifest.py
+@@ -106,6 +106,13 @@
+                     "readout-seal":{"catalog","query_manifest","shards"},"readout-evaluate":{"catalog","query_manifest","seal","affiliation"}}
+     allowed_parameters={"readout-controls":{"profile","scope"},"readout-infer":{"profile","scope","device"},
+                         "readout-seal":{"profile"},"readout-evaluate":{"profile"}}
++    if cfg["operation"] in ("readout-seal", "readout-evaluate"):
++        from .physical_validation import physical_validation_spec, CUDA_BACKEND
++        spec=physical_validation_spec(cfg["parameters"].get("physical_validation"),cfg["parameters"]["profile"])
++        if "physical_validation" in cfg["parameters"]:
++            allowed_parameters[cfg["operation"]].add("physical_validation")
++        if cfg["operation"]=="readout-seal" and spec["backend"]==CUDA_BACKEND:
++            allowed_inputs["readout-seal"].add("execution_evidence")
+     if set(cfg["inputs"])!=allowed_inputs[cfg["operation"]] or set(cfg["parameters"])!=allowed_parameters[cfg["operation"]]:
+         raise ValueError("Unexpected/missing readout inputs or parameters; no label inputs before unlock")
+     paths = {name: resolve_path(value["path"], path) for name, value in {"contract":cfg["contract"], "approval":cfg["approval"], **cfg["inputs"]}.items()}
+--- a/src/hybrid_tsad/engine/multi_evaluation.py
++++ b/src/hybrid_tsad/engine/multi_evaluation.py
+@@ -42,14 +42,16 @@
+         visit(i, set())
+     return len(matched)
+ 
+-def evaluate_group(seal_path,catalog_path,query_path,affiliation_identity_path,output,*,profile):
++def evaluate_group(seal_path,catalog_path,query_path,affiliation_identity_path,output,*,profile,physical_validation=None):
+     # This verification rehashes every raw bank, RNG, score and source identity;
+     # no binary label file is opened on any failure before the group is complete.
+-    seal,entities=verify_label_unlock(seal_path,catalog_path,query_path,profile)
++    seal,entities=verify_label_unlock(seal_path,catalog_path,query_path,profile,physical_validation=physical_validation)
+     callback,aff_provenance=load_official_affiliation(affiliation_identity_path)
+     output=Path(output);output.mkdir(parents=True,exist_ok=False)
+     fixed_inputs={str(seal_path):sha256(seal_path),str(catalog_path):seal["catalog"]["sha256"],
+                   str(query_path):seal["query_manifest"]["sha256"],str(affiliation_identity_path):aff_provenance["identity_sha256"]}
++    if seal.get("execution_evidence") is not None:
++        fixed_inputs[str(checked(seal["execution_evidence"],seal_path))]=seal["execution_evidence"]["sha256"]
+     try:
+         return _evaluate_released_group(seal,entities,callback,aff_provenance,output,seal_path,query_path,profile,fixed_inputs)
+     except Exception as exc:
+--- a/tests/test_physical_validation.py
++++ b/tests/test_physical_validation.py
+@@ -0,0 +1,204 @@
++"""CPU-only provenance rejection tests; CUDA integration remains separately gated."""
++import importlib.util
++import json
++from pathlib import Path
++from types import SimpleNamespace
++import sys
++import tempfile
++import unittest
++from unittest.mock import patch
++
++from hybrid_tsad.engine.physical_validation import (CPU_BACKEND, CUDA_BACKEND, CUDA_RUNTIME,
++    physical_validation_spec, validate_physical_runtime, bind_execution_evidence)
++from hybrid_tsad.engine.readout_manifest import record, load_readout_operation, approve_readout_inputs
++
++CUDA_SPEC={"backend":CUDA_BACKEND,"device":"cuda:0"}
++CPU_SPEC={"backend":CPU_BACKEND,"device":"cpu"}
++PROFILE=dict(name="SYNTHETIC",faults=[1],runs=[31],points=105,channels=52,event_start=100,sample_interval_minutes=3)
++HAS_TORCH=importlib.util.find_spec("torch") is not None
++
++
++def json_file(path,value):
++    path.write_text(json.dumps(value),encoding="utf-8")
++    return path
++
++
++def evidence_fixture(root):
++    """Dummy hashed files/CPU metadata only; never executable CUDA bank evidence.
++
++    Tests patch ONLY the frozen original-code identity pin for this toy graph.
++    Production accepts the exact audited A identity, not a self-signed fixture.
++    """
++    source=root/"original/src";source.mkdir(parents=True)
++    source_file=source/"model.txt";source_file.write_text("synthetic original code bytes")
++    identity=json_file(root/"identity.json",{"files":{"src/model.txt":record(source_file)["sha256"]}})
++    environment=json_file(root/"env.json",dict(torch=CUDA_RUNTIME["torch_version"],cuda=CUDA_RUNTIME["cuda_version"]))
++    interpreter="/existing/synthetic/python"
++    commands=json_file(root/"commands.json",dict(prepare=interpreter+" prepare",verify=interpreter+" verify"))
++    catalog=json_file(root/"catalog.json",{})
++    q=dict(entity="fault01_run031",fault_id=1,run_id=31,role="query",history=100,horizon=5,guard=0,
++           local_start=0,local_end_exclusive=105,channels=52,origins=[100])
++    query=json_file(root/"query.json",dict(dataset="SYNTHETIC",records=[q]))
++    cells=[dict(seed=0,mode="temporal",entity=q["entity"],origins=[100])]
++    whitelist=json_file(root/"whitelist.json",cells);contract=json_file(root/"contract.json",{})
++    approval=json_file(root/"approval.json",{})
++    output=root/"shard";output.mkdir()
++    cfg=dict(engine_schema_version=4,operation="readout-infer",contract=record(contract),approval=record(approval),
++        inputs=dict(catalog=record(catalog),query_manifest=record(query),whitelist=record(whitelist)),
++        parameters=dict(profile=PROFILE,scope="shard",device="cuda:0"),output=str(output),
++        score_space="fixed_native_late_canonical_source_controls_v1")
++    operation=json_file(root/"operation.json",cfg)
++    *_,digest=load_readout_operation(operation)
++    json_file(approval,dict(status="APPROVED",operation_manifest_sha256=digest,contract_sha256=cfg["contract"]["sha256"],
++                            approved_at_utc="2026-11-01T00:00:00+00:00"))
++    cfg["approval"]=record(approval);json_file(operation,cfg)
++    bank={part:record(json_file(root/(part+".json"),{})) for part in ("bank","rng","metadata")}
++    key="s0/temporal/fault01_run031"
++    shard=dict(status="SHARD_ONLY_LABELS_LOCKED",profile=PROFILE,scope="shard",labels_opened=False,
++               catalog_sha256=record(catalog)["sha256"],query_manifest_sha256=record(query)["sha256"],whitelist=cells,banks={key:bank})
++    shard_path=json_file(output/"shard_manifest.json",shard)
++    log=json_file(root/"stdout.json",shard)
++    listing=json_file(root/"shards.json",[record(shard_path)])
++    command=["timeout","--kill-after=5s","60s","env","CUDA_VISIBLE_DEVICES=0","PYTHONPATH="+str(source),
++             "OMP_NUM_THREADS=2","OPENBLAS_NUM_THREADS=2",interpreter,"-m","hybrid_tsad","readout","--config",str(operation),"--execute"]
++    launch=json_file(root/"launch.json",dict(command=command,GPU=0,launched_utc="2026-11-01T00:01:00+00:00"))
++    row=dict(name="pilot",shard_manifest=record(shard_path),infer_operation=record(operation),approval=record(approval),
++        release=record(approval),launch=record(launch),launch_selector="top-level",stdout_log=record(log),whitelist=record(whitelist),
++        runtime=record(identity),runtime_source_root=str(source),physical_gpu_index_from_original_CUDA_VISIBLE_DEVICES=0,
++        physical_gpu_uuid="UNVERIFIED",physical_gpu_model="UNVERIFIED",logical_device_from_original_operation="cuda:0",
++        backend_type="cuda",recorded_input_contract=dict(shape=[1,100,52],dtype="float32",history=100),
++        bank_count=1,bank_keys=[key],bank_metadata_bindings=[dict(key=key,metadata=bank["metadata"])])
++    evidence=dict(schema_version=1,status="CANDIDATE_NOT_PRIMARY_APPROVED_METADATA_DERIVATION_ONLY",profile=PROFILE,
++        evidence_not_approval=True,original_code_identity=record(identity),runtime_source_root=str(source),
++        actual_runtime_files=[record(source_file)],original_core_files={"model":record(source_file)},
++        historical_versions=dict(job_time_Torch="UNVERIFIED",job_time_CUDA="UNVERIFIED",
++            prior_frozen_record=dict(environment=record(environment),commands=record(commands))),shards=[row])
++    path=json_file(root/"evidence.json",evidence)
++    return path,listing,{key:bank},catalog,query,identity
++
++
++class PhysicalValidationMetadataTests(unittest.TestCase):
++    def test_default_cpu_only_synthetic_and_unapproved_backend_refused(self):
++        self.assertEqual(physical_validation_spec(None,PROFILE),CPU_SPEC)
++        for value,profile in ((None,{"name":"TEP100"}),(CPU_SPEC,{"name":"TEP100"}),
++                ({"backend":"float64","device":"cpu"},PROFILE),({**CUDA_SPEC,"device":"cuda:1"},PROFILE),
++                (CUDA_SPEC,{**PROFILE,"channels":1})):
++            with self.subTest(value=value),self.assertRaises(ValueError):physical_validation_spec(value,profile)
++        self.assertEqual(physical_validation_spec(CUDA_SPEC,PROFILE),CUDA_SPEC)
++
++    def test_no_cuda_fallback_and_runtime_is_explicit_not_bank_self_report(self):
++        cuda=SimpleNamespace(is_available=lambda:False,get_device_name=lambda _:self.fail("no fallback device probe"))
++        fake=SimpleNamespace(cuda=cuda)
++        with patch.dict(sys.modules,{"torch":fake}),self.assertRaisesRegex(ValueError,"no CPU fallback"):
++            validate_physical_runtime(CUDA_SPEC)
++        with patch.dict(sys.modules,{"torch":fake}):validate_physical_runtime(CPU_SPEC)
++        cuda.is_available=lambda:True;cuda.get_device_name=lambda _:"NVIDIA A40";cuda.get_device_capability=lambda _:(8,6)
++        fake.__version__="2.8.0+cu128";fake.version=SimpleNamespace(cuda="12.8");fake.is_autocast_enabled=lambda _:False
++        with patch.dict(sys.modules,{"torch":fake}):validate_physical_runtime(CUDA_SPEC)  # mock only, no GPU claim
++        fake.__version__="wrong"
++        with patch.dict(sys.modules,{"torch":fake}),self.assertRaisesRegex(ValueError,"runtime differs"):
++            validate_physical_runtime(CUDA_SPEC)
++        fake.__version__="2.8.0+cu128";cuda.get_device_name=lambda _:"wrong GPU"
++        with patch.dict(sys.modules,{"torch":fake}),self.assertRaisesRegex(ValueError,"runtime differs"):
++            validate_physical_runtime(CUDA_SPEC)
++
++    def test_evidence_binds_actual_launch_operation_log_source_and_bank_keys(self):
++        with tempfile.TemporaryDirectory() as temp:
++            args=evidence_fixture(Path(temp));path,listing,banks,catalog,query,identity=args
++            with patch("hybrid_tsad.engine.physical_validation.ORIGINAL_A_CODE_IDENTITY_SHA",record(identity)["sha256"]):
++                self.assertEqual(bind_execution_evidence(path,listing,banks,catalog,query,PROFILE,CUDA_SPEC),record(path))
++            # A production pin cannot be replaced by a fresh self-described hash.
++            with self.assertRaisesRegex(ValueError,"audited A snapshot"):
++                bind_execution_evidence(path,listing,banks,catalog,query,PROFILE,CUDA_SPEC)
++            with self.assertRaisesRegex(ValueError,"requires frozen execution evidence"):
++                bind_execution_evidence(None,listing,banks,catalog,query,PROFILE,CUDA_SPEC)
++
++    def test_separate_original_release_digest_must_cover_the_launched_operation(self):
++        with tempfile.TemporaryDirectory() as temp:
++            path,listing,banks,catalog,query,identity=evidence_fixture(Path(temp))
++            value=json.loads(path.read_text());row=value["shards"][0]
++            digest=json.loads(Path(row["approval"]["path"]).read_text())["operation_manifest_sha256"]
++            release_path=Path(temp)/"release.json"
++            release=dict(status="REMAINING3597_RELEASED",operation_digests={row["name"]:digest},labels_released=False,
++                         released_at_utc="2026-11-01T00:00:30+00:00")
++            json_file(release_path,release);row["release"]=record(release_path);json_file(path,value)
++            with patch("hybrid_tsad.engine.physical_validation.ORIGINAL_A_CODE_IDENTITY_SHA",record(identity)["sha256"]):
++                bind_execution_evidence(path,listing,banks,catalog,query,PROFILE,CUDA_SPEC)
++                release["operation_digests"][row["name"]]="0"*64;json_file(release_path,release)
++                row["release"]=record(release_path);json_file(path,value)
++                with self.assertRaisesRegex(ValueError,"release does not cover"):
++                    bind_execution_evidence(path,listing,banks,catalog,query,PROFILE,CUDA_SPEC)
++
++    def test_rehashed_metadata_forgery_still_rejected(self):
++        for attack,reason in (("launch","device/interpreter/source"),("operation","exact shard/input/output"),
++                              ("log","completion JSON/log"),("bank","bank hashes"),("source","identity mismatch"),
++                              ("time","precede launch"),("missing","every original shard")):
++            with self.subTest(attack=attack),tempfile.TemporaryDirectory() as temp:
++                path,listing,banks,catalog,query,identity=evidence_fixture(Path(temp))
++                value=json.loads(path.read_text());row=value["shards"][0]
++                if attack=="launch":
++                    p=Path(row["launch"]["path"]);v=json.loads(p.read_text());v["GPU"]=1;json_file(p,v);row["launch"]=record(p)
++                elif attack=="operation":
++                    p=Path(row["infer_operation"]["path"]);v=json.loads(p.read_text());v["parameters"]["device"]="cpu";json_file(p,v);row["infer_operation"]=record(p)
++                elif attack=="log":
++                    p=Path(row["stdout_log"]["path"]);v=json.loads(p.read_text());v["labels_opened"]=True;json_file(p,v);row["stdout_log"]=record(p)
++                elif attack=="bank":next(iter(banks.values()))["rng"]={"path":"forged","sha256":"0"*64}
++                elif attack=="source":Path(value["actual_runtime_files"][0]["path"]).write_text("changed code")
++                elif attack=="time":
++                    p=Path(row["launch"]["path"]);v=json.loads(p.read_text());v["launched_utc"]="2025-01-01T00:00:00+00:00";json_file(p,v);row["launch"]=record(p)
++                else:value["shards"]=[]
++                json_file(path,value)
++                with patch("hybrid_tsad.engine.physical_validation.ORIGINAL_A_CODE_IDENTITY_SHA",record(identity)["sha256"]),self.assertRaisesRegex(ValueError,reason):
++                    bind_execution_evidence(path,listing,banks,catalog,query,PROFILE,CUDA_SPEC)
++
++    def test_schema4_approval_binds_backend_and_evidence_without_gpu_probe(self):
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp)
++            for name in ("catalog","query_manifest","shards","contract","approval","execution_evidence"):json_file(root/name,{})
++            cfg=dict(engine_schema_version=4,operation="readout-seal",contract=record(root/"contract"),approval=record(root/"approval"),
++                inputs={n:record(root/n) for n in ("catalog","query_manifest","shards")},parameters=dict(profile=PROFILE),
++                output=str(root/"new"),score_space="fixed_native_late_canonical_source_controls_v1")
++            path=json_file(root/"operation.json",cfg);*_,digest=load_readout_operation(path)
++            json_file(root/"approval",dict(status="APPROVED",contract_sha256=cfg["contract"]["sha256"],operation_manifest_sha256=digest))
++            cfg["approval"]=record(root/"approval");cfg["parameters"]["physical_validation"]=CUDA_SPEC
++            cfg["inputs"]["execution_evidence"]=record(root/"execution_evidence");json_file(path,cfg)
++            parsed,paths,out,_,newdigest=load_readout_operation(path);self.assertNotEqual(digest,newdigest)
++            with self.assertRaisesRegex(ValueError,"exact operation"):approve_readout_inputs(parsed,paths,out,path)
++            cfg["parameters"]=dict(profile={**PROFILE,"name":"TEP100"});json_file(path,cfg)
++            with self.assertRaisesRegex(ValueError,"explicit approved backend"):load_readout_operation(path)
++
++    @unittest.skipUnless(importlib.util.find_spec("numpy"),"existing NumPy required to import evaluator wrapper")
++    def test_evaluate_passes_backend_to_unlock_before_external_callback_or_labels(self):
++        from hybrid_tsad.engine.multi_evaluation import evaluate_group
++        with patch("hybrid_tsad.engine.multi_evaluation.verify_label_unlock",side_effect=ValueError("locked backend")) as unlock, \
++             patch("hybrid_tsad.engine.multi_evaluation.load_official_affiliation",side_effect=AssertionError("callback loaded before unlock")):
++            with self.assertRaisesRegex(ValueError,"locked backend"):
++                evaluate_group("seal","catalog","query","aff","new",profile=PROFILE,physical_validation=CUDA_SPEC)
++        unlock.assert_called_once_with("seal","catalog","query",PROFILE,physical_validation=CUDA_SPEC)
++
++
++@unittest.skipUnless(HAS_TORCH,"existing torch required for synthetic CPU preprocess; CUDA not executed")
++class PhysicalValidationCPUReferenceTests(unittest.TestCase):
++    def test_constant_cpu_reference_exact_rng_and_scale_forgery_rejected(self):
++        import numpy as np
++        import torch
++        from hybrid_tsad.model import HybridPredictor
++        from hybrid_tsad.engine.multi_readout import physical_reference,verify_physical_bank,HISTORY_SCALE_RTOL,HISTORY_SCALE_ATOL
++        self.assertEqual((HISTORY_SCALE_RTOL,HISTORY_SCALE_ATOL),(2e-6,2e-6))
++        with tempfile.TemporaryDirectory() as temp:
++            root=Path(temp);data=np.full((105,52),np.float32(3000.10009765625),dtype="float32")
++            array=root/"history.npy";np.save(array,data)
++            q=dict(array_path=str(array),array_sha256_from_frozen_parent=record(array)["sha256"],origins=[100],local_start=0,local_end_exclusive=105)
++            before=torch.get_rng_state().clone()
++            with patch.object(torch.cuda,"is_available",side_effect=AssertionError("CPU must not probe CUDA")):
++                reference=physical_reference(q,PROFILE)
++            self.assertTrue(torch.equal(before,torch.get_rng_state()))
++            scale=HybridPredictor.preprocess(SimpleNamespace(history=100),torch.tensor(data[None,:100].copy()))[3].numpy()[0]
++            self.assertTrue(np.array_equal(reference[2],scale[None]))
++            bank=dict(time_index=np.arange(100,105),forecast_origin=np.array([100]),target=data[100:],history_scale_by_block=reference[2])
++            path=root/"bank.npz";np.savez(path,**bank);verify_physical_bank(path,q,PROFILE,reference)
++            bank["history_scale_by_block"]=reference[2]*2;np.savez(path,**bank)
++            with self.assertRaisesRegex(ValueError,"history scale"):verify_physical_bank(path,q,PROFILE,reference)
++            # Frozen diagnostic GPU literal: its rejection by CPU is not a CUDA test.
++            bank["history_scale_by_block"]=np.full_like(reference[2],.0031997528858482838);np.savez(path,**bank)
++            with self.assertRaisesRegex(ValueError,"history scale"):verify_physical_bank(path,q,PROFILE,reference)
+--- a/configs/readout_seal.example.json
++++ b/configs/readout_seal.example.json
+@@ -20,6 +20,10 @@
+     },
+     "shards": {
+       "path": "../../external/tep100_readout_assets/completed_shards.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "execution_evidence": {
++      "path": "../../external/tep100_readout_assets/PREPROCESS_BACKEND_PROVENANCE_CANDIDATE.json",
+       "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+     }
+   },
+@@ -74,6 +78,10 @@
+       "channels": 52,
+       "event_start": 160,
+       "sample_interval_minutes": 3
++    },
++    "physical_validation": {
++      "backend": "original_cuda_a40_float32_v1",
++      "device": "cuda:0"
+     }
+   },
+   "output": "../../external/new_tep100_seal",
+--- a/configs/readout_evaluate.example.json
++++ b/configs/readout_evaluate.example.json
+@@ -78,6 +78,10 @@
+       "channels": 52,
+       "event_start": 160,
+       "sample_interval_minutes": 3
++    },
++    "physical_validation": {
++      "backend": "original_cuda_a40_float32_v1",
++      "device": "cuda:0"
+     }
+   },
+   "output": "../../external/new_tep100_evaluate",
+--- a/docs/physical_validation_backend.md
++++ b/docs/physical_validation_backend.md
+@@ -0,0 +1,38 @@
++# 物理scale验证后端修订
++
++本修订基于已推送B基线`e004350`，仅纠正验证参考后端和原执行证据绑定。模型/数据/协议核心、training、infer_shard、collect_forecasts、source calibration、simple CPU canonical、原生score/阈值/RNG及3600银行均不改。原容差仍为`rtol=2e-6, atol=2e-6`，物理target/index/origin仍逐值exact。
++
++## 原失败与数值边界
++
++旧CPU参考不能作为CUDA银行的跨后端身份判定器。独审原`scale_diagnostic.json`在fault06_run031的172个B1×100×52历史窗确认：原GPU preprocess与九银行scale逐位一致；CPU参考116格不符。常值float32输入3000.10009765625的CPU/GPU归约产生不同mean及scale。GPU scale相对float64诊断最多偏约1.185%，检测影响未知；不能称其科学上无害，也不将float64换成新normalizer。
++
++原始`RAW_SCALE_GATE_FIRST_COUNTEREXAMPLE.json`、`RAW_ARCHIVE_AUDIT_FAILURE_v1.json`和独审原件保持不变。本次验证修正不改变已产生分数，不重跑网络，不提高容差，不把工程PASS升级为检测GO。
++
++## 显式合同与来源链
++
++真实TEP的schema4 seal/evaluate必须显式包含：
++
++```json
++"physical_validation": {
++  "backend": "original_cuda_a40_float32_v1",
++  "device": "cuda:0"
++}
++```
++
++参数固定进入现有operation manifest哈希，任何更改需新批准。该版本枚举固定当前验证设备为NVIDIA A40/compute8.6、torch2.8.0+cu128、CUDA12.8、无autocast、逐窗B1×100×52 float32。缺CUDA、设备/版本不符或未知backend明确拒绝，不CPU回退、不尝试多个后端选通过者。SYNTHETIC省略参数继续旧CPU路径；真实TEP不能使用该默认。
++
++seal的`inputs.execution_evidence`是外置`PREPROCESS_BACKEND_PROVENANCE_CANDIDATE.json`的path/SHA record。它是已批准operation的一个固定输入，自身不是审批。共享`engine.physical_validation`从原件复核：原A代码identity及23源码字节；原infer配置/合同/approval的规范digest；pilot原approval兼release或remaining独立release；批准/放行早于launch；实际启动命令中的解释器、PYTHONPATH、CUDA_VISIBLE_DEVICES和逻辑device；全部shard与whitelist、终态stdout JSON、银行/RNG/metadata描述符的完整无重复覆盖。银行实际SHA与内容仍由原门禁另核。
++
++原五job缺独立OS wait-exit receipt、job时GPU UUID/model及torch/CUDA版本遥测，不补造。以原终态JSON/log和冻结输出证明完成资产，不能宣称独立实测exit0；原先同解释器环境记录只作先前来源引用，不冒作每job测量。当前验证必须实测固定A40/版本；即使将来400实体参考全匹配，也不能补证历史硬件遥测。
++
++CUDA seal记录同一`physical_validation`、`execution_evidence`及原`source_shards` record。evaluate的参数须与seal一致，且读取label前重新核同一来源链和每个物理银行。新参考仍逐窗调用原`HybridPredictor.preprocess`，不构造模型或调用forward；目标和simple评分继续CPU原公式。CPU合成seal不增加生产来源链约束，保留旧正反路径。
++
++## 本轮证据与未执行项
++
++已有远端环境、CUDA不可见、线程2，A9+新8+B5共22项合成CPU回归全部通过；B正路径保留72指标/逐实体Aff/原始坐标和2000共同抽样。新测试核CPU常值原公式和RNG、scale篡改、未许可/不可用backend、伪造原launch/op/log/source/bank/release及审批哈希绑定。metadata fixture显式mock原代码identity pin，仅验证拒绝逻辑，不能代替真实CUDA或原件证明。
++
++另对真实五shard候选作纯标准库静态来源检查：3600银行描述符链通过，未导入torch、未打开NPZ/query数组/标签、CUDA调用0。这仅证明metadata/SHA链一致，不证明GPU scale已匹配。
++
++首次回归v1的3处负测被新增CPU来源引用提前拦截，拒绝原因与原断言不符；修订为只对CUDA seal绑定该链，原A测试不改。v1失败、v2的17项正回归及最终v3的22项回归分别保留，详见[冻结修订记录](provenance/physical_backend_revision.json)。
++
++仍待独审及主另批：新实现的真实A40合成常值/zero/ramp正反例、CUDA RNG不变和scale篡改拒绝；完整400实体共68800窗的当前后端物理参考及实际成本。不得把CPU测试中的固定GPU诊断字面量拒绝或mock runtime通过写成CUDA验证通过。真实seal和label评价仍HOLD；无真实query/label读取、GPU、训练或重新推理由本轮执行。

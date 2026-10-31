@@ -9,6 +9,8 @@ from ..api import create_predictor, verify_checkpoint_contract
 from ..config import OFFICIAL_SHA, read_json, sha256
 from .bank import collect_forecasts, inference_metadata, write_bank
 from .identity import source_calibration
+from .physical_validation import (bind_execution_evidence, physical_validation_spec,
+                                  validate_physical_runtime)
 from .readout_controls import prepare_catalog, simple_bank, validate_catalog_evidence
 from .readout_manifest import (METHODS, MODES, SEEDS, approve_readout_inputs, checked,
                               entity_profile, expected_native, expected_scores, json_write,
@@ -19,15 +21,17 @@ HISTORY_SCALE_RTOL = 2e-6
 HISTORY_SCALE_ATOL = 2e-6
 
 
-def physical_reference(q,profile):
+def physical_reference(q,profile,*,physical_validation=None):
     """Read-only original values and the unchanged core preprocessing formula.
 
-    The fixed tolerance is only for float32 CPU/GPU reduction differences.
+    Reference reductions use the explicitly approved production backend.
     No score/threshold/label can choose a different normalization version.
     """
     import torch
     from types import SimpleNamespace
     from ..model import HybridPredictor
+    spec=physical_validation_spec(physical_validation,profile)
+    validate_physical_runtime(spec)
     path=Path(q["array_path"])
     if sha256(path)!=q["array_sha256_from_frozen_parent"]:
         raise ValueError("Original physical query array identity mismatch")
@@ -40,9 +44,9 @@ def physical_reference(q,profile):
     scales=[]
     with torch.no_grad():
         for b in origins:
-            history=torch.tensor(data[None,b-100:b].copy(),device="cpu")
+            history=torch.tensor(data[None,b-100:b].copy(),device=spec["device"])
             _,_,_,scale=HybridPredictor.preprocess(SimpleNamespace(history=100),history)
-            scales.append(scale.numpy()[0])
+            scales.append(scale.cpu().numpy()[0])
     index=np.concatenate([np.arange(b,b+5) for b in origins])
     return data,index,np.stack(scales)
 
@@ -187,12 +191,15 @@ def collect_complete_native(shard_list_path,catalog_path,query_path,profile):
     return catalog,entities,banks,controls
 
 
-def seal_scores(shard_list_path,catalog_path,query_path,output,*,profile):
+def seal_scores(shard_list_path,catalog_path,query_path,output,*,profile,physical_validation=None,execution_evidence_path=None):
+    spec=physical_validation_spec(physical_validation,profile)
     catalog,entities,banks,controls=collect_complete_native(shard_list_path,catalog_path,query_path,profile)
+    evidence=bind_execution_evidence(execution_evidence_path,shard_list_path,banks,catalog_path,query_path,profile,spec)
+    validate_physical_runtime(spec)
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     scores={}
     for entity,q in entities.items():
-        reference=physical_reference(q,profile)
+        reference=physical_reference(q,profile,physical_validation=spec)
         data,index,_=reference
         native={}
         for seed in SEEDS:
@@ -237,12 +244,22 @@ def seal_scores(shard_list_path,catalog_path,query_path,output,*,profile):
           "profile":profile,"catalog":record(catalog_path),"query_manifest":record(query_path),
           "native_banks":{k:{n:v[n] for n in ("bank","rng","metadata")} for k,v in banks.items()},"scores":scores,
           "counts":{"native":len(banks),"scores":len(scores)},"overall_Aff_F1":None}
+    if evidence is not None:checked(evidence,execution_evidence_path)
+    seal.update(physical_validation=spec,execution_evidence=evidence)
+    if evidence is not None:seal["source_shards"]=record(shard_list_path)
     json_write(output/"group_seal.json",seal)
     return seal
 
 
-def verify_label_unlock(seal_path,catalog_path,query_path,profile):
+def verify_label_unlock(seal_path,catalog_path,query_path,profile,*,physical_validation=None):
+    spec=physical_validation_spec(physical_validation,profile)
     seal=read_json(seal_path,max_bytes=32*1024*1024)
+    if seal.get("physical_validation",physical_validation_spec(None,{"name":"SYNTHETIC"}))!=spec:
+        raise ValueError("Seal/evaluate physical validation backend mismatch")
+    evidence_path=checked(seal["execution_evidence"],seal_path) if seal.get("execution_evidence") is not None else None
+    shards_path=checked(seal["source_shards"],seal_path) if "source_shards" in seal else None
+    bind_execution_evidence(evidence_path,shards_path,seal["native_banks"],catalog_path,query_path,profile,spec)
+    validate_physical_runtime(spec)
     catalog,models,controls=load_catalog(catalog_path,require_full=True)
     entities=entity_profile(read_json(query_path),profile)
     if (seal["status"]!="ALL_FIXED_SCORES_SEALED_LABELS_LOCKED" or seal["complete_group"] is not True
@@ -260,7 +277,7 @@ def verify_label_unlock(seal_path,catalog_path,query_path,profile):
         if (entity not in entities or key!=native_key(metadata.get("seed"),metadata.get("mode"),entity)
                 or metadata.get("checkpoint_sha256")!=models[metadata["seed"],metadata["mode"]]["checkpoint"]["sha256"]):
             raise ValueError("Native bank metadata entity is outside the locked query group")
-        if entity not in references:references[entity]=physical_reference(entities[entity],profile)
+        if entity not in references:references[entity]=physical_reference(entities[entity],profile,physical_validation=spec)
         verify_physical_bank(checked(value["bank"],seal_path),entities[entity],profile,references[entity])
     for key,value in seal["scores"].items():
         path=checked(value["file"],seal_path)
@@ -291,8 +308,10 @@ def run_readout(config_path,*,execute=False,allow_labels=False):
         return infer_shard(paths["catalog"],paths["query_manifest"],paths["whitelist"],output,
                            profile=profile,scope=cfg["parameters"]["scope"],device=cfg["parameters"]["device"])
     if cfg["operation"]=="readout-seal":
-        return seal_scores(paths["shards"],paths["catalog"],paths["query_manifest"],output,profile=profile)
+        return seal_scores(paths["shards"],paths["catalog"],paths["query_manifest"],output,profile=profile,
+                           physical_validation=cfg["parameters"].get("physical_validation"),execution_evidence_path=paths.get("execution_evidence"))
     if not allow_labels:
         raise ValueError("Evaluation requires explicit --allow-labels after all-bank seal")
     from .multi_evaluation import evaluate_group
-    return evaluate_group(paths["seal"],paths["catalog"],paths["query_manifest"],paths["affiliation"],output,profile=profile)
+    return evaluate_group(paths["seal"],paths["catalog"],paths["query_manifest"],paths["affiliation"],output,profile=profile,
+                          physical_validation=cfg["parameters"].get("physical_validation"))

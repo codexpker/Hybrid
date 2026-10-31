@@ -42,14 +42,16 @@ def maximum_matching_count(predicted, truth):
         visit(i, set())
     return len(matched)
 
-def evaluate_group(seal_path,catalog_path,query_path,affiliation_identity_path,output,*,profile):
+def evaluate_group(seal_path,catalog_path,query_path,affiliation_identity_path,output,*,profile,physical_validation=None):
     # This verification rehashes every raw bank, RNG, score and source identity;
     # no binary label file is opened on any failure before the group is complete.
-    seal,entities=verify_label_unlock(seal_path,catalog_path,query_path,profile)
+    seal,entities=verify_label_unlock(seal_path,catalog_path,query_path,profile,physical_validation=physical_validation)
     callback,aff_provenance=load_official_affiliation(affiliation_identity_path)
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     fixed_inputs={str(seal_path):sha256(seal_path),str(catalog_path):seal["catalog"]["sha256"],
                   str(query_path):seal["query_manifest"]["sha256"],str(affiliation_identity_path):aff_provenance["identity_sha256"]}
+    if seal.get("execution_evidence") is not None:
+        fixed_inputs[str(checked(seal["execution_evidence"],seal_path))]=seal["execution_evidence"]["sha256"]
     try:
         return _evaluate_released_group(seal,entities,callback,aff_provenance,output,seal_path,query_path,profile,fixed_inputs)
     except Exception as exc:

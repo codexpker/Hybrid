@@ -1,0 +1,139 @@
+{
+  "stage": "HYBRID-PHYSICAL-BACKEND-REVISION",
+  "baseline_commit": "e004350",
+  "status": "DEVELOPER_STAGE_COMPLETED_PENDING_INDEPENDENT_REVIEW_AND_GPU_RELEASE",
+  "scope": "VALIDATION_BACKEND_AND_ORIGINAL_EXECUTION_EVIDENCE_ONLY",
+  "files": {
+    "src/hybrid_tsad/engine/physical_validation.py": "511999c952336b20c5829e3925ac989e6cc90a7bfe7759094285971519b03c35",
+    "src/hybrid_tsad/engine/multi_readout.py": "6a39dc2c887ffffaf7d164511b3f6bac91009e1c7de3112228976e9d073889a4",
+    "src/hybrid_tsad/engine/readout_manifest.py": "610dcb961e74ded343502abdb330f50245fde4eefabaf0a8260696d2bb607833",
+    "src/hybrid_tsad/engine/multi_evaluation.py": "cd4aa220a7b6b32956c61b280abb8d67a1b331b589b052abd94728431408971c",
+    "tests/test_physical_validation.py": "214581efc525d2c775846dfea8be25909b7137a8984aec8f515a394bf4e3601e",
+    "configs/readout_seal.example.json": "09684510503f697302649dead90bc853ca075f27955c7c065ee22c0644e4734f",
+    "configs/readout_evaluate.example.json": "0741619666d4f23ab77dc6c690e742fa10c478d812b5bbddae56f4ac8ad6d224",
+    "docs/physical_validation_backend.md": "3591e7ed4ee4a666e43c393b46780a9f0215630122f7f6aec3f54ac7f0a87c7a"
+  },
+  "patch_sha256": "6e929a224711e2350418f2e0099a85d5c11abb23f9ed8122663837d950a3bf56",
+  "unchanged_raw_bytes": {
+    "src/hybrid_tsad/model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "src/hybrid_tsad/data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "src/hybrid_tsad/protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "src/hybrid_tsad/engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126",
+    "src/hybrid_tsad/engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+    "src/hybrid_tsad/engine/bank.py": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+    "src/hybrid_tsad/engine/source_gate.py": "5f8ba2f4fd3c59893df4ea9446b547810e965248ad7a3d8fb577db1909a23a65",
+    "tests/test_multi_readout.py": "652e9e3e4c9847ac1bbfa451e29e5fc9ac2ca5d4999bceeff05c2c4a9fb71c63",
+    "tests/test_run_statistics.py": "9530c45adf08cbae3cbfda912e308e281e8552d25ceb6e0f2448794f2ca4cdb8",
+    "src/hybrid_tsad/engine/run_statistics.py": "4f26305938f237052b30313b562cf96f8d87e731e6d4cc26c1844faa547a80af",
+    "src/hybrid_tsad/engine/official_affiliation.py": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412"
+  },
+  "unchanged_function_AST_sha256": {
+    "infer_shard": "b21a9d406024937a06d0257ffd5547291ed35c55ecf1192ace878ced37b5ce9b",
+    "verify_physical_bank": "6ed64b4e10020d2384a63a9f257561761dfb987ede4080b71c5c24caba142430",
+    "collect_complete_native": "10f6047124a78c61bc19dc156845fed916c16507521581019932fec64a5abad8"
+  },
+  "native_simple_late_score_expression_AST_unchanged": true,
+  "history_scale_tolerance": {
+    "rtol": 2e-06,
+    "atol": 2e-06
+  },
+  "source_evidence": {
+    "research_workspace/results/hybrid_tep100_readout_20261031_v1/RAW_SCALE_GATE_FIRST_COUNTEREXAMPLE.json": "bbb837768cea8fd4f09dc9af953acd11d2c2d7f239e4ddb042d240c49af85f80",
+    "research_workspace/results/hybrid_tep100_readout_20261031_v1/RAW_ARCHIVE_AUDIT_FAILURE_v1.json": "d4179739103a902653cda42a7234392b5756e4d9416ae2f0fdf4e54fb56c7cee",
+    "research_workspace/results/hybrid_tep100_readout_20261031_v1/PREPROCESS_BACKEND_PROVENANCE_CANDIDATE.json": "b20a21ccbb03ecdcb952603b9c37227ab1baa04588a9566d6eecce9c7e5a059a",
+    "research_workspace/independent_audit/HYBRID-TEP100-RAW-READOUT/scale_diagnostic.json": "9dab65d0f2208dd4443eb47c8274d74d57ff2bb7db9e821a9ef6b0d0948e1403",
+    "research_workspace/independent_audit/HYBRID-TEP100-RAW-READOUT/backend_provenance_audit.json": "729018abc4c1d23d664f32ed84d76a4cde56010ce362f0bdb8c84d7bbe6f147d"
+  },
+  "final_CPU": {
+    "scope": "SYNTHETIC_CPU_A9_NEW8_B5_NO_REAL_QUERY_OR_LABELS_NO_CUDA_REFERENCE",
+    "python": "3.12.13",
+    "torch": "2.8.0+cu128",
+    "threads": 2,
+    "cuda_visible_devices": "",
+    "synthetic_binary_labels_only": true,
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 8.49649569898611,
+    "successful": true,
+    "synthetic_archive": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_physical_backend_v3/synthetic_archive"
+  },
+  "static_actual_execution_evidence": {
+    "status": "STATIC_ORIGINAL_EXECUTION_EVIDENCE_PASS_CURRENT_CUDA_NOT_TESTED",
+    "evidence": {
+      "path": "/home/a312/tsad_research/runs/hybrid_tep100_readout_20261031_v1/PREPROCESS_BACKEND_PROVENANCE_CANDIDATE.json",
+      "sha256": "b20a21ccbb03ecdcb952603b9c37227ab1baa04588a9566d6eecce9c7e5a059a"
+    },
+    "banks": 3600,
+    "torch_imported": false,
+    "query_arrays_opened": false,
+    "labels_read": false,
+    "GPU_calls": 0,
+    "seconds": 0.5959483580081724
+  },
+  "previous_runs": [
+    {
+      "project": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_physical_backend_v1",
+      "result": {
+        "scope": "SYNTHETIC_CPU_NO_REAL_QUERY_NO_CUDA_REFERENCE_NO_LABELS",
+        "python": "3.12.13",
+        "torch": "2.8.0+cu128",
+        "threads": 2,
+        "cuda_visible_devices": "",
+        "tests": 16,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 5.763749848003499,
+        "successful": false
+      },
+      "failure": "Three existing physical-forgery tests rejected earlier on new CPU source-shard SHA rather than their original physical reason; original tests unchanged, CUDA-only source binding restored CPU semantics."
+    },
+    {
+      "project": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_physical_backend_v2",
+      "result": {
+        "scope": "SYNTHETIC_CPU_NO_REAL_QUERY_NO_CUDA_REFERENCE_NO_LABELS",
+        "python": "3.12.13",
+        "torch": "2.8.0+cu128",
+        "threads": 2,
+        "cuda_visible_devices": "",
+        "tests": 17,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "seconds": 6.026701171009336,
+        "successful": true
+      }
+    }
+  ],
+  "evidence_artifact_sha256": {
+    "build/physical_backend_cpu_v1.zip": "bb4e1fe06daf8af984133d5f9c56399f60135596246f19aae5974b8bfd7929f3",
+    "build/physical_backend_cpu_v1_results.json": "ab622bac74bea8230e1e380628e998c371151944226f7fbcf967ffa0397222c6",
+    "build/physical_backend_cpu_v1_stdout.txt": "84c6196a441c4c0eb49fa95862ff9043ecf34822b7539338ec5eb56909feff34",
+    "build/physical_backend_cpu_v2.zip": "1a7d0c72be63a331c94bb468244eb88ca8bb7796e3fedfb7d9b66255f77e38a8",
+    "build/physical_backend_cpu_v2_results.json": "a094458619166229e4f642fbd8ce00788ea752e167b0217e4940079818c56dea",
+    "build/physical_backend_cpu_v3_results.json": "45c305d921d21f673508b296b9b09d193ab64c52fb8c10a9ca8bc7c8118b0319",
+    "build/physical_backend_cpu_v3_stdout.txt": "da563bb9bc645352d72b19ab8f4e83c7877bfce61325086be2bfb23a24af9ae2",
+    "build/physical_backend_static_evidence_results.json": "caa11f6541543dc34dac11df5b86fcb6c65092c0ab7fe529a497f1c76900fa21"
+  },
+  "final_remote_project": "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_physical_backend_v3",
+  "local_compileall": true,
+  "local_new_tests_before_final_release_case": {
+    "tests": 7,
+    "passed": 6,
+    "skipped_no_torch": 1
+  },
+  "historical_telemetry_limit": "No original job-time GPU UUID/model/version or independent OS wait-exit receipt; preserved UNVERIFIED, prior environment is not per-job attestation",
+  "remaining": [
+    "independent revised-code review",
+    "separately approved current A40 CUDA synthetic positive/negative and RNG test",
+    "all400 entity current-backend scale reference and measured cost",
+    "primary seal release and later separate label release"
+  ],
+  "actual_GPU_reference_executed": false,
+  "real_query_arrays_or_labels_opened": false,
+  "training_or_reinference_executed": false,
+  "original_banks_modified": false,
+  "scientific_limit": "GPU float32 scale deviation from diagnostic float64 up to about1.185percent in the independently inspected entity; detection impact unknown; no normalization/score rewrite or detection GO"
+}

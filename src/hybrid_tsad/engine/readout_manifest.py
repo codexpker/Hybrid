@@ -106,6 +106,13 @@ def load_readout_operation(path):
                     "readout-seal":{"catalog","query_manifest","shards"},"readout-evaluate":{"catalog","query_manifest","seal","affiliation"}}
     allowed_parameters={"readout-controls":{"profile","scope"},"readout-infer":{"profile","scope","device"},
                         "readout-seal":{"profile"},"readout-evaluate":{"profile"}}
+    if cfg["operation"] in ("readout-seal", "readout-evaluate"):
+        from .physical_validation import physical_validation_spec, CUDA_BACKEND
+        spec=physical_validation_spec(cfg["parameters"].get("physical_validation"),cfg["parameters"]["profile"])
+        if "physical_validation" in cfg["parameters"]:
+            allowed_parameters[cfg["operation"]].add("physical_validation")
+        if cfg["operation"]=="readout-seal" and spec["backend"]==CUDA_BACKEND:
+            allowed_inputs["readout-seal"].add("execution_evidence")
     if set(cfg["inputs"])!=allowed_inputs[cfg["operation"]] or set(cfg["parameters"])!=allowed_parameters[cfg["operation"]]:
         raise ValueError("Unexpected/missing readout inputs or parameters; no label inputs before unlock")
     paths = {name: resolve_path(value["path"], path) for name, value in {"contract":cfg["contract"], "approval":cfg["approval"], **cfg["inputs"]}.items()}

@@ -8,3 +8,9 @@ src/hybrid_tsad/engine/multi_evaluation.py -text whitespace=cr-at-eol
 src/hybrid_tsad/engine/official_affiliation.py -text whitespace=cr-at-eol
 src/hybrid_tsad/engine/run_statistics.py -text whitespace=cr-at-eol
 tests/test_run_statistics.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/physical_validation.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/multi_readout.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/readout_manifest.py -text whitespace=cr-at-eol
+tests/test_physical_validation.py -text whitespace=cr-at-eol
+# Frozen unified-diff evidence contains required context-line spaces.
+docs/provenance/physical_backend_revision.patch -text -whitespace
