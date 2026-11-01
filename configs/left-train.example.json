@@ -1,0 +1,33 @@
+{
+  "operation": "train",
+  "track": "R",
+  "upstream_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+  "seed": 2025,
+  "source_root": "/external/fixed-left",
+  "source_hashes": {
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863",
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+    "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+    "models/CrossAD/Basic_CrossAD.py": "f9b1dc5996be896ab45a6f78f7e6ce94d680d951cca3a62ae759d23467f4e3f2",
+    "models/CrossAD/Attention_Blocks.py": "c0460930efcb8c8c4375ea6b80bd0ca14246d7f4c8feaa493f692d2c93c95ce1",
+    "models/CrossAD/EncDec.py": "c3c68f63fdd5cda3c219687d52bdd6c2a97d0ce416da747399dde92d3408f36c",
+    "models/CrossAD/Context_Blocks.py": "0fad86b3c9bb4984bd4f09743abcf784b44513a6e601606e9134b17ffbcf09a4",
+    "configs/PSM/model_configs_Left.json": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4",
+    "configs/PSM/model_configs_0.json": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f",
+    "configs/PSM/train_configs.json": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab"
+  },
+  "max_seconds": null,
+  "max_allocated_GiB": 20,
+  "data": {
+    "array": "/external/approved-prefix/prefix.npy",
+    "metadata": "/external/approved-prefix/meta.json",
+    "array_sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+    "metadata_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "output": "/external/new-output",
+  "approval_path": "/external/PENDING-approval.json"
+}
