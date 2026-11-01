@@ -28,7 +28,8 @@ endpoint is not advance fault prediction. All query cases remain separate.
 
 As of 2026-11-02, three normal LEFT trainings and calibrations, the four Ridge
 normal fits, normal Ridge/ZMAX calibration, and the actual public-file extraction
-have passed bounded artifact review. Fixed QUERY readout is in progress; no fault
+have passed bounded artifact review. Fixed QUERY readout has completed; its
+native spot checks and final acceptance precede label evaluation. No fault
 detection gain is established. Gaussian mechanism controls retained earlier
 negative results. The prototype confidence audit concerns frozen checkpoints,
 not every training step or a new model improvement.
@@ -45,3 +46,20 @@ fault labels are not proof of changed lag or physical impact in these three
 channels. High AP alone, especially with about 92.9% positives, cannot establish
 the proposed weak-relation mechanism. Raw inputs, weights and upstream snapshots
 remain outside this Git repository.
+
+Evaluation is separated into `engine.tep_fixed_evaluation` (pure event/ranking/
+run-cluster statistics) and `engine.tep_evaluation_runner` (hash-bound artifact
+loader and outputs). The runner requires all three accepted LEFT score banks
+plus the deterministic controls before opening identities or compact scores.
+An external root-provided release hash is a workflow trust anchor, not a claim
+of cryptographic signatures. Synthetic complete-flow checks are not real
+benchmark results.
+
+A segment confirmed before fault injection remains one normal false alarm even
+if it continues past injection. It is also reported as a boundary continuation
+and never counted as a newly detected fault. Segments only confirmed after the
+boundary, with a pre-injection start, are separately reported. Timely recall
+(confirmation by sample181) is distinct from full-event precision. Missing
+precision and censored delays remain missing, while a positive case with no
+alarm has F1 zero. Paired uncertainty uses twenty simulation-run clusters with
+the same predeclared resampling matrix, not overlapping points as replicates.
