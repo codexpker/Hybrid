@@ -15,18 +15,27 @@ SEED_DEVICES = {2025:(0,'895053ba-a4d6-49a6-d831-865d5982f009'),
                 2026:(1,'514a18de-bcd9-8992-c47f-775f98aed4b6'),
                 2027:(2,'a3b69732-11e4-3841-7a95-735c2ac27e47')}
 CAL_OPERATION='LEFT_TEP_NORMAL_CALIBRATION'
+QUERY_OPERATION='LEFT_TEP_FIXED_QUERY_READOUT'
 
 
 def score_identity(metadata):
     """Reject queries, CAL, training roles and alternative run/shape choices."""
     calibration=metadata.get('purpose')=='NORMAL_CALIBRATION'
+    query=metadata.get('purpose')=='FIXED_PUBLIC_QUERY'
+    if query:
+        allowed={'domain','role','purpose','entity_id','seed','points','window','batch_size','columns',
+                 'array_sha256','scaler_sha256','checkpoint_sha256','feature_source_sha256','best_checkpoint_step'}
+        if (set(metadata)!=allowed
+                or metadata.get('role')!='QUERY' or metadata.get('entity_id') not in ['entity_%04d'%i for i in range(1,401)]
+                or metadata.get('seed') not in SEED_DEVICES or metadata.get('points')!=960):
+            raise PermissionError('Only opaque query identities without fault/run/labels')
     role_ok=(metadata.get('role')=='CAL' and metadata.get('run_id') in range(81,101)
              and metadata.get('seed') in SEED_DEVICES) if calibration else (
                  metadata.get('role')=='SELECT' and metadata.get('run_id')==61 and metadata.get('seed')==2025)
-    if (metadata.get('domain') != 'TEP_REACTOR' or not role_ok or metadata.get('fault_number') != 0
+    if (metadata.get('domain') != 'TEP_REACTOR' or (not query and (not role_ok or metadata.get('fault_number') != 0))
             or tuple(metadata.get('columns', ())) != COLUMNS
             or metadata.get('window') != 100 or metadata.get('batch_size') != 1
-            or metadata.get('points') != 500):
+            or metadata.get('points') != (960 if query else 500)):
         raise PermissionError('Only predeclared normal SELECT run61 B1 cost gate')
     required = ('array_sha256', 'scaler_sha256', 'checkpoint_sha256',
                 'feature_source_sha256', 'best_checkpoint_step')
@@ -69,7 +78,8 @@ def collect_bank(normalized_values, metadata, scorer, fingerprint, *, clock=time
     import numpy as np
     score_identity(metadata)
     values = np.asarray(normalized_values)
-    if values.shape != (500, 3) or values.dtype not in (np.float32, np.float64) or not np.isfinite(values).all():
+    points=metadata['points'];count=points-99
+    if values.shape != (points, 3) or values.dtype not in (np.float32, np.float64) or not np.isfinite(values).all():
         raise ValueError('Finite normalized 500x3 floating input required')
     observed_start = clock()
     before = fingerprint()
@@ -77,10 +87,10 @@ def collect_bank(normalized_values, metadata, scorer, fingerprint, *, clock=time
         raise ValueError('Explicit full state/gradient/mode/step/RNG fingerprint required')
     # JSON copy prevents callbacks returning a mutable shared dict from hiding changes.
     before = json.loads(json.dumps(before, sort_keys=True, allow_nan=False))
-    raw = np.empty((401, 100, 3), np.float32)
+    raw = np.empty((count, 100, 3), np.float32)
     input_windows = np.empty_like(raw)
-    call_seconds = np.empty(401, np.float64)
-    for start in range(401):
+    call_seconds = np.empty(count, np.float64)
+    for start in range(count):
         batch = np.array(values[start:start+100], dtype=np.float32, copy=True)[None]
         input_windows[start] = batch[0]
         begin = clock()
@@ -95,18 +105,19 @@ def collect_bank(normalized_values, metadata, scorer, fingerprint, *, clock=time
     after = json.loads(json.dumps(fingerprint(), sort_keys=True, allow_nan=False))
     if after != before:
         raise RuntimeError('Frozen model/gradients/modes/step/RNG changed within bank')
-    indices = np.arange(99, 500, dtype=np.int64)
+    indices = np.arange(99, points, dtype=np.int64)
     point = raw.mean(axis=2, dtype=np.float32)
     arrays = dict(raw_scores=raw, normalized_input_windows=input_windows,
                   end_index_0based=indices, available_index_0based=indices.copy(),
-                  end_sample_1based=indices+1, window_start_0based=np.arange(401, dtype=np.int64),
+                  end_sample_1based=indices+1, window_start_0based=np.arange(count, dtype=np.int64),
                   last=point[:, -1], mean32=point[:, -32:].mean(axis=1, dtype=np.float32),
+                  channel_last=raw[:,-1,:].copy(),channel_mean32=raw[:,-32:,:].mean(axis=1,dtype=np.float32),
                   scorer_and_cpu_return_seconds=call_seconds)
     report = dict(status='BANK_CONSTRUCTED_NOT_FORMAL_MODEL_VALIDATION', metadata=metadata,
                   fingerprint_before=before, fingerprint_after=after,
                   observation_granularity='full fingerprints before/after bank only',
                   observed_collection_seconds=clock()-observed_start,
-                  first_call_seconds=float(call_seconds[0]), steady_calls=400,
+                  first_call_seconds=float(call_seconds[0]), steady_calls=count-1,
                   steady_mean_seconds=float(call_seconds[1:].mean()),
                   steady_p50_seconds=float(np.quantile(call_seconds[1:], .5)),
                   steady_p95_seconds=float(np.quantile(call_seconds[1:], .95)),
@@ -139,6 +150,10 @@ def save_bank(output, arrays, report, *, pipeline_start=None, clock=time.perf_co
 
 def preview(config_path):
     cfg = json.loads(Path(config_path).read_text(encoding='utf-8'))
+    if cfg.get('operation')==QUERY_OPERATION:
+        return dict(status='PENDING_INPUT_ACCEPTANCE_NO_QUERY_ACCESS',seed=cfg.get('seed'),
+            entities=400,points=960,bank_shape=[861,100,3],endpoints=[99,959],
+            binding_state=cfg.get('binding_state'),allowed_real_execution=False)
     if cfg.get('operation') in ('LEFT_TEP_B1_NORMAL_COST',CAL_OPERATION):
         if cfg.get('binding_state')=='EXACT_REFERENCES_BOUND':validate_remote_paths(cfg)
     elif cfg.get('operation') != 'NORMAL_B1_READOUT_COST_PREPARATION' or cfg.get('status') != 'PENDING':
@@ -166,7 +181,24 @@ def sha(path):
 def require_runtime_release(cfg, config_path, release_path):
     """Only config/release are read. No reference/data/Torch access on refusal."""
     cal=cfg.get('operation')==CAL_OPERATION
+    query=cfg.get('operation')==QUERY_OPERATION
     seed=cfg.get('seed');device=SEED_DEVICES.get(seed)
+    if query:
+        if (cfg.get('binding_state')!='EXACT_REFERENCES_BOUND' or device is None
+                or cfg.get('max_seconds')!=5400 or cfg.get('max_allocated_GiB')!=20
+                or cfg.get('physical_gpu_index')!=device[0] or cfg.get('expected_gpu_uuid')!=device[1]
+                or cfg.get('batch_size')!=1 or cfg.get('window')!=100
+                or cfg.get('infer_calls')!=344400
+                or cfg.get('entity_ids')!=['entity_%04d'%i for i in range(1,401)]
+                or cfg.get('input_acceptance') is None or cfg.get('input_manifest') is None):
+            raise PermissionError('Query input acceptance not bound; no input/model access')
+        validate_query_paths(cfg)
+        release=read_json(release_path)
+        expected=dict(status='PRIMARY_RELEASED_LEFT_TEP_FIXED_QUERY_READOUT',approved_by='root',
+            approved_seed=seed,config_sha256=sha(config_path),adapter_hashes=cfg['adapter_hashes'],
+            allow_opaque_query_inputs=True,allow_labels=False,allow_sealed_identity=False,allow_CAL=False)
+        if any(release.get(k)!=v for k,v in expected.items()):raise PermissionError('Exact per-model query release required')
+        return release
     if cal:
         if (device is None or cfg.get('run_ids')!=list(range(81,101))
                 or cfg.get('max_seconds')!=300 or cfg.get('infer_calls')!=8020
@@ -195,6 +227,47 @@ def require_runtime_release(cfg, config_path, release_path):
     if any(release.get(k) != v for k, v in expected.items()):
         raise PermissionError('Exact root release required before Torch/reference/data access')
     return release
+
+
+def validate_query_paths(cfg):
+    if cfg.get('output')!='/home/a312/tsad_research/results/left_tep_fixed_QUERY_seed%d_20261102_v1'%cfg['seed']:
+        raise PermissionError('Fixed query output path required')
+    paths=[cfg['source_root']]
+    for key in ('training_acceptance','normal_source_acceptance','contract','training_report','training_events',
+                'checkpoint_schema','scaler','checkpoint','calibration_acceptance','calibration','input_acceptance','input_manifest'):
+        r=cfg.get(key)
+        if not isinstance(r,dict) or set(r)!={'path','sha256'}:raise PermissionError('Exact query reference required')
+        paths.append(r['path'])
+    for p in paths:
+        if (not isinstance(p,str) or '\\' in p or not p.startswith('/home/a312/tsad_research/')
+                or not PurePosixPath(p).is_absolute() or '..' in PurePosixPath(p).parts or 'sealed_identity' in PurePosixPath(p).parts):
+            raise PermissionError('No sealed/relative/nonworkspace query references')
+
+
+def validate_query_manifest(manifest):
+    expected=['entity_%04d'%i for i in range(1,401)]
+    top={'status','records','raw_source','raw_sha256','sample_axis','imputation','standardization','sorting'}
+    def valid_sha(value):
+        return isinstance(value,str) and len(value)==64 and all(c in '0123456789abcdef' for c in value)
+    if (set(manifest)!=top or manifest.get('raw_source')!='/home/a312/tsad_research/data/tep_rieth2017_v1/TEP_Faulty_Testing.RData'
+            or not valid_sha(manifest.get('raw_sha256'))
+            or manifest.get('sample_axis')!='original 1..960; no absolute datetime'
+            or any(manifest.get(k) is not False for k in ('imputation','standardization','sorting'))
+            or not isinstance(manifest.get('records'),list)
+            or any(not isinstance(r,dict) for r in manifest['records'])):
+        raise PermissionError('Exact numerical producer top-level schema required; no label/identity fields')
+    if manifest.get('status')!='PUBLIC_SIMULATION_INPUTS_NO_LABEL_FEATURES' or [r['entity_id'] for r in manifest['records']]!=expected:
+        raise PermissionError('All400 predetermined opaque entities required')
+    for r in manifest['records']:
+        p='/home/a312/tsad_research/results/tep_faulty_inputs_run51_70_20261102_v1/inputs/'+r['entity_id']+'.npz'
+        if (set(r)!={'entity_id','path','sha256','bytes','shape','dtype','columns','raw_sha256'}
+                or r['path']!=p or r['shape']!=[960,3]
+                or not valid_sha(r['sha256']) or r['raw_sha256']!=manifest['raw_sha256']
+                or type(r['bytes']) is not int or r['bytes']<=0
+                or r['dtype']!='float64' or type(r['columns']) is not list
+                or any(type(c) is not str for c in r['columns'])
+                or r['columns']!=list(COLUMNS)):raise PermissionError('Opaque source manifest schema differs')
+    return manifest['records']
 
 
 def validate_remote_paths(cfg):
@@ -283,7 +356,7 @@ def execute_cost(config_path, release_path):
     """Run once only after exact root authorization; no fit or label path."""
     cfg=read_json(config_path)
     require_runtime_release(cfg,config_path,release_path)
-    cal=cfg['operation']==CAL_OPERATION;seed=cfg['seed']
+    cal=cfg['operation']==CAL_OPERATION;query=cfg['operation']==QUERY_OPERATION;seed=cfg['seed']
     from . import left_baseline as baseline
     root=Path(cfg['source_root'])
     required=set(baseline.MODEL_FILES+['exp/exp_anomaly_detection.py',
@@ -301,7 +374,8 @@ def execute_cost(config_path, release_path):
     pipeline_start=time.perf_counter()
     report={'status':'RUNNING','operation':cfg['operation'],'seed':seed,
             'config_sha256':sha(config_path),'release_sha256':sha(release_path),
-            'actual_array_reads':[],'CAL_only':cal,'no_fault_query_or_labels':True}
+            'actual_array_reads':[],'CAL_only':cal,'QUERY_only':query,'no_labels':True,
+            'no_fault_query_or_labels':not query}
     out=Path(cfg['output']);out.mkdir(parents=True,exist_ok=False);torch=None
     try:
         train_receipt=verified_ref(cfg,'training_acceptance')
@@ -315,7 +389,7 @@ def execute_cost(config_path, release_path):
         verified_ref(cfg,'contract',json_body=False)
         training=verified_ref(cfg,'training_report');events=verified_ref(cfg,'training_events')
         schema=verified_ref(cfg,'checkpoint_schema');scaler=verified_ref(cfg,'scaler')
-        metadata=verified_ref(cfg,'normal_metadata')
+        metadata=verified_ref(cfg,'input_manifest' if query else 'normal_metadata')
         for field,refname in [('report_sha256','training_report'),('events_sha256','training_events'),('state_keys_sha256','checkpoint_schema')]:
             if train_receipt[field]!=cfg[refname]['sha256']:raise ValueError('Training receipt cross-reference differs: '+field)
         if (any(train_receipt['checkpoint'][k]!=cfg['checkpoint'][k] for k in ('path','sha256'))
@@ -337,17 +411,34 @@ def execute_cost(config_path, release_path):
         if (scaler['fit_ids']!=expected_fit or scaler['fit_points']!=15000 or scaler['ddof']!=0
                 or scaler['SELECT_used_for_fit'] is not False or tuple(scaler['columns'])!=COLUMNS):
             raise ValueError('FIT-only scaler provenance differs')
-        run_ids=list(range(81,101)) if cal else [61]
-        records=metadata['records'] if cal else metadata['roles']['SELECT']
-        rows=[r for r in records if r['role']==('cal' if cal else 'select') and r['simulationRun'] in run_ids]
-        if [r['simulationRun'] for r in rows]!=run_ids:raise ValueError('Unique ordered normal runs required')
-        refs=cfg['arrays'] if cal else [cfg['array']]
-        for ref,bound in zip(rows,refs):
-            if (ref['faultNumber']!=0 or ref['shape']!=[500,3] or ref['dtype']!='float64'
-                    or tuple(ref['column_names'])!=COLUMNS or ref['array_path']!=bound['path']
-                    or ref['sha256']!=bound['sha256']
-                    or ref['raw_sha256']!='12d1055b852763fac09ef36bd7c9612a800c8bf7b6f75f344d12119206f9e940'):
-                raise ValueError('Exact accepted normal array identity differs')
+        if query:
+            acceptance=verified_ref(cfg,'input_acceptance')
+            if (acceptance.get('status')!='PRIMARY_ACCEPTED_LIMITED_TEP_FAULTY_INPUTS'
+                    or acceptance.get('input_manifest_sha256')!=cfg['input_manifest']['sha256']):
+                raise PermissionError('Actual primary-accepted input manifest required')
+            calibration_receipt=verified_ref(cfg,'calibration_acceptance');calibration=verified_ref(cfg,'calibration')
+            if (calibration_receipt.get('status')!='PRIMARY_ACCEPTED_LIMITED_NORMAL_CALIBRATION'
+                    or calibration_receipt['seed']!=seed or calibration['seed']!=seed
+                    or calibration_receipt['calibration_json_sha256']!=cfg['calibration']['sha256']
+                    or calibration_receipt['checkpoint_sha256']!=cfg['checkpoint']['sha256']
+                    or calibration['checkpoint_sha256']!=cfg['checkpoint']['sha256']
+                    or calibration_receipt['scaler_sha256']!=cfg['scaler']['sha256']
+                    or calibration['scaler_sha256']!=cfg['scaler']['sha256']
+                    or calibration_receipt['thresholds']!=calibration['thresholds']):raise PermissionError('Frozen per-model CAL references differ')
+            rows=validate_query_manifest(metadata);run_ids=[r['entity_id'] for r in rows]
+            refs=[{'path':r['path'],'sha256':r['sha256']} for r in rows]
+        else:
+            run_ids=list(range(81,101)) if cal else [61]
+            records=metadata['records'] if cal else metadata['roles']['SELECT']
+            rows=[r for r in records if r['role']==('cal' if cal else 'select') and r['simulationRun'] in run_ids]
+            if [r['simulationRun'] for r in rows]!=run_ids:raise ValueError('Unique ordered normal runs required')
+            refs=cfg['arrays'] if cal else [cfg['array']]
+            for ref,bound in zip(rows,refs):
+                if (ref['faultNumber']!=0 or ref['shape']!=[500,3] or ref['dtype']!='float64'
+                        or tuple(ref['column_names'])!=COLUMNS or ref['array_path']!=bound['path']
+                        or ref['sha256']!=bound['sha256']
+                        or ref['raw_sha256']!='12d1055b852763fac09ef36bd7c9612a800c8bf7b6f75f344d12119206f9e940'):
+                    raise ValueError('Exact accepted normal array identity differs')
         checkpoint_path=verified_ref(cfg,'checkpoint',json_body=False)
         author=read_json(root/'configs/PSM/model_configs_Left.json')
         expected_model=dict(author,seq_len=100,enc_in=3,warmup_steps=123,ramp_steps=246)
@@ -403,27 +494,44 @@ def execute_cost(config_path, release_path):
             fresh_inference_python_step=model.step,eval_lambda=.3,no_warmup_before_first_B1=True,
             setup_through_model_load_seconds=time.perf_counter()-pipeline_start,
             hardware={'GPU':props.name,'uuid':str(props.uuid),'torch':torch.__version__,'cuda':torch.version.cuda})
-        pools=[];report['banks']=[]
+        pools=[];report['banks']=[];compact=[];storage_bytes=0
         for run_id,ref in zip(run_ids,refs):
             array_path=Path(ref['path'])
             if sha(array_path)!=ref['sha256']:raise ValueError('Frozen normal array changed')
-            values=np.load(array_path,allow_pickle=False);report['actual_array_reads'].append(str(array_path))
-            if values.shape!=(500,3) or values.dtype!=np.float64 or not np.isfinite(values).all():
+            if query:
+                with np.load(array_path,allow_pickle=False) as z:
+                    if set(z.files)!={'values','sample_1based','source_row_0based'}:raise PermissionError('Only opaque numerical input fields')
+                    values=z['values'].copy();samples=z['sample_1based'].copy();source_rows=z['source_row_0based'].copy()
+                if not np.array_equal(samples,np.arange(1,961)) or source_rows.shape!=(960,) or source_rows.dtype!=np.int64 or (source_rows<0).any() or not (np.diff(source_rows)>0).all():raise ValueError('Original query sample/row axis differs')
+            else:values=np.load(array_path,allow_pickle=False)
+            report['actual_array_reads'].append(str(array_path));points=960 if query else 500
+            if values.shape!=(points,3) or values.dtype!=np.float64 or not np.isfinite(values).all():
                 raise ValueError('Finite original float64 normal run required')
             normalized=(values-mean)/scale
             identity=dict(domain='TEP_REACTOR',role='CAL' if cal else 'SELECT',run_id=run_id,fault_number=0,columns=COLUMNS,
-                seed=seed,points=500,window=100,batch_size=1,array_sha256=ref['sha256'],
+                seed=seed,points=points,window=100,batch_size=1,array_sha256=ref['sha256'],
                 scaler_sha256=cfg['scaler']['sha256'],checkpoint_sha256=cfg['checkpoint']['sha256'],
                 feature_source_sha256=sha(__file__),best_checkpoint_step=training['best_checkpoint_python_step_at_save'])
             if cal:identity['purpose']='NORMAL_CALIBRATION'
+            if query:
+                identity.pop('run_id');identity.pop('fault_number')
+                identity.update(role='QUERY',purpose='FIXED_PUBLIC_QUERY',entity_id=run_id)
             bank,bank_report=collect_bank(normalized,identity,scorer,fingerprint)
-            bank['source_normal_values_float64']=values
-            directory=out/('run%03d'%run_id if cal else 'bank')
+            bank['source_values_float64' if query else 'source_normal_values_float64']=values
+            directory=out/'banks'/run_id if query else out/('run%03d'%run_id if cal else 'bank')
             saved=save_bank(directory,bank,bank_report,pipeline_start=pipeline_start)
-            report['banks'].append(dict(run_id=run_id,path=str(directory),**saved))
-            if cal:pools.append(dict(metadata=identity,end_index_0based=bank['end_index_0based'],
+            report['banks'].append(dict(**({'entity_id':run_id} if query else {'run_id':run_id}),path=str(directory),**saved))
+            if query:
+                compact.append({k:bank[k].copy() for k in ('last','mean32','channel_last','channel_mean32','end_index_0based','available_index_0based')})
+                storage_bytes+=saved['raw_bank_bytes']
+                if storage_bytes>8*1024**3:raise RuntimeError('8GiB raw storage contract exceeded')
+            elif cal:pools.append(dict(metadata=identity,end_index_0based=bank['end_index_0based'],
                                      last=bank['last'].copy(),mean32=bank['mean32'].copy()))
             else:report.update(bank=saved,bank_directory=str(directory))
+        if query:
+            np.savez(out/'compact_scores.npz',entity_id=np.asarray(run_ids),**{k:np.stack([b[k] for b in compact]) for k in compact[0]})
+            report.update(opaque_entities=run_ids,raw_bank_count=400,scored_points=344400,raw_bank_bytes=storage_bytes,
+                          compact_scores_sha256=sha(out/'compact_scores.npz'),no_label_evaluation=True)
         if cal:
             distribution,calibration=calibrate_normal_pool(pools,seed=seed,checkpoint_sha256=cfg['checkpoint']['sha256'],scaler_sha256=cfg['scaler']['sha256'])
             np.savez(out/'calibration_scores.npz',**distribution)
