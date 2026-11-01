@@ -4,9 +4,13 @@
 
 ## 当前入口：LEFT官方实现基线
 
-参见[LEFT基线使用说明](docs/left_baseline.md)，统一入口为 `python -m hybrid_tsad.left_baseline --config ...`。作者代码、公开数据和检查点放在工程之外，本包只提供自有适配与配置；原模型保持固定版本。首个PSM seed2025训练已完成并通过有限审查，测试读出仍在准备；没有新方法收益结论。原TimeRadar八基准复评保留，不重新启动。
+参见[LEFT基线使用说明](docs/left_baseline.md)，统一入口为 `python -m hybrid_tsad.left_baseline --config ...`。作者代码、公开数据和检查点放在工程之外，本包只提供自有适配与配置；原模型保持固定版本。PSM seed2025完整训练、固定读出和点级/VUS评价均已有限验收（AP 0.576644、VUS-PR 0.572602），没有新方法收益结论。原TimeRadar八基准复评保留，不重新启动。
+
+独立normal-run适配使用 `python -m hybrid_tsad.left_normal_runs --config ...`，默认只预览；正式运行绑定独立协议、来源及批准。当前C2只作为原LEFT的机制能力诊断：LIN/WEAK各seed2025完整正常训练、80固定分数银行及评价均已独审/root接受，没有弱关系稳定收益结论；不改原模型、不接续PSM25权重。透明weak-lag CPU控制保留全部负结果，不能当新的真实公开数据集或已证明的创新。结果导航见上一级 `results/START_HERE.md`，真实终态以 `CURRENT_RESEARCH_STATE.md` 为准。
 
 下方Hybrid工程阶段记录为历史资产，不触发旧训练/适配作业。最新状态在上一级 `CURRENT_RESEARCH_STATE.md`；第二篇继续只使用公开数据。
+
+已有频域强对照使用[CATCH外置官方实现](docs/catch_baseline.md)：共享normal-run训练、固定原生分项捕获与独立CPU评价入口。C2正常训练及80raw已完成并有限复核，完整固定评价也已实际运行；当前没有稳定超过强简单lag对照的证据，不新增模型。两方法训练预算、原生随机mask和回溯时间权限的差异保留，不能把本工程代码入口当论文创新。
 
 先读[研究范围与尚缺部分](docs/research_scope.md)和[官方源码对应表](docs/provenance/references.md)。FRFT本身已含时域信息，新增时域分支的必要性仍须检验；当前多源正常数据预训练不等于已经解决异常污染的无标签学习。
 
