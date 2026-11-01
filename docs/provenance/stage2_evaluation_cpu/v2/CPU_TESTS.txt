@@ -1,0 +1,12 @@
+test_complete_synthetic_config_rank_once_and_independent_runtime (test_stage2_evaluation.EvaluationTests.test_complete_synthetic_config_rank_once_and_independent_runtime) ... ok
+test_invalid_approval_gate_runtime_scope_and_missing_bank_fail_before_arrays (test_stage2_evaluation.EvaluationTests.test_invalid_approval_gate_runtime_scope_and_missing_bank_fail_before_arrays) ... ok
+test_preview_and_missing_official_dependency_never_fallback (test_stage2_evaluation.EvaluationTests.test_preview_and_missing_official_dependency_never_fallback) ... ok
+test_registry_semantic_missing_init_and_nonshared_tracks_before_arrays (test_stage2_evaluation.EvaluationTests.test_registry_semantic_missing_init_and_nonshared_tracks_before_arrays) ... ok
+test_prefix_count_denominator_and_miss_delay_retained (test_stage2_evaluation.ThresholdAndStatisticsTests.test_prefix_count_denominator_and_miss_delay_retained) ... ok
+test_shared_draws_macro_grid_and_nonfinite_rank_not_redrawn (test_stage2_evaluation.ThresholdAndStatisticsTests.test_shared_draws_macro_grid_and_nonfinite_rank_not_redrawn) ... ok
+test_threshold_only_exact_old_kernel_oracle_edge_cases (test_stage2_evaluation.ThresholdAndStatisticsTests.test_threshold_only_exact_old_kernel_oracle_edge_cases) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.940s
+
+OK

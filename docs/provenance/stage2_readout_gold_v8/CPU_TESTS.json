@@ -1,0 +1,11 @@
+{
+  "tests": 7,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "seconds": 35.02879972499795,
+  "torch": "2.8.0+cu128",
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "synthetic CPU only; no real gold bank/score/labels/cal or GPU",
+  "successful": true
+}

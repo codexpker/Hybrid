@@ -1,0 +1,325 @@
+{
+  "status": "FROZEN_SCHEMA6_CPU_CANDIDATE_FOR_INDEPENDENT_REVIEW",
+  "baseline_commit": "802a3ef",
+  "contract_sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d",
+  "cpu_decision_sha256": "9ec890f8f5df7f09bda7a6451deae754a6f67cf4e7ada9ce0298c52e52fa5920",
+  "files": {
+    "src/hybrid_tsad/cli.py": "f1771033fe4be25fb472c5042ef883d29e0d326432cb734732273f5c379b793f",
+    "src/hybrid_tsad/engine/stage2_readout_identity.py": "045927f00ec0b35732e7454d0a98cfef92b8fb86b3022a556beb6f73d66ba798",
+    "src/hybrid_tsad/engine/stage2_readout.py": "781b10e5f1b5f96720e6cde842dad06e0cfd18de87597c1eddc34d3204bc7720",
+    "tests/test_stage2_readout.py": "8292edc1a37c7946c14cd792ad4647e5fba018600e3f7da8b8d8086d62439d59",
+    "docs/stage2_readout.md": "5a1cf7f5643e559372bf8a734f78203ac3eb5a7fc9630bcbb1fc5bfa49e1a2f4",
+    "configs/stage2-readout.all18-acceptance.PENDING.example.json": "2b0897abc173ee06a6f2b2dab73b9ca3202664a2a1f7a9171beee9b2846d723a",
+    "configs/stage2-readout.catalog.example.json": "5cfd379884ca4e3303315dd9ec6d03276119817c8400becedb4971dcd6d95a80",
+    "configs/stage2-readout.gate.example.json": "b9651b08b300f832e9a65203c778b3f30f636baf9d70209b2cddbad61b9cc76f",
+    "configs/stage2-readout.infer.example.json": "30c2b92d9004ef651d599c16638c366e67fe95f217563908378fd9c93fe38e9f",
+    "configs/stage2-readout.seal.example.json": "68cda273dec19dd590a51eb212382a81f33d8ac852dcf5f6e5602b1fba8a6cbb",
+    "configs/stage2-readout.u-model-row.PENDING.example.json": "36878a1c80eb9ce769fff8581873c003572e74e40fa67e6c41de51d2fcd716a9",
+    "configs/stage2-readout.z-normal-cal.example.json": "eba9d15a4e1ed4a672804af44b2bfed8572ffea60810d3185d25f5f7c92a3109"
+  },
+  "unchanged": {
+    "src/hybrid_tsad/api.py": "7e52be356ef05f79350fbf1c1a7e839d6c624afe63c98b73d08b6cd4859a449e",
+    "src/hybrid_tsad/config.py": "54a1114c72a0f44a4ec424a60299b61a8c8b75d30337a20b15c4c361454286cb",
+    "src/hybrid_tsad/data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "src/hybrid_tsad/inspection.py": "a3964517c42284439a8f3d61946a1a1fc9bd1b900af491a4c63b3d722b516392",
+    "src/hybrid_tsad/legacy.py": "665537eec379903fcdee53c3519b0248989a960b6e0e693763d786ec87c9e2f4",
+    "src/hybrid_tsad/model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "src/hybrid_tsad/protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "src/hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "src/hybrid_tsad/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/hybrid_tsad/engine/bank.py": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+    "src/hybrid_tsad/engine/evaluation.py": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+    "src/hybrid_tsad/engine/events.py": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+    "src/hybrid_tsad/engine/identity.py": "28a099c598fcd0e03169fdbf14c9fc85ab2d119293a92481e4ef5c78475d1284",
+    "src/hybrid_tsad/engine/multi_evaluation.py": "cd4aa220a7b6b32956c61b280abb8d67a1b331b589b052abd94728431408971c",
+    "src/hybrid_tsad/engine/multi_readout.py": "6a39dc2c887ffffaf7d164511b3f6bac91009e1c7de3112228976e9d073889a4",
+    "src/hybrid_tsad/engine/official_affiliation.py": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+    "src/hybrid_tsad/engine/physical_validation.py": "511999c952336b20c5829e3925ac989e6cc90a7bfe7759094285971519b03c35",
+    "src/hybrid_tsad/engine/pipeline.py": "c11b81bc20ebb6c82577437ef2305979156577ba7863c0e86cda9f2dd3fe140d",
+    "src/hybrid_tsad/engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126",
+    "src/hybrid_tsad/engine/readout_manifest.py": "610dcb961e74ded343502abdb330f50245fde4eefabaf0a8260696d2bb607833",
+    "src/hybrid_tsad/engine/run_statistics.py": "4f26305938f237052b30313b562cf96f8d87e731e6d4cc26c1844faa547a80af",
+    "src/hybrid_tsad/engine/source.py": "5c4105f02d58c02b770f8edbe8a86b051bd6ca8f66f0b7f728aba1f622569b9c",
+    "src/hybrid_tsad/engine/source_gate.py": "5f8ba2f4fd3c59893df4ea9446b547810e965248ad7a3d8fb577db1909a23a65",
+    "src/hybrid_tsad/engine/stage2.py": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+    "src/hybrid_tsad/engine/stage2_data.py": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+    "src/hybrid_tsad/engine/stage2_identity.py": "8f403510601aed2ec964003864f5a78c786b31f41883aec1f8603e46b481afed",
+    "src/hybrid_tsad/engine/statistics.py": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+    "src/hybrid_tsad/engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+    "src/hybrid_tsad/engine/__init__.py": "aa061bb184d2cdc14df48e0fac03c57f819d1af3db858def00a7370ffdacbf42"
+  },
+  "source_provenance": [
+    {
+      "file": "src/hybrid_tsad/api.py",
+      "name": "create_predictor",
+      "line": 19,
+      "file_sha256": "7e52be356ef05f79350fbf1c1a7e839d6c624afe63c98b73d08b6cd4859a449e",
+      "AST_sha256": "9f09bb2a3fbb06ca503764c2fa75da090f5bc19d2e044a3f46d80db5f9b609f5",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/api.py",
+      "name": "verify_checkpoint_contract",
+      "line": 7,
+      "file_sha256": "7e52be356ef05f79350fbf1c1a7e839d6c624afe63c98b73d08b6cd4859a449e",
+      "AST_sha256": "d5bded5b3088c9eb40de3571b173ec39360a5c75e6b044e61bf35fa96bd6fb76",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/protocol.py",
+      "name": "score_block",
+      "line": 28,
+      "file_sha256": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+      "AST_sha256": "cd221f98e35933e651961a95264546615e60fe3864306f8b184adb360f412782",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/bank.py",
+      "name": "collect_forecasts",
+      "line": 12,
+      "file_sha256": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+      "AST_sha256": "e422a478b32e4dbccfd418d89929b909c8885635154bea68d78dc499b1028849",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/bank.py",
+      "name": "write_bank",
+      "line": 77,
+      "file_sha256": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+      "AST_sha256": "9c92d9f5d3aac0fc29831d5bb9d9fd0d077aacda37120e9bd66fadac9a9a4791",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/bank.py",
+      "name": "inference_metadata",
+      "line": 88,
+      "file_sha256": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+      "AST_sha256": "ebedddaa740b51f4b7a5363e92e9390a71541daba20ae796fe395585d50d74e0",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/readout_manifest.py",
+      "name": "entity_profile",
+      "line": 27,
+      "file_sha256": "610dcb961e74ded343502abdb330f50245fde4eefabaf0a8260696d2bb607833",
+      "AST_sha256": "a5b3acf92c20ae047e71f9751b9ae14459d8a11172ebf8a927bfbf6ca5770b43",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/readout_manifest.py",
+      "name": "record",
+      "line": 14,
+      "file_sha256": "610dcb961e74ded343502abdb330f50245fde4eefabaf0a8260696d2bb607833",
+      "AST_sha256": "cf5bac4a89fb84c53e3b66781d9d45352c48112554377e954fccbcef69048959",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/identity.py",
+      "name": "operation_manifest",
+      "line": 12,
+      "file_sha256": "28a099c598fcd0e03169fdbf14c9fc85ab2d119293a92481e4ef5c78475d1284",
+      "AST_sha256": "241fe487298e6a1d8ea9ad1a007bca3a5d1fac691a35fa1f7db8f4bb3330802a",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/identity.py",
+      "name": "source_calibration",
+      "line": 25,
+      "file_sha256": "28a099c598fcd0e03169fdbf14c9fc85ab2d119293a92481e4ef5c78475d1284",
+      "AST_sha256": "70268f26283e1bd0538ac719ee6342a059baedfcefb14624603b2177c095acfa",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2.py",
+      "name": "evaluate_target_cal",
+      "line": 138,
+      "file_sha256": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+      "AST_sha256": "d80d3f942c4f8c92bf4a346083eb37943802c65cb734a911d9031f9ff21bcd4f",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2.py",
+      "name": "calibration_tracks",
+      "line": 370,
+      "file_sha256": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+      "AST_sha256": "c4877598a53fc76930357dae7d744b9ca8b7f504355a6273fee6b78b16a9140b",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2.py",
+      "name": "_snapshot",
+      "line": 186,
+      "file_sha256": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+      "AST_sha256": "d7b49a894109834188d6693b88925250cd032f0fcc4b2a54779f4ed756308631",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2.py",
+      "name": "_finish",
+      "line": 197,
+      "file_sha256": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+      "AST_sha256": "965d587cf7193a73cf32ac14d2385242227f6610d18819d4c9bd533c78bcf5cb",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2_data.py",
+      "name": "validate_target",
+      "line": 37,
+      "file_sha256": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+      "AST_sha256": "fc23a8a1dfd226ae7ca4a131a312cf54e9722f4d3dbdfe4d03c62527aca02a92",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2_data.py",
+      "name": "validate_source_trace",
+      "line": 79,
+      "file_sha256": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+      "AST_sha256": "a4d7a9b47233a3aec33b81a3a03904055d201d2360ee1e62736f61478292ce75",
+      "reuse": "direct import/call; original file byte unchanged"
+    },
+    {
+      "file": "src/hybrid_tsad/engine/stage2_data.py",
+      "name": "TargetNormal",
+      "line": 108,
+      "file_sha256": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+      "AST_sha256": "6d169b568e6c4e118a03b2b2d243fcf48399cbb7b2e69be50b895811910d0bcf",
+      "reuse": "direct import/call; original file byte unchanged"
+    }
+  ],
+  "validation": {
+    "new_final_v7": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 31.556611498992424,
+      "torch": "2.8.0+cu128",
+      "CUDA_VISIBLE_DEVICES": "",
+      "scope": "synthetic CPU only; no real query/cal/data/label or GPU",
+      "successful": true
+    },
+    "old_schema_v6": {
+      "patterns": [
+        "test_stage2.py",
+        "test_multi_readout.py",
+        "test_physical_validation.py",
+        "test_native_training.py"
+      ],
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 27.75763032300165,
+      "scope": "previous schema4/5/native/physical synthetic CPU regressions; no real data or GPU",
+      "successful": true
+    },
+    "old_schema_version_note": "34 old tests executed on v6. Only final v7 differences are metadata equality checks in NEW readout bridge plus fixture old-seal profile/catalog; no old source/test/CLI changed. Final new6 tests rerun v7.",
+    "v6_v7_changed_files": [
+      "src/hybrid_tsad/engine/stage2_readout.py",
+      "tests/test_stage2_readout.py"
+    ],
+    "unique_tests_passed": 40,
+    "unresolved_skips": 0,
+    "compile": true,
+    "local_static": {
+      "compile": true,
+      "previews": [
+        {
+          "operation": "catalog",
+          "manifest_sha256": "940df5bc72c09d8741926e26142f8e44772711c716117593a870b019905ee98e"
+        },
+        {
+          "operation": "z-normal-cal",
+          "manifest_sha256": "673993e3645093b886918947e9e3600d1842ccec835683ecc47b657547e9feac"
+        },
+        {
+          "operation": "infer",
+          "manifest_sha256": "9683b46d4a4188cabdf306b182c4725c6f781e28a8f418c56dc4ffe33da7b9e3"
+        },
+        {
+          "operation": "seal",
+          "manifest_sha256": "1cb4e77845e58540f38d409180bc5e804048da7b2a9b7f05709fcc500fe9d14e"
+        },
+        {
+          "operation": "gate",
+          "manifest_sha256": "bf20f567644ddbdc40ad1a7f2e5995a3a8127f7f1ab648c1f973df43347f7a8b"
+        }
+      ],
+      "runtime_identity_without_torch": true,
+      "scope": "metadata/config/compile only"
+    },
+    "real_rows_metadata_only": {
+      "scope": "metadata shape/hash map only; not actual production catalog load or cal/bank/model validation",
+      "rows": 18,
+      "fields_per_row": 14,
+      "canonical_map_matches": true,
+      "rows_sha256": "352856a5399031bc4d666f427d0a11178301535756c4c4c952df3610c3226da2",
+      "primary_sha256": "9d48db090504cdd5af7aebc98724073734743d1efe8ead928cec96a6239e377a",
+      "model_executed": false,
+      "query_opened": false
+    }
+  },
+  "original_failures": {
+    "v1": "two errors: immutable shard written twice; fixture attribute typo",
+    "v2": "one failed expected reason caused by fixture filename collision; SHA guard rejected earlier correctly",
+    "preserved": "v1/v2 receipts and raw source ZIP hashes; not overwritten",
+    "raw_zip_sha256": {
+      "v1": "d78c59739bc5f94540fb11b4d8f1d78825ec8a9b8b162985c70b4dcc89d31b5d",
+      "v2": "3be3aaa5b76d6a956b5e5bdde15d2749c6559d2e9ee2f60bf3be34180fc99943",
+      "v3": "bd747a8f747aeaf0fd23f23da52ee83ed67d07e6a5d060296e2e70dada17e836",
+      "v4": "d762e25d56ef3b322fcce57082fe69827986802d830e494dea00210f951a8778",
+      "v5": "f83f0de76adc357239d6af14a26f4d83bf523387efdfb1e5d225b37727c70b81",
+      "v6": "22fdb6d96f456cab6af8fdc905e7b57699db8f37f12c35fe64a36e8ef3d56942",
+      "v7": "2e3a48c3b62c19be4b9f0ac287c7738c48f38f695857f96a1d48a525221ae934"
+    }
+  },
+  "scope": {
+    "real_query_bank_or_score_opened": false,
+    "real_labels_opened": false,
+    "real_model_or_Z_normal_cal_executed": false,
+    "GPU_executed": false,
+    "real_catalog_built": false,
+    "official_source_vendored": false,
+    "git_operations": false
+  },
+  "implemented": [
+    "independent schema6 CPU-safe preview/runtime identity and exact operation approval",
+    "18 model stage/init/parent/role/primary/trace/archive/full-wave-cal acceptance guard",
+    "raw U inference via unchanged collector; exact seed84551 once per entity and first2 RNG replay",
+    "9 Z normal-threshold-only path using unchanged source units and nonmonotone cal helper; physical/canonical/operation/approval closure",
+    "complete7200/full synthetic grid seal with single canonical object for two thresholds, old Z only readonly references, strict missing/duplicate/partial refusal",
+    "fixed original Z physical bank bridge plus exact query/source/profile/backend provenance requirements; no assumed cache",
+    "separate gate eligibility only, never label permission"
+  ],
+  "limitations": [
+    "No production catalog/physical bridge was loaded or constructed; true18-row acceptance only structural/canonical metadata checked.",
+    "Actual core three-mode CPU test covers wrapper/collector transport on synthetic data, not science or GPU equivalence. Complete config test uses synthetic metadata/artifacts and toy existing-shape head fixtures.",
+    "Production needs independent bridge audit/root acceptance and real resource execution receipts. No new readout resource shell/ledger or GPU runtime executed.",
+    "All new-dimensional evaluation/statistics/label loading deferred; gate never grants labels.",
+    "6GiB/8GPUh remain candidate ceilings requiring separate root releases. No true Zcal/queryL0/profiling/full infer performed.",
+    "Inherited Torch float(loss) diagnostic warning in unchanged old stage2 tests retained; no numerical path changed to suppress it."
+  ],
+  "artifacts": {
+    "BEFORE_cli.py": "4e71b228e6fb0ff488967df9670930d156881b46ad8aa8f2a46662ae5efc85cb",
+    "candidate.patch": "450e72c97e3eeee379e05594f5231bd9f1492fdc432453ce402c024c5c00c41b",
+    "LOCAL_STATIC.json": "4933b273751f63f6d53c56031c0ae5e2a4b1dceb113e711e9235039076150ff7",
+    "READOUT_RUNTIME_IDENTITY.json": "19c829567edfed6f280eb8163767b8934d89d18197fcab01e3a58f5e717e7749",
+    "REAL_ROWS_METADATA_INTERFACE.json": "e40e95d21a30d550945c61d7e54b3038f2de476f1bf18aac2fd1486a8aacbf2c",
+    "v1/CPU_TESTS.json": "398fedf87d5c7f6c65d6a53bc5a3d9fd91fbb3733f0d99e324b4cd7c28156b63",
+    "v1/CPU_TESTS.txt": "2a5028c0a4c56abdfd5684d9cc250991b059033ef9d1089cbe649acac9ba551a",
+    "v2/CPU_TESTS.json": "667203f9ea3cf5607d472de1349238a14d80e38c5005fccaa2edf78f92aa8fbd",
+    "v2/CPU_TESTS.txt": "c4fe7b7076fb915ee8c36ed65465191543f53f44a4a7be85f749183d225f5525",
+    "v3/CPU_TESTS.json": "f6168ad65b07c940da2ae140dfb7258e4964cc63883ef131ce89e99b17583faf",
+    "v3/CPU_TESTS.txt": "4f86282be9e81f154374b0954fbb5370cfa902ff243a7d2e8c99e7dd14449d54",
+    "v4/CPU_TESTS.json": "ea65e92ded7c95b9e363546f65e8410029e502520a87efbc1d4624ba9c83a179",
+    "v4/CPU_TESTS.txt": "9322b1b096cc78a0e3b4aac7e5e35d70915dfd4cc1ca93229e3c4a9d77e1eac3",
+    "v5/CPU_TESTS.json": "5701adc7a92d589149d5db938eeb1cae6565751a6c6b3b8082f1a4187987c74c",
+    "v5/CPU_TESTS.txt": "53b2ce40ccdfec0bc36fd6ffeab2d1ff5805da48cb5e5726a7895806363f6114",
+    "v6/CPU_TESTS.json": "f1d66926674042c94110dbb5ca5c276a643fb883c7ea7c22b6ce1a486cf07aad",
+    "v6/CPU_TESTS.txt": "a17b2c7c08bf5228dd0c12e27cce8b604aa3dc4d6d2ae025454d2aaf1e78562d",
+    "v6/OLD_SCHEMA_TESTS.json": "7f5aefca52b50a43c155b63fcd309e68e77b80920cca853f20fa59b507988358",
+    "v6/OLD_SCHEMA_TESTS.txt": "5d95d6dda0aab3c4da865176672a10ffe53ef748e2de827e1c8f6cbd872304b1",
+    "v7/CPU_TESTS.json": "ee7e42c2d117109183e6af0f212917d4678f0a3ebcf07b24786ecd929378efe2",
+    "v7/CPU_TESTS.txt": "94904a0be93f52054dfbbefa1fc0acefc0f4650920efa5bd5459b894c18e8f9d"
+  }
+}

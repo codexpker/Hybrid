@@ -1,0 +1,84 @@
+{
+  "engine_schema_version": 6,
+  "stage": "U_NORMAL_HEAD_READOUT",
+  "operation": "infer",
+  "contract": {
+    "path": "../../external/u_readout/CONTRACT.md",
+    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
+  },
+  "approval": {
+    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "inputs": {
+    "catalog": {
+      "path": "../../external/u_readout/catalog.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "whitelist": {
+      "path": "../../external/u_readout/whitelist.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "profile": {
+      "name": "TEP100",
+      "faults": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "runs": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "points": 960,
+      "channels": 52,
+      "event_start": 160,
+      "sample_interval_minutes": 3
+    },
+    "scope": "shard",
+    "runtime": {
+      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "device": "cuda:0"
+  },
+  "output": "../../external/u_readout/new_infer",
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
+}

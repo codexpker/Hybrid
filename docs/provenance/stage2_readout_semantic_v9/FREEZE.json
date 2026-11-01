@@ -1,0 +1,113 @@
+{
+  "status": "FROZEN_SEMANTIC_V9_LIMITED_REVISION_FOR_INDEPENDENT_REVIEW",
+  "previous_v8_freeze_sha256": "c530d52c960a08a60ba741676b83a3560ec4b7418d1463cdaddc2f959601bf28",
+  "original_independent_failure_sha256": "3a14e3375c95be6da20e963d524500da10f1955c87f85cf609f2b57a5d1f9247",
+  "changed_files": {
+    "src/hybrid_tsad/engine/stage2_readout.py": {
+      "before": "5f4d80af2147dfccd5cc8e9c6b027b61498dd1c35321a9a7627bc5922751df63",
+      "after": "a712825a1eb757bafb1de5f4cec9def6ede1a47174cb65461eb70b5b7bae8b02"
+    },
+    "tests/test_stage2_readout.py": {
+      "before": "457e678e023667b2a156995a9bbbaa304491b989b5df813bb233270edf30b1e0",
+      "after": "9086fb1963d02b3cf9da34653f9e4c892c0c121c3bb4297d381a4865bc665fc4"
+    },
+    "docs/stage2_readout.md": {
+      "before": "8e6a6a93b25c2da41fc575d1d76e3d7906b22dcb7a4ad60eeef2e8cd38835734",
+      "after": "fdfc8394e54bfc02d8c54cffd4a7402d7dd6861b32e32f23d9ca36a8c4314ec3"
+    }
+  },
+  "changed_source_functions": [
+    "seal"
+  ],
+  "validation": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 35.45243007800309,
+    "torch": "2.8.0+cu128",
+    "CUDA_VISIBLE_DEVICES": "",
+    "scope": "synthetic CPU only; no real Z RNG/bank/score/labels/cal or GPU; semantic negatives not production receipt bypass",
+    "successful": true
+  },
+  "negative_subcases": [
+    "empty RNG width",
+    "all-zero same width RNG",
+    "single block one-byte RNG mutation",
+    "seed999",
+    "mode tf inconsistent with temporal job",
+    "random_init inconsistent with pretrained job",
+    "training=true",
+    "status RUNNING",
+    "wrong readout_job",
+    "wrong points",
+    "wrong blocks",
+    "batch64",
+    "replay_first2_bit_exact=false"
+  ],
+  "RNG_policy": "Exact archived-byte comparison to frozen old Z SAME seed/mode/entity, fixed core/copies/shape/84551. No generated reference, guessed CPU/CUDA width/seed/offset, or new production forward.",
+  "metadata_policy": "JOBS seed/mode/init; readout_job/status; points/blocks/batch/history/mask_seed integer fields; no training/labels; replay true; descriptor origins exact.",
+  "limitation": "Semantic validation is not a production OS receipt signature bypass claim. RNG agreement only validates random-consumption sequence, not correctness of new predictions. Execution identity, physical target/scale and score formula remain separately required.",
+  "old_schema_note": "Old34 regression receipts retained unchanged; no old source modified and not repeated for this bounded semantic fix.",
+  "protected_files_unchanged": {
+    "src/hybrid_tsad/api.py": "7e52be356ef05f79350fbf1c1a7e839d6c624afe63c98b73d08b6cd4859a449e",
+    "src/hybrid_tsad/config.py": "54a1114c72a0f44a4ec424a60299b61a8c8b75d30337a20b15c4c361454286cb",
+    "src/hybrid_tsad/data.py": "2c6b145166f4d5f900b26e7e05e8e823fee8ffdd33fc90ec0bfb8a1fcd4e8328",
+    "src/hybrid_tsad/inspection.py": "a3964517c42284439a8f3d61946a1a1fc9bd1b900af491a4c63b3d722b516392",
+    "src/hybrid_tsad/legacy.py": "665537eec379903fcdee53c3519b0248989a960b6e0e693763d786ec87c9e2f4",
+    "src/hybrid_tsad/model.py": "03022d55353f502c18aec31b379a14dbd0fd7964be0ac198dee6bf644810da41",
+    "src/hybrid_tsad/protocol.py": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+    "src/hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "src/hybrid_tsad/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "src/hybrid_tsad/engine/bank.py": "c9bf2b1e10eb689650cb30f9ee802c4a830c540f2a90f56c4833d2f27b2cabb5",
+    "src/hybrid_tsad/engine/evaluation.py": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+    "src/hybrid_tsad/engine/events.py": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+    "src/hybrid_tsad/engine/identity.py": "28a099c598fcd0e03169fdbf14c9fc85ab2d119293a92481e4ef5c78475d1284",
+    "src/hybrid_tsad/engine/multi_evaluation.py": "cd4aa220a7b6b32956c61b280abb8d67a1b331b589b052abd94728431408971c",
+    "src/hybrid_tsad/engine/multi_readout.py": "6a39dc2c887ffffaf7d164511b3f6bac91009e1c7de3112228976e9d073889a4",
+    "src/hybrid_tsad/engine/official_affiliation.py": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+    "src/hybrid_tsad/engine/physical_validation.py": "511999c952336b20c5829e3925ac989e6cc90a7bfe7759094285971519b03c35",
+    "src/hybrid_tsad/engine/pipeline.py": "c11b81bc20ebb6c82577437ef2305979156577ba7863c0e86cda9f2dd3fe140d",
+    "src/hybrid_tsad/engine/readout_controls.py": "92f15b46da7d5a57de08078ced677d5c4a1bdd8af2f0cd6fcfe8e1c9d5d4c126",
+    "src/hybrid_tsad/engine/readout_manifest.py": "610dcb961e74ded343502abdb330f50245fde4eefabaf0a8260696d2bb607833",
+    "src/hybrid_tsad/engine/run_statistics.py": "4f26305938f237052b30313b562cf96f8d87e731e6d4cc26c1844faa547a80af",
+    "src/hybrid_tsad/engine/source.py": "5c4105f02d58c02b770f8edbe8a86b051bd6ca8f66f0b7f728aba1f622569b9c",
+    "src/hybrid_tsad/engine/source_gate.py": "5f8ba2f4fd3c59893df4ea9446b547810e965248ad7a3d8fb577db1909a23a65",
+    "src/hybrid_tsad/engine/stage2.py": "9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da",
+    "src/hybrid_tsad/engine/stage2_data.py": "10d473dc159dff207288c695b98b5e1c59304c1e54844affb640c496735a999a",
+    "src/hybrid_tsad/engine/stage2_identity.py": "8f403510601aed2ec964003864f5a78c786b31f41883aec1f8603e46b481afed",
+    "src/hybrid_tsad/engine/statistics.py": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+    "src/hybrid_tsad/engine/training.py": "9c7ce2865ef7957ff843cb16f11f011a02357a4a1d278d8497df2f127ebd0fd2",
+    "src/hybrid_tsad/engine/__init__.py": "aa061bb184d2cdc14df48e0fac03c57f819d1af3db858def00a7370ffdacbf42",
+    "src/hybrid_tsad/cli.py": "f1771033fe4be25fb472c5042ef883d29e0d326432cb734732273f5c379b793f",
+    "src/hybrid_tsad/engine/stage2_readout_identity.py": "045927f00ec0b35732e7454d0a98cfef92b8fb86b3022a556beb6f73d66ba798",
+    "configs/stage2-readout.all18-acceptance.PENDING.example.json": "2b0897abc173ee06a6f2b2dab73b9ca3202664a2a1f7a9171beee9b2846d723a",
+    "configs/stage2-readout.catalog.example.json": "5cfd379884ca4e3303315dd9ec6d03276119817c8400becedb4971dcd6d95a80",
+    "configs/stage2-readout.gate.example.json": "b9651b08b300f832e9a65203c778b3f30f636baf9d70209b2cddbad61b9cc76f",
+    "configs/stage2-readout.infer.example.json": "30c2b92d9004ef651d599c16638c366e67fe95f217563908378fd9c93fe38e9f",
+    "configs/stage2-readout.seal.example.json": "68cda273dec19dd590a51eb212382a81f33d8ac852dcf5f6e5602b1fba8a6cbb",
+    "configs/stage2-readout.u-model-row.PENDING.example.json": "36878a1c80eb9ce769fff8581873c003572e74e40fa67e6c41de51d2fcd716a9",
+    "configs/stage2-readout.z-normal-cal.example.json": "eba9d15a4e1ed4a672804af44b2bfed8572ffea60810d3185d25f5f7c92a3109"
+  },
+  "raw_test_zip_sha256": "c80b1f5701291628d03f744f4fde25b3de94fa86f839f6c28c6cb656860c30fc",
+  "raw_src_test_configs_equal_zip": true,
+  "compile": true,
+  "scope": {
+    "real_Z_RNG_or_bank_or_score_or_labels_read": false,
+    "production_model_or_cal_or_query_or_GPU": false,
+    "Git": false,
+    "new_expected_RNG_forward": false,
+    "old_v7_v8_or_failure_overwritten": false
+  },
+  "paused_evaluation_note": "research_workspace/notes/hybrid_stage2_evaluation_interface_audit.md (in-progress audit saved before fix; no implementation)",
+  "artifacts": {
+    "CPU_TESTS.json": "079b9bd117054d8da0b3090bb220029f35386740a052125df19875b56ceba27a",
+    "CPU_TESTS.txt": "b0007acf78f6dee42c0bbf5eea09074a31cfc323bd05843f223840ce2e72a343",
+    "READOUT_RUNTIME_IDENTITY.json": "076d9bca571f8fb56d228e30dad7d4ef51db42f437c010f55aaadc1ea9d5f665",
+    "semantic_audit.original.json": "3a14e3375c95be6da20e963d524500da10f1955c87f85cf609f2b57a5d1f9247",
+    "V8_TO_V9.patch": "9c3312c6e342a6a4d676985dee7767430224d19ec8fe8ea9aa4f1027300b1224",
+    "before/stage2_readout.md": "8e6a6a93b25c2da41fc575d1d76e3d7906b22dcb7a4ad60eeef2e8cd38835734",
+    "before/stage2_readout.py": "5f4d80af2147dfccd5cc8e9c6b027b61498dd1c35321a9a7627bc5922751df63",
+    "before/test_stage2_readout.py": "457e678e023667b2a156995a9bbbaa304491b989b5df813bb233270edf30b1e0"
+  }
+}

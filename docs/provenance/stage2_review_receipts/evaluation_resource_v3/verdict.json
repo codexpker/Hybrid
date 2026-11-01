@@ -1,0 +1,21 @@
+{
+  "status": "PASS_LIMITED_RESOURCE_V3_CPU_ONLY",
+  "decision": "ACCEPTABLE_FOR_NEXT_STAGE",
+  "scope": "Pre-label resource helper and single overrun guard only",
+  "other33_python_sha_unchanged": true,
+  "old_math_authorization_AST_unchanged": true,
+  "synthetic_limit_seconds": 300,
+  "TEP100_limit_seconds": 900,
+  "unknown_profile": "REJECT",
+  "synthetic_301_overrun": "FAILED_NO_COMPLETE_REPORT",
+  "real_label_release": false,
+  "real_full400_resource_evidence": "INCOMPLETE",
+  "actual_readout_gate": "INCOMPLETE",
+  "benefit_credibility": "NONE",
+  "contribution": "UNSUPPORTED",
+  "scientific_decision": "HOLD",
+  "freeze_sha256": "e0ed9feb5ea80b77ce1030d48129aaa04e99008d717f9c8031763e30ea121d07",
+  "runtime_sha256": "31141c0059fed5af83a50bb47b596f6b62e60df3f692e08c5ab086ce9597ca50",
+  "raw_zip_sha256": "ed4ca84c9af20b21413475df59233c13633744924924d12ec1d5979978e66ec3",
+  "independence": "Not involved in candidate implementation; same model family and shared workspace; not external or double-blind"
+}

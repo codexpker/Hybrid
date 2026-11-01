@@ -1,0 +1,13 @@
+{
+  "tests": 6,
+  "failures": 0,
+  "errors": 1,
+  "skips": 0,
+  "seconds": 2.927893364976626,
+  "peak_RSS_bytes": 150208512,
+  "address_space_limit": 2147483648,
+  "torch_imported": false,
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "synthetic CPU metrics/labels only; original32 snapshot hashed/copied, never gate executed; no real data or GPU",
+  "successful": false
+}

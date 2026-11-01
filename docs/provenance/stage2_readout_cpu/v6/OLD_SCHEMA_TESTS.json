@@ -1,0 +1,15 @@
+{
+  "patterns": [
+    "test_stage2.py",
+    "test_multi_readout.py",
+    "test_physical_validation.py",
+    "test_native_training.py"
+  ],
+  "tests": 34,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "seconds": 27.75763032300165,
+  "scope": "previous schema4/5/native/physical synthetic CPU regressions; no real data or GPU",
+  "successful": true
+}

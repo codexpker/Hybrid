@@ -1,0 +1,21 @@
+# v3资源上限窄回审
+
+2026-11-01。**PASS_LIMITED_RESOURCE_V3_CPU_ONLY / ACCEPTABLE_FOR_NEXT_STAGE**。本次只审预label资源补充，不重跑v2数学测试，不释放真实评价。
+
+审查者未参与候选开发；同模型家族、共享workspace，不是外部或双盲。v2独审原件完整保留。本次仅新增v3子目录；无候选源码修改、Git、真实或合成数组/标签/AP、Torch/GPU调用。
+
+锁定及核验：
+
+- 资源补充合同SHA `4f57994daa517278ea6456c00a447643b61ca74c79025488604e5702b66b020b`。
+- FREEZE `e0ed9feb5ea80b77ce1030d48129aaa04e99008d717f9c8031763e30ea121d07`。
+- 差分 `c7e067ed47d83696c1ad7dc8cc7ed95910c76eebe05e94cda181fc1d181e191f`。
+- v3 runtime `31141c0059fed5af83a50bb47b596f6b62e60df3f692e08c5ab086ce9597ca50`。
+- raw ZIP `ed4ca84c9af20b21413475df59233c13633744924924d12ec1d5979978e66ec3`，全部freeze清单及34py在工作树/ZIP逐SHA相等。
+
+独立narrow_tests.py与v2原raw ZIP对照：其余33py逐SHA未变；新stage2_evaluation.py完整模块AST在去掉新增evaluation_limit_seconds及恢复原唯一超时if后，与v2完全相等。runtime_identity、load_operation、authorize、registry、threshold_only、_bytes_identity、evaluate_registry七个旧函数AST各自完全相等；统计模块原字节未变。因而原数学、权限与gate分支没有随资源修订改变。旧32py snapshot逐SHA未变。
+
+独立执行实际冻结源码提取的helper，断言SYNTHETIC=300、TEP100=900，空profile、UNKNOWN、大小写不符及尾空格均拒绝。执行实际run_evaluation函数AST，以非数值授权/评价stub隔离依赖，并令monotonic返回0、301：实际新超时分支抛出预期ValueError，写FAILED_NO_COMPLETE_REPORT，且没有evaluation_summary或evaluation_manifest。此为准确函数控制流测试，未冒称真实完整授权/评价集成测试。两次审查stub缺字段导致的初始harness错误已在harness_initial_failure.txt保留，均在超时分支前，无候选改动。
+
+本轮最终主体0.078秒，峰working set 31010816字节，小于60秒/512MiB。仅标准库，未导入numpy/sklearn/torch，没有数组和AP计算；未重复261组差分。
+
+900秒是预先资源上限，不是实测吞吐，也不保证全400评价完成。候选保留原内核完成主要计算后的时限检查语义；未来外层硬timeout/终止宽限仍须另行主签。真实完整seal、原32py实际gate、独审/主接受、显式标签release与真实400资源证据仍INCOMPLETE。科学HOLD、收益NONE、创新UNSUPPORTED均未改变。

@@ -1,0 +1,17 @@
+{
+  "status": "PRIMARY_ACCEPTED_ENGINEERING_DELIVERY_FOR_GIT",
+  "utc": "2026-11-01T05:08:58.579187+00:00",
+  "original_candidate_manifest_sha256": "aba12a32dbd636dca0c1d243d96c368a333a9da40d0f9de8b3b87366fccf89b3",
+  "original87_candidate_hashes_checked_before_root_doc_fix": true,
+  "evaluation_runtime34_sha256": "31141c0059fed5af83a50bb47b596f6b62e60df3f692e08c5ab086ce9597ca50",
+  "root_doc_only_correction": {
+    "file": "README.md",
+    "before_sha256": "4b6b9217800d2e33112cd590d71f11e4cd8777e8fa56d5cc07db154449a10de8",
+    "after_sha256": "0a12bd1d588b9fa8bcd5aa39217713577e3320b9e1158b93771d5ad3ef125ec0",
+    "reason": "Clarify legacy --allow-labels does not apply to independent schema7 stage2-evaluate CLI; its explicit label release remains required."
+  },
+  "scientific_source_tests_configs_unchanged": true,
+  "scope": "CPU-reviewed readout/evaluation engineering, frozen runtime separation; no AD benefit claim, no real data/weights/scores/upstream source redistribution",
+  "independence": "Same-family shared-workspace procedural reviews; not external/double-blind",
+  "real_gate_labels_or_complete_workflow_claim": false
+}

@@ -1,0 +1,27 @@
+{
+  "compile": true,
+  "previews": [
+    {
+      "operation": "catalog",
+      "manifest_sha256": "940df5bc72c09d8741926e26142f8e44772711c716117593a870b019905ee98e"
+    },
+    {
+      "operation": "z-normal-cal",
+      "manifest_sha256": "673993e3645093b886918947e9e3600d1842ccec835683ecc47b657547e9feac"
+    },
+    {
+      "operation": "infer",
+      "manifest_sha256": "9683b46d4a4188cabdf306b182c4725c6f781e28a8f418c56dc4ffe33da7b9e3"
+    },
+    {
+      "operation": "seal",
+      "manifest_sha256": "1cb4e77845e58540f38d409180bc5e804048da7b2a9b7f05709fcc500fe9d14e"
+    },
+    {
+      "operation": "gate",
+      "manifest_sha256": "bf20f567644ddbdc40ad1a7f2e5995a3a8127f7f1ab648c1f973df43347f7a8b"
+    }
+  ],
+  "runtime_identity_without_torch": true,
+  "scope": "metadata/config/compile only"
+}

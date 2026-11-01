@@ -1,0 +1,59 @@
+--- v2/src/hybrid_tsad/engine/stage2_evaluation.py
++++ v3/src/hybrid_tsad/engine/stage2_evaluation.py
+@@ -19,6 +19,13 @@
+ READOUT_STAGE='U_NORMAL_HEAD_READOUT'
+ CONTRACT_SHA='71fde43d68ec20f70f8bf5218e35d94ffae87332d59674648dd1bf77e0df843c'
+ INPUTS={'seal','gate_acceptance','gate_summary','gate_config','gate_os_wait','gate_resource','readout_runtime','readout_copy_manifest','query_manifest','affiliation','runtime'}
++
++
++def evaluation_limit_seconds(profile):
++    """Pre-label resource caps only; never selected from scores or throughput."""
++    limits={'SYNTHETIC':300,'TEP100':900}
++    if profile.get('name') not in limits:raise ValueError('Unknown evaluation resource profile')
++    return limits[profile['name']]
+ 
+ 
+ def runtime_identity():
+@@ -287,7 +294,7 @@
+     try:
+         rows,events,alarms,affinity,prefix,coordinates,calls=evaluate_registry(objects,entities,callback,c['parameters']['profile'])
+         stats=run_statistics(rows,c['parameters']['profile']);normal=normal_prefix_summary(prefix,c['parameters']['profile']);delays=delay_summary(events)
+-        if time.monotonic()-started>300:raise ValueError('CPU evaluation300second budget exceeded')
++        if time.monotonic()-started>evaluation_limit_seconds(c['parameters']['profile']):raise ValueError('CPU evaluation profile time budget exceeded')
+         from .multi_evaluation import write_csv
+         np.savez_compressed(out/'paired_run_bootstrap.npz',**stats.pop('bootstrap_arrays'))
+         for name,data in [('entity_metrics',rows),('event_results',events),('alarm_events',alarms),('entity_affiliation',affinity),('normal_prefix_by_run',normal),('delay_summary',delays),
+--- v2/tests/test_stage2_evaluation.py
++++ v3/tests/test_stage2_evaluation.py
+@@ -169,6 +169,20 @@
+ 
+ 
+ class ThresholdAndStatisticsTests(unittest.TestCase):
++    def test_prelabel_profile_resource_caps_and_overrun(self):
++        from hybrid_tsad.engine.stage2_evaluation import evaluation_limit_seconds
++        self.assertEqual(evaluation_limit_seconds({'name':'SYNTHETIC'}),300)
++        self.assertEqual(evaluation_limit_seconds({'name':'TEP100'}),900)
++        for profile in ({},{'name':'UNKNOWN'},{'name':'tep100'}):
++            with self.assertRaisesRegex(ValueError,'Unknown evaluation resource profile'):evaluation_limit_seconds(profile)
++        with tempfile.TemporaryDirectory() as t:
++            fixture=Fixture(Path(t));config=fixture.config('overrun')
++            with patch('hybrid_tsad.engine.stage2_evaluation.time.monotonic',side_effect=[0.,301.]):
++                with self.assertRaisesRegex(ValueError,'profile time budget exceeded'):run_evaluation(config,execute=True)
++            out=Path(json.loads(config.read_text())['output'])
++            self.assertEqual(json.loads((out/'evaluation_failure.json').read_text())['status'],'FAILED_NO_COMPLETE_REPORT')
++            self.assertFalse((out/'evaluation_summary.json').exists())
++
+     def test_threshold_only_exact_old_kernel_oracle_edge_cases(self):
+         from hybrid_tsad.engine.evaluation import evaluate_fixed_scores
+         from hybrid_tsad.engine.official_affiliation import load_official_affiliation,OFFICIAL_FILES
+--- v2/docs/stage2_evaluation.md
++++ v3/docs/stage2_evaluation.md
+@@ -1,6 +1,8 @@
+ # Stage2 固定双阈值评价（CPU 工程候选）
+ 
+ 本模块只装配既定 U 正常头适配合同的评价，不训练、不推理、不拟合尺度或阈值。当前验收仅合成 CPU；不存在由本候选产生的真实 TEP 性能结论或标签释放许可。
++
++资源 v3 窄修订依据预 label 补充合同（SHA `4f57994daa517278ea6456c00a447643b61ca74c79025488604e5702b66b020b`），仅由固定 profile 决定限额：SYNTHETIC 维持 300 秒，未来 TEP100 预先固定 900 秒；2 GiB 不变，未来外层 timeout 及终止宽限仍需主签。900 秒只是资源上限，不是全 400 实体实测吞吐，也不提供真实评价许可。旧 v2 冻结和回执保留，v3 记录见 `provenance/stage2_evaluation_resource_v3`。
+ 
+ ## 版本与入口
+ 

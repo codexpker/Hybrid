@@ -1,0 +1,115 @@
+{
+  "engine_schema_version": 7,
+  "stage": "U_NORMAL_HEAD_EVALUATION",
+  "operation": "evaluate",
+  "contract": {
+    "path": "../../external/u_evaluation/CONTRACT.md",
+    "sha256": "71fde43d68ec20f70f8bf5218e35d94ffae87332d59674648dd1bf77e0df843c"
+  },
+  "approval": {
+    "path": "../../external/u_evaluation/PRIMARY_LABEL_RELEASE.PENDING.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "inputs": {
+    "seal": {
+      "path": "../../external/u_evaluation/seal.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gate_acceptance": {
+      "path": "../../external/u_evaluation/gate_acceptance.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gate_summary": {
+      "path": "../../external/u_evaluation/gate_summary.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gate_config": {
+      "path": "../../external/u_evaluation/gate_config.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gate_os_wait": {
+      "path": "../../external/u_evaluation/gate_os_wait.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "gate_resource": {
+      "path": "../../external/u_evaluation/gate_resource.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "readout_runtime": {
+      "path": "../../external/u_evaluation/readout_runtime.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "readout_copy_manifest": {
+      "path": "../../external/u_evaluation/readout_copy_manifest.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "query_manifest": {
+      "path": "../../external/u_evaluation/query_manifest.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "affiliation": {
+      "path": "../../external/u_evaluation/affiliation.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "runtime": {
+      "path": "../../external/u_evaluation/runtime.json",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "parameters": {
+    "profile": {
+      "name": "TEP100",
+      "faults": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "runs": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50
+      ],
+      "points": 960,
+      "channels": 52,
+      "event_start": 160,
+      "sample_interval_minutes": 3
+    },
+    "readout_runtime_root": "/EXTERNAL/runtime_stage2_readout_a712825a_v1"
+  },
+  "output": "../../external/u_evaluation/new_evaluation",
+  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
+}

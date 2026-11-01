@@ -1,0 +1,37 @@
+test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng (test_stage2_readout.ReadoutTests.test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng) ... ERROR
+test_cpu_fixture_permission_digest_and_no_labels_route (test_stage2_readout.ReadoutTests.test_cpu_fixture_permission_digest_and_no_labels_route) ... ok
+test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers (test_stage2_readout.ReadoutTests.test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers) ... ok
+test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused (test_stage2_readout.ReadoutTests.test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused) ... ok
+test_z_normal_cal_x2_resigned_q99_and_trace_change_refused (test_stage2_readout.ReadoutTests.test_z_normal_cal_x2_resigned_q99_and_trace_change_refused) ... ERROR
+
+======================================================================
+ERROR: test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng (test_stage2_readout.ReadoutTests.test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout6_v1/tests/test_stage2_readout.py", line 140, in test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng
+    wl=put(self.f.root/'whitelist.json',cells);p=self.f.operation('infer',dict(catalog=catalog,whitelist=wl),scope='shard');r=run_readout(p,execute=True)
+                                                                                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout6_v1/src/hybrid_tsad/engine/stage2_readout.py", line 259, in run_readout
+    result['operation_manifest_sha256']=digest;json_write(output/'shard.json',result)
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout6_v1/src/hybrid_tsad/engine/readout_manifest.py", line 139, in json_write
+    with path.open("x", encoding="utf-8") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/tmp/tmpl2vls8m4/infer_out/shard.json'
+
+======================================================================
+ERROR: test_z_normal_cal_x2_resigned_q99_and_trace_change_refused (test_stage2_readout.ReadoutTests.test_z_normal_cal_x2_resigned_q99_and_trace_change_refused)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_readout6_v1/tests/test_stage2_readout.py", line 199, in test_z_normal_cal_x2_resigned_q99_and_trace_change_refused
+    t=json.loads(path.read_text());t['normal_plan']=self.f.plans['1']['target_plan'];bp=put(path.parent/'wrong_plan.json',t)
+                                                    ^^^^^^^^^^^^
+AttributeError: 'Fixture' object has no attribute 'plans'
+
+----------------------------------------------------------------------
+Ran 5 tests in 18.577s
+
+FAILED (errors=2)

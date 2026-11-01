@@ -1,0 +1,93 @@
+--- frozen_v7/src/hybrid_tsad/engine/stage2_readout.py
++++ gold_v8/src/hybrid_tsad/engine/stage2_readout.py
+@@ -168,6 +168,9 @@
+             or old.get('status')!='ALL_FIXED_SCORES_SEALED_LABELS_LOCKED' or old.get('labels_opened') is not False
+             or old.get('complete_group') is not True or old.get('query_manifest')!=d['query_manifest']
+             or old.get('catalog')!=d['z_catalog'] or old.get('profile')!=profile):raise ValueError('HOLD: complete accepted old Z physical bridge unavailable')
++    if type(b.get('gold_seed')) is not int or b['gold_seed']!=0 or b.get('gold_mode')!='hybrid':
++        raise ValueError('Physical bridge gold must be the predeclared seed0/hybrid; no reference reselection')
++    gold_seed,gold_mode=b['gold_seed'],b['gold_mode']
+     expected={z_key(s,m,e) for s in range(3) for m in ('temporal','tf','hybrid') for e in a['entities']}
+     from .readout_manifest import expected_scores
+     if set(old['native_banks'])!=expected or set(old['scores'])!=expected_scores(a['entities']):raise ValueError('Old Z all-bank/score reference set incomplete')
+@@ -182,12 +185,12 @@
+     references={}
+     if set(b.get('entities',{}))!=set(a['entities']):raise ValueError('Physical reference lacks actual entity banks')
+     for entity,q in a['entities'].items():
+-        descriptor=old['native_banks'][z_key(0,'temporal',entity)]
+-        if b['entities'][entity]!=descriptor:raise ValueError('Reference is not the fixed original Z seed0 temporal bank')
++        descriptor=old['native_banks'][z_key(gold_seed,gold_mode,entity)]
++        if b['entities'][entity]!=descriptor:raise ValueError('Reference is not the fixed original Z seed0 hybrid bank')
+         meta=read_json(assets.file(descriptor['metadata'],old_path))
+         if (meta.get('query_array_sha256')!=q['array_sha256_from_frozen_parent'] or meta.get('history')!=100 or meta.get('mask_seed')!=84551
+-                or meta.get('checkpoint_sha256')!=a['z_models'][0,'temporal']['checkpoint']['sha256']
+-                or meta.get('bank_sha256')!=descriptor['bank']['sha256'] or meta.get('seed')!=0 or meta.get('mode')!='temporal'
++                or meta.get('checkpoint_sha256')!=a['z_models'][gold_seed,gold_mode]['checkpoint']['sha256']
++                or meta.get('bank_sha256')!=descriptor['bank']['sha256'] or meta.get('seed')!=gold_seed or meta.get('mode')!=gold_mode
+                 or meta.get('entity')!=entity):raise ValueError('Z goldbank physical source/history identity mismatch')
+         data_path=Path(q['array_path'])
+         assets.file({'path':str(data_path),'sha256':q['array_sha256_from_frozen_parent']},a['base'])
+--- frozen_v7/tests/test_stage2_readout.py
++++ gold_v8/tests/test_stage2_readout.py
+@@ -55,7 +55,7 @@
+         self.zseal=put(root/'old_Z_seal.json',dict(status='ALL_FIXED_SCORES_SEALED_LABELS_LOCKED',labels_opened=False,complete_group=True,
+             profile=self.profile,catalog=record(self.zcatalog),query_manifest=record(self.query),native_banks=native,scores=scores))
+         self.bridge=put(root/'bridge.json',dict(status='PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE',profile=self.profile,z_seal=record(self.zseal),
+-            query_manifest=record(self.query),entities={q['entity']:native['s0/temporal/'+q['entity']] for q in rows}))
++            query_manifest=record(self.query),gold_seed=0,gold_mode='hybrid',entities={q['entity']:native['s0/hybrid/'+q['entity']] for q in rows}))
+         trainroot=root/'old_training_runtime';p=trainroot/'src/hybrid_tsad/engine/stage2.py';p.parent.mkdir(parents=True);p.write_text('# synthetic metadata runtime only')
+         truntime=put(root/'old_training_runtime.json',dict(stage='U_NORMAL_HEAD',files={'src/hybrid_tsad/engine/stage2.py':sha256(p)}))
+         models=[]
+@@ -240,6 +240,30 @@
+             t=json.loads(path.read_text());t['normal_plan']=self.f.f.plans['1']['target_plan'];bp=put(path.parent/'wrong_plan.json',t)
+             with self.assertRaisesRegex(ValueError,'plan'):validate_z_threshold(bp,a,0,'hybrid')
+ 
++    def test_gold_mode_seed_and_checkpoint_are_closed_to_predeclared_hybrid(self):
++        from hybrid_tsad.engine.stage2_readout import run_readout,load_catalog,physical_bridge
++        from hybrid_tsad.engine.stage2_identity import Assets
++        with self.f.context():
++            run_readout(self.f.operation('catalog',dict(definition=self.f.definition)),execute=True)
++            a=load_catalog(self.f.root/'catalog_out/catalog.json',self.f.profile)
++            original=json.loads(self.f.bridge.read_text())
++            for field,value in [('gold_mode','temporal'),('gold_seed',1),('gold_seed',False)]:
++                changed=copy.deepcopy(original);changed[field]=value
++                aa={**a,'assets':Assets(),'definition':copy.deepcopy(a['definition'])}
++                aa['definition']['physical_bridge']=record(put(self.f.root/(field+str(value)+'_wrong_bridge.json'),changed))
++                with self.subTest(field=field,value=value),self.assertRaisesRegex(ValueError,'predeclared seed0/hybrid'):
++                    physical_bridge(aa,self.f.profile)
++            # Re-sign synthetic metadata/seal/bridge references, but leave bank values
++            # untouched. Wrong gold checkpoint still fails the original parent link.
++            old=json.loads(self.f.zseal.read_text());entity=min(a['entities']);key='s0/hybrid/'+entity
++            metadata=json.loads(Path(old['native_banks'][key]['metadata']['path']).read_text());metadata['checkpoint_sha256']='0'*64
++            mp=put(self.f.root/'wrong_gold_checkpoint.json',metadata);old['native_banks'][key]['metadata']=record(mp)
++            changed_seal=put(self.f.root/'wrong_gold_checkpoint_seal.json',old)
++            bridge=copy.deepcopy(original);bridge['z_seal']=record(changed_seal);bridge['entities'][entity]=old['native_banks'][key]
++            aa={**a,'assets':Assets(),'definition':copy.deepcopy(a['definition'])}
++            aa['definition']['z_seal']=record(changed_seal);aa['definition']['physical_bridge']=record(put(self.f.root/'wrong_checkpoint_bridge.json',bridge))
++            with self.assertRaisesRegex(ValueError,'source/history identity'):physical_bridge(aa,self.f.profile)
++
+     def test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers(self):
+         import numpy as np
+         import torch
+--- frozen_v7/docs/stage2_readout.md
++++ gold_v8/docs/stage2_readout.md
+@@ -80,7 +80,9 @@
+ ## 旧Z物理reference桥和执行证据
+ 
+ 桥文件 `status=PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE`，绑定profile、z_seal、query_manifest。
+-`entities[entity]` 必须原seal中固定seed0/temporal的bank/rng/metadata descriptor，不能凭空声称另有缓存。
++桥必须显式含 `gold_seed=0`（严格整数）与 `gold_mode="hybrid"`；这来自独审事前固定的真实gold，不是可选参考策略。
++`entities[entity]` 必须原seal中该固定seed0/hybrid的bank/rng/metadata descriptor，且metadata闭合到原hybrid_s0 checkpoint/mode/seed。
++不能重选temporal/其他seed，不能凭空声称另有缓存。
+ TEP还必须绑定原 `execution_evidence`、原固定CUDA backend、`independent_physical_audit` path/SHA。
+ 消费者核完整旧Z集合，实际query文件SHA、goldbank的真实target/index/origin/scale，以及其checkpoint/来源metadata；
+ 新U对该原preprocess参考使用原2e-6/2e-6，不换CPU公式或增容差。缺桥/资产不齐为HOLD，不执行补reference模型。
+@@ -95,6 +97,8 @@
+ ## 验证与未迁移
+ 
+ 冻结diff、出处/原字节SHA、CPU回执、初期失败留档见 `provenance/stage2_readout_cpu/FREEZE.json`。
++v7中错误的temporal gold硬编码已按事前固定的真实seed0/hybrid接口作有限v8修正；
++原冻结保留，当前gold修订diff/回执及原件在 `provenance/stage2_readout_gold_v8/FREEZE.json`，未重选或重推gold。
+ 完整配置正路用合成source/normal/query值和元数据fixture，未进行真实训练，也不把fixture汇总接受称主真实批准。
+ 另以外置官方文件构造既有真实三mode，用合成B1H100C52、两origin，直接比较旧collector与新wrapper的全部数组/逐块RNG。
+ 这仅证明工程传输等价，非检测增益、GPU等价或新科研结果。

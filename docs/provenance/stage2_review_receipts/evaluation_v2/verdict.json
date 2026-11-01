@@ -1,0 +1,20 @@
+{
+  "status": "PASS_LIMITED_SYNTHETIC_CPU",
+  "decision": "ACCEPTABLE_FOR_NEXT_STAGE",
+  "implementation": "PASS_LIMITED_CPU_SYNTHETIC",
+  "synthetic_data_protocol": "PASS_LIMITED_CPU_SYNTHETIC",
+  "synthetic_metrics_statistics": "PASS",
+  "actual_experiment_validity": "INCOMPLETE",
+  "actual_readout_gate": "INCOMPLETE",
+  "real_label_release": false,
+  "full400_resource_evidence": "INCOMPLETE",
+  "benefit_credibility": "NONE",
+  "contribution": "UNSUPPORTED",
+  "scientific_decision": "HOLD",
+  "independence": "Not involved in candidate implementation; same model family and shared workspace; not external or double-blind",
+  "freeze_sha256": "7f4c1032c753c4c68d09cf610739043e26fafae46ce2e2b0c5864046f395d233",
+  "candidate_patch_sha256": "b1a08bdf2e32b728648144f932dd140a5bd958e8c8691194034032112603f9e6",
+  "raw_zip_sha256": "9f5ba263b0e3831c0d1c05c407d2fefad19b1bef3bea56a04828003a1ff96900",
+  "evaluation_runtime_sha256": "852d5878c2dce9a72c2d4fff3c50b908c1c2a631e3c5d544f47b9386dfd4fa1c",
+  "readout_runtime_sha256": "076d9bca571f8fb56d228e30dad7d4ef51db42f437c010f55aaadc1ea9d5f665"
+}

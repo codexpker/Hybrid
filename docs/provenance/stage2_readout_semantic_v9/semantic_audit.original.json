@@ -1,0 +1,159 @@
+{
+  "status": "REQUIRES_REVISION",
+  "checks": [
+    {
+      "case": "ROOT_KNOWN_v7_rejects_predeclared_hybrid_gold",
+      "result": "REJECT",
+      "reason": "Reference is not the fixed original Z seed0 temporal bank"
+    },
+    {
+      "case": "v8_accepts_predeclared_hybrid_gold",
+      "result": "PASS"
+    },
+    {
+      "case": "v8_wrong_gold_gold_modetemporal",
+      "result": "REJECT",
+      "reason": "Physical bridge gold must be the predeclared seed0/hybrid; no reference reselection"
+    },
+    {
+      "case": "v8_wrong_gold_gold_seed1",
+      "result": "REJECT",
+      "reason": "Physical bridge gold must be the predeclared seed0/hybrid; no reference reselection"
+    },
+    {
+      "case": "v8_wrong_gold_gold_seedFalse",
+      "result": "REJECT",
+      "reason": "Physical bridge gold must be the predeclared seed0/hybrid; no reference reselection"
+    },
+    {
+      "case": "synthetic_full_schema6_catalog_9Zcal_36Ubank_seal_gate",
+      "result": "PASS",
+      "labels_permission": false,
+      "S_T_single_object": true
+    },
+    {
+      "case": "rng_zero_width",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/rng_zero_width_archive/shard.json",
+        "sha256": "d8d236afc8de11e00a852945bb14e46326e8b8769ee5d766ff423a7227e6cc74"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    },
+    {
+      "case": "rng_all_zero_same_width",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/rng_all_zero_same_width_archive/shard.json",
+        "sha256": "13a0e7113acce438898b01b97b64b067a69275c664c9d8e55de11d7ac17abd67"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    },
+    {
+      "case": "metadata_seed_init_contradiction",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/metadata_seed_init_contradiction_archive/shard.json",
+        "sha256": "877b488d3a61d3b4dfff2840428ea9ed50d422cb9d48d719a1e07df9b8355376"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    },
+    {
+      "case": "U_canonical_x2_rehashed",
+      "result": "REJECT",
+      "reason": "Canonical score not closed to physical bank/source units"
+    },
+    {
+      "case": "Z_canonical_x2_rehashed_q99",
+      "result": "REJECT",
+      "reason": "Z canonical/threshold not closed to physical bank and original source units"
+    },
+    {
+      "case": "missing_bank",
+      "result": "REJECT",
+      "reason": "Whitelist/output key mismatch"
+    },
+    {
+      "case": "duplicate_shard",
+      "result": "REJECT",
+      "reason": "Duplicate bank across shards"
+    },
+    {
+      "case": "L0_missing_init",
+      "result": "REJECT",
+      "reason": "L0 requires exact six seed0 models/initializations"
+    },
+    {
+      "case": "L0_wrong_seed",
+      "result": "REJECT",
+      "reason": "L0 is seed0 first entity first2 origins"
+    },
+    {
+      "case": "PENDING_before_np_load",
+      "result": "REJECT",
+      "reason": "Approval does not bind schema6 operation/permissions"
+    },
+    {
+      "case": "missing_U_row",
+      "result": "REJECT",
+      "reason": "All18 accepted U models required; no partial real catalog"
+    },
+    {
+      "case": "U_as_Z_stage",
+      "result": "REJECT",
+      "reason": "U row stage/init/seed/mode/step mismatch"
+    },
+    {
+      "case": "best_substitution",
+      "result": "REJECT",
+      "reason": "Only fixed head645 primary step1000 is permitted"
+    },
+    {
+      "case": "train_only_acceptance",
+      "result": "REJECT",
+      "reason": "Complete train+cal primary acceptance required; train-only is insufficient"
+    }
+  ],
+  "blockers": [
+    {
+      "case": "rng_zero_width",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/rng_zero_width_archive/shard.json",
+        "sha256": "d8d236afc8de11e00a852945bb14e46326e8b8769ee5d766ff423a7227e6cc74"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    },
+    {
+      "case": "rng_all_zero_same_width",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/rng_all_zero_same_width_archive/shard.json",
+        "sha256": "13a0e7113acce438898b01b97b64b067a69275c664c9d8e55de11d7ac17abd67"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    },
+    {
+      "case": "metadata_seed_init_contradiction",
+      "result": "UNEXPECTED_ACCEPT",
+      "key": "U_NORMAL_HEAD_READOUT/u_normal_head_temporal_s0_source_pretrained/fault01_run031",
+      "restaged_shard": {
+        "path": "/home/a312/tsad_research/independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/synthetic_fixture/metadata_seed_init_contradiction_archive/shard.json",
+        "sha256": "877b488d3a61d3b4dfff2840428ea9ed50d422cb9d48d719a1e07df9b8355376"
+      },
+      "scope": "synthetic semantic validation only; not a forged production execution-receipt bypass"
+    }
+  ],
+  "CPU_body_seconds": 14.638211682031397,
+  "peak_RSS_bytes": 597442560,
+  "GPU_hours": 0,
+  "real_data_query_prediction_score_label_access": false,
+  "source_fixture": "Developer synthetic constructor reused for artifact wiring; independent attack mutations and assertions above; no scientific training.",
+  "protected_old_source_files_verified": 29,
+  "provenance_AST_remote_matches": true
+}

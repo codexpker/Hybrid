@@ -1,0 +1,31 @@
+{
+  "status": "RAW_REVIEW_RECEIPTS_COPIED_NOT_NEW_REVIEW",
+  "files": {
+    "readout_v9/REVIEW.md": {
+      "sha256": "d6589c6a00dc4b9792ff51e7b04692d71130bd614f8753cc5c80a6a6497f113b",
+      "source": "independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/REVIEW.md"
+    },
+    "readout_v9/verdict.json": {
+      "sha256": "427cee08f0164b6ffc1e075ce7ed8ecb0cd95f200ffc8bd66634a799b2b18c9c",
+      "source": "independent_audit/HYBRID-TEP100-U-READOUT-ENGINE/verdict.json"
+    },
+    "evaluation_v2/REVIEW.md": {
+      "sha256": "ffcc5bd58385679fea608ae24a533c1c68ced3233857a0d6861addc516e1f617",
+      "source": "independent_audit/HYBRID-TEP100-U-EVALUATION-CPU/REVIEW.md"
+    },
+    "evaluation_v2/verdict.json": {
+      "sha256": "1010934502f3adc626dd125981e35f46d060eb08bb945da78851c9841e6c950d",
+      "source": "independent_audit/HYBRID-TEP100-U-EVALUATION-CPU/verdict.json"
+    },
+    "evaluation_resource_v3/REVIEW.md": {
+      "sha256": "09ac244a191c118682f16a00c455e8a5228784d707932ad6263ccbc6cb72dd00",
+      "source": "independent_audit/HYBRID-TEP100-U-EVALUATION-CPU/v3/REVIEW.md"
+    },
+    "evaluation_resource_v3/verdict.json": {
+      "sha256": "296ddfb84692424b01ea4a9ee6681bf323a8ce85225dfbc2498e17b60140ca14",
+      "source": "independent_audit/HYBRID-TEP100-U-EVALUATION-CPU/v3/verdict.json"
+    }
+  },
+  "independence": "same-family shared-workspace role-independent provisional; not external or double-blind",
+  "scope": "limited CPU engineering; no production gate/evaluation or labels permission"
+}

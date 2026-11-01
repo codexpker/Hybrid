@@ -1,0 +1,56 @@
+{
+  "status": "SYNTHETIC_CPU_ENGINEERING_PASSED_PENDING_INDEPENDENT_REVIEW",
+  "old_snapshot_python_files": 32,
+  "evaluation_python_files": 34,
+  "old_nonCLI_python_files_byte_unchanged": 31,
+  "original32_snapshot_byte_unchanged": true,
+  "compiled_files": [
+    "src/hybrid_tsad/engine/stage2_evaluation.py",
+    "src/hybrid_tsad/engine/stage2_run_statistics.py",
+    "src/hybrid_tsad/cli.py",
+    "tests/test_stage2_evaluation.py"
+  ],
+  "preview_arrays_opened": false,
+  "threshold_only_AST": {
+    "source": "src/hybrid_tsad/engine/evaluation.py",
+    "function": "evaluate_fixed_scores",
+    "start": 58,
+    "end": 133,
+    "source_sha256": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+    "destination": "src/hybrid_tsad/engine/stage2_evaluation.py",
+    "start_new": 147,
+    "end_new": 222,
+    "identical_body_except_rank_import_and_assignment": true,
+    "additional_check": "cached positive_fraction equals original labels mean",
+    "original_statements": 26,
+    "new_statements": 26
+  },
+  "tested_v2_archive_matches_current34_python_and_test": true,
+  "tests": {
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 3.056822554965038,
+    "peak_RSS_bytes": 150601728,
+    "address_space_limit": 2147483648,
+    "torch_imported": false,
+    "CUDA_VISIBLE_DEVICES": "",
+    "scope": "synthetic CPU metrics/labels only; original32 snapshot hashed/copied, never gate executed; no real data or GPU",
+    "successful": true
+  },
+  "v1_failure_preserved": true,
+  "old_snapshot_gate_executed": false,
+  "real_labels_scores_query_opened": false,
+  "Torch_imported_in_tests": false,
+  "GPU_executed": false,
+  "link_existence_checks": [
+    "docs/stage2_evaluation.md",
+    "configs/stage2-evaluation.example.json",
+    "docs/provenance/stage2_evaluation_cpu/v2/CPU_TESTS.json"
+  ],
+  "source_archive_sha256": {
+    "stage2_evaluation_cpu_v1.zip": "404d9e9cd429cf11eed863404473b73db6aa443cb50690533ca3786e686f1540",
+    "stage2_evaluation_cpu_v2.zip": "68bfc32922af852627c8a1dbd178e67dd8b0449a18f52a84bfdf1c0da13b2bd1"
+  }
+}

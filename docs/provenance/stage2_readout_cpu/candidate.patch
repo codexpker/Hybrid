@@ -1,0 +1,1432 @@
+--- baseline802/src/hybrid_tsad/cli.py
++++ candidate/src/hybrid_tsad/cli.py
+@@ -63,6 +63,11 @@
+     stage2_inputs.add_argument("--config")
+     stage2_inputs.add_argument("--runtime-identity",action="store_true",help="Print current source SHA identity without torch/data")
+     stage2.add_argument("--execute", action="store_true")
++    stage2_readout = sub.add_parser("stage2-readout", help="Independent schema6 readout; default preview, no labels")
++    readout6_inputs=stage2_readout.add_mutually_exclusive_group(required=True)
++    readout6_inputs.add_argument("--config")
++    readout6_inputs.add_argument("--runtime-identity",action="store_true")
++    stage2_readout.add_argument("--execute", action="store_true")
+     # Parse passthrough after -- separately so --script remains an ordinary option.
+     raw = list(sys.argv[1:] if argv is None else argv)
+     passthrough = []
+@@ -104,6 +109,14 @@
+             else:
+                 from .engine.stage2 import run_stage2
+                 result = run_stage2(args.config, execute=args.execute)
++        elif args.command == "stage2-readout":
++            if args.runtime_identity:
++                if args.execute:raise ValueError("Runtime identity is read-only")
++                from .engine.stage2_readout_identity import runtime_identity
++                result=runtime_identity()
++            else:
++                from .engine.stage2_readout import run_readout
++                result = run_readout(args.config, execute=args.execute)
+         elif args.command == "legacy":
+             from .legacy import execute, legacy_command
+             command = legacy_command(args.kind, args.script, passthrough)
+--- /dev/null
++++ candidate/src/hybrid_tsad/engine/stage2_readout_identity.py
+@@ -0,0 +1,196 @@
++"""Schema6 identities, separate from immutable source/Z and U-training policy."""
++from pathlib import Path
++import re
++
++from ..config import read_json, resolve_path, sha256, OFFICIAL_SHA
++from .identity import SCORE_SPACE, operation_manifest
++from .stage2_identity import Assets, canonical_sha
++from .readout_manifest import entity_profile, record
++
++STAGE='U_NORMAL_HEAD_READOUT'
++CONTRACT_SHA='56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d'
++QUERY_SHA='25a3349e1debc419fe00a5b5b93e8340cbb93d45bf510126cedb8fb4aca93213'
++PROFILE_SHA='0058a545ea95c6080e504e6cb02633e452c454c6bff3ce8a332724e9f7d0eb56'
++SOURCE_SHA='095bd53b7b9a5faf04428270c635c28264094359afc6f2b5743497f287640236'
++TRAIN_ENTRY_SHA='9579090dc13ee368c58c2cb4b96745ff7667bf68105c2028a00719ed1b9dd6da'
++TRAIN_RECIPE_SHA='fcecfa04f5f24f2cb98a40c4d96991ee8d45b87d5dfc73aff3daf876d56b2b78'
++MODES=('temporal','tf','hybrid')
++INITS=('source_pretrained','random_init')
++JOBS={f'u_normal_head_{m}_s{s}_{i}':(s,m,i) for m in MODES for s in range(3) for i in INITS}
++INPUTS={'catalog':{'definition'},'z-normal-cal':{'catalog'},'infer':{'catalog','whitelist'},
++        'seal':{'catalog','shards','z_thresholds','executions'},'gate':{'catalog','seal'}}
++
++
++def u_key(job,entity):
++    if job not in JOBS:raise ValueError('Unknown U model identity')
++    return STAGE+'/'+job+'/'+entity
++
++
++def z_key(seed,mode,entity):return f's{seed}/{mode}/{entity}'
++
++
++def expected_u(entities):return {u_key(j,e) for j in JOBS for e in entities}
++
++
++def runtime_identity():
++    root=Path(__file__).resolve().parents[1]
++    return dict(stage=STAGE,files={'src/hybrid_tsad/'+p.relative_to(root).as_posix():sha256(p) for p in sorted(root.rglob('*.py'))})
++
++
++def load_operation(path):
++    cfg=read_json(path)
++    if (set(cfg)!={'engine_schema_version','stage','operation','contract','approval','inputs','parameters','output','score_space'}
++            or cfg['engine_schema_version']!=6 or cfg['stage']!=STAGE or cfg['operation'] not in INPUTS
++            or cfg['score_space']!=SCORE_SPACE or set(cfg['inputs'])!=INPUTS[cfg['operation']]):
++        raise ValueError('Independent schema6 operation/inputs/score-space required')
++    allowed={'profile','scope','runtime'}|({'device'} if cfg['operation'] in ('infer','z-normal-cal') else set())
++    if set(cfg['parameters'])!=allowed or cfg['parameters']['scope'] not in ('full','shard','l0'):
++        raise ValueError('No labels, fit, score variants or arbitrary query parameters')
++    if cfg['operation'] not in ('infer',) and cfg['parameters']['scope']!='full':raise ValueError('Only infer permits L0/shard scope')
++    if cfg['parameters'].get('device','cpu') not in ('cpu','cuda:0'):raise ValueError('Invalid device; no fallback')
++    refs={'contract':cfg['contract'],'approval':cfg['approval'],**cfg['inputs']}
++    for ref in [*refs.values(),cfg['parameters']['runtime']]:
++        if set(ref)!={'path','sha256'} or not re.fullmatch('[0-9a-f]{64}',ref['sha256']):raise ValueError('Exact path/SHA references required')
++    paths={k:resolve_path(v['path'],path) for k,v in refs.items()};output=resolve_path(cfg['output'],path)
++    manifest,_=operation_manifest(cfg,paths,output);manifest.update(stage=STAGE,permissions='no training/source-fit/labels/F; explicit operation only')
++    return cfg,paths,output,manifest,canonical_sha(manifest)
++
++
++def approve(cfg,paths,output,digest,base):
++    a=Assets()
++    for name,ref in {'contract':cfg['contract'],'approval':cfg['approval'],**cfg['inputs']}.items():a.file({'path':str(paths[name]),'sha256':ref['sha256']},base)
++    if cfg['contract']['sha256']!=CONTRACT_SHA:raise ValueError('Wrong readout contract')
++    approval=read_json(paths['approval']);profile=cfg['parameters']['profile']
++    permission=dict(operation=cfg['operation'],training=False,source_fit=False,query_infer=cfg['operation']=='infer',
++                    target_normal_cal=cfg['operation']=='z-normal-cal',labels=False,F=False)
++    if (approval.get('status')!='APPROVED' or approval.get('stage')!=STAGE or approval.get('contract_sha256')!=CONTRACT_SHA
++            or approval.get('operation_manifest_sha256')!=digest or approval.get('permissions')!=permission
++            or any(type(approval['permissions'].get(k)) is not bool for k in permission if k!='operation')):
++        raise ValueError('Approval does not bind schema6 operation/permissions')
++    if profile.get('name')=='SYNTHETIC':
++        if approval.get('scope')!='SYNTHETIC_CPU_ENGINEERING_ONLY' or cfg['parameters'].get('device','cpu')!='cpu':
++            raise ValueError('Synthetic fixtures are CPU-only, never real release')
++    elif profile.get('name')=='TEP100':
++        if approval.get('scope')!='U_NORMAL_HEAD_READOUT_EXPLICIT_OPERATION':raise ValueError('Real operation requires separate explicit release')
++        if cfg['operation'] in ('infer','z-normal-cal') and cfg['parameters']['device']!='cuda:0':raise ValueError('Real production backend cannot fall back to CPU')
++    else:raise ValueError('Unknown query profile')
++    runtime=read_json(a.file(cfg['parameters']['runtime'],base))
++    if runtime!=runtime_identity():raise ValueError('New readout runtime bytes differ from release')
++    return a
++
++
++def verify_archive(ref,assets,base,required):
++    p=assets.file(ref,base);value=read_json(p)
++    if value.get('status')!='STAGE2_ARCHIVE_COMPLETE' or value.get('stage')!='U_NORMAL_HEAD':raise ValueError('Incomplete U train/cal archive')
++    for name,digest in value['files'].items():
++        if Path(name).is_absolute() or '..' in Path(name).parts:raise ValueError('Archive escapes its root')
++        assets.file({'path':str(p.parent/name),'sha256':digest},p)
++    for target in required:
++        if target.parent!=p.parent or value['files'].get(target.name)!=sha256(target):raise ValueError('U artifact is outside complete archive')
++    return value
++
++
++def whitelist(rows,entities,scope):
++    seen=set()
++    first=min(entities,key=lambda x:(entities[x]['fault_id'],entities[x]['run_id']))
++    for row in rows:
++        if set(row)!={'job_id','entity','origins'} or row['job_id'] not in JOBS or row['entity'] not in entities:raise ValueError('Unknown init/job/entity whitelist')
++        key=u_key(row['job_id'],row['entity']);allowed=entities[row['entity']]['origins']
++        if key in seen:raise ValueError('Duplicate U bank')
++        if scope=='l0':
++            if JOBS[row['job_id']][0]!=0 or row['entity']!=first or row['origins']!=allowed[:2]:raise ValueError('L0 is seed0 first entity first2 origins')
++        elif scope=='shard':
++            if row['origins']!=allowed:raise ValueError('Shard needs full original entity origins')
++        else:raise ValueError('Infer scope must be l0/shard')
++        seen.add(key)
++    if not seen:raise ValueError('Empty whitelist')
++    if scope=='l0' and seen!={u_key(j,first) for j in JOBS if JOBS[j][0]==0}:raise ValueError('L0 requires exact six seed0 models/initializations')
++    return rows
++
++
++def validate_definition(d,base,profile):
++    """Metadata/source/normal-cal verification only; never query arrays or labels."""
++    from .stage2_data import validate_target,validate_source_trace
++    from .stage2 import calibration_tracks
++    from ..api import verify_checkpoint_contract
++    from .multi_readout import load_catalog as load_z_catalog
++    a=Assets();real=profile['name']=='TEP100'
++    required={'schema_version','stage','profile','official','query_manifest','source_references','z_catalog','z_seal',
++              'normal_manifest','normal_plans','source_traces','training_runtime','training_runtime_root','u_models','all18_acceptance','physical_bridge'}
++    if set(d)!=required or d['schema_version']!=1 or d['stage']!=STAGE or d['profile']!=profile:raise ValueError('Malformed independent readout definition')
++    qp=a.file(d['query_manifest'],base)
++    bridge=read_json(a.file(d['physical_bridge'],base))
++    if (bridge.get('status')!='PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE' or bridge.get('profile')!=profile
++            or bridge.get('query_manifest')!=d['query_manifest'] or bridge.get('z_seal')!=d['z_seal']):raise ValueError('HOLD: accepted original Z reference bridge unavailable')
++    a.file(d['z_seal'],base)
++    if real and sha256(qp)!=QUERY_SHA:
++        raise ValueError('Original query/profile identity changed or physical bridge missing')
++    entities=entity_profile(read_json(qp),profile)
++    refs_path=a.file(d['source_references'],base);refs=read_json(refs_path)
++    if real and sha256(refs_path)!=SOURCE_SHA:raise ValueError('Original source references changed')
++    official=a.file(d['official'],base)
++    if sha256(official)!=OFFICIAL_SHA or a.file(refs['official'],refs_path)!=official:raise ValueError('External official source changed')
++    zpath=a.file(d['z_catalog'],base);zc,zm,_=load_z_catalog(zpath,require_full=True)
++    originals={(r['seed'],r['mode']):r for r in refs['models']}
++    if set(originals)!={(s,m) for s in range(3) for m in MODES}:raise ValueError('Need exactly9 original Z parents')
++    for key,parent in originals.items():
++        for field in ('checkpoint','checkpoint_metadata','calibration','cal_bank','cal_scores'):
++            if a.file(parent[field],refs_path)!=a.file(zm[key][field],zpath):raise ValueError('Z reference substituted')
++    runtime_path=a.file(d['training_runtime'],base);training_runtime=read_json(runtime_path);rr=Path(d['training_runtime_root'])
++    actual={'src/hybrid_tsad/'+p.relative_to(rr/'src/hybrid_tsad').as_posix() for p in (rr/'src/hybrid_tsad').rglob('*.py')}
++    if set(training_runtime['files'])!=actual or real and training_runtime['files'].get('src/hybrid_tsad/engine/stage2.py')!=TRAIN_ENTRY_SHA:
++        raise ValueError('Frozen training runtime identity incomplete/changed')
++    for name,h in training_runtime['files'].items():a.file({'path':str(rr/name),'sha256':h},base)
++    normal_path=a.file(d['normal_manifest'],base);plans={};source_traces={}
++    for seed in range(3):
++        pp=a.file(d['normal_plans'][str(seed)],base);normal,plans[seed]=validate_target(normal_path,pp,seed,a)
++        tr=a.file(d['source_traces'][str(seed)],base)
++        parent_meta=read_json(a.file(originals[seed,'hybrid']['checkpoint_metadata'],refs_path))
++        validate_source_trace(refs,refs_path,tr,seed,parent_meta,a);source_traces[seed]=tr
++    rows=d['u_models']
++    if len(rows)!=18 or {r['job_id'] for r in rows}!=set(JOBS):raise ValueError('All18 accepted U models required; no partial real catalog')
++    accepted=read_json(a.file(d['all18_acceptance'],base))
++    if (accepted.get('status')!='PRIMARY_ACCEPTED_ALL18_U_TRAIN_CAL' or accepted.get('stage')!='U_NORMAL_HEAD'
++            or accepted.get('models')!={r['job_id']:canonical_sha(r) for r in rows}):raise ValueError('Primary all18 train+cal acceptance absent/changed')
++    model_map={}
++    for row in rows:
++        seed,mode,init=JOBS[row['job_id']]
++        headers=dict(stage='U_NORMAL_HEAD',seed=seed,mode=mode,initialization=init,step=1000)
++        if any(row.get(k)!=v for k,v in headers.items()):raise ValueError('U row stage/init/seed/mode/step mismatch')
++        names=('checkpoint','checkpoint_metadata','training_summary','train_archive','cal_archive','source_calibration','target_threshold','primary_acceptance')
++        if set(row)!={'job_id',*headers,*names}:raise ValueError('Unexpected U row fields')
++        paths={k:a.file(row[k],base) for k in names};m=read_json(paths['checkpoint_metadata']);summary=read_json(paths['training_summary'])
++        if paths['checkpoint'].name!='step1000.pt' or m.get('trainable_parameters')!=['head.weight','head.bias']:raise ValueError('Only fixed head645 primary step1000 is permitted')
++        parent=originals[seed,mode];pmeta=read_json(a.file(parent['checkpoint_metadata'],refs_path))
++        if (pmeta.get('excluded_target')!='TEP' or set(pmeta.get('source_domains',[]))!={'PSM','SMD_SUBSET'} or pmeta.get('step')!=10000):raise ValueError('Wrong original Z parent')
++        expected={**headers,'checkpoint_sha256':row['checkpoint']['sha256'],'parent_checkpoint_sha256':parent['checkpoint']['sha256'],
++            'parent_weights_loaded':init=='source_pretrained','initial_checkpoint_sha256':parent['checkpoint']['sha256'] if init=='source_pretrained' else None,
++            'pretraining_domains':['PSM','SMD_SUBSET'] if init=='source_pretrained' else [],'pretraining_excluded_target':'TEP' if init=='source_pretrained' else None,
++            'adaptation_target':'TEP','target_labels_used':False,'query_access':False,'trainable_count':645,
++            'target_manifest_sha256':d['normal_manifest']['sha256'],'target_plan_sha256':d['normal_plans'][str(seed)]['sha256'],
++            'source_cal_trace_sha256':d['source_traces'][str(seed)]['sha256'],'source_references_sha256':d['source_references']['sha256'],
++            'runtime_sha256':d['training_runtime']['sha256'],'recipe_sha256':TRAIN_RECIPE_SHA}
++        if (any(m.get(k)!=v for k,v in expected.items()) or 'excluded_target' in m or m.get('frozen_before')!=m.get('frozen_after')
++                or summary.get('status')!='U_NORMAL_HEAD_STEP1000_COMPLETE' or summary.get('identity')!=m or summary.get('job_id')!=row['job_id']
++                or summary.get('primary')!=row['checkpoint'] or summary.get('steps')!=1000):raise ValueError('U fitted parent/role/trace/primary identity mismatch')
++        verify_checkpoint_contract(paths['checkpoint'],paths['checkpoint_metadata'],history=100,mode=mode)
++        verify_archive(row['train_archive'],a,base,[paths[x] for x in ('checkpoint','checkpoint_metadata','training_summary')])
++        verify_archive(row['cal_archive'],a,base,[paths[x] for x in ('source_calibration','target_threshold')])
++        acceptance=read_json(paths['primary_acceptance'])
++        if acceptance.get('stage')!='U_NORMAL_HEAD' or acceptance.get('status') not in ('PRIMARY_ACCEPTED_FORMAL_PAIR','PRIMARY_ACCEPTED_NAMED_WAVE'):
++            raise ValueError('Complete train+cal primary acceptance required; train-only is insufficient')
++        train_accept_path=a.file(acceptance['accepted_train'],paths['primary_acceptance']);train_accept=read_json(train_accept_path)
++        cal_review=read_json(a.file(acceptance['independent_cal_review'],paths['primary_acceptance']))
++        expected_status='PASS_LIMITED_FORMAL_CAL_PAIR' if acceptance['status']=='PRIMARY_ACCEPTED_FORMAL_PAIR' else f"PASS_LIMITED_WAVE{acceptance['wave']}_CAL"
++        if (train_accept.get('stage')!='U_NORMAL_HEAD' or train_accept.get('status')!='PRIMARY_ACCEPTED_FORMAL_TRAIN_PAIR'
++                or row['job_id'] not in train_accept.get('allowed_jobs',[]) or train_accept.get('summaries',{}).get(row['job_id'])!=row['training_summary']
++                or cal_review.get('status')!=expected_status):raise ValueError('Per-wave accepted train summary/cal review does not cover this U row')
++        tracks=calibration_tracks(paths['source_calibration'],paths['target_threshold'],row['checkpoint']['sha256'])
++        source=read_json(paths['source_calibration']);target=read_json(paths['target_threshold'])
++        if (source['source_cal_trace_sha256']!=expected['source_cal_trace_sha256'] or source['source_references_sha256']!=expected['source_references_sha256']
++                or target['target_manifest_sha256']!=expected['target_manifest_sha256'] or target['target_plan_sha256']!=expected['target_plan_sha256']
++                or source['runtime_sha256']!=expected['runtime_sha256']):raise ValueError('U calibration identity differs from fitted trace/runtime')
++        model_map[row['job_id']]=dict(row=row,paths=paths,source=source,tracks=tracks)
++    a.recheck()
++    return dict(assets=a,definition=d,base=base,entities=entities,models=model_map,z_models=originals,z_catalog=zc,
++                z_catalog_path=zpath,source_refs=refs,source_refs_path=refs_path,normal=normal,plans=plans,official=official)
+--- /dev/null
++++ candidate/src/hybrid_tsad/engine/stage2_readout.py
+@@ -0,0 +1,310 @@
++"""U-native readout assembly. All model, scoring and RNG kernels are reused."""
++from pathlib import Path
++import hashlib
++import time
++import numpy as np
++
++from ..config import read_json,sha256
++from ..protocol import score_block
++from .bank import collect_forecasts,write_bank,inference_metadata
++from .readout_manifest import record,json_write
++from .identity import source_calibration
++from .stage2_identity import canonical_sha
++from .stage2_readout_identity import (STAGE,JOBS,Assets,u_key,z_key,expected_u,whitelist,runtime_identity,
++    validate_definition,load_operation,approve)
++
++
++def load_catalog(path,profile):
++    path=Path(path)
++    if (path.parent/'failure.json').exists() or not (path.parent/'summary.json').is_file():raise ValueError('Incomplete/failed catalog archive')
++    c=read_json(path)
++    if read_json(path.parent/'summary.json')!=c:raise ValueError('Catalog differs from completed operation summary')
++    if c.get('status')!='U_READOUT_CATALOG_ALL18_ACCEPTED':raise ValueError('Unaccepted/partial catalog')
++    dpath=Assets().file(c['definition'],path);d=read_json(dpath)
++    a=validate_definition(d,dpath,profile)
++    if c.get('models')!={k:canonical_sha(v['row']) for k,v in a['models'].items()}:raise ValueError('Catalog model identities changed')
++    a['catalog_path']=Path(path);return a
++
++
++def build_catalog(definition,output,profile):
++    d=read_json(definition);a=validate_definition(d,definition,profile)
++    c=dict(status='U_READOUT_CATALOG_ALL18_ACCEPTED',stage=STAGE,definition=record(definition),profile=profile,
++        models={k:canonical_sha(v['row']) for k,v in a['models'].items()},labels_opened=False,training=False)
++    json_write(output/'catalog.json',c);return c
++
++
++def production_backend(profile,device):
++    if profile['name']=='TEP100':
++        from .physical_validation import physical_validation_spec,validate_physical_runtime,CUDA_BACKEND
++        validate_physical_runtime(physical_validation_spec(dict(backend=CUDA_BACKEND,device=device),profile))
++    elif device!='cpu':raise ValueError('Synthetic CPU fixture cannot become GPU')
++
++
++def whole_state(model):
++    """Readout freezes head too; training's frozen_hashes intentionally excludes it."""
++    return {name:hashlib.sha256(str(value.dtype).encode()+str(tuple(value.shape)).encode()+value.detach().cpu().contiguous().numpy().tobytes()).hexdigest()
++            for name,value in model.state_dict().items()}
++
++
++def infer(a,cells,output,*,profile,scope,device,operation_digest=None):
++    import torch
++    from ..api import create_predictor
++    production_backend(profile,device);torch.set_num_threads(2)
++    cells=whitelist(cells,a['entities'],scope);banks={}
++    for cell in cells:
++        started=time.perf_counter();job=cell['job_id'];seed,mode,init=JOBS[job];q=a['entities'][cell['entity']];spec=a['models'][job]
++        if torch.device(device).type=='cuda':torch.cuda.set_device(device);torch.cuda.init();torch.cuda.reset_peak_memory_stats(device)
++        array=Path(q['array_path'])
++        a['assets'].file({'path':str(array),'sha256':q['array_sha256_from_frozen_parent']},a['base'])
++        torch.manual_seed(seed)
++        model=create_predictor(a['official'],mode=mode,history=100,checkpoint=spec['paths']['checkpoint'],checkpoint_metadata=spec['paths']['checkpoint_metadata'],device=device)
++        frozen=whole_state(model)
++        data=np.load(array,mmap_mode='r',allow_pickle=False)
++        if data.shape!=(profile['points'],profile['channels']) or data.dtype!=np.float32:raise ValueError('Query shape/dtype changed')
++        index=np.concatenate([np.arange(b,b+5) for b in cell['origins']]);scale=spec['source']['normal_error_scale']
++        arrays,rng,times=collect_forecasts(model,data,cell['origins'],scale,mask_seed=84551,expected_index=index)
++        if frozen!=whole_state(model):raise ValueError('Frozen readout state (including head/buffers) changed')
++        key=u_key(job,cell['entity']);folder=output/'native'/key
++        metadata=inference_metadata(key,dict(stage=STAGE,job_id=job,seed=seed,mode=mode,initialization=init,entity=cell['entity'],
++            history=100,source_scale=scale,source_calibration_sha256=spec['row']['source_calibration']['sha256'],
++            target_threshold_sha256=spec['row']['target_threshold']['sha256'],scope=scope,operation_manifest_sha256=operation_digest,
++            readout_runtime_sha256=a.get('readout_runtime',{}).get('sha256')),
++            points=len(index),blocks=len(cell['origins']),mask_seed=84551,checkpoint_sha256=spec['row']['checkpoint']['sha256'],
++            query_array_sha256=q['array_sha256_from_frozen_parent'],seconds=time.perf_counter()-started,
++            peak_allocated_bytes=torch.cuda.max_memory_allocated(device) if torch.device(device).type=='cuda' else None,
++            forward_p50_seconds=float(np.median(times)),forward_p95_seconds=float(np.quantile(times,.95)))
++        metadata.update(forward_timing_samples=len(times),seconds_scope='model/input-I-O/compute before bank serialization',
++            forward_timing_scope='primary forward only; first2 RNG replays excluded',catalog_sha256=sha256(a['catalog_path']))
++        write_bank(folder,arrays,rng,metadata)
++        banks[key]=dict(bank=record(folder/'predictions_and_scores.npz'),rng=record(folder/'rng_states.npz'),metadata=record(folder/'inference.json'),
++            origins=cell['origins'],whole_entity_seconds=time.perf_counter()-started)
++        del model,data
++    result=dict(stage=STAGE,scope=scope,status='PARTIAL_U_BANKS_LABELS_LOCKED',catalog=record(a['catalog_path']),
++        whitelist=cells,banks=banks,labels_opened=False,complete_group=False,operation_manifest_sha256=operation_digest,readout_runtime=a.get('readout_runtime'))
++    json_write(output/'shard.json',result);return result
++
++
++def z_normal_cal(a,output,*,profile,device):
++    from ..api import create_predictor
++    from .stage2 import evaluate_target_cal,module_modes,rng_identity
++    from .stage2_data import TargetNormal
++    production_backend(profile,device);out={}
++    normal_path=a['assets'].file(a['definition']['normal_manifest'],a['base'])
++    normal=TargetNormal(a['normal'],a['plans'][0],a['assets'].file(a['normal']['cache'],normal_path))
++    for (seed,mode),spec in sorted(a['z_models'].items()):
++        normal.plan=a['plans'][seed]
++        cp=a['assets'].file(spec['checkpoint'],a['source_refs_path']);meta=a['assets'].file(spec['checkpoint_metadata'],a['source_refs_path'])
++        calpath=a['assets'].file(spec['calibration'],a['source_refs_path']);cal=source_calibration(calpath)
++        model=create_predictor(a['official'],mode=mode,history=100,checkpoint=cp,checkpoint_metadata=meta,device=device)
++        for parameter in model.parameters():parameter.requires_grad_(False)
++        before=whole_state(model);flags=module_modes(model);rng_before=rng_identity(device)
++        values=evaluate_target_cal(model,normal,cal['normal_error_scale'],device=device)
++        if before!=whole_state(model) or flags!=module_modes(model) or rng_before!=rng_identity(device):raise ValueError('Z normal-cal changed frozen weights/modes/RNG')
++        folder=output/f's{seed}'/mode;folder.mkdir(parents=True)
++        np.savez_compressed(folder/'physical_cal_bank.npz',**{k:v for k,v in values.items() if k!='canonical_score'})
++        np.savez_compressed(folder/'canonical.npz',**{k:values[k] for k in ('canonical_score','run','origin')})
++        identity=dict(schema_version=1,role='Z_TARGET_NORMAL_THRESHOLD_ONLY',stage=STAGE,seed=seed,mode=mode,
++            catalog=record(a['catalog_path']),readout_runtime=a['readout_runtime'],operation_manifest_sha256=a['operation_digest'],
++            operation_config=a['operation_config'],
++            backend='original_cuda_a40_float32_v1' if profile['name']=='TEP100' else 'original_cpu_float32_v1',
++            checkpoint=spec['checkpoint'],checkpoint_metadata=spec['checkpoint_metadata'],source_calibration=spec['calibration'],
++            source_error_scale=cal['normal_error_scale'],normal_manifest=a['definition']['normal_manifest'],normal_plan=a['definition']['normal_plans'][str(seed)],
++            bank=record(folder/'physical_cal_bank.npz'),canonical=record(folder/'canonical.npz'),threshold99=float(np.quantile(values['canonical_score'],.99,method='linear')),
++            parameter_training_excluded_target='TEP',threshold_target='TEP',target_threshold_fitted=True,weights_unchanged=True,
++            frozen_before=before,frozen_after=whole_state(model),target_global_rescale=False,query_forwards=0,labels_opened=False)
++        json_write(folder/'threshold.json',identity);validate_z_threshold(folder/'threshold.json',a,seed,mode)
++        out[f's{seed}/{mode}']=record(folder/'threshold.json');del model
++    result=dict(status='ALL9_Z_NORMAL_THRESHOLDS_LABELS_LOCKED',stage=STAGE,catalog=record(a['catalog_path']),thresholds=out,query_forwards=0,labels_opened=False)
++    json_write(output/'z_thresholds.json',result);return result
++
++
++def validate_z_threshold(path,a,seed,mode):
++    t=read_json(path);parent=a['z_models'][seed,mode];assets=a['assets']
++    required={'schema_version','role','stage','seed','mode','checkpoint','checkpoint_metadata','source_calibration','source_error_scale',
++        'normal_manifest','normal_plan','bank','canonical','threshold99','parameter_training_excluded_target','threshold_target',
++        'target_threshold_fitted','weights_unchanged','frozen_before','frozen_after','target_global_rescale','query_forwards','labels_opened',
++        'catalog','readout_runtime','operation_manifest_sha256','backend','operation_config'}
++    if (set(t)!=required or t['schema_version']!=1 or t['role']!='Z_TARGET_NORMAL_THRESHOLD_ONLY' or t['stage']!=STAGE
++            or t['seed']!=seed or t['mode']!=mode or t['parameter_training_excluded_target']!='TEP' or t['threshold_target']!='TEP'
++            or t['target_threshold_fitted'] is not True or t['weights_unchanged'] is not True or t['target_global_rescale'] is not False
++            or t['query_forwards']!=0 or t['labels_opened'] is not False or t['frozen_before']!=t['frozen_after']
++            or t['catalog']!=record(a['catalog_path'])):raise ValueError('Wrong Z normal-threshold role/permission/fitted identity')
++    if read_json(assets.file(t['readout_runtime'],path))!=runtime_identity():raise ValueError('Z normal-cal readout runtime changed')
++    original_config=assets.file(t['operation_config'],path);cfg,paths,_,_,digest=load_operation(original_config)
++    approved=approve(cfg,paths,Path(path).parent,digest,original_config);approved.recheck()
++    if (cfg['operation']!='z-normal-cal' or digest!=t['operation_manifest_sha256'] or record(paths['catalog'])!=t['catalog']
++            or cfg['parameters']['runtime']['sha256']!=t['readout_runtime']['sha256']):raise ValueError('Z normal-cal operation/approval binding mismatch')
++    if t['backend']!=('original_cuda_a40_float32_v1' if a['definition']['profile']['name']=='TEP100' else 'original_cpu_float32_v1'):raise ValueError('Z normal-cal backend changed')
++    for field in ('checkpoint','checkpoint_metadata','source_calibration'):
++        original=parent['calibration' if field=='source_calibration' else field]
++        if assets.file(t[field],path)!=assets.file(original,a['source_refs_path']):raise ValueError('Z checkpoint/source calibration replaced')
++    source=source_calibration(assets.file(t['source_calibration'],path))
++    if t['source_error_scale']!=source['normal_error_scale']:raise ValueError('Z source scale cannot be refitted')
++    for field,key in [('normal_manifest','normal_manifest'),('normal_plan',None)]:
++        ref=a['definition'][key] if key else a['definition']['normal_plans'][str(seed)]
++        if assets.file(t[field],path)!=assets.file(ref,a['base']):raise ValueError('Z normal-cal role/plan identity changed')
++    plan=a['plans'][seed]
++    normal_manifest_path=assets.file(t['normal_manifest'],path)
++    normal_data=np.load(assets.file(a['normal']['cache'],normal_manifest_path),mmap_mode='r',allow_pickle=False)
++    actual_target=np.stack([normal_data[int(run)-1,int(origin):int(origin)+5] for run,origin in zip(plan['cal_run'],plan['cal_origin'])])
++    with np.load(assets.file(t['bank'],path),allow_pickle=False) as bank:
++        if set(bank.files)!={'prediction','target','history_scale','run','origin'} or any(not np.array_equal(bank[k],plan['cal_'+k]) for k in ('run','origin')):raise ValueError('Z normal-cal plan order changed')
++        if any(bank[k].shape!=shape or bank[k].dtype!=np.float32 for k,shape in [('prediction',(256,5,52)),('target',(256,5,52)),('history_scale',(256,1,52))]):raise ValueError('Z normal-cal physical bank shape/dtype')
++        if not np.array_equal(bank['target'],actual_target):raise ValueError('Z normal-cal target differs from actual frozen normal values/plan')
++        expected=np.stack([score_block(p,y,s,source['normal_error_scale']) for p,y,s in zip(bank['prediction'],bank['target'],bank['history_scale'])])
++    with np.load(assets.file(t['canonical'],path),allow_pickle=False) as scores:
++        if (set(scores.files)!={'canonical_score','run','origin'} or any(not np.array_equal(scores[k],plan['cal_'+k]) for k in ('run','origin'))
++                or scores['canonical_score'].dtype!=np.float32 or not np.array_equal(scores['canonical_score'],expected)
++                or t['threshold99']!=float(np.quantile(expected,.99,method='linear'))):raise ValueError('Z canonical/threshold not closed to physical bank and original source units')
++    return t
++
++
++def physical_bridge(a,profile):
++    """Use actual old Z banks, not an assumed extra reference artifact."""
++    assets=a['assets'];d=a['definition'];p=assets.file(d['physical_bridge'],a['base']);b=read_json(p)
++    old_path=assets.file(d['z_seal'],a['base']);old=read_json(old_path,max_bytes=32*1024*1024)
++    if (b.get('status')!='PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE' or b.get('profile')!=profile
++            or b.get('z_seal')!=d['z_seal'] or b.get('query_manifest')!=d['query_manifest']
++            or old.get('status')!='ALL_FIXED_SCORES_SEALED_LABELS_LOCKED' or old.get('labels_opened') is not False
++            or old.get('complete_group') is not True or old.get('query_manifest')!=d['query_manifest']
++            or old.get('catalog')!=d['z_catalog'] or old.get('profile')!=profile):raise ValueError('HOLD: complete accepted old Z physical bridge unavailable')
++    expected={z_key(s,m,e) for s in range(3) for m in ('temporal','tf','hybrid') for e in a['entities']}
++    from .readout_manifest import expected_scores
++    if set(old['native_banks'])!=expected or set(old['scores'])!=expected_scores(a['entities']):raise ValueError('Old Z all-bank/score reference set incomplete')
++    for value in old['native_banks'].values():
++        for part in ('bank','rng','metadata'):assets.file(value[part],old_path)
++    for value in old['scores'].values():assets.file(value['file'],old_path)
++    if profile['name']=='TEP100':
++        from .physical_validation import CUDA_BACKEND
++        if (b.get('backend')!=CUDA_BACKEND or old.get('physical_validation')!={'backend':CUDA_BACKEND,'device':'cuda:0'}
++                or b.get('execution_evidence')!=old.get('execution_evidence')):raise ValueError('Old Z backend/execution provenance not bound')
++        assets.file(b['independent_physical_audit'],p);assets.file(b['execution_evidence'],old_path)
++    references={}
++    if set(b.get('entities',{}))!=set(a['entities']):raise ValueError('Physical reference lacks actual entity banks')
++    for entity,q in a['entities'].items():
++        descriptor=old['native_banks'][z_key(0,'temporal',entity)]
++        if b['entities'][entity]!=descriptor:raise ValueError('Reference is not the fixed original Z seed0 temporal bank')
++        meta=read_json(assets.file(descriptor['metadata'],old_path))
++        if (meta.get('query_array_sha256')!=q['array_sha256_from_frozen_parent'] or meta.get('history')!=100 or meta.get('mask_seed')!=84551
++                or meta.get('checkpoint_sha256')!=a['z_models'][0,'temporal']['checkpoint']['sha256']
++                or meta.get('bank_sha256')!=descriptor['bank']['sha256'] or meta.get('seed')!=0 or meta.get('mode')!='temporal'
++                or meta.get('entity')!=entity):raise ValueError('Z goldbank physical source/history identity mismatch')
++        data_path=Path(q['array_path'])
++        assets.file({'path':str(data_path),'sha256':q['array_sha256_from_frozen_parent']},a['base'])
++        data=np.load(data_path,mmap_mode='r',allow_pickle=False);index=np.concatenate([np.arange(o,o+5) for o in q['origins']])
++        if data.shape!=(profile['points'],profile['channels']) or data.dtype!=np.float32 or not np.isfinite(data).all():raise ValueError('Original query shape/dtype/finite contract')
++        with np.load(assets.file(descriptor['bank'],old_path),allow_pickle=False) as gold:
++            scale=gold['history_scale_by_block'].copy()
++            if (not np.array_equal(gold['time_index'],index) or not np.array_equal(gold['forecast_origin'],q['origins'])
++                    or not np.array_equal(gold['target'],data[index]) or scale.shape!=(len(q['origins']),1,profile['channels'])
++                    or not np.isfinite(scale).all() or np.any(scale<=0)):raise ValueError('Original Z physical reference invalid')
++        references[entity]=(data,index,scale)
++    return references,old
++
++
++def check_executions(executions,shards,base,profile):
++    if profile['name']=='SYNTHETIC':
++        if executions!={'scope':'SYNTHETIC_CPU_ENGINEERING_ONLY'}:raise ValueError('Synthetic executions cannot claim production evidence')
++        return
++    if set(executions)!={sha256(p) for p in shards}:raise ValueError('Missing actual execution receipts')
++    from .physical_validation import CUDA_RUNTIME
++    for p in shards:
++        entry=executions[sha256(p)];a=Assets();launch=read_json(a.file(entry['launch'],base));oswait=read_json(a.file(entry['os_wait'],base));resource=read_json(a.file(entry['resource'],base));shard=read_json(p)
++        if (oswait.get('actual_OS_wait_exit_code')!=0 or resource.get('status')!='COMPLETED_PENDING_INDEPENDENT_REVIEW'
++                or launch.get('operation_manifest_sha256')!=shard['operation_manifest_sha256']
++                or resource.get('summary_sha256')!=sha256(p) or not oswait.get('process_seconds',0)>0):raise ValueError('Actual U execution/OS/shard evidence mismatch')
++        runtime=resource['current_runtime']
++        if (runtime.get('torch')!=CUDA_RUNTIME['torch_version'] or runtime.get('cuda')!=CUDA_RUNTIME['cuda_version'] or runtime.get('name')!=CUDA_RUNTIME['gpu_name']
++                or runtime.get('shared_sha256')!=sha256(__file__)):raise ValueError('Actual U production backend/source mismatch')
++
++
++def seal(a,shard_refs,z_thresholds,executions,output,*,profile,write=True):
++    from .multi_readout import verify_physical_bank
++    references,old=physical_bridge(a,profile);assets=a['assets'];banks={};shards=[]
++    for ref in shard_refs:
++        p=assets.file(ref,a['base']);shards.append(p);shard=read_json(p,max_bytes=64*1024*1024)
++        if (p.parent/'failure.json').exists() or not (p.parent/'summary.json').is_file():raise ValueError('Incomplete/failed U shard archive')
++        # Rehashed descriptors can be independently restaged, but a real
++        # operation's terminal summary must still match the selected shard.
++        if read_json(p.parent/'summary.json',max_bytes=64*1024*1024)!=shard:raise ValueError('Shard differs from its terminal summary')
++        if (shard.get('stage')!=STAGE or shard.get('scope')!='shard' or shard.get('complete_group') is not False
++                or shard.get('labels_opened') is not False or shard.get('catalog')!=record(a['catalog_path'])):raise ValueError('L0/foreign shard cannot seal')
++        if read_json(assets.file(shard['readout_runtime'],p))!=runtime_identity():raise ValueError('Shard readout runtime changed')
++        cells=whitelist(shard['whitelist'],a['entities'],'shard')
++        if set(shard['banks'])!={u_key(c['job_id'],c['entity']) for c in cells}:raise ValueError('Whitelist/output key mismatch')
++        for key,value in shard['banks'].items():
++            if key in banks:raise ValueError('Duplicate bank across shards')
++            cell=next(c for c in cells if u_key(c['job_id'],c['entity'])==key);job=cell['job_id'];entity=cell['entity'];spec=a['models'][job]
++            bp=assets.file(value['bank'],p);meta=read_json(assets.file(value['metadata'],p));rp=assets.file(value['rng'],p)
++            expected=dict(stage=STAGE,job_id=job,entity=entity,history=100,mask_seed=84551,scope='shard',
++                checkpoint_sha256=spec['row']['checkpoint']['sha256'],source_scale=spec['source']['normal_error_scale'],
++                source_calibration_sha256=spec['row']['source_calibration']['sha256'],target_threshold_sha256=spec['row']['target_threshold']['sha256'],
++                operation_manifest_sha256=shard['operation_manifest_sha256'],readout_runtime_sha256=shard['readout_runtime']['sha256'],
++                catalog_sha256=sha256(a['catalog_path']),query_array_sha256=a['entities'][entity]['array_sha256_from_frozen_parent'])
++            if meta.get('bank_sha256')!=sha256(bp) or meta.get('labels_opened') is not False or any(meta.get(k)!=v for k,v in expected.items()):raise ValueError('U bank fitted/score/physical metadata mismatch')
++            verify_physical_bank(bp,a['entities'][entity],profile,references[entity]);index=references[entity][1]
++            with np.load(rp,allow_pickle=False) as rng:
++                if rng['before_each_block'].dtype!=np.uint8 or rng['before_each_block'].ndim!=2 or len(rng['before_each_block'])!=len(cell['origins']):raise ValueError('Missing exact per-block RNG states')
++            with np.load(bp,allow_pickle=False) as bank:
++                shape=(len(index),profile['channels'])
++                if any(bank[k].dtype!=np.float32 or bank[k].shape!=shape or not np.isfinite(bank[k]).all() for k in ('prediction','target','normalized_channel_residual')):raise ValueError('Native float32 physical bank invalid')
++                if (bank['history_scale_by_block'].dtype!=np.float32 or bank['valid'].dtype!=np.bool_
++                        or any(bank[k].dtype!=np.float32 or bank[k].shape!=(len(index),) for k in ('raw_score','standardized_score'))):raise ValueError('Canonical float32 units/valid dtype mismatch')
++                expanded=np.repeat(bank['history_scale_by_block'],5,axis=1).reshape(shape);residual=np.abs(bank['prediction']-bank['target'])/expanded
++                if (not np.array_equal(residual,bank['normalized_channel_residual']) or not np.array_equal(bank['raw_score'],residual.mean(-1))
++                        or not np.array_equal(bank['standardized_score'],bank['raw_score']/spec['source']['normal_error_scale'])
++                        or not np.array_equal(bank['valid'],np.ones(len(index),bool))):raise ValueError('Canonical score not closed to physical bank/source units')
++            banks[key]={**value,'job_id':job,'entity':entity,'canonical':dict(file=value['bank'],score_field='standardized_score',index_field='time_index'),
++                'tracks':{'source':{'score_object':dict(file=value['bank'],score_field='standardized_score',index_field='time_index'),'threshold':spec['source']['threshold99']},
++                          'target':{'score_object':dict(file=value['bank'],score_field='standardized_score',index_field='time_index'),'threshold':spec['tracks']['target']['threshold']}}}
++    if set(banks)!=expected_u(a['entities']):raise ValueError('INCOMPLETE: all7200 U banks (or full synthetic grid) required')
++    check_executions(executions,shards,a['base'],profile)
++    z=read_json(assets.file(z_thresholds,a['base']))
++    zp=Path(z_thresholds['path'])
++    if (zp.parent/'failure.json').exists() or not (zp.parent/'summary.json').is_file() or read_json(zp.parent/'summary.json')!=z:raise ValueError('Incomplete/failed Z normal-cal archive')
++    expected_z={f's{s}/{m}' for s in range(3) for m in ('temporal','tf','hybrid')}
++    if z.get('catalog')!=record(a['catalog_path']) or set(z.get('thresholds',{}))!=expected_z:raise ValueError('All9 Z normal thresholds required')
++    for seed in range(3):
++        for mode in ('temporal','tf','hybrid'):validate_z_threshold(assets.file(z['thresholds'][f's{seed}/{mode}'],z_thresholds['path']),a,seed,mode)
++    result=dict(status='ALL_U_CANONICAL_SCORES_SEALED_LABELS_LOCKED',stage=STAGE,complete_group=True,labels_opened=False,
++        catalog=record(a['catalog_path']),shards=shard_refs,z_thresholds=z_thresholds,executions=executions,u_banks=banks,
++        z_seal=a['definition']['z_seal'],physical_bridge=a['definition']['physical_bridge'],counts=dict(u_banks=len(banks),z_native_banks=len(old['native_banks']),z_fixed_scores=len(old['scores'])),
++        z_query_new_forwards=0,overall_Aff_F1=None)
++    assets.recheck()
++    if write:json_write(output/'seal.json',result)
++    return result
++
++
++def gate(path,a,output,*,profile):
++    value=read_json(path,max_bytes=64*1024*1024)
++    if (Path(path).parent/'failure.json').exists():raise ValueError('Failed archive cannot become a complete seal')
++    if value.get('status')!='ALL_U_CANONICAL_SCORES_SEALED_LABELS_LOCKED' or value.get('stage')!=STAGE:raise ValueError('No complete U seal')
++    # Re-derive the same closed seal before returning eligibility. No label loader.
++    recreated=seal(a,value['shards'],value['z_thresholds'],value['executions'],output,profile=profile,write=False)
++    if recreated!=value:raise ValueError('Sealed descriptors/threshold tracks changed')
++    return dict(status='COMPLETE_SEAL_ELIGIBLE_FOR_SEPARATE_PRIMARY_LABEL_RELEASE',labels_permission=False,seal=record(path),counts=value['counts'])
++
++
++def run_readout(config_path,*,execute=False):
++    cfg,paths,output,manifest,digest=load_operation(config_path)
++    if not execute:return dict(executed=False,operation_manifest=manifest,operation_manifest_sha256=digest,scope='preview only; no assets/model/labels opened')
++    assets=approve(cfg,paths,output,digest,config_path)
++    from .stage2 import _snapshot,_finish
++    code=_snapshot(output,cfg,manifest,{'assets':assets})
++    try:
++        profile=cfg['parameters']['profile'];op=cfg['operation']
++        if op=='catalog':result=build_catalog(paths['definition'],output,profile)
++        else:
++            a=load_catalog(paths['catalog'],profile)
++            a['readout_runtime']=record(Assets().file(cfg['parameters']['runtime'],config_path));a['operation_digest']=digest;a['operation_config']=record(config_path)
++            if op=='z-normal-cal':result=z_normal_cal(a,output,profile=profile,device=cfg['parameters']['device'])
++            elif op=='infer':
++                result=infer(a,read_json(paths['whitelist']),output,profile=profile,scope=cfg['parameters']['scope'],device=cfg['parameters']['device'],operation_digest=digest)
++            elif op=='seal':
++                shard_refs=[record(Assets().file(ref,paths['shards'])) for ref in read_json(paths['shards'])]
++                result=seal(a,shard_refs,record(paths['z_thresholds']),read_json(paths['executions']),output,profile=profile)
++            else:result=gate(paths['seal'],a,output,profile=profile)
++            a['assets'].recheck()
++        _finish({'assets':assets},code);json_write(output/'summary.json',result);return result
++    except Exception as exc:
++        json_write(output/'failure.json',dict(status='FAILED_NO_RELEASE',error=str(exc)));raise
+--- /dev/null
++++ candidate/tests/test_stage2_readout.py
+@@ -0,0 +1,284 @@
++"""Schema6 synthetic CPU fixtures, no real target/query/labels/production release."""
++from contextlib import ExitStack,contextmanager
++import copy
++import importlib.util
++import json
++import os
++from pathlib import Path
++import tempfile
++import unittest
++from unittest.mock import patch
++
++from hybrid_tsad.config import sha256
++from hybrid_tsad.engine.readout_manifest import record
++from hybrid_tsad.engine.stage2_readout_identity import JOBS,STAGE,canonical_sha,u_key,runtime_identity
++
++HAS_TORCH=importlib.util.find_spec('torch') is not None
++
++def put(path,value):
++    path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(value),encoding='utf-8');return path
++
++def restage(root,name,shard):
++    folder=root/name;put(folder/'summary.json',shard);return put(folder/'shard.json',shard)
++
++class Fixture:
++    def __init__(self,root):
++        import numpy as np
++        import torch
++        from test_stage2 import Fixture as SourceFixture,toy_factory
++        from hybrid_tsad.engine.stage2 import frozen_hashes
++        from hybrid_tsad.engine.identity import source_calibration
++        from hybrid_tsad.engine.bank import collect_forecasts,write_bank,inference_metadata
++        self.root=root;self.f=SourceFixture(root);self.profile=dict(name='SYNTHETIC',faults=[1,2],runs=[31],points=120,channels=52,event_start=110,sample_interval_minutes=3)
++        refs=json.loads(self.f.refs.read_text());rows=[]
++        for fault in (1,2):
++            p=root/f'query_synthetic_{fault}.npy';np.save(p,np.random.default_rng(fault).normal(size=(120,52)).astype('float32'))
++            rows.append(dict(entity=f'fault{fault:02}_run031',fault_id=fault,run_id=31,role='query',history=100,horizon=5,local_start=0,local_end_exclusive=120,
++                guard=0,channels=52,origins=[100,105,110,115],array_path=str(p),array_sha256_from_frozen_parent=sha256(p)))
++        self.query=put(root/'query.json',dict(dataset='SYNTHETIC',records=rows))
++        zc=json.loads((root/'source/prepared/catalog.json').read_text());zc['profile']=self.profile
++        self.zcatalog=put(root/'z_catalog.json',zc)
++        original={(x['seed'],x['mode']):x for x in refs['models']};native={};scores={}
++        for (seed,mode),spec in original.items():
++            model=toy_factory(root/'official.py',mode=mode,history=100,checkpoint=spec['checkpoint']['path'],checkpoint_metadata=spec['checkpoint_metadata']['path'])
++            scale=source_calibration(spec['calibration']['path'])['normal_error_scale']
++            for q in rows:
++                arrays,rng,_=collect_forecasts(model,np.load(q['array_path']),q['origins'],scale,mask_seed=84551)
++                key=f's{seed}/{mode}/'+q['entity'];folder=root/'old_Z'/key
++                meta=inference_metadata(key,dict(history=100,seed=seed,mode=mode,entity=q['entity']),points=20,blocks=4,mask_seed=84551,
++                    checkpoint_sha256=spec['checkpoint']['sha256'],query_array_sha256=q['array_sha256_from_frozen_parent'])
++                write_bank(folder,arrays,rng,meta);native[key]={k:record(folder/name) for k,name in [('bank','predictions_and_scores.npz'),('rng','rng_states.npz'),('metadata','inference.json')]}
++                scores[key]=dict(file=record(folder/'predictions_and_scores.npz'))
++        for seed in range(3):
++            for mode in ('late','history_mean','persistence'):
++                for q in rows:scores[f's{seed}/{mode}/'+q['entity']]=dict(file=native['s0/temporal/'+q['entity']]['bank'])
++        self.zseal=put(root/'old_Z_seal.json',dict(status='ALL_FIXED_SCORES_SEALED_LABELS_LOCKED',labels_opened=False,complete_group=True,
++            profile=self.profile,catalog=record(self.zcatalog),query_manifest=record(self.query),native_banks=native,scores=scores))
++        self.bridge=put(root/'bridge.json',dict(status='PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE',profile=self.profile,z_seal=record(self.zseal),
++            query_manifest=record(self.query),entities={q['entity']:native['s0/temporal/'+q['entity']] for q in rows}))
++        trainroot=root/'old_training_runtime';p=trainroot/'src/hybrid_tsad/engine/stage2.py';p.parent.mkdir(parents=True);p.write_text('# synthetic metadata runtime only')
++        truntime=put(root/'old_training_runtime.json',dict(stage='U_NORMAL_HEAD',files={'src/hybrid_tsad/engine/stage2.py':sha256(p)}))
++        models=[]
++        for job,(seed,mode,init) in JOBS.items():
++            parent=original[seed,mode];folder=root/'U'/job;train=folder/'train';cal=folder/'cal';train.mkdir(parents=True);cal.mkdir()
++            torch.manual_seed(seed if init=='random_init' else 42)
++            model=toy_factory(root/'official.py',mode=mode,history=100,checkpoint=parent['checkpoint']['path'] if init=='source_pretrained' else None,
++                checkpoint_metadata=parent['checkpoint_metadata']['path'] if init=='source_pretrained' else None)
++            cp=train/'step1000.pt';torch.save(model.state_dict(),cp)
++            header=dict(stage='U_NORMAL_HEAD',seed=seed,mode=mode,initialization=init,step=1000)
++            m=dict(**header,checkpoint_sha256=sha256(cp),history=100,horizon=5,copies=2,temporal_depth=4,
++                parent_checkpoint_sha256=parent['checkpoint']['sha256'],parent_weights_loaded=init=='source_pretrained',
++                initial_checkpoint_sha256=parent['checkpoint']['sha256'] if init=='source_pretrained' else None,
++                pretraining_domains=['PSM','SMD_SUBSET'] if init=='source_pretrained' else [],pretraining_excluded_target='TEP' if init=='source_pretrained' else None,
++                adaptation_target='TEP',target_labels_used=False,query_access=False,trainable_count=645,trainable_parameters=['head.weight','head.bias'],
++                target_manifest_sha256=sha256(self.f.target),target_plan_sha256=self.f.plans[str(seed)]['target_plan']['sha256'],
++                source_cal_trace_sha256=self.f.plans[str(seed)]['source_cal_trace']['sha256'],source_references_sha256=sha256(self.f.refs),runtime_sha256=sha256(truntime),
++                recipe_sha256=sha256(Path(__file__).resolve().parents[1]/'configs/stage2_u_normal_head.recipe.json'),
++                frozen_before=frozen_hashes(model),frozen_after=frozen_hashes(model))
++            mp=put(train/'checkpoint_metadata.json',m);summary=put(train/'summary.json',dict(status='U_NORMAL_HEAD_STEP1000_COMPLETE',job_id=job,primary=record(cp),steps=1000,identity=m))
++            with np.load(parent['cal_bank']['path']) as z:bank={k:z[k].copy() for k in z.files}
++            from hybrid_tsad.engine.source import calibrate_source
++            arr,params=calibrate_source(bank);np.savez_compressed(cal/'source_cal_bank.npz',**bank);np.savez_compressed(cal/'source_canonical.npz',**arr)
++            source=put(cal/'source_calibration.json',dict(stage='U_NORMAL_HEAD',role='source_cal_after_adaptation',fitted_checkpoint_sha256=sha256(cp),runtime_sha256=sha256(truntime),operation_manifest_sha256='b'*64,
++                source_cal_trace_sha256=m['source_cal_trace_sha256'],source_references_sha256=sha256(self.f.refs),source_bank=record(cal/'source_cal_bank.npz'),canonical_scores=record(cal/'source_canonical.npz'),**params))
++            with np.load(self.f.plans[str(seed)]['target_plan']['path']) as z:rr=z['cal_run'].copy();oo=z['cal_origin'].copy()
++            target=np.ones((256,5,52),np.float32);scales=np.ones((256,1,52),np.float32);prediction=target+np.float32(.125)
++            from hybrid_tsad.protocol import score_block
++            canonical=np.stack([score_block(p,y,s,params['normal_error_scale']) for p,y,s in zip(prediction,target,scales)])
++            np.savez_compressed(cal/'target_cal_bank.npz',prediction=prediction,target=target,history_scale=scales,run=rr,origin=oo)
++            np.savez_compressed(cal/'target_canonical.npz',canonical_score=canonical,run=rr,origin=oo)
++            threshold=put(cal/'target_threshold.json',dict(schema_version=2,stage='U_NORMAL_HEAD',role='target_threshold_only',fitted_checkpoint_sha256=sha256(cp),runtime_sha256=sha256(truntime),operation_manifest_sha256='b'*64,
++                source_calibration=record(source),source_error_scale=params['normal_error_scale'],target_manifest_sha256=sha256(self.f.target),target_plan_sha256=m['target_plan_sha256'],
++                canonical_scores=record(cal/'target_canonical.npz'),threshold99=float(np.quantile(canonical,.99,method='linear')),target_global_rescale=False,pool_is_contiguous_event=False,
++                target_manifest=record(self.f.target),target_plan=self.f.plans[str(seed)]['target_plan'],seed=seed,target_cal_bank=record(cal/'target_cal_bank.npz'),fitted_checkpoint_metadata=record(mp)))
++            for directory,op in [(train,'stage2-train'),(cal,'stage2-calibrate')]:put(directory/'archive_manifest.json',dict(stage='U_NORMAL_HEAD',status='STAGE2_ARCHIVE_COMPLETE',operation=op,files={x.name:sha256(x) for x in directory.iterdir()}))
++            accepted_train=put(folder/'primary_train.json',dict(status='PRIMARY_ACCEPTED_FORMAL_TRAIN_PAIR',stage='U_NORMAL_HEAD',allowed_jobs=[job],summaries={job:record(summary)}))
++            cal_review=put(folder/'cal_review.json',dict(status='PASS_LIMITED_WAVE2_CAL',fixture_only=True))
++            accepted=put(folder/'primary_wave.json',dict(status='PRIMARY_ACCEPTED_NAMED_WAVE',stage='U_NORMAL_HEAD',wave=2,accepted_train=record(accepted_train),independent_cal_review=record(cal_review),fixture_only=True))
++            models.append(dict(job_id=job,**header,checkpoint=record(cp),checkpoint_metadata=record(mp),training_summary=record(summary),train_archive=record(train/'archive_manifest.json'),
++                cal_archive=record(cal/'archive_manifest.json'),source_calibration=record(source),target_threshold=record(threshold),primary_acceptance=record(accepted)))
++        acceptance=put(root/'all18.json',dict(status='PRIMARY_ACCEPTED_ALL18_U_TRAIN_CAL',stage='U_NORMAL_HEAD',models={x['job_id']:canonical_sha(x) for x in models},fixture_only=True))
++        d=dict(schema_version=1,stage=STAGE,profile=self.profile,official=record(root/'official.py'),query_manifest=record(self.query),source_references=record(self.f.refs),z_catalog=record(self.zcatalog),z_seal=record(self.zseal),
++            normal_manifest=record(self.f.target),normal_plans={s:v['target_plan'] for s,v in self.f.plans.items()},source_traces={s:v['source_cal_trace'] for s,v in self.f.plans.items()},
++            training_runtime=record(truntime),training_runtime_root=str(trainroot),u_models=models,all18_acceptance=record(acceptance),physical_bridge=record(self.bridge))
++        self.definition=put(root/'definition6.json',d);self.models=models
++        self.runtime=put(root/'readout_runtime.json',runtime_identity())
++
++    @contextmanager
++    def context(self):
++        with ExitStack() as s:
++            s.enter_context(self.f.context());s.enter_context(patch('hybrid_tsad.engine.stage2_readout_identity.CONTRACT_SHA',sha256(self.f.contract)))
++            s.enter_context(patch('hybrid_tsad.engine.stage2_readout_identity.OFFICIAL_SHA',sha256(self.root/'official.py')))
++            yield
++
++    def operation(self,op,inputs,*,scope='full',name=None):
++        from hybrid_tsad.engine.stage2_readout_identity import load_operation
++        name=name or op;ap=put(self.root/(name+'_approval.json'),{})
++        params=dict(profile=self.profile,scope=scope,runtime=record(self.runtime))
++        if op in ('infer','z-normal-cal'):params['device']='cpu'
++        c=dict(engine_schema_version=6,stage=STAGE,operation=op,contract=record(self.f.contract),approval=record(ap),inputs={k:record(v) for k,v in inputs.items()},parameters=params,
++            output=str(self.root/(name+'_out')),score_space='history_normalized_abs_channelmean_div_source_median_v1')
++        p=put(self.root/(name+'.json'),c);*_,digest=load_operation(p)
++        put(ap,dict(status='APPROVED',stage=STAGE,scope='SYNTHETIC_CPU_ENGINEERING_ONLY',contract_sha256=sha256(self.f.contract),operation_manifest_sha256=digest,
++            permissions=dict(operation=op,training=False,source_fit=False,query_infer=op=='infer',target_normal_cal=op=='z-normal-cal',labels=False,F=False)))
++        c['approval']=record(ap);put(p,c);return p
++
++
++@unittest.skipUnless(HAS_TORCH,'existing torch required; synthetic CPU only')
++class ReadoutTests(unittest.TestCase):
++    def setUp(self):
++        import torch
++        torch.set_num_threads(2);self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.f=Fixture(Path(self.tmp.name))
++
++    def test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng(self):
++        import numpy as np
++        from hybrid_tsad.engine.stage2_readout import run_readout,load_catalog,infer
++        from hybrid_tsad.engine.bank import collect_forecasts
++        from test_stage2 import toy_factory
++        with self.f.context():
++            p=self.f.operation('catalog',dict(definition=self.f.definition));run_readout(p,execute=True);catalog=self.f.root/'catalog_out/catalog.json'
++            z=self.f.operation('z-normal-cal',dict(catalog=catalog));zr=run_readout(z,execute=True);zpath=self.f.root/'z-normal-cal_out/z_thresholds.json'
++            self.assertEqual(len(zr['thresholds']),9);self.assertEqual(zr['query_forwards'],0)
++            first=next(iter(zr['thresholds'].values()))
++            identity=json.loads(Path(first['path']).read_text());self.assertEqual(identity['role'],'Z_TARGET_NORMAL_THRESHOLD_ONLY')
++            with np.load(identity['bank']['path']) as bank:self.assertEqual(bank['origin'][:2].tolist(),[465,100])
++            a=load_catalog(catalog,self.f.profile)
++            cells=[dict(job_id=j,entity=e,origins=q['origins']) for j in JOBS for e,q in a['entities'].items()]
++            wl=put(self.f.root/'whitelist.json',cells);p=self.f.operation('infer',dict(catalog=catalog,whitelist=wl),scope='shard');r=run_readout(p,execute=True)
++            self.assertEqual(len(r['banks']),36);self.assertEqual(len(set(r['banks'])),36)
++            # Differential against direct original collector under same state and device RNG.
++            job=cells[0]['job_id'];entity=cells[0]['entity'];spec=a['models'][job];q=a['entities'][entity]
++            model=toy_factory(a['official'],mode=JOBS[job][1],history=100,checkpoint=spec['paths']['checkpoint'],checkpoint_metadata=spec['paths']['checkpoint_metadata'])
++            expected,rng,_=collect_forecasts(model,np.load(q['array_path']),q['origins'],spec['source']['normal_error_scale'],mask_seed=84551)
++            actual=r['banks'][u_key(job,entity)]
++            with np.load(actual['bank']['path']) as bank:
++                for k,v in expected.items():self.assertTrue(np.array_equal(bank[k],v),k)
++            with np.load(actual['rng']['path']) as saved:self.assertTrue(np.array_equal(saved['before_each_block'],rng))
++            shards=put(self.f.root/'shards.json',[record(self.f.root/'infer_out/shard.json')]);ex=put(self.f.root/'executions.json',dict(scope='SYNTHETIC_CPU_ENGINEERING_ONLY'))
++            p=self.f.operation('seal',dict(catalog=catalog,shards=shards,z_thresholds=zpath,executions=ex));sealed=run_readout(p,execute=True)
++            self.assertEqual(sealed['counts'],dict(u_banks=36,z_native_banks=18,z_fixed_scores=36));self.assertFalse(sealed['labels_opened'])
++            for value in sealed['u_banks'].values():self.assertEqual(value['tracks']['source']['score_object'],value['tracks']['target']['score_object'])
++            p=self.f.operation('gate',dict(catalog=catalog,seal=self.f.root/'seal_out/seal.json'));self.assertFalse(run_readout(p,execute=True)['labels_permission'])
++            # Missing full bank refuses seal even when shard hash is updated.
++            shard=json.loads((self.f.root/'infer_out/shard.json').read_text());shard['banks'].pop(next(iter(shard['banks'])));bad=restage(self.f.root,'missing_bank_archive',shard)
++            badlist=put(self.f.root/'missinglist.json',[record(bad)]);p=self.f.operation('seal',dict(catalog=catalog,shards=badlist,z_thresholds=zpath,executions=ex),name='missing')
++            with self.assertRaisesRegex(ValueError,'Whitelist/output'):run_readout(p,execute=True)
++            good=json.loads((self.f.root/'infer_out/shard.json').read_text());removed=good['whitelist'].pop(0)
++            good['banks'].pop(u_key(removed['job_id'],removed['entity']))
++            sp=restage(self.f.root,'partial_bank_archive',good);lst=put(self.f.root/'partial_shards.json',[record(sp)])
++            p=self.f.operation('seal',dict(catalog=catalog,shards=lst,z_thresholds=zpath,executions=ex),name='partial_group')
++            with self.assertRaisesRegex(ValueError,'INCOMPLETE'):run_readout(p,execute=True)
++            duplicate=put(self.f.root/'duplicate_shards.json',[record(self.f.root/'infer_out/shard.json')]*2)
++            p=self.f.operation('seal',dict(catalog=catalog,shards=duplicate,z_thresholds=zpath,executions=ex),name='duplicate_group')
++            with self.assertRaisesRegex(ValueError,'Duplicate'):run_readout(p,execute=True)
++            # Same physical target/index, altered canonical only, with fresh bank/meta/shard SHA.
++            shard=json.loads((self.f.root/'infer_out/shard.json').read_text());key=next(iter(shard['banks']));v=shard['banks'][key]
++            with np.load(v['bank']['path']) as z:values={k:z[k].copy() for k in z.files}
++            values['standardized_score']*=np.float32(2);bp=self.f.root/'bad_unit_bank.npz';np.savez_compressed(bp,**values)
++            meta=json.loads(Path(v['metadata']['path']).read_text());meta['bank_sha256']=sha256(bp);mp=put(self.f.root/'bad_unit_meta.json',meta)
++            v.update(bank=record(bp),metadata=record(mp));sp=restage(self.f.root,'bad_unit_archive',shard);badlist=put(self.f.root/'bad_unit_shards.json',[record(sp)])
++            p=self.f.operation('seal',dict(catalog=catalog,shards=badlist,z_thresholds=zpath,executions=ex),name='bad_unit')
++            with self.assertRaisesRegex(ValueError,'closed'):run_readout(p,execute=True)
++            missing_bridge=json.loads(self.f.bridge.read_text());missing_bridge['entities'].pop(next(iter(missing_bridge['entities'])))
++            from hybrid_tsad.engine.stage2_readout import physical_bridge
++            a['definition']['physical_bridge']=record(put(self.f.root/'missing_bridge.json',missing_bridge))
++            with self.assertRaisesRegex(ValueError,'lacks actual'):physical_bridge(a,self.f.profile)
++
++    def test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused(self):
++        from hybrid_tsad.engine.stage2_readout_identity import validate_definition
++        with self.f.context():
++            original=json.loads(self.f.definition.read_text())
++            for case in ('missing','parent','role','plan','best','approval','train_only'):
++                d=copy.deepcopy(original)
++                if case=='missing':d['u_models'].pop()
++                elif case=='parent':d['u_models'][0]['initialization']='random_init'
++                elif case=='role':d['u_models'][0]['stage']='SOURCE_PRETRAIN'
++                elif case=='plan':d['normal_plans']['0']=d['normal_plans']['1']
++                elif case=='best':
++                    cp=Path(d['u_models'][0]['checkpoint']['path']);best=cp.parent/'best.pt';best.write_bytes(cp.read_bytes());d['u_models'][0]['checkpoint']=record(best)
++                elif case=='train_only':d['u_models'][0]['primary_acceptance']=record(Path(d['u_models'][0]['primary_acceptance']['path']).parent/'primary_train.json')
++                else:d['all18_acceptance']=record(put(self.f.root/'PENDING.json',dict(status='PENDING')))
++                if case not in ('missing','approval'):
++                    acceptance=put(self.f.root/(case+'_accepted.json'),dict(status='PRIMARY_ACCEPTED_ALL18_U_TRAIN_CAL',stage='U_NORMAL_HEAD',models={x['job_id']:canonical_sha(x) for x in d['u_models']}));d['all18_acceptance']=record(acceptance)
++                with self.subTest(case=case),self.assertRaises(ValueError):validate_definition(d,self.f.definition,self.f.profile)
++
++    def test_cpu_fixture_permission_digest_and_no_labels_route(self):
++        from hybrid_tsad.engine.stage2_readout_identity import load_operation,approve
++        from hybrid_tsad.engine.stage2_readout import run_readout
++        with self.f.context():
++            p=self.f.operation('catalog',dict(definition=self.f.definition));self.assertFalse(run_readout(p)['executed'])
++            c=json.loads(p.read_text());c['parameters']['profile']['name']='TEP100';put(p,c);cfg,paths,out,_,digest=load_operation(p)
++            with self.assertRaisesRegex(ValueError,'bind'):approve(cfg,paths,out,digest,p)
++            c=json.loads(p.read_text());c['inputs']['labels']=record(self.f.definition);put(p,c)
++            with self.assertRaisesRegex(ValueError,'schema6'):load_operation(p)
++            p=self.f.operation('infer',dict(catalog=self.f.definition,whitelist=self.f.definition),scope='shard',name='fake_gpu')
++            c=json.loads(p.read_text());c['parameters']['device']='cuda:0';put(p,c);cfg,paths,out,_,digest=load_operation(p)
++            ap=Path(c['approval']['path']);v=json.loads(ap.read_text());v['operation_manifest_sha256']=digest;put(ap,v);c['approval']=record(ap);put(p,c)
++            cfg,paths,out,_,digest=load_operation(p)
++            with self.assertRaisesRegex(ValueError,'CPU-only'):approve(cfg,paths,out,digest,p)
++            from hybrid_tsad.engine.stage2_readout_identity import whitelist
++            entities=json.loads(self.f.query.read_text())['records'];entities={q['entity']:q for q in entities};first=min(entities)
++            l0=[dict(job_id=j,entity=first,origins=entities[first]['origins'][:2]) for j in JOBS if JOBS[j][0]==0]
++            self.assertEqual(len(whitelist(l0,entities,'l0')),6)
++            with self.assertRaisesRegex(ValueError,'exact six'):whitelist(l0[:-1],entities,'l0')
++            from hybrid_tsad.engine.stage2_readout import production_backend
++            with patch('torch.cuda.is_available',return_value=False),self.assertRaisesRegex(ValueError,'unavailable'):
++                production_backend(dict(name='TEP100',channels=52),'cuda:0')
++            self.assertNotEqual(u_key('u_normal_head_hybrid_s0_source_pretrained','fault01_run031'),u_key('u_normal_head_hybrid_s0_random_init','fault01_run031'))
++
++    def test_z_normal_cal_x2_resigned_q99_and_trace_change_refused(self):
++        import numpy as np
++        from hybrid_tsad.engine.stage2_readout import run_readout,load_catalog,validate_z_threshold
++        with self.f.context():
++            run_readout(self.f.operation('catalog',dict(definition=self.f.definition)),execute=True);catalog=self.f.root/'catalog_out/catalog.json'
++            r=run_readout(self.f.operation('z-normal-cal',dict(catalog=catalog)),execute=True)
++            path=Path(r['thresholds']['s0/hybrid']['path']);t=json.loads(path.read_text());a=load_catalog(catalog,self.f.profile)
++            with np.load(t['canonical']['path']) as z:values={k:z[k].copy() for k in z.files}
++            values['canonical_score']*=np.float32(2);bad=path.parent/'x2.npz';np.savez_compressed(bad,**values)
++            t['canonical']=record(bad);t['threshold99']=float(np.quantile(values['canonical_score'],.99,method='linear'));bp=put(path.parent/'x2.json',t)
++            with self.assertRaisesRegex(ValueError,'closed'):validate_z_threshold(bp,a,0,'hybrid')
++            t=json.loads(path.read_text());t['normal_plan']=self.f.f.plans['1']['target_plan'];bp=put(path.parent/'wrong_plan.json',t)
++            with self.assertRaisesRegex(ValueError,'plan'):validate_z_threshold(bp,a,0,'hybrid')
++
++    def test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers(self):
++        import numpy as np
++        import torch
++        from test_stage2 import toy_factory
++        from hybrid_tsad.engine.bank import collect_forecasts
++        model=toy_factory(self.f.root/'official.py',mode='hybrid',history=100)
++        data=np.random.default_rng(5).normal(size=(110,52)).astype('float32');future=data.copy();future[100:105]+=10
++        a,ar,_=collect_forecasts(model,data,[100],1.,mask_seed=84551);b,br,_=collect_forecasts(model,future,[100],1.,mask_seed=84551)
++        self.assertTrue(np.array_equal(a['prediction'],b['prediction']));self.assertTrue(np.array_equal(ar,br));self.assertFalse(np.array_equal(a['standardized_score'],b['standardized_score']))
++
++if __name__=='__main__':unittest.main()
++
++
++@unittest.skipUnless(HAS_TORCH and os.environ.get('HYBRID_OFFICIAL_FILE'),'existing torch/external official source required')
++class ActualCoreTransportTests(unittest.TestCase):
++    def test_real_three_modes_wrapper_matches_old_collector_exact_arrays_rng(self):
++        import numpy as np
++        import torch
++        from hybrid_tsad.model import HybridPredictor
++        from hybrid_tsad.engine.stage2_readout import infer
++        from hybrid_tsad.engine.bank import collect_forecasts
++        from hybrid_tsad.api import create_predictor
++        from hybrid_tsad.engine.stage2_identity import Assets
++        torch.set_num_threads(2)
++        with tempfile.TemporaryDirectory() as t:
++            root=Path(t);official=Path(os.environ['HYBRID_OFFICIAL_FILE']);data=np.random.default_rng(2).normal(size=(110,52)).astype('float32')
++            array=root/'synthetic.npy';np.save(array,data);entity='fault01_run031';catalog=put(root/'transport_only.json',dict(scope='synthetic transport only; no identity authority'))
++            for mode in ('temporal','tf','hybrid'):
++                torch.manual_seed(7);model=HybridPredictor(official,history=100,mode=mode);cp=root/(mode+'.pt');torch.save(model.state_dict(),cp)
++                mp=put(root/(mode+'_meta.json'),dict(history=100,horizon=5,mode=mode,copies=2,temporal_depth=4,checkpoint_sha256=sha256(cp)))
++                job=f'u_normal_head_{mode}_s0_source_pretrained';spec=dict(paths=dict(checkpoint=cp,checkpoint_metadata=mp),source=dict(normal_error_scale=1.),
++                    row=dict(checkpoint=record(cp),source_calibration={'sha256':'a'*64},target_threshold={'sha256':'b'*64}))
++                q=dict(array_path=str(array),array_sha256_from_frozen_parent=sha256(array),fault_id=1,run_id=31,origins=[100,105])
++                a=dict(assets=Assets(),base=catalog,official=official,catalog_path=catalog,entities={entity:q},models={job:spec})
++                output=root/('infer_'+mode);output.mkdir()
++                report=infer(a,[dict(job_id=job,entity=entity,origins=[100,105])],output,profile=dict(name='SYNTHETIC',points=110,channels=52),scope='shard',device='cpu')
++                old=create_predictor(official,mode=mode,history=100,checkpoint=cp,checkpoint_metadata=mp)
++                expected,rng,_=collect_forecasts(old,data,[100,105],1.,mask_seed=84551)
++                desc=next(iter(report['banks'].values()))
++                with np.load(desc['bank']['path']) as actual:
++                    for k,v in expected.items():self.assertTrue(np.array_equal(actual[k],v),(mode,k))
++                with np.load(desc['rng']['path']) as actual:self.assertTrue(np.array_equal(actual['before_each_block'],rng),mode)
+--- /dev/null
++++ candidate/docs/stage2_readout.md
+@@ -0,0 +1,104 @@
++# Schema6：U 原生读出与 Z 正常阈值适配候选
++
++合同 `HYBRID_TEP100_U_READOUT_20261101`，stage=`U_NORMAL_HEAD_READOUT`。
++本轮仅合成 CPU 工程；没有真实 catalog、Z 正常校准、query-L0、查询推理、标签或 GPU 执行。
++18项训练/cal全部接受之前不能冻结生产 catalog。完整新维度评价属于后续子交付，当前没有 label loader。
++
++## 入口
++
++```text
++python -m hybrid_tsad stage2-readout --runtime-identity
++python -m hybrid_tsad stage2-readout --config configs/stage2-readout.catalog.example.json
++python -m hybrid_tsad stage2-readout --config configs/stage2-readout.z-normal-cal.example.json
++python -m hybrid_tsad stage2-readout --config configs/stage2-readout.infer.example.json
++python -m hybrid_tsad stage2-readout --config configs/stage2-readout.seal.example.json
++python -m hybrid_tsad stage2-readout --config configs/stage2-readout.gate.example.json
++```
++
++默认 preview 不打开输入资产、数据或模型。示例为真实TEP形状、外置路径与零 SHA 占位符，不是批准。
++`--execute` 要求固定合同 SHA、精确规范 operation manifest、独立主审批与当前全源码 runtime 身份。
++SYNTHETIC 必须 `SYNTHETIC_CPU_ENGINEERING_ONLY` 且CPU；真实TEP必须另签
++`U_NORMAL_HEAD_READOUT_EXPLICIT_OPERATION`，推理/正常cal只允许固定A40 CUDA float32，无fallback。
++权限字段分别声明 operation、training=false、source_fit=false、query_infer、target_normal_cal、labels=false、F=false。
++`gate` 仅返回可申请主 label release 的资格，`labels_permission`仍为false；不执行评价。
++
++## 源码与身份边界
++
++原 core、bank/score、Z schema4、U schema5和运行中的9579090训练快照不改。
++两个新增模块只组装既有数值核；单CLI路由。新的读出 runtime 全Python集合包含新模块/CLI，
++与拟合U权重的旧training runtime是两份不同身份，不能把新代码倒填成旧训练执行来源。
++每操作复制包内原字节源码一次并在结束复核，沿用既有 `_snapshot/_finish`，不复制官方源码或权重。
++
++`catalog` 输入 definition 的字段：
++
++|字段|约束|
++|---|---|
++|schema_version/stage/profile|1 / U_NORMAL_HEAD_READOUT / 固定TEP100，或仅CPU合成profile|
++|official|外置固定官方单文件 path/SHA，不vendor|
++|query_manifest|原400实体manifest path/SHA，H100/P5、52通道、960点、172 origins、原860 indices|
++|source_references/z_catalog/z_seal|九个原Z parent、source单位、旧已封存3600银行/7200六方法score，只读引用|
++|normal_manifest/normal_plans/source_traces|已固定正常角色、三seed正常plan、原source-cal trace，不重抽|
++|training_runtime/training_runtime_root|拟合U所用旧runtime身份文件及原字节源码根，不是当前读出runtime|
++|u_models|精确18个具名模型，字段见下文|
++|all18_acceptance|主实际汇总接受文件，不能预生成PASS|
++|physical_bridge|主核旧Z物理来源后签的真实reference桥，缺失则HOLD|
++
++每U row为 job_id、stage=U_NORMAL_HEAD、seed/mode/initialization、step=1000，及以下 path/SHA：
++checkpoint、checkpoint_metadata、training_summary、train_archive、cal_archive、source_calibration、target_threshold、primary_acceptance。
++共14字段占位例为 `configs/stage2-readout.u-model-row.PENDING.example.json`；
++汇总占位例为 `configs/stage2-readout.all18-acceptance.PENDING.example.json`，均非真实接受。
++主 `PRIMARY_ACCEPTED_ALL18_U_TRAIN_CAL` 文件须 stage=U_NORMAL_HEAD，
++`models[job_id]` 等于该完整row的规范JSON SHA（含逐波接受、两归档引用）。
++归档所有列出的文件逐SHA复核；只允许 `step1000.pt`，拒绝best替代、部分模型、错误parent/role/seed/plan。
++primary_acceptance只接受实际 `PRIMARY_ACCEPTED_FORMAL_PAIR` 或 `PRIMARY_ACCEPTED_NAMED_WAVE`；
++后者无需补造allowed_jobs，按其accepted_train解引用训练接受：allowed_jobs含该job、summaries[job]精确匹配training_summary。
++同时核independent_cal_review的实际 `PASS_LIMITED_FORMAL_CAL_PAIR` 或对应 `PASS_LIMITED_WAVE{wave}_CAL`。
++单独训练接受不够，不能为适配新loader改旧接受原件。
++calibration_tracks原核逐点闭合U正常cal物理bank与单canonical，继承既有×2反例拒绝。
++random路径不声称加载parent：source域/exclusion为空、initial_checkpoint=null、parent仅为配对参考。
++
++## 实际数据通路
++
++- `infer` 使用精确 `job_id/entity/origins` 白名单；key为 `U_NORMAL_HEAD_READOUT/job_id/entity`，两初始化不撞键。
++  全shard包含完整entity origins；L0恰为seed0六模型、首entity前2origin，不能当全组。
++  创建/严格加载eval模型后原 `collect_forecasts` 每entity84551一次，不外套第二层seed。
++  原前2块device RNG重放、逐block RNG、预测/target/scale/residual/raw/canonical/index/valid完全保留。
++  读出全state（含head和buffers）前后hash，计时含原定义的forward样本与whole entity写出成本。
++- `z-normal-cal` 只读九个原Z权重与原source scalar。用原 `evaluate_target_cal` / `TargetNormal`，
++  同seed原256 B1C52正常cal顺序、84551每call一次并恢复RNG/模式；不走要求origin有序的query collector。
++  无optimizer/source拟合/query forward。全参数requires_grad=false，全部state不变。
++  输出独立 `Z_TARGET_NORMAL_THRESHOLD_ONLY`，不伪造U step1000或全流程未接触目标的Z。
++  原source scalar和source q99不改，只拟合同单位target q99；保存物理cal bank、单canonical、run/origin和backend/runtime/operation身份。
++  消费者还核实际正常缓存按plan的target值、原score_block逐点分数及q99，拒绝×2、错plan、错角色/源单位。
++  阈值引用原operation config的path/SHA，消费者重核规范digest、精确主审批、catalog及readout runtime；不只信operation SHA自述。
++- `seal` 必须18×400=7200 U bank；合成测试用完整18×2。要求全部归档summary匹配，
++  每bank/hash/RNG/物理source/index/scale/原raw与source-canonical逐点闭合，缺/多/重复/L0不可封存。
++  S/T两个threshold descriptor引用同一bank的 `standardized_score` 与 `time_index`，不生成第二份T分数。
++  旧Z3600银行/7200分数逐SHA引用，不推理、不重写；9个Z正常阈值缺任何一个都拒绝。
++  旧Z simple/late仅保留原source证据，本入口不增加其target轨、late-U或新baseline。
++
++## 旧Z物理reference桥和执行证据
++
++桥文件 `status=PRIMARY_ACCEPTED_Z_PHYSICAL_REFERENCE_BRIDGE`，绑定profile、z_seal、query_manifest。
++`entities[entity]` 必须原seal中固定seed0/temporal的bank/rng/metadata descriptor，不能凭空声称另有缓存。
++TEP还必须绑定原 `execution_evidence`、原固定CUDA backend、`independent_physical_audit` path/SHA。
++消费者核完整旧Z集合，实际query文件SHA、goldbank的真实target/index/origin/scale，以及其checkpoint/来源metadata；
++新U对该原preprocess参考使用原2e-6/2e-6，不换CPU公式或增容差。缺桥/资产不齐为HOLD，不执行补reference模型。
++本轮未打开真实old Z资产；生产桥是否齐全必须由主独立核实后另签，测试fixture不算证明。
++
++生产 `executions` 为每个原shard文件SHA到launch/os_wait/resource三个path/SHA的映射。
++要求OS exit0、真实process_seconds、launch精确operation digest、resource完成状态及同内容summary SHA，
++以及实际A40/Torch2.8.0+cu128/CUDA12.8环境。SYNTHETIC只能使用明确CPU工程标记。
++resource.current_runtime.shared_sha256必须是本冻结stage2_readout模块SHA；shard和每bank另绑定完整runtime及operation digest。
++真实新资源壳/启动、GPU L0、profiling和总账本仍须另签并独审，本候选不会借旧train壳授权新query。
++
++## 验证与未迁移
++
++冻结diff、出处/原字节SHA、CPU回执、初期失败留档见 `provenance/stage2_readout_cpu/FREEZE.json`。
++完整配置正路用合成source/normal/query值和元数据fixture，未进行真实训练，也不把fixture汇总接受称主真实批准。
++另以外置官方文件构造既有真实三mode，用合成B1H100C52、两origin，直接比较旧collector与新wrapper的全部数组/逐块RNG。
++这仅证明工程传输等价，非检测增益、GPU等价或新科研结果。
++
++未实现：新stage评价/标签加载、新维度配对统计适配、真实production catalog与bridge、真实Z正常cal、
++query GPU L0/profiling/7200全推、实际readout资源账本。6GiB/8GPUh只是合同候选预算，不是自动执行许可。
++下一步必须独审/主接受本CPU候选；全部18 train/cal接受后，再依合同逐项另签。
+--- /dev/null
++++ candidate/configs/stage2-readout.all18-acceptance.PENDING.example.json
+@@ -0,0 +1,25 @@
++{
++  "status": "PENDING_NOT_PRIMARY_ACCEPTED",
++  "stage": "U_NORMAL_HEAD",
++  "models": {
++    "u_normal_head_temporal_s0_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_temporal_s0_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_temporal_s1_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_temporal_s1_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_temporal_s2_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_temporal_s2_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s0_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s0_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s1_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s1_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s2_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_tf_s2_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s0_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s0_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s1_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s1_random_init": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s2_source_pretrained": "0000000000000000000000000000000000000000000000000000000000000000",
++    "u_normal_head_hybrid_s2_random_init": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "note": "models values must be canonical_sha of actual complete14-field definition rows; root signs only after all18 original train+cal accepted"
++}--- /dev/null
++++ candidate/configs/stage2-readout.catalog.example.json
+@@ -0,0 +1,79 @@
++{
++  "engine_schema_version": 6,
++  "stage": "U_NORMAL_HEAD_READOUT",
++  "operation": "catalog",
++  "contract": {
++    "path": "../../external/u_readout/CONTRACT.md",
++    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
++  },
++  "approval": {
++    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "definition": {
++      "path": "../../external/u_readout/definition.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "profile": {
++      "name": "TEP100",
++      "faults": [
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        17,
++        18,
++        19,
++        20
++      ],
++      "runs": [
++        31,
++        32,
++        33,
++        34,
++        35,
++        36,
++        37,
++        38,
++        39,
++        40,
++        41,
++        42,
++        43,
++        44,
++        45,
++        46,
++        47,
++        48,
++        49,
++        50
++      ],
++      "points": 960,
++      "channels": 52,
++      "event_start": 160,
++      "sample_interval_minutes": 3
++    },
++    "scope": "full",
++    "runtime": {
++      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "output": "../../external/u_readout/new_catalog",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}--- /dev/null
++++ candidate/configs/stage2-readout.gate.example.json
+@@ -0,0 +1,83 @@
++{
++  "engine_schema_version": 6,
++  "stage": "U_NORMAL_HEAD_READOUT",
++  "operation": "gate",
++  "contract": {
++    "path": "../../external/u_readout/CONTRACT.md",
++    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
++  },
++  "approval": {
++    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "catalog": {
++      "path": "../../external/u_readout/catalog.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "seal": {
++      "path": "../../external/u_readout/seal.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "profile": {
++      "name": "TEP100",
++      "faults": [
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        17,
++        18,
++        19,
++        20
++      ],
++      "runs": [
++        31,
++        32,
++        33,
++        34,
++        35,
++        36,
++        37,
++        38,
++        39,
++        40,
++        41,
++        42,
++        43,
++        44,
++        45,
++        46,
++        47,
++        48,
++        49,
++        50
++      ],
++      "points": 960,
++      "channels": 52,
++      "event_start": 160,
++      "sample_interval_minutes": 3
++    },
++    "scope": "full",
++    "runtime": {
++      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "output": "../../external/u_readout/new_gate",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}--- /dev/null
++++ candidate/configs/stage2-readout.infer.example.json
+@@ -0,0 +1,84 @@
++{
++  "engine_schema_version": 6,
++  "stage": "U_NORMAL_HEAD_READOUT",
++  "operation": "infer",
++  "contract": {
++    "path": "../../external/u_readout/CONTRACT.md",
++    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
++  },
++  "approval": {
++    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "catalog": {
++      "path": "../../external/u_readout/catalog.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "whitelist": {
++      "path": "../../external/u_readout/whitelist.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "profile": {
++      "name": "TEP100",
++      "faults": [
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        17,
++        18,
++        19,
++        20
++      ],
++      "runs": [
++        31,
++        32,
++        33,
++        34,
++        35,
++        36,
++        37,
++        38,
++        39,
++        40,
++        41,
++        42,
++        43,
++        44,
++        45,
++        46,
++        47,
++        48,
++        49,
++        50
++      ],
++      "points": 960,
++      "channels": 52,
++      "event_start": 160,
++      "sample_interval_minutes": 3
++    },
++    "scope": "shard",
++    "runtime": {
++      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "device": "cuda:0"
++  },
++  "output": "../../external/u_readout/new_infer",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}--- /dev/null
++++ candidate/configs/stage2-readout.seal.example.json
+@@ -0,0 +1,91 @@
++{
++  "engine_schema_version": 6,
++  "stage": "U_NORMAL_HEAD_READOUT",
++  "operation": "seal",
++  "contract": {
++    "path": "../../external/u_readout/CONTRACT.md",
++    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
++  },
++  "approval": {
++    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "catalog": {
++      "path": "../../external/u_readout/catalog.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "shards": {
++      "path": "../../external/u_readout/shards.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "z_thresholds": {
++      "path": "../../external/u_readout/z_thresholds.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "executions": {
++      "path": "../../external/u_readout/executions.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "profile": {
++      "name": "TEP100",
++      "faults": [
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        17,
++        18,
++        19,
++        20
++      ],
++      "runs": [
++        31,
++        32,
++        33,
++        34,
++        35,
++        36,
++        37,
++        38,
++        39,
++        40,
++        41,
++        42,
++        43,
++        44,
++        45,
++        46,
++        47,
++        48,
++        49,
++        50
++      ],
++      "points": 960,
++      "channels": 52,
++      "event_start": 160,
++      "sample_interval_minutes": 3
++    },
++    "scope": "full",
++    "runtime": {
++      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "output": "../../external/u_readout/new_seal",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}--- /dev/null
++++ candidate/configs/stage2-readout.u-model-row.PENDING.example.json
+@@ -0,0 +1,40 @@
++{
++  "job_id": "u_normal_head_hybrid_s0_source_pretrained",
++  "stage": "U_NORMAL_HEAD",
++  "seed": 0,
++  "mode": "hybrid",
++  "initialization": "source_pretrained",
++  "step": 1000,
++  "checkpoint": {
++    "path": "/EXTERNAL/actual_U_job/step1000.pt",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "checkpoint_metadata": {
++    "path": "/EXTERNAL/actual_U_job/checkpoint_metadata.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "training_summary": {
++    "path": "/EXTERNAL/actual_U_job/training_summary.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "train_archive": {
++    "path": "/EXTERNAL/actual_U_job/train_archive.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "cal_archive": {
++    "path": "/EXTERNAL/actual_U_job/cal_archive.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "source_calibration": {
++    "path": "/EXTERNAL/actual_U_job/source_calibration.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "target_threshold": {
++    "path": "/EXTERNAL/actual_U_job/target_threshold.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "primary_acceptance": {
++    "path": "/EXTERNAL/actual_U_job/primary_acceptance.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  }
++}--- /dev/null
++++ candidate/configs/stage2-readout.z-normal-cal.example.json
+@@ -0,0 +1,80 @@
++{
++  "engine_schema_version": 6,
++  "stage": "U_NORMAL_HEAD_READOUT",
++  "operation": "z-normal-cal",
++  "contract": {
++    "path": "../../external/u_readout/CONTRACT.md",
++    "sha256": "56f4106f9c042fd20ec969b0dfd4535d7f9c3827dd382cc9472213c25471327d"
++  },
++  "approval": {
++    "path": "../../external/u_readout/PENDING_PRIMARY_APPROVAL.json",
++    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++  },
++  "inputs": {
++    "catalog": {
++      "path": "../../external/u_readout/catalog.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    }
++  },
++  "parameters": {
++    "profile": {
++      "name": "TEP100",
++      "faults": [
++        1,
++        2,
++        3,
++        4,
++        5,
++        6,
++        7,
++        8,
++        9,
++        10,
++        11,
++        12,
++        13,
++        14,
++        15,
++        16,
++        17,
++        18,
++        19,
++        20
++      ],
++      "runs": [
++        31,
++        32,
++        33,
++        34,
++        35,
++        36,
++        37,
++        38,
++        39,
++        40,
++        41,
++        42,
++        43,
++        44,
++        45,
++        46,
++        47,
++        48,
++        49,
++        50
++      ],
++      "points": 960,
++      "channels": 52,
++      "event_start": 160,
++      "sample_interval_minutes": 3
++    },
++    "scope": "full",
++    "runtime": {
++      "path": "../../external/u_readout/READOUT_RUNTIME_IDENTITY.json",
++      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
++    },
++    "device": "cuda:0"
++  },
++  "output": "../../external/u_readout/new_z-normal-cal",
++  "score_space": "history_normalized_abs_channelmean_div_source_median_v1"
++}

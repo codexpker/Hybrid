@@ -1,0 +1,92 @@
+--- frozen_v8/src/hybrid_tsad/engine/stage2_readout.py
++++ semantic_v9/src/hybrid_tsad/engine/stage2_readout.py
+@@ -238,16 +238,33 @@
+         for key,value in shard['banks'].items():
+             if key in banks:raise ValueError('Duplicate bank across shards')
+             cell=next(c for c in cells if u_key(c['job_id'],c['entity'])==key);job=cell['job_id'];entity=cell['entity'];spec=a['models'][job]
++            seed,mode,init=JOBS[job]
+             bp=assets.file(value['bank'],p);meta=read_json(assets.file(value['metadata'],p));rp=assets.file(value['rng'],p)
+             expected=dict(stage=STAGE,job_id=job,entity=entity,history=100,mask_seed=84551,scope='shard',
++                seed=seed,mode=mode,initialization=init,readout_job=key,status='INFERENCE_COMPLETE_LABELS_NOT_OPENED',
++                points=len(cell['origins'])*5,blocks=len(cell['origins']),batch=1,
+                 checkpoint_sha256=spec['row']['checkpoint']['sha256'],source_scale=spec['source']['normal_error_scale'],
+                 source_calibration_sha256=spec['row']['source_calibration']['sha256'],target_threshold_sha256=spec['row']['target_threshold']['sha256'],
+                 operation_manifest_sha256=shard['operation_manifest_sha256'],readout_runtime_sha256=shard['readout_runtime']['sha256'],
+                 catalog_sha256=sha256(a['catalog_path']),query_array_sha256=a['entities'][entity]['array_sha256_from_frozen_parent'])
+-            if meta.get('bank_sha256')!=sha256(bp) or meta.get('labels_opened') is not False or any(meta.get(k)!=v for k,v in expected.items()):raise ValueError('U bank fitted/score/physical metadata mismatch')
++            if (meta.get('bank_sha256')!=sha256(bp) or meta.get('labels_opened') is not False or meta.get('training') is not False
++                    or meta.get('replay_first2_bit_exact') is not True or any(meta.get(k)!=v for k,v in expected.items())
++                    or any(type(meta.get(k)) is not int for k in ('seed','points','blocks','batch','history','mask_seed'))
++                    or value['origins']!=cell['origins']):raise ValueError('U bank fitted/score/physical metadata mismatch')
+             verify_physical_bank(bp,a['entities'][entity],profile,references[entity]);index=references[entity][1]
+             with np.load(rp,allow_pickle=False) as rng:
+-                if rng['before_each_block'].dtype!=np.uint8 or rng['before_each_block'].ndim!=2 or len(rng['before_each_block'])!=len(cell['origins']):raise ValueError('Missing exact per-block RNG states')
++                states=rng['before_each_block']
++                if (states.dtype!=np.uint8 or states.ndim!=2 or len(states)!=len(cell['origins']) or states.shape[1]==0):raise ValueError('Missing exact per-block RNG states')
++                # Head/initialization values never alter the core's random-mask
++                # consumption for this same mode/copies/shape/84551 sequence.
++                # Compare actual frozen old Z state bytes: no CPU/CUDA format
++                # guessing and no new reference forward or RNG generation.
++                old_rng=assets.file(old['native_banks'][z_key(seed,mode,entity)]['rng'],assets.file(a['definition']['z_seal'],a['base']))
++                with np.load(old_rng,allow_pickle=False) as original:
++                    reference=original['before_each_block']
++                    if (reference.dtype!=np.uint8 or reference.ndim!=2 or reference.shape[0]!=len(cell['origins'])
++                            or reference.shape[1]==0 or not np.array_equal(states,reference)):
++                        raise ValueError('U archived RNG differs from frozen old Z same seed/mode/entity sequence')
+             with np.load(bp,allow_pickle=False) as bank:
+                 shape=(len(index),profile['channels'])
+                 if any(bank[k].dtype!=np.float32 or bank[k].shape!=shape or not np.isfinite(bank[k]).all() for k in ('prediction','target','normalized_channel_residual')):raise ValueError('Native float32 physical bank invalid')
+--- frozen_v8/tests/test_stage2_readout.py
++++ semantic_v9/tests/test_stage2_readout.py
+@@ -159,6 +159,29 @@
+             self.assertEqual(sealed['counts'],dict(u_banks=36,z_native_banks=18,z_fixed_scores=36));self.assertFalse(sealed['labels_opened'])
+             for value in sealed['u_banks'].values():self.assertEqual(value['tracks']['source']['score_object'],value['tracks']['target']['score_object'])
+             p=self.f.operation('gate',dict(catalog=catalog,seal=self.f.root/'seal_out/seal.json'));self.assertFalse(run_readout(p,execute=True)['labels_permission'])
++            # Independent semantic attacks, not a production OS-receipt forgery.
++            # Rehash synthetic RNG/metadata/shard+summary, never new forwards.
++            from hybrid_tsad.engine.stage2_readout import seal
++            from hybrid_tsad.engine.stage2_identity import Assets
++            baseline=json.loads((self.f.root/'infer_out/shard.json').read_text());target_key=next(iter(baseline['banks']))
++            original_desc=baseline['banks'][target_key]
++            with np.load(original_desc['rng']['path']) as z:original_states=z['before_each_block'].copy()
++            cases=[('empty_rng',None),('zero_rng',None),('one_block_rng',None),('seed',999),('mode','tf'),('initialization','random_init'),
++                   ('training',True),('status','RUNNING'),('readout_job','WRONG'),('points',999),('blocks',999),('batch',64),('replay_first2_bit_exact',False)]
++            for field,wrong in cases:
++                attacked=copy.deepcopy(baseline);desc=attacked['banks'][target_key]
++                if field.endswith('_rng'):
++                    states=original_states.copy()
++                    if field=='empty_rng':states=np.zeros((len(states),0),np.uint8)
++                    elif field=='zero_rng':states.fill(0)
++                    else:states[1,0]^=np.uint8(1)
++                    rp=self.f.root/(field+'.npz');np.savez_compressed(rp,before_each_block=states);desc['rng']=record(rp);reason='RNG'
++                else:
++                    metadata=json.loads(Path(desc['metadata']['path']).read_text());metadata[field]=wrong
++                    desc['metadata']=record(put(self.f.root/(field+'_wrong_metadata.json'),metadata));reason='metadata mismatch'
++                sp=restage(self.f.root,'semantic_'+field,attacked)
++                with self.subTest(case=field),self.assertRaisesRegex(ValueError,reason):
++                    seal({**a,'assets':Assets()},[record(sp)],record(zpath),dict(scope='SYNTHETIC_CPU_ENGINEERING_ONLY'),self.f.root/'unused_semantic_output',profile=self.f.profile,write=False)
+             # Missing full bank refuses seal even when shard hash is updated.
+             shard=json.loads((self.f.root/'infer_out/shard.json').read_text());shard['banks'].pop(next(iter(shard['banks'])));bad=restage(self.f.root,'missing_bank_archive',shard)
+             badlist=put(self.f.root/'missinglist.json',[record(bad)]);p=self.f.operation('seal',dict(catalog=catalog,shards=badlist,z_thresholds=zpath,executions=ex),name='missing')
+--- frozen_v8/docs/stage2_readout.md
++++ semantic_v9/docs/stage2_readout.md
+@@ -64,6 +64,10 @@
+   创建/严格加载eval模型后原 `collect_forecasts` 每entity84551一次，不外套第二层seed。
+   原前2块device RNG重放、逐block RNG、预测/target/scale/residual/raw/canonical/index/valid完全保留。
+   读出全state（含head和buffers）前后hash，计时含原定义的forward样本与whole entity写出成本。
++  封存时逐位比较归档RNG与旧Z同seed/mode/entity的已冻结存档：同core/copies/shape/84551顺序的随机消耗不依赖head。
++  不猜CPU/CUDA state宽度或seed/offset编码，不新增forward生成参考；空宽、同宽全0或单块扰动均拒绝。
++  旧Z RNG只验证数学随机消耗与序列身份，不能证明新模型预测值正确；实际来源/执行证据、物理及原评分闭合仍是独立要求。
++  同时核JOBS的seed/mode/init、readout_job/status、points/blocks/batch、training=false及前2块重放标志，不能靠合法job_id掩盖矛盾字段。
+ - `z-normal-cal` 只读九个原Z权重与原source scalar。用原 `evaluate_target_cal` / `TargetNormal`，
+   同seed原256 B1C52正常cal顺序、84551每call一次并恢复RNG/模式；不走要求origin有序的query collector。
+   无optimizer/source拟合/query forward。全参数requires_grad=false，全部state不变。
+@@ -99,6 +103,8 @@
+ 冻结diff、出处/原字节SHA、CPU回执、初期失败留档见 `provenance/stage2_readout_cpu/FREEZE.json`。
+ v7中错误的temporal gold硬编码已按事前固定的真实seed0/hybrid接口作有限v8修正；
+ 原冻结保留，当前gold修订diff/回执及原件在 `provenance/stage2_readout_gold_v8/FREEZE.json`，未重选或重推gold。
++后续独审的RNG/metadata语义反例及有限v9修订另存 `provenance/stage2_readout_semantic_v9/FREEZE.json`；
++语义负测不声称绕过真实生产OS签名，原审计失败不覆盖。
+ 完整配置正路用合成source/normal/query值和元数据fixture，未进行真实训练，也不把fixture汇总接受称主真实批准。
+ 另以外置官方文件构造既有真实三mode，用合成B1H100C52、两origin，直接比较旧collector与新wrapper的全部数组/逐块RNG。
+ 这仅证明工程传输等价，非检测增益、GPU等价或新科研结果。

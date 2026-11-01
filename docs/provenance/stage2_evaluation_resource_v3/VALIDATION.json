@@ -1,0 +1,41 @@
+{
+  "status": "CPU_RESOURCE_V3_PASSED_PENDING_INDEPENDENT_REVIEW",
+  "prior_v2_freeze_sha256": "7f4c1032c753c4c68d09cf610739043e26fafae46ce2e2b0c5864046f395d233",
+  "prior_v2_raw_archive_sha256": "9f5ba263b0e3831c0d1c05c407d2fefad19b1bef3bea56a04828003a1ff96900",
+  "prior_v2_34_python_identity_sha256": "852d5878c2dce9a72c2d4fff3c50b908c1c2a631e3c5d544f47b9386dfd4fa1c",
+  "resource_addendum_sha256": "4f57994daa517278ea6456c00a447643b61ca74c79025488604e5702b66b020b",
+  "changed_python": [
+    "src/hybrid_tsad/engine/stage2_evaluation.py"
+  ],
+  "other33_python_byte_unchanged": true,
+  "identical_all_existing_function_AST_except_run_limit_guard": true,
+  "run_evaluation_AST_only_limit_if_changed": true,
+  "new_helper_only_profile": true,
+  "profile_limits_seconds": {
+    "SYNTHETIC": 300,
+    "TEP100": 900
+  },
+  "address_space_limit": 2147483648,
+  "tests": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 3.8345309929572977,
+    "peak_RSS_bytes": 150994944,
+    "address_space_limit": 2147483648,
+    "torch_imported": false,
+    "CUDA_VISIBLE_DEVICES": "",
+    "scope": "synthetic CPU only; fixed profile caps; no actual gate/real data/model/GPU",
+    "successful": true
+  },
+  "test_source_matches_deployed_raw_zip": true,
+  "source_test_compile": true,
+  "real_throughput_measured": false,
+  "real_data_read": false,
+  "Torch_imported": false,
+  "GPU_executed": false,
+  "training": false,
+  "production_label_release": false,
+  "test_raw_zip_sha256": "ac8ae0135bccf5717a04d1c07974eef247e587af59b3f6cd9b815e172fcbd77e"
+}

@@ -1,0 +1,34 @@
+test_complete_synthetic_config_rank_once_and_independent_runtime (test_stage2_evaluation.EvaluationTests.test_complete_synthetic_config_rank_once_and_independent_runtime) ... ok
+test_invalid_approval_gate_runtime_scope_and_missing_bank_fail_before_arrays (test_stage2_evaluation.EvaluationTests.test_invalid_approval_gate_runtime_scope_and_missing_bank_fail_before_arrays) ... ok
+test_preview_and_missing_official_dependency_never_fallback (test_stage2_evaluation.EvaluationTests.test_preview_and_missing_official_dependency_never_fallback) ... ok
+test_prefix_count_denominator_and_miss_delay_retained (test_stage2_evaluation.ThresholdAndStatisticsTests.test_prefix_count_denominator_and_miss_delay_retained) ... ok
+test_shared_draws_macro_grid_and_nonfinite_rank_not_redrawn (test_stage2_evaluation.ThresholdAndStatisticsTests.test_shared_draws_macro_grid_and_nonfinite_rank_not_redrawn) ... ok
+test_threshold_only_exact_old_kernel_oracle_edge_cases (test_stage2_evaluation.ThresholdAndStatisticsTests.test_threshold_only_exact_old_kernel_oracle_edge_cases) ... ERROR
+
+======================================================================
+ERROR: test_threshold_only_exact_old_kernel_oracle_edge_cases (test_stage2_evaluation.ThresholdAndStatisticsTests.test_threshold_only_exact_old_kernel_oracle_edge_cases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_evaluation7_v1/tests/test_stage2_evaluation.py", line 174, in test_threshold_only_exact_old_kernel_oracle_edge_cases
+    self.assertEqual(clean(source),clean(actual))
+                     ^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/projects/hybrid_ad_package_validation_20261101_evaluation7_v1/tests/test_stage2_evaluation.py", line 173, in clean
+    return json.dumps(_json_safe(v),sort_keys=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.812s
+
+FAILED (errors=1)

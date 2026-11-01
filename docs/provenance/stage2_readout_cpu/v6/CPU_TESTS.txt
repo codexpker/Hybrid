@@ -1,0 +1,11 @@
+test_real_three_modes_wrapper_matches_old_collector_exact_arrays_rng (test_stage2_readout.ActualCoreTransportTests.test_real_three_modes_wrapper_matches_old_collector_exact_arrays_rng) ... ok
+test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng (test_stage2_readout.ReadoutTests.test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng) ... ok
+test_cpu_fixture_permission_digest_and_no_labels_route (test_stage2_readout.ReadoutTests.test_cpu_fixture_permission_digest_and_no_labels_route) ... ok
+test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers (test_stage2_readout.ReadoutTests.test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers) ... ok
+test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused (test_stage2_readout.ReadoutTests.test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused) ... ok
+test_z_normal_cal_x2_resigned_q99_and_trace_change_refused (test_stage2_readout.ReadoutTests.test_z_normal_cal_x2_resigned_q99_and_trace_change_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 31.570s
+
+OK

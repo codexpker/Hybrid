@@ -63,6 +63,16 @@ def main(argv=None):
     stage2_inputs.add_argument("--config")
     stage2_inputs.add_argument("--runtime-identity",action="store_true",help="Print current source SHA identity without torch/data")
     stage2.add_argument("--execute", action="store_true")
+    stage2_readout = sub.add_parser("stage2-readout", help="Independent schema6 readout; default preview, no labels")
+    readout6_inputs=stage2_readout.add_mutually_exclusive_group(required=True)
+    readout6_inputs.add_argument("--config")
+    readout6_inputs.add_argument("--runtime-identity",action="store_true")
+    stage2_readout.add_argument("--execute", action="store_true")
+    stage2_evaluate = sub.add_parser("stage2-evaluate", help="Independent evaluation runtime; default preview, separate label release")
+    evaluation_inputs=stage2_evaluate.add_mutually_exclusive_group(required=True)
+    evaluation_inputs.add_argument("--config")
+    evaluation_inputs.add_argument("--runtime-identity",action="store_true")
+    stage2_evaluate.add_argument("--execute",action="store_true")
     # Parse passthrough after -- separately so --script remains an ordinary option.
     raw = list(sys.argv[1:] if argv is None else argv)
     passthrough = []
@@ -104,6 +114,22 @@ def main(argv=None):
             else:
                 from .engine.stage2 import run_stage2
                 result = run_stage2(args.config, execute=args.execute)
+        elif args.command == "stage2-readout":
+            if args.runtime_identity:
+                if args.execute:raise ValueError("Runtime identity is read-only")
+                from .engine.stage2_readout_identity import runtime_identity
+                result=runtime_identity()
+            else:
+                from .engine.stage2_readout import run_readout
+                result = run_readout(args.config, execute=args.execute)
+        elif args.command == "stage2-evaluate":
+            if args.runtime_identity:
+                if args.execute:raise ValueError("Runtime identity is read-only")
+                from .engine.stage2_evaluation import runtime_identity
+                result=runtime_identity()
+            else:
+                from .engine.stage2_evaluation import run_evaluation
+                result=run_evaluation(args.config,execute=args.execute)
         elif args.command == "legacy":
             from .legacy import execute, legacy_command
             command = legacy_command(args.kind, args.script, passthrough)

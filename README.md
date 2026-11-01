@@ -61,13 +61,18 @@ forecast = output["prediction"]  # [batch,5,channels]
 |源L0诊断|已通过限定独审；`python -m hybrid_tsad.engine.source_gate --config /external/source_l0.local.json`|使用外部已批准诊断配置，5个固定batch及mask案例后丢弃模型；入口见[source_gate](src/hybrid_tsad/engine/source_gate.py)|
 |多实体固定Z读出A|已通过限定独审；`python -m hybrid_tsad readout --config configs/readout_infer.example.json`|schema4共享source controls、按白名单infer、全组seal和all-bank标签门禁；见[多实体读出](docs/multi_readout.md)|
 |多实体评价B|有限合成CPU独审通过；`python -m hybrid_tsad readout --config configs/readout_evaluate.example.json`|逐实体官方Aff外置适配、AP/ROC与固定run聚类统计；见[B评价说明](docs/multi_entity_evaluation.md)及[限定验收](docs/provenance/multi_evaluation_b_acceptance.md)|
-|U/F适配|尚未完成|无标签目标适配和事件级少样本适配不由Z读出或源训练验收替代|
+|U正常头适配|已有独立Stage2入口；`python -m hybrid_tsad stage2-train --config configs/stage2-train.example.json`|仅固定645参数正常头适配；见[Stage2范围](docs/stage2_u_normal_head.md)，不代表混合污染鲁棒或F完成|
+|U读出schema6|v9有限CPU独审通过；`python -m hybrid_tsad stage2-readout --config configs/stage2-readout.infer.example.json`|18U独立身份、9Z正常阈值、单canonical双阈值及全组门禁；见[读出说明](docs/stage2_readout.md)|
+|U评价schema7|v2及资源v3有限CPU独审通过；`python -m hybrid_tsad stage2-evaluate --config configs/stage2-evaluation.example.json`|原rank/事件/Aff核与固定run统计，合成300秒/未来TEP900秒上限；见[评价说明](docs/stage2_evaluation.md)|
+|F事件少样本适配|尚未完成|不由正常头适配或Z/U读出验收替代|
 
-上述命令默认只预览。示例路径/SHA是占位，不是可执行科学合同；`source_l0.local.json`须由外部已批准资产提供。真实执行需要具体合同、规范operation manifest绑定的主批准、固定输入SHA和`--execute`；评价还需`--allow-labels`。入口存在不构成执行授权。
+上述命令默认只预览。示例路径/SHA是占位，不是可执行科学合同；`source_l0.local.json`须由外部已批准资产提供。真实执行需要具体合同、规范operation manifest绑定的主批准、固定输入SHA和`--execute`。旧评价入口的`--allow-labels`要求以其命令为准；schema7的`stage2-evaluate`通过独立主label release授权，不接受该旧参数。入口存在不构成执行授权。
 
 A的其余配置为[源controls](configs/readout_controls.example.json)和[全组seal](configs/readout_seal.example.json)，共用`readout --config ...`入口。TEP100完整组要求9权重×400实体的3600个物理预测/RNG银行、6方法×3seed×400实体的7200个固定评分，逐键核验并绑定源校准/权重、原始数组/目标、索引/足迹和分数单位。L0、部分分片、重复或损坏银行均不能获得标签评价资格；门禁已实现，不再列为未来缺项。B有限合成CPU独审已通过；真实TEP评价仍须完整封存和主label release，工程验收不代替真实query放行。
 
-核心model/data/protocol保持原字节。较早共享引擎的单组`infer/calibrate/evaluate`仍保留，见[共享引擎](docs/shared_engine.md)；本轮多实体合同使用schema4的`readout`入口。尚未迁入完整prepare/实体准入、作业级精确恢复、通用数据重定位器和U/F适配，不能据此宣称两阶段科研流程全部完成。
+核心model/data/protocol保持原字节。较早共享引擎的单组`infer/calibrate/evaluate`仍保留，见[共享引擎](docs/shared_engine.md)；Z多实体合同使用schema4的`readout`入口，U使用显式独立stage路由。尚未迁入完整prepare/实体准入、作业级精确恢复、通用数据重定位器和F适配，不能据此宣称两阶段科研流程全部完成。
+
+schema6原读出32文件与schema7资源v3评价34文件分别以原字节外置冻结，后者独立目录名为`runtime_evaluation_31141c00_v1`；新增评价模块不回填旧读出运行时。仓库主源码与两个执行快照的身份不同，不能拿当前动态identity替代旧gate。交付身份及候选清单见[交付索引](docs/provenance/stage2_delivery/README.md)，[原字节审查回执](docs/provenance/stage2_review_receipts/COPY_MANIFEST.json)注明同家族、共享工作区、职责独立且非外部双盲。CPU验收不授予真实标签许可：真实读出、完整seal、原冻结runtime实际gate的独审/主接受和独立label release仍按各自实际原件推进，本文不充当实时实验状态或性能报告。
 
 ## 历史runner兼容桥
 

@@ -1,0 +1,10 @@
+{
+  "scope": "metadata shape/hash map only; not actual production catalog load or cal/bank/model validation",
+  "rows": 18,
+  "fields_per_row": 14,
+  "canonical_map_matches": true,
+  "rows_sha256": "352856a5399031bc4d666f427d0a11178301535756c4c4c952df3610c3226da2",
+  "primary_sha256": "9d48db090504cdd5af7aebc98724073734743d1efe8ead928cec96a6239e377a",
+  "model_executed": false,
+  "query_opened": false
+}

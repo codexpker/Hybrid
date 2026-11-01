@@ -1,0 +1,299 @@
+{
+  "status": "DELIVERY_ONLY_RAW_COPY_AND_READONLY_GIT_CHECK_PASSED",
+  "source34_SHA_unchanged": true,
+  "tests_configs_not_modified": true,
+  "old32_snapshot_SHA_unchanged": true,
+  "v2_v3_freeze_preserved": true,
+  "local_remote34_snapshot_identity_sha256": "31141c0059fed5af83a50bb47b596f6b62e60df3f692e08c5ab086ce9597ca50",
+  "copy_manifest_sha256": "9d7da9fbada9d5ead7a84b6e9bfeb8cd8eb654a06ec8899831b1ffbe0ffa3fe7",
+  "remote_copy_verification_sha256": "2a7575e486d75fd3367f8b449c81d3a9da2d753ce6131a49cc924c3aead2f619",
+  "git_diff_check_exit": 0,
+  "git_diff_check_stdout": "",
+  "git_diff_check_stderr": "",
+  "raw_equals_git_filtered_blob": {
+    "configs/stage2-evaluation.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.all18-acceptance.PENDING.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.catalog.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.gate.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.infer.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.seal.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.u-model-row.PENDING.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "configs/stage2-readout.z-normal-cal.example.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_delivery/README.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_delivery/runtime_evaluation_COPY_MANIFEST.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_delivery/runtime_evaluation_REMOTE_COPY_VERIFICATION.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/CLI_PREVIEW.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/EVALUATION_RUNTIME_IDENTITY.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/FREEZE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/SOURCES.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/VALIDATION.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/candidate.patch": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/v1/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/v1/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/v2/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_cpu/v2/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/EVALUATION_RUNTIME_IDENTITY.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/FREEZE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/README.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/VALIDATION.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_evaluation_resource_v3/candidate.patch": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/BEFORE_cli.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/FREEZE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/LOCAL_STATIC.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/READOUT_RUNTIME_IDENTITY.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/REAL_ROWS_METADATA_INTERFACE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/candidate.patch": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v1/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v1/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v2/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v2/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v3/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v3/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v4/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v4/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v5/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v5/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v6/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v6/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v6/OLD_SCHEMA_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v6/OLD_SCHEMA_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v7/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_cpu/v7/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/FREEZE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/READOUT_RUNTIME_IDENTITY.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/V7_TO_V8.patch": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/before/stage2_readout.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/before/stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_gold_v8/before/test_stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/CPU_TESTS.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/CPU_TESTS.txt": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/FREEZE.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/READOUT_RUNTIME_IDENTITY.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/V8_TO_V9.patch": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/before/stage2_readout.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/before/stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/before/test_stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_readout_semantic_v9/semantic_audit.original.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/COPY_MANIFEST.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/evaluation_resource_v3/REVIEW.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/evaluation_resource_v3/verdict.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/evaluation_v2/REVIEW.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/evaluation_v2/verdict.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/readout_v9/REVIEW.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/provenance/stage2_review_receipts/readout_v9/verdict.json": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/stage2_evaluation.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "docs/stage2_readout.md": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "src/hybrid_tsad/cli.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "src/hybrid_tsad/engine/stage2_evaluation.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "src/hybrid_tsad/engine/stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "src/hybrid_tsad/engine/stage2_readout_identity.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "src/hybrid_tsad/engine/stage2_run_statistics.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "tests/test_stage2_evaluation.py": "RAW_EQUALS_GIT_FILTERED_BLOB",
+    "tests/test_stage2_readout.py": "RAW_EQUALS_GIT_FILTERED_BLOB"
+  },
+  "link_checks": [
+    {
+      "source": "README.md",
+      "target": "docs/research_scope.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/references.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/stage2_u_normal_head.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/stage2_independent_review/REVIEW.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/stage2_canonical_revision/README.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/native_training.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "src/hybrid_tsad/engine/source_gate.py",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/multi_readout.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/multi_entity_evaluation.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/multi_evaluation_b_acceptance.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/stage2_u_normal_head.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/stage2_readout.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/stage2_evaluation.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "configs/readout_controls.example.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "configs/readout_seal.example.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/shared_engine.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/stage2_delivery/README.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/stage2_review_receipts/COPY_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/history_index.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "src/hybrid_tsad/core_provenance.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/migration.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/validation_results.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/shared_engine_revision.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/adjacent_event_revision.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/native_training_validation.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/native_seed_report_revision.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/multi_readout_a_revision.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/readout_cold_cuda_revision.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/multi_evaluation_b_acceptance.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/multi_evaluation_b_validation.json",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/physical_validation_backend.md",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "target": "docs/provenance/physical_backend_acceptance.md",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "../stage2_evaluation_resource_v3/EVALUATION_RUNTIME_IDENTITY.json",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "runtime_evaluation_COPY_MANIFEST.json",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "runtime_evaluation_REMOTE_COPY_VERIFICATION.json",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "CANDIDATE_FILES.json",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "CANDIDATE_DIFF.patch",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "DELIVERY_CHECK.json",
+      "exists": true
+    },
+    {
+      "source": "docs/provenance/stage2_delivery/README.md",
+      "target": "../stage2_review_receipts/COPY_MANIFEST.json",
+      "exists": true
+    }
+  ],
+  "no_git_stage_commit_push": true,
+  "no_package_execution": true,
+  "no_real_data_models_GPU": true,
+  "check_scope": "tracked diff/check; untracked raw evidence filter hashes; patch context whitespace intentionally preserved"
+}

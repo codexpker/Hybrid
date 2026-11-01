@@ -1,0 +1,10 @@
+{
+  "status": "REMOTE_RAW_COPY_ALL34_AND_CORE_PROVENANCE_VERIFIED_NOT_EXECUTED",
+  "manifest_sha256": "9d7da9fbada9d5ead7a84b6e9bfeb8cd8eb654a06ec8899831b1ffbe0ffa3fe7",
+  "identity_sha256": "31141c0059fed5af83a50bb47b596f6b62e60df3f692e08c5ab086ce9597ca50",
+  "python_files": 34,
+  "package_imported": false,
+  "gate_executed": false,
+  "evaluation_executed": false,
+  "labels_opened": false
+}

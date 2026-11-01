@@ -1,0 +1,13 @@
+{
+  "tests": 8,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "seconds": 3.8345309929572977,
+  "peak_RSS_bytes": 150994944,
+  "address_space_limit": 2147483648,
+  "torch_imported": false,
+  "CUDA_VISIBLE_DEVICES": "",
+  "scope": "synthetic CPU only; fixed profile caps; no actual gate/real data/model/GPU",
+  "successful": true
+}

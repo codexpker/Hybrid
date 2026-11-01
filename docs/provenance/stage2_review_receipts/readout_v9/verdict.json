@@ -1,0 +1,32 @@
+{
+  "status": "PASS_LIMITED_SCHEMA6_CPU_V9",
+  "stage": "U_NORMAL_HEAD_READOUT",
+  "frozen_readout_sha256": "a712825a1eb757bafb1de5f4cec9def6ede1a47174cb65461eb70b5b7bae8b02",
+  "schema6_identity_sha256": "045927f00ec0b35732e7454d0a98cfef92b8fb86b3022a556beb6f73d66ba798",
+  "CLI_sha256": "f1771033fe4be25fb472c5042ef883d29e0d326432cb734732273f5c379b793f",
+  "old29_source_bytes": "PASS_UNCHANGED",
+  "provenance17_samePython_AST": "PASS",
+  "strict18_and_wave_identity": "PASS_SYNTHETIC_PIPELINE_REAL_CATALOG_NOT_LOADED",
+  "single_canonical_S_T": "PASS_SYNTHETIC_SHARED_OBJECT",
+  "original_collector_transport": "PASS_REAL_ARCHITECTURE_SIX_SYNTHETIC_CHECKPOINTS_ALL_ARRAYS_RNG_BITEXACT",
+  "CLI_permissions": "PASS_RUNTIME_PREVIEW_PENDING_NO_TORCH_OR_ARRAY_VALUES",
+  "root_known_gold_mismatch": "CLOSED_V8_NOT_CLAIMED_AS_NEW_INDEPENDENT_FINDING",
+  "independent_empty_zero_RNG_and_metadata_failures": "CLOSED_V9_OLD_FAILURES_RETAINED",
+  "v9_semantic_checks": 16,
+  "v9_new_network_or_reference_forwards": 0,
+  "CPU_bodies_seconds": 26.432271514029708,
+  "peak_RSS_bytes": 619384832,
+  "GPU_hours": 0,
+  "real_query_prediction_score_or_label_access": false,
+  "production_catalog_Zcal_query_L0_full_seal_eval": "INCOMPLETE_REQUIRES_SEPARATE_PRIMARY_RELEASE_AND_TERMINAL_AUDIT",
+  "scientific_benefit": "INCOMPLETE_NOT_EVALUATED",
+  "scientific_state": "HOLD",
+  "execution_permissions_granted": false,
+  "independence": "same-family shared-workspace role-independent provisional, not external/double-blind",
+  "raw_evidence": {
+    "semantic_audit.json": "3a14e3375c95be6da20e963d524500da10f1955c87f85cf609f2b57a5d1f9247",
+    "transport_audit.json": "eaccd846043481650e861d3847aada70288f879d26d4479ee3d44c8681f406bd",
+    "provenance_remote.json": "e6afd2929fe0d9d4758e0a84e007f4f5d94ef2574433d8351e92884fb7a4bb6e",
+    "v9_revision_audit.json": "59b22aa595356d4aab7f1562cce3d3f6dd8c3484cf96b2ba92f723379697a039"
+  }
+}

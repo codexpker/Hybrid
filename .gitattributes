@@ -27,3 +27,20 @@ docs/provenance/stage2_u_normal_head_validation.json -text whitespace=cr-at-eol
 docs/provenance/stage2_u_normal_head/** -text -whitespace
 docs/provenance/stage2_canonical_revision/** -text -whitespace
 docs/provenance/stage2_independent_review/** -text whitespace=cr-at-eol
+
+# Keep independently accepted schema6/schema7 runtime and evidence raw bytes.
+src/hybrid_tsad/engine/stage2_readout.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2_readout_identity.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2_evaluation.py -text whitespace=cr-at-eol
+src/hybrid_tsad/engine/stage2_run_statistics.py -text whitespace=cr-at-eol
+tests/test_stage2_readout.py -text whitespace=cr-at-eol
+tests/test_stage2_evaluation.py -text whitespace=cr-at-eol
+docs/stage2_readout.md -text whitespace=cr-at-eol
+docs/stage2_evaluation.md -text whitespace=cr-at-eol
+docs/provenance/stage2_readout_cpu/** -text -whitespace
+docs/provenance/stage2_readout_gold_v8/** -text -whitespace
+docs/provenance/stage2_readout_semantic_v9/** -text -whitespace
+docs/provenance/stage2_evaluation_cpu/** -text -whitespace
+docs/provenance/stage2_evaluation_resource_v3/** -text -whitespace
+docs/provenance/stage2_review_receipts/** -text whitespace=cr-at-eol
+docs/provenance/stage2_delivery/** -text -whitespace

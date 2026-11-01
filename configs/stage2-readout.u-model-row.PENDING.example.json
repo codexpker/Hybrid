@@ -1,0 +1,40 @@
+{
+  "job_id": "u_normal_head_hybrid_s0_source_pretrained",
+  "stage": "U_NORMAL_HEAD",
+  "seed": 0,
+  "mode": "hybrid",
+  "initialization": "source_pretrained",
+  "step": 1000,
+  "checkpoint": {
+    "path": "/EXTERNAL/actual_U_job/step1000.pt",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "checkpoint_metadata": {
+    "path": "/EXTERNAL/actual_U_job/checkpoint_metadata.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "training_summary": {
+    "path": "/EXTERNAL/actual_U_job/training_summary.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "train_archive": {
+    "path": "/EXTERNAL/actual_U_job/train_archive.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "cal_archive": {
+    "path": "/EXTERNAL/actual_U_job/cal_archive.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "source_calibration": {
+    "path": "/EXTERNAL/actual_U_job/source_calibration.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "target_threshold": {
+    "path": "/EXTERNAL/actual_U_job/target_threshold.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "primary_acceptance": {
+    "path": "/EXTERNAL/actual_U_job/primary_acceptance.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
