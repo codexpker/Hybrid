@@ -11,6 +11,55 @@ from .events import binary_events, greedy_assign, real_blocks
 from .statistics import ap_cache, weighted_ap
 
 
+def evaluate_point_ranking(index, score, full_labels, scored_mask, *, query_start):
+    """Fixed AP/ROC/PR-trapezoid plus original-label coverage, no threshold.
+
+    Full labels are the complete provided test sequence, not a compressed mask.
+    This function never selects a cutoff, adjusts points, or fits a model.
+    """
+    from sklearn.metrics import average_precision_score, roc_auc_score, precision_recall_curve, auc
+    index, score = np.asarray(index), np.asarray(score)
+    full_labels, mask = np.asarray(full_labels), np.asarray(scored_mask)
+    if (index.ndim != 1 or score.shape != index.shape or full_labels.ndim != 1 or
+            mask.shape != full_labels.shape or mask.dtype != np.bool_ or not len(index) or
+            not np.issubdtype(index.dtype, np.integer) or np.any(np.diff(index) <= 0) or
+            not np.isfinite(score).all() or not np.isfinite(full_labels).all() or
+            not np.isin(full_labels, [0, 1]).all()):
+        raise ValueError("Need finite fixed scores, binary full labels and real boolean coverage")
+    full_index = query_start + np.arange(len(full_labels), dtype=np.int64)
+    if not np.array_equal(index, full_index[mask]):
+        raise ValueError("Frozen score indices and label/coverage alignment disagree; no offset repair")
+    y = full_labels[mask]
+    pi = float(y.mean())
+    metrics = {"evaluated_points": len(index), "positive_points": int((y == 1).sum()),
+               "negative_points": int((y == 0).sum()), "positive_fraction": pi,
+               "unscored_points": int((~mask).sum())}
+    precision = recall = np.array([], dtype=np.float64)
+    if len(np.unique(y)) == 2:
+        metrics.update(AP=float(average_precision_score(y, score)), ROC_AUC=float(roc_auc_score(y, score)))
+        precision, recall, _ = precision_recall_curve(y, score)
+        metrics["trapezoid_PR_AUC"] = float(auc(recall, precision))
+        metrics["AP_divided_by_pi"] = metrics["AP"] / pi
+        metrics["ranking_metric_NA_reason"] = None
+    else:
+        metrics.update(AP=None, ROC_AUC=None, trapezoid_PR_AUC=None, AP_divided_by_pi=None,
+                       ranking_metric_NA_reason="SINGLE_CLASS_SCORED_LABELS")
+    coverage = []
+    for i, (lo, hi) in enumerate(binary_events(full_labels)):
+        scored = int(mask[lo:hi].sum())
+        coverage.append({"event_id": "PSM_test_E%03d" % (i+1),
+                         "start": int(query_start+lo), "end_exclusive": int(query_start+hi),
+                         "start_in_query": lo, "end_in_query_exclusive": hi,
+                         "total_points": hi-lo, "scored_points": scored,
+                         "coverage_ratio": scored/(hi-lo), "complete": scored == hi-lo,
+                         "touches_query_start": lo == 0, "touches_query_end": hi == len(full_labels)})
+    metrics.update(original_test_events=len(coverage),
+                   complete_scoring_coverage_events=sum(e["complete"] for e in coverage),
+                   incomplete_scoring_coverage_events=sum(not e["complete"] for e in coverage))
+    return {"metrics": metrics, "event_coverage": coverage,
+            "pr_precision": precision, "pr_recall": recall}
+
+
 def validate_coverage(index, labels, coverage):
     """Reject contradictory event eligibility; never repair labels or boundaries."""
     if not isinstance(coverage, list):

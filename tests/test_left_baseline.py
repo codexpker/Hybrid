@@ -211,5 +211,129 @@ class ConfigPermissionTests(unittest.TestCase):
             lb.import_official(self.root, "fake_left_test")
 
 
+class ScoreMathTests(unittest.TestCase):
+    def test_original_numpy_float32_reduction_and_saved_raw_roundtrip(self):
+        source = np.random.default_rng(55).normal(size=(457, 192, 25)).astype(np.float32)
+        # Exercise mixed strides/layouts and retain original concatenate/reshape order.
+        chunks = [np.asfortranarray(source[:128]), source[128:256],
+                  np.asfortranarray(source[256:384]), source[384:]]
+        raw, actual = lb.author_numpy_scores(chunks)
+        expected = np.mean(np.array(np.concatenate(chunks, axis=0).reshape(-1, 25)), axis=-1)
+        self.assertTrue(np.array_equal(actual, expected))
+        self.assertEqual(actual.dtype, np.float32)
+        self.assertEqual(raw.shape, (457, 192, 25))
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)/"scores.npz"
+            np.savez_compressed(p, channel_scores=raw, canonical_score=actual)
+            with np.load(p, allow_pickle=False) as saved:
+                self.assertTrue(np.array_equal(saved["canonical_score"],
+                                               np.mean(np.array(saved["channel_scores"].reshape(-1, 25)), axis=-1)))
+
+    def test_bad_score_chunks_refused(self):
+        for chunks in [[], [np.zeros((1, 192, 25), np.float64)],
+                       [np.full((1, 192, 25), np.nan, np.float32)],
+                       [np.zeros((1, 191, 25), np.float32)]]:
+            with self.assertRaises(ValueError):
+                lb.author_numpy_scores(chunks)
+
+    def test_absolute_time_coverage_and_actual_batch_availability(self):
+        c = lb.query_coordinates()
+        self.assertEqual(len(c["window_start"]), 457)
+        self.assertEqual(len(c["absolute_time_index"]), 87744)
+        self.assertEqual(c["absolute_time_index"][[0, -1]].tolist(), [132481, 220224])
+        self.assertEqual(np.flatnonzero(~c["scored_mask"]).tolist(), list(range(87744, 87841)))
+        self.assertEqual(c["window_input_end"][0], 132672)
+        self.assertEqual(c["window_batch_end"][0], 157056)
+        self.assertEqual(c["window_batch_end"][-1], 220224)
+        self.assertTrue((c["point_input_end"] >= c["absolute_time_index"]).all())
+        self.assertTrue((c["point_batch_end"] >= c["point_input_end"]).all())
+        for b, count in enumerate([128, 128, 128, 73]):
+            self.assertEqual(len(c["window_start"][b*128:(b+1)*128]), count)
+        with self.assertRaises(ValueError):
+            lb.query_coordinates(total=87840)
+
+    def test_saved_scaler_transform_never_fit_and_preserves_author_layout(self):
+        from sklearn.preprocessing import StandardScaler
+        prefix = np.asfortranarray(np.random.default_rng(9).normal(size=(1000, 25)))
+        fitted = StandardScaler().fit(prefix)
+        record = {"track": "R", "fit_interval": [0, 132481], "statistics": {
+            "mean": fitted.mean_.tolist(), "var": fitted.var_.tolist(), "scale": fitted.scale_.tolist(),
+            "n_samples_seen": 132481}}
+        values = np.random.default_rng(1).normal(size=(673, 25))
+        with patch.object(StandardScaler, "fit", side_effect=AssertionError("query fitting forbidden")):
+            normalized = lb.transform_query_with_saved_scaler(values, record)
+        self.assertTrue(np.array_equal(normalized, fitted.transform(np.asfortranarray(values))))
+        self.assertTrue(normalized.flags.f_contiguous)
+        self.assertEqual(normalized.dtype, np.float64)
+        ds = lb.FixedQueryWindows(normalized)
+        self.assertEqual(len(ds), 3)
+        self.assertTrue(np.array_equal(ds[2], np.float32(normalized[384:576])))
+        with self.assertRaises(IndexError):
+            ds[3]
+        with self.assertRaises(ValueError):
+            lb.transform_query_with_saved_scaler(values.astype(np.float32), record)
+        bad = copy.deepcopy(record);bad["statistics"]["scale"][0] = 0
+        with self.assertRaises(ValueError):
+            lb.transform_query_with_saved_scaler(values, bad)
+
+    def test_only_exact_thop_extras_and_no_missing_scientific_state(self):
+        from types import SimpleNamespace
+        keys = ["m%d.total_ops" % i for i in range(86)]
+        class FakeModel:
+            def state_dict(self):
+                return {"scientific_weight": None}
+            def load_state_dict(self, state, strict):
+                assert strict is False
+                return SimpleNamespace(missing_keys=[k for k in self.state_dict() if k not in state],
+                                       unexpected_keys=[k for k in state if k not in self.state_dict()])
+        state = {k: None for k in keys};state["scientific_weight"] = None
+        self.assertEqual(lb.load_expected_checkpoint(FakeModel(), state, keys)["missing_keys"], [])
+        for bad in [{k:v for k,v in state.items() if k != "scientific_weight"},
+                    {**state, "unknown.weight": None}, {k:v for k,v in state.items() if k != keys[0]}]:
+            with self.assertRaises(ValueError):
+                lb.load_expected_checkpoint(FakeModel(), bad, keys)
+
+    def test_eval_freeze_checks_step_modes_and_all_scientific_state(self):
+        import torch
+        class FakeModel:
+            training = False
+            step = 0
+            value = torch.tensor([1.])
+            def state_dict(self):
+                return {"weight": self.value}
+            def named_modules(self):
+                return [("", self)]
+        model = FakeModel();before = lb.score_state(model)
+        lb.require_frozen_score_state(before, lb.score_state(model))
+        model.step = 1
+        with self.assertRaises(RuntimeError):lb.require_frozen_score_state(before, lb.score_state(model))
+        model.step = 0;model.value = torch.tensor([2.])
+        with self.assertRaises(RuntimeError):lb.require_frozen_score_state(before, lb.score_state(model))
+        model.value = torch.tensor([1.]);model.training = True
+        with self.assertRaises(RuntimeError):lb.require_frozen_score_state(before, lb.score_state(model))
+
+    def test_query_metadata_reads_header_only_and_forbids_label_references(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d);array = p/"test.npy";meta_path = p/"meta.json"
+            np.save(array, np.zeros((87841, 25), np.float64))
+            metadata = {"source_sha256": lb.PSM_SHA, "feature_names": lb.FEATURES,
+                        "raw_values_not_normalized": True, "test_shape": [87841, 25],
+                        "array_sha256": {"test.npy": "a"*64}}
+            meta_path.write_text(json.dumps(metadata))
+            q = {"array":str(array), "metadata":str(meta_path), "array_sha256":"a"*64,
+                 "metadata_sha256":lb.file_sha(meta_path)}
+            original = lb.file_sha
+            def metadata_hash_only(path):
+                if Path(path) == array:raise AssertionError("preview cannot hash query data bytes")
+                return original(path)
+            with patch.object(lb, "file_sha", side_effect=metadata_hash_only), patch.object(np, "load", side_effect=AssertionError("no values")):
+                _, header = lb.query_metadata(q)
+            self.assertEqual(header["shape"], (87841, 25))
+            for bad in [{**q, "label_path":str(p/"test_labels.npy")}, {**q, "array":str(p/"test_labels.npy")}]:
+                with self.assertRaises(ValueError):lb.query_metadata(bad)
+            np.save(array, np.zeros((87841, 25), np.float32))
+            with self.assertRaises(ValueError):lb.query_metadata(q)
+
+
 if __name__ == "__main__":
     unittest.main()

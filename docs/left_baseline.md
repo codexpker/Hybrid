@@ -5,8 +5,9 @@ LEFT source, data, or weights. The official external revision is pinned to
 `3fadb4811797075e233076b9faceb0d8ec59b697`; the source's software license remains
 unverified. Neither packaging nor a successful synthetic check grants a license.
 
-One entry point supports `profile` and `train`; `score` and the unfrozen C track
-are refused. Preview is read-only and does not import Torch or load arrays:
+One entry point supports `profile`, `train`, and separately approved R-only
+`score`; C and label evaluation are refused. Preview does not import Torch or
+load arrays (score inspects only metadata and the query NPY header):
 
 ```bash
 PYTHONPATH=src python -m hybrid_tsad.left_baseline --config /external/profile.json
@@ -41,17 +42,32 @@ values in scaler fitting and is disclosed as
 official behavior. Train is stride1/shuffled, validation stride192/unshuffled;
 drop_last=False. Validation retains the author's unweighted mean of batch means
 (138 windows split128+10). Dummy labels have shape[192,1] and are never used by
-the official train/validation loss. The adapter has no query/test loading branch.
+the official train/validation loss. The train operation has no query loading branch.
 
 `prepare_prefix()` creates a separate raw derivative and lineage manifest; it
 does not fit a scaler or read a test/label file. Finite float64 cache and provenance
 checks do not prove that this is the author's exact CSV version. Raw means
 unstandardized, not necessarily unprocessed: historical source missing-value
 filling remains a separate provenance question. No implicit imputation is
-performed by this adapter. The C track and later query/scoring/threshold operations
-need separate contracts before implementation/execution. A training-origin
+performed by this adapter. C, real query readout and label/threshold operations
+need separate execution contracts. A training-origin
 calibration holdout is not automatically verified healthy, and an empirical q99
 does not guarantee1% real-world FPR.
+
+The R-score candidate loads the root-frozen epoch20 checkpoint and saved R
+scaler. It never fits on query. Fresh-model strict=False load accepts exactly the
+86 declared thop statistic keys and zero missing scientific keys; every other
+unexpected key fails. Eval/no_grad and full state/step/mode hashes guard the four
+B128/128/128/73 inference calls. Original scores remain per-channel float32;
+canonical mean follows the author's CPU NumPy concatenate, reshape, np.array,
+mean(axis=-1) sequence, with no GPU-mean substitution or thresholding.
+
+Raw scores and absolute time/window/channel indices retain457 windows/87744
+scored points, plus a separate97-point unscored tail mask. Window input_end and
+batch_end specify the earliest available observation index: retrospective
+localization is not early warning. Profile/train forbid query permission, score
+requires it explicitly, and every operation forbids label access. The entry has
+no AP/F1/evaluation branch. The candidate's existence is not a real-query release.
 
 CPU tests use synthetic arrays and a mocked synthetic dataframe for the external
 official loader, checking exact scaler/window equivalence, role footprints,
