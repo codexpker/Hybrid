@@ -1,0 +1,31 @@
+{
+  "status": "CANDIDATE_CODE_ONLY_NOT_TRAINING_RELEASE",
+  "candidate": "tf_lag_endpoint_v1",
+  "official_commit": "4e06d0ad2bbe4c7e349c5a230fa5787d186e1eb2",
+  "official_file": "${TIMERADAR_OFFICIAL_FILE}",
+  "official_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "seed": 2025,
+  "tf_checkpoint": null,
+  "model": {
+    "history": 100, "horizon": 1, "width": 64,
+    "mode": "gated",
+    "tf_hidden": 64, "tf_repr": 256, "tf_depth": 10,
+    "patch_len": 5, "copies": 2
+  },
+  "ablations": ["tf", "lag", "concat", "gated"],
+  "objective": "mean_squared_normalized_future_error",
+  "continuous_score": "channel_mean_squared_normalized_future_error",
+  "normalization": "history_only_per_window_mean_variance_eps1e-5",
+  "lag_implementation": "external_official_autoformer_plus_project_pair_endpoint_adapter",
+  "lag_official_commit": "51c7d416ae120b805fd5beef2f4ccf7de496a6ff",
+  "lag_official_sha256": "dddbc3cc533f9640bbee0e624a49532efe4ee99735101f51a4b03e105772af01",
+  "lag_official_file": "${AUTOFORMER_AUTOCORRELATION_FILE}",
+  "lag": {"heads": 4, "factor": 1.0, "self_enabled": true, "cross_enabled": true, "max_expanded_pairs": 4096},
+  "training": null,
+  "data": null,
+  "calibration": null,
+  "query": null,
+  "Z": "API_no_target_training_not_validated",
+  "U": "parameter_interface_only_not_contamination_robust",
+  "F": "NOT_IMPLEMENTED"
+}
