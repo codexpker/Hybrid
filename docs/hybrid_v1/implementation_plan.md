@@ -108,6 +108,8 @@ I1/I2必须覆盖完整链和真实外置模块。小型fixture只验证接口�
 
 `HybridV1.reconstruct(context, observed_mask, hide_mask, mask_seed)`接当前已到达context，入口统一遮蔽，返回 `tf_reconstruction[B,G,K,W,C]`、`ms_reconstruction[B,G,K,H,C]`、各自可用mask、`hidden_mask[B,G,H,C]`、每组统计和T/F特征。G为固定互补端点组（至多2），K为FRFT副本；目标原值从调用方batch单独送loss/score。每通道末点只取该通道被遮蔽组，不能把另一可见组混进该通道重建平均。
 
+MS另外返回 `ms_reconstruction_by_scale[B,G,K,S,H,C]`；loss和主r_ms对各尺度误差等权，不能以先平均预测掩盖尺度间相反误差。公共ms_reconstruction是聚合预测，供consistency/可视化，不替代by-scale主损失。当前接口只命名稳定语义，具体代码dataclass或dict由Executor统一。
+
 共享batch字典包含history/observed、reconstruction_context/observed、future_targets/future_observed、原current_target/observed及原entity/run/index；F另有support_event_id/labels，Stage1/U对象不得携带异常标签字段。损失返回total及逐窗/逐分项/valid-count，评分返回原索引/available-index/分项及valid，不只有一个浮点数。实现可加dataclass封装，但不改变上述语义。
 
 I1交完整core和原模块等价/遮蔽/变C/梯度测试；I2交可执行多源抽样、MSE-Huber目标、固定分项校准、Z/U/F策略/监督loss及统一CLI。I2要真正从小合成多run数据走通pretrain→分叉Z/U/F→分数/配置/权重保存，不能以NotImplemented或占位head冒完成。真实公开数据大训练仍需后续成本与manifest明确后分波次运行。

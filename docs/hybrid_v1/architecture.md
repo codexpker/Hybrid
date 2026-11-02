@@ -88,6 +88,8 @@ T采用因果attention骨干，但首版归一化使用整个合法输入prefix�
 
 保留真正的 M 多尺度流，不把 lag 输出冒称多尺度。复用 LEFT `MS_Utils` 的 Nyquist 约束滤波与下采样思想/可复用算子；变量数相关的投影改为逐变量共享投影。M 为多尺度 patch token 的拼接，并带尺度身份和有效 mask。
 
+MS读出复用作者 `MsDecoder` 的逐token投影；每个尺度的融合token按其真实粗分辨率上采样到原H的patch网格，再共享解码器重建原时间目标，保留by-scale预测。各尺度对原observed且被遮蔽目标都有GT损失，主r_ms按各尺度误差等权，不能只监督最后一个尺度而让其他M流失去任务。此处全率多尺度读出是项目适配，不冒称LEFT原训练目标逐式移植；一致性在聚合预测与TF的重叠原时间区间计算。
+
 按 LEFT 真实 selected links 运行 1 层起步：T←F、F←更新后的 T、M←更新后的 T；跨变量滞后先在 T 端注入。融合按每变量组织，避免固定 C 参数。K 个 TF copy 保持独立分支：将T/M广播到每个copy，分别交互与解码，预测头在解码后平均copies；不先平均掉F及重建方差证据。原生 F 轴和多尺度 M 轴仅由注意力连接，不强行坐标同一化。
 
 原 `MultiViewFusion.forward` 没有 mask 参数，因此新adapter必须调用其真实 `t_from_f/f_from_t/m_from_t` 子块并显式传入已有的attention/key-padding mask，保持原更新顺序。无padding/dropout关闭时与原类同权重输出对照；TimesFM的make_attn_mask返回True=可见，但其patch_mask输入与PyTorch key_padding_mask均为True=屏蔽，须按字段转换，不能一律取反。补零query在残差FFN后清零；全无有效key的分支显式跳过，不能NaN。
