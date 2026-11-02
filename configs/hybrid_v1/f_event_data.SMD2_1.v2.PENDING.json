@@ -1,0 +1,112 @@
+{
+  "operation": "HYBRID_V1_FIXED_SMD_F_INPUTS",
+  "identity": {
+    "domain": "SMD",
+    "entity": "machine-2-1",
+    "run": "machine-2-1_test"
+  },
+  "roles": {
+    "SUPPORT": [
+      0,
+      9477
+    ],
+    "NORMAL_SELECT": [
+      10021,
+      13031
+    ],
+    "NORMAL_CAL": [
+      13575,
+      16585
+    ]
+  },
+  "history": 512,
+  "horizon": 32,
+  "sampling_seed": 2025,
+  "selection_counts": {
+    "NORMAL_SELECT": 32,
+    "NORMAL_CAL": 512
+  },
+  "catalogue": [
+    {
+      "event_id": "SMD:machine-2-1:E0",
+      "alias": "E0",
+      "event_index": 138,
+      "start": 6506,
+      "end": 6528
+    },
+    {
+      "event_id": "SMD:machine-2-1:E1",
+      "alias": "E1",
+      "event_index": 139,
+      "start": 7907,
+      "end": 7961
+    },
+    {
+      "event_id": "SMD:machine-2-1:E2",
+      "alias": "E2",
+      "event_index": 140,
+      "start": 9340,
+      "end": 9386
+    },
+    {
+      "event_id": "SMD:machine-2-1:E3",
+      "alias": "E3",
+      "event_index": 141,
+      "start": 9779,
+      "end": 9805
+    },
+    {
+      "event_id": "SMD:machine-2-1:E4",
+      "alias": "E4",
+      "event_index": 142,
+      "start": 12173,
+      "end": 12181
+    },
+    {
+      "event_id": "SMD:machine-2-1:E5",
+      "alias": "E5",
+      "event_index": 143,
+      "start": 16136,
+      "end": 16588
+    }
+  ],
+  "normal_matches": [
+    {
+      "matched_event_id": "SMD:machine-2-1:E0",
+      "start": 6453,
+      "end": 6475
+    },
+    {
+      "matched_event_id": "SMD:machine-2-1:E1",
+      "start": 7822,
+      "end": 7876
+    },
+    {
+      "matched_event_id": "SMD:machine-2-1:E2",
+      "start": 9263,
+      "end": 9309
+    }
+  ],
+  "source_sha256": {
+    "hybrid_tsad/hybrid_v1/event_data.py": "b7b4ae1a2feafc8469e5068319fdaf4fd63a812d5680d7425d458de81a57463b",
+    "hybrid_tsad/hybrid_v1/target_data.py": "3578f4f498a16f0c62a591958b4d53f1ce07a99e11d0107af6b2a5c052175dfa",
+    "hybrid_tsad/hybrid_v1/data.py": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315",
+    "hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "hybrid_tsad/hybrid_v1/__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613"
+  },
+  "output": "D:\\code\\bst\\seal_detection_project\\research_workspace\\data\\hybrid_v1_smd2_1_f_inputs_20261103_v1",
+  "inputs": {
+    "labels": {
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\data\\event_smd_20261030_v1\\machine-2-1_test_label.txt",
+      "sha256": "416dd20a447f38b8d9394382293ed44f509c1c3f99c4aa2fbff179498626dbdc",
+      "bytes": 47388,
+      "numeric_stop": 17129
+    },
+    "values": {
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\data\\event_smd_20261030_v1\\machine-2-1_test.txt",
+      "sha256": "2d103661799271be958227907950a1c76803356442d60a4070671cc0abbefb20",
+      "bytes": 8103348,
+      "numeric_stop": 16585
+    }
+  }
+}
