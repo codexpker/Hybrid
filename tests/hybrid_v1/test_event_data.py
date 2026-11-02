@@ -3,6 +3,8 @@ import copy
 import io
 import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -27,6 +29,52 @@ class EventInputs(unittest.TestCase):
 
     def build(self, **kw):
         return e.construct(self.values, self.labels, **dict(self.kw, **kw))
+
+    def test_cold_seven_file_package_metadata_preview_without_worktree_or_torch(self):
+        package_source=Path(e.__file__).resolve().parents[2]
+        candidate=package_source.parent/'configs/hybrid_v1/f_event_data.SMD2_1.v3.PENDING.json'
+        cfg=json.loads(candidate.read_text())
+        required={'hybrid_tsad/__init__.py','hybrid_tsad/hybrid_v1/__init__.py',
+                  'hybrid_tsad/hybrid_v1/event_data.py','hybrid_tsad/hybrid_v1/target_data.py',
+                  'hybrid_tsad/hybrid_v1/data.py','hybrid_tsad/hybrid_v1/config.py',
+                  'hybrid_tsad/hybrid_v1/provenance.py'}
+        self.assertEqual(set(cfg['source_sha256']),required)
+        with tempfile.TemporaryDirectory() as d:
+            cwd=Path(d); cold=cwd/'freshsource'; cold.mkdir()
+            for name,digest in cfg['source_sha256'].items():
+                self.assertEqual(e.sha(package_source/name),digest)
+                destination=cold/name; destination.parent.mkdir(parents=True,exist_ok=True)
+                shutil.copy2(package_source/name,destination)
+            metadata=cwd/'exact_config.json'; metadata.write_bytes(candidate.read_bytes())
+            code="""import sys,json,os
+from pathlib import Path
+cold=Path(sys.argv[1]).resolve()
+# -I removes cwd/PYTHONPATH; explicitly retain only the fresh source plus
+# interpreter/library paths, never the working repository.
+sys.path.insert(0,str(cold))
+assert not any('research_workspace' in p.lower() for p in sys.path),sys.path
+from hybrid_tsad.hybrid_v1 import event_data
+from hybrid_tsad.hybrid_v1 import data,config,provenance
+def denied(*args,**kwargs): raise AssertionError('NO INPUT PARSE IN PREVIEW')
+event_data.derive=denied; event_data.prefix_rows=denied; event_data.sha=denied
+event_data.main(['--config',sys.argv[2]])
+files={name:str(Path(module.__file__).resolve()) for name,module in sys.modules.items()
+       if name=='hybrid_tsad' or name.startswith('hybrid_tsad.')}
+assert len(files)==7,files
+assert all(cold in Path(p).parents for p in files.values()),files
+assert not any(name=='torch' or name.startswith('torch.') for name in sys.modules)
+print(json.dumps(dict(cold_import='PASS',cwd=os.getcwd(),modules=files,
+                     torch_loaded=False,preview_only=True,query_or_real_inputs_opened=False)))
+"""
+            result=subprocess.run([sys.executable,'-I','-c',code,str(cold),str(metadata)],
+                                  cwd=str(cwd),stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=30)
+            self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            lines=result.stdout.strip().splitlines()
+            self.assertEqual(json.loads(lines[0]),dict(preview=True,numeric_read=False))
+            evidence=json.loads(lines[-1]); self.assertEqual(evidence['cold_import'],'PASS')
+            self.assertFalse(evidence['torch_loaded']); self.assertEqual(len(evidence['modules']),7)
+            print('COLDTREE_SUBPROCESS_EVIDENCE '+json.dumps(dict(command=result.args,exit_code=result.returncode,
+                  stdout=result.stdout,stderr=result.stderr)))
 
     def test_exact_half_open_support_and_canonical_ids(self):
         r = self.build(); singles = [x for x in r['combinations'] if x['K'] == 1]
