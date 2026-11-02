@@ -1,0 +1,102 @@
+{
+  "source_seed": 2025,
+  "inference_seed": 2025,
+  "device": "cuda:0",
+  "history": 512,
+  "horizon": 32,
+  "chunk_size": 64,
+  "sources": {
+    "timeradar_file": "/home/a312/tsad_research/docs/research_review_2026-10-27/source_snapshots/TimeRadar/models/TimeRadar.py",
+    "left_root": "/home/a312/tsad_research/literature/novelty_review/left_source_20261031/models/Left",
+    "timesfm_root": "/home/a312/tsad_research/literature/reference_source_20261031/timesfm3/src/timesfm3/torch"
+  },
+  "resources": {
+    "wall_seconds": 21595,
+    "kill_grace_seconds": 5,
+    "evaluation_GiB": 30,
+    "automatic_retry": false
+  },
+  "model": {
+    "history": 512,
+    "local_window": 100,
+    "horizon": 32,
+    "width": 128,
+    "temporal_patch": 16,
+    "temporal_layers": 4,
+    "heads": 4,
+    "tf_hidden": 64,
+    "tf_repr": 256,
+    "tf_depth": 10,
+    "tf_patch": 5,
+    "copies": 2,
+    "lag_window": 100,
+    "max_lag": 32,
+    "lag_width": 32,
+    "lag_top_k": 4,
+    "lag_min_overlap": 2,
+    "ms_factors": [
+      4,
+      2
+    ],
+    "fusion": "concat_linear",
+    "fusion_layers": 1,
+    "dropout": 0.0,
+    "reconstruction_projection": "real",
+    "history_mask_probability": 0.15,
+    "use_variate_attention": false
+  },
+  "operation": "HYBRID_V1_PSM_NAMED_MODEL_INFER",
+  "status": "PENDING_ASSET_ACCEPTANCE_AND_ROOT_EXECUTION_RELEASE",
+  "control_id": "A1_fusion_concat_linear",
+  "route": "SOURCE_CONTROL",
+  "physical_gpu": null,
+  "expected_gpu_uuid": null,
+  "active_components": [
+    "r_tf",
+    "r_ms",
+    "r_pred"
+  ],
+  "stream_source_sha256": null,
+  "output": "/home/a312/tsad_research/results/hybrid_v1_named_psm_A1_fusion_concat_linear_20261103.UNBOUND",
+  "permissions": {
+    "query": true,
+    "labels": false,
+    "training": false,
+    "threshold_fit": false,
+    "target_fit": false
+  },
+  "assets": {
+    "checkpoint": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/checkpoint",
+      "sha256": null
+    },
+    "calibration": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration",
+      "sha256": null
+    },
+    "training_config": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/training_config",
+      "sha256": null
+    },
+    "training_receipt": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/training_receipt",
+      "sha256": null
+    },
+    "calibration_config": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration_config",
+      "sha256": null
+    },
+    "calibration_receipt": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration_receipt",
+      "sha256": null
+    },
+    "query_manifest": {
+      "path": "/home/a312/tsad_research/preparations/hybrid_v1_psm_z_readout_build_20261102_v1/PSM_QUERY_MANIFEST.json",
+      "sha256": null
+    },
+    "asset_seal": {
+      "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/ROOT_NAMED_ASSET_SEAL.json",
+      "sha256": null
+    }
+  }
+}

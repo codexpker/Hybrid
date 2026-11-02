@@ -15,6 +15,7 @@ OPERATION = "HYBRID_V1_Z1_SYNTHETIC_C25_PROFILE"
 PRODUCTION_ACTIONS = {"HYBRID_V1_PSM_Z_MODEL_INFER":"model_infer",
                       "HYBRID_V1_PSM_Z_BASELINE_CAL":"baseline_calibrate",
                       "HYBRID_V1_PSM_Z_BASELINE_INFER":"baseline_infer"}
+NAMED_OPERATION = "HYBRID_V1_PSM_NAMED_MODEL_INFER"
 
 
 def sha(path):
@@ -102,7 +103,7 @@ def _rng_json(snapshot):
 
 
 def write_model_bank(model, runs, calibration, directory, *, identity, history,
-                     horizon, seed, chunk_size=64, capture_prefix=0, resume=False):
+                     horizon, seed, chunk_size=64, capture_prefix=0, resume=False, active_components=None):
     """Same pointwise iterator and same score_records; storage/time only."""
     import torch
     from .chunked_bank import ChunkedBank, iter_pointwise_infer
@@ -118,7 +119,8 @@ def write_model_bank(model, runs, calibration, directory, *, identity, history,
         if bank.manifest["complete"]:
             return dict(prefix=[],prefix_rng=None,timings=[],finalize_seconds=0.,already_complete=True)
         plan = bank.remaining_plan() if resume else None
-        iterator = iter(iter_pointwise_infer(model, runs, history=history, horizon=horizon, seed=seed,index_plan=plan))
+        extra = {} if active_components is None else {"active_components": active_components}
+        iterator = iter(iter_pointwise_infer(model, runs, history=history, horizon=horizon, seed=seed,index_plan=plan,**extra))
         remaining = sum(e["end"]-e["start"] for e in ranges)-bank.manifest["committed_records"]
         for index in range(remaining):
             began = time.monotonic(); record = next(iterator)
@@ -171,6 +173,174 @@ def model_binding_metadata(cfg,acceptance):
     allowed={(e["seed"],e["sha256"]) for e in acceptance["assets"]}
     if any((seed,cfg["assets"][k]["sha256"]) not in allowed for k in ("checkpoint","calibration")):
         raise PermissionError("Wrong seed/checkpoint/source calibration pairing")
+
+
+def named_binding_metadata(cfg, seal):
+    """Read receipt/config metadata only; root's exact seal attests acceptance.
+
+    SOURCE_CONTROL uses existing source receipt files/phase. U and Z_TCAL use
+    the actual stage2_adaptation receipt schema; target CAL never aliases source.
+    """
+    from .config import HybridV1Config
+    from .scoring import recipe
+    route=cfg.get("route"); seed=cfg.get("source_seed"); assets=cfg["assets"]
+    if (route not in {"SOURCE_CONTROL","U_TCAL","Z_TCAL"} or seed not in (2025,2026,2027)
+            or cfg.get("inference_seed")!=seed or type(cfg.get("physical_gpu")) is not int
+            or cfg["physical_gpu"] not in range(4) or cfg.get("device")!="cuda:0"
+            or not isinstance(cfg.get("expected_gpu_uuid"),str) or not cfg["expected_gpu_uuid"].startswith("GPU-")
+            or not isinstance(cfg.get("control_id"),str) or not cfg["control_id"]):
+        raise PermissionError("Explicit named route/seed/physical GPU/UUID required")
+    if seal.get("status")!="ACCEPTED_NAMED_READOUT_ASSETS" or seal.get("approved_by")!="root":
+        raise PermissionError("Accepted root named-asset seal required")
+    matches=[e for e in seal.get("bindings",[]) if (e.get("control_id"),e.get("route"),e.get("source_seed"))
+             ==(cfg["control_id"],route,seed)]
+    bound_keys={"checkpoint","calibration","training_config","training_receipt","calibration_config","calibration_receipt"}
+    if route=="U_TCAL": bound_keys.add("parent_source_checkpoint")
+    if (len(matches)!=1 or set(matches[0].get("assets",{}))!=bound_keys
+            or any(matches[0]["assets"][k]!=assets[k] for k in bound_keys)):
+        raise PermissionError("Named checkpoint/CAL/config/receipt pairing is not sealed")
+    values={k:json.loads(Path(assets[k]["path"]).read_text()) for k in
+            ("training_config","training_receipt","calibration_config","calibration_receipt","calibration")}
+    train,trained,calcfg,calibrated,cal=[values[k] for k in
+        ("training_config","training_receipt","calibration_config","calibration_receipt","calibration")]
+    for actual in (train,calcfg):
+        if (actual.get("model")!=cfg.get("model") or actual.get("sources")!=cfg.get("sources")
+                or actual.get("seed")!=seed or actual.get("history")!=512 or actual.get("horizon")!=32
+                or list(recipe(actual.get("active_components"))[0])!=list(recipe(cfg.get("active_components"))[0])):
+            raise PermissionError("Actual training/CAL config model, sources, seed or recipe differs")
+    settings=HybridV1Config(**cfg["model"]); active,weights=recipe(cfg.get("active_components"))
+    if ((settings.history,settings.horizon)!=(512,32) or (not settings.tf_enabled and "r_tf" in active)
+            or (not settings.ms_enabled and "r_ms" in active) or cal.get("active_components")!=list(active)
+            or cal.get("weights")!=weights or set(cal.get("scales",{}))!=set(active)
+            or not all(np.isfinite(v) and v>0 for v in cal["scales"].values())
+            or not np.isfinite(cal.get("threshold",float("nan")))):
+        raise PermissionError("Model branch/accepted fixed CAL recipe mismatch")
+    ckpt=assets["checkpoint"]["sha256"]
+    def source_train_receipt():
+        return (train.get("operation")=="HYBRID_V1_SOURCE_STAGE1" and trained.get("phase")=="source_train"
+            and trained.get("synthetic_non_scientific_results") is False
+            and trained.get("files",{}).get("source.pt")==ckpt
+            and trained.get("files",{}).get("config.json")==assets["training_config"]["sha256"])
+    if route=="SOURCE_CONTROL":
+        good=(source_train_receipt() and calcfg.get("operation")=="HYBRID_V1_SOURCE_STAGE1"
+            and calibrated.get("phase")=="calibrate_source" and cal.get("source_domain_equal_weight") is True
+            and calibrated.get("synthetic_non_scientific_results") is False and cal.get("domains")==["SMD","Sunspot"]
+            and calcfg.get("checkpoint_sha256")==ckpt
+            and calcfg.get("train_receipt_sha256")==assets["training_receipt"]["sha256"]
+            and calibrated.get("files",{}).get("source_calibration.json")==assets["calibration"]["sha256"]
+            and calibrated.get("files",{}).get("config.json")==assets["calibration_config"]["sha256"])
+    else:
+        mode="U" if route=="U_TCAL" else "Z_TCAL"
+        good=(calcfg.get("operation")=="HYBRID_V1_STAGE2_U" and calcfg.get("scope")=="public_target"
+            and calcfg.get("mode")==mode and calibrated.get("phase")=="target_calibrate"
+            and calibrated.get("status")=="COMPLETED" and calibrated.get("scope")=="public_target"
+            and calibrated.get("mode")==mode and calibrated.get("calibrated_checkpoint_sha256")==ckpt
+            and calibrated.get("updates")==0 and calibrated.get("target_fit") is False
+            and calibrated.get("query_or_labels") is False and cal.get("domains")==["PSM"]
+            and calibrated.get("target_calibration_contact") is True
+            and calibrated.get("calibration_route_kernel")=="U/source=False"
+            and cal.get("source_domain_equal_weight") is False
+            and calibrated.get("manifest_sha256")==calcfg.get("manifest_sha256")
+            and calibrated.get("plans_sha256")==calcfg.get("plans_sha256"))
+        if route=="U_TCAL":
+            parent=assets["parent_source_checkpoint"]["sha256"]
+            good=good and (train.get("operation")=="HYBRID_V1_STAGE2_U" and train.get("mode")=="U"
+                and train.get("scope")=="public_target" and trained.get("status")=="COMPLETED"
+                and trained.get("phase")=="target_train" and trained.get("mode")=="U"
+                and trained.get("scope")=="public_target" and trained.get("target_fit") is True
+                and type(trained.get("updates")) is int and trained["updates"]>0
+                and trained.get("adapted_checkpoint_sha256")==ckpt
+                and trained.get("source_checkpoint_sha256")==train.get("source_checkpoint_sha256")==parent
+                and calcfg.get("source_checkpoint_sha256")==calibrated.get("source_checkpoint_sha256")==parent
+                and calcfg.get("adapted_checkpoint_sha256")==ckpt
+                and calcfg.get("adapted_receipt_sha256")==assets["training_receipt"]["sha256"]
+                and trained.get("manifest_sha256")==train.get("manifest_sha256")==calcfg.get("manifest_sha256")
+                and trained.get("plans_sha256")==train.get("plans_sha256")==calcfg.get("plans_sha256"))
+        else:
+            good=good and source_train_receipt() and calcfg.get("source_checkpoint_sha256")==ckpt and calibrated.get("source_checkpoint_sha256")==ckpt
+    if not good: raise PermissionError("Source/target receipt phase, mode or checkpoint/CAL lineage mismatch")
+    return dict(control_id=cfg["control_id"],route=route,source_seed=seed,
+                inference_seed=cfg["inference_seed"],physical_gpu=cfg["physical_gpu"],expected_gpu_uuid=cfg["expected_gpu_uuid"],
+                target_calibration_contact=route!="SOURCE_CONTROL",pure_source_only_Z=route=="SOURCE_CONTROL")
+
+
+def admit_named(config_path,release_path,trusted,output):
+    """Separate operation: old full-only production guard is never weakened."""
+    cfg=json.loads(Path(config_path).read_text())
+    if not release_path or not trusted: raise PermissionError("Exact named-model root release required")
+    raw=Path(release_path).read_bytes(); release=json.loads(raw)
+    if (hashlib.sha256(raw).hexdigest()!=trusted or release.get("status")!="APPROVED"
+            or release.get("approved_by")!="root" or release.get("operation")!=NAMED_OPERATION
+            or cfg.get("operation")!=NAMED_OPERATION or release.get("allowed_actions")!=["named_model_infer"]
+            or release.get("config_sha256")!=sha(config_path)):
+        raise PermissionError("Pending/changed named operation release")
+    if (cfg.get("permissions")!={"query":True,"labels":False,"training":False,"threshold_fit":False,"target_fit":False}
+            or any(k in cfg for k in ("labels","label_path","label_runs","evaluation_labels"))
+            or (cfg.get("history"),cfg.get("horizon"),cfg.get("chunk_size"))!=(512,32,64)):
+        raise PermissionError("Named readout-only permissions/H512/P32/chunk64 required")
+    own={p.name:sha(p) for p in Path(__file__).parent.glob("*.py")}
+    if cfg.get("stream_source_sha256")!=own or release.get("source_sha256")!=own:
+        raise PermissionError("Named stream source changed")
+    required={"query_manifest","asset_seal","checkpoint","calibration","training_config","training_receipt","calibration_config","calibration_receipt"}
+    if cfg.get("route")=="U_TCAL": required.add("parent_source_checkpoint")
+    if set(cfg["assets"])!=required: raise PermissionError("Only exact named-model asset set is supported")
+    for asset in cfg["assets"].values():
+        if sha(asset["path"])!=asset["sha256"]: raise PermissionError("Named asset bytes changed")
+    query_manifest_metadata(json.loads(Path(cfg["assets"]["query_manifest"]["path"]).read_text()))
+    named_binding_metadata(cfg,json.loads(Path(cfg["assets"]["asset_seal"]["path"]).read_text()))
+    if release.get("asset_seal_sha256")!=cfg["assets"]["asset_seal"]["sha256"]:
+        raise PermissionError("Root must bind accepted asset-seal SHA explicitly")
+    binding={k:cfg[k] for k in ("control_id","route","source_seed","inference_seed","physical_gpu","expected_gpu_uuid")}
+    if release.get("named_binding")!=binding: raise PermissionError("Wrong independent named seed/GPU/UUID binding")
+    from .provenance import OfficialSources
+    external=OfficialSources(**cfg["sources"]).manifest()
+    if release.get("external_source_sha256")!={e["path"]:e["sha256"] for e in external}:
+        raise PermissionError("Official source identity changed")
+    if cfg.get("resources")!={"wall_seconds":21595,"kill_grace_seconds":5,"evaluation_GiB":30,"automatic_retry":False}:
+        raise PermissionError("Named6h/30GiB existing resource contract required")
+    resume=release.get("allow_resume",False)
+    if type(resume) is not bool or Path(output)!=Path(cfg["output"]) or (Path(output).exists() and not resume):
+        raise PermissionError("Exact fresh output or separately signed resume required")
+    return cfg,resume
+
+
+def production_named(cfg,output,resume=False):
+    """Existing GPU resource contract and bank kernels, with explicit lineage."""
+    import os,platform,resource,torch
+    from .cli import load_model,save_json,save_runtime
+    from .data import load_manifest
+    if os.environ.get("CUDA_VISIBLE_DEVICES")!=str(cfg["physical_gpu"]):
+        raise PermissionError("Signed physical-to-logical mapping required")
+    props=torch.cuda.get_device_properties(0)
+    if str(props.uuid).removeprefix("GPU-")!=cfg["expected_gpu_uuid"].removeprefix("GPU-") or "A40" not in props.name:
+        raise PermissionError("Wrong signed A40 UUID")
+    torch.cuda.set_per_process_memory_fraction(30*1024**3/props.total_memory);torch.cuda.reset_peak_memory_stats()
+    out=Path(output);out.mkdir(parents=True,exist_ok=resume)
+    attempt=out/"executions"/cfg["execution_release_sha256"];attempt.mkdir(parents=True,exist_ok=False)
+    began=time.monotonic();save_json(attempt/"config.json",cfg)
+    binding=named_binding_metadata(cfg,json.loads(Path(cfg["assets"]["asset_seal"]["path"]).read_text()))
+    save_json(attempt/"named_identity.json",dict(binding,asset_seal_sha256=cfg["assets"]["asset_seal"]["sha256"]))
+    runs=load_manifest(cfg["assets"]["query_manifest"]["path"],roles={"QUERY"})
+    input_sha=query_manifest_metadata(json.loads(Path(cfg["assets"]["query_manifest"]["path"]).read_text()))["sha256"]
+    code_sha=hashlib.sha256(json.dumps(cfg["stream_source_sha256"],sort_keys=True).encode()).hexdigest()
+    model=load_model(dict(cfg,seed=cfg["source_seed"]),cfg["assets"]["checkpoint"]["path"])
+    model.eval();before=_state(model);save_runtime(attempt,model)
+    calibration=json.loads(Path(cfg["assets"]["calibration"]["path"]).read_text())
+    identity=dict(input_sha256=input_sha,config_sha256=cfg["execution_config_sha256"],source_sha256=code_sha,
+        checkpoint_sha256=cfg["assets"]["checkpoint"]["sha256"],calibration_sha256=cfg["assets"]["calibration"]["sha256"])
+    result=write_model_bank(model,runs,calibration,out/"bank",identity=identity,history=512,horizon=32,
+        seed=cfg["inference_seed"],chunk_size=64,resume=resume,active_components=cfg.get("active_components"))
+    if before!=_state(model): raise ValueError("Named inference mutated model tensors")
+    manifest=json.loads((out/"bank/manifest.json").read_text())
+    if not manifest["complete"] or manifest["committed_records"]!=87329:
+        raise ValueError("Incomplete original-axis PSM bank")
+    save_json(attempt/"point_times.json",result["timings"])
+    save_json(attempt/"resources.json",dict(peak_allocated=torch.cuda.max_memory_allocated(),peak_reserved=torch.cuda.max_memory_reserved(),
+        GPU_name=props.name,GPU_uuid=str(props.uuid),model_state_unchanged=True))
+    save_json(attempt/"report.json",dict(status="COMPLETED_PENDING_INDEPENDENT_REVIEW",action="named_model_infer",**binding,
+        bank_manifest_sha256=sha(out/"bank/manifest.json"),labels_read=False,training=False,threshold_fit=False,resume=resume,
+        Python=platform.python_version(),NumPy=np.__version__,CPU_peak_RSS_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024,
+        function_wall_seconds=time.monotonic()-began,tail31_retained=True))
 
 
 def admit_production(config_path,release_path,trusted,output):
@@ -386,16 +556,21 @@ def main(argv=None):
     p.add_argument("--execute",action="store_true");p.add_argument("--preflight-only",action="store_true")
     args=p.parse_args(argv)
     if not args.execute:
-        print(json.dumps(dict(preview=True,supported_operations=[OPERATION]+list(PRODUCTION_ACTIONS),model_or_data_opened=False)));return
+        print(json.dumps(dict(preview=True,supported_operations=[OPERATION]+list(PRODUCTION_ACTIONS)+[NAMED_OPERATION],model_or_data_opened=False)));return
     operation=json.loads(Path(args.config).read_text()).get("operation")
-    if operation in PRODUCTION_ACTIONS:
+    if operation==NAMED_OPERATION:
+        config,resume=admit_named(args.config,args.release,args.trusted_release_sha256,args.output_dir)
+    elif operation in PRODUCTION_ACTIONS:
         config,resume=admit_production(args.config,args.release,args.trusted_release_sha256,args.output_dir)
     else:
         config=admit(args.config,args.release,args.trusted_release_sha256,args.output_dir);resume=False
     if args.preflight_only:
         print(json.dumps(dict(metadata_preflight="PASS",GPU_or_model_started=False)));return
     config["execution_config_sha256"]=sha(args.config)
-    if operation in PRODUCTION_ACTIONS:
+    if operation==NAMED_OPERATION:
+        config["execution_release_sha256"]=args.trusted_release_sha256
+        production_named(config,args.output_dir,resume)
+    elif operation in PRODUCTION_ACTIONS:
         config["execution_release_sha256"]=args.trusted_release_sha256
         production(config,args.output_dir,resume)
     else:

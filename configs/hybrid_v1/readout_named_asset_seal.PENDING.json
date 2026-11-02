@@ -1,0 +1,165 @@
+{
+  "status": "PENDING",
+  "approved_by": null,
+  "bindings": [
+    {
+      "control_id": "A1_fusion_none",
+      "route": "SOURCE_CONTROL",
+      "source_seed": 2025,
+      "assets": {
+        "checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/checkpoint",
+          "sha256": null
+        },
+        "calibration": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/calibration",
+          "sha256": null
+        },
+        "training_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/training_config",
+          "sha256": null
+        },
+        "training_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/training_receipt",
+          "sha256": null
+        },
+        "calibration_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/calibration_config",
+          "sha256": null
+        },
+        "calibration_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_none/calibration_receipt",
+          "sha256": null
+        }
+      }
+    },
+    {
+      "control_id": "A1_fusion_feature_mean",
+      "route": "SOURCE_CONTROL",
+      "source_seed": 2025,
+      "assets": {
+        "checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/checkpoint",
+          "sha256": null
+        },
+        "calibration": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/calibration",
+          "sha256": null
+        },
+        "training_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/training_config",
+          "sha256": null
+        },
+        "training_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/training_receipt",
+          "sha256": null
+        },
+        "calibration_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/calibration_config",
+          "sha256": null
+        },
+        "calibration_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_feature_mean/calibration_receipt",
+          "sha256": null
+        }
+      }
+    },
+    {
+      "control_id": "A1_fusion_concat_linear",
+      "route": "SOURCE_CONTROL",
+      "source_seed": 2025,
+      "assets": {
+        "checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/checkpoint",
+          "sha256": null
+        },
+        "calibration": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration",
+          "sha256": null
+        },
+        "training_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/training_config",
+          "sha256": null
+        },
+        "training_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/training_receipt",
+          "sha256": null
+        },
+        "calibration_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration_config",
+          "sha256": null
+        },
+        "calibration_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/A1_fusion_concat_linear/calibration_receipt",
+          "sha256": null
+        }
+      }
+    },
+    {
+      "control_id": "U200_seed2025",
+      "route": "U_TCAL",
+      "source_seed": 2025,
+      "assets": {
+        "checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/checkpoint",
+          "sha256": null
+        },
+        "calibration": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/calibration",
+          "sha256": null
+        },
+        "training_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/training_config",
+          "sha256": null
+        },
+        "training_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/training_receipt",
+          "sha256": null
+        },
+        "calibration_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/calibration_config",
+          "sha256": null
+        },
+        "calibration_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/calibration_receipt",
+          "sha256": null
+        },
+        "parent_source_checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/U200_seed2025/parent_source_checkpoint",
+          "sha256": null
+        }
+      }
+    },
+    {
+      "control_id": "Z_Tcal_seed2025",
+      "route": "Z_TCAL",
+      "source_seed": 2025,
+      "assets": {
+        "checkpoint": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/checkpoint",
+          "sha256": null
+        },
+        "calibration": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/calibration",
+          "sha256": null
+        },
+        "training_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/training_config",
+          "sha256": null
+        },
+        "training_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/training_receipt",
+          "sha256": null
+        },
+        "calibration_config": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/calibration_config",
+          "sha256": null
+        },
+        "calibration_receipt": {
+          "path": "/home/a312/tsad_research/preparations/NAMED_ACCEPTED_ASSETS.UNBOUND/Z_Tcal_seed2025/calibration_receipt",
+          "sha256": null
+        }
+      }
+    }
+  ]
+}
