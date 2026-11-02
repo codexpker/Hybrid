@@ -244,7 +244,7 @@ class ChunkedBank:
             if path.parent != self.directory or path.name != chunk["file"] or _sha(path) != chunk["sha256"]:
                 raise ValueError("Committed chunk identity/path mismatch")
             with np.load(path, allow_pickle=False) as arrays:
-                entries = _unpack(arrays)
+                entries = _unpack({name: arrays[name] for name in arrays.files})
             if len(entries) != chunk["records"] or chunk["start_position"] != count:
                 raise ValueError("Committed chunk count/order mismatch")
             if len(entries) > self.contract["chunk_size"]:
@@ -379,7 +379,7 @@ def read_entries(directory):
         if path.parent != directory or path.name != chunk["file"] or _sha(path) != chunk["sha256"]:
             raise ValueError("Chunk identity/path mismatch")
         with np.load(path, allow_pickle=False) as arrays:
-            entries = _unpack(arrays)
+            entries = _unpack({name: arrays[name] for name in arrays.files})
         if len(entries) != chunk["records"]:
             raise ValueError("Chunk record count mismatch")
         yield from entries
