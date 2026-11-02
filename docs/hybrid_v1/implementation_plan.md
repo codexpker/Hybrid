@@ -48,7 +48,7 @@ I1/I2必须覆盖完整链和真实外置模块。小型fixture只验证接口�
 1. `forecast(history,target=None)`接口不接future真值；改未来target、重建pass当前点或另一原batch样本，不得改变受保护预测。
 2. 归一化只用允许可见点；TimesFM3原预处理与CPM先后差异已知，不能先放入真实future再mask。
 3. 原始窗口足迹、T patch端点、FRFT原生轴、多尺度footprint、每一lag源索引都可追踪。
-4. 正/负符号输入的FRFT逆变换，author_abs与signed-real分开；copy不提前池化掉方差。
+4. 正/负符号输入的FRFT逆变换，author_abs与signed-real分开；整数order回环、非整数官方源一致性及近似误差诊断分开，不能声称快速连续近似算子具有普适精确逆；copy不提前池化掉方差。
 5. Self只用i=i/正lag，Cross只用i≠j；有界lag无wrap，零lag控制可执行；C1跨变量退化显式。
 6. all-missing、padding、短run、不同C和通道置换；source/target不使用固定实体ID参数泄漏。
 7. 每项loss与参数组实际梯度/更新，decoder不能仍冻结而声称联合重建；鲁棒开关需真正改变逐元素loss。

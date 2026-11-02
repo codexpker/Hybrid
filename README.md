@@ -1,8 +1,20 @@
 # Hybrid TSAD 独立研究工程
 
-这是公开时间序列异常检测研究的独立工程，保留既有 Hybrid 核心、参考方法适配和可复用实验入口。当前研究按2026-11-01 V3规划推进：先建立成熟方法基线，再验证微弱关系及时滞信息的增量；工程可运行不代表检测收益或创新已成立。
+这是公开时间序列异常检测研究的独立工程，保留既有 Hybrid 核心、参考方法适配和可复用实验入口。当前按2026-11-02正式纠偏，构建微弱异常与时滞关联异常的完整 Hybrid V1；工程可运行不代表检测收益或创新已成立。
 
-## 当前入口：LEFT官方实现基线
+## 当前入口：完整 Hybrid V1
+
+先读[完整架构](docs/hybrid_v1/architecture.md)、[正式论文与实际代码映射](docs/hybrid_v1/paper_module_map.md)、[实现和系统消融计划](docs/hybrid_v1/implementation_plan.md)。共享实现位于 `src/hybrid_tsad/hybrid_v1/`，使用真实外置 TimeRadar FRFT、TimesFM 3.0 小型因果块、LEFT 多尺度与交互子组件，并明确区分项目适配的有限 Self-lag 和 Cross-lag。TimesFM 3.0 是官方技术发布，不冒称已核实的正式顶会论文。旧实现、权重和全部正负结果保留。
+
+统一运行入口见[训练与评分用法](docs/hybrid_v1/tools_usage.md)：
+
+```text
+python -m hybrid_tsad.hybrid_v1.cli --config configs/hybrid-v1-synthetic.example.json --phase synthetic_smoke --output-dir /new/output
+```
+
+命令默认只预览；需绑定本机已有官方源路径及相应运行配置。`--execute` 才实际执行，已有配置示例不代表正式大规模训练已获放行。CPU合成闭环、A40兼容、公开数据科学实验分别验收；最新真实进展在上一级 `CURRENT_RESEARCH_STATE.md`。模型采用源自监督与独立Z/U/F接口，尚不能据代码存在声称污染鲁棒或检测收益成立。
+
+## 保留基线：LEFT官方实现
 
 参见[LEFT基线使用说明](docs/left_baseline.md)，统一入口为 `python -m hybrid_tsad.left_baseline --config ...`。作者代码、公开数据和检查点放在工程之外，本包只提供自有适配与配置；原模型保持固定版本。PSM seed2025完整训练、固定读出和点级/VUS评价均已有限验收（AP 0.576644、VUS-PR 0.572602），没有新方法收益结论。原TimeRadar八基准复评保留，不重新启动。
 
