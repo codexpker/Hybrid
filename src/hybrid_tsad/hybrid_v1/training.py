@@ -1,7 +1,8 @@
 """Shared Stage1/Z/U/F kernels. All branches start from independent state copies."""
 import copy
+import time
 import numpy as np
-from .data import BalancedSampler, window, targets, arrived_window, arrived_targets, audit_events
+from .data import BalancedSampler, window, targets, arrived_window, arrived_targets, audit_events, resolve_plan
 from .objectives import ssl_objective
 from .scoring import residual_components, fit_calibration, apply_calibration, COMPONENTS
 
@@ -29,19 +30,25 @@ def update_policy(model, route):
     return [name for name, p in model.named_parameters() if p.requires_grad]
 
 
-def validation(model, runs, history, horizon, kind, seed, limit=4, active_components=None):
+def validation(model, runs, history, horizon, kind, seed, limit=4, active_components=None, plan=None, timings=None):
     import torch
     old = model.training; model.eval()
     values = []
     with torch.random.fork_rng(devices=[]), torch.no_grad():
         torch.manual_seed(seed)
-        for run in runs:
-            for target in targets(run, history, horizon)[:limit]:
+        groups = ([(r, [t]) for r, t in resolve_plan(runs, plan, history, horizon)] if plan is not None
+                  else [(r, targets(r, history, horizon)[:limit]) for r in runs])
+        for run, indices in groups:
+            for target in indices:
+                began = time.monotonic()
                 batch = tensor_batch(window(run, int(target), history, horizon), next(model.parameters()).device)
                 f, r = passes(model, batch, seed+int(target))
                 loss = ssl_objective(f, r, batch, kind, active_components)
                 if bool(loss["valid_windows"].all()):
                     values.append(float(loss["total"]))
+                if timings is not None:
+                    if next(model.parameters()).device.type == "cuda": torch.cuda.synchronize()
+                    timings.append((run.domain, time.monotonic()-began))
     model.train(old)
     if not values:
         raise ValueError("No legal SELECT supervision")
@@ -49,14 +56,23 @@ def validation(model, runs, history, horizon, kind, seed, limit=4, active_compon
 
 
 def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
-        kind="half_mse", seed=17, route="STAGE1", support=None, active_components=None):
+        kind="half_mse", seed=17, route="STAGE1", support=None, active_components=None,
+        validate_every=1, sampling_plan=None, validation_plan=None, weight_decay=.01,
+        artifact_dir=None):
     import torch
     names = update_policy(model, route)
     if route == "Z":
         return model, {"route": "Z", "updates": 0, "target_fit": False, "updated_names": [], "steps": []}
     if not names or not select_runs:
         raise ValueError("Trainable policy and independent SELECT required")
-    optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=lr)
+    if type(validate_every) is not int or validate_every < 1:
+        raise ValueError("Positive validate_every required")
+    if sampling_plan is not None and (route != "STAGE1" or len(sampling_plan) != steps):
+        raise ValueError("Fixed sampling plan must cover exactly all Stage1 attempts")
+    planned = resolve_plan(fit_runs, sampling_plan, history, horizon) if sampling_plan is not None else None
+    if validation_plan is not None:
+        resolve_plan(select_runs, validation_plan, history, horizon)
+    optimizer = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=lr, weight_decay=weight_decay)
     sampler = BalancedSampler(fit_runs, history, horizon, seed, role="SUPPORT" if route == "F" else "FIT")
     rng = np.random.default_rng(seed)
     event_audit = None
@@ -70,7 +86,28 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
     seen_events, seen_normal = set(), set()
     selected_attempt, selected_seen_events, selected_seen_normal = None, [], []
     initial = copy.deepcopy(model.state_dict())
+    if artifact_dir is not None:
+        from pathlib import Path
+        artifact_dir = Path(artifact_dir)
+        torch.save(initial, artifact_dir/"initial.pt")
+        (artifact_dir/"training_trace.jsonl").open("x", encoding="utf-8").close()
+    def persist_latest():
+        if artifact_dir is not None:
+            import json
+            with (artifact_dir/"training_trace.jsonl").open("a", encoding="utf-8") as file:
+                file.write(json.dumps(log[-1], allow_nan=False)+"\n")
+    def training_bundle(attempt):
+        import random
+        return {"state_dict": model.state_dict(), "optimizer": optimizer.state_dict(),
+                "torch_rng": torch.get_rng_state(), "cuda_rng": torch.cuda.get_rng_state_all() if device.type == "cuda" else [],
+                "numpy_sampler_rng": sampler.rng.bit_generator.state, "support_rng": rng.bit_generator.state,
+                "python_rng": random.getstate(), "final_attempt": attempt,
+                "selected_state_dict": chosen, "selected_attempt": selected_attempt,
+                "selected_normal_SELECT": best, "selected_seen_event_ids": selected_seen_events,
+                "selected_seen_matched_normal_ids": selected_seen_normal,
+                "resume_implemented": False, "purpose": "recovery archival only; never automatic scientific retry"}
     for attempt in range(steps):
+        began = time.monotonic()
         model.train(); optimizer.zero_grad(set_to_none=True)
         label = None; event_id = None
         if route == "F":
@@ -87,11 +124,11 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
                     raise ValueError("Full support footprint overlaps held-out role")
             label, event_id = float(positive), support["events"][i]["event_id"]
         else:
-            batch = tensor_batch(sampler.sample(), device)
+            batch = tensor_batch(window(*planned[attempt], history, horizon) if planned is not None else sampler.sample(), device)
         f, r = passes(model, batch, seed+attempt)
         objective = ssl_objective(f, r, batch, kind, active_components)
         if not bool(objective["valid_windows"].all()):
-            log.append({"attempt": attempt, "updated": False, "reason": "NO_VALID_GT"}); continue
+            log.append({"attempt": attempt, "updated": False, "reason": "NO_VALID_GT"}); persist_latest(); continue
         loss = objective["total"]
         bce = None
         normal_ssl = None
@@ -100,7 +137,7 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
             components = residual_components(f, r, batch, active_components)
             features = components["event_features"]
             if not bool(torch.isfinite(features).all()):
-                log.append({"attempt": attempt, "updated": False, "reason": "INVALID_EVENT_FEATURES"}); continue
+                log.append({"attempt": attempt, "updated": False, "reason": "INVALID_EVENT_FEATURES"}); persist_latest(); continue
             logit = model.event_head(features).flatten()
             bce = torch.nn.functional.binary_cross_entropy_with_logits(logit, torch.full_like(logit, label))
             normal = support["normal"][i]
@@ -114,23 +151,43 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
             nf, nrec = passes(model, nb, seed+attempt+10000)
             normal_ssl = ssl_objective(nf, nrec, nb, kind, active_components)
             if not bool(normal_ssl["valid_windows"].all()):
-                continue
+                log.append({"attempt": attempt, "updated": False, "reason": "NO_VALID_NORMAL_SSL"}); persist_latest(); continue
             loss = bce+.1*normal_ssl["total"]
         if not bool(torch.isfinite(loss)):
             raise ValueError("Nonfinite supervised objective")
         loss.backward(); norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1., error_if_nonfinite=True); optimizer.step()
+        if device.type == "cuda": torch.cuda.synchronize(device)
+        train_wall = time.monotonic()-began
         if route == "F" and label == 1.:
             seen_events.add(event_id)
         if route == "F" and label == 0.:
             seen_normal.add(event_id)
-        value = validation(model, select_runs, history, horizon, kind, seed, active_components=active_components)
+        should_validate = (attempt+1) % validate_every == 0 or attempt == steps-1
+        validation_timings = []; validation_began = time.monotonic()
+        value = (validation(model, select_runs, history, horizon, kind, seed,
+                            active_components=active_components, plan=validation_plan,
+                            timings=validation_timings) if should_validate else None)
+        validation_wall = time.monotonic()-validation_began if should_validate else 0.
+        artifact_began = time.monotonic()
         required = {e["event_id"] for e in support["events"]} if route == "F" else set()
         eligible = route != "F" or (seen_events == required and seen_normal == required)
-        if eligible and value < best:
+        if eligible and value is not None and value < best:
             best, chosen = value, copy.deepcopy(model.state_dict())
             selected_attempt, selected_seen_events = attempt, sorted(seen_events)
             selected_seen_normal = sorted(seen_normal)
+            if artifact_dir is not None:
+                torch.save(chosen, artifact_dir/"selected_partial.pt")
+        if should_validate and artifact_dir is not None:
+            import os
+            temporary = artifact_dir/"recovery_latest.pt.tmp"
+            torch.save(training_bundle(attempt), temporary)
+            os.replace(temporary, artifact_dir/"recovery_latest.pt")
         log.append({"attempt": attempt, "updated": True, "loss": float(loss.detach()), "SELECT_ssl": value,
+                    "train_sync_wall_seconds": train_wall,
+                    "SELECT_wall_seconds": {"total": validation_wall,
+                        "by_domain": {d: sum(t for domain, t in validation_timings if domain == d)
+                                      for d in sorted({domain for domain, _ in validation_timings})}},
+                    "artifact_wall_seconds": time.monotonic()-artifact_began,
                     "gradient_norm": float(norm), "parts": {k: float(v.detach()) for k, v in objective["parts"].items()},
                     "valid_counts": {k: v.tolist() for k, v in objective["valid_counts"].items()},
                     "natural_missing": int(objective["natural_missing_count"]),
@@ -144,10 +201,13 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
                     "normal_ssl_parts": {k: float(v.detach()) for k, v in normal_ssl["parts"].items()} if normal_ssl is not None else None,
                     "normal_ssl_valid_counts": {k: v.tolist() for k, v in normal_ssl["valid_counts"].items()} if normal_ssl is not None else None,
                     "normal_ssl_footprint": normal_footprint})
+        persist_latest()
     if chosen is None:
         model.load_state_dict(initial); raise ValueError("No valid optimizer updates")
     if route == "F" and {x["event_id"] for x in log if x.get("updated") and x.get("label") == 1.} != {e["event_id"] for e in support["events"]}:
         raise ValueError("Not every budgeted event received a valid supervised update")
+    if artifact_dir is not None:
+        torch.save(training_bundle(steps-1), artifact_dir/"final_training_state.pt")
     model.load_state_dict(chosen)
     changes = {n: float((p.detach()-before[n]).abs().max()) for n, p in model.named_parameters()}
     return model, {"route": route, "updates": sum(x["updated"] for x in log), "steps": log,
@@ -155,6 +215,9 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
                    "selected_attempt": selected_attempt, "selected_seen_event_ids": selected_seen_events,
                    "selected_seen_matched_normal_ids": selected_seen_normal,
                    "attempt_indexing": "zero_based", "selected_normal_SELECT": best,
+                   "attempts": steps, "validate_every": validate_every,
+                   "validation_calls": sum(x.get("SELECT_ssl") is not None for x in log),
+                   "optimizer": {"name": "AdamW", "lr": lr, "weight_decay": weight_decay, "grad_clip": 1., "warmup_steps": 0},
                    "target_fit": route in {"U", "F"}}
 
 
@@ -165,7 +228,7 @@ def adapt(source, route, fit_runs=(), select_runs=(), *, support=None, **kwargs)
     return fit(model, fit_runs, select_runs, route=route, support=support, **kwargs)
 
 
-def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_components=None):
+def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_components=None, index_plan=None):
     import torch
     import hashlib
     model.eval(); records = []
@@ -177,11 +240,13 @@ def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_
                 "packbits_hex": np.packbits(array.reshape(-1), bitorder="little").tobytes().hex(),
                 "unpacked_sha256": hashlib.sha256(array.tobytes()).hexdigest()}
     with torch.no_grad():
-        for run in runs:
+        groups = ([(r, [t]) for r, t in resolve_plan(runs, index_plan, history, horizon, arrived=True)] if index_plan is not None
+                  else [(r, arrived_targets(r, history)) for r in runs])
+        for run, indices in groups:
             run_identity = {"values_float32_sha256": hashlib.sha256(run.values.tobytes()).hexdigest(),
                             "observed_sha256": hashlib.sha256(run.observed.tobytes()).hexdigest(),
                             "start": run.start, "shape": list(run.values.shape)}
-            for t in arrived_targets(run, history):
+            for t in indices:
                 batch = tensor_batch(arrived_window(run, int(t), history, horizon), next(model.parameters()).device)
                 actual_seed = seed+int(t)
                 f, r = passes(model, batch, actual_seed)

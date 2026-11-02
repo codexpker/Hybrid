@@ -8,6 +8,8 @@
 
 统一运行入口见[训练与评分用法](docs/hybrid_v1/tools_usage.md)：
 
+首轮公开多源的角色、三seed、8000次抽样、源验证/校准和权重存档见[Stage1说明](docs/hybrid_v1/stage1_source.md)；原始数据与运行产物保持外置。
+
 ```text
 python -m hybrid_tsad.hybrid_v1.cli --config configs/hybrid-v1-synthetic.example.json --phase synthetic_smoke --output-dir /new/output
 ```

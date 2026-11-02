@@ -122,40 +122,129 @@ def audit_events(events, normal, forbidden, k, history=0, horizon=1):
             "history": history, "horizon": horizon}
 
 
-def load_manifest(path):
+def load_manifest(path, roles=None):
     """Explicit public-run manifest; label files are not a supported input field."""
     import json
     from pathlib import Path
     path = Path(path)
     entries = json.loads(path.read_text(encoding="utf-8"))["runs"]
     runs = []
+    cache = {}
     for entry in entries:
         if "labels" in entry or "label_path" in entry:
             raise ValueError("SSL manifests must not expose anomaly labels")
+        if roles is not None and entry["role"] not in roles:
+            continue
         p = Path(entry["path"]); p = p if p.is_absolute() else path.parent/p
-        if entry.get("format", "npy") == "csv":
-            import csv
-            with p.open(encoding="utf-8-sig", newline="") as f:
-                header = next(csv.reader(f))
-            cols = [header.index(name) for name in entry["columns"]]
-            array = np.genfromtxt(p, delimiter=",", skip_header=1, usecols=cols, ndmin=2)
-        else:
-            loaded = np.load(p, allow_pickle=False)
-            if isinstance(loaded, np.lib.npyio.NpzFile):
-                try:
-                    array = loaded[entry["key"]].copy()
-                finally:
-                    loaded.close()
+        identity = (str(p.resolve()), entry.get("format", "npy"), entry.get("key"),
+                    entry.get("observed_key"), tuple(entry.get("columns", [])), entry.get("has_header", True),
+                    entry.get("sha256"), tuple(entry.get("expected_shape", [])))
+        if identity not in cache:
+            if "sha256" in entry:
+                import hashlib
+                if hashlib.sha256(p.read_bytes()).hexdigest() != entry["sha256"]:
+                    raise ValueError("Source bytes SHA256 mismatch")
+            explicit_observed = None
+            if entry.get("format", "npy") == "csv":
+                import csv
+                has_header = entry.get("has_header", True)
+                if type(has_header) is not bool:
+                    raise ValueError("has_header must be explicit boolean")
+                if has_header:
+                    with p.open(encoding="utf-8-sig", newline="") as f:
+                        header = next(csv.reader(f))
+                    cols = [header.index(name) for name in entry["columns"]]
+                else:
+                    cols = entry["columns"]
+                    if any(type(c) is not int or c < 0 for c in cols):
+                        raise ValueError("Headerless columns must be nonnegative integer indices")
+                array = np.genfromtxt(p, delimiter=",", skip_header=int(has_header), usecols=cols, ndmin=2)
             else:
-                array = loaded
+                loaded = np.load(p, allow_pickle=False)
+                if isinstance(loaded, np.lib.npyio.NpzFile):
+                    try:
+                        array = loaded[entry["key"]].copy()
+                        if "observed_key" in entry:
+                            explicit_observed = loaded[entry["observed_key"]].copy()
+                            if explicit_observed.dtype != np.bool_ or explicit_observed.shape != array.shape:
+                                raise ValueError("Explicit observed mask must be boolean and match values")
+                    finally:
+                        loaded.close()
+                else:
+                    if "observed_key" in entry:
+                        raise ValueError("Explicit observed key requires NPZ")
+                    array = loaded
+            if array.ndim != 2 or ("expected_shape" in entry and list(array.shape) != entry["expected_shape"]):
+                raise ValueError("Source shape mismatch")
+            cache[identity] = (array, np.isfinite(array) if explicit_observed is None else explicit_observed)
+        array, observed = cache[identity]
         lo, hi = entry["bounds"]
         if not 0 <= lo < hi <= len(array):
             raise ValueError("Invalid run/role bounds")
         array = array[lo:hi]
         runs.append(Run(entry["domain"], entry["entity"], entry["run"], entry["role"], array,
-                        np.isfinite(array), start=entry.get("original_start", 0)+lo))
+                        observed[lo:hi], start=entry.get("original_start", 0)+lo))
     for i, a in enumerate(runs):
         for b in runs[i+1:]:
             if (a.entity, a.run) == (b.entity, b.run) and a.start < b.start+len(b.values) and b.start < a.start+len(a.values):
                 raise ValueError("Role ranges overlap inside original run")
     return runs
+
+
+def resolve_plan(runs, entries, history, horizon, arrived=False):
+    """Validate predeclared original indices; never choose on loss or labels."""
+    result = []
+    lookup = {(r.domain, r.entity, r.run, r.role): r for r in runs}
+    if len(lookup) != len(runs):
+        raise ValueError("Unique domain/entity/run/role required for a fixed plan")
+    for entry in entries:
+        key = tuple(entry[k] for k in ("domain", "entity", "run", "role"))
+        if key not in lookup or type(entry["index"]) is not int:
+            raise ValueError("Fixed plan contains an unknown run/role or noninteger index")
+        run = lookup[key]
+        local = entry["index"]-run.start
+        batch = (arrived_window if arrived else window)(run, local, history, horizon)
+        if "footprint" in entry and entry["footprint"] != batch["footprint"]:
+            raise ValueError("Fixed plan footprint changed")
+        result.append((run, local))
+    if not result:
+        raise ValueError("Nonempty fixed plan required")
+    return result
+
+
+def fixed_plan(runs, history, horizon, count, seed, role, arrived=False, replace=True):
+    """Observation-only eligible grid, domain-uniform then run-uniform sampling.
+
+    All current channels and at least two past observations per channel are
+    required; no imputed LOCF point is teacher GT. No values/scores/labels select
+    these positions. Sampling is with replacement, and duplicates stay recorded.
+    """
+    if type(count) is not int or count < 1:
+        raise ValueError("Positive fixed count required")
+    eligible = {}
+    for r in runs:
+        if r.role != role:
+            continue
+        ts = arrived_targets(r, history) if arrived else targets(r, history, horizon)
+        cs = np.concatenate((np.zeros((1, r.observed.shape[1]), np.int64),
+                             np.cumsum(r.observed, axis=0)), axis=0)
+        valid = r.observed[ts].all(axis=1) & ((cs[ts]-cs[ts-history]) >= 2).all(axis=1)
+        ts = ts[valid]
+        if len(ts):
+            eligible.setdefault(r.domain, []).append((r, ts))
+    expected = {r.domain for r in runs if r.role == role}
+    if not expected or set(eligible) != expected:
+        raise ValueError("Every source domain needs observation-eligible positions")
+    domains = sorted(eligible); rng = np.random.default_rng(seed); output = []
+    if not replace and (len(domains) != 1 or sum(len(ts) for _, ts in eligible[domains[0]]) < count):
+        raise ValueError("Unique fixed plan needs one domain and enough eligible positions")
+    for _ in range(count):
+        domain = domains[int(rng.integers(len(domains)))]
+        pool = eligible[domain]; r, ts = pool[int(rng.integers(len(pool)))]
+        t = int(ts[int(rng.integers(len(ts)))])
+        output.append(dict(domain=r.domain, entity=r.entity, run=r.run, role=r.role,
+                           index=r.start+t, footprint=[r.start+t-history, r.start+t+(1 if arrived else horizon)]))
+        if not replace:
+            remaining = ts[ts != t]
+            pool[:] = [(a, remaining if a is r else indices) for a, indices in pool if a is not r or len(remaining)]
+    return output

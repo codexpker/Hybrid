@@ -113,6 +113,106 @@ def score_records(records, calibration, event=False):
     return output
 
 
+def source_approval(config_path, release_path, trusted_sha, phase, output):
+    """Small exact-source operation guard, before scientific data/model access."""
+    cfg = json.loads(Path(config_path).read_text(encoding="utf-8"))
+    if not release_path or not trusted_sha:
+        raise PermissionError("Exact root source-operation release required")
+    raw = Path(release_path).read_bytes(); release = json.loads(raw)
+    if (hashlib.sha256(raw).hexdigest() != trusted_sha or release.get("status") != "APPROVED"
+            or release.get("approved_by") != "root" or release.get("allowed_actions") != [phase]
+            or release.get("config_sha256") != hashlib.sha256(Path(config_path).read_bytes()).hexdigest()
+            or cfg.get("operation") != "HYBRID_V1_SOURCE_STAGE1"
+            or phase not in {"source_train", "calibrate_source"}):
+        raise PermissionError("Pending/wrong root source operation")
+    own = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in Path(__file__).parent.glob("*.py")}
+    if release.get("source_sha256") != own:
+        raise PermissionError("Shared source closure changed")
+    for key in ("manifest", "plans"):
+        if hashlib.sha256(Path(cfg[key]).read_bytes()).hexdigest() != cfg[key+"_sha256"]:
+            raise PermissionError("Fixed source manifest/plan changed")
+    if Path(output) != Path(cfg["outputs"][phase]) or Path(output).exists():
+        raise PermissionError("Exact fresh source output required")
+    if cfg.get("permissions") != {"source_FIT_SELECT": True, "source_CAL": True, "PSM": False,
+                                   "query_or_labels": False, "adaptation": False}:
+        raise PermissionError("Source-only role permissions required")
+    if phase == "calibrate_source":
+        for key in ("checkpoint", "train_receipt"):
+            if hashlib.sha256(Path(cfg[key]).read_bytes()).hexdigest() != cfg[key+"_sha256"]:
+                raise PermissionError("Accepted selected source checkpoint/receipt changed")
+    return {"metadata_preflight": "PASS", "phase": phase, "data_opened": False, "GPU_queried": False}
+
+
+def source_action(config, phase, output):
+    """Train and source-CAL are separate actions; both reuse the shared kernels."""
+    import time
+    began = time.monotonic()
+    output = Path(output); output.mkdir(parents=True, exist_ok=False)
+    save_json(output/"config.json", config)
+    plan = json.loads(Path(config["plans"]).read_text(encoding="utf-8"))
+    if plan["history"] != config["history"] or plan["horizon"] != config["horizon"] or plan["seed"] != config["seed"]:
+        raise ValueError("Fixed source plan configuration mismatch")
+    roles = {"FIT", "SELECT"} if phase == "source_train" else {"CAL"}
+    runs = load_manifest(config["manifest"], roles=roles)
+    if {r.domain for r in runs} != {"SMD", "Sunspot"} or any(r.role not in roles for r in runs):
+        raise ValueError("Only the fixed SMD/Sunspot source roles are permitted")
+    save_json(output/"input_runs.json", [{"domain": r.domain, "entity": r.entity, "run": r.run,
+        "role": r.role, "start": r.start, "shape": list(r.values.shape),
+        "values_sha256": hashlib.sha256(r.values.tobytes()).hexdigest(),
+        "observed_sha256": hashlib.sha256(r.observed.tobytes()).hexdigest()} for r in runs])
+    timings = {"source_load_and_identity_IO_seconds": time.monotonic()-began}
+    import torch
+    cuda = str(config.get("device", "cpu")).startswith("cuda")
+    if cuda:
+        limit = config["resources"]["training_GiB" if phase == "source_train" else "evaluation_GiB"]*1024**3
+        properties = torch.cuda.get_device_properties(0)
+        torch.cuda.set_per_process_memory_fraction(min(1., limit/properties.total_memory), 0)
+        torch.cuda.reset_peak_memory_stats(0)
+        save_json(output/"GPU_START.json", {"name": properties.name, "uuid": str(properties.uuid),
+            "allocator_limit_bytes": limit, "set_before_model_construction": True, "no_AMP": True})
+    try:
+        began = time.monotonic()
+        model = construct(config) if phase == "source_train" else load_model(config, config["checkpoint"])
+        if cuda: torch.cuda.synchronize()
+        timings["model_construction_or_checkpoint_load_seconds"] = time.monotonic()-began
+        began = time.monotonic()
+        save_runtime(output, model)
+        timings["runtime_metadata_IO_seconds"] = time.monotonic()-began
+        if phase == "source_train":
+            model, trace = fit(model, [r for r in runs if r.role == "FIT"], [r for r in runs if r.role == "SELECT"],
+                **options(config), validate_every=config["validate_every"], sampling_plan=plan["FIT"],
+                validation_plan=plan["SELECT"], weight_decay=config["weight_decay"], artifact_dir=output)
+            began = time.monotonic()
+            save_model(output/"source.pt", model); save_json(output/"source_training.json", trace)
+            timings["final_result_IO_seconds"] = time.monotonic()-began
+        else:
+            records, cal_timings = [], []
+            # Plans are domain-contiguous by preparation. Keep that exact order.
+            domains = list(dict.fromkeys(entry["domain"] for entry in plan["CAL"]))
+            if [entry["domain"] for d in domains for entry in plan["CAL"] if entry["domain"] == d] != [e["domain"] for e in plan["CAL"]]:
+                raise ValueError("Source CAL plan must retain its fixed domain-contiguous order")
+            for domain in domains:
+                began = time.monotonic()
+                part = infer(model, [r for r in runs if r.domain == domain], history=config["history"], horizon=config["horizon"],
+                    seed=config["seed"], active_components=config.get("active_components"),
+                    index_plan=[e for e in plan["CAL"] if e["domain"] == domain])
+                cal_timings.append({"domain": domain, "windows": len(part), "wall_seconds": time.monotonic()-began})
+                records.extend(part)
+            began = time.monotonic()
+            save_json(output/"source_CAL_timing.json", cal_timings)
+            calibration = calibrate_route(records, "STAGE1", active_components=config.get("active_components"))
+            save_json(output/"source_calibration_records.json", records)
+            save_json(output/"source_calibration.json", calibration)
+            timings["final_result_IO_seconds"] = time.monotonic()-began
+    finally:
+        save_json(output/"action_timing.json", timings)
+        if cuda:
+            save_json(output/"GPU_PEAK.json", {"allocated_bytes": torch.cuda.max_memory_allocated(0),
+                "reserved_bytes": torch.cuda.max_memory_reserved(0), "resets": 1,
+                "limit_bytes": limit})
+
+
+
 def execute(config, phase, output):
     output = Path(output); output.mkdir(parents=True, exist_ok=False)
     save_json(output/"config.json", config)
@@ -376,16 +476,17 @@ def synthetic_gpu_l0(config, output):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
-    parser.add_argument("--phase", choices=("pretrain", "adapt", "infer", "evaluate", "synthetic_smoke", "synthetic_gpu_l0"), required=True)
+    parser.add_argument("--phase", choices=("pretrain", "source_train", "calibrate_source", "adapt", "infer", "evaluate", "synthetic_smoke", "synthetic_gpu_l0"), required=True)
     parser.add_argument("--output-dir", required=True)
     parser.add_argument("--execute", action="store_true")
     parser.add_argument("--release")
     parser.add_argument("--trusted-release-sha256")
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args(argv)
-    if args.preflight_only and args.phase != "synthetic_gpu_l0":
+    guarded = args.phase in {"synthetic_gpu_l0", "source_train", "calibrate_source"}
+    if args.preflight_only and not guarded:
         parser.error("--preflight-only is restricted to the synthetic_gpu_l0 release guard")
-    if (args.release or args.trusted_release_sha256) and args.phase != "synthetic_gpu_l0":
+    if (args.release or args.trusted_release_sha256) and not guarded:
         parser.error("Synthetic L0 release arguments cannot authorize another operation")
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
     if not args.execute:
@@ -395,6 +496,11 @@ def main(argv=None):
         if args.preflight_only:
             print(json.dumps(result)); return
         synthetic_gpu_l0(config, args.output_dir)
+    elif args.phase in {"source_train", "calibrate_source"}:
+        result = source_approval(args.config, args.release, args.trusted_release_sha256, args.phase, args.output_dir)
+        if args.preflight_only:
+            print(json.dumps(result)); return
+        source_action(config, args.phase, args.output_dir)
     elif args.phase == "evaluate":
         evaluate(config, args.output_dir)
     else:
