@@ -1,7 +1,7 @@
 """Bounded readout glue. Shared model/scoring/bank kernels stay unchanged.
 
-The current CLI authorizes only the named synthetic C25 cost profile. The
-stream writer is reusable for a later separately authorized public readout.
+Each synthetic profile, model query, source-baseline CAL or baseline query
+requires its own exact root release. No label input or evaluation is supported.
 """
 import argparse
 import hashlib
@@ -12,6 +12,9 @@ import time
 import numpy as np
 
 OPERATION = "HYBRID_V1_Z1_SYNTHETIC_C25_PROFILE"
+PRODUCTION_ACTIONS = {"HYBRID_V1_PSM_Z_MODEL_INFER":"model_infer",
+                      "HYBRID_V1_PSM_Z_BASELINE_CAL":"baseline_calibrate",
+                      "HYBRID_V1_PSM_Z_BASELINE_INFER":"baseline_infer"}
 
 
 def sha(path):
@@ -99,7 +102,7 @@ def _rng_json(snapshot):
 
 
 def write_model_bank(model, runs, calibration, directory, *, identity, history,
-                     horizon, seed, chunk_size=64, capture_prefix=0):
+                     horizon, seed, chunk_size=64, capture_prefix=0, resume=False):
     """Same pointwise iterator and same score_records; storage/time only."""
     import torch
     from .chunked_bank import ChunkedBank, iter_pointwise_infer
@@ -107,11 +110,17 @@ def write_model_bank(model, runs, calibration, directory, *, identity, history,
     cuda = next(model.parameters()).device.type == "cuda"
     ranges = [dict(domain=r.domain, entity=r.entity, run=r.run,
                    start=r.start+history, end=r.start+len(r.values)) for r in runs]
-    iterator = iter(iter_pointwise_infer(model, runs, history=history, horizon=horizon, seed=seed))
     prefix, prefix_rng, timings = [], None, []
     with ChunkedBank(directory, identity=identity, ranges=ranges,
                      threshold=calibration["threshold"], chunk_size=chunk_size) as bank:
-        for index in range(sum(e["end"]-e["start"] for e in ranges)):
+        if bank.manifest["committed_records"] and not resume:
+            raise PermissionError("Existing prefix needs a separate root resume release")
+        if bank.manifest["complete"]:
+            return dict(prefix=[],prefix_rng=None,timings=[],finalize_seconds=0.,already_complete=True)
+        plan = bank.remaining_plan() if resume else None
+        iterator = iter(iter_pointwise_infer(model, runs, history=history, horizon=horizon, seed=seed,index_plan=plan))
+        remaining = sum(e["end"]-e["start"] for e in ranges)-bank.manifest["committed_records"]
+        for index in range(remaining):
             began = time.monotonic(); record = next(iterator)
             if cuda: torch.cuda.synchronize()
             forward_seconds = time.monotonic()-began
@@ -126,6 +135,168 @@ def write_model_bank(model, runs, calibration, directory, *, identity, history,
             raise ValueError("Iterator exceeded declared arrived coverage")
         began = time.monotonic(); bank.finalize(); finalize_seconds = time.monotonic()-began
     return dict(prefix=prefix, prefix_rng=prefix_rng, timings=timings, finalize_seconds=finalize_seconds)
+
+
+def common_cal_plan(plans):
+    """One deterministic source grid, not three independently trained baselines."""
+    if set(plans)!={2025,2026,2027}:
+        raise ValueError("All three accepted source plans required")
+    points=plans[2025]["CAL"]
+    if any(p["CAL"]!=points for p in plans.values()):
+        raise ValueError("Source CAL positions differ across seeds")
+    if len(points)!=1024 or {d:sum(e["domain"]==d for e in points) for d in ("SMD","Sunspot")}!={"SMD":512,"Sunspot":512}:
+        raise ValueError("Exactly512 source CAL positions per domain required")
+    if any(e["role"]!="CAL" for e in points):raise ValueError("CAL role required")
+    return points
+
+
+def query_manifest_metadata(value):
+    """No numeric CSV read: reject train/history borrowing and label aliases."""
+    if len(value.get("runs",[]))!=1:raise ValueError("One original PSM test run required")
+    e=value["runs"][0]
+    if (any(k in e for k in ("labels","label_path")) or e.get("role")!="QUERY" or e.get("domain")!="PSM"
+        or e.get("bounds")!=[0,87841] or e.get("original_start",0)!=0 or e.get("expected_shape")!=[87841,25]
+        or e.get("sha256")!="566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80"
+        or e.get("format")!="csv" or e.get("has_header") is not True
+        or e.get("columns")!=["feature_%d"%i for i in range(25)]):
+        raise ValueError("Exact label-free PSM test/columns/original axis required")
+    return e
+
+
+def model_binding_metadata(cfg,acceptance):
+    seed=cfg.get("source_seed")
+    if seed not in (2025,2026,2027) or cfg.get("inference_seed")!=seed or cfg.get("physical_gpu")!=seed-2025 or cfg.get("device")!="cuda:0":
+        raise PermissionError("Wrong named seed/GPU")
+    if acceptance.get("status")!="ACCEPTED_LIMITED_SOURCE_CAL":raise PermissionError("Accepted source assets required")
+    allowed={(e["seed"],e["sha256"]) for e in acceptance["assets"]}
+    if any((seed,cfg["assets"][k]["sha256"]) not in allowed for k in ("checkpoint","calibration")):
+        raise PermissionError("Wrong seed/checkpoint/source calibration pairing")
+
+
+def admit_production(config_path,release_path,trusted,output):
+    cfg=json.loads(Path(config_path).read_text());action=PRODUCTION_ACTIONS.get(cfg.get("operation"))
+    if not release_path or not trusted:raise PermissionError("Named root production release required")
+    raw=Path(release_path).read_bytes();approved=json.loads(raw)
+    if (hashlib.sha256(raw).hexdigest()!=trusted or approved.get("status")!="APPROVED"
+        or approved.get("approved_by")!="root" or approved.get("operation")!=cfg.get("operation")
+        or not action or approved.get("allowed_actions")!=[action] or approved.get("config_sha256")!=sha(config_path)):
+        raise PermissionError("Pending/wrong production release")
+    expected=dict(query=action!="baseline_calibrate",source_baseline_CAL=action=="baseline_calibrate",
+                  labels=False,training=False,target_fit=False,source_model_CAL=False)
+    if cfg.get("permissions")!=expected or any(k in cfg for k in ("labels","label_path","label_runs","evaluation_labels")):
+        raise PermissionError("Exact label-free action permissions required")
+    if cfg.get("history")!=512 or cfg.get("horizon")!=32 or cfg.get("chunk_size")!=64:
+        raise PermissionError("Fixed H512/P32/chunk64 required")
+    own={p.name:sha(p) for p in Path(__file__).parent.glob("*.py")}
+    if cfg.get("stream_source_sha256")!=own or approved.get("source_sha256")!=own:
+        raise PermissionError("Production runtime identity changed")
+    for asset in cfg["assets"].values():
+        if sha(asset["path"])!=asset["sha256"]:raise PermissionError("Bound asset changed")
+    if Path(output)!=Path(cfg["output"]):raise PermissionError("Exact output required")
+    resume=approved.get("allow_resume",False)
+    if type(resume) is not bool or (Path(output).exists() and not resume):
+        raise PermissionError("Existing output requires separate root resume release")
+    if action=="baseline_calibrate":
+        if resume:raise PermissionError("Source baseline calibration is a one-time CPU action")
+        if "query_manifest" in cfg["assets"]:raise PermissionError("No query input in source CAL action")
+        common_cal_plan({s:json.loads(Path(cfg["assets"]["source_plan_%d"%s]["path"]).read_text()) for s in (2025,2026,2027)})
+    else:
+        query_manifest_metadata(json.loads(Path(cfg["assets"]["query_manifest"]["path"]).read_text()))
+    if action=="model_infer":
+        acceptance=json.loads(Path(cfg["assets"]["source_CAL_acceptance"]["path"]).read_text())
+        model_binding_metadata(cfg,acceptance)
+        from .config import HybridV1Config
+        if HybridV1Config(**cfg["model"])!=HybridV1Config():raise PermissionError("Full frozen model required")
+        from .provenance import OfficialSources
+        external=OfficialSources(**cfg["sources"]).manifest()
+        if approved.get("external_source_sha256")!={e["path"]:e["sha256"] for e in external}:
+            raise PermissionError("Fixed official source identity required")
+        if cfg["resources"]!={"wall_seconds":21595,"kill_grace_seconds":5,"evaluation_GiB":30,"automatic_retry":False}:
+            raise PermissionError("Named6h including grace required")
+    elif cfg.get("methods")!=["persistence","history_mean512"] or cfg.get("device")!="cpu":
+        raise PermissionError("Only two deterministic CPU methods required")
+    elif cfg.get("resources")!={"wall_seconds":120 if action=="baseline_calibrate" else 1800,
+                               "kill_grace_seconds":5,"address_space_GiB":4,"automatic_retry":False}:
+        raise PermissionError("Named CPU sourceCAL120/query1800+5/AS4GiB action required")
+    return cfg,resume
+
+
+def write_baseline_bank(runs,method,calibration,directory,*,identity,history=512,chunk_size=64,resume=False):
+    from .baselines import iter_baselines
+    from .chunked_bank import ChunkedBank
+    from .cli import score_records
+    ranges=[dict(domain=r.domain,entity=r.entity,run=r.run,start=r.start+history,end=r.start+len(r.values)) for r in runs]
+    with ChunkedBank(directory,identity=identity,ranges=ranges,threshold=calibration["threshold"],chunk_size=chunk_size) as bank:
+        if bank.manifest["committed_records"] and not resume:raise PermissionError("Root resume required")
+        if bank.manifest["complete"]:return
+        for raw in iter_baselines(runs,method=method,history=history,index_plan=bank.remaining_plan() if resume else None):
+            bank.append(score_records([raw],calibration)[0])
+        bank.finalize()
+
+
+def production(cfg,output,resume=False):
+    """Label-free orchestration only; no optimization or new scoring formula."""
+    from .cli import save_json,score_records,save_runtime,load_model
+    from .data import load_manifest
+    import os,platform,resource
+    out=Path(output);out.mkdir(parents=True,exist_ok=resume)
+    attempt=out/"executions"/cfg["execution_release_sha256"];attempt.mkdir(parents=True,exist_ok=False)
+    save_json(attempt/"config.json",cfg)
+    began=time.monotonic();action=PRODUCTION_ACTIONS[cfg["operation"]]
+    if action=="baseline_calibrate":
+        from .baselines import iter_baselines,fit_source_baseline_calibration
+        points=common_cal_plan({s:json.loads(Path(cfg["assets"]["source_plan_%d"%s]["path"]).read_text()) for s in (2025,2026,2027)})
+        runs=load_manifest(cfg["assets"]["source_manifest"]["path"],roles={"CAL"})
+        for method in cfg["methods"]:
+            records=list(iter_baselines(runs,method=method,history=512,index_plan=points))
+            calibration=fit_source_baseline_calibration(records,expected_domains={"SMD","Sunspot"})
+            save_json(out/(method+"_source_records.json"),records)
+            save_json(out/(method+"_source_calibration.json"),calibration)
+    else:
+        runs=load_manifest(cfg["assets"]["query_manifest"]["path"],roles={"QUERY"})
+        input_sha=query_manifest_metadata(json.loads(Path(cfg["assets"]["query_manifest"]["path"]).read_text()))["sha256"]
+        code_sha=hashlib.sha256(json.dumps(cfg["stream_source_sha256"],sort_keys=True).encode()).hexdigest()
+        if action=="model_infer":
+            if os.environ.get("CUDA_VISIBLE_DEVICES")!=str(cfg["physical_gpu"]):
+                raise PermissionError("Fixed physical-to-logical mapping required")
+            import torch
+            props=torch.cuda.get_device_properties(0)
+            if str(props.uuid).removeprefix("GPU-")!=cfg["expected_gpu_uuid"].removeprefix("GPU-") or "A40" not in props.name:
+                raise RuntimeError("Wrong fixed A40")
+            torch.cuda.set_per_process_memory_fraction(30*1024**3/props.total_memory);torch.cuda.reset_peak_memory_stats()
+            model=load_model(dict(cfg,seed=cfg["source_seed"],checkpoint=cfg["assets"]["checkpoint"]["path"]),cfg["assets"]["checkpoint"]["path"])
+            model.eval();before=_state(model);save_runtime(attempt,model)
+            calibration=json.loads(Path(cfg["assets"]["calibration"]["path"]).read_text())
+            identity=dict(input_sha256=input_sha,config_sha256=cfg["execution_config_sha256"],source_sha256=code_sha,
+                checkpoint_sha256=cfg["assets"]["checkpoint"]["sha256"],calibration_sha256=cfg["assets"]["calibration"]["sha256"])
+            result=write_model_bank(model,runs,calibration,out/"bank",identity=identity,history=512,horizon=32,
+                                   seed=cfg["inference_seed"],chunk_size=64,resume=resume)
+            assert before==_state(model),"Z inference mutated model tensors"
+            save_json(attempt/"resources.json",dict(peak_allocated=torch.cuda.max_memory_allocated(),peak_reserved=torch.cuda.max_memory_reserved(),
+                GPU_name=props.name,GPU_uuid=str(props.uuid),model_state_unchanged=True))
+            save_json(attempt/"point_times.json",result["timings"])
+        else:
+            for method in cfg["methods"]:
+                asset=cfg["assets"][method+"_calibration"]
+                calibration=json.loads(Path(asset["path"]).read_text())
+                # Tagged implementation identity, explicitly NOT a trained checkpoint.
+                no_model=hashlib.sha256(("NO_TRAINED_CHECKPOINT::"+method+"::"+cfg["stream_source_sha256"]["baselines.py"]).encode()).hexdigest()
+                identity=dict(input_sha256=input_sha,config_sha256=cfg["execution_config_sha256"],source_sha256=code_sha,
+                              checkpoint_sha256=no_model,calibration_sha256=asset["sha256"])
+                write_baseline_bank(runs,method,calibration,out/method/"bank",identity=identity,chunk_size=64,resume=resume)
+            save_json(attempt/"baseline_identity.json",dict(learned_parameters=0,training_seeds=0,
+                checkpoint_identity="Tagged NO_TRAINED_CHECKPOINT implementation digest; not weights"))
+    banks={}
+    if action!="baseline_calibrate":
+        directories=[out/"bank"] if action=="model_infer" else [out/m/"bank" for m in cfg["methods"]]
+        for directory in directories:
+            manifest=json.loads((directory/"manifest.json").read_text())
+            if not manifest["complete"] or manifest["committed_records"]!=87329:raise ValueError("Incomplete full PSM coverage")
+            banks[str(directory.relative_to(out))]=sha(directory/"manifest.json")
+    save_json(attempt/"report.json",dict(status="COMPLETED_PENDING_INDEPENDENT_REVIEW",action=action,banks=banks,
+        source_weights_or_model_scorer_changed=False,labels_read=False,training=False,resume=resume,
+        Python=platform.python_version(),NumPy=np.__version__,CPU_peak_RSS_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*1024,
+        function_wall_seconds=time.monotonic()-began,clock="model information available_index; durable commits batched64, not a deployed delivery-latency claim"))
 
 
 def synthetic_profile(config, output):
@@ -215,11 +386,19 @@ def main(argv=None):
     p.add_argument("--execute",action="store_true");p.add_argument("--preflight-only",action="store_true")
     args=p.parse_args(argv)
     if not args.execute:
-        print(json.dumps(dict(preview=True,only_supported_operation=OPERATION,model_or_data_opened=False)));return
-    config=admit(args.config,args.release,args.trusted_release_sha256,args.output_dir)
+        print(json.dumps(dict(preview=True,supported_operations=[OPERATION]+list(PRODUCTION_ACTIONS),model_or_data_opened=False)));return
+    operation=json.loads(Path(args.config).read_text()).get("operation")
+    if operation in PRODUCTION_ACTIONS:
+        config,resume=admit_production(args.config,args.release,args.trusted_release_sha256,args.output_dir)
+    else:
+        config=admit(args.config,args.release,args.trusted_release_sha256,args.output_dir);resume=False
     if args.preflight_only:
         print(json.dumps(dict(metadata_preflight="PASS",GPU_or_model_started=False)));return
     config["execution_config_sha256"]=sha(args.config)
-    print(json.dumps(synthetic_profile(config,args.output_dir)))
+    if operation in PRODUCTION_ACTIONS:
+        config["execution_release_sha256"]=args.trusted_release_sha256
+        production(config,args.output_dir,resume)
+    else:
+        print(json.dumps(synthetic_profile(config,args.output_dir)))
 
 if __name__ == "__main__": main()
