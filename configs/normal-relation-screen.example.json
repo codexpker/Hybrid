@@ -1,0 +1,16 @@
+{
+  "operation": "PUBLIC_NORMAL_RELATION_SCREEN",
+  "binding_state": "PENDING_ROOT_RELEASE",
+  "raw_path": "/ABSOLUTE/PATH/TO/machine-1-1_train.txt",
+  "raw_sha256": "ecebd2933ccdc1126e2abbfb538762dbde16410cebc77257a7b96e1e1fbcf753",
+  "shape": [28479, 38],
+  "FIT": [0, 13669],
+  "SELECT": [13861, 18226],
+  "CAL_values_allowed": false,
+  "pool_values_allowed": false,
+  "max_seconds": 120,
+  "max_RSS_GiB": 4,
+  "synthetic_fixture_seed": 20261102,
+  "contract": null,
+  "output": "PENDING_FRESH_OUTPUT"
+}
