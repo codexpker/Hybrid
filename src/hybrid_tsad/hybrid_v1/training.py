@@ -228,10 +228,11 @@ def adapt(source, route, fit_runs=(), select_runs=(), *, support=None, **kwargs)
     return fit(model, fit_runs, select_runs, route=route, support=support, **kwargs)
 
 
-def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_components=None, index_plan=None):
+def iter_infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_components=None, index_plan=None):
+    """Lazy original inference; input runs must remain immutable while iterating."""
     import torch
     import hashlib
-    model.eval(); records = []
+    model.eval(); run_identity_cache = {}
     def raw(value):
         return value.detach().cpu().tolist()
     def packed(value):
@@ -239,14 +240,17 @@ def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_
         return {"shape": list(array.shape), "dtype": "bool", "bitorder": "little",
                 "packbits_hex": np.packbits(array.reshape(-1), bitorder="little").tobytes().hex(),
                 "unpacked_sha256": hashlib.sha256(array.tobytes()).hexdigest()}
-    with torch.no_grad():
-        groups = ([(r, [t]) for r, t in resolve_plan(runs, index_plan, history, horizon, arrived=True)] if index_plan is not None
-                  else [(r, arrived_targets(r, history)) for r in runs])
-        for run, indices in groups:
-            run_identity = {"values_float32_sha256": hashlib.sha256(run.values.tobytes()).hexdigest(),
+    groups = ([(r, [t]) for r, t in resolve_plan(runs, index_plan, history, horizon, arrived=True)] if index_plan is not None
+              else [(r, arrived_targets(r, history)) for r in runs])
+    for run, indices in groups:
+        cache_key = id(run)
+        if cache_key not in run_identity_cache:
+            run_identity_cache[cache_key] = {"values_float32_sha256": hashlib.sha256(run.values.tobytes()).hexdigest(),
                             "observed_sha256": hashlib.sha256(run.observed.tobytes()).hexdigest(),
                             "start": run.start, "shape": list(run.values.shape)}
-            for t in indices:
+        run_identity = run_identity_cache[cache_key]
+        for t in indices:
+            with torch.no_grad():
                 batch = tensor_batch(arrived_window(run, int(t), history, horizon), next(model.parameters()).device)
                 actual_seed = seed+int(t)
                 f, r = passes(model, batch, actual_seed)
@@ -279,8 +283,14 @@ def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_
                 if event_logits:
                     record["event_logit"] = float(model.event_head(parts["event_features"])[0, 0])
                     record["event_features"] = raw(parts["event_features"])
-                records.append(record)
-    return records
+            yield record
+
+
+def infer(model, runs, *, history, horizon, seed=17, event_logits=False, active_components=None, index_plan=None):
+    """Backward-compatible list API; numerical work belongs to iter_infer."""
+    return list(iter_infer(model, runs, history=history, horizon=horizon, seed=seed,
+                           event_logits=event_logits, active_components=active_components,
+                           index_plan=index_plan))
 
 
 def calibrate_route(records, route, source_calibration=None, active_components=None):
