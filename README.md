@@ -12,7 +12,9 @@
 
 2026-11-02 实际进展：完整 V1 约 346 万参数；SMD 完整 38 通道与原生单通道 Sunspot 的三种子预训练各完成 8000 次有效更新，源权重及 3072 条源校准记录已独立审查并由主 Agent 接受。本波含小作业及复核实耗约 1.798 GPU 小时。流式原始银行已通过新旧推理逐输出等价验收；目标域 Z/U/F、系统消融与污染收益尚未完成，源损失下降不能作为检测有效性的结论。
 
-2026-11-03 更新：三种子完整 PSM 零样本读出与两个历史基线已完成原始分数封存和独立复算。V1 AP 为 0.316671±0.001040，Persistence 为 0.295886，History mean512 为 0.322624；V1 strict 事件召回较 History mean512 高，事件 F1 与正常误报则较差，官方 Aff-F1 相对两个控制一升一降。当前是已开发 PSM 域上的混合结果，保持 HOLD，不据此否定完整路线或宣称创新。原始模型读出实耗 6.97844 GPU 小时；固定评价只使用 CPU。详见上一级 `notes/hybrid_v1_20261102/INDEPENDENT_PSM_FIXED_EVALUATION_AUDIT.md` 及 `PRIMARY_PSM_Z1_EVALUATION_ACCEPTANCE.json`。融合消融在预登记方案下继续；[Stage2 适配协议](docs/hybrid_v1/stage2_adaptation.md)及共享分 phase U 入口已通过合成验证，真实 U/F 与污染实验仍待完成。
+2026-11-03 更新：三种子完整 PSM 零样本读出与两个历史基线已完成原始分数封存和独立复算。V1 AP 为 0.316671±0.001040，Persistence 为 0.295886，History mean512 为 0.322624；V1 strict 事件召回较 History mean512 高，事件 F1 与正常误报则较差，官方 Aff-F1 相对两个控制一升一降。当前是已开发 PSM 域上的混合结果，保持 HOLD，不据此否定完整路线或宣称创新。原始模型读出实耗 6.97844 GPU 小时；固定评价只使用 CPU。详见上一级 `notes/hybrid_v1_20261102/INDEPENDENT_PSM_FIXED_EVALUATION_AUDIT.md` 及 `PRIMARY_PSM_Z1_EVALUATION_ACCEPTANCE.json`。
+
+后续阶段分别记录：三项融合控制的源训练及各自校准均已验收；真实 U200 训练及同位置 Z/U 目标校准也已验收，目标检测对比待新原始银行完整封存。去时频、去因果时序、去 Self-lag、去 Cross-lag 四组已获条件源训练许可，不代表已经启动。F 的真实支持输入及固定正常计划已验收，独立 phase 接线通过 NumPy/mock 工程测试；真实 Torch F 数值验证、F 训练和污染实验仍未完成。当前实时终态见上一级 `CURRENT_RESEARCH_STATE.md`，本页不替代原 OS 回执。目标校准会改变分项尺度和排序，U 必须与同目标校准的零更新模型比较。协议见[Stage2 适配说明](docs/hybrid_v1/stage2_adaptation.md)。
 
 ```text
 python -m hybrid_tsad.hybrid_v1.cli --config configs/hybrid-v1-synthetic.example.json --phase synthetic_smoke --output-dir /new/output
