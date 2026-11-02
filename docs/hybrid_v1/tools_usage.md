@@ -8,9 +8,14 @@
 |目标无标签训练/目标校准|`hybrid_tsad.hybrid_v1.stage2_adaptation`|target_train只FIT/SELECT；target_calibrate只CAL；U与零更新Z-Tcal分列|
 |完整模型或具名源控制/U只读推理|`hybrid_tsad.hybrid_v1.readout`|原完整模型严格路由与新的SOURCE_CONTROL/U_TCAL路由分开；具名实际权重/CAL/receipt身份，不改原模型|
 |原3seed＋2基线评价|`hybrid_tsad.hybrid_v1.evaluate_cli`|保留原固定五银行协议，不把不同控制当seed|
-|同seed不同控制评价|`hybrid_tsad.hybrid_v1.named_evaluate_cli`|首六方法source profile；原指标/事件/Aff实现复用，全部银行先过验再读标签；generic CI及target重校准仍未接入|
+|同seed不同控制评价|`hybrid_tsad.hybrid_v1.named_evaluate_cli`|首六方法source profile；原指标/事件/Aff实现复用，全部银行先过验再读标签；generic CI仍NA，target使用下方独立入口|
+|原始银行重新校准|`hybrid_tsad.hybrid_v1.bank_recalibration`|新标量覆盖层引用原producer与位置；不改原预测/残差/RNG、不跑模型、不拟合阈值|
+|区分仅校准与权重适配|`hybrid_tsad.hybrid_v1.target_evaluate_cli`|固定Z-S/Z-Tcal/U-Tcal单seed三方法，全部原银行与CAL核验后才读取标签；不造三seed均值|
+|事件监督训练/独立logit校准|`hybrid_tsad.hybrid_v1.event_adaptation`|独立F operation；显式支持事件/匹配正常、32SELECT及512CAL计划；不借U或PSM只读路由冒F query|
 
 入口默认预览，真实执行需具名配置及许可；历史快照与产物外置、冻结不覆盖。`configs/hybrid_v1/evaluate_named_source.PENDING.json` 是尚未绑定真实银行的模板，不能拿null身份运行正式评价。具名评价的28项合成/回归测试已实际通过并独立复核；这不是当前四个真实query银行已经完成或已计算指标的声明。最新状态和精确运行命令以研究工作区的CURRENT_RESEARCH_STATE及各run配置为准。
+
+目标重新校准的10项新测试及上述28项回归共38项真实通过；Z-Tcal已实际完成87329点标量覆盖层并验收，不代表U标签评价已运行。F独立入口先通过9项NumPy/mock测试，再通过真实Torch小C3/H128/P4集成：K1两次、K3六次更新、SELECT2/CAL3，保存权重/优化器/RNG/原分数并独立复核。它不等于真实C38/H512、32/512计划或F检测收益已验收。F入口不带`--execute`时做元数据预检查，可能读取文件身份和SHA，但不加载数组或构造模型；正式执行还需要外层资源壳的具名签件和构造前显存上限。资源mock测试不冒实际GPU验证。
 
 统一入口 `python -m hybrid_tsad.hybrid_v1.cli --config <json> --phase pretrain|adapt|infer|evaluate|synthetic_smoke --output-dir <新目录>` 默认仅预览，显式 `--execute` 才执行。示例 `configs/hybrid-v1-synthetic.example.json` 需绑定已有官方源路径；本次只准 CPU 合成运行，公开数据/GPU训练另放行。
 
