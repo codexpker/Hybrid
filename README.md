@@ -10,6 +10,8 @@
 
 首轮公开多源的角色、三seed、8000次抽样、源验证/校准和权重存档见[Stage1说明](docs/hybrid_v1/stage1_source.md)；原始数据与运行产物保持外置。
 
+2026-11-02 实际进展：完整 V1 约 346 万参数；SMD 完整 38 通道与原生单通道 Sunspot 的三种子预训练各完成 8000 次有效更新，源权重及 3072 条源校准记录已独立审查并由主 Agent 接受。本波含小作业及复核实耗约 1.798 GPU 小时。流式原始银行已通过新旧推理逐输出等价验收；目标域 Z/U/F、系统消融与污染收益尚未完成，源损失下降不能作为检测有效性的结论。
+
 ```text
 python -m hybrid_tsad.hybrid_v1.cli --config configs/hybrid-v1-synthetic.example.json --phase synthetic_smoke --output-dir /new/output
 ```
