@@ -1,0 +1,9 @@
+{
+  "seed": 17, "device": "cpu", "history": 128, "horizon": 2,
+  "steps": 4, "lr": 0.001, "kind": "huber", "active_components": ["r_tf", "r_ms", "r_pred"],
+  "model": {"history":128,"local_window":20,"horizon":2,"width":16,"temporal_patch":16,
+    "temporal_layers":1,"heads":2,"tf_hidden":8,"tf_repr":16,"tf_depth":1,"tf_patch":5,
+    "copies":2,"lag_window":20,"max_lag":8,"lag_width":8,"lag_top_k":2,
+    "ms_factors":[4,2],"fusion":"left_interaction"},
+  "sources": {"timeradar_file":"${HYBRID_TIMERADAR_FILE}","left_root":"${HYBRID_LEFT_ROOT}","timesfm_root":"${HYBRID_TIMESFM_ROOT}"}
+}

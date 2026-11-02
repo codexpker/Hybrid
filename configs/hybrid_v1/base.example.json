@@ -1,0 +1,32 @@
+{
+  "model": {
+    "history": 512,
+    "local_window": 100,
+    "horizon": 32,
+    "width": 128,
+    "temporal_patch": 16,
+    "temporal_layers": 4,
+    "heads": 4,
+    "tf_hidden": 64,
+    "tf_repr": 256,
+    "tf_depth": 10,
+    "tf_patch": 5,
+    "copies": 2,
+    "lag_window": 100,
+    "max_lag": 32,
+    "lag_width": 32,
+    "lag_top_k": 4,
+    "ms_factors": [4, 2],
+    "fusion": "left_interaction",
+    "fusion_layers": 1,
+    "reconstruction_projection": "real",
+    "history_mask_probability": 0.15,
+    "use_variate_attention": false
+  },
+  "sources": {
+    "timeradar_file": "/external/TimeRadar/models/TimeRadar.py",
+    "left_root": "/external/Left/models/Left",
+    "timesfm_root": "/external/timesfm/src/timesfm3/torch"
+  },
+  "status": "EXAMPLE_METADATA_ONLY_NO_EXECUTION_PERMISSION"
+}

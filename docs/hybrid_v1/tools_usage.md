@@ -1,0 +1,17 @@
+# I2 共享训练与评分工具
+
+统一入口 `python -m hybrid_tsad.hybrid_v1.cli --config <json> --phase pretrain|adapt|infer|evaluate|synthetic_smoke --output-dir <新目录>` 默认仅预览，显式 `--execute` 才执行。示例 `configs/hybrid-v1-synthetic.example.json` 需绑定已有官方源路径；本次只准 CPU 合成运行，公开数据/GPU训练另放行。
+
+公开数据通过 `manifest.runs` 列表：每条显式 domain/entity/run/role、path、format(npy/npz/csv)、bounds半开原行区间；npz指定key，csv指定columns，original_start可记原坐标起点。自然missing由finite值掩码保留；不把占位零作为GT。支持 FIT/SELECT/CAL/QUERY/SUPPORT/NORMAL_SELECT/NORMAL_CAL，同run角色不重叠。训练完整H+P足迹必须在role内；推理采用独立H+1已到达窗口，覆盖最后P−1个可评分点，不读取未来占位值。SSL manifest不接受labels/label_path，只有独立evaluate入口读标签。
+
+Stage1按domain、run、合法窗口三级均衡采样，保留完整变量维C。half_mse与Huberδ1均逐元素算；重建GT必须observed且人工hidden，预测GT必须observed，返回每窗loss/分项/有效计数与自然missing/人工hidden计数。MS各尺度独立GT误差并等尺度加权。评分保存原预测、r_tf/r_ms/r_var/r_pred、每通道及签发/可用索引；末点只取其own-hidden组。
+
+源CAL每domain总权重相等，各分项中位尺度下限1e-6，log1p后固定TF.25/MS.25/pred.5，阈值取加权经验CDF首次≥.99的值、strict>。某必要分项缺失时主score缺失，不补0或临时重权。Z精确复用源校准且零更新/零目标fit；U只更新fusion/tf_fusion_delta/ms_decoder/forecast_head，独立无标签SELECT及混合CAL；F另更新event_head，真实事件BCE+.1匹配正常SSL、独立正常SELECT/CAL原logit q99，K0走Z不更新。支持event_id、匹配正常长度、全部K预算与留出footprint审计存入日志。
+
+`active_components`是事前固定配方：完整r_tf/r_ms/r_pred=.25/.25/.5；去TF为MS/pred=.5/.5，去MS为TF/pred=.5/.5，rec-only两路各.5，pred-only=1。禁用路不进入loss有效窗口判断，运行时缺少任何静态必需路仍NA，不能逐点重权。该静态配方随校准保存，并与core禁用开关核对。源某domain全无有效支持明确报错，不静默丢域。F残差在减法/除法/平方前掩掉自然缺失目标，端点特征按有效channel池化，避免NaN反传。
+
+pretrain保存source.pt/训练trace/源calibration；adapt读同源checkpoint独立深拷贝，不串联U/F状态，保存各路径权重、参数变化、分项loss、原索引及score JSON。配置需给manifest/checkpoint/source_calibration、route及F support.events/normal/forbidden/K。infer读取固定checkpoint/calibration；evaluate复用既有评价模块、逐run标签原坐标映射，不重写指标库。所有缺失数值落盘为null，保留valid字段。
+
+有限修复v4：F仅在全部K个异常事件和全部K个匹配正常片段都获得有效监督更新后，才允许进入正常SELECT的checkpoint比较；记录selected_attempt和所选状态的累计曝光集合。所有支持及额外normalSSL完整足迹都检查forbidden，F日志保留BCE、normalSSL分项和足迹。推理各入口显式传配置seed，每点保存actual_seed、分组/副本mask（bitpack）、order、visible统计、当前GT/observed、TF及逐尺度MS的组/副本末点预测、输入数组身份和时间足迹。源及目标CAL原始records一起保存，允许独立复算尺度、阈值和分数。正式大序列需要评估分块数组归档成本，小合成JSON并非无成本的全量生产格式。
+
+synthetic_smoke在3个domain、C=1/2/3、独立run/role及1个显式synthetic异常事件上运行同一pretrain→保存/加载→独立Z/U/F→分项与原预测落盘链。STATUS明确synthetic non-scientific-results，不能用其分数作为公开数据收益、鲁棒或泛化证据。真实核心/官方外置源的CPU集成由Executor在独立快照运行，600秒、RSS4GiB、CUDA_VISIBLE_DEVICES空；本机无Torch时不冒称通过。
