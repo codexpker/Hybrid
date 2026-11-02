@@ -15,3 +15,5 @@ pretrain保存source.pt/训练trace/源calibration；adapt读同源checkpoint独
 有限修复v4：F仅在全部K个异常事件和全部K个匹配正常片段都获得有效监督更新后，才允许进入正常SELECT的checkpoint比较；记录selected_attempt和所选状态的累计曝光集合。所有支持及额外normalSSL完整足迹都检查forbidden，F日志保留BCE、normalSSL分项和足迹。推理各入口显式传配置seed，每点保存actual_seed、分组/副本mask（bitpack）、order、visible统计、当前GT/observed、TF及逐尺度MS的组/副本末点预测、输入数组身份和时间足迹。源及目标CAL原始records一起保存，允许独立复算尺度、阈值和分数。正式大序列需要评估分块数组归档成本，小合成JSON并非无成本的全量生产格式。
 
 synthetic_smoke在3个domain、C=1/2/3、独立run/role及1个显式synthetic异常事件上运行同一pretrain→保存/加载→独立Z/U/F→分项与原预测落盘链。STATUS明确synthetic non-scientific-results，不能用其分数作为公开数据收益、鲁棒或泛化证据。真实核心/官方外置源的CPU集成由Executor在独立快照运行，600秒、RSS4GiB、CUDA_VISIBLE_DEVICES空；本机无Torch时不冒称通过。
+
+默认完整配置的GPU资源诊断另有 `--phase synthetic_gpu_l0`，只包装同一核心/损失，需要精确配置与root release，不能用它启动pretrain/adapt等其他阶段。2026-11-02单卡A40的C3两次更新、C55一次更新和两组推理已完成并有限独审：3,458,561参数、整进程5.626秒、最大allocator allocated约1.087GiB/reserved约1.227GiB。原始输入、预测和损失银行外置归档；未保存可用权重，不能将该短诊断当公开数据训练、收敛或异常检测收益。分阶段报告以上一级CURRENT_RESEARCH_STATE及primary acceptance为准。
