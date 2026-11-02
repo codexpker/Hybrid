@@ -1,0 +1,277 @@
+{
+  "operation": "HYBRID_V1_NAMED_FIXED_BANK_EVALUATION",
+  "profile": "PSM_A1_SOURCE_SEED2025",
+  "status": "PENDING_ALL_SIX_RAW_BANK_ACCEPTANCES_AND_ROOT_LABEL_RELEASE",
+  "history": 512,
+  "original_length": 87841,
+  "original_start": 0,
+  "stream": [
+    "PSM",
+    "anonymous_PSM",
+    "test_original"
+  ],
+  "banks": [
+    {
+      "id": "full_seed2025",
+      "kind": "source_model",
+      "control_id": "full",
+      "training_seed": 2025,
+      "inference_seed": 2025,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_seed2025_20261102_v1/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "config_sha256": "45dab4acf189c666f9b436165f117252820eeb11ff6c9f6f7d7d1cea91e9d8ed",
+        "checkpoint_sha256": "c00f3e2c4c094d96572b945474712112ced433a13d82e9fce876b013ee990812",
+        "calibration_sha256": "da239eac4c5ab1e76718cd651c48f6f89b8d5658b5b9b2a20cb400d88f83d585",
+        "source_sha256": "00034f3c51cd02acc66c2b19e86535b6225f228c330e65b0630026a134205f13"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/calibrate_source/source_calibration.json",
+        "sha256": "da239eac4c5ab1e76718cd651c48f6f89b8d5658b5b9b2a20cb400d88f83d585"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    },
+    {
+      "id": "A1_fusion_none_seed2025",
+      "kind": "source_model",
+      "control_id": "A1_fusion_none",
+      "training_seed": 2025,
+      "inference_seed": 2025,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_A1_none_seed2025_20261103_v1/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "config_sha256": null,
+        "source_sha256": null,
+        "checkpoint_sha256": "843d8443d6a08c5f7f54fa1c486434a39cbdaae29bd9320391a3a36615f05643",
+        "calibration_sha256": "a6d70fd750a14d9d6cf87073bf4b7784765fd6029df113dc95323d7522f8e407"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_a1_none_N8000_seed2025_20261103_v1/calibrate_source/source_calibration.json",
+        "sha256": "a6d70fd750a14d9d6cf87073bf4b7784765fd6029df113dc95323d7522f8e407"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    },
+    {
+      "id": "A1_fusion_feature_mean_seed2025",
+      "kind": "source_model",
+      "control_id": "A1_fusion_feature_mean",
+      "training_seed": 2025,
+      "inference_seed": 2025,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_A1_feature_mean_seed2025_20261103_v1/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "config_sha256": null,
+        "source_sha256": null,
+        "checkpoint_sha256": "bf2b5fe992ddea5bfc43c108d0599531db7e06b47cb1b7706e5b66b8ed2ab39f",
+        "calibration_sha256": "6beef9a5adffe10c0325d0347bfb3250470f92f15937c28746561d3c149f4883"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_a1_feature_mean_N8000_seed2025_20261103_v1/calibrate_source/source_calibration.json",
+        "sha256": "6beef9a5adffe10c0325d0347bfb3250470f92f15937c28746561d3c149f4883"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    },
+    {
+      "id": "A1_fusion_concat_linear_seed2025",
+      "kind": "source_model",
+      "control_id": "A1_fusion_concat_linear",
+      "training_seed": 2025,
+      "inference_seed": 2025,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_A1_concat_linear_seed2025_20261103_v1/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "config_sha256": null,
+        "source_sha256": null,
+        "checkpoint_sha256": "221912bb20c59b170b28a3994892c7ece70fb1be3707125fcd6d488c50ca7981",
+        "calibration_sha256": "b5600f9cf4265ef550fc4ac91af40eae74e9adce5f591babf30b1940560f8457"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_a1_concat_linear_N8000_seed2025_20261103_v1/calibrate_source/source_calibration.json",
+        "sha256": "b5600f9cf4265ef550fc4ac91af40eae74e9adce5f591babf30b1940560f8457"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    },
+    {
+      "id": "persistence",
+      "kind": "deterministic_baseline",
+      "control_id": "persistence",
+      "training_seed": null,
+      "inference_seed": null,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_baselines_20261102_v1/persistence/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "calibration_sha256": "5513840e1454ef3cd84e373c510a336660d716d60971ad6e14b752e1c946d1cd",
+        "checkpoint_sha256": "bccf17560cf994cd28164e8e576e9f8944f8744d4c2d98c5d236549bbc99c233",
+        "config_sha256": "8dc20325627a1161d648fc7f0c5ae301181f7117ca18c167bbc8f8d380a00b34",
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "source_sha256": "00034f3c51cd02acc66c2b19e86535b6225f228c330e65b0630026a134205f13"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_Z1_baseline_source_CAL_20261102_v1/persistence_source_calibration.json",
+        "sha256": "5513840e1454ef3cd84e373c510a336660d716d60971ad6e14b752e1c946d1cd"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    },
+    {
+      "id": "history_mean512",
+      "kind": "deterministic_baseline",
+      "control_id": "history_mean512",
+      "training_seed": null,
+      "inference_seed": null,
+      "calibration_origin": "source",
+      "directory": "/home/a312/tsad_research/results/hybrid_v1_psm_Z_baselines_20261102_v1/history_mean512/bank",
+      "manifest_sha256": null,
+      "identity": {
+        "calibration_sha256": "16b3a4959a08998ea2dedbf3c2373e7a95e1fae15607f21d065ce42d9825fb9d",
+        "checkpoint_sha256": "32411662bc8f144548e762eaf82a7aa3bf7cc0a8c53e2593483227e44e531e9d",
+        "config_sha256": "8dc20325627a1161d648fc7f0c5ae301181f7117ca18c167bbc8f8d380a00b34",
+        "input_sha256": "566bc50117d13f58793d830c14975c55f627cab63953265d7d6ce2dbcf2b0f80",
+        "source_sha256": "00034f3c51cd02acc66c2b19e86535b6225f228c330e65b0630026a134205f13"
+      },
+      "calibration": {
+        "path": "/home/a312/tsad_research/results/hybrid_v1_Z1_baseline_source_CAL_20261102_v1/history_mean512_source_calibration.json",
+        "sha256": "16b3a4959a08998ea2dedbf3c2373e7a95e1fae15607f21d065ce42d9825fb9d"
+      },
+      "ranges": [
+        {
+          "domain": "PSM",
+          "entity": "anonymous_PSM",
+          "run": "test_original",
+          "start": 512,
+          "end": 87841
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "reference": "full_seed2025",
+      "candidate": "A1_fusion_none_seed2025",
+      "pairing": "same_training_seed"
+    },
+    {
+      "reference": "full_seed2025",
+      "candidate": "A1_fusion_feature_mean_seed2025",
+      "pairing": "same_training_seed"
+    },
+    {
+      "reference": "full_seed2025",
+      "candidate": "A1_fusion_concat_linear_seed2025",
+      "pairing": "same_training_seed"
+    },
+    {
+      "reference": "full_seed2025",
+      "candidate": "persistence",
+      "pairing": "model_vs_deterministic"
+    },
+    {
+      "reference": "full_seed2025",
+      "candidate": "history_mean512",
+      "pairing": "model_vs_deterministic"
+    }
+  ],
+  "statistics": {
+    "status": "NOT_COMPUTED",
+    "CI": null,
+    "reason": "GENERIC_NAMED_PAIRWISE_BOOTSTRAP_NOT_IMPLEMENTED",
+    "block_points": 4096,
+    "n_replicates": 2000,
+    "rng_seed": 99173
+  },
+  "permissions": {
+    "labels": true,
+    "evaluation": true,
+    "training": false,
+    "target_fit": false,
+    "GPU": false
+  },
+  "labels": {
+    "path": "/home/a312/tsad_research/data/psm_original/test_label.csv",
+    "sha256": "e5b6b0c716a9b3d52e3a1b06761527811f75a218790c37b8a5e806741aeb0676",
+    "shape": [
+      87841
+    ],
+    "format": "csv",
+    "drop_columns": [
+      "timestamp_(min)"
+    ],
+    "value_columns": [
+      "label"
+    ]
+  },
+  "affiliation_identity": "/home/a312/tsad_research/preparations/candidate_affiliation_existing_source_20261102_v1/ORIGINAL_IDENTITY.json",
+  "affiliation_identity_sha256": "640b05c1351acedca57b46952360fd5a645652e20e87c5cb34231e06aa6340a4",
+  "source_sha256": {
+    "hybrid_tsad/candidate_experiment.py": "6dd4b59e3f2673fbf8fc1fe34344e915cbb4e6fd8b2572e1a0ba1a9bb677fa37",
+    "hybrid_tsad/config.py": "54a1114c72a0f44a4ec424a60299b61a8c8b75d30337a20b15c4c361454286cb",
+    "hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "hybrid_tsad/engine/evaluation.py": "6d7011ba4550c8936b248d128188f1026b125794a8abe10987781ec4e7a6d240",
+    "hybrid_tsad/engine/events.py": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+    "hybrid_tsad/engine/official_affiliation.py": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+    "hybrid_tsad/engine/statistics.py": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+    "hybrid_tsad/engine/__init__.py": "aa061bb184d2cdc14df48e0fac03c57f819d1af3db858def00a7370ffdacbf42",
+    "hybrid_tsad/hybrid_v1/chunked_bank.py": "17a298cb5f7255ae9d429630ec4f07152a65c7711a2657bba1e6de6d9ec4d2b4",
+    "hybrid_tsad/hybrid_v1/config.py": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6",
+    "hybrid_tsad/hybrid_v1/evaluate_cli.py": "4fe88b0e9b7792ee95845f087113e4e04813fc732e15257fa1a482bbbcd697cd",
+    "hybrid_tsad/hybrid_v1/evaluation.py": "72491c52bed3b6f1787ee634ddb9c0ef95ac6eaa16f333c0b83c10e1b329a831",
+    "hybrid_tsad/hybrid_v1/named_evaluate_cli.py": "d0fe221e2ce6ba9f6f18f3a143ee6aaca05179b92d018cc2e0d4964afef85957",
+    "hybrid_tsad/hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478",
+    "hybrid_tsad/hybrid_v1/scoring.py": "a87517e1f4a02b8193ad1ffbc667a88710ec22c5db884a8f50d85b818961576d",
+    "hybrid_tsad/hybrid_v1/statistics.py": "6c3fb03ab168ce28836433d23957cfc7767932f2953f6d8c98d4c58cbecf4b10",
+    "hybrid_tsad/hybrid_v1/__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613"
+  },
+  "raw_seal": {
+    "path": "/home/a312/tsad_research/preparations/hybrid_v1_named_evaluation_cpu_20261103_v1/ROOT_SIX_BANK_SEAL.PENDING.json",
+    "sha256": null
+  },
+  "output": "/home/a312/tsad_research/results/hybrid_v1_A1_six_named_fixed_evaluation_20261103_v1"
+}

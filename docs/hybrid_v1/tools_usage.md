@@ -1,5 +1,17 @@
 # I2 共享训练与评分工具
 
+## 正式入口索引（2026-11-03）
+
+|用途|共享模块|边界|
+|---|---|---|
+|源训练/独立源校准|`hybrid_tsad.hybrid_v1.cli` 的具名 source phase|固定角色与计划，各phase单独权重/配置/原件；不是重新启动官方八基准|
+|目标无标签训练/目标校准|`hybrid_tsad.hybrid_v1.stage2_adaptation`|target_train只FIT/SELECT；target_calibrate只CAL；U与零更新Z-Tcal分列|
+|完整模型或具名源控制/U只读推理|`hybrid_tsad.hybrid_v1.readout`|原完整模型严格路由与新的SOURCE_CONTROL/U_TCAL路由分开；具名实际权重/CAL/receipt身份，不改原模型|
+|原3seed＋2基线评价|`hybrid_tsad.hybrid_v1.evaluate_cli`|保留原固定五银行协议，不把不同控制当seed|
+|同seed不同控制评价|`hybrid_tsad.hybrid_v1.named_evaluate_cli`|首六方法source profile；原指标/事件/Aff实现复用，全部银行先过验再读标签；generic CI及target重校准仍未接入|
+
+入口默认预览，真实执行需具名配置及许可；历史快照与产物外置、冻结不覆盖。`configs/hybrid_v1/evaluate_named_source.PENDING.json` 是尚未绑定真实银行的模板，不能拿null身份运行正式评价。具名评价的28项合成/回归测试已实际通过并独立复核；这不是当前四个真实query银行已经完成或已计算指标的声明。最新状态和精确运行命令以研究工作区的CURRENT_RESEARCH_STATE及各run配置为准。
+
 统一入口 `python -m hybrid_tsad.hybrid_v1.cli --config <json> --phase pretrain|adapt|infer|evaluate|synthetic_smoke --output-dir <新目录>` 默认仅预览，显式 `--execute` 才执行。示例 `configs/hybrid-v1-synthetic.example.json` 需绑定已有官方源路径；本次只准 CPU 合成运行，公开数据/GPU训练另放行。
 
 公开数据通过 `manifest.runs` 列表：每条显式 domain/entity/run/role、path、format(npy/npz/csv)、bounds半开原行区间；npz指定key，csv指定columns，original_start可记原坐标起点。自然missing由finite值掩码保留；不把占位零作为GT。支持 FIT/SELECT/CAL/QUERY/SUPPORT/NORMAL_SELECT/NORMAL_CAL，同run角色不重叠。训练完整H+P足迹必须在role内；推理采用独立H+1已到达窗口，覆盖最后P−1个可评分点，不读取未来占位值。SSL manifest不接受labels/label_path，只有独立evaluate入口读标签。
