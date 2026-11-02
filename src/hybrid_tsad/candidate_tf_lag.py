@@ -131,29 +131,65 @@ class TFLagCandidate(nn.Module):
         return {"stored": sum(p.numel() for p in self.parameters()),
                 "active": sum(p.numel() for p in self.parameters() if p.requires_grad)}
 
-    def load_tf_checkpoint(self, path, *, expected_sha256):
-        """Optional exact flat official state_dict, no guessed wrappers/extra keys.
+    def load_tf_checkpoint(self, path, *, expected_sha256, allow_official_ema_buffers=False):
+        """Strict flat state_dict with an explicit author-EMA metadata exception.
 
-        Additional tau/buffers need an explicitly reviewed compatibility rule;
-        unknown keys are rejected before any model state can be changed.
+        Default behavior rejects all extra keys. Opt-in accepts only the full
+        scalar tau_n/tau_a/tau_inited triple registered outside Model by the
+        fixed author's experiment wrapper; it never registers new buffers here.
         """
         if self.tf is None:
             raise ValueError("Lag-only model has no TF checkpoint target")
+        if type(allow_official_ema_buffers) is not bool:
+            raise ValueError("EMA compatibility opt-in must be an explicit boolean")
         p = Path(path)
         actual = hashlib.sha256(p.read_bytes()).hexdigest()
         if actual != expected_sha256:
             raise ValueError("TF checkpoint SHA256 mismatch")
         state = torch.load(p, map_location="cpu", weights_only=True)
         own = self.tf.state_dict()
-        if not isinstance(state, dict) or set(state) != set(own):
+        if not isinstance(state, dict):
+            raise ValueError("Exact flat TF state_dict required")
+        extra = set(state) - set(own)
+        stripped = {}
+        ema_keys = {"tau_n", "tau_a", "tau_inited"}
+        if extra:
+            if not allow_official_ema_buffers or extra != ema_keys:
+                raise ValueError("TF checkpoint missing/unexpected keys: only explicit complete official EMA triple may accompany Model keys")
+            for key in sorted(ema_keys):
+                value = state[key]
+                if (not isinstance(value, torch.Tensor) or value.shape != torch.Size([])
+                        or value.layout != torch.strided
+                        or (key == "tau_inited" and value.dtype != torch.bool)
+                        or (key != "tau_inited" and (not value.is_floating_point()
+                            or not bool(torch.isfinite(value).all())))):
+                    raise ValueError("Official EMA metadata requires finite floating scalars and scalar bool init flag")
+                raw = value.detach().cpu().contiguous().reshape(-1).view(torch.uint8).numpy().tobytes()
+                stripped[key] = {"value": value.item(), "shape": list(value.shape),
+                    "dtype": str(value.dtype), "raw_tensor_sha256": hashlib.sha256(raw).hexdigest(),
+                    "source_checkpoint_sha256": actual}
+        parameters = {key: value for key, value in state.items() if key not in stripped}
+        if set(parameters) != set(own):
             raise ValueError("Exact flat TF state_dict required; missing/unexpected keys rejected")
-        if any(not isinstance(state[k], torch.Tensor) or state[k].shape != v.shape
-               or state[k].dtype != v.dtype or not bool(torch.isfinite(state[k]).all())
+        if any(not isinstance(parameters[k], torch.Tensor) or parameters[k].shape != v.shape
+               or parameters[k].dtype != v.dtype or not bool(torch.isfinite(parameters[k]).all())
                for k, v in own.items()):
             raise ValueError("TF checkpoint shape/dtype/nonfinite mismatch")
-        self.tf.load_state_dict(state, strict=True)
-        return {"sha256": actual, "strict": True, "missing": [], "unexpected": [],
-                "new_lag_fusion_head_not_loaded": True}
+        self.tf.load_state_dict(parameters, strict=True)
+        provenance = {"sha256": actual, "strict": True, "missing": [], "unexpected": [],
+            "new_lag_fusion_head_not_loaded": True, "checkpoint_opened": True,
+            "allow_official_ema_buffers": allow_official_ema_buffers,
+            "stripped_official_ema_buffers": stripped}
+        if stripped:
+            provenance["ema_metadata_source"] = {
+                "repository": "https://github.com/mala-lab/TimeRadar",
+                "commit": "4e06d0ad2bbe4c7e349c5a230fa5787d186e1eb2",
+                "file": "exp/exp_anomaly_detection_timeradar.py", "function": "Exp_Anomaly_Detection_TimeRadar._build_model",
+                "source_sha256": "ab7208da3f5c1e201e76167b6d8003d12e0fd357bef721a053598b5d9c222ab0",
+                "tensor_hash_encoding": "CPU contiguous tensor bytes; native dtype; shape and dtype recorded separately",
+                "usage": "Metadata preserved in provenance only; not part of candidate forecast or state_dict"}
+        self.tf_checkpoint_provenance = provenance
+        return provenance
 
     def adaptation_parameters(self, path):
         if path == "Z":
@@ -193,7 +229,7 @@ def forecast_coordinates(history_start, history, horizon):
 
 
 def candidate_from_config(path, *, mode=None):
-    """Construct from explicit local configuration, never read data or weights."""
+    """Construct from config; optional TF weights are explicit, lag-only skips them."""
     import json
     import os
     from .candidate_autoformer_lag import AutoformerLagEndpoint
@@ -218,6 +254,11 @@ def candidate_from_config(path, *, mode=None):
     model = TFLagCandidate(config, external(data["official_file"]) if config.mode != "lag" else None,
         lag_encoder=lag, lag_provenance=lag.provenance if lag is not None else None)
     if data.get("tf_checkpoint") is not None:
-        model.load_tf_checkpoint(external(data["tf_checkpoint"]["path"]),
-                                 expected_sha256=data["tf_checkpoint"]["sha256"])
+        if config.mode == "lag":
+            model.tf_checkpoint_provenance = {"status": "NOT_APPLICABLE_LAG_ONLY",
+                "checkpoint_opened": False, "reason": "Lag-only mode has no TimeRadar branch"}
+        else:
+            checkpoint = data["tf_checkpoint"]
+            model.load_tf_checkpoint(external(checkpoint["path"]), expected_sha256=checkpoint["sha256"],
+                allow_official_ema_buffers=checkpoint.get("allow_official_ema_buffers", False))
     return model
