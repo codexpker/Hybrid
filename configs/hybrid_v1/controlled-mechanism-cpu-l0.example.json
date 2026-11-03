@@ -1,0 +1,211 @@
+{
+  "status": "ROOT_PENDING_NOT_EXECUTABLE_SCIENTIFIC_RELEASE",
+  "operation_proposed": "HYBRID_V1_CONTROLLED_MECHANISM_FROZEN_CPU_L0",
+  "history": 512,
+  "horizon": 32,
+  "batch": 1,
+  "dtype": "float32",
+  "model": {
+    "history": 512,
+    "local_window": 100,
+    "horizon": 32,
+    "width": 128,
+    "temporal_patch": 16,
+    "temporal_layers": 4,
+    "heads": 4,
+    "tf_hidden": 64,
+    "tf_repr": 256,
+    "tf_depth": 10,
+    "tf_patch": 5,
+    "copies": 2,
+    "lag_window": 100,
+    "max_lag": 32,
+    "lag_width": 32,
+    "lag_top_k": 4,
+    "lag_min_overlap": 2,
+    "ms_factors": [
+      4,
+      2
+    ],
+    "fusion": "left_interaction",
+    "fusion_layers": 1,
+    "dropout": 0.0,
+    "reconstruction_projection": "real",
+    "history_mask_probability": 0.15,
+    "use_variate_attention": false
+  },
+  "sources": {
+    "timeradar_file": "BIND_ACCEPTED_OFFICIAL_TIMERADAR_FILE",
+    "left_root": "BIND_ACCEPTED_OFFICIAL_LEFT_ROOT",
+    "timesfm_root": "BIND_ACCEPTED_OFFICIAL_TIMESFM_ROOT"
+  },
+  "model_source": {
+    "path": "preparations/hybrid_v1_msl_source_Z_readout_20261104_v1/snapshot/src",
+    "sha256_map": {
+      "baselines.py": "e14922884c6cbb01fddfe3ba9da9d245b3e7ab3116144a3e958aa904720f6dbd",
+      "chunked_bank.py": "17a298cb5f7255ae9d429630ec4f07152a65c7711a2657bba1e6de6d9ec4d2b4",
+      "cli.py": "18b120b61e4a44224b7445bea2e4364575966183299bcde52d6b5bdca735f941",
+      "config.py": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6",
+      "data.py": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315",
+      "evaluate_cli.py": "4fe88b0e9b7792ee95845f087113e4e04813fc732e15257fa1a482bbbcd697cd",
+      "evaluation.py": "72491c52bed3b6f1787ee634ddb9c0ef95ac6eaa16f333c0b83c10e1b329a831",
+      "fractional.py": "ab34399743485f7b72e9d92b3d6951b6c35cbaf8076659d880cff7a93dd5dcc2",
+      "initialization_audit.py": "2c3e5f72d3af48e983cd7bccf67f4ac65997578f8cd1ac3c232ed88407ac4578",
+      "lag.py": "9740bd15170cdeffdd0d6dabecbf496b52a15477552f4becef77d544f1ab5a16",
+      "model.py": "ef21a915b1f0f15c91efbe8114859e181815c7f63b50b494ef729799bc9c33b6",
+      "multiview.py": "30da49d1bb0a31c04d47d257e26172ad117a629c8f45b02f3f88d4f394978e2c",
+      "objectives.py": "2dc0d50ebb767ab0fe2ecfc34970ef6d34cfa7b84624dd39052adb475a0b0eaf",
+      "provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478",
+      "public_readout.py": "a6cc4844ee91f255079e59b590a41397f5ec7ead63cbffec435fa2a41a2909bf",
+      "readout.py": "7d1916d7200e16a77696abf52d36c9e452f3479e01cba6fa679e6521e97e0cff",
+      "scoring.py": "a87517e1f4a02b8193ad1ffbc667a88710ec22c5db884a8f50d85b818961576d",
+      "stage2_adaptation.py": "16115e7a014379cc5966c978b824eaa054fae8f880178b082377ad688206265b",
+      "statistics.py": "6c3fb03ab168ce28836433d23957cfc7767932f2953f6d8c98d4c58cbecf4b10",
+      "target_data.py": "3578f4f498a16f0c62a591958b4d53f1ce07a99e11d0107af6b2a5c052175dfa",
+      "temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+      "training.py": "e13ead2c0232b603a31e937228ee720585cc87b22fca1f032a129c2c78be1bd0",
+      "__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613"
+    }
+  },
+  "source_seed": 2025,
+  "inference_seed": 2025,
+  "checkpoint": {
+    "path": "BIND_ACCEPTED_SOURCE_PT",
+    "sha256": "c00f3e2c4c094d96572b945474712112ced433a13d82e9fce876b013ee990812"
+  },
+  "calibration": {
+    "path": "BIND_ACCEPTED_OWN_SOURCE_CAL",
+    "sha256": "da239eac4c5ab1e76718cd651c48f6f89b8d5658b5b9b2a20cb400d88f83d585"
+  },
+  "all_final_full_source_seeds": [
+    2025,
+    2026,
+    2027
+  ],
+  "generator": {
+    "implementation": "hybrid_tsad.hybrid_v1.controlled_mechanism.generate_pair",
+    "implementation_status": "ENGINEERING_IMPLEMENTED_PENDING_REAL_FORWARD_VALIDATION",
+    "seed_recipe": "SHA256 UTF8 MECH1|family|role|run|stream first8bytes little-endian uint64, PCG64",
+    "run_id": 0,
+    "role": "SYNTHETIC_TECHNICAL_L0",
+    "N": 4096,
+    "burn_in": 4096,
+    "event_half_open": [
+      1536,
+      2560
+    ],
+    "observed": "all_true",
+    "circular_wrap": false,
+    "families": {
+      "weak_amplitude": {
+        "C": 1,
+        "normal": "stationary AR1 rho=.8, innovation sd=.6",
+        "intervention": "add +0.25 normal theoretical SD to y in [1536,2560); no per-window refit or imputation",
+        "strong_positive_control_after_L0": "same event amplitude +2.0, never substituted for weak result"
+      },
+      "self_lag": {
+        "C": 1,
+        "normal": "y[t]=.8*y[t-12]+.6*eps[t] after burn-in",
+        "intervention": "during [1536,2560) use y[t-20], preserve all innovations and state; recurrence resumes d12 afterward without reset",
+        "stationarity_limit": "steady fixed-lag marginal N(0,1); transitions/recovery not claimed identical",
+        "normal_variable_lag_semantic_control": "same observable lag schedule explicitly designated allowed; indistinguishable to a model without context, report equal-score semantic limit"
+      },
+      "cross_mixed_sign": {
+        "C": 3,
+        "normal": "x=u; yplus=.3*u[t-12]+sqrt(.91)*zplus[t]; yminus=-.3*u[t-12]+sqrt(.91)*zminus[t]; independent stationary AR1(.8) streams",
+        "intervention": "both targets use u[t-20] only within event, same latent streams; no roll",
+        "additional_later_cases_not_L0": [
+          "positive-only C2",
+          "negative-only C2",
+          "relationship break using independent same-law driver in event",
+          "IRR observed driver replaced by independent same-law process",
+          "allowed normal variable-lag schedule / exact S0 / edge-only SB"
+        ]
+      }
+    }
+  },
+  "L0_endpoint_plan": [
+    {
+      "family": "weak_amplitude",
+      "variant": "N",
+      "index": 2048
+    },
+    {
+      "family": "weak_amplitude",
+      "variant": "A",
+      "index": 2048
+    },
+    {
+      "family": "self_lag",
+      "variant": "N",
+      "index": 2048
+    },
+    {
+      "family": "self_lag",
+      "variant": "A",
+      "index": 2048
+    },
+    {
+      "family": "cross_mixed_sign",
+      "variant": "N",
+      "index": 2048
+    },
+    {
+      "family": "cross_mixed_sign",
+      "variant": "A",
+      "index": 2048
+    }
+  ],
+  "L0_max_model_evaluation_units": 7,
+  "L0_parity_unit": "Explicit singleton index_plan for cross_mixed_sign/N at2048 only; never scan preceding targets. Six direct +one iterator record, next then StopIteration, exactly7 forecast and7 reconstruct public calls.",
+  "baseline_L0": "existing persistence/history_mean512 arithmetic on same 6 windows; no refit",
+  "target_forecast_info": "history [t-512,t), predict target t, seed=2025+t; target current excluded from forecast",
+  "reconstruction_info": "context [t-511,t+1), G=min(2,C) endpoint-hidden groups K2, eval history default endpoint-only, source scorer unchanged",
+  "export": [
+    "input values+observed/full latent truth in separate audit file",
+    "input footprint/index/seed/masks/copy masks/order/visible mean-scale",
+    "forecast axes.lag and each reconstruction group axes.lag",
+    "all original endpoint TF/MS/pred/per-channel residuals/scalar/source scales/tau/alarm",
+    "before-after PT/model-state/RNG identities/OS/runtime/elapsed/RSS"
+  ],
+  "resources_candidate": {
+    "CPU_TERM_seconds": 180,
+    "cleanup_seconds": 5,
+    "AS_GiB": 16,
+    "physical_RSS_observed_GiB": 4,
+    "CVD": "",
+    "threads": 1,
+    "GPUh": 0,
+    "retry": false,
+    "wall_cost": "UNMEASURED; cap is not expected-time promise"
+  },
+  "permissions": {
+    "prepare_only": true,
+    "generate_arrays_now": false,
+    "forward_now": false,
+    "training": false,
+    "optimizer": false,
+    "threshold_fit": false,
+    "real_query_or_labels": false,
+    "GPU": false
+  },
+  "output_proposed": "results/hybrid_v1_controlled_mechanism_frozen_CPU_L0_20261104_v1",
+  "release": null,
+  "L0_parity_index_plan": [
+    {
+      "domain": "CONTROLLED_MECHANISM",
+      "entity": "cross_mixed_sign",
+      "run": "run0_N",
+      "role": "QUERY",
+      "index": 2048
+    }
+  ],
+  "L0_parity_Run_start": 0,
+  "L0_parity_actual_seed": 4073,
+  "L0_parity_group_seeds": [
+    4073,
+    4074
+  ],
+  "L0_parity_groups": 2,
+  "selected_exposure": "Different selected prefixes despite common max8000 source draw plan; no same-checkpoint-exposure claim"
+}
