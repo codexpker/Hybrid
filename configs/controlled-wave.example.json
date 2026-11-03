@@ -1,0 +1,11 @@
+{
+  "status": "ROOT_PENDING_TEMPLATE_NOT_EXECUTABLE",
+  "operation": "HYBRID_V1_CONTROLLED_WAVE1_INPUT_DERIVE",
+  "protocol": {"path": "ROOT_TO_BIND_PROTOCOL_JSON", "sha256": "e56cc3e9195707acc96e8c0690f82fec85d6cc23384337c725a6b6b36bb856a8"},
+  "output": "ROOT_TO_BIND_FRESH_OUTPUT",
+  "permissions": {"generate": true, "neural_readout": false, "baseline_readout": false, "evaluation": false, "labels": false, "training": false, "target_fit": false, "threshold_fit": false},
+  "resources": {"wall_seconds": 60, "kill_grace_seconds": 5, "AS_GiB": 8, "automatic_retry": false},
+  "resume": false,
+  "frozen_source": {"directory": "ROOT_TO_BIND_ORIGINAL_MSL23_PACKAGE", "sha256_map": {}},
+  "source_sha256": {}
+}
