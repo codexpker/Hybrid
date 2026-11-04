@@ -25,4 +25,4 @@
 - TimesFM3：literature/reference_source_20261031/timesfm3/，固定commit及逐源manifest已存。2026-11-02审读 notes/hybrid_v1_20261102/TEMPORAL_LAG_PAPER_CODE_EVIDENCE.md。
 - 工程者源码核对：notes/hybrid_v1_20261102/EXECUTOR_REUSE_AND_IMPLEMENTATION_PLAN.md、EXECUTOR_SOURCE_BINDINGS.json。
 
-若网页元数据与可读稿/代码版本有差异，分列证据，不用一次search摘要替代正式全文。未认证的软件许可不通过复制到Hybrid仓库自动获得授权；当前不推远程。
+若网页元数据与可读稿/代码版本有差异，分列证据，不用一次search摘要替代正式全文。未认证的软件许可不通过复制到Hybrid仓库自动获得授权；公开仓库保留项目实现与来源记录，外部源码、数据和权重继续外置。

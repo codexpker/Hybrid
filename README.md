@@ -4,6 +4,8 @@
 
 ## 当前入口：完整 Hybrid V1
 
+**2026-11-04 状态：**完整 V1、系统消融、F 公平比较、已批准的 H5 污染实验、MSL 外域评价及有限受控弱幅值/Self-lag/Cross-lag 验证均已完成相应独审与主验收。工程更新及已验证边界见[本次进度与结果](docs/hybrid_v1/progress_20261104.md)。这表示这些固定实验完成，不表示污染鲁棒或稳定检测优势已经成立；整体研究仍为 **HOLD**。当前没有因测试结果修改模型架构。
+
 先读[完整架构](docs/hybrid_v1/architecture.md)、[正式论文与实际代码映射](docs/hybrid_v1/paper_module_map.md)、[实现和系统消融计划](docs/hybrid_v1/implementation_plan.md)。共享实现位于 `src/hybrid_tsad/hybrid_v1/`，使用真实外置 TimeRadar FRFT、TimesFM 3.0 小型因果块、LEFT 多尺度与交互子组件，并明确区分项目适配的有限 Self-lag 和 Cross-lag。TimesFM 3.0 是官方技术发布，不冒称已核实的正式顶会论文。旧实现、权重和全部正负结果保留。
 
 统一运行入口见[训练与评分用法](docs/hybrid_v1/tools_usage.md)：
@@ -14,7 +16,7 @@
 
 2026-11-03 更新：三种子完整 PSM 零样本读出与两个历史基线已完成原始分数封存和独立复算。V1 AP 为 0.316671±0.001040，Persistence 为 0.295886，History mean512 为 0.322624；V1 strict 事件召回较 History mean512 高，事件 F1 与正常误报则较差，官方 Aff-F1 相对两个控制一升一降。当前是已开发 PSM 域上的混合结果，保持 HOLD，不据此否定完整路线或宣称创新。原始模型读出实耗 6.97844 GPU 小时；固定评价只使用 CPU。详见上一级 `notes/hybrid_v1_20261102/INDEPENDENT_PSM_FIXED_EVALUATION_AUDIT.md` 及 `PRIMARY_PSM_Z1_EVALUATION_ACCEPTANCE.json`。
 
-后续阶段分别记录：三项融合控制的源训练及各自校准均已验收；真实 U200 训练及同位置 Z/U 目标校准也已验收，目标检测对比待新原始银行完整封存。去时频、去因果时序、去 Self-lag、去 Cross-lag 四组已获条件源训练许可，不代表已经启动。F 的真实支持输入及固定正常计划已验收，独立 phase 接线通过 NumPy/mock 工程测试；真实 Torch F 数值验证、F 训练和污染实验仍未完成。当前实时终态见上一级 `CURRENT_RESEARCH_STATE.md`，本页不替代原 OS 回执。目标校准会改变分项尺度和排序，U 必须与同目标校准的零更新模型比较。协议见[Stage2 适配说明](docs/hybrid_v1/stage2_adaptation.md)。
+后续固定阶段已完成：融合控制、四组组件消融、Z/U 目标检测对比、含匹配正常适配及单纯校准的 F 比较、H5 六方法污染比较、MSL 和受控 wave1。U 与 F 结果存在排序、持续检出和正常误报的取舍；H5 的有限 Stage1→Z 结果不等于完整 Stage2-U 污染鲁棒性。目标校准会改变分项尺度和排序，U 必须与同目标校准的零更新模型比较。协议见[Stage2 适配说明](docs/hybrid_v1/stage2_adaptation.md)，验收范围见[本次进度与结果](docs/hybrid_v1/progress_20261104.md)。历史 OS、原分数和完整日志保存在外部研究工作区，本仓库不包含原数据或权重。
 
 ```text
 python -m hybrid_tsad.hybrid_v1.cli --config configs/hybrid-v1-synthetic.example.json --phase synthetic_smoke --output-dir /new/output
@@ -94,7 +96,7 @@ forecast = output["prediction"]  # [batch,5,channels]
 |U正常头适配|已有独立Stage2入口；`python -m hybrid_tsad stage2-train --config configs/stage2-train.example.json`|仅固定645参数正常头适配；见[Stage2范围](docs/stage2_u_normal_head.md)，不代表混合污染鲁棒或F完成|
 |U读出schema6|v9有限CPU独审通过；`python -m hybrid_tsad stage2-readout --config configs/stage2-readout.infer.example.json`|18U独立身份、9Z正常阈值、单canonical双阈值及全组门禁；见[读出说明](docs/stage2_readout.md)|
 |U评价schema7|v2及资源v3有限CPU独审通过；`python -m hybrid_tsad stage2-evaluate --config configs/stage2-evaluation.example.json`|原rank/事件/Aff核与固定run统计，合成300秒/未来TEP900秒上限；见[评价说明](docs/stage2_evaluation.md)|
-|F事件少样本适配|尚未完成|不由正常头适配或Z/U读出验收替代|
+|旧正常头分支的F接口|未实现于该历史分支|当前完整V1另有事件适配与已验收F公平比较，见上方V1入口；两条实现不混称|
 
 上述命令默认只预览。示例路径/SHA是占位，不是可执行科学合同；`source_l0.local.json`须由外部已批准资产提供。真实执行需要具体合同、规范operation manifest绑定的主批准、固定输入SHA和`--execute`。旧评价入口的`--allow-labels`要求以其命令为准；schema7的`stage2-evaluate`通过独立主label release授权，不接受该旧参数。入口存在不构成执行授权。
 
