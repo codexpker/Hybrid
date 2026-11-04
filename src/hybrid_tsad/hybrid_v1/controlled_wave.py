@@ -637,12 +637,19 @@ def persist_evidence(directory, stage, state, cfg, cli, model):
         model_flags={k: v for k, v in model.config.to_dict().items() if isinstance(v, bool)}))
 
 
-def run_technical(cfg):
+def run_technical(cfg, *, recovery_units=None, counter_hook=None):
     """Later exact release only. Never formal inputs, weights training or metrics."""
     import time
     started = time.monotonic()
     import torch
     specs = technical_plan(cfg["technical"])
+    if recovery_units is not None:
+        if (cfg["operation"] != PREFIX+"TECHNICAL_CPU_PARITY_RECOVERY"
+                or cfg["technical"]["purpose"] != "CPU_PARITY" or recovery_units != specs[1:]):
+            raise PermissionError("Recovery may only complete the two untouched fixed units")
+        specs = recovery_units
+    elif counter_hook is not None:
+        raise PermissionError("Recovery counter hook requires exact recovery units")
     cli, data, training, scoring, bank, readout = _frozen_modules(cfg)
     _configure_device(cfg)
     output = Path(cfg["output"]); output.mkdir(parents=True, exist_ok=False)
@@ -656,6 +663,8 @@ def run_technical(cfg):
         model.eval()
         for parameter in model.parameters(): parameter.requires_grad_(False)
         models[entry["model_id"]] = model; states[entry["model_id"]] = original._state(model)
+        if counter_hook is not None:
+            counter_hook(entry["model_id"], model)
         persist_evidence(output/"model_evidence"/entry["model_id"], "before", states[entry["model_id"]], cfg, cli, model)
     cold_model_seconds = time.monotonic()-started
     rows = []; began = time.monotonic()
@@ -697,12 +706,12 @@ def run_technical(cfg):
                 assert_tree_parity(records[0], old)
                 if not same_neural_rng(saved_anchors[0]["RNG_after_reconstruct"], neural_rng()):
                     raise AssertionError("Old/new reference post-pass RNG mismatch")
-                original.save_bundle(directory, "REFERENCE_RNG_POST", neural_rng())
+                original.save_bundle(directory, "REFERENCE_RNG_POST", original.detached(neural_rng()))
                 original.save_bundle(directory, "REFERENCE_RAW", old)
                 parity = "PASS_OLD_V4_RAW_AND_RNG"
             finally:
                 readout._restore(post)
-        original.save_bundle(directory, "MAIN_RNG_POST", neural_rng())
+        original.save_bundle(directory, "MAIN_RNG_POST", original.detached(neural_rng()))
         if original._state(model) != states[model_id]: raise AssertionError("Technical inference changed source state")
         rows.append(dict(model_id=model_id, channels=channels, records=len(indices), writer_seconds=seconds,
                          product=product, parity=parity))
