@@ -1,4 +1,4 @@
-"""CPU test profiles, one fresh process per module; never weakens test assertions."""
+"""CPU tests isolated per module or declared case; original assertions retained."""
 import argparse
 import fnmatch
 import importlib.util
@@ -43,22 +43,10 @@ def child(args):
             pass
         else:
             chosen.append(case)
-    if not args.case and chosen and path.stem in config.get('per_test_process_modules', []):
-        reports=[]
-        with tempfile.TemporaryDirectory() as temp:
-            for i, case in enumerate(chosen):
-                out=Path(temp)/f'{i}.json'
-                cmd=[sys.executable, str(Path(__file__).resolve()), '--profile', args.profile,
-                     '--module', args.module, '--case', case.id(), '--child-output', str(out), '--profile-manifest', args.profile_manifest]
-                proc=subprocess.run(cmd, capture_output=True, text=True, timeout=args.timeout)
-                reports.append(json.loads(out.read_text()) if out.exists() else
-                    dict(tests_run=0, failures=[], errors=[dict(test=case.id(),trace_tail=proc.stderr[-2400:])],skipped=[],status='PROCESS_ERROR'))
-        report=dict(module=args.module, isolation='per-test', tests_run=sum(r['tests_run'] for r in reports),
-            failures=[x for r in reports for x in r['failures']], errors=[x for r in reports for x in r['errors']],
-            skipped=[x for r in reports for x in r['skipped']], excluded=excluded,
-            status='PASS' if all(r['status']=='PASS' for r in reports) else 'FAIL')
+    if args.list_cases:
+        report=dict(module=args.module, cases=[case.id() for case in chosen], excluded=excluded, status='DISCOVERED')
         Path(args.child_output).write_text(json.dumps(report, indent=2))
-        return 0 if report['status']=='PASS' else 1
+        return 0
     result = unittest.TestResult()
     unittest.TestSuite(chosen).run(result)
     # Keep traces compact (some assertions stringify all sys.modules).
@@ -71,6 +59,33 @@ def child(args):
     return 0 if result.wasSuccessful() else 1
 
 
+def case_processes(command, discovery, *, timeout, output_dir, env, cwd, run=subprocess.run):
+    """Bound each actual case in the supervising process, retain failed cases.
+
+    There is no shorter module-wide timeout outside these case limits. Neither
+    a timed-out case nor a missing child report can become a passing result.
+    """
+    reports=[]
+    for i, case in enumerate(discovery['cases']):
+        out=output_dir/f'case-{i}.json'; began=time.monotonic()
+        cmd=[*command, '--case', case, '--child-output', str(out)]
+        try:
+            proc=run(cmd,cwd=cwd,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=timeout)
+            row=json.loads(out.read_text()) if out.exists() else dict(status='PROCESS_ERROR',tests_run=0,
+                failures=[],errors=[dict(test=case,trace_tail=proc.stderr[-2400:])],skipped=[])
+            row['exit_code']=proc.returncode
+            if proc.returncode and row['status']=='PASS':row['status']='PROCESS_ERROR'
+        except subprocess.TimeoutExpired:
+            row=dict(status='TIMEOUT',tests_run=0,failures=[],errors=[],skipped=[],timeout_seconds=timeout)
+        row.update(test=case,wall_seconds=time.monotonic()-began);reports.append(row)
+    return dict(module=discovery['module'],isolation='per-test',cases=reports,excluded=discovery['excluded'],
+        tests_run=sum(r['tests_run'] for r in reports),
+        failures=[x for r in reports for x in r['failures']],errors=[x for r in reports for x in r['errors']],
+        skipped=[x for r in reports for x in r['skipped']],
+        status=('PASS' if all(r['status']=='PASS' for r in reports) else 'FAIL') if reports else
+               ('INTEGRATION_NOT_RUN' if discovery['excluded'] else 'NO_MATCH'))
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--profile', choices=('unit','integration','all'), default='unit')
@@ -80,6 +95,7 @@ def main():
     p.add_argument('--module', help=argparse.SUPPRESS)
     p.add_argument('--child-output', help=argparse.SUPPRESS)
     p.add_argument('--case', help=argparse.SUPPRESS)
+    p.add_argument('--list-cases', action='store_true', help=argparse.SUPPRESS)
     p.add_argument('--profile-manifest', default=str(ROOT/'tests/profiles.json'), help=argparse.SUPPRESS)
     args=p.parse_args()
     if args.module:
@@ -97,15 +113,21 @@ def main():
     with tempfile.TemporaryDirectory() as temp:
         frozen_manifest=Path(temp)/'profile.json'
         frozen_manifest.write_bytes(Path(args.profile_manifest).read_bytes())
+        profile_config=json.loads(frozen_manifest.read_text())
         for i,file in enumerate(files):
             out=Path(temp)/f'{i}.json'; rel=file.relative_to(ROOT).as_posix()
-            cmd=[sys.executable,str(Path(__file__).resolve()),'--profile',args.profile,'--module',rel,'--child-output',str(out),'--profile-manifest',str(frozen_manifest)]
+            command=[sys.executable,str(Path(__file__).resolve()),'--profile',args.profile,'--module',rel,'--profile-manifest',str(frozen_manifest)]
+            per_case=file.stem in profile_config.get('per_test_process_modules', [])
+            cmd=[*command,'--child-output',str(out)]+(['--list-cases'] if per_case else [])
             try:
                 proc=subprocess.run(cmd,cwd=ROOT,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace',timeout=args.timeout)
                 row=json.loads(out.read_text()) if out.exists() else dict(module=rel,status='PROCESS_ERROR',stderr_tail=proc.stderr[-2400:])
                 row['exit_code']=proc.returncode
+                if per_case and row['status']=='DISCOVERED':
+                    case_root=Path(temp)/f'module-{i}';case_root.mkdir()
+                    row=case_processes(command,row,timeout=args.timeout,output_dir=case_root,env=env,cwd=ROOT)
             except subprocess.TimeoutExpired:
-                row=dict(module=rel,status='TIMEOUT',timeout_seconds=args.timeout)
+                row=dict(module=rel,status='TIMEOUT',timeout_seconds=args.timeout,phase='discovery' if per_case else 'module')
             results.append(row)
             print(f'{rel}: {row["status"]} ({row.get("tests_run",0)} run, {len(row.get("excluded",[]))} integration excluded)',flush=True)
     report=dict(profile=args.profile,process_isolation='per-module; configured mixed modules per-case',recursive=True,CPU_only=True,

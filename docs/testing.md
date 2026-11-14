@@ -30,6 +30,22 @@ Torch or weakening any assertion. Every exclusion is enumerated as
 likewise not labeled PASS. Tests' original skip decorators are reported separately.
 Raw `python -m unittest ...` behavior is unchanged.
 
+`test_stage2_readout` also runs per case. Its complete synthetic chain repeatedly
+checks the 18-model archive, calibration provenance, source/runtime hashes and
+semantic attacks. The original 180-second MODULE budget cut off this cumulative
+work. Each case now has the SAME 180-second limit, enforced by the supervising
+process; discovery is separately bounded. There is no enclosing 180-second
+module timer that kills otherwise healthy cases. Reports identify individual
+timeouts/process errors, retain them as failures, and continue to the next case.
+No verification or expected hash is cached away or disabled to reduce runtime.
+The fixed follow-up completed with **6 passed / 1 external-source skip**:
+the complete-chain case took 120.391 seconds; all cases together took 215.859
+seconds. This explains why the former 180-second module cap was insufficient
+without requiring a larger single-case timeout. Timed native-stack sampling in
+the first diagnostic process exited with a Windows access violation; that failure
+is retained, its native cause is not claimed, and it did not recur in the later
+passing profiling/ordinary runs.
+
 External integrations include pinned LEFT/CATCH/RoCA/TimeRadar/TimesFM sources,
 original initial weights, frozen configs and archived child/runtime layouts.
 Relevant environment bindings are recorded per entry. An unset binding is a
@@ -53,4 +69,13 @@ No tests train a new scientific candidate or evaluate real QUERY data as part of
 this repair. The optional synthetic CUDA RNG check is opt-in via
 `HYBRID_AUDIT_CUDA_RNG=1`; this runner removes that variable and hides CUDA.
 
-Actual bounded repair results and unresolved cases: [F06_TEST_RESULTS.json](audit_c600125/F06_TEST_RESULTS.json). The recursive first run is not green; the old Stage2 readout module exceeded 180 seconds and remains unresolved. The exact old runtime exists locally and its COPY/identity agree; among its five pinned kernels only current engine/evaluation.py differs. See [kernel hashes](audit_c600125/F06_frozen_kernel_check.json). No integrity oracle was reset.
+Actual bounded repair results and remaining cases: [F06_TEST_RESULTS.json](audit_c600125/F06_TEST_RESULTS.json).
+The recursive first run remains recorded as not green. The Stage2 readout
+follow-up identifies the expensive complete-chain test and its repeated
+`validate_definition -> Assets.file/resolve_path/sha256` calls, rather than
+attributing the CPU cases to absent external data. Its real-core transport case
+still requires `HYBRID_OFFICIAL_FILE` (unbound locally), separately from installed
+Torch. The exact old runtime exists locally and its COPY/identity agree; among
+its five pinned kernels only current engine/evaluation.py differs. See
+[kernel hashes](audit_c600125/F06_frozen_kernel_check.json). No integrity oracle
+was reset; F06 remains partially closed overall.

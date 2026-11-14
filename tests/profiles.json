@@ -131,6 +131,7 @@
   ],
   "per_test_process_modules": [
     "test_candidate_experiment",
-    "test_shared_engine"
+    "test_shared_engine",
+    "test_stage2_readout"
   ]
 }

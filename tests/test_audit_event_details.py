@@ -49,6 +49,9 @@ class ObservationDetails(unittest.TestCase):
     def test_no_observations_returns_NA_not_zero(self):
         row, = event_details(self.labels, np.array([], dtype=int), np.array([], dtype=bool))
         self.assertEqual(row['observation_status'], 'UNKNOWN_UNOBSERVED')
+        self.assertEqual(row['observed_alarm_points'], 0)  # Empty observed hit count, not a missed full event.
+        self.assertIsNone(row['coverage'])
+        self.assertIsNone(row['longest_miss_points'])
         self.assertIsNone(row['observed_only_coverage'])
         self.assertIsNone(row['longest_observed_miss_points'])
 

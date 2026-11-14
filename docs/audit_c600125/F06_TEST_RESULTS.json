@@ -126,8 +126,9 @@
     },
     {
       "module": "tests/test_stage2_readout.py",
-      "status": "UNRESOLVED_TIMEOUT",
-      "reason": "180-second module limit exceeded. Not retried or declared passing; no scientific job."
+      "status": "MODULE_TIMEOUT_SCOPE_RESOLVED; EXTERNAL_TRANSPORT_CASE_STILL_SKIPPED",
+      "reason": "Six synthetic CPU cases pass individually with unchanged 180-second per-case cap; total module wall exceeds old module-wide cap. Real-core transport case requires unbound HYBRID_OFFICIAL_FILE.",
+      "previous_status": "UNRESOLVED_TIMEOUT"
     }
   ],
   "asset_bindings": {
@@ -150,5 +151,107 @@
   },
   "historical_results_changed": false,
   "oracle_hashes_changed": false,
-  "full_suite_green": false
+  "full_suite_green": false,
+  "stage2_readout_followup": {
+    "engineering_base_commit": "5142dca6361a0b8f3bbed039f1e7bad6ca64f3e2",
+    "tests_run": 7,
+    "passed": 6,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "per_case_timeout_seconds": 180,
+    "module_wall_seconds": 215.85899999993853,
+    "cases": [
+      {
+        "test": "test_stage2_readout.ActualCoreTransportTests.test_real_three_modes_wrapper_matches_old_collector_exact_arrays_rng",
+        "status": "SKIPPED_EXTERNAL_ASSET",
+        "wall_seconds": 0.2190000000409782,
+        "exit_code": 0,
+        "skip_reason": "existing torch/external official source required"
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng",
+        "status": "PASS",
+        "wall_seconds": 120.39099999994505,
+        "exit_code": 0,
+        "skip_reason": null
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_cpu_fixture_permission_digest_and_no_labels_route",
+        "status": "PASS",
+        "wall_seconds": 6.39000000001397,
+        "exit_code": 0,
+        "skip_reason": null
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_gold_mode_seed_and_checkpoint_are_closed_to_predeclared_hybrid",
+        "status": "PASS",
+        "wall_seconds": 23.45299999997951,
+        "exit_code": 0,
+        "skip_reason": null
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_replay_future_isolation_and_nonmonotone_cal_are_original_helpers",
+        "status": "PASS",
+        "wall_seconds": 6.391000000061467,
+        "exit_code": 0,
+        "skip_reason": null
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_wrong_parent_role_plan_primary_and_incomplete_model_set_refused",
+        "status": "PASS",
+        "wall_seconds": 18.733999999938533,
+        "exit_code": 0,
+        "skip_reason": null
+      },
+      {
+        "test": "test_stage2_readout.ReadoutTests.test_z_normal_cal_x2_resigned_q99_and_trace_change_refused",
+        "status": "PASS",
+        "wall_seconds": 40.06299999996554,
+        "exit_code": 0,
+        "skip_reason": null
+      }
+    ],
+    "root_cause": "The outer module-wide 180-second limit included repeated archive/runtime verification across all cases; this module took 215.859 seconds in the final per-case run. No missing asset in the six CPU fixtures.",
+    "expensive_case": "test_complete_config_catalog_zcal_infer_seal_gate_one_object_and_original_rng",
+    "bottleneck_paths": [
+      "stage2_readout_identity.validate_definition -> stage2_identity.Assets.file -> config.resolve_path -> pathlib.resolve",
+      "stage2_readout_identity.verify_archive -> config.sha256",
+      "stage2.calibration_tracks -> stage2_data.validate_target"
+    ],
+    "profiling": {
+      "instrumented_passing_case_seconds": 159.25,
+      "validate_definition_calls": 10,
+      "validate_definition_cumulative_seconds": 101.177,
+      "assets_file_calls": 40855,
+      "pathlib_resolve_calls": 90321,
+      "pathlib_resolve_cumulative_seconds": 70.004,
+      "sha256_calls": 38862,
+      "note": "Profiling timings overlap along call stacks; do not sum cumulative times."
+    },
+    "diagnostic_anomaly": {
+      "phase": "initial timed-faulthandler sampling",
+      "native_exit_code": 3221225477,
+      "seconds": 40.625,
+      "status": "Preserved diagnostic failure; not reproduced by the passing Python-stack/cProfile run or final ordinary case run; native root cause not established."
+    },
+    "actual_external_blocker": {
+      "test": "ActualCoreTransportTests.test_real_three_modes_wrapper_matches_old_collector_exact_arrays_rng",
+      "torch_installed": true,
+      "HYBRID_OFFICIAL_FILE": "UNBOUND",
+      "required": "Pinned official TimeRadar source entry plus its legal runtime dependencies; source file availability not inferred solely from unbound variable."
+    },
+    "regressions": {
+      "test_test_profiles": "4 PASS, including timeout attribution/continue-next-case and missing-report refusal",
+      "test_audit_event_details": "8 PASS; empty observed count zero is not an event miss"
+    },
+    "raw_results": {
+      "path": "preparations/audit_c600125_20261114/readout_followup/per_case_final.json",
+      "sha256": "55b87b0794affa1e08152d2037fe8840cd6d744c0cdca72a4963470057ede6f5"
+    },
+    "historical_test_source_unchanged": true,
+    "scientific_training": false,
+    "real_QUERY_evaluation": false,
+    "overall_F06_status": "PARTIALLY_CLOSED"
+  }
 }

@@ -4,6 +4,9 @@
 该提交、`review/hybrid-20261114`、`main` 和外置历史运行原件不改写。
 本轮不训练科研模型、不重评真实 QUERY、不拟合阈值、不改变论文方向。
 
+当前状态：F01/F02 为已确认、已披露的历史方法与比较协议限制；F03/F04 为工程修复；
+F05 为可选择使用的新明细接口；F06 仅部分关闭。不能统称六项算法问题全部修好。
+
 ## 复核与处置
 
 |编号|裁决与实际路径|工程处置/边界|对历史结论的影响|
@@ -30,17 +33,24 @@ F05 在 `tests/test_audit_event_details.py`（也直接调用旧固定评价器�
 F06 环境/生命周期回归及完整分型运行方法见 `docs/testing.md`。
 实际新结果另存本目录，不替换 `review_artifacts/VALIDATION.*`。
 
-实际新增定点回归 **34/34 PASS**，包括 opt-in 本机 CUDA RNG 检查；
+在已接受的工程基点 `5142dca` 阶段，新增定点回归 **34/34 PASS**，包括 opt-in 本机 CUDA RNG 检查；
 另外 CPU profile 的32项审计用例为31 PASS/1显式 CUDA opt-in skip。
 详见 [回归记录](regression_results.json)。编译和 CLI help 通过。
 递归发现首轮是129模块/863项，2失败、11错误、16跳过、73项明确集成未运行，
 另1模块180秒超时；不是对旧622项成绩的覆盖，也不称全套通过。
 两个 DLL 导入隔离问题的22+9项定点复算全过，首轮失败保留。
-剩余外部绑定、当前代码与历史身份不兼容及未定位超时逐条见
+剩余外部绑定、当前代码与历史身份不兼容及首轮超时的后续定位逐条见
 [F06实际状态](F06_TEST_RESULTS.json)。
 本机原32文件 runtime 确实存在且 COPY 相符；五个冻结核心只有
 `engine/evaluation.py` 与当前包不等，其余四个相同，见
 [原值对照](F06_frozen_kernel_check.json)。本轮没有修改该核心或其预期 SHA。
+
+以已接受的工程基点 `5142dca` 完成单模块收尾：`test_stage2_readout.py` 逐用例独立运行，
+6项合成 CPU 测试通过、1项真实核心传输测试因 `HYBRID_OFFICIAL_FILE` 未绑定跳过。
+完整链路用例实际120.391秒，模块累计215.859秒；定位到重复归档/路径/哈希校验累计超过旧模块180秒门槛。
+runner 改为逐例监督，单例仍为180秒，保留所有身份断言及原测试源码；没有扩大单例超时。
+新 runner 超时归属/后续用例接续等4项测试、F05明细8项测试均通过；旧首轮日志和诊断采样的原生异常也保留。
+该超时收尾已闭合，F06的其它外部资产和历史身份兼容缺口仍在，不宣称整体全绿。
 
 完整修改文件见 [CHANGED_FILES.md](CHANGED_FILES.md)；
 归档树、预测候选、新版 matched-U、冻结协议等不变范围见
@@ -81,7 +91,8 @@ FRFT 相同种子掩码/输出及旧单设备随机序列一致。
 - `coverage`、`longest_miss_points`、`steady_coverage`：仅完整且边界合格事件有值，否则 NA。
 - `observed_only_coverage`、`observed_alarm_points`、`longest_observed_miss_points`：明确仅描述已评分点；未知间隔打断已观测漏段，不跨缺口拼接。
 - `coverage_ratio` 是评分覆盖率，不是检测召回；同时提供缺失点数和原轴缺失区间。
-- 完全未观测事件的已观测统计也是 NA，不能记作零命中或全段漏检。
+- 完全未观测时 `observed_alarm_points=0` 只是已观测命中计数（此时已观测点数也是0），不代表完整事件漏检。
+  `coverage`、`longest_miss_points`、`steady_coverage` 及已观测比例/漏段仍为 NA；评分覆盖率 `coverage_ratio=0` 也不等于检测召回率为0。
 - 原标签事件边界不改；触及原运行边界的事件仍单独标记 censored。
 
 它是新版本 opt-in 明细接口；归档 fixed_metrics 仍按原身份复现，未暗中重接旧科研评价。
