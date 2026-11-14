@@ -16,3 +16,25 @@ artifacts/
 *.npy
 *.npz
 *.pdf
+
+# Public-review boundary: keep assets and personal runtime state external.
+.pytest_cache/
+.coverage*
+htmlcov/
+*.log
+*.safetensors
+*.h5
+*.hdf5
+*.rda
+*.RData
+*.rds
+*.xlsx
+*.xls
+*.docx
+*.zip
+*.sqlite*
+*.pem
+*.key
+*.p12
+.ssh/
+credentials/

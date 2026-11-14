@@ -1,0 +1,7 @@
+{
+  "reason": "Numerical identity with actual saved evaluation_source.py inspected before any new TEST model scores",
+  "canonical_numerics": "mid-radius and mid+radius are formed in float64, then np.maximum((mid-y)/np.maximum(mid-low,1e-8),(y-mid)/np.maximum(upper-mid,1e-8)); mathematical abs(error)/radius with original floating subtraction preserved",
+  "new_baselines": "P0 and FITmean use identical CAL order statistic and score arithmetic",
+  "prefix_independence": "compare first160 raw target/conditions among20faults within run and normalTesting same run; hash-deduplicate identical normal prefix series, do not call400 prefixes independent",
+  "uncertainty": "same 20-run paired cluster bootstrap indices with seed84551 and2000replicates for all fixed contrasts/scopes"
+}

@@ -1,0 +1,18 @@
+{
+  "experiment_id": "hybrid_target_fullshot_fixed_PSM_evaluation_20261110_v1",
+  "source": "results/hybrid_target_fullshot_fixed_PSM_evaluation_20261110_v1/PRIMARY_DECISION.md",
+  "source_sha256": "03c52756127d8f8791661fbb2be178bb1478fe4f43ddbb88858b426ce1776247",
+  "numbers": {
+    "scope": "common87232, external offline permissions explicitly distinguished",
+    "AP": {
+      "Hybrid_ZS": 0.31423,
+      "Hybrid_ZT": 0.314362,
+      "Hybrid_Ufull2000": 0.313075,
+      "Hybrid_Fullshot8000": 0.30175,
+      "HistoryMean512": 0.321036,
+      "TimeRadar_native_offline": 0.363031,
+      "LEFT_native_offline": 0.577326,
+      "LEFT_causal_endpoint_targettrained": 0.569286
+    }
+  }
+}

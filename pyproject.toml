@@ -14,6 +14,9 @@ dependencies = []
 data = ["numpy", "pandas"]
 evaluation = ["numpy", "scikit-learn"]
 model = ["numpy", "pandas", "torch", "torch-frft"]
+test = ["numpy", "pandas", "scipy", "scikit-learn", "psutil", "threadpoolctl"]
+tep = ["pyreadr"]
+profile = ["psutil"]
 
 [project.scripts]
 hybrid-tsad = "hybrid_tsad.cli:main"
@@ -23,3 +26,4 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 hybrid_tsad = ["core_provenance.json"]
+"hybrid_tsad.experimental_controls.carots_soc" = ["LICENSE", "ORIGIN.json", "README.md"]

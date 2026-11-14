@@ -1,0 +1,262 @@
+{
+  "operation": "LEFT_TEP_C3_H100_SYNTHETIC_PROFILE",
+  "upstream_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+  "seed": 2025,
+  "steps": 3,
+  "batch_size": 128,
+  "max_seconds": 180,
+  "max_allocated_GiB": 20,
+  "physical_gpu_index": 0,
+  "expected_gpu_uuid": "895053ba-a4d6-49a6-d831-865d5982f009",
+  "data": null,
+  "checkpoint": null,
+  "source_root": "${HYBRID_RESEARCH_ROOT}/preparations/left_baseline_build_20261101_v1/upstream",
+  "source_hashes": {
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863",
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+    "configs/PSM/model_configs_Left.json": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4",
+    "configs/PSM/model_configs_0.json": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f",
+    "configs/PSM/train_configs.json": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab",
+    "models/CrossAD/Basic_CrossAD.py": "f9b1dc5996be896ab45a6f78f7e6ce94d680d951cca3a62ae759d23467f4e3f2",
+    "models/CrossAD/Attention_Blocks.py": "c0460930efcb8c8c4375ea6b80bd0ca14246d7f4c8feaa493f692d2c93c95ce1",
+    "models/CrossAD/EncDec.py": "c3c68f63fdd5cda3c219687d52bdd6c2a97d0ce416da747399dde92d3408f36c",
+    "models/CrossAD/Context_Blocks.py": "0fad86b3c9bb4984bd4f09743abcf784b44513a6e601606e9134b17ffbcf09a4"
+  },
+  "adapter_hashes": {
+    "__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "left_baseline.py": "d42ba3d20da7d5134455db2d01953ae18a44b9412b7237ccd95a2287b7741134",
+    "normal_run_data.py": "f6c3d60795d5f01568e5c04e95950d86ae774624ecbcb8c4c9158c3314077150",
+    "left_normal_public.py": "d9c0a03f8aaaade5576c32857e7d145bfccee1e19165a17c954076516981291f"
+  },
+  "normal_metadata": {
+    "path": "${HYBRID_RESEARCH_ROOT}/preparations/left_tep_c3_h100_v1/NORMAL_FIT_SELECT_REFS.json",
+    "sha256": "6692850a0aeb7d048eef7467dda09f0133ea4f5fb926b9bf466d91caf71694e3"
+  },
+  "normal_source_acceptance": {
+    "path": "${HYBRID_RESEARCH_ROOT}/results/tep_reactor_normal_readiness_20261101_v1/PRIMARY_ACCEPTANCE.json",
+    "sha256": "ec9743fdc37f5248f1c2149ee0f238d630cca03b8ea9b316426fe12afafbd834"
+  },
+  "effective_configs": {
+    "model": {
+      "seq_len": 100,
+      "enc_in": 3,
+      "n_fft": 64,
+      "hop_length": 16,
+      "win_length": 32,
+      "ms_kernels": [
+        4
+      ],
+      "spectral_boundary": "reflect",
+      "spectral_tau": 0.03,
+      "spectral_eps": 1e-08,
+      "spectral_min_bw": 0.0,
+      "patch_len": 6,
+      "patch_dropout": 0.1,
+      "d_model": 128,
+      "e_layers": 1,
+      "n_heads": 8,
+      "d_ff": 512,
+      "attn_dropout": 0.1,
+      "proj_dropout": 0.1,
+      "ff_dropout": 0.1,
+      "norm": "layer",
+      "activation": "gelu",
+      "dropout": 0.1,
+      "fusion_layers": 1,
+      "fusion_dropout": 0.1,
+      "fusion_d_ff": 128,
+      "fuse_t_from_m": false,
+      "film_dropout": 0.1,
+      "film_d_ff": 128,
+      "film_activation": "gelu",
+      "num_prototypes": 128,
+      "proto_temp": 5.0,
+      "ema_momentum": 0.99,
+      "conf_threshold": 0.85,
+      "update_q_err": 0.3,
+      "update_q_ad": 0.3,
+      "warmup_steps": 123,
+      "ramp_steps": 246,
+      "lambda_max": 0.3,
+      "z_fuse_hidden": 512,
+      "alpha_cycle_l": 0.5,
+      "alpha_ms_l": 0.5,
+      "alpha_cons_l": 0.1,
+      "alpha_cycle_s": 0.5,
+      "alpha_ms_s": 0.5,
+      "alpha_cons_s": 0.1,
+      "res_level": 0.1,
+      "fusion_level": 0.9,
+      "alpha_freq": 0.2,
+      "alpha_time": 0.8,
+      "alpha_gate": 0.2,
+      "smooth_k": 3,
+      "eps": 1e-08
+    },
+    "data": {
+      "seq_len": 100,
+      "enc_in": 3,
+      "patch_len": 6,
+      "ms_kernels": [
+        32,
+        16,
+        8,
+        4,
+        2
+      ],
+      "ms_method": "average_pooling",
+      "topk": 10,
+      "n_query": 5,
+      "query_len": 5,
+      "bank_size": 32,
+      "decay": 0.95,
+      "epsilon": 1e-05,
+      "e_layers": 2,
+      "d_layers": 2,
+      "m_layers": 2,
+      "n_heads": 4,
+      "attn_dropout": 0.1,
+      "proj_dropout": 0.1,
+      "d_model": 128,
+      "d_ff": null,
+      "ff_dropout": 0.1,
+      "norm": "layernorm",
+      "activation": "gelu",
+      "n_fft": 64,
+      "hop_length": 16,
+      "win_length": 64,
+      "z_dim": 128,
+      "num_prototypes": 32,
+      "proto_temp": 3.0,
+      "ema_momentum": 0.9,
+      "warmup_steps": 1000,
+      "ramp_steps": 2000,
+      "lambda_max": 0.1,
+      "update_q_err": 0.6,
+      "update_q_ad": 0.6,
+      "lam_ad": 0.2,
+      "alpha_freq": 0.6,
+      "alpha_time": 0.4,
+      "alpha_gate": 0.3,
+      "smooth_k": 5,
+      "time_kernels": [
+        5,
+        3
+      ],
+      "freq_kernels": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "gate_mode": "mix"
+    },
+    "train": {
+      "train_epochs": 20,
+      "batch_size": 128,
+      "optim": "adam",
+      "learning_rate": 0.0001,
+      "lradj": "type2",
+      "patience": 3
+    },
+    "changes": {
+      "model": {
+        "seq_len": [
+          192,
+          100
+        ],
+        "enc_in": [
+          25,
+          3
+        ],
+        "warmup_steps": [
+          1000,
+          123
+        ],
+        "ramp_steps": [
+          2000,
+          246
+        ]
+      },
+      "data": {
+        "seq_len": [
+          192,
+          100
+        ],
+        "enc_in": [
+          25,
+          3
+        ]
+      },
+      "selection": "only normal validation calls at model.step>=369 enter native EarlyStopping",
+      "unchanged_model_keys": [
+        "n_fft",
+        "hop_length",
+        "win_length",
+        "ms_kernels",
+        "spectral_boundary",
+        "spectral_tau",
+        "spectral_eps",
+        "spectral_min_bw",
+        "patch_len",
+        "patch_dropout",
+        "d_model",
+        "e_layers",
+        "n_heads",
+        "d_ff",
+        "attn_dropout",
+        "proj_dropout",
+        "ff_dropout",
+        "norm",
+        "activation",
+        "dropout",
+        "fusion_layers",
+        "fusion_dropout",
+        "fusion_d_ff",
+        "fuse_t_from_m",
+        "film_dropout",
+        "film_d_ff",
+        "film_activation",
+        "num_prototypes",
+        "proto_temp",
+        "ema_momentum",
+        "conf_threshold",
+        "update_q_err",
+        "update_q_ad",
+        "lambda_max",
+        "z_fuse_hidden",
+        "alpha_cycle_l",
+        "alpha_ms_l",
+        "alpha_cons_l",
+        "alpha_cycle_s",
+        "alpha_ms_s",
+        "alpha_cons_s",
+        "res_level",
+        "fusion_level",
+        "alpha_freq",
+        "alpha_time",
+        "alpha_gate",
+        "smooth_k",
+        "eps"
+      ],
+      "not_author_default_curriculum": true
+    }
+  },
+  "output": "${HYBRID_RESEARCH_ROOT}/results/left_tep_c3_h100_synthetic_profile_20261101_v2",
+  "inference_batch_size": 1,
+  "preparation_contract": {
+    "path": "${HYBRID_RESEARCH_ROOT}/preparations/left_tep_c3_h100_v1/LEFT_TEP_C3_H100_PREPARATION_20261101.md",
+    "sha256": "964735f36cef2c3bdc3b4f420663f6da2528c965450d655e0f610c6e40a42cfa"
+  },
+  "num_optimizer_updates": 3,
+  "forced_backward_probes": 2,
+  "infer_calls": 10
+}

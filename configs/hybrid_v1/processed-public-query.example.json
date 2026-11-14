@@ -1,0 +1,112 @@
+{
+  "operation": "HYBRID_V1_PROCESSED_PUBLIC_QUERY_INPUT_DERIVATION",
+  "dataset": "MSL_AUTHOR_PROCESSED_COL0",
+  "input": {
+    "path": "${HYBRID_RESEARCH_ROOT}/data/MSL.csv",
+    "bytes": 126933151,
+    "sha256": "893738efa9b7e6fbf64cb6d53e604cb44e9c373c613c4733eff7b32583533f21"
+  },
+  "schema": {
+    "header": [
+      "date",
+      "data",
+      "cols"
+    ],
+    "block_rows": 132046,
+    "split": 58317,
+    "feature_names": [
+      "col_0",
+      "col_1",
+      "col_2",
+      "col_3",
+      "col_4",
+      "col_5",
+      "col_6",
+      "col_7",
+      "col_8",
+      "col_9",
+      "col_10",
+      "col_11",
+      "col_12",
+      "col_13",
+      "col_14",
+      "col_15",
+      "col_16",
+      "col_17",
+      "col_18",
+      "col_19",
+      "col_20",
+      "col_21",
+      "col_22",
+      "col_23",
+      "col_24",
+      "col_25",
+      "col_26",
+      "col_27",
+      "col_28",
+      "col_29",
+      "col_30",
+      "col_31",
+      "col_32",
+      "col_33",
+      "col_34",
+      "col_35",
+      "col_36",
+      "col_37",
+      "col_38",
+      "col_39",
+      "col_40",
+      "col_41",
+      "col_42",
+      "col_43",
+      "col_44",
+      "col_45",
+      "col_46",
+      "col_47",
+      "col_48",
+      "col_49",
+      "col_50",
+      "col_51",
+      "col_52",
+      "col_53",
+      "col_54"
+    ],
+    "primary_feature_indices": [
+      0
+    ]
+  },
+  "output_dir": "${HYBRID_RESEARCH_ROOT}/data/hybrid_v1_msl_processed_query_inputs_20261104_v1",
+  "source_sha256": {
+    "__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "hybrid_v1/__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613",
+    "hybrid_v1/config.py": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6",
+    "hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478",
+    "hybrid_v1/data.py": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315",
+    "hybrid_v1/processed_query.py": "bf8c55a1357e25e78df2dbb9e9f62bbb3e6beeedaade4d75f7ad25f948b39bc4"
+  },
+  "permissions": {
+    "wholefile_byte_hash": true,
+    "primary_query_numeric": true,
+    "train_numeric_parse": false,
+    "nonprimary_numeric_parse": false,
+    "label_numeric_parse": false,
+    "model_or_weights": false,
+    "fit": false,
+    "query_forward": false,
+    "evaluation": false
+  },
+  "metadata_assets": [
+    {
+      "path": "${HYBRID_RESEARCH_ROOT}/repos/TimeRadar/dataset/evaluation_dataset/DETECT_META.csv",
+      "sha256": "df244b5d2f438b36e8e9c4f6340ea735a469a40b80f9c72be738e2019056adfd"
+    },
+    {
+      "path": "${HYBRID_RESEARCH_ROOT}/preparations/hybrid_v1_msl_processed_reader_build_20261104_v2/evidence/timeradar_data_loader.py",
+      "sha256": "6f478212ec3890aca71dc17c5776fa9ea01a084a0879776fcd25c48b5d7e69db"
+    },
+    {
+      "path": "${HYBRID_RESEARCH_ROOT}/preparations/hybrid_v1_msl_processed_reader_build_20261104_v2/evidence/timeradar_data_factory.py",
+      "sha256": "46d5dd7b6703cce41c4839e9ac9a7ddb6072639f4a6b706222e53b9b67896d59"
+    }
+  ]
+}

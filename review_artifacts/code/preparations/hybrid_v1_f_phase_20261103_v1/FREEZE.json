@@ -1,0 +1,224 @@
+{
+  "status": "F_PHASE_SYNTHETIC_INTERFACE_CPU_COMPLETED_PENDING_REVIEW",
+  "files": {
+    "CHOICE_MATRIX.json": {
+      "bytes": 278,
+      "sha256": "944058bbf544242c1dfd95d3eebc99756c8bb07491cbf0d6115f27541ec5c9b3"
+    },
+    "CPU_RECEIPT_v1.json": {
+      "bytes": 746,
+      "sha256": "3c4cc0c7a6a3e6a853280a01050862ff8e7238978e171dc73edcbe480fb04bc3"
+    },
+    "CPU_RECEIPT_v2.json": {
+      "bytes": 746,
+      "sha256": "fdd748ba8a520d9196e8fd7993192c7c64eddf92ecde35824ddecffbbe690c65"
+    },
+    "CPU_RECEIPT_v3.json": {
+      "bytes": 781,
+      "sha256": "12177548c5172058fc9458390f8716075bb064464205fc40a8c0de2f874aab4e"
+    },
+    "CPU_RECEIPT_v4.json": {
+      "bytes": 773,
+      "sha256": "82cabddf1e0cea89405eb64470762763b01107031ef3177761ac54c9f021b879"
+    },
+    "CPU_RECEIPT_v5.json": {
+      "bytes": 773,
+      "sha256": "57dad67d884c98ec867905342a0a2bf96f01cd647257bbeac769965e4ee35023"
+    },
+    "CPU_RECEIPT_v6.json": {
+      "bytes": 773,
+      "sha256": "4c920a3ea3cac7c2daf4585117d77f24bfc86c407c1c797cbedf05cb54b76d5e"
+    },
+    "CPU_STDOUT_v1.txt": {
+      "bytes": 2034,
+      "sha256": "d68d8257d69544c3b667999f65133564937188a39b818ad4c866a08319538710"
+    },
+    "CPU_STDOUT_v2.txt": {
+      "bytes": 2113,
+      "sha256": "f59312211ac439ee38e7bb47fdc1735369884ff67886b8e01be531198c7bf831"
+    },
+    "CPU_STDOUT_v3.txt": {
+      "bytes": 2625,
+      "sha256": "ad263294d39223795013ae72f8e91a664021a91380d66f417fa52d74a842f528"
+    },
+    "CPU_STDOUT_v4.txt": {
+      "bytes": 2625,
+      "sha256": "04cfa2f7e3d188c3c86f340997a8daaeee562c340ee79d97d1ca6c9bcef5bcaa"
+    },
+    "CPU_STDOUT_v5.txt": {
+      "bytes": 2625,
+      "sha256": "86df944f26805f5c2eb0e978302405552a3dcce41b1d2f2803c9510ea219d89e"
+    },
+    "CPU_STDOUT_v6.txt": {
+      "bytes": 2625,
+      "sha256": "0b8ec8774f344e19b193a092f6de918ec1c3c297a10991d8e489965572870bfa"
+    },
+    "DELIVERY.md": {
+      "bytes": 5277,
+      "sha256": "35da35c39f357a221c72cff3bb6057674e285ee2076bac4c3be82458ddcbd256"
+    },
+    "IMPLEMENTATION_CONTRACT.md": {
+      "bytes": 2259,
+      "sha256": "1be9825f0103e0aab52b5bc2986df46be9bc8f1bdf1e55200fee735cced174ad"
+    },
+    "SOURCE_CLOSURE.json": {
+      "bytes": 1829,
+      "sha256": "7c2997fa6b8aaf3e6bed3c1578b54dd65fddbe25194c0c4cfdb7c1743f87a11b"
+    },
+    "test_event_adaptation.py": {
+      "bytes": 10284,
+      "sha256": "1229c9e156b7cbeaf78c79e4709cd1eeebd778e650efb6efe23d6565e6cc0292"
+    },
+    "configs/K1_choice0.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "2dd037fd8e4e65aebcd6268ea8348075ae9a6b3adf0d98b6d40152ca687039e2"
+    },
+    "configs/K1_choice0.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "40ae3da8c55632c2fcce207f6432c600ebf7c56a6955b660cd42b03aed2fac0c"
+    },
+    "configs/K1_choice1.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "cccbc9fbcbe65197095dd666810a2b9f84ab61acd290378e4a9d9209b0f3fe00"
+    },
+    "configs/K1_choice1.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "e1d4ede42b9fe394b9b6177ff9039c61ab90d4a41e21057667648ac0a8bee3f0"
+    },
+    "configs/K1_choice2.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "c8e8d863b00745d47c2575b6eb2536df6fc2dd79aa8a34e1a6564afb2dd9589e"
+    },
+    "configs/K1_choice2.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "78236ead72276e58632612b1f72d251f72c7ca09118855118d8826a2a77810ad"
+    },
+    "configs/K3_choice3.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "acdfa3758e0d3958efc24f65f700dcec09e36608646b950a51bc22bde885d00a"
+    },
+    "configs/K3_choice3.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "20dd5c761c90285c514b1d387d382a719f25e36424af6b6b94b10ae762a0323c"
+    },
+    "initial_draft/event_adaptation.py": {
+      "bytes": 13960,
+      "sha256": "a07d4f131df08ea5f33500b9de53abbb937973a0a4a2093380f4e4fe1b186227"
+    },
+    "initial_draft/K1_choice0.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "0950dc289472517adc74e152faa4d3d29f0415e1cc7f717e134aa68fa1385064"
+    },
+    "initial_draft/K1_choice0.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "442675c275d97884f1cb63e3ec6c783ffb91f1da14e404f65d3645d5134f4f8c"
+    },
+    "initial_draft/K1_choice1.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "e82570edc6eb361b708ef1d4a796cf7517b86caa9b126c11b8296adcbfee8a25"
+    },
+    "initial_draft/K1_choice1.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "79000bfa072499416f2102930d9ab81fd6b7ad3865f72e6ba7f6b81f61cc90b2"
+    },
+    "initial_draft/K1_choice2.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "5ebff41a8d56997f80f2b8ef55da7d3675db9e7967ef70c257119cdfe39ca9bc"
+    },
+    "initial_draft/K1_choice2.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "14055d53693557ad44b38275bb3c0c438de0bc2b174c8c2590d2e555090d41fe"
+    },
+    "initial_draft/K3_choice3.target_event_calibrate.PENDING.json": {
+      "bytes": 5023,
+      "sha256": "1efaeab02d285511c18610d50a955faba0ae9c6afffe68d12ad9ce65ab742327"
+    },
+    "initial_draft/K3_choice3.target_event_train.PENDING.json": {
+      "bytes": 4819,
+      "sha256": "94530285bb75ae70ab2c223431644ed4a2a60da8b809d6688055cf84143dc658"
+    },
+    "initial_draft/test_event_adaptation.py": {
+      "bytes": 10193,
+      "sha256": "e32c0e9e8bce2fee68ea010d2625296094607939d880c773de84f68ad25ae3b9"
+    },
+    "source/hybrid_tsad/__init__.py": {
+      "bytes": 103,
+      "sha256": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159"
+    },
+    "source/hybrid_tsad/hybrid_v1/cli.py": {
+      "bytes": 32923,
+      "sha256": "18b120b61e4a44224b7445bea2e4364575966183299bcde52d6b5bdca735f941"
+    },
+    "source/hybrid_tsad/hybrid_v1/config.py": {
+      "bytes": 3560,
+      "sha256": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6"
+    },
+    "source/hybrid_tsad/hybrid_v1/data.py": {
+      "bytes": 13533,
+      "sha256": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315"
+    },
+    "source/hybrid_tsad/hybrid_v1/event_adaptation.py": {
+      "bytes": 14517,
+      "sha256": "e85ac61006aa85e48e7ba027656ef781e71961f3b431445d60685aa60e97f653"
+    },
+    "source/hybrid_tsad/hybrid_v1/event_data.py": {
+      "bytes": 14223,
+      "sha256": "b7b4ae1a2feafc8469e5068319fdaf4fd63a812d5680d7425d458de81a57463b"
+    },
+    "source/hybrid_tsad/hybrid_v1/fractional.py": {
+      "bytes": 4963,
+      "sha256": "ab34399743485f7b72e9d92b3d6951b6c35cbaf8076659d880cff7a93dd5dcc2"
+    },
+    "source/hybrid_tsad/hybrid_v1/lag.py": {
+      "bytes": 4200,
+      "sha256": "9740bd15170cdeffdd0d6dabecbf496b52a15477552f4becef77d544f1ab5a16"
+    },
+    "source/hybrid_tsad/hybrid_v1/model.py": {
+      "bytes": 14331,
+      "sha256": "ef21a915b1f0f15c91efbe8114859e181815c7f63b50b494ef729799bc9c33b6"
+    },
+    "source/hybrid_tsad/hybrid_v1/multiview.py": {
+      "bytes": 4909,
+      "sha256": "30da49d1bb0a31c04d47d257e26172ad117a629c8f45b02f3f88d4f394978e2c"
+    },
+    "source/hybrid_tsad/hybrid_v1/objectives.py": {
+      "bytes": 3157,
+      "sha256": "2dc0d50ebb767ab0fe2ecfc34970ef6d34cfa7b84624dd39052adb475a0b0eaf"
+    },
+    "source/hybrid_tsad/hybrid_v1/provenance.py": {
+      "bytes": 3680,
+      "sha256": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478"
+    },
+    "source/hybrid_tsad/hybrid_v1/scoring.py": {
+      "bytes": 6567,
+      "sha256": "a87517e1f4a02b8193ad1ffbc667a88710ec22c5db884a8f50d85b818961576d"
+    },
+    "source/hybrid_tsad/hybrid_v1/target_data.py": {
+      "bytes": 8504,
+      "sha256": "3578f4f498a16f0c62a591958b4d53f1ce07a99e11d0107af6b2a5c052175dfa"
+    },
+    "source/hybrid_tsad/hybrid_v1/temporal.py": {
+      "bytes": 2171,
+      "sha256": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1"
+    },
+    "source/hybrid_tsad/hybrid_v1/training.py": {
+      "bytes": 20435,
+      "sha256": "e13ead2c0232b603a31e937228ee720585cc87b22fca1f032a129c2c78be1bd0"
+    },
+    "source/hybrid_tsad/hybrid_v1/__init__.py": {
+      "bytes": 359,
+      "sha256": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613"
+    }
+  },
+  "tests": {
+    "passed": 9,
+    "skip": 0,
+    "OS": 0,
+    "unittest_seconds": 0.691
+  },
+  "actual_model_forward": false,
+  "actual_training": false,
+  "actual_target_array_reads": false,
+  "GPUh": 0,
+  "scope": "mocked kernel interface and real NumPy/metadata guards/cold imports only"
+}

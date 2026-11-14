@@ -1,0 +1,28 @@
+{
+  "n": 2560,
+  "burn": 4096,
+  "H": 100,
+  "event": [
+    768,
+    1536
+  ],
+  "fully_window_steady": [
+    868,
+    1536
+  ],
+  "source_namespace": "BLINDSPOT_FIXED_CONTROL_20261113",
+  "generator": "__RESEARCH_ROOT__\\hybrid_ad\\src\\hybrid_tsad\\hybrid_v1\\controlled_mechanism.py",
+  "generator_sha256": "004b6c37e18b15c443f981d7a3249205e6113aa86b7844d47660211a4fcd1d10",
+  "equation": "u,zplus,zminus independent AR1=.8lag1+.6epsilon; yplus=.3u[t-12]+sqrt(.91)zplus; yminus=-.3u[t-12]+sqrt(.91)zminus",
+  "subset": "target1 +2 FITsigma only768:1536",
+  "sigma": [
+    0.9974923341100039,
+    0.9930432576239425,
+    1.0151466533382059
+  ],
+  "normal_sync": "driver +1 on event, propagate original +/- .3 at delay12 including recovery tail",
+  "normal_drift": "all3 linear0to1",
+  "negative_scope": "sync/drift/uncoupled system are OOD normal alternatives absent originalFIT; not certified training-invariance; uncoupled removes +/- coupling across whole run, not sameinput contradictory labels",
+  "seed_rule": "old seed_for(family,namespace,runid,stream)",
+  "no_test_selection": true
+}

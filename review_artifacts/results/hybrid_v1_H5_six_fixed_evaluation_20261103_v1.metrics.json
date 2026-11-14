@@ -1,0 +1,32 @@
+[
+  {
+    "method": "base0_huber",
+    "AP": 0.31613805496801234,
+    "ROC_AUC": 0.5316240316871568
+  },
+  {
+    "method": "base0_half_mse",
+    "AP": 0.3187330413185797,
+    "ROC_AUC": 0.5310869734705661
+  },
+  {
+    "method": "anomaly10_huber",
+    "AP": 0.3181656141390307,
+    "ROC_AUC": 0.5322815986048628
+  },
+  {
+    "method": "anomaly10_half_mse",
+    "AP": 0.3184036365476738,
+    "ROC_AUC": 0.5354740258288315
+  },
+  {
+    "method": "normal_record10_huber",
+    "AP": 0.31791169418966725,
+    "ROC_AUC": 0.531277125494689
+  },
+  {
+    "method": "normal_record10_half_mse",
+    "AP": 0.3157226264399163,
+    "ROC_AUC": 0.5302188032048425
+  }
+]

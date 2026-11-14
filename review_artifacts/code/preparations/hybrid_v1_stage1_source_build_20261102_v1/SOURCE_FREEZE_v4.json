@@ -1,0 +1,23 @@
+{
+  "status": "FINAL_CPU_CANDIDATE_NOT_EXECUTION_RELEASE",
+  "files": {
+    "snapshot_v4/src/hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/cli.py": "18b120b61e4a44224b7445bea2e4364575966183299bcde52d6b5bdca735f941",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/config.py": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/data.py": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/fractional.py": "ab34399743485f7b72e9d92b3d6951b6c35cbaf8076659d880cff7a93dd5dcc2",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/lag.py": "9740bd15170cdeffdd0d6dabecbf496b52a15477552f4becef77d544f1ab5a16",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/model.py": "ef21a915b1f0f15c91efbe8114859e181815c7f63b50b494ef729799bc9c33b6",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/multiview.py": "30da49d1bb0a31c04d47d257e26172ad117a629c8f45b02f3f88d4f394978e2c",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/objectives.py": "2dc0d50ebb767ab0fe2ecfc34970ef6d34cfa7b84624dd39052adb475a0b0eaf",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/scoring.py": "a87517e1f4a02b8193ad1ffbc667a88710ec22c5db884a8f50d85b818961576d",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/training.py": "40e2247ed3049bf9d2303c380b2da55c1494c874ca38dd24652f741ed33ccc74",
+    "snapshot_v4/src/hybrid_tsad/hybrid_v1/__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613",
+    "snapshot_v4/tests/test_hybrid_v1_source.py": "f4a92b8cd32da012ffe611bd0b169fbfd59bce66826cf869e4423f7c4481e1d9",
+    "snapshot_v4/tests/test_hybrid_v1_tools.py": "8ce9ae4164c81a20697ab93cf4220604747b6f4b09034905004e9a262d6297f6"
+  },
+  "revision": "v3 plus train/SELECT/artifact timing, per-domain CAL timing and init/IO accounting; CPU never synchronizes CUDA",
+  "previous_freeze_sha256": "4e7ac5295e748a492f2a212f6082b3cbb8cf8b466a1a78416871c355dda164fc"
+}

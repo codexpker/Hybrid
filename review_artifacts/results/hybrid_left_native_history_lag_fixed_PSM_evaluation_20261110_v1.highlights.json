@@ -1,0 +1,22 @@
+{
+  "experiment_id": "hybrid_left_native_history_lag_fixed_PSM_evaluation_20261110_v1",
+  "source": "results/hybrid_left_native_history_lag_fixed_PSM_evaluation_20261110_v1/PRIMARY_DECISION.md",
+  "source_sha256": "c0232b39e1418ac3de198757080693d980a311a01d2a35b1fb06645240617b6d",
+  "numbers": {
+    "scope": "common87232 PSM,targettrained",
+    "AP": {
+      "native": 0.569286,
+      "long_history": 0.563127,
+      "long_self": 0.566627,
+      "long_cross": 0.566653,
+      "long_self_cross": 0.57064
+    },
+    "C3_steady_detected_of17107": {
+      "native": 78,
+      "long_history": 207,
+      "long_self": 31,
+      "long_cross": 32,
+      "long_self_cross": 23
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "scope": "aggregates only; no raw scores/data/labels/checkpoints",
+  "files": [
+    {
+      "path": "results/hybrid_10k_psm_readout_20261031_v1.metrics.json",
+      "bytes": 4155,
+      "sha256": "1c9899dd3ab7542a017beaa71beff6866d8f2ab3fd7837933d80f736a4a81fd1"
+    },
+    {
+      "path": "results/hybrid_channel_aux_native_confirm_20261113_v1__evaluation__paired_seed_differences.json",
+      "bytes": 16165,
+      "sha256": "3864427e1fd1220a1d5ab591571522b15c78f3409743c59b5effffd996948d99"
+    },
+    {
+      "path": "results/hybrid_channel_aux_native_confirm_20261113_v1__evaluation__per_seed.json",
+      "bytes": 23910,
+      "sha256": "dc6af7b06edf8aaf0d62bc0ff82675156fad6d9827bba9f683e8a998859966e0"
+    },
+    {
+      "path": "results/hybrid_left_channel_blindspot_20261113_v1__evaluation__controlled__mean_by_case.json",
+      "bytes": 42325,
+      "sha256": "2c1c1b608542a26e00eeb74548ef2d6605a75ac093864bba5dafb8ce4741bf40"
+    },
+    {
+      "path": "results/hybrid_left_channel_blindspot_20261113_v1__evaluation__PSM__summary.json",
+      "bytes": 19812,
+      "sha256": "cc178b7488643765ab7fe58385a806bb8ff2a3debd1b28a1a3d77c441ddb1ee6"
+    },
+    {
+      "path": "results/hybrid_left_channel_blindspot_20261113_v1__evaluation__SWAT__summary.json",
+      "bytes": 20377,
+      "sha256": "e724ecd5405d4968db456c05edff113d55811c33cd7551083d558a979ad35146"
+    },
+    {
+      "path": "results/hybrid_left_native_frft_fixed_PSM_evaluation_20261110_v1.highlights.json",
+      "bytes": 623,
+      "sha256": "63bec15f78577a675a5de25aafe305b1dcbd761ed55cef177ebc9c3c52b3b951"
+    },
+    {
+      "path": "results/hybrid_left_native_history_lag_fixed_PSM_evaluation_20261110_v1.highlights.json",
+      "bytes": 702,
+      "sha256": "583ffee491b82bc999d5ae75516e3c6300743bfee91582c40625e5b788e3d931"
+    },
+    {
+      "path": "results/hybrid_native_predictive_cycle_20261113_v1__evaluation__PSM__summary.json",
+      "bytes": 20064,
+      "sha256": "8e9c0547751bcf39d5e9a78b5cf968b2826f984880fb4d498a8155113dc601f1"
+    },
+    {
+      "path": "results/hybrid_native_predictive_cycle_20261113_v1__evaluation__TEP__summary.json",
+      "bytes": 141814,
+      "sha256": "5fd0dd442a6c2daa2cb90e99a420bde4f35a3b5b59db57f7a419b816ececaa15"
+    },
+    {
+      "path": "results/hybrid_target_fullshot_fixed_PSM_evaluation_20261110_v1.highlights.json",
+      "bytes": 705,
+      "sha256": "9c185bd08a6ab518587e8ef974a3b5edd9771adfdd430e26e0de37c734a3e9c3"
+    },
+    {
+      "path": "results/hybrid_v1_H5_six_fixed_evaluation_20261103_v1.metrics.json",
+      "bytes": 683,
+      "sha256": "180e2074f3f6e609a38e463c6d15065e55632a8727f51092614fd5613456e725"
+    },
+    {
+      "path": "results/hybrid_v1_pretrained528_paired_PSM_evaluation_20261106_v1.metrics.json",
+      "bytes": 1204,
+      "sha256": "8cfc3a2f2fd28d49d76e44c5b9f1c0e91c65ee39c2049e50f4ff9e59f25e2ad4"
+    },
+    {
+      "path": "results/hybrid_v1_psm_U_scope2000_fixed_evaluation_20261107_v1.metrics.json",
+      "bytes": 700,
+      "sha256": "4da88314474a975390681b297c41efb80f1f0dd01749c1eb8b45a6a47504a791"
+    },
+    {
+      "path": "results/hybrid_v1_source_discrimination_fixed_PSM_evaluation_20261107_v1.metrics.json",
+      "bytes": 598,
+      "sha256": "ef74a45a72a77d70c2ec635ce328f3dcbc92584af12a58b56c4bbbaca27d2de5"
+    },
+    {
+      "path": "results/hybrid_v1_W1_seven_fixed_evaluation_20261103_v1.metrics.json",
+      "bytes": 804,
+      "sha256": "2ecfc56d7d6ac9ab1b46c1cfe3642cde27c4e72065f84181bf61e87b9b44ce53"
+    },
+    {
+      "path": "results/left_multievent_mixed_u_20261111_v1.highlights.json",
+      "bytes": 629,
+      "sha256": "1ba621fd2c14d920daf3abe89964652cb0ad65635c2d59ca05519e5621f571a1"
+    },
+    {
+      "path": "results/left_normal_reference_bottleneck_20261112_v1.highlights.json",
+      "bytes": 586,
+      "sha256": "2f961a1fe0fe53f9de2897b338ea39a7b7990832d840255bb4232a555d2e6b16"
+    }
+  ]
+}

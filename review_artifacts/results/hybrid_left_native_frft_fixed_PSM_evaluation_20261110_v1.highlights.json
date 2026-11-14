@@ -1,0 +1,15 @@
+{
+  "experiment_id": "hybrid_left_native_frft_fixed_PSM_evaluation_20261110_v1",
+  "source": "results/hybrid_left_native_frft_fixed_PSM_evaluation_20261110_v1/PRIMARY_DECISION.md",
+  "source_sha256": "cfb32c226a29f9539b59497d8972d6a1ea756a2ec7e0e4e63f72994c700db632",
+  "numbers": {
+    "scope": "common87232,targettrained causal endpoint; original native selected reference, not later mask protocol",
+    "native_AP": 0.569286335,
+    "candidate_AP": 0.569550027,
+    "native_ROC": 0.761712484,
+    "candidate_ROC": 0.762722875,
+    "native_C3_TP": 583,
+    "candidate_C3_TP": 568,
+    "C3_FP_both": 10
+  }
+}

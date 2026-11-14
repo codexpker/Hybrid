@@ -1,0 +1,23 @@
+{
+  "publication": "https://proceedings.mlr.press/v267/kim25aa.html",
+  "repository": "https://github.com/kimanki/CAROTS",
+  "branch": "master",
+  "commit": "63a41f45a2ae680d5cdbb2d5739e7a11264867cb",
+  "license": "Modified MIT Non-Commercial with Permission",
+  "upstream_bytes_unchanged": true,
+  "files": [
+    {
+      "local": "upstream_loss.py",
+      "upstream": "models/carots/loss.py",
+      "sha256": "e4335031712b89782943d6f10bbd4676fed1b06af4fee671394384033f2334b8"
+    },
+    {
+      "local": "LICENSE",
+      "upstream": "LICENSE",
+      "sha256": "4e2c69a55e5888fae13c72a79acab403e3582fc777a00a72409a76f689b9af0f"
+    }
+  ],
+  "scope": "Published objective control; not novel, not full CAROTS reproduction",
+  "new_training": false,
+  "new_model_forward": false
+}

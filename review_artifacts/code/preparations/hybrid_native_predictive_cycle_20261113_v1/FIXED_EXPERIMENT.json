@@ -1,0 +1,134 @@
+{
+  "id": "hybrid_native_predictive_cycle_20261113_v1",
+  "seed": 2025,
+  "jobs": [
+    "TEP_native",
+    "TEP_full",
+    "TEP_history_only",
+    "PSM_native",
+    "PSM_full"
+  ],
+  "new_network_parameters": 0,
+  "TEP": {
+    "channels": [
+      "xmeas_9",
+      "xmv_10",
+      "xmeas_21"
+    ],
+    "H": 100,
+    "FIT_runs": [
+      1,
+      60
+    ],
+    "SELECT_runs": [
+      61,
+      80
+    ],
+    "CAL_runs": [
+      81,
+      100
+    ],
+    "train_and_selection_target_samples": [
+      101,
+      500
+    ],
+    "TEST_runs": [
+      201,
+      220
+    ],
+    "faults": [
+      1,
+      20
+    ],
+    "normalTEST": "FaultFreeTesting201..220",
+    "scored_TEST_samples": [
+      101,
+      960
+    ],
+    "fault_starts": 161,
+    "primary_score_channel": 0,
+    "secondary_score": "all3channelmean",
+    "shared_CAL": "all20runs samples101..500,8000 points",
+    "Ridge": "original seed0 weights/raw scores, new common CAL q99higher"
+  },
+  "PSM": {
+    "H": 192,
+    "channels": 25,
+    "FIT": [
+      0,
+      79488
+    ],
+    "SELECT": [
+      80032,
+      105984
+    ],
+    "CAL": [
+      106528,
+      132481
+    ],
+    "guard": 544,
+    "scaler": "onlyFIT0..79487",
+    "selected_CAL": "512 equally spaced legal endpoints106720..132480; continuous normalCAL scores retained",
+    "QUERY": [
+      512,
+      87841
+    ],
+    "external_common_axis": [
+      512,
+      87744
+    ],
+    "primary_score": "native25channelmean",
+    "legacy": "old LEFT with pretest scaler/SELECTCAL reuse only historical, not matched"
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 128,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "schedule": "original PSM type2",
+    "fixed_early_stopping": false,
+    "paired_drawplan_seed": 2025,
+    "prediction_dropout_seed": "84551+optimizerstep with fork_rng; native RNG untouched",
+    "TEP_updates": 3760,
+    "PSM_updates": 12400,
+    "SELECT": "same .5native+.5terminal normal loss, sample-weighted across minibatches; choose min only when step>=warmup+ramp, tie earlier; record all20epochs",
+    "native_train_loss": "original native current loss only",
+    "full_train_loss": ".5nativecurrent+.5predterminal",
+    "history_only": "TEP only, samefull loss, zeros2conditionchannels in past pass only",
+    "TEP_terminal_channels": [
+      0
+    ],
+    "PSM_terminal_channels": "all",
+    "terminal": "alpha_cycle_l*(SmoothL1(Dtlast,y)+SmoothL1(iSTFTDfLast,y))+alpha_ms_l*SmoothL1(MSlast,y)+alpha_cons_l*SmoothL1(MSlast,iSTFTDfLast.detach)",
+    "EMA": "one native current update per optimizer step after strictpast prediction; differentiable pre-update proto clone protects causal state and autograd",
+    "selected_python_step": "exact selectedcheckpoint",
+    "warmup_ramp": {
+      "TEP": [
+        123,
+        246
+      ],
+      "PSM": [
+        1000,
+        2000
+      ]
+    }
+  },
+  "scoring": {
+    "full": "native anomaly formula based on strictpast decoder outputs and current truth only as GT/error",
+    "native": "unchanged current-native formula",
+    "score_off": "fullcandidate PT current-native formula, no new training",
+    "fusion": ".5max(0,(native\u2212CALmedian)/CALMAD)+.5max(0,(RidgeC\u2212CALmedian)/CALMAD),floorMAD1e\u22126; independent sameCAL q99higher",
+    "threshold": "own sharedCAL q99higher,strictgreater",
+    "no_QUERY_selection": true
+  },
+  "resources": {
+    "max_parallel": 4,
+    "train_GiB": 20,
+    "score_GiB": 30,
+    "train_timeout_seconds": 7200,
+    "score_timeout_seconds": 1800,
+    "no_cumulative_GPUcap": true,
+    "actual_accounting": true
+  },
+  "scope": "one fixed candidate, original weights/results retained, no old Et/QK/SOC/reference-center/FRFT candidates restored"
+}

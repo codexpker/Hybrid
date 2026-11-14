@@ -1,0 +1,11 @@
+{
+  "operation": "NORMAL_B1_READOUT_COST_PREPARATION",
+  "status": "PENDING",
+  "checkpoint": null,
+  "scaler": null,
+  "array": null,
+  "allow_CAL": false,
+  "allow_Faulty_Testing": false,
+  "allow_labels": false,
+  "note": "Metadata-only preparation. No executable Torch/checkpoint runner yet. Root exact review/release and actual checkpoint identity required."
+}

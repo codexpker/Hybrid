@@ -1,0 +1,14 @@
+{
+  "experiment_id": "left_normal_reference_bottleneck_20261112_v1",
+  "source": "results/left_normal_reference_bottleneck_20261112_v1/PRIMARY_DECISION.md",
+  "source_sha256": "a0f7e6380dd5da053540901238fa1bc97007fb176ef2adda1ae9aa692cfd79b4",
+  "numbers": {
+    "scope": "historical native formula/CAL; distinct from later channel-mask protocol",
+    "SWAT_candidate_AP": 0.801434,
+    "SWAT_candidate_C3_normal_FPR": 0.815036,
+    "SWAT_simple_AP": 0.805588,
+    "SWAT_simple_C3_normal_FPR": 0.999993,
+    "PSM_candidate_AP": 0.556259,
+    "PSM_native_AP": 0.569918
+  }
+}

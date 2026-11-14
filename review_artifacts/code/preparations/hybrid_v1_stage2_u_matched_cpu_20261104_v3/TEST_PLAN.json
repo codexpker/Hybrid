@@ -1,0 +1,19 @@
+{
+  "tests": [
+    "ActualTinyCPU.test_cal_zero_update_tail_arrived_and_legacy_entry_unmodified"
+  ],
+  "count": 1,
+  "old_v2_tests_passed": 10,
+  "old_v2_tests_failed": 1,
+  "root_authorized_fixture_recovery": true,
+  "no_retry": true,
+  "unchanged_science_sha256": "2b08000b4c9774908819f3b454a276323f456a1b945e2f4d94d53d666d504969",
+  "failure": "fixture CAL starts2000 not3000; exact arrived139 maps2139",
+  "resources": {
+    "TERM_seconds": 600,
+    "cleanup_seconds": 5,
+    "AS_GiB": 8,
+    "CVD": "",
+    "GPUh": 0
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "left_multievent_mixed_u_20261111_v1",
+  "seed": 2025,
+  "source_FIT": [
+    0,
+    296020
+  ],
+  "U_FIT": [
+    296564,
+    395237
+  ],
+  "SELECT": [
+    395781,
+    445117
+  ],
+  "CAL": [
+    445661,
+    495000
+  ],
+  "DONOR": [
+    495000,
+    607479
+  ],
+  "QUERY": [
+    608023,
+    944919
+  ],
+  "QUERY_scored": [
+    608535,
+    944919
+  ],
+  "guard": 544,
+  "source_scaler": "FIT-only, fixed all arms",
+  "baseline": "officialSWAT31/20epoch/B128/Adam1e-4/type1/patience3/stride1; SELECT only",
+  "U_updates": 2000,
+  "U_batch_size": 128,
+  "U_endpoint": 2000,
+  "U_lr": 0.0001,
+  "U_SELECT_updates": [
+    0,
+    500,
+    1000,
+    1500,
+    2000
+  ],
+  "replacement_count": 25600,
+  "total_presentations": 256000,
+  "base_seed": 2025,
+  "slot_seed": 84551,
+  "B": "13 complete real attacks balanced roundrobin then shuffle; uniform192-window wholly in event; labels never enter learner",
+  "C": "sameDONOR temporal region, nearest192 normal window distance>=544 from every positive sample; tie earlier",
+  "CAL_count": 512,
+  "CAL_rule": "q99higher; ownCAL primary, fixed noU CAL threshold diagnostic",
+  "QUERY_no_selection": true,
+  "normal_background_health": "nominal not independent certification",
+  "physical_anomaly_channels": "UNKNOWN",
+  "source_PT_track": "same-target normal-background pretraining/noU, not crossdatasetZS",
+  "SELECT_later_than_U_FIT": true,
+  "event_independence": "22 events in one run, not22 independent runs",
+  "H512": "causal past512 mean, targetCAL512 perchannel median residual scale; no EMA",
+  "actual_cost_recorded": true
+}

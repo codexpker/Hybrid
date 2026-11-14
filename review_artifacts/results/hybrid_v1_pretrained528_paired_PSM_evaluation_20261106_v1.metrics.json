@@ -1,0 +1,53 @@
+[
+  {
+    "method": "Hybrid_RANDOM_seed2025",
+    "seed": 2025.0,
+    "AP": 0.31422977843437727,
+    "ROC_AUC": 0.53088521686722
+  },
+  {
+    "method": "Hybrid_RANDOM_seed2026",
+    "seed": 2026.0,
+    "AP": 0.3158795006606062,
+    "ROC_AUC": 0.5297764408701682
+  },
+  {
+    "method": "Hybrid_RANDOM_seed2027",
+    "seed": 2027.0,
+    "AP": 0.3140359097573201,
+    "ROC_AUC": 0.5290909348815198
+  },
+  {
+    "method": "HistoryMean512_ZS",
+    "AP": 0.32103576928430416,
+    "ROC_AUC": 0.5300384603329731
+  },
+  {
+    "method": "TimeRadar_official_native",
+    "AP": 0.3630309390537386,
+    "ROC_AUC": 0.5659411738534861
+  },
+  {
+    "method": "LEFT_R_targettrained",
+    "AP": 0.5773263646320879,
+    "ROC_AUC": 0.7755837466349813
+  },
+  {
+    "method": "Hybrid_OFFICIAL528_seed2025",
+    "seed": 2025.0,
+    "AP": 0.31197539295781984,
+    "ROC_AUC": 0.5260878595783536
+  },
+  {
+    "method": "Hybrid_OFFICIAL528_seed2026",
+    "seed": 2026.0,
+    "AP": 0.31413589169665923,
+    "ROC_AUC": 0.527701875423368
+  },
+  {
+    "method": "Hybrid_OFFICIAL528_seed2027",
+    "seed": 2027.0,
+    "AP": 0.31344993379443625,
+    "ROC_AUC": 0.5269840828250769
+  }
+]

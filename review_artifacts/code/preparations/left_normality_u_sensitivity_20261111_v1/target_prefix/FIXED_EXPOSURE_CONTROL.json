@@ -1,0 +1,23 @@
+{
+  "id": "left_normality_u_sensitivity_20261111_v1/target_prefix",
+  "purpose": "distinguish reuse of historical training FIT from exposure to new chronological target background, and distinguish target recalibration from learning; existing method only, not a new architecture/loss or claimed innovation",
+  "timing": "fixed before target-prefix training/results; earlier development and ordinary-U results already exposed, not blind independent confirmation",
+  "selection_basis": "2026-11-06 already reserved physical DONOR prefix test[0,7902); boundaries fixed from length and existing544 guard, not QUERY event positions or score-selected states",
+  "original_assets_immutable": true,
+  "roles": {"target_FIT":[0,4088],"guard1":[4088,4632],"target_SELECT":[4632,5994],"guard2":[5994,6538],"target_CAL":[6538,7902],"existing_QUERY_input":[8446,23706],"existing_QUERY_scored":[8958,23706]},
+  "split_rule": "usable7902-2*544=6814; floor(.6*usable)=4088 FIT, floor(.2*usable)=1362 SELECT, remaining1364 CAL; no label filtering; SELECT/CAL windows stay inside their roles",
+  "track": "chronological target adaptation of the same server; source PT trained on earlier original train FIT, never on this test prefix; not unseen-device transfer or new-dataset zero-shot",
+  "initial_model_and_scaler": "identical accepted source PT selected20/step2200 and source historicalFIT scaler for all rows; do not refit target normalization",
+  "learning": "reuse exact fixed ordinary-U fullnative freshAdam1e-4 200xB128, paired seed2025, final200 only; native loss/scoring/prototype policy/curriculum unchanged; SELECT diagnostic only at0/50/100/150/200 with state/mode/RNG restored",
+  "conditions": "same A/B/C protocol as parent FIXED_U_SENSITIVITY.json; only data role changes. A=targetFIT background; B/C share10% presentation slots and nonoverlapping same-targetFIT donors; B+3 source-standardized units on[48,144), channels[0,1,2,3], C unchanged. Same dose/seed/sample counts, no QUERY donors/labels or clean targets",
+  "plan_geometry": "3897 legal192-point window starts; generalize plan geometry in separate new helper or preserved source snapshot, do not invalidate parent experiment source identity",
+  "SELECT0": "new target SELECT is different from source SELECT; verify identical starting PT/state, not equality to old source SELECT loss",
+  "CAL": "852 continuous mature native scores on original[7050,7902), select512 linspace7050..7901; q99higher only; CAL not used to update/select weights",
+  "no_parameter_update_controls": ["source PT plus original source CAL cached", "same source PT plus target CAL, only recalibration", "parent historical-FIT U-A plus target CAL, reuse old QUERY raw and only score new targetCAL"],
+  "target_U_comparisons": "target-prefix U-A/B/C + own targetCAL; also fixed no-update targetCAL tau for each as calibration-effect diagnostic; all raw and thresholds sealed before evaluation",
+  "statistical_baseline": "optional fixed H512 history-mean absolute residual on same source-standardized inputs, per-channel targetCAL512 median scale floor1e-6 and ownq99; no EMA/fusion/new trainable parameter; retain old ARX external reference separately",
+  "metrics_and_scope": "same14748 points/7 real short events, APROC, strict/C3 point/event P/R/F1, normal false points/fragments, per-event delay/censoring/coverage/maxmiss; long>512 NA; no QUERY threshold matching or state/entity search",
+  "interpretation": "prefix nominal unlabeled background not independent health certification; synthetic window augmentation not natural contamination; one seed/dose/template. Positive ordinary adaptation or recalibration alone is not original robust learning; no pollution-specific effect means no new robust loss. This is development exposure control, no independent confirmation claim",
+  "stop": "one fixed target-role control only; no split-point/budget/seed/channel/intensity/window/threshold search; no new learned mechanism from QUERY labels",
+  "resource": "three existing free A40 jobs parallel, train20GiB/eval30GiB,600s/job and owned cleanup; no cumulative-hour hardcap"
+}

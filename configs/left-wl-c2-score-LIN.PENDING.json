@@ -1,0 +1,454 @@
+{
+  "upstream_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+  "source_root": "${HYBRID_RESEARCH_ROOT}/preparations/left_baseline_build_20261101_v1/upstream",
+  "source_hashes": {
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863",
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+    "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+    "models/CrossAD/Basic_CrossAD.py": "f9b1dc5996be896ab45a6f78f7e6ce94d680d951cca3a62ae759d23467f4e3f2",
+    "models/CrossAD/Attention_Blocks.py": "c0460930efcb8c8c4375ea6b80bd0ca14246d7f4c8feaa493f692d2c93c95ce1",
+    "models/CrossAD/EncDec.py": "c3c68f63fdd5cda3c219687d52bdd6c2a97d0ce416da747399dde92d3408f36c",
+    "models/CrossAD/Context_Blocks.py": "0fad86b3c9bb4984bd4f09743abcf784b44513a6e601606e9134b17ffbcf09a4",
+    "configs/PSM/model_configs_Left.json": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4",
+    "configs/PSM/model_configs_0.json": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f",
+    "configs/PSM/train_configs.json": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab"
+  },
+  "status": "PENDING",
+  "operation": "LEFT_WL_C2_FIXED_SCORE",
+  "scenario": "LIN",
+  "seed": 2025,
+  "source_manifest_sha256": "07287e30bb63dd7dae5f785955a370c4ee7420b6d0cbeb6363324d906f631bb7",
+  "max_seconds": 180,
+  "max_allocated_GiB": 30,
+  "physical_gpu_index": "PENDING",
+  "expected_gpu_uuid": "PENDING",
+  "checkpoint": {
+    "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_LIN_seed2025_20261101_v1/model/PSM/Left/checkpoints_0/checkpoint.pth",
+    "sha256": "3150f5819c6723940a6e209fd33ed21372a733108f644c430de5543f1c0ba9be",
+    "bytes": 15653268
+  },
+  "scaler": {
+    "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_LIN_seed2025_20261101_v1/SCALER_C2.json",
+    "sha256": "10221fdb8bc781b5ab0786fa8349f669dfccdfb18d9c1a615090a250c1bf92a2"
+  },
+  "expected_thop_keys": [
+    "Df.net.1.total_ops",
+    "Df.net.1.total_params",
+    "Df.total_ops",
+    "Df.total_params",
+    "Dt.net.1.total_ops",
+    "Dt.net.1.total_params",
+    "Dt.total_ops",
+    "Dt.total_params",
+    "Ef.net.1.total_ops",
+    "Ef.net.1.total_params",
+    "Ef.net.4.total_ops",
+    "Ef.net.4.total_params",
+    "Ef.total_ops",
+    "Ef.total_params",
+    "Et.net.1.total_ops",
+    "Et.net.1.total_params",
+    "Et.net.4.total_ops",
+    "Et.net.4.total_params",
+    "Et.total_ops",
+    "Et.total_params",
+    "encoder.layers.0.attention.attn.total_ops",
+    "encoder.layers.0.attention.attn.total_params",
+    "encoder.layers.0.attention.total_ops",
+    "encoder.layers.0.attention.total_params",
+    "encoder.layers.0.total_ops",
+    "encoder.layers.0.total_params",
+    "encoder.layers.total_ops",
+    "encoder.layers.total_params",
+    "encoder.total_ops",
+    "encoder.total_params",
+    "fusion.f_from_t.0.ff.1.total_ops",
+    "fusion.f_from_t.0.ff.1.total_params",
+    "fusion.f_from_t.0.mha.out_proj.total_ops",
+    "fusion.f_from_t.0.mha.out_proj.total_params",
+    "fusion.f_from_t.0.mha.total_ops",
+    "fusion.f_from_t.0.mha.total_params",
+    "fusion.f_from_t.0.total_ops",
+    "fusion.f_from_t.0.total_params",
+    "fusion.f_from_t.total_ops",
+    "fusion.f_from_t.total_params",
+    "fusion.m_from_t.0.ff.1.total_ops",
+    "fusion.m_from_t.0.ff.1.total_params",
+    "fusion.m_from_t.0.mha.out_proj.total_ops",
+    "fusion.m_from_t.0.mha.out_proj.total_params",
+    "fusion.m_from_t.0.mha.total_ops",
+    "fusion.m_from_t.0.mha.total_params",
+    "fusion.m_from_t.0.total_ops",
+    "fusion.m_from_t.0.total_params",
+    "fusion.m_from_t.total_ops",
+    "fusion.m_from_t.total_params",
+    "fusion.t_from_f.0.ff.1.total_ops",
+    "fusion.t_from_f.0.ff.1.total_params",
+    "fusion.t_from_f.0.mha.out_proj.total_ops",
+    "fusion.t_from_f.0.mha.out_proj.total_params",
+    "fusion.t_from_f.0.mha.total_ops",
+    "fusion.t_from_f.0.mha.total_params",
+    "fusion.t_from_f.0.total_ops",
+    "fusion.t_from_f.0.total_params",
+    "fusion.t_from_f.total_ops",
+    "fusion.t_from_f.total_params",
+    "fusion.total_ops",
+    "fusion.total_params",
+    "ms_decoder.ff.2.total_ops",
+    "ms_decoder.ff.2.total_params",
+    "ms_decoder.proj.2.total_ops",
+    "ms_decoder.proj.2.total_params",
+    "ms_decoder.total_ops",
+    "ms_decoder.total_params",
+    "ms_utils.total_ops",
+    "ms_utils.total_params",
+    "patch_embedding.padding_patch_layer.total_ops",
+    "patch_embedding.padding_patch_layer.total_params",
+    "patch_embedding.total_ops",
+    "patch_embedding.total_params",
+    "pos_embedding.total_ops",
+    "pos_embedding.total_params",
+    "proto_f.total_ops",
+    "proto_f.total_params",
+    "proto_t.total_ops",
+    "proto_t.total_params",
+    "tf.total_ops",
+    "tf.total_params",
+    "total_ops",
+    "total_params",
+    "z_fuse.2.total_ops",
+    "z_fuse.2.total_params"
+  ],
+  "banks": {
+    "CAL": [
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 0,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run00_N.npy",
+        "sha256": "ee9b5074382c75717a614c24fe772665f7e16f970e0a051631ad16aae499a1ba"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 1,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run01_N.npy",
+        "sha256": "764bc597f9bb8d154ac55e1f548b63a174548caa44bf930a7372e81f558ca2b0"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 2,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run02_N.npy",
+        "sha256": "b1986a3f78b507e499a9f65812b8b4f2e2e344727f8412a32cd8ad322f912ef7"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 3,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run03_N.npy",
+        "sha256": "f70a31dc43cf8485dfbd950b5ed99db5b74c3588f904c5a70be2097b4c180b5a"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 4,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run04_N.npy",
+        "sha256": "a79e3d78ddf8c83ffbd87032ab340f73ec366525a9030f2df0e8fcff580370a6"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 5,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run05_N.npy",
+        "sha256": "25f9d8a7e06f25b86056257a688fdfc3ec1f7341208e05bc8e59b05d6d359349"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 6,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run06_N.npy",
+        "sha256": "524d3937efb30bc50376021653eabbe7332ce2dd24cffda94fbf3d162c525ab4"
+      },
+      {
+        "scenario": "LIN",
+        "role": "CAL",
+        "run_id": 7,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/CAL/run07_N.npy",
+        "sha256": "73164441cd2dabd079b281a0f291ffbe9c42b0cac62909c9dd6c7bd0f0c0a346"
+      }
+    ],
+    "DEV": [
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 0,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run00_A.npy",
+        "sha256": "f3084a79b8ae54ada5823c813fa41f4a75611700df677c4f68766ce66168f7be"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 0,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run00_N.npy",
+        "sha256": "9a584c7d8465320383a69d2aafc9f0bfd996010cf189a8b4e132613eb94b0328"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 0,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run00_S0.npy",
+        "sha256": "9a584c7d8465320383a69d2aafc9f0bfd996010cf189a8b4e132613eb94b0328"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 0,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run00_SB.npy",
+        "sha256": "d29dee3945885b08b37735fb74560db490bb189a7994d4f4e2310181c40e2a73"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 1,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run01_A.npy",
+        "sha256": "bc4c2f42ee3edb1da44c287ee4c3a7afd6dfed8bee37c7b32c52e7131a76d580"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 1,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run01_N.npy",
+        "sha256": "052e158bca04f88d1b54fabb90f35f1b72a4e885fe9e25a4205be9de432ecc0e"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 1,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run01_S0.npy",
+        "sha256": "052e158bca04f88d1b54fabb90f35f1b72a4e885fe9e25a4205be9de432ecc0e"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 1,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run01_SB.npy",
+        "sha256": "2b190c88c2e0292d2b86b730709d5b5dbf6dc8aab022981c07d4dbf8cfd2ed48"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 2,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run02_A.npy",
+        "sha256": "0b0cf924fc83d510513ee0447335416863452148994a64aeef040d4f5d6c54a8"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 2,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run02_N.npy",
+        "sha256": "cda058da5a69e9a0c58abe5fb7a33345d4bfedbba65b6df5d61cabd4131ec5f7"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 2,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run02_S0.npy",
+        "sha256": "cda058da5a69e9a0c58abe5fb7a33345d4bfedbba65b6df5d61cabd4131ec5f7"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 2,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run02_SB.npy",
+        "sha256": "cb90034a0045d640e0e4bce5141803655d924b9ee6f43938ab5e448a9a9f4079"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 3,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run03_A.npy",
+        "sha256": "42bac193771f48611e44a47bee84cbe8108108633a473e66c6574108270e678f"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 3,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run03_N.npy",
+        "sha256": "3af948d9523c2b8f5be467e6ce020bb7c4cfbc54bdcdd596ea3a11d3a8fbe9b6"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 3,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run03_S0.npy",
+        "sha256": "3af948d9523c2b8f5be467e6ce020bb7c4cfbc54bdcdd596ea3a11d3a8fbe9b6"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 3,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run03_SB.npy",
+        "sha256": "c7219ad416ecaeff426efbe48433e787c7e062df9b6c71c24bd92466759a8643"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 4,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run04_A.npy",
+        "sha256": "2fc07d2a6a71e25399d199b181285b9f9fb5cc9f24c4f5e47c6fa42a461c6ac2"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 4,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run04_N.npy",
+        "sha256": "d927e1674f75d4dd15af375c468406826ea78027542634b52f5395cff53e2bed"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 4,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run04_S0.npy",
+        "sha256": "d927e1674f75d4dd15af375c468406826ea78027542634b52f5395cff53e2bed"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 4,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run04_SB.npy",
+        "sha256": "5460d59cf3e9a15b3001df9ab40b3f871dd28c7611cf735553bcc76dbc474d59"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 5,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run05_A.npy",
+        "sha256": "6b4bc928fc0c6da707fa9e11571d6561a0f97e9d489c90d91112a3cf10b63457"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 5,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run05_N.npy",
+        "sha256": "2ed29c8914eaaf3a6210e9c0656beed72b2fd541b0060145edfc1b471e26ae4a"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 5,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run05_S0.npy",
+        "sha256": "2ed29c8914eaaf3a6210e9c0656beed72b2fd541b0060145edfc1b471e26ae4a"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 5,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run05_SB.npy",
+        "sha256": "93f581b7f079c6f51b0d1b83262d361416ff7c7defa4ec7c173b52d865a5bdc7"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 6,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run06_A.npy",
+        "sha256": "5ea47449e5a656745b15ab8e672de466cbdc93ff433e3725b7a2b67bc1ed78d0"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 6,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run06_N.npy",
+        "sha256": "859abf68d10335a79a4bca808b857d0019552a2023c1e35277f936ed15dce448"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 6,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run06_S0.npy",
+        "sha256": "859abf68d10335a79a4bca808b857d0019552a2023c1e35277f936ed15dce448"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 6,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run06_SB.npy",
+        "sha256": "453c03100ca5139fd9f9139c2784e3d51a50dbd626383aba8e2a864dda21e455"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 7,
+        "variant": "A",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run07_A.npy",
+        "sha256": "42666e67efb20b39240ec2bdc1ec2dc3c1b58490330712de6e5bf26d7c805997"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 7,
+        "variant": "N",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run07_N.npy",
+        "sha256": "00ec77d3bc8b556c93c6e2febbd6800ff6a87d512113588a9b1b930133bef669"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 7,
+        "variant": "S0",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run07_S0.npy",
+        "sha256": "00ec77d3bc8b556c93c6e2febbd6800ff6a87d512113588a9b1b930133bef669"
+      },
+      {
+        "scenario": "LIN",
+        "role": "DEV",
+        "run_id": 7,
+        "variant": "SB",
+        "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run07_SB.npy",
+        "sha256": "ee44dbedcb46f0b7d1a1139624ba2f1ed4e7c2a9f247cb37408fc29a5c114cd2"
+      }
+    ]
+  },
+  "output": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_LIN_fixed_score_20261101_v1",
+  "training_artifacts_acceptance": "PENDING_ROOT_FREEZE"
+}

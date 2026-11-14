@@ -1,0 +1,9 @@
+{
+  "archive": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/anomaly10_half_mse_SOURCE_FULL_ARCHIVE.zip",
+  "archive_sha256": "1c0023738fc7516380090a2324b612bbe101a75170b7522e79134af68513db32",
+  "manifest_sha256": "45f30ecb88e4d0fab7cf3a1a063014527b4bbb51685d7622f6fc329e176a0f8b",
+  "files": 22,
+  "bytes": 141691050,
+  "local_synced": true,
+  "mismatches": []
+}

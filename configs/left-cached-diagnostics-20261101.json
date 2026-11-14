@@ -1,0 +1,1104 @@
+{
+  "operation": "LEFT_CACHED_CHANNEL_ACCUMULATION_DIAGNOSTICS",
+  "scope": "EXPLICIT_POST_HOC_EXPLANATION",
+  "authorization": "root delegated cached-only post-hoc channel/accumulation explanation; 2026-11-01; CPU120s/1GiB/GPU0; no model/features/original truth",
+  "max_seconds": 120,
+  "max_rss_GiB": 1,
+  "gpu_budget": 0,
+  "score_roots": {
+    "LIN": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1",
+    "WEAK": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1"
+  },
+  "evaluation_root": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1",
+  "output": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_cached_diagnostics_20261101_v1",
+  "inputs": [
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 0,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run00_N.npz",
+      "sha256": "029566dd2ece8d58e2abe6bfe62579746c2bef0df35ba8985d123b4d2d4570d0"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 1,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run01_N.npz",
+      "sha256": "af7aea2b82087b6f70068b86eb6d562a51ca6c3d648dbfc9bd21bccec60669ff"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 2,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run02_N.npz",
+      "sha256": "43a832679e77584252ff3082f7a6ef42f0e310fffc70538d3866048e93f76360"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 3,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run03_N.npz",
+      "sha256": "3918420defb6ec6a5799dfeccff1dd140a96144f550e0f9787d919f39bc3206d"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 4,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run04_N.npz",
+      "sha256": "cb73f5c172e7986560ad7367c61dbe8f1c7167b9b10477f1cbc0044c6d8e2c37"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 5,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run05_N.npz",
+      "sha256": "85005709b415742d9eb6ad6496eca0bb158810ea9615fa284444b7da55d5ddb0"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 6,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run06_N.npz",
+      "sha256": "aa4c2bfc6ae2275dbddda2230fa391d69245743aa67cd1b9df0582887b02656e"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "CAL",
+      "run_id": 7,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\CAL_run07_N.npz",
+      "sha256": "ebc9f8828fd4840b0a20a8d640ecef1f67cf30e6f6a464f759104d860f47c956"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run00_A.npz",
+      "sha256": "f18e27274ada029b3938b1fea03aad85c02a805a05cbbc0f2afcfc2f9f9dafe5"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run00_N.npz",
+      "sha256": "133bd5c9479a06e59ab6db670c0f99f8136b871c6ca30036a563ef7b0730f0b7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run00_S0.npz",
+      "sha256": "133bd5c9479a06e59ab6db670c0f99f8136b871c6ca30036a563ef7b0730f0b7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run00_SB.npz",
+      "sha256": "3763da5f87b5cbac4066cd474549a4331f35c3ae53c48f5c747314e267fdcda5"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run01_A.npz",
+      "sha256": "925c999d193f21ab779547fa72d7f01e5a1e2fae90d471c44bcb912d739d53f6"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run01_N.npz",
+      "sha256": "565262b3bd58b5805edbb287a7fd45b0b10dd42183ed85a72ea59115ebf9a722"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run01_S0.npz",
+      "sha256": "565262b3bd58b5805edbb287a7fd45b0b10dd42183ed85a72ea59115ebf9a722"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run01_SB.npz",
+      "sha256": "54f5c65711cf351318629f059ca9d69ad85ff5b327c6f21a2a27bd59e8bf2735"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run02_A.npz",
+      "sha256": "3dda1142e6b721a652547483e117a7e4e7f1dcfcf8b53025d4b346f9ffc497ef"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run02_N.npz",
+      "sha256": "b88adec85a8dd671bc783ed20f34b94fdd2c885611d3ca7e4e2233abb69c6c22"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run02_S0.npz",
+      "sha256": "b88adec85a8dd671bc783ed20f34b94fdd2c885611d3ca7e4e2233abb69c6c22"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run02_SB.npz",
+      "sha256": "2069204cf9c585951cd56c6ab796c59e110a7072b1096b4d09968cacb22e58dc"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run03_A.npz",
+      "sha256": "a46301dd12345c8a56147c8d459bf7bc039711553221971b96c844b9e4c545cf"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run03_N.npz",
+      "sha256": "b2dd5146f9951fece80e25ae09b8c4975af6803883c5d0414a9db0a954498ca8"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run03_S0.npz",
+      "sha256": "b2dd5146f9951fece80e25ae09b8c4975af6803883c5d0414a9db0a954498ca8"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run03_SB.npz",
+      "sha256": "7415233eee35a865cbe53b7144619e07ec3be1f64d2953f5a64be3ceada0de99"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run04_A.npz",
+      "sha256": "cca78a3b78cb408e122cdd4c78d9afc8597e60bca9046489a3c9fd66afd02e1c"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run04_N.npz",
+      "sha256": "88cdf5154f711dbe03597de4a4c5ef07f1f566e13cf481c8e6e835ba959ff2a7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run04_S0.npz",
+      "sha256": "88cdf5154f711dbe03597de4a4c5ef07f1f566e13cf481c8e6e835ba959ff2a7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run04_SB.npz",
+      "sha256": "43b7deedf827cd87e6b1d11c10c03c161ed28445cdc428f2a638c44cb8cd17d7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run05_A.npz",
+      "sha256": "ba1b8f3abdedb95c18bc09047f87e59fb9879ddc7fca5ddbdf3934275b030678"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run05_N.npz",
+      "sha256": "fd48665c3b9816f737c75c6bc4443696642c3ec5ac652565d196ba239a454662"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run05_S0.npz",
+      "sha256": "fd48665c3b9816f737c75c6bc4443696642c3ec5ac652565d196ba239a454662"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run05_SB.npz",
+      "sha256": "8fef38f0d38f0bcd74268d30c4d95fdbd00c589288a3c47295b72ce709f9516a"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run06_A.npz",
+      "sha256": "63885e241f2f46d959054b5aecffb2543b777f7ed3fe45457c3bd49359d4e9f7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run06_N.npz",
+      "sha256": "1f6636466a1e0174ab3c2c95ca66a64ffd8d4ba268273a148c77fc20d7f3dbfd"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run06_S0.npz",
+      "sha256": "1f6636466a1e0174ab3c2c95ca66a64ffd8d4ba268273a148c77fc20d7f3dbfd"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run06_SB.npz",
+      "sha256": "db1df8b0eb1476fc360934d5b09774ff648c6e85db3a64eb8c6dfe946402af40"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run07_A.npz",
+      "sha256": "df8f15d8c192e2e48393a098f4288a9a204b32aabdf8e324dae86e07d8796e60"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run07_N.npz",
+      "sha256": "cf39e5b823510b46c321ae8cfdd06209c5a32648a30925a4b3e249ad6765f7b1"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run07_S0.npz",
+      "sha256": "cf39e5b823510b46c321ae8cfdd06209c5a32648a30925a4b3e249ad6765f7b1"
+    },
+    {
+      "kind": "raw",
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_LIN_fixed_score_20261101_v1\\DEV_run07_SB.npz",
+      "sha256": "a2c9f1a4f25ed2b403714fc7c67faea4f5ff975ff1644a791c430cc9bf76f225"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 0,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run00_N.npz",
+      "sha256": "0426801fd207913e9810791deb493845e877086c923b39e5d3b14bd31fe18a98"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 1,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run01_N.npz",
+      "sha256": "9e45c3043d2224cb529c20e5315b1c550ac6d944ad948eb6e37765e5eadd3929"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 2,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run02_N.npz",
+      "sha256": "04018963148c3421af020482be37af034dd5735c85b2194fb5bb12e8aa5904c5"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 3,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run03_N.npz",
+      "sha256": "b54e68ace8bd3bcb359eb8c626e4b513d850ba24800af309a0f2dd4bd4e551fc"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 4,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run04_N.npz",
+      "sha256": "a1bd00af5c8a8249b9cb56e8ebe86ac5133be7a871af285ad9d59fbdfa2b99e7"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 5,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run05_N.npz",
+      "sha256": "4417127654fa693cde3a69a10c5a57a19a65e788c152f91b940c11c5582bea17"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 6,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run06_N.npz",
+      "sha256": "55a0131c1191f8aa39beef55a300c1b334703d7eee86b64f12fff37b785e6af3"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "CAL",
+      "run_id": 7,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\CAL_run07_N.npz",
+      "sha256": "8018432d8a0653d70f699e575157c448313260d2a766154396bf9840f900ccf3"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run00_A.npz",
+      "sha256": "ebeac77681e83c2e84ef1fb1bd3ebeb8121e6088713bb2640bd6af096a252b5e"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run00_N.npz",
+      "sha256": "f9ec0377ceb96c6125b50355cab14db3b4682ca34f59bb62f8e565a9161e9221"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run00_S0.npz",
+      "sha256": "f9ec0377ceb96c6125b50355cab14db3b4682ca34f59bb62f8e565a9161e9221"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 0,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run00_SB.npz",
+      "sha256": "b98471279fd5767ff61d248034859b8c61d3944ad2f2c78017664c1064ff10bc"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run01_A.npz",
+      "sha256": "558fc71cf5e10ae9d8c9fa79ee4b9e2687ab47b199ea6c148ebc11662cca74e8"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run01_N.npz",
+      "sha256": "c7cb77c9c6ab60c830b13513d1fca916635db80ed00c87fadc3b8164ad82d6b0"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run01_S0.npz",
+      "sha256": "c7cb77c9c6ab60c830b13513d1fca916635db80ed00c87fadc3b8164ad82d6b0"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 1,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run01_SB.npz",
+      "sha256": "bb22c97dae40046aaea27d3d8324f0177e70b8f7f7c4f2e108172b84cfc2cb4c"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run02_A.npz",
+      "sha256": "d0329f10b253e5dafada9ae5b5f1ca0e9be3139649e06c6c4056177fd6732974"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run02_N.npz",
+      "sha256": "f55d71c088aad4b71b1cba2fbf946622f19cc9877ecf11b4748ed66560bbda86"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run02_S0.npz",
+      "sha256": "f55d71c088aad4b71b1cba2fbf946622f19cc9877ecf11b4748ed66560bbda86"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 2,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run02_SB.npz",
+      "sha256": "40fdccb828253e1bb982f10a8be815102e7e9c345b9d18167e14b58c80f52d53"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run03_A.npz",
+      "sha256": "b0bf84323b7ff2cbdc0834e01b830b4eeb61c75105a0af92e7f4bef9f84f77ac"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run03_N.npz",
+      "sha256": "7cc873c4076b7d637391709e7d34219fdddabc7c06709a120af5cc1833618b3b"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run03_S0.npz",
+      "sha256": "7cc873c4076b7d637391709e7d34219fdddabc7c06709a120af5cc1833618b3b"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 3,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run03_SB.npz",
+      "sha256": "f425bd6dee01a765f58e9665b4f8465d25a170c91748d90fd54bc18eb1b4f8bf"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run04_A.npz",
+      "sha256": "102d12495a2d223e3dc200edaafcce1fb347568b5aa09df232a5406da91cc863"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run04_N.npz",
+      "sha256": "2035240ef7fb96d921654d78b1aec71bdbdaaa2e8dfefea2125f57558a6c4f22"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run04_S0.npz",
+      "sha256": "2035240ef7fb96d921654d78b1aec71bdbdaaa2e8dfefea2125f57558a6c4f22"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 4,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run04_SB.npz",
+      "sha256": "dafb1fceb4f127630006d75587420773ba832d8859fc730f3d9c291cd8732eb8"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run05_A.npz",
+      "sha256": "d196964335844fc9362b5f99e5284f228c873c2dda4f277551fb5cebbe83a059"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run05_N.npz",
+      "sha256": "1cd952014b355c96854b20fe77e9bb26039e36f67d5efd7579394934e032aa26"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run05_S0.npz",
+      "sha256": "1cd952014b355c96854b20fe77e9bb26039e36f67d5efd7579394934e032aa26"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 5,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run05_SB.npz",
+      "sha256": "3b2c4be8fc435d0376b4116779308d02d427eab791114b7164be3e1ad0d8176c"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run06_A.npz",
+      "sha256": "a69dfd57eac3eebde530bee5213cfdab653fbab08883fafc22d1f1679c4bd8fb"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run06_N.npz",
+      "sha256": "0e64fb6156ce87ff40915b479fc455bc5ee1a435246be1b9c41d64574c31b153"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run06_S0.npz",
+      "sha256": "0e64fb6156ce87ff40915b479fc455bc5ee1a435246be1b9c41d64574c31b153"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 6,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run06_SB.npz",
+      "sha256": "be63f99d114034c97c788e14d6ec7f71965e6228e12921309c77a8a77f212325"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "A",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run07_A.npz",
+      "sha256": "0b469e5cae8b22743e94192fa3a36b0622499020c43b94a547f0d474d3dfb320"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "N",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run07_N.npz",
+      "sha256": "8276a1ee81bbae0e47cca8af34e0cc7b47b18f1913e77d6e1975822a22b4dfd6"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "S0",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run07_S0.npz",
+      "sha256": "8276a1ee81bbae0e47cca8af34e0cc7b47b18f1913e77d6e1975822a22b4dfd6"
+    },
+    {
+      "kind": "raw",
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 7,
+      "variant": "SB",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_WEAK_fixed_score_20261101_v1\\DEV_run07_SB.npz",
+      "sha256": "b36669c73285460e31b26a772ba20c82271f683ef4544676005e0a42fe2a0a67"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 0,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run00_strata.json",
+      "sha256": "c77eebf290e069d66f05fcb1c2fc01e4b675c7f878ba81b96cb8e6fe7589d37a"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 0,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run00_A_last_evaluation.npz",
+      "sha256": "38585df9718b2ce7411bfc3a33eebcecdb266d56ba1a1073571fdc615ead36a1"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 0,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run00_A_mean128_evaluation.npz",
+      "sha256": "d93a13638ff860c17a8927ff3c645942316774af551e403e58494f5402632d25"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 1,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run01_strata.json",
+      "sha256": "e16b838d60d53a4da6394182f6f4e38cb6f89a1dcfa5f4244215a9355b14f383"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 1,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run01_A_last_evaluation.npz",
+      "sha256": "76654e7afa4ef5601892401ff956edaed6058469d2b2f7de9c7f67b2d91c75ac"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 1,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run01_A_mean128_evaluation.npz",
+      "sha256": "2414c8a367986f2eee94dd2bdeee0cce8073df73752792daedb2627746cd693d"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 2,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run02_strata.json",
+      "sha256": "f54ff5cd50178d118f6fca86a94813f6fe4aecce3d0b29cde44144c5432c4814"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 2,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run02_A_last_evaluation.npz",
+      "sha256": "e769163371530fc7fca8c2c5e9260f2581e3a7fac78a8fd40628b1170993d7ee"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 2,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run02_A_mean128_evaluation.npz",
+      "sha256": "a4a547c2e9a4ba7232bb19922f039e3171f0554c14db6ee807a2492f9937ec17"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 3,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run03_strata.json",
+      "sha256": "7a08601e4613e9fa676f2707e9eccfb710c0cb1a129985e054264c09b2774709"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 3,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run03_A_last_evaluation.npz",
+      "sha256": "6986052112e9af2762d94de75ef6c70d811380e8b0a883a2adc7ccc5c9ab26c8"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 3,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run03_A_mean128_evaluation.npz",
+      "sha256": "93374bf9120a730da4782e234dd1a56885bef43f285c3817a7b7b1a42e9ea010"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 4,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run04_strata.json",
+      "sha256": "31828a51ff613bb255084dc8e52070a86e0f39f596e378dfaf0754425997801b"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 4,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run04_A_last_evaluation.npz",
+      "sha256": "8a0fa234bb5f8198b03ce9da837e38edb9232cbfae9d13fb30f06dfa071c0ac1"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 4,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run04_A_mean128_evaluation.npz",
+      "sha256": "c14d96b0f7b45922d092115f222d8188ce1402717ef1ba7721ff2c1ac96a0c7b"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 5,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run05_strata.json",
+      "sha256": "5c84c22ef281f288dd70a7957b29edad8db860fca52abbb8c8dbbb5884ce5b62"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 5,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run05_A_last_evaluation.npz",
+      "sha256": "79e88926c857159a23d1b9e9da2ecea04b6b14158c0859a25ca0a9a3496c3567"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 5,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run05_A_mean128_evaluation.npz",
+      "sha256": "fb5e6e013b1b06cd785c9e7b91c0ac66ceff0d33e7f9cc766c895b0bfe4d69a2"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 6,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run06_strata.json",
+      "sha256": "fe3dcf998c0610b8e64f7cbada5af3da20f7d0a4043bed1f59b45aa05fe370d6"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 6,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run06_A_last_evaluation.npz",
+      "sha256": "66e7a103d5c99df10e7743a5511f3f420d119f1c9a49c4ed6cec4fdf5b957e28"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 6,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run06_A_mean128_evaluation.npz",
+      "sha256": "0c5d28390979adcad89eecdc7ee42d396672a4d761f8e5b1e5be71c116e17c34"
+    },
+    {
+      "kind": "strata",
+      "scenario": "LIN",
+      "run_id": 7,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run07_strata.json",
+      "sha256": "cd81b4a7e4f445b3ca1d62ba8176f99b0f0ccf140004c220861ffaec6dd1d3a1"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 7,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run07_A_last_evaluation.npz",
+      "sha256": "a02aa98e62f1a1b06c69422979f9f91a7bec916fbb8fe74830daa90a4a61c492"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "LIN",
+      "run_id": 7,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\LIN_run07_A_mean128_evaluation.npz",
+      "sha256": "f3575626405eb132addfe8670ab381527a169fdaf1147f043df10b4cd08972e1"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 0,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run00_strata.json",
+      "sha256": "1abb2257cbeafe92daacb91eae7ba8bd36e58c3722b09fd8a0c54bce3e4d5c38"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 0,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run00_A_last_evaluation.npz",
+      "sha256": "fc50e1f59f9beb393d5950bdfce327f8f04c63f1f2c5dacece3f3f6f161e70f2"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 0,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run00_A_mean128_evaluation.npz",
+      "sha256": "02b545657c4219fa0efb16849e9de03192f4834d2f87da4b6db9581d1569095f"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 1,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run01_strata.json",
+      "sha256": "fe198ca2821987ffe0541b6ad1db33f707163243432c519b3952177e510e649f"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 1,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run01_A_last_evaluation.npz",
+      "sha256": "d01976cf3841bf014c593b37cb2f6047f5fee47fef266909aeb6fa0107bf49b2"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 1,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run01_A_mean128_evaluation.npz",
+      "sha256": "924348f4ef0adc15bf524278d58097a3f5f066f4270aaa71b51b027cada89e2b"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 2,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run02_strata.json",
+      "sha256": "16b05382904218ad3705ee4f42f45bfc0c35e8a68f478e2f0ea20e1aaf821c0f"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 2,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run02_A_last_evaluation.npz",
+      "sha256": "83967591244d84da1e7ca93323ec1200bea4e29e0a2cc88ef759d92ff81f0b6d"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 2,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run02_A_mean128_evaluation.npz",
+      "sha256": "5bd70515f9b34ec722047444403915176fa49a72ae2000563164001758e19099"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 3,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run03_strata.json",
+      "sha256": "899f175f0692f979c6eac43807d7b23d18851ca622a941e2a3b53917266d6d20"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 3,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run03_A_last_evaluation.npz",
+      "sha256": "38dde2220060a1555c84ee24c4fe9a4c7863b6b1db71bb6b34777d16d47ef2c2"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 3,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run03_A_mean128_evaluation.npz",
+      "sha256": "b6b31032f9b1e80d60091a35b2256485ede454b9cc5e742340f591fa65d514f4"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 4,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run04_strata.json",
+      "sha256": "7415de4267ce0ec62740cc94d1b22e0174ceae89a8ffa4ecbed22d404522e9af"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 4,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run04_A_last_evaluation.npz",
+      "sha256": "4ccc282a416f1937bed57a3e134f06e5f0b69164a4617dc34c77ffd00c4ec889"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 4,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run04_A_mean128_evaluation.npz",
+      "sha256": "8fd7d9f4e9a8801da29ea871c2225c7acd2e44a786d96b850d8620d4547d79d7"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 5,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run05_strata.json",
+      "sha256": "932c3771d4e9e6725ab92ba9205014096ce5b9ce7ef8d00819e26f4b333cf50f"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 5,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run05_A_last_evaluation.npz",
+      "sha256": "daf416f1b423e4b25ce9d4a5c2735f8c0bccd940da77493cbd20f0de502c5f89"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 5,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run05_A_mean128_evaluation.npz",
+      "sha256": "5562d057f1fb6ca18d8f5ab56e8be4833bd0afded1529298f0859e91b6fc2eb9"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 6,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run06_strata.json",
+      "sha256": "82eb39e3a46e874db85e20ba73c327860fccf7012d54ee3038aaf40bf33f9e15"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 6,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run06_A_last_evaluation.npz",
+      "sha256": "b88b6cbe020b1eb64d94d4234e4daa59c55c13e6e1b921ddc9b1d73957036383"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 6,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run06_A_mean128_evaluation.npz",
+      "sha256": "cf0850e3a57640051c055a9f090523dd7a8b06149e5fe3e6bb4171adf1df9ca5"
+    },
+    {
+      "kind": "strata",
+      "scenario": "WEAK",
+      "run_id": 7,
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run07_strata.json",
+      "sha256": "e9031fd883acb4487698d43773f0f1cc7a51bc858a649b0d72f5d814e22e004d"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 7,
+      "readout": "last",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run07_A_last_evaluation.npz",
+      "sha256": "e15633bb13fa148dd0dacdb929987162e95265c01e9cee9b53afca5518b37b24"
+    },
+    {
+      "kind": "evaluation",
+      "scenario": "WEAK",
+      "run_id": 7,
+      "readout": "mean128",
+      "path": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\left_wl_c2_fixed_evaluation_20261101_v1\\WEAK_run07_A_mean128_evaluation.npz",
+      "sha256": "88874b9afbe609344d271e49b6ecc66ac393fd19e526346f190294afd32bfe14"
+    }
+  ]
+}

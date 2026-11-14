@@ -212,15 +212,20 @@ def resolve_plan(runs, entries, history, horizon, arrived=False):
     return result
 
 
-def fixed_plan(runs, history, horizon, count, seed, role, arrived=False, replace=True):
+def fixed_plan(runs, history, horizon, count, seed, role, arrived=False, replace=True, *, min_local_target=0):
     """Observation-only eligible grid, domain-uniform then run-uniform sampling.
 
     All current channels and at least two past observations per channel are
     required; no imputed LOCF point is teacher GT. No values/scores/labels select
     these positions. Sampling is with replacement, and duplicates stay recorded.
+    A positive min_local_target filters the candidate grid before sampling and
+    requires every specified role/run to retain candidates. Zero preserves the
+    historical default, including its handling of empty individual runs.
     """
     if type(count) is not int or count < 1:
         raise ValueError("Positive fixed count required")
+    if type(min_local_target) is not int or min_local_target < 0:
+        raise ValueError("Nonnegative integer min_local_target required")
     eligible = {}
     for r in runs:
         if r.role != role:
@@ -229,7 +234,9 @@ def fixed_plan(runs, history, horizon, count, seed, role, arrived=False, replace
         cs = np.concatenate((np.zeros((1, r.observed.shape[1]), np.int64),
                              np.cumsum(r.observed, axis=0)), axis=0)
         valid = r.observed[ts].all(axis=1) & ((cs[ts]-cs[ts-history]) >= 2).all(axis=1)
-        ts = ts[valid]
+        ts = ts[valid & (ts >= min_local_target)]
+        if min_local_target and not len(ts):
+            raise ValueError("Every specified role/run needs eligible positions after minimum-target filtering")
         if len(ts):
             eligible.setdefault(r.domain, []).append((r, ts))
     expected = {r.domain for r in runs if r.role == role}

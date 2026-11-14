@@ -1,0 +1,138 @@
+{
+  "operation": "HYBRID_V1_PUBLIC_SYNTHETIC_C1_COST",
+  "profile": "SYNTHETIC_C1_COST128_V1",
+  "permissions": {
+    "query": false,
+    "synthetic_profile": true,
+    "labels": false,
+    "training": false,
+    "threshold_fit": false,
+    "target_fit": false,
+    "source_calibration_fit": false
+  },
+  "resume": false,
+  "history": 512,
+  "horizon": 32,
+  "chunk_size": 64,
+  "source_seed": 2025,
+  "inference_seed": 2025,
+  "control_id": "FULL_SOURCE_seed2025",
+  "route": "SOURCE_CONTROL",
+  "physical_gpu": 0,
+  "expected_gpu_uuid": "GPU-REPLACE_WITH_LOCAL_UUID",
+  "device": "cuda:0",
+  "model": {
+    "history": 512,
+    "local_window": 100,
+    "horizon": 32,
+    "width": 128,
+    "temporal_patch": 16,
+    "temporal_layers": 4,
+    "heads": 4,
+    "tf_hidden": 64,
+    "tf_repr": 256,
+    "tf_depth": 10,
+    "tf_patch": 5,
+    "copies": 2,
+    "lag_window": 100,
+    "max_lag": 32,
+    "lag_width": 32,
+    "lag_top_k": 4,
+    "lag_min_overlap": 2,
+    "ms_factors": [
+      4,
+      2
+    ],
+    "fusion": "left_interaction",
+    "fusion_layers": 1,
+    "dropout": 0.0,
+    "reconstruction_projection": "real",
+    "history_mask_probability": 0.15,
+    "use_variate_attention": false
+  },
+  "sources": {
+    "timeradar_file": "${HYBRID_RESEARCH_ROOT}/docs/research_review_2026-10-27/source_snapshots/TimeRadar/models/TimeRadar.py",
+    "left_root": "${HYBRID_RESEARCH_ROOT}/literature/novelty_review/left_source_20261031/models/Left",
+    "timesfm_root": "${HYBRID_RESEARCH_ROOT}/literature/reference_source_20261031/timesfm3/src/timesfm3/torch"
+  },
+  "active_components": [
+    "r_tf",
+    "r_ms",
+    "r_pred"
+  ],
+  "assets": {
+    "checkpoint": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/source_train/source.pt",
+      "sha256": "c00f3e2c4c094d96572b945474712112ced433a13d82e9fce876b013ee990812"
+    },
+    "calibration": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/calibrate_source/source_calibration.json",
+      "sha256": "da239eac4c5ab1e76718cd651c48f6f89b8d5658b5b9b2a20cb400d88f83d585"
+    },
+    "training_config": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/source_train/config.json",
+      "sha256": "223b658a016232ca05ea587918b60b90e50c10cebe2ddcd13d8aa88d06132817"
+    },
+    "training_receipt": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/source_train/receipt.json",
+      "sha256": "93b8f29775dc4019a9c73b491158b7bc1ebaa09ecb3dff6e2ba4ed090838bce1"
+    },
+    "calibration_config": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/calibrate_source/config.json",
+      "sha256": "df94d791d858d3d6d03560d29cd8dec0f8d275458dde0ef2b9930740e2f27699"
+    },
+    "calibration_receipt": {
+      "path": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_stage1_full_N8000_seed2025_20261102_v1/calibrate_source/receipt.json",
+      "sha256": "a4308f4b90c7b63314b0ac09da0eb3deaabd3268c58a138068d1af41857f3ccc"
+    },
+    "asset_seal": {
+      "path": "${HYBRID_RESEARCH_ROOT}/preparations/hybrid_v1_public_readout_build_20261104_v1/SOURCE_FULL_ASSET_SEAL.TEMPLATE_PENDING.json",
+      "sha256": "1b6316d2da5262c07107d3c06dcc8fd222c20d50933a59d0baa33083cfb33786"
+    },
+    "reference_training": {
+      "path": "${HYBRID_RESEARCH_ROOT}/preparations/hybrid_v1_stage1_source_build_20261102_v1/snapshot_v4/src/hybrid_tsad/hybrid_v1/training.py",
+      "sha256": "40e2247ed3049bf9d2303c380b2da55c1494c874ca38dd24652f741ed33ccc74"
+    }
+  },
+  "stream_source_sha256": {
+    "baselines.py": "e14922884c6cbb01fddfe3ba9da9d245b3e7ab3116144a3e958aa904720f6dbd",
+    "chunked_bank.py": "17a298cb5f7255ae9d429630ec4f07152a65c7711a2657bba1e6de6d9ec4d2b4",
+    "cli.py": "18b120b61e4a44224b7445bea2e4364575966183299bcde52d6b5bdca735f941",
+    "config.py": "503997526ad4457565b4c7e2fa36c71f49fcda44f1c5845dd4d118d97b6da6b6",
+    "data.py": "7fb989d3a6aec43e4082e6e116765d76a80457feee3f20fd7a6c0354117c4315",
+    "evaluate_cli.py": "4fe88b0e9b7792ee95845f087113e4e04813fc732e15257fa1a482bbbcd697cd",
+    "evaluation.py": "72491c52bed3b6f1787ee634ddb9c0ef95ac6eaa16f333c0b83c10e1b329a831",
+    "fractional.py": "ab34399743485f7b72e9d92b3d6951b6c35cbaf8076659d880cff7a93dd5dcc2",
+    "initialization_audit.py": "2c3e5f72d3af48e983cd7bccf67f4ac65997578f8cd1ac3c232ed88407ac4578",
+    "lag.py": "9740bd15170cdeffdd0d6dabecbf496b52a15477552f4becef77d544f1ab5a16",
+    "model.py": "ef21a915b1f0f15c91efbe8114859e181815c7f63b50b494ef729799bc9c33b6",
+    "multiview.py": "30da49d1bb0a31c04d47d257e26172ad117a629c8f45b02f3f88d4f394978e2c",
+    "objectives.py": "2dc0d50ebb767ab0fe2ecfc34970ef6d34cfa7b84624dd39052adb475a0b0eaf",
+    "provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478",
+    "public_readout.py": "a6cc4844ee91f255079e59b590a41397f5ec7ead63cbffec435fa2a41a2909bf",
+    "readout.py": "7d1916d7200e16a77696abf52d36c9e452f3479e01cba6fa679e6521e97e0cff",
+    "scoring.py": "a87517e1f4a02b8193ad1ffbc667a88710ec22c5db884a8f50d85b818961576d",
+    "stage2_adaptation.py": "16115e7a014379cc5966c978b824eaa054fae8f880178b082377ad688206265b",
+    "statistics.py": "6c3fb03ab168ce28836433d23957cfc7767932f2953f6d8c98d4c58cbecf4b10",
+    "target_data.py": "3578f4f498a16f0c62a591958b4d53f1ce07a99e11d0107af6b2a5c052175dfa",
+    "temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+    "training.py": "e13ead2c0232b603a31e937228ee720585cc87b22fca1f032a129c2c78be1bd0",
+    "__init__.py": "9706f448f75c55733dd63382595f3ccd473b5984a478e314b834c40a9ef7f613"
+  },
+  "synthetic": {
+    "rng_seed": 84551,
+    "length": 640,
+    "channels": 1,
+    "distribution": "standard_normal_float32",
+    "observed": "all_true"
+  },
+  "reference_points": 3,
+  "resources": {
+    "wall_seconds": 175,
+    "kill_grace_seconds": 5,
+    "evaluation_GiB": 30,
+    "max_GPUh": 0.05,
+    "automatic_retry": false
+  },
+  "output": "${HYBRID_RESEARCH_ROOT}/results/hybrid_v1_public_synthetic_C1_cost128_20261104_v1"
+}

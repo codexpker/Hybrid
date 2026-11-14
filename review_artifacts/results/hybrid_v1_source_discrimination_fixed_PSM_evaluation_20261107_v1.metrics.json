@@ -1,0 +1,27 @@
+[
+  {
+    "method": "HybridV1_Z_source2025",
+    "AP": 0.31422977843437727,
+    "ROC_AUC": 0.53088521686722
+  },
+  {
+    "method": "HistoryMean512_ZS",
+    "AP": 0.32103576928430416,
+    "ROC_AUC": 0.5300384603329731
+  },
+  {
+    "method": "TimeRadar_official_native",
+    "AP": 0.3630309390537386,
+    "ROC_AUC": 0.5659411738534861
+  },
+  {
+    "method": "LEFT_R_targettrained",
+    "AP": 0.5773263646320879,
+    "ROC_AUC": 0.7755837466349813
+  },
+  {
+    "method": "Hybrid_SCORE_ALIGNED_source2025",
+    "AP": 0.31490596296536366,
+    "ROC_AUC": 0.5305646474255685
+  }
+]

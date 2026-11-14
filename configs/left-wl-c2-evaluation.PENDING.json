@@ -1,0 +1,157 @@
+{
+  "status": "PENDING",
+  "operation": "LEFT_WL_C2_LABEL_EVALUATION",
+  "source_manifest_sha256": "07287e30bb63dd7dae5f785955a370c4ee7420b6d0cbeb6363324d906f631bb7",
+  "seed": 2025,
+  "bootstrap_repeats": 10000,
+  "max_seconds": 300,
+  "max_rss_GiB": 2,
+  "gpu_budget": 0,
+  "truths": [
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 0,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run00_truth.json",
+      "sha256": "a5c008ce10f6923cddd0e45e1fe40f3fc121b92726cf75a700e29fab8783f89b"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 1,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run01_truth.json",
+      "sha256": "fc16e4ee3b5e6167a49c73140dff98c157476616fd1f4b022dfc218f58338276"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 2,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run02_truth.json",
+      "sha256": "bcf3595855c4089861ef1cf74d31a4993b4bfa742d1425477647cad383a79d17"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 3,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run03_truth.json",
+      "sha256": "f5986f05c41e1c533dec708bcbf96b540c4581d00e8289b62a923089f63c1de5"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 4,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run04_truth.json",
+      "sha256": "c7fe30c325f206e862c614ba85aefd53679da67e53a1ebf4d2134ed873bb8637"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 5,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run05_truth.json",
+      "sha256": "cd1da0845ae61a212e0b6779eb91232a5c6782ad11acea289bb1d0f4dea1e7d3"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 6,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run06_truth.json",
+      "sha256": "798339edbbe1fac390d7fe677601bcf53324b1dba5d15a3bf58e045d5c8d710d"
+    },
+    {
+      "scenario": "LIN",
+      "role": "DEV",
+      "run_id": 7,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/LIN/DEV/run07_truth.json",
+      "sha256": "b7f21553e7afbf54cb13b6ad37d8be9e8ce642591bc1a6161ee9f6c63000d9eb"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 0,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run00_truth.json",
+      "sha256": "00e9c4f371ddd321917114f1fb81c39d1b6b2d402adfedd0584b643d587939fc"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 1,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run01_truth.json",
+      "sha256": "67667f2bdd3e333d12c7f8ce7b9340a2e03ef2456c2581079b37611e6c1058b2"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 2,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run02_truth.json",
+      "sha256": "24600b5cff834bbc7981649ffd71dbe56b48d07104398f12c3e9104111e64ef6"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 3,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run03_truth.json",
+      "sha256": "7876d981bbf8aa58025f9b86a1a065ff3fa42aa0f20d1e258527ec3bc018e5e8"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 4,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run04_truth.json",
+      "sha256": "82ea517844db61665545d62d34d64efa507b6d23cab4420eb7ba9af8cd3f56e5"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 5,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run05_truth.json",
+      "sha256": "9036f922fbbf2a1fab8aeaf476b338795ffe43ea5cb1730aa11774f050b5502b"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 6,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run06_truth.json",
+      "sha256": "c63fdefdd3725521dc5d4b096abc1212cff1be457aadd755627d88a55a294339"
+    },
+    {
+      "scenario": "WEAK",
+      "role": "DEV",
+      "run_id": 7,
+      "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/data/WEAK/DEV/run07_truth.json",
+      "sha256": "17f99dddd0f9137ebff5619d1a6c485d8375cbbb5f428330cff21b048dd61058"
+    }
+  ],
+  "score_seal": {
+    "path": "${HYBRID_RESEARCH_ROOT}/preparations/left_wl_c2_score_build_20261101_v1/RAW80_SEAL.PENDING.json",
+    "sha256": "PENDING"
+  },
+  "cpu_all_layers": {
+    "path": "${HYBRID_RESEARCH_ROOT}/results/weak_lag_cpu_20261101_v1/evaluation/all_layers.csv",
+    "sha256": "4b9e02829af4de590b90773815a1fd2209f1fb1a3384649bacf369f9dfbda81b"
+  },
+  "output": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_fixed_evaluation_20261101_v1",
+  "score_reports": [
+    {
+      "scenario": "LIN",
+      "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_LIN_fixed_score_20261101_v1/report.json",
+      "sha256": "PENDING",
+      "config": {
+        "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_LIN_fixed_score_20261101_v1/config.json",
+        "sha256": "PENDING"
+      },
+      "checkpoint_sha256": "3150f5819c6723940a6e209fd33ed21372a733108f644c430de5543f1c0ba9be",
+      "scaler_sha256": "10221fdb8bc781b5ab0786fa8349f669dfccdfb18d9c1a615090a250c1bf92a2"
+    },
+    {
+      "scenario": "WEAK",
+      "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_WEAK_fixed_score_20261101_v1/report.json",
+      "sha256": "PENDING",
+      "config": {
+        "path": "${HYBRID_RESEARCH_ROOT}/results/left_wl_c2_WEAK_fixed_score_20261101_v1/config.json",
+        "sha256": "PENDING"
+      },
+      "checkpoint_sha256": "185238ab5eb32e6cb827bf35d32bc08ecbdc5e38ff8e67e0141c1e3d9f50ee6c",
+      "scaler_sha256": "c42f134d9ae9194ff930e2bb94a8d8180916a19798e587639c4614a9c6045876"
+    }
+  ]
+}

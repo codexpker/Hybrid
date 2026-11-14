@@ -1,0 +1,9 @@
+{
+  "archive": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/base0_half_mse_SOURCE_FULL_ARCHIVE.zip",
+  "archive_sha256": "84c33bd2b946f1983ec79f7451e7b6ed7289bceeb118f4386ad93bc6bafa0c18",
+  "manifest_sha256": "826615a1fe6fdf8a9f866df7471538b6926273ab862e7e62f8df3dcbedf0a1ef",
+  "files": 22,
+  "bytes": 141660160,
+  "local_synced": true,
+  "mismatches": []
+}

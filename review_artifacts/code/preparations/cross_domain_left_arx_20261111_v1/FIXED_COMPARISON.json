@@ -1,0 +1,39 @@
+{
+  "id": "cross_domain_left_arx_20261111_v1",
+  "decision_fixed_before_new_results": true,
+  "entity": "SMD machine-1-5",
+  "selection": "retain root's 2026-11-06 prospective stable-ID selection; no model-performance selection or entity replacement",
+  "data": "existing prospective_smd_machine15_roles_20261106_v1; official OmniAnomaly commit7fb0e0acf89ea49908896bcc9f9e80fcfff6baf4 original files and role SHA remain unchanged",
+  "roles_original_bounds": {
+    "FIT": [0,14223], "SELECT": [14767,18964], "CAL": [19508,23705],
+    "QUERY_input_test": [8446,23706], "QUERY_scored_test": [8958,23706]
+  },
+  "role_guard": 544,
+  "channels": 38,
+  "events": "all7 original complete events, length4..31 points; original labels unchanged; no long>512 event so steady-long metric NA, not zero success/failure",
+  "exposure": "prospectively selected before current method results; historical TimeRadar whole-SMD exposure and original pretraining members unknown, not fully blind; entity not chosen from previous AP",
+  "background_health": "provider's nominal training background; not independently certified clean",
+  "preprocessing": "common StandardScaler fit ONLY FIT, constant-channel scale1; same frozen scaler applied independently to SELECT/CAL/QUERY; no SELECT/CAL/QUERY fitting, interpolation or label selection",
+  "LEFT": {
+    "official_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+    "config_source": "literature/novelty_review/left_source_20261031/configs/SMD",
+    "model_config_SHA256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+    "train_config_SHA256": "0a6b4cc8bb0b53f8ed63bfd1ad71741a15114ab7b458827b819054a90bbf6995",
+    "base_config_SHA256": "ac14696992d5a005a444fac0c75cce172a94b2d5138006593d004a5105268d54",
+    "seed":2025, "training":"official native full model/loss/Adam1e-4/B128/type1/max20epoch/patience3, original _basic and bestSELECT-loss semantics preserved and recorded; no target test labels",
+    "only_adapter_changes":"explicit FIT/SELECT-only loader and FIT-only scaler; correct native SMD38 configuration instead of PSM25; no backbone/loss/readout change",
+    "scoring":"frozen eval mode native W192 prefix-window last-point score, every input<=scored t; preserve native SMD smoothing51 inside prefix only; no future truth or whole-QUERY smoothing"
+  },
+  "ARX":"existing strictpast lag512..1/channel-major Ridge alpha1, unpenalized intercept, float64; FIT-only fit, no tuning; same canonical mean abs residual / per-channel median abs selectedCAL512 floor1e-6",
+  "ARX_accumulated_control":"existing fixed g0=r0, g_t=63/64*g_prev+r_t/64 independently per CAL/QUERY role; unchanged baseline only, not new candidate",
+  "CAL":"save full continuous common CAL target indices20020..23704; same512 selected endpoints linspace(20020,23704,512) for canonical residual scale and all thresholds; never select checkpoint on CAL",
+  "methods":["LEFT_native","ARX_point","ARX_accumulated","LEFT_OR_ARX_point"],
+  "standalone_alarm":"own selectedCAL512 q99 higher; strict score>tau",
+  "simple_OR":"unchanged point-ARX OR, each branch q995 higher on same CAL512; nominal total point budget1%; branchwise causal C3 then OR, no alternating-branch confirmation or backfill",
+  "OR_continuous_score":"max(float64_LEFT/tau_LEFT995,float64_ARXpoint/tau_ARX995); score>1 strict masks match OR exactly; no fitted fusion weights",
+  "acceptable_budget":"report actual QUERY normal strict and C3 point FPR against pre-fixed nominal1%; this is prospective operating assessment, not guaranteed distribution-free FPR; never use QUERY to rematch or change thresholds",
+  "complementarity_screen":"report original standalone intersections and unique events; OR gains/losses relative LEFT standalone. Require additional one-to-one C3 event detection, preservation of LEFT standalone any-hit events, and actual C3 normal FPR<=fixed1% for a positive operational screen; report all point coverage/precision/delay/FP fragments, not events alone. No claim of universal or lag-specific complementarity from this one entity.",
+  "evaluation":"common14748 original points, all7 complete events; raw AP/ROC; strict/C3 point and one-to-one event Precision/Recall/F1; first-hit available-index delay and missed right censoring; normal false points/fragments per1000; per-event coverage and longest missed run; steady>512 NA; no PA or label-tuned tau",
+  "execution":"LEFT and ARX independent jobs may run in parallel on different free A40s; existing effective results reused, no repeated PSM/TimeRadar training; 20GiB training/30GiB inference cap, one job per card, safe per-job timeout, actual device/PID/start/end/exit/peak/GPUwall tracked",
+  "stop":"no other entity/config/seed/gate/weights/EMA/tau search after seeing QUERY; freeze raw scores/thresholds before labels; one final bounded independent scientific recomputation; adjust paper role only from valid fixed comparison"
+}

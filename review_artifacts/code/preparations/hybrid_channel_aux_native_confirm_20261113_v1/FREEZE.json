@@ -1,0 +1,52 @@
+{
+  "id": "hybrid_channel_aux_native_confirm_20261113_v1",
+  "entity": "SMD machine-1-1",
+  "seeds": [
+    2025,
+    2026,
+    2027
+  ],
+  "source": "same target normal FIT common initialization; not multisource Stage1 or target-free Z",
+  "source_updates": 4000,
+  "source_SELECT_updates": [
+    3000,
+    3200,
+    3400,
+    3600,
+    3800,
+    4000
+  ],
+  "pair_updates": 2000,
+  "pair_SELECT_updates": [
+    200,
+    400,
+    600,
+    800,
+    1000,
+    1200,
+    1400,
+    1600,
+    1800,
+    2000
+  ],
+  "SELECT": "same mean original native anomaly-score endpoint over nonoverlap H192 normalSELECT windows; minimize, ties earlier",
+  "optimizer": "fresh Adam1e-4/B128 fixed, paired source same PT/step/scaler/plan",
+  "loss": "native original SSL vs .5native+.5wholechannel masked-target originalcoeff; no new parameters",
+  "readout": "ONLY native_readout for source/native/aux; no score_one_channel or masked inference",
+  "CAL": "continuous role-local>=512, ownq99higher; no QUERY fitting",
+  "QUERY": "all original512..28478",
+  "roles_sha256": "c77daed768ef706e265e81cbd1c0945e6173d953cabc94df1bb3c46fe1737d0d",
+  "scaler_sha256": "dd26a96f1fe5d343a0021dbfe1b07f4042871da32d651815a44345c002a61335",
+  "model_sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+  "runtime_sha256": {
+    "left_predictive_cycle.py": "c9a7752b1eac84be33a6c704d0a02a4ab150aa2dd8e092b790e11ac0819c1685",
+    "left_channel_blindspot.py": "f9b40c77a03052386b2de318b34b8cd7674bea4c765b9987bdac47fdf4831c74"
+  },
+  "plan_sha256": {
+    "2025": "662db4602ce2345a363cd151b04b193f2e85f795dd49755d0de73020d9ea310a",
+    "2026": "9eb07faf8291a92aae169098e6115aa118e019f8a780a74de8df072813ecd4bd",
+    "2027": "d253d6ffca6f5fad756808c4db2900bdaed252d80404e20754a35df7b2e3a1d4"
+  },
+  "primary_comparison": "all3paired aux-minus-native AP/ROC; no bestseed selection; sustained/FP/event evidence separate",
+  "stop": "no stable learning increment -> stop; old blindscore NOGO unchanged"
+}

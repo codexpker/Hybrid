@@ -1,0 +1,1465 @@
+{
+  "standalone_runnable": false,
+  "external_upstream": [
+    "models.Left.LEFT",
+    "exp"
+  ],
+  "external_data_weights_and_generated_plans": true,
+  "excluded_operational_bindings": [
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/bind_evaluation.py",
+      "reason": "network_or_deployment_content"
+    },
+    {
+      "source": "preparations/hybrid_target_fullshot_20261110_v1/target_fullshot.py",
+      "reason": "already_in_package_exact",
+      "package_paths": [
+        "hybrid_ad\\src\\hybrid_tsad\\hybrid_v1\\target_fullshot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/generate_controlled.py",
+      "reason": "operational_or_network_import_excluded_conservatively"
+    },
+    {
+      "source": "results/left_psm_R_score_seed2025_20261101_v1/adapter_snapshot.py",
+      "reason": "already_in_package_exact",
+      "package_paths": [
+        "hybrid_ad\\src\\hybrid_tsad\\left_baseline.py"
+      ]
+    }
+  ],
+  "stdlib_platform_note": "resource is Unix-only; historical TEP extractor requires its original Unix environment",
+  "entries": [
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/worker.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/prepare.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "__init__.py",
+        "left_channel_blindspot.py",
+        "left_predictive_cycle.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/cpu_gate.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types",
+        "worker"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/evaluate_fixed.py",
+      "imports": [
+        "csv",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/MODEL.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/FREEZE.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/worker.py",
+      "imports": [
+        "copy",
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/prepare.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "__init__.py",
+        "left_channel_blindspot.py",
+        "left_predictive_cycle.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_gate.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/left_channel_blindspot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_mask_gradient.py",
+      "imports": [
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_worker.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types",
+        "worker"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_cpu_gate.py",
+      "imports": [
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/prepare_controlled.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_controls.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.linear_model"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/fixed_metrics.py",
+      "imports": [
+        "collections",
+        "hybrid_tsad.alarm_complementarity",
+        "hybrid_tsad.hybrid_v1",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_fixed.py",
+      "imports": [
+        "argparse",
+        "cpu_controls",
+        "csv",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_controlled.py",
+      "imports": [
+        "evaluate_fixed",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.linear_model"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_psm_common.py",
+      "imports": [
+        "evaluate_fixed",
+        "fixed_metrics"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/FIXED_EXPERIMENT.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/MODEL.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/DATA_DEFINITION.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/worker.py",
+      "imports": [
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "left_predictive_cycle",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "traceback",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [
+        {
+          "import_name": "left_predictive_cycle",
+          "package_candidates": [
+            "hybrid_ad/src/hybrid_tsad/left_predictive_cycle.py"
+          ],
+          "original_runtime_layout_required": true
+        }
+      ],
+      "referenced_python_assets": [
+        "runtime/left_predictive_cycle.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/worker_cpu_recovered.py",
+      "imports": [
+        "json",
+        "numpy",
+        "pathlib",
+        "time",
+        "worker"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_fixed.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "shutil"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/left_predictive_cycle.py",
+        "runtime/left_predictive_cycle.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_roles.py",
+      "imports": [
+        "gc",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "pyreadr",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/cpu_gate.py",
+      "imports": [
+        "copy",
+        "hashlib",
+        "json",
+        "left_predictive_cycle",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [
+        {
+          "import_name": "left_predictive_cycle",
+          "package_candidates": [
+            "hybrid_ad/src/hybrid_tsad/left_predictive_cycle.py"
+          ],
+          "original_runtime_layout_required": true
+        }
+      ],
+      "referenced_python_assets": [
+        "runtime/left_predictive_cycle.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/fixed_evaluate.py",
+      "imports": [
+        "argparse",
+        "csv",
+        "hashlib",
+        "hybrid_tsad.alarm_complementarity",
+        "hybrid_tsad.engine.events",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/FIXED_EXPERIMENT.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/configs/PSM.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_native_predictive_cycle_20261113_v1/configs/TEP.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "results/tep_relation_confirmation_20261113_v1/extract_fixed.py",
+      "imports": [
+        "datetime",
+        "gc",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "pyreadr",
+        "resource",
+        "time",
+        "traceback"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "results/tep_relation_confirmation_20261113_v1/fixed_evaluate.py",
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pandas",
+        "pathlib",
+        "pickle",
+        "platform",
+        "sklearn",
+        "sklearn.metrics",
+        "time",
+        "warnings"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "results/tep_relation_confirmation_20261113_v1/FIXED_PROTOCOL.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "results/tep_relation_confirmation_20261113_v1/FIXED_READOUT.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/native_baseline.py",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "runtime/native_score_numpy.py",
+        "runtime/relationship_residual.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/native_worker.py",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "runtime/native_score_numpy.py",
+        "runtime/relationship_residual.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/ordinary_u_worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "native_baseline.py",
+        "runtime/left_loss_observer.py",
+        "runtime/left_native_u.py",
+        "runtime/left_real_attack_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/u_worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "native_baseline.py",
+        "runtime/left_loss_observer.py",
+        "runtime/left_native_u.py",
+        "runtime/left_real_attack_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/prepare_data.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sklearn.preprocessing",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/prepare_learner_plan.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "runtime/left_real_attack_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/cpu_loss_observer.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "os",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/left_loss_observer.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/history_mean.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/fixed_postprocess.py",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/alarm_complementarity.py"
+      ]
+    },
+    {
+      "source": "preparations/left_multievent_mixed_u_20261111_v1/FIXED_EXPERIMENT.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/u_worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "preparations/cross_domain_left_arx_20261111_v1/worker.py",
+        "runtime/left_native_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/cpu_u_gate.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "time",
+        "torch"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "frozen_normal_forward.py",
+        "hybrid_ad/src/hybrid_tsad/left_native_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/frozen_normal_forward.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/prepare_u.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/left_native_u.py"
+      ]
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/evaluate_u_fixed.py",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/alarm_complementarity.py"
+      ]
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/posthoc_distribution.py",
+      "imports": [
+        "csv",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/alarm_complementarity.py"
+      ]
+    },
+    {
+      "source": "preparations/left_normality_u_sensitivity_20261111_v1/target_prefix/FIXED_EXPOSURE_CONTROL.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/worker.py",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "runtime/native_score_numpy.py",
+        "runtime/relationship_residual.py"
+      ]
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/prepare.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "sklearn.preprocessing",
+        "zipfile"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/cpu_gate.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/native_score_numpy.py"
+      ]
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/evaluate_fixed.py",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "evaluate_fixed.py",
+        "hybrid_ad/src/hybrid_tsad/alarm_complementarity.py",
+        "hybrid_tsad/hybrid_v1/evaluation.py"
+      ]
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/FIXED_COMPARISON.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/cross_domain_left_arx_20261111_v1/configs/SMD/model_configs_Left.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/scope_worker.py",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/cached_chunk_reader.py",
+      "imports": [
+        "contextlib",
+        "numpy"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/merge_scope_shards.py",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/test_scope_interface.py",
+      "imports": [
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "torch",
+        "unittest",
+        "unittest.mock"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_ad/src/hybrid_tsad/hybrid_v1/stage2_u_scope.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_target_fullshot_20261110_v1/worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "scope_worker",
+        "shutil",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "runtime/src/hybrid_tsad/hybrid_v1/target_fullshot.py",
+        "target_fullshot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_target_fullshot_20261110_v1/postprocess_v2.py",
+      "imports": [
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "left_native_history_lag",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [
+        {
+          "import_name": "left_native_history_lag",
+          "package_candidates": [
+            "hybrid_ad/src/hybrid_tsad/left_native_history_lag.py"
+          ],
+          "original_runtime_layout_required": true
+        }
+      ],
+      "referenced_python_assets": [
+        "results/left_psm_R_score_seed2025_20261101_v1/adapter_snapshot.py",
+        "results/left_psm_R_seed2025_20261101_v1/adapter_snapshot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_worker_repaired.py",
+      "imports": [
+        "argparse",
+        "bisect",
+        "copy",
+        "exp.exp_anomaly_detection",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "left_native_history_lag",
+        "models.Left.LEFT",
+        "native_score_numpy",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [
+        {
+          "import_name": "left_native_history_lag",
+          "package_candidates": [
+            "hybrid_ad/src/hybrid_tsad/left_native_history_lag.py"
+          ],
+          "original_runtime_layout_required": true
+        },
+        {
+          "import_name": "native_score_numpy",
+          "package_candidates": [
+            "hybrid_ad/src/hybrid_tsad/native_score_numpy.py"
+          ],
+          "original_runtime_layout_required": true
+        }
+      ],
+      "referenced_python_assets": [
+        "results/left_psm_R_score_seed2025_20261101_v1/adapter_snapshot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_world.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/common_cal.py",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "worker.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines.py",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines_match_cal.py",
+      "imports": [
+        "controlled_baselines",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/post_controlled_v2.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.public_native_evaluation",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "controlled_world.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/post_psm.py",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_joint_cycle_20261109_v2/candidate_worker.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_joint_cycle_20261109_v2/cached_chunk_reader.py",
+      "imports": [
+        "contextlib",
+        "numpy"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_joint_cycle_20261109_v2/merge_candidate_shards.py",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_left_joint_cycle_20261109_v2/bind_fixed_evaluation.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        "hybrid_tsad/hybrid_v1/joint_cycle_core.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_joint_cycle_20261109_v2/test_evaluation_schema.py",
+      "imports": [
+        "copy",
+        "hybrid_tsad.hybrid_v1.source_joint_cycle_psm_comparison_v2",
+        "sys"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_stage1_source_build_20261102_v1/BUILD_SOURCE_PLANS.py",
+      "imports": [
+        "datetime",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.data",
+        "json",
+        "numpy",
+        "pathlib",
+        "resource",
+        "sys",
+        "time"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_stage1_source_build_20261102_v1/SOURCE_FREEZE_v4.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_f_phase_20261103_v1/test_event_adaptation.py",
+      "imports": [
+        "copy",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.data",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_f_phase_20261103_v1/FREEZE.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/tests/test_stage2_u_matched.py",
+      "imports": [
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.cli",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "hybrid_tsad.hybrid_v1.training",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "tempfile",
+        "torch",
+        "unittest",
+        "unittest.mock"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/TEST_PLAN.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_H5_source_wave_20261103_v1/FREEZE_v2.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_H5_source_wave_20261103_v1/CONFIG_INDEX.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_H5_source_wave_20261103_v1/base0_half_mse_SOURCE_FULL_TRANSFER.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_H5_source_wave_20261103_v1/anomaly10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_H5_source_wave_20261103_v1/normal_record10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "imports": [],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "preparations/hybrid_v1_public_native_zs_20261105_v1/native_worker_v1.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "shutil",
+        "sys",
+        "time",
+        "torch"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": []
+    },
+    {
+      "source": "results/left_psm_R_seed2025_20261101_v1/adapter_snapshot.py",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "signal",
+        "sklearn.preprocessing",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "traceback",
+        "types"
+      ],
+      "unresolved_static_imports": [],
+      "runtime_package_aliases": [],
+      "referenced_python_assets": [
+        ".py",
+        "exp/exp_anomaly_detection.py",
+        "models/CrossAD/%s.py",
+        "models/Left/%s.py"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "status": "ROOT_PENDING_NOT_EXECUTABLE",
+  "operation": "HYBRID_V1_MATCHED_U_SMD_READOUT",
+  "mode": "U",
+  "condition": "A",
+  "seed": 2025,
+  "history": 512,
+  "horizon": 32,
+  "chunk_size": 64,
+  "resume": false,
+  "active_components": ["r_tf", "r_ms", "r_pred"],
+  "scored_points": 18078,
+  "ranges": [{"domain": "SMD", "entity": "machine-3-1", "run": "machine-3-1_test", "start": 10622, "end": 28700}],
+  "output": "ROOT_TO_BIND_FRESH_OUTPUT",
+  "source_sha256": {},
+  "asset_seal": {"path": "ROOT_TO_BIND_TYPED_ACCEPTANCE", "sha256": "ROOT_TO_BIND"},
+  "assets": {
+    "checkpoint": {"path": "ROOT_TO_BIND_OWN_ADAPTED_PT", "sha256": "ROOT_TO_BIND"},
+    "parent_source_checkpoint": {"path": "ROOT_TO_BIND_OWN_SOURCE_PT", "sha256": "ROOT_TO_BIND"},
+    "model_config": {"path": "ROOT_TO_BIND_OWN_SOURCE_CONFIG", "sha256": "ROOT_TO_BIND"},
+    "training_config": {"path": "ROOT_TO_BIND", "sha256": "ROOT_TO_BIND"},
+    "training_receipt": {"path": "ROOT_TO_BIND", "sha256": "ROOT_TO_BIND"},
+    "target_calibration": {"path": "ROOT_TO_BIND_OWN_CAL", "sha256": "ROOT_TO_BIND"},
+    "target_calibration_config": {"path": "ROOT_TO_BIND", "sha256": "ROOT_TO_BIND"},
+    "target_calibration_receipt": {"path": "ROOT_TO_BIND", "sha256": "ROOT_TO_BIND"},
+    "manifest": {"path": "ROOT_TO_BIND_ROLE_MANIFEST", "sha256": "ROOT_TO_BIND"},
+    "plan": {"path": "ROOT_TO_BIND_COMMON_PLAN", "sha256": "ROOT_TO_BIND"}
+  }
+}

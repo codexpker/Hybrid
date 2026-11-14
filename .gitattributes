@@ -1,4 +1,9 @@
 # Preserve exact baseline bytes (including line endings) across clones.
+# Public review export manifests hash the exported bytes, not normalized text.
+review_artifacts/** -text -whitespace
+# Retain the author's licensed control bytes and notices without restyling.
+src/hybrid_tsad/experimental_controls/carots_soc/upstream_loss.py -text -whitespace
+src/hybrid_tsad/experimental_controls/carots_soc/LICENSE -text -whitespace
 src/hybrid_tsad/model.py -text
 src/hybrid_tsad/data.py -text
 src/hybrid_tsad/protocol.py -text

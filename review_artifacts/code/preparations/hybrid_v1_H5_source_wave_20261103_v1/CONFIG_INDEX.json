@@ -1,0 +1,123 @@
+{
+  "status": "PREPARATION_ONLY_PENDING_ROOT",
+  "formal_fresh": [
+    {
+      "cell": "base0_half_mse",
+      "panel": "base0",
+      "kind": "half_mse",
+      "config": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/base0_half_mse.SOURCE_TRAIN.PENDING.json",
+        "sha256": "64cc3bf8d4d93fe0b35ed5a1a2a8da481d649c9f47f7594ebc3dfae782621470"
+      },
+      "release_candidate": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/base0_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+        "sha256": "0ba3af3becb6cf1404d7cde74f70ca7493f332fd890e70e6208c6b7894451931"
+      },
+      "CAL_unbound": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/base0_half_mse.SOURCE_CAL.UNBOUND.json",
+        "sha256": "60a3f771944554e83b09acc60ba2b74be14b2c0374cebd090717c7aecd49bc28"
+      },
+      "fresh_init": true,
+      "replaced_FIT_slots": 0,
+      "full_8000_steps": true,
+      "proposed_physical_gpu": 0,
+      "run_actual": false
+    },
+    {
+      "cell": "anomaly10_huber",
+      "panel": "anomaly10",
+      "kind": "huber",
+      "config": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_huber.SOURCE_TRAIN.PENDING.json",
+        "sha256": "e35744216ebfb7dff79aa5e5d8db735de9deec8442102292fbc238b014b20dd1"
+      },
+      "release_candidate": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/anomaly10_huber.SOURCE_TRAIN.ROOT_PENDING.json",
+        "sha256": "ffd38e02c8715262ecf031bd55c88a2b06c79d10fbd82d23bc5e6452a1f0ee3f"
+      },
+      "CAL_unbound": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_huber.SOURCE_CAL.UNBOUND.json",
+        "sha256": "b4ab4e9efa6de7543af845124b8333e821e02cc0ad1f082d9d0bbe296187fafe"
+      },
+      "fresh_init": true,
+      "replaced_FIT_slots": 398,
+      "full_8000_steps": true,
+      "proposed_physical_gpu": 0,
+      "run_actual": false
+    },
+    {
+      "cell": "anomaly10_half_mse",
+      "panel": "anomaly10",
+      "kind": "half_mse",
+      "config": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_half_mse.SOURCE_TRAIN.PENDING.json",
+        "sha256": "62b49acbdfb7012bf2585e4fb8aadd9b7124bd76b5ddca80bef9fbfc44c9f936"
+      },
+      "release_candidate": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/anomaly10_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+        "sha256": "a87c1e99e0fec7897933089234673269f23aa5cb5ae203b5d9737cfd88a84f73"
+      },
+      "CAL_unbound": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_half_mse.SOURCE_CAL.UNBOUND.json",
+        "sha256": "6b5ebd71ed18c8b5811afdc5820ba1080edf4a3fe8dcdd5facf7f67f04cfafe1"
+      },
+      "fresh_init": true,
+      "replaced_FIT_slots": 398,
+      "full_8000_steps": true,
+      "proposed_physical_gpu": 0,
+      "run_actual": false
+    },
+    {
+      "cell": "normal_record10_huber",
+      "panel": "normal_record10",
+      "kind": "huber",
+      "config": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_huber.SOURCE_TRAIN.PENDING.json",
+        "sha256": "99fbc464a83915f4f4a920e092818b41a361e4d92809a697d97c217f2bbea1ae"
+      },
+      "release_candidate": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/normal_record10_huber.SOURCE_TRAIN.ROOT_PENDING.json",
+        "sha256": "48bbc742235c15685b8a707833ff15ec67b13a50d81c0692b2d14a8462a34c88"
+      },
+      "CAL_unbound": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_huber.SOURCE_CAL.UNBOUND.json",
+        "sha256": "cb03e3e2abe9c95b71d21710683daf22b4bdc8942688d08d4e83e0a684f79f95"
+      },
+      "fresh_init": true,
+      "replaced_FIT_slots": 398,
+      "full_8000_steps": true,
+      "proposed_physical_gpu": 0,
+      "run_actual": false
+    },
+    {
+      "cell": "normal_record10_half_mse",
+      "panel": "normal_record10",
+      "kind": "half_mse",
+      "config": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_half_mse.SOURCE_TRAIN.PENDING.json",
+        "sha256": "0082be6633f35db2da3cdb0f770cc55a55b53d761265b7bc1c555934e6d02332"
+      },
+      "release_candidate": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/normal_record10_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+        "sha256": "52f424efb90f0409b902bb31ee5d34400a73bbe969944226e4453495d3cac205"
+      },
+      "CAL_unbound": {
+        "path": "__RESEARCH_ROOT__/preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_half_mse.SOURCE_CAL.UNBOUND.json",
+        "sha256": "3fed3d22ce025f54809edcfffad7fb5b517b35399f0e2bedf419ca3c0f567b33"
+      },
+      "fresh_init": true,
+      "replaced_FIT_slots": 398,
+      "full_8000_steps": true,
+      "proposed_physical_gpu": 0,
+      "run_actual": false
+    }
+  ],
+  "reuse": "HUBER0_REUSE.json",
+  "matrix": {
+    "path": "__RESEARCH_ROOT__/data/hybrid_v1_H5_constructed_plans_20261103_v1/MATRIX.json",
+    "sha256": "5f354b7fe8f874702ce20b31f476f1710013479fa8b9766a7da1e3c224e6f473"
+  },
+  "L0": "L0_CANDIDATE.json",
+  "budget": "COST_AND_BUDGET_REQUEST.PENDING.json",
+  "no_train_CAL_query_release": true
+}

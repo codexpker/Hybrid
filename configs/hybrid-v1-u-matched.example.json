@@ -1,0 +1,23 @@
+{
+  "status": "PENDING_NOT_AN_EXECUTION_RELEASE",
+  "operation": "HYBRID_V1_MATCHED_U_ENDPOINT",
+  "action": "train_endpoint",
+  "scope": "public_target",
+  "method": "plain",
+  "history": 512,
+  "horizon": 32,
+  "seed": 2025,
+  "attempts": 200,
+  "SELECT": "diagnostic_only_no_checkpoint_selection",
+  "active_components": ["r_tf", "r_ms", "r_pred"],
+  "manifest": "ROOT_TO_BIND_ROLE_SEPARATE_MANIFEST",
+  "manifest_sha256": "ROOT_TO_BIND",
+  "plan": "ROOT_TO_BIND_COMMON_200_PLAN",
+  "plan_sha256": "ROOT_TO_BIND",
+  "model_config": "ROOT_TO_BIND_ORIGINAL_SOURCE_CONFIG",
+  "model_config_sha256": "ROOT_TO_BIND",
+  "checkpoint": "ROOT_TO_BIND_ORIGINAL_SOURCE_PT",
+  "checkpoint_sha256": "ROOT_TO_BIND",
+  "source_sha256": {},
+  "output": "ROOT_TO_BIND_FRESH_OUTPUT"
+}

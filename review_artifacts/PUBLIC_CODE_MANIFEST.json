@@ -1,0 +1,1986 @@
+{
+  "scope": "bounded public-code review snapshot; no data/weights/logs/private experiments/deployment controllers",
+  "source_root_symbol": "HYBRID_RESEARCH_ROOT",
+  "raw_path_placeholder": "__RESEARCH_ROOT__",
+  "not_standalone_runnable": true,
+  "restore_original_relative_layout_required": true,
+  "groups": [
+    {
+      "source_directory": "preparations/hybrid_channel_aux_native_confirm_20261113_v1",
+      "exported_files": 6
+    },
+    {
+      "source_directory": "preparations/hybrid_left_channel_blindspot_20261113_v1",
+      "exported_files": 15
+    },
+    {
+      "source_directory": "preparations/hybrid_native_predictive_cycle_20261113_v1",
+      "exported_files": 9
+    },
+    {
+      "source_directory": "results/tep_relation_confirmation_20261113_v1",
+      "exported_files": 4
+    },
+    {
+      "source_directory": "preparations/left_multievent_mixed_u_20261111_v1",
+      "exported_files": 10
+    },
+    {
+      "source_directory": "preparations/left_normality_u_sensitivity_20261111_v1",
+      "exported_files": 7
+    },
+    {
+      "source_directory": "preparations/cross_domain_left_arx_20261111_v1",
+      "exported_files": 6
+    },
+    {
+      "source_directory": "preparations/psm_u_scope2000_20261107_v1",
+      "exported_files": 4
+    },
+    {
+      "source_directory": "preparations/hybrid_target_fullshot_20261110_v1",
+      "exported_files": 2
+    },
+    {
+      "source_directory": "preparations/hybrid_left_native_history_lag_20261110_v1",
+      "exported_files": 8
+    },
+    {
+      "source_directory": "preparations/hybrid_left_joint_cycle_20261109_v2",
+      "exported_files": 5
+    },
+    {
+      "source_directory": "preparations/hybrid_v1_stage1_source_build_20261102_v1",
+      "exported_files": 2
+    },
+    {
+      "source_directory": "preparations/hybrid_v1_f_phase_20261103_v1",
+      "exported_files": 2
+    },
+    {
+      "source_directory": "preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3",
+      "exported_files": 2
+    },
+    {
+      "source_directory": "preparations/hybrid_v1_H5_source_wave_20261103_v1",
+      "exported_files": 5
+    },
+    {
+      "source_directory": "preparations/hybrid_v1_public_native_zs_20261105_v1",
+      "exported_files": 1
+    },
+    {
+      "source_directory": "results/left_psm_R_seed2025_20261101_v1",
+      "exported_files": 1
+    },
+    {
+      "source_directory": "results/left_psm_R_score_seed2025_20261101_v1",
+      "exported_files": 0
+    }
+  ],
+  "entries": [
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/worker.py",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/worker.py",
+      "source_sha256": "ea3228ea38cc7e44af0e18a000188ab8d6cd981b8e5d8cfc6f779e2e8dd6d218",
+      "export_sha256": "ea3228ea38cc7e44af0e18a000188ab8d6cd981b8e5d8cfc6f779e2e8dd6d218",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/prepare.py",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/prepare.py",
+      "source_sha256": "11c3cf3d2e0ae4079f2f6dea15b118d0b49189d7ba27927b88bffa23793b954e",
+      "export_sha256": "11c3cf3d2e0ae4079f2f6dea15b118d0b49189d7ba27927b88bffa23793b954e",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/cpu_gate.py",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/cpu_gate.py",
+      "source_sha256": "74244e028af38ec71d4b99b6105b6f144f772ce7741b21117daa2f5c7dbf1d0c",
+      "export_sha256": "74244e028af38ec71d4b99b6105b6f144f772ce7741b21117daa2f5c7dbf1d0c",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types",
+        "worker"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/evaluate_fixed.py",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/evaluate_fixed.py",
+      "source_sha256": "f518d29c5a2357c469eb56e847ccef36922a2d349df4a8e62d8757467c19c94a",
+      "export_sha256": "b8678dd2b23126908bc8eb8a0acba7dc8fa90eb2c586979c2f43aa236600d2ef",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "csv",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/MODEL.json",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/MODEL.json",
+      "source_sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+      "export_sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_channel_aux_native_confirm_20261113_v1/FREEZE.json",
+      "export_relative_path": "code/preparations/hybrid_channel_aux_native_confirm_20261113_v1/FREEZE.json",
+      "source_sha256": "63148982133b4e8f38a8cd842394704b72ddfa4acebeb1cdb5a5e766fe9181a7",
+      "export_sha256": "069d1d9aa6f1cb6102af1dba73a4c3f09b0d7ba6cf0004220d928c55d777eb56",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/worker.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/worker.py",
+      "source_sha256": "b5f85d74dad689284608f15221c1be9a170de15c7b452c027be135c613635960",
+      "export_sha256": "b5f85d74dad689284608f15221c1be9a170de15c7b452c027be135c613635960",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "copy",
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/prepare.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/prepare.py",
+      "source_sha256": "c5ef752b8e1f7de245c3c63f3aedb034db8ba0e47f5846f7af2119065b174fb6",
+      "export_sha256": "c5ef752b8e1f7de245c3c63f3aedb034db8ba0e47f5846f7af2119065b174fb6",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_gate.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_gate.py",
+      "source_sha256": "3034ae99d96d7b68a0e3dee14c801c0b06e286fcfcd2ee34799434d7fca91d88",
+      "export_sha256": "3034ae99d96d7b68a0e3dee14c801c0b06e286fcfcd2ee34799434d7fca91d88",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_mask_gradient.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_mask_gradient.py",
+      "source_sha256": "5f276d672da7c6ed39ddb053258bec1890300ff1a23b3035c988d5001fce0d37",
+      "export_sha256": "5f276d672da7c6ed39ddb053258bec1890300ff1a23b3035c988d5001fce0d37",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_worker.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_worker.py",
+      "source_sha256": "89b7161f9402d0eb5f7a155a66247bc4fc3423e3bfa91ce2188ba3d6ed193965",
+      "export_sha256": "89b7161f9402d0eb5f7a155a66247bc4fc3423e3bfa91ce2188ba3d6ed193965",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types",
+        "worker"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_cpu_gate.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/controlled_cpu_gate.py",
+      "source_sha256": "4f96028b84c79a84565cff8c91ae3e1c31a21dd4099662dfe731e74ff7920e2f",
+      "export_sha256": "4f96028b84c79a84565cff8c91ae3e1c31a21dd4099662dfe731e74ff7920e2f",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hybrid_tsad.left_channel_blindspot",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/prepare_controlled.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/prepare_controlled.py",
+      "source_sha256": "b653927f1299a5417280fb7b9b2b38bc6e5ec0d978dc0eecdb8be851cc5fb569",
+      "export_sha256": "ee3d262af0c6cf5f159fab71a44ce3438f27a3269405b9448bcdd142f4f09b77",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_controls.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/cpu_controls.py",
+      "source_sha256": "156fa0f95f966a7f735a769b25db8742f167516e1ff95510da9f9e5d324e8b35",
+      "export_sha256": "156fa0f95f966a7f735a769b25db8742f167516e1ff95510da9f9e5d324e8b35",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.linear_model"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/fixed_metrics.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/fixed_metrics.py",
+      "source_sha256": "205434f12d88c36077b753e12433f8e97acd8bd83f33e91c67cf50e10f4e129f",
+      "export_sha256": "ff90fe75adac7c83667618e017bf9edf34c7a6cb4af1cfbb909ea73cb46761ae",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "collections",
+        "hybrid_tsad.alarm_complementarity",
+        "hybrid_tsad.hybrid_v1",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_fixed.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_fixed.py",
+      "source_sha256": "add6fbc3eb14457c311961f51ca1a1c74a1a593babad4fde88b43e4a5b1bb98a",
+      "export_sha256": "7a2a77f5b1fa2a62825382410fa6ee46a9b7969f966317a0bf2748c46de16497",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "cpu_controls",
+        "csv",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_controlled.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_controlled.py",
+      "source_sha256": "64622137592bbea4e4d7b4bb4e0836f7bc142610aab5a337971439069cc789c8",
+      "export_sha256": "79cab60ac99ced94309761448c6d93dfb79a497c18a326994285f965f1f8eaee",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "evaluate_fixed",
+        "fixed_metrics",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.linear_model"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_psm_common.py",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/evaluate_psm_common.py",
+      "source_sha256": "1a582c652a064ea224a1eb3e4e4bce9cafbd28c0733fec5c94be7d335b1a2bda",
+      "export_sha256": "2963a4276cfdf6be38301a9e8797d48a3d983ef969a8dd3d27e142bcdc8572f5",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "evaluate_fixed",
+        "fixed_metrics"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/FIXED_EXPERIMENT.json",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/FIXED_EXPERIMENT.json",
+      "source_sha256": "9a2256e27544ec72ef6ec2fa6e232bb000a1ab7b952ea78f06f8263e0e9a9fbe",
+      "export_sha256": "bc9ab19d5e868557e879fe029d35ae85d6edc47d4249069cee197f355ac292e6",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/MODEL.json",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/MODEL.json",
+      "source_sha256": "cb9e8ec9521f10eea0377046033675ada3eb861f9dea5e8f61a92cb77dcd3cd4",
+      "export_sha256": "53fa041f1527ee115f38f0503c664c7a9d2b85a44192ae2e38801acd3cb9a8f3",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/DATA_DEFINITION.json",
+      "export_relative_path": "code/preparations/hybrid_left_channel_blindspot_20261113_v1/controlled/DATA_DEFINITION.json",
+      "source_sha256": "cfac32640a7540b6779952f827523b2ad94f5ea06b08bf592178ed6e9c4eb860",
+      "export_sha256": "1b6c43767eadb0544cfc630d808a3236b673a8f4a488bd40a43ba0c7412c645b",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/worker.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/worker.py",
+      "source_sha256": "bb042e1f089dc839f0c5ca32fef229136a172f4f6cb7e0c9487eb89dc0f77511",
+      "export_sha256": "0a69e030c40a16c77bee457df9ec0804f35254452750c9becb31c31b1a078e2a",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "left_predictive_cycle",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "traceback",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/worker_cpu_recovered.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/worker_cpu_recovered.py",
+      "source_sha256": "5fad0a08f5fd0b8307c88fba425c2e172443655660eb6244d465af12e276b315",
+      "export_sha256": "6b41a4548980e0c687dc4a2b1fd55d1bb956c3995a8f122d0ae4a0d0f060913a",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "json",
+        "numpy",
+        "pathlib",
+        "time",
+        "worker"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_fixed.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_fixed.py",
+      "source_sha256": "5023a3c518a69c41749213338f0774dfe729c85fc0664596e541250f7642a690",
+      "export_sha256": "5023a3c518a69c41749213338f0774dfe729c85fc0664596e541250f7642a690",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "pathlib",
+        "shutil"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_roles.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/prepare_roles.py",
+      "source_sha256": "88ac6d94711b8bfeb10b1b9d5445808c63e0d9466e98b6e7c1d214530c4915e5",
+      "export_sha256": "88ac6d94711b8bfeb10b1b9d5445808c63e0d9466e98b6e7c1d214530c4915e5",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "gc",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "pyreadr",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/cpu_gate.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/cpu_gate.py",
+      "source_sha256": "fe4b152d648666c9faa596b79f98379fc37a05b5cae00836eefbd4474837c6c8",
+      "export_sha256": "fe4b152d648666c9faa596b79f98379fc37a05b5cae00836eefbd4474837c6c8",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "copy",
+        "hashlib",
+        "json",
+        "left_predictive_cycle",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/fixed_evaluate.py",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/fixed_evaluate.py",
+      "source_sha256": "18d109d58086725cc3b2c9d3c0876a45d5f082f1c3502d95458be526af41abe6",
+      "export_sha256": "f65223a67014d571f2eb175ca01e9933b06b12cdb6f8a35834bcc3a51134cb0a",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "csv",
+        "hashlib",
+        "hybrid_tsad.alarm_complementarity",
+        "hybrid_tsad.engine.events",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/FIXED_EXPERIMENT.json",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/FIXED_EXPERIMENT.json",
+      "source_sha256": "950e448899a095f3a68d87e19dd587c9189e4a3f0c4a800cb84abb23f56509aa",
+      "export_sha256": "8f05299538208e17b089943f6810347a1f39cab6a6599e902c07ee11b7895246",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/configs/PSM.json",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/configs/PSM.json",
+      "source_sha256": "5093f5d74902239e0e576dd7194683165fcc40900530a46f5cbe46a615a922f5",
+      "export_sha256": "e936d160a88c924daa687ec2936adc3b2a453f2d3aa05978af6bd28664c76251",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_native_predictive_cycle_20261113_v1/configs/TEP.json",
+      "export_relative_path": "code/preparations/hybrid_native_predictive_cycle_20261113_v1/configs/TEP.json",
+      "source_sha256": "cb9e8ec9521f10eea0377046033675ada3eb861f9dea5e8f61a92cb77dcd3cd4",
+      "export_sha256": "53fa041f1527ee115f38f0503c664c7a9d2b85a44192ae2e38801acd3cb9a8f3",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_no_go",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "results/tep_relation_confirmation_20261113_v1/extract_fixed.py",
+      "export_relative_path": "code/results/tep_relation_confirmation_20261113_v1/extract_fixed.py",
+      "source_sha256": "498c9fa4651478cfdac64212bff5015b9c6f2d0a12e3e63374947faa3678d9cd",
+      "export_sha256": "498c9fa4651478cfdac64212bff5015b9c6f2d0a12e3e63374947faa3678d9cd",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_mechanism_go_not_hybrid_innovation",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "datetime",
+        "gc",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "pyreadr",
+        "resource",
+        "time",
+        "traceback"
+      ]
+    },
+    {
+      "source_relative_path": "results/tep_relation_confirmation_20261113_v1/fixed_evaluate.py",
+      "export_relative_path": "code/results/tep_relation_confirmation_20261113_v1/fixed_evaluate.py",
+      "source_sha256": "6fcbed666382e8436d8d74042dab80bd97c821c2c565e1e55718f604458b7cbb",
+      "export_sha256": "de579d7acddf79c1147c182095437dc658ab441ee72a5d2010c80d306f304e6e",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_mechanism_go_not_hybrid_innovation",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "datetime",
+        "hashlib",
+        "json",
+        "numpy",
+        "os",
+        "pandas",
+        "pathlib",
+        "pickle",
+        "platform",
+        "sklearn",
+        "sklearn.metrics",
+        "time",
+        "warnings"
+      ]
+    },
+    {
+      "source_relative_path": "results/tep_relation_confirmation_20261113_v1/FIXED_PROTOCOL.json",
+      "export_relative_path": "code/results/tep_relation_confirmation_20261113_v1/FIXED_PROTOCOL.json",
+      "source_sha256": "3c8cc01729471039dcde4051d2587908acc9abb8becfa0b60f60deb84526bdec",
+      "export_sha256": "3c8cc01729471039dcde4051d2587908acc9abb8becfa0b60f60deb84526bdec",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_mechanism_go_not_hybrid_innovation",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "results/tep_relation_confirmation_20261113_v1/FIXED_READOUT.json",
+      "export_relative_path": "code/results/tep_relation_confirmation_20261113_v1/FIXED_READOUT.json",
+      "source_sha256": "c88c1b10ce7e0347cec56d76e4cb52a062761fca5e370631865e4e0574b5b6b7",
+      "export_sha256": "c88c1b10ce7e0347cec56d76e4cb52a062761fca5e370631865e4e0574b5b6b7",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "limited_mechanism_go_not_hybrid_innovation",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/native_baseline.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/native_baseline.py",
+      "source_sha256": "cbac787ccd2a75fee8d5c930e21f0549b08e3785712aae3539a80f20c7579d08",
+      "export_sha256": "7a9a2c54f9c070da1c2d7179dffa4ac99491529823a24debc79c42da87fc9808",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/native_worker.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/native_worker.py",
+      "source_sha256": "0019c46a4c560cabc908c5f422a4d9e17012bebc0c684715997365820320ecdc",
+      "export_sha256": "55418cfc5de01e2ec660fa2459a7ecad92914b56cac43d66a689cd1c1e46c4c4",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/ordinary_u_worker.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/ordinary_u_worker.py",
+      "source_sha256": "210fc350e433f4febe12744100b992bf4bbfb8e081a48c00c1501d415b476b47",
+      "export_sha256": "210fc350e433f4febe12744100b992bf4bbfb8e081a48c00c1501d415b476b47",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/u_worker.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/u_worker.py",
+      "source_sha256": "210fc350e433f4febe12744100b992bf4bbfb8e081a48c00c1501d415b476b47",
+      "export_sha256": "210fc350e433f4febe12744100b992bf4bbfb8e081a48c00c1501d415b476b47",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/prepare_data.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/prepare_data.py",
+      "source_sha256": "d71383b0bf6f9f49f69b3df50d64971dc2ee34823d81ef0d3c16e3aca7b35284",
+      "export_sha256": "d71383b0bf6f9f49f69b3df50d64971dc2ee34823d81ef0d3c16e3aca7b35284",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pandas",
+        "pathlib",
+        "sklearn.preprocessing",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/prepare_learner_plan.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/prepare_learner_plan.py",
+      "source_sha256": "a0345c7b90aba1ed92585ee36f52403f9b279efb669f2f837443a615ac0b2d0d",
+      "export_sha256": "a0345c7b90aba1ed92585ee36f52403f9b279efb669f2f837443a615ac0b2d0d",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/cpu_loss_observer.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/cpu_loss_observer.py",
+      "source_sha256": "93da8bf6c8c09ea6740db07265b8f30388d143d7f84cf0d1274229623a19cf92",
+      "export_sha256": "93da8bf6c8c09ea6740db07265b8f30388d143d7f84cf0d1274229623a19cf92",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "os",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/history_mean.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/history_mean.py",
+      "source_sha256": "7e22fa0d01f7cf8a6c9747fb64abb4c6f918621bac09fbfff975e6916c52c5eb",
+      "export_sha256": "7e22fa0d01f7cf8a6c9747fb64abb4c6f918621bac09fbfff975e6916c52c5eb",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/fixed_postprocess.py",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/fixed_postprocess.py",
+      "source_sha256": "8b6d11c7b87a02b2f514d64154a0268b0fd76c0a3ef81439c05fdf8cf4f4427b",
+      "export_sha256": "8b6d11c7b87a02b2f514d64154a0268b0fd76c0a3ef81439c05fdf8cf4f4427b",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_multievent_mixed_u_20261111_v1/FIXED_EXPERIMENT.json",
+      "export_relative_path": "code/preparations/left_multievent_mixed_u_20261111_v1/FIXED_EXPERIMENT.json",
+      "source_sha256": "959e793e903e252d1761e21f7fd8c893d4b9ef8993f42bfb4ed26d56b32bfce0",
+      "export_sha256": "675de1cd8596d3308a59e8127bd8d74685c5dc928fbd57ba6bc59c0b10e6c3ec",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/u_worker.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/u_worker.py",
+      "source_sha256": "3bd99a5de7e85de2bba9eb500b637a5b48dec9be1fb7d9e2179f648e15d604f7",
+      "export_sha256": "3bd99a5de7e85de2bba9eb500b637a5b48dec9be1fb7d9e2179f648e15d604f7",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/cpu_u_gate.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/cpu_u_gate.py",
+      "source_sha256": "b0f8d755deeba86d2a5d1450ca3811b8876a18829c9fe90707ffcb514f4d8f98",
+      "export_sha256": "b0f8d755deeba86d2a5d1450ca3811b8876a18829c9fe90707ffcb514f4d8f98",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "time",
+        "torch"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/frozen_normal_forward.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/frozen_normal_forward.py",
+      "source_sha256": "7afd5ebfd57ed7d999b13af7fdee5fc85f411d8a615db133c0b6c6d609be0a49",
+      "export_sha256": "3e769a96c2954d920499055dfca88078362b39c70a2dc2635d99b9d55c8ec9ab",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/prepare_u.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/prepare_u.py",
+      "source_sha256": "a50aab28c638607491ef7bcc8f63f9138b75cfd36947ef0ebb40b631087d0f9a",
+      "export_sha256": "a50aab28c638607491ef7bcc8f63f9138b75cfd36947ef0ebb40b631087d0f9a",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/evaluate_u_fixed.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/evaluate_u_fixed.py",
+      "source_sha256": "af3878011d01f258409ba4d6ca52d20751269ac6c6088fa6db3ec82d54012c34",
+      "export_sha256": "af3878011d01f258409ba4d6ca52d20751269ac6c6088fa6db3ec82d54012c34",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/posthoc_distribution.py",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/posthoc_distribution.py",
+      "source_sha256": "c0ab6213115b3dbb19ee2255ab9bef62f4f454db6355dcbf986e96f2bbf2f458",
+      "export_sha256": "c30c706e3eb0a5b1f0492e5a615d72ff905ad3eb32dcc7ae479d7cba6f7c1c03",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "csv",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "matplotlib",
+        "matplotlib.pyplot",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/left_normality_u_sensitivity_20261111_v1/target_prefix/FIXED_EXPOSURE_CONTROL.json",
+      "export_relative_path": "code/preparations/left_normality_u_sensitivity_20261111_v1/target_prefix/FIXED_EXPOSURE_CONTROL.json",
+      "source_sha256": "e91d94b7ba1b59b10c35e2b67edb655377b34807f6998193029edadc69991cfe",
+      "export_sha256": "e91d94b7ba1b59b10c35e2b67edb655377b34807f6998193029edadc69991cfe",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/worker.py",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/worker.py",
+      "source_sha256": "67aed892dd75616533bf4104dcb8a015518b13a99a10062b0caa8e86905518d4",
+      "export_sha256": "67aed892dd75616533bf4104dcb8a015518b13a99a10062b0caa8e86905518d4",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "exp",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/prepare.py",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/prepare.py",
+      "source_sha256": "f83f235b7546f2496fbd3f63ab8a9e1857b504b91922a0be02ff08d6f2fe6c9c",
+      "export_sha256": "9478dce478a86807c34a899e77ff1903efa9299834d381efa71cc056daeb9fb2",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "sklearn.preprocessing",
+        "zipfile"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/cpu_gate.py",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/cpu_gate.py",
+      "source_sha256": "d672d3b4138d5b26aef6eba440dae33149589851ec75f74ffd648c2335941003",
+      "export_sha256": "d672d3b4138d5b26aef6eba440dae33149589851ec75f74ffd648c2335941003",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/evaluate_fixed.py",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/evaluate_fixed.py",
+      "source_sha256": "0393539f139c9e38ac5570dddc6e23a4521b37d3f6f9a86b564c507a94bfd5aa",
+      "export_sha256": "0393539f139c9e38ac5570dddc6e23a4521b37d3f6f9a86b564c507a94bfd5aa",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "csv",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/FIXED_COMPARISON.json",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/FIXED_COMPARISON.json",
+      "source_sha256": "807be8bc600b3f367e995b9d8be4531edec97084dac834570eea50f6926152da",
+      "export_sha256": "807be8bc600b3f367e995b9d8be4531edec97084dac834570eea50f6926152da",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/cross_domain_left_arx_20261111_v1/configs/SMD/model_configs_Left.json",
+      "export_relative_path": "code/preparations/cross_domain_left_arx_20261111_v1/configs/SMD/model_configs_Left.json",
+      "source_sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+      "export_sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/psm_u_scope2000_20261107_v1/scope_worker.py",
+      "export_relative_path": "code/preparations/psm_u_scope2000_20261107_v1/scope_worker.py",
+      "source_sha256": "c075585320a19b2b1f3a07131d24a27409e876ba0bc68a482dfa555a410626c9",
+      "export_sha256": "c075585320a19b2b1f3a07131d24a27409e876ba0bc68a482dfa555a410626c9",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/psm_u_scope2000_20261107_v1/cached_chunk_reader.py",
+      "export_relative_path": "code/preparations/psm_u_scope2000_20261107_v1/cached_chunk_reader.py",
+      "source_sha256": "52d1cfb6820743790132a52fef36c180069b7911006cd7c70f3f8e7ae80689fa",
+      "export_sha256": "52d1cfb6820743790132a52fef36c180069b7911006cd7c70f3f8e7ae80689fa",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "contextlib",
+        "numpy"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/psm_u_scope2000_20261107_v1/merge_scope_shards.py",
+      "export_relative_path": "code/preparations/psm_u_scope2000_20261107_v1/merge_scope_shards.py",
+      "source_sha256": "7536c410b13ca69473eeabbd97079c2c38cbde385dea74f2cb7316b849b30e7a",
+      "export_sha256": "7536c410b13ca69473eeabbd97079c2c38cbde385dea74f2cb7316b849b30e7a",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "json",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/psm_u_scope2000_20261107_v1/test_scope_interface.py",
+      "export_relative_path": "code/preparations/psm_u_scope2000_20261107_v1/test_scope_interface.py",
+      "source_sha256": "5e9ef0961fac551530a4d2663257b8bf0ef7467afaadd5dd8be8c5a0d1154643",
+      "export_sha256": "5e9ef0961fac551530a4d2663257b8bf0ef7467afaadd5dd8be8c5a0d1154643",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hybrid_tsad.hybrid_v1",
+        "importlib.util",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "torch",
+        "unittest",
+        "unittest.mock"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_target_fullshot_20261110_v1/worker.py",
+      "export_relative_path": "code/preparations/hybrid_target_fullshot_20261110_v1/worker.py",
+      "source_sha256": "49a8fdda98ab8d5798b2e4bc82cf676a752121e691356b8975c91ae79eb3a4cb",
+      "export_sha256": "6442a674b542afe4d7e42e00ce6bee1f9d58d483b12b3c81a34fead8bf37ea13",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "scope_worker",
+        "shutil",
+        "sys",
+        "time",
+        "torch"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_target_fullshot_20261110_v1/postprocess_v2.py",
+      "export_relative_path": "code/preparations/hybrid_target_fullshot_20261110_v1/postprocess_v2.py",
+      "source_sha256": "a6249465dfd2dd8fe3ab5d07fe45d013d6cc82498341ab8f6e549d36d327f444",
+      "export_sha256": "7089039762218d3eb24cebc1ebc37be08b129e4238b334b2a506d99805dacc73",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/worker.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/worker.py",
+      "source_sha256": "7c7b1a3bea8230b6b70d0fc9f996e033a98017b51c8f38d75543fa46852e7f24",
+      "export_sha256": "04d74a5b454912444bb115be8e468e389057899b88707171139690986b543b32",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "left_native_history_lag",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_worker_repaired.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/controlled_worker_repaired.py",
+      "source_sha256": "57d061b2ca02c06958cdcfd2784ed819abed73acd38c2851042e7b827569473b",
+      "export_sha256": "f1e05e1a28aeb04aa8c4a73c234e875c786758edf55b5f33b9fa9f36ae839c75",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "bisect",
+        "copy",
+        "exp.exp_anomaly_detection",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "left_native_history_lag",
+        "models.Left.LEFT",
+        "native_score_numpy",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_world.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/controlled_world.py",
+      "source_sha256": "4026dfe3c0b159982058ce45a2b813734e5f0651f8a18157308a8d83d079889e",
+      "export_sha256": "4f26d805fc535620c70e253522d0845451a99a8c774f9a2330073b7cb1c2fc3f",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/common_cal.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/common_cal.py",
+      "source_sha256": "50812d66c5bec16d89424e29f3848edcf4d9c3b6c73fc91f3bc46974f702fdf7",
+      "export_sha256": "ef341988ea5c693eba4aee7b80967b5450bf1a515583b2c2a7d03059c248fb7a",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "importlib.util",
+        "json",
+        "models.Left.LEFT",
+        "numpy",
+        "pathlib",
+        "random",
+        "sys",
+        "time",
+        "torch",
+        "types"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines.py",
+      "source_sha256": "d3b1341d244954e7682e6101dfaa1e5f4448b79fa123d9bcfd7852877b66b039",
+      "export_sha256": "ac448c87031a87303d350105f49bc0a675e6124885d638930af7a1eb78909394",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines_match_cal.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/controlled_baselines_match_cal.py",
+      "source_sha256": "3f601bbccfdf70cc4c068c459c138a0e2f518e69ad1c8d3e96be0300e016fe86",
+      "export_sha256": "7a8fb3e02d17f299c7313b9c41303c7f716b267e1a9c3a2e264857f1419c93ba",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "controlled_baselines",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/post_controlled_v2.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/post_controlled_v2.py",
+      "source_sha256": "d76ae308b33facfd0673c962f690970f6e6c6ddef4ec3c31e152ae4b7c5f3da5",
+      "export_sha256": "2b0090dc4a23308cd555cab0f051f80727561f45e6b12bd01561b31fda183d31",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.public_native_evaluation",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "sklearn.metrics",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_native_history_lag_20261110_v1/post_psm.py",
+      "export_relative_path": "code/preparations/hybrid_left_native_history_lag_20261110_v1/post_psm.py",
+      "source_sha256": "60922ced98317e000b496e08ded2769361ce5540af8ee6e9ec94fc1db0b13b27",
+      "export_sha256": "0ce5a1844142ae83c3c5cd35071b2165590d0fd3f0569a22b8daa2675e8bc757",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.pretrained_psm_comparison",
+        "hybrid_tsad.hybrid_v1.source_candidate_psm_comparison",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_joint_cycle_20261109_v2/candidate_worker.py",
+      "export_relative_path": "code/preparations/hybrid_left_joint_cycle_20261109_v2/candidate_worker.py",
+      "source_sha256": "9e30fbe88b2f3553f1fe5a5fff21623eb318e531c9373a792e5918679ce5ef27",
+      "export_sha256": "9e30fbe88b2f3553f1fe5a5fff21623eb318e531c9373a792e5918679ce5ef27",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "pathlib",
+        "sys",
+        "time",
+        "torch"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_joint_cycle_20261109_v2/cached_chunk_reader.py",
+      "export_relative_path": "code/preparations/hybrid_left_joint_cycle_20261109_v2/cached_chunk_reader.py",
+      "source_sha256": "52d1cfb6820743790132a52fef36c180069b7911006cd7c70f3f8e7ae80689fa",
+      "export_sha256": "52d1cfb6820743790132a52fef36c180069b7911006cd7c70f3f8e7ae80689fa",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "contextlib",
+        "numpy"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_joint_cycle_20261109_v2/merge_candidate_shards.py",
+      "export_relative_path": "code/preparations/hybrid_left_joint_cycle_20261109_v2/merge_candidate_shards.py",
+      "source_sha256": "076f66b8b194b6f3d10da924fdecd4cf9861ffd2f46cd76462529e079ab0c809",
+      "export_sha256": "076f66b8b194b6f3d10da924fdecd4cf9861ffd2f46cd76462529e079ab0c809",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "cached_chunk_reader",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.chunked_bank",
+        "json",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_joint_cycle_20261109_v2/bind_fixed_evaluation.py",
+      "export_relative_path": "code/preparations/hybrid_left_joint_cycle_20261109_v2/bind_fixed_evaluation.py",
+      "source_sha256": "1c90e0cf3939dd95e12061461cfb818ff35410117700ed9729b63901536815ef",
+      "export_sha256": "1c90e0cf3939dd95e12061461cfb818ff35410117700ed9729b63901536815ef",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_left_joint_cycle_20261109_v2/test_evaluation_schema.py",
+      "export_relative_path": "code/preparations/hybrid_left_joint_cycle_20261109_v2/test_evaluation_schema.py",
+      "source_sha256": "e248e70f256348e02d8425241e506ee35a3c6c7571f58bf9d0edb3af3cd95058",
+      "export_sha256": "e248e70f256348e02d8425241e506ee35a3c6c7571f58bf9d0edb3af3cd95058",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "copy",
+        "hybrid_tsad.hybrid_v1.source_joint_cycle_psm_comparison_v2",
+        "sys"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_stage1_source_build_20261102_v1/BUILD_SOURCE_PLANS.py",
+      "export_relative_path": "code/preparations/hybrid_v1_stage1_source_build_20261102_v1/BUILD_SOURCE_PLANS.py",
+      "source_sha256": "a7049361d7ce6e163f6c9231b855882d67de1a017507926eca269db2937b2f87",
+      "export_sha256": "a7049361d7ce6e163f6c9231b855882d67de1a017507926eca269db2937b2f87",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "datetime",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1.data",
+        "json",
+        "numpy",
+        "pathlib",
+        "resource",
+        "sys",
+        "time"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_stage1_source_build_20261102_v1/SOURCE_FREEZE_v4.json",
+      "export_relative_path": "code/preparations/hybrid_v1_stage1_source_build_20261102_v1/SOURCE_FREEZE_v4.json",
+      "source_sha256": "98f17f14f1904b654ee0ac2c34b67325e99fbbaa44d4ee26261a90a0f920d70d",
+      "export_sha256": "2142a3374ae41ddbf96fa2ddb3c763ba038a650498b932bbd1a0f577b4559bdf",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_f_phase_20261103_v1/test_event_adaptation.py",
+      "export_relative_path": "code/preparations/hybrid_v1_f_phase_20261103_v1/test_event_adaptation.py",
+      "source_sha256": "1229c9e156b7cbeaf78c79e4709cd1eeebd778e650efb6efe23d6565e6cc0292",
+      "export_sha256": "1229c9e156b7cbeaf78c79e4709cd1eeebd778e650efb6efe23d6565e6cc0292",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "copy",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.data",
+        "json",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_f_phase_20261103_v1/FREEZE.json",
+      "export_relative_path": "code/preparations/hybrid_v1_f_phase_20261103_v1/FREEZE.json",
+      "source_sha256": "e649124842751f10227f1cfb4c1a9450346dae74908f91fa9f122c7b58f32698",
+      "export_sha256": "60a1264b0332dd60ff95d153aa2ba7c6bc7487cb8632988e6d986e38944f40fa",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/tests/test_stage2_u_matched.py",
+      "export_relative_path": "code/preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/tests/test_stage2_u_matched.py",
+      "source_sha256": "faeda558b5bc0c2c5f7c7cbbb0cfc0d51b9bdba7f5409ae209f5a7a8085f82cf",
+      "export_sha256": "faeda558b5bc0c2c5f7c7cbbb0cfc0d51b9bdba7f5409ae209f5a7a8085f82cf",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "hybrid_tsad.hybrid_v1.cli",
+        "hybrid_tsad.hybrid_v1.data",
+        "hybrid_tsad.hybrid_v1.stage2_adaptation",
+        "hybrid_tsad.hybrid_v1.training",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "tempfile",
+        "torch",
+        "unittest",
+        "unittest.mock"
+      ]
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/TEST_PLAN.json",
+      "export_relative_path": "code/preparations/hybrid_v1_stage2_u_matched_cpu_20261104_v3/TEST_PLAN.json",
+      "source_sha256": "74cd76202760c6d50b47d9a8cb48d993b24ab40cbfeb9ce05b8017ff3b41ebee",
+      "export_sha256": "cf1041b99991cb5210746e3dcc1ae8cf46fe170bc245272e732fd58adbd7d773",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/FREEZE_v2.json",
+      "export_relative_path": "code/preparations/hybrid_v1_H5_source_wave_20261103_v1/FREEZE_v2.json",
+      "source_sha256": "d4d0559904b8293b92a30950343f738c264d775dfece43bacc2e09a2dea5b1a7",
+      "export_sha256": "c389ab449a63b76199489e9b0fe2de21bff4f7f9fba931a3a0ac1bf1feab6fb8",
+      "path_transformations": [
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/CONFIG_INDEX.json",
+      "export_relative_path": "code/preparations/hybrid_v1_H5_source_wave_20261103_v1/CONFIG_INDEX.json",
+      "source_sha256": "6fb49c399e5f0f611524d186ec4af398cdacc8e78fc2dd4fadcca96e2519c6b8",
+      "export_sha256": "a3876916850e7a8c36b7c58214af5055a50e01d3d47e70759825ae1d3d9df832",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 16
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/base0_half_mse_SOURCE_FULL_TRANSFER.json",
+      "export_relative_path": "code/preparations/hybrid_v1_H5_source_wave_20261103_v1/base0_half_mse_SOURCE_FULL_TRANSFER.json",
+      "source_sha256": "c5a0a3b8f1e5fec1e803f131226fd989d7864fa8200bedb625e4ac2923b3ba84",
+      "export_sha256": "f624c0832daf7df061cb5468f44ae4f6873c57f2333e27fe8da5a92f3885e3cd",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/anomaly10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "export_relative_path": "code/preparations/hybrid_v1_H5_source_wave_20261103_v1/anomaly10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "source_sha256": "0708fc6d337d0c112fb1fe8f953716b46eb0885ec41f8aef7e800cfd30b035ac",
+      "export_sha256": "904c2e899e6d33ef85db8d804a3a03ff09f7852ed4a395291429f3cc622672f5",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/normal_record10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "export_relative_path": "code/preparations/hybrid_v1_H5_source_wave_20261103_v1/normal_record10_half_mse_SOURCE_FULL_TRANSFER.json",
+      "source_sha256": "55945901e0bf1ddfb1f9a038c6920775122b45df50c50b127609e6af74ff0c2a",
+      "export_sha256": "5c8a5d1c1fec43e4181da1ea9a477ea71fc65688274e394a458e61d4af277a13",
+      "path_transformations": [
+        {
+          "type": "research_root_literal",
+          "occurrences": 1
+        },
+        {
+          "type": "CRLF_to_LF"
+        }
+      ],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "effective_public_configuration",
+      "imports": []
+    },
+    {
+      "source_relative_path": "preparations/hybrid_v1_public_native_zs_20261105_v1/native_worker_v1.py",
+      "export_relative_path": "code/preparations/hybrid_v1_public_native_zs_20261105_v1/native_worker_v1.py",
+      "source_sha256": "9d54bd4d922d5c95291e0536b266feb1fc3c0ba6a51f239c2953b24b96b98a08",
+      "export_sha256": "9d54bd4d922d5c95291e0536b266feb1fc3c0ba6a51f239c2953b24b96b98a08",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "hybrid_tsad.hybrid_v1",
+        "json",
+        "numpy",
+        "os",
+        "pathlib",
+        "random",
+        "shutil",
+        "sys",
+        "time",
+        "torch"
+      ]
+    },
+    {
+      "source_relative_path": "results/left_psm_R_seed2025_20261101_v1/adapter_snapshot.py",
+      "export_relative_path": "code/results/left_psm_R_seed2025_20261101_v1/adapter_snapshot.py",
+      "source_sha256": "d1ecf29d34d2428606eca785304440041b46b844fab90f2caad0d02fab5215a9",
+      "export_sha256": "d1ecf29d34d2428606eca785304440041b46b844fab90f2caad0d02fab5215a9",
+      "path_transformations": [],
+      "execution_status": "stopped_archive_do_not_autorun",
+      "scientific_status": "not_reinterpreted_see_original_decisions",
+      "artifact_kind": "self_authored_science_code",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "importlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "random",
+        "signal",
+        "sklearn.preprocessing",
+        "sys",
+        "time",
+        "torch",
+        "torch.utils.data",
+        "traceback",
+        "types"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/bind_evaluation.py",
+      "reason": "network_or_deployment_content"
+    },
+    {
+      "source": "preparations/hybrid_target_fullshot_20261110_v1/target_fullshot.py",
+      "reason": "already_in_package_exact",
+      "package_paths": [
+        "hybrid_ad\\src\\hybrid_tsad\\hybrid_v1\\target_fullshot.py"
+      ]
+    },
+    {
+      "source": "preparations/hybrid_left_native_history_lag_20261110_v1/generate_controlled.py",
+      "reason": "operational_or_network_import_excluded_conservatively"
+    },
+    {
+      "source": "results/left_psm_R_score_seed2025_20261101_v1/adapter_snapshot.py",
+      "reason": "already_in_package_exact",
+      "package_paths": [
+        "hybrid_ad\\src\\hybrid_tsad\\left_baseline.py"
+      ]
+    }
+  ],
+  "safety_findings_without_values": [
+    {
+      "source": "preparations/psm_u_scope2000_20261107_v1/bind_evaluation.py",
+      "line": 50,
+      "type": "network_or_deployment_content"
+    }
+  ]
+}

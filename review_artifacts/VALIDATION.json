@@ -1,0 +1,206 @@
+{
+  "date": "2026-11-14",
+  "scope": "CPU-only packaging checks, no new scientific training/evaluation",
+  "python": "3.12.12",
+  "packages_in_local_test_environment": {
+    "numpy": "2.4.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.4.2",
+    "scipy": "1.17.0",
+    "torch": "2.9.1+cu130",
+    "torch-frft": null,
+    "einops": "0.8.2",
+    "psutil": "7.0.0",
+    "threadpoolctl": "3.6.0",
+    "pyreadr": null,
+    "setuptools": "80.10.1"
+  },
+  "compileall": "PASS for shared src/scripts/tests before review export; final export syntax check recorded in handoff",
+  "unittest_default_discovery": {
+    "command": "python -m unittest discover -s tests -v",
+    "tests_run": 622,
+    "failures": 17,
+    "errors": 21,
+    "skipped": 16,
+    "seconds": 296.663,
+    "exit_code": 1,
+    "status": "NOT_GREEN",
+    "cases": [
+      {
+        "test": "ERROR: test_native_loader_and_defaults_cpu_only (test_catch_baseline.CatchAdmissionTests.test_native_loader_and_defaults_cpu_only)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: setUpClass (test_catch_normal_runs.CatchNormalDataTests)",
+        "category": "standalone integration fixture requires investigation"
+      },
+      {
+        "test": "ERROR: test_real_v4_reference_has_infer_list_API_not_iter_infer (test_controlled_wave.ControlledWaveEngineeringTests.test_real_v4_reference_has_infer_list_API_not_iter_infer)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: setUpClass (test_joint_cycle_core.Gate)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_preview_and_pending_no_execute (test_left_baseline.ConfigPermissionTests.test_preview_and_pending_no_execute)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_score_c_query_data_wrong_seed_or_steps_refused (test_left_baseline.ConfigPermissionTests.test_score_c_query_data_wrong_seed_or_steps_refused)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_source_conflicting_import_rejected (test_left_baseline.ConfigPermissionTests.test_source_conflicting_import_rejected)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_unknown_official_bytes_and_existing_output_rejected (test_left_baseline.ConfigPermissionTests.test_unknown_official_bytes_and_existing_output_rejected)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_wrong_release_identity_or_query_permission_refused (test_left_baseline.ConfigPermissionTests.test_wrong_release_identity_or_query_permission_refused)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_actual_long_table_parser_layout_and_float64_before_scaler (test_left_baseline.NormalDatasetTests.test_actual_long_table_parser_layout_and_float64_before_scaler)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_official_loader_exact_on_synthetic_fixture (test_left_baseline.NormalDatasetTests.test_official_loader_exact_on_synthetic_fixture)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: setUpClass (test_left_normal_public.PublicNormalTests)",
+        "category": "standalone integration fixture requires investigation"
+      },
+      {
+        "test": "ERROR: test_preview_rejects_seed_weights_caps_and_unknown_operation (test_left_normal_public_train.TrainingContractTests.test_preview_rejects_seed_weights_caps_and_unknown_operation)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_constant_cpu_reference_exact_rng_and_scale_forgery_rejected (test_physical_validation.PhysicalValidationCPUReferenceTests.test_constant_cpu_reference_exact_rng_and_scale_forgery_rejected)",
+        "category": "Windows temporary memory-map file locking"
+      },
+      {
+        "test": "ERROR: setUpClass (test_reference_center.ReferenceCenterTests)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: setUpClass (test_roca_baseline.RoCATests)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_preview_and_missing_official_dependency_never_fallback (test_stage2_evaluation.EvaluationTests.test_preview_and_missing_official_dependency_never_fallback)",
+        "category": "historical frozen-oracle identity mismatch; not repaired or bypassed"
+      },
+      {
+        "test": "ERROR: setUpClass (test_stage2_u_matched.ActualTinyCPU)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_tep_normal_assets (unittest.loader._FailedTest.test_tep_normal_assets)",
+        "category": "Linux-only resource module unavailable on Windows"
+      },
+      {
+        "test": "ERROR: test_normal_metadata_and_scaler_provenance_rejections (test_tep_normal_ridge.RidgeFixtures.test_normal_metadata_and_scaler_provenance_rejections)",
+        "category": "external official source/workspace/fixture not bound"
+      },
+      {
+        "test": "ERROR: test_formal_wave_requires_real_root_release_before_output (test_weak_lag.WeakLagTests.test_formal_wave_requires_real_root_release_before_output)",
+        "category": "Linux-only resource module unavailable on Windows"
+      },
+      {
+        "test": "FAIL: test_metadata_gate_valid_no_assets_or_torch_opened (test_controlled_mechanism.ControlledMechanismEngineeringTests.test_metadata_gate_valid_no_assets_or_torch_opened)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_no_torch_import_and_no_formal_matrix_in_engineering (test_controlled_mechanism.ControlledMechanismEngineeringTests.test_no_torch_import_and_no_formal_matrix_in_engineering)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_formal_metadata_geometry_not_tiny_exemption (test_controlled_wave.ControlledWaveEngineeringTests.test_formal_metadata_geometry_not_tiny_exemption)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_merged_gate_success_and_failure_metadata_only_fake_fixture (test_controlled_wave_recovery.RecoveryEvidenceEngineeringTests.test_merged_gate_success_and_failure_metadata_only_fake_fixture)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_restore_fake_codec_preserves_global_rng_and_no_cuda_init (test_controlled_wave_recovery.RecoveryEvidenceEngineeringTests.test_restore_fake_codec_preserves_global_rng_and_no_cuda_init)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_unapproved_recovery_or_rng_fixture_refused_without_torch (test_controlled_wave_recovery.RecoveryEvidenceEngineeringTests.test_unapproved_recovery_or_rng_fixture_refused_without_torch)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_frozen_AR_does_not_fit_or_recalibrate (test_cross_centered_analysis.Tests.test_frozen_AR_does_not_fit_or_recalibrate)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_offline_task_and_arrived_evidence_clocks_distinct (test_r1_diagnostic_analysis.R1AnalysisTests.test_offline_task_and_arrived_evidence_clocks_distinct)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_numeric_scalar_array_serialization_and_noTorch (test_r1_diagnostic_forward.R1ForwardTests.test_numeric_scalar_array_serialization_and_noTorch)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_real_worker_index_and_original004b_bundle_codec (test_r2_analysis_consumer_bundle.Tests.test_real_worker_index_and_original004b_bundle_codec)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_baseline_two_targets_cannot_masquerade_as_allC (test_r2_analysis_partial_group.Tests.test_baseline_two_targets_cannot_masquerade_as_allC)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_original_AR_self_ARX12_fit_predict_no_future (test_r2_learnability.Tests.test_original_AR_self_ARX12_fit_predict_no_future)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_route_physical_time_and_inactive_cross_are_explicit (test_r2_learnability_analysis.Tests.test_route_physical_time_and_inactive_cross_are_explicit)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_actual_cal_resolver_H1_with_full544_eligibility (test_r2_learnability_calibration_plan.Tests.test_actual_cal_resolver_H1_with_full544_eligibility)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_cross_off_expected_cross_out_none_but_shared_QKV_updates (test_r2_learnability_update_gate.Tests.test_cross_off_expected_cross_out_none_but_shared_QKV_updates)",
+        "category": "monolithic-process Torch import-order assertion"
+      },
+      {
+        "test": "FAIL: test_prelabel_profile_resource_caps_and_overrun (test_stage2_evaluation.ThresholdAndStatisticsTests.test_prelabel_profile_resource_caps_and_overrun)",
+        "category": "historical frozen-oracle identity mismatch; not repaired or bypassed"
+      },
+      {
+        "test": "FAIL: test_pending_config_cannot_activate (test_stage2_u_evaluation.Stage2UEvaluationTests.test_pending_config_cannot_activate)",
+        "category": "monolithic-process Torch import-order assertion"
+      }
+    ]
+  },
+  "fresh_process_checks": [
+    {
+      "command": "python -m unittest discover -s tests -p test_r2_learnability.py -v",
+      "tests": 6,
+      "exit_code": 0
+    },
+    {
+      "command": "python -m unittest discover -s tests -p test_stage2_u_evaluation.py -v",
+      "tests": 8,
+      "exit_code": 0
+    }
+  ],
+  "GPU_used": false,
+  "private_logs_included": false,
+  "algorithm_changes_to_fix_tests": false,
+  "final_export_compileall": "PASS: src/scripts/tests/review_artifacts/code",
+  "CLI_help_exit_code": 0,
+  "export_restore_check": {
+    "mode": "check_only",
+    "files": 89,
+    "exit_code": 0,
+    "wrote_external_files": false
+  }
+}

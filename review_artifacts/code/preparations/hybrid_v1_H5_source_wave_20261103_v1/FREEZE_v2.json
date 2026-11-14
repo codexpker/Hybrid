@@ -1,0 +1,141 @@
+{
+  "status": "PREPARATION_ONLY_NO_EXECUTION",
+  "supersedes_for_disclosure_only": "FREEZE.json retained unchanged",
+  "files": [
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/CONFIG_INDEX.json",
+      "sha256": "6fb49c399e5f0f611524d186ec4af398cdacc8e78fc2dd4fadcca96e2519c6b8",
+      "bytes": 5879
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/COST_AND_BUDGET_REQUEST.PENDING.json",
+      "sha256": "a9e1021bbcb93e1d1db5c7839582be26e4e8771a9516cb8bdc55544b09969bfb",
+      "bytes": 1357
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/FREEZE.json",
+      "sha256": "19f3113c3be71bc04d182eea157a9ff79aa950e37b5f4989cc790177a07bfacf",
+      "bytes": 5736
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/HANDOFF.md",
+      "sha256": "0088b83c9c4ff1e931c4aae59d116f9a9d899b79b742b5eaafd0b4be840a007c",
+      "bytes": 2435
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/HUBER0_REUSE.json",
+      "sha256": "51b1a0ea9882899f64d4510bd183ea225d2fdf26cce2037953f602d072711844",
+      "bytes": 3431
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/L0_CANDIDATE.json",
+      "sha256": "d8c414cad4559c45468bc19ce5c2086474c8c17ec0f47f94e37820c1c9dfc1ea",
+      "bytes": 1656
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/L0_FIXED_DONOR_DISCLOSURE.json",
+      "sha256": "5727d68605f3e4d754f6697d9d9849f850ef252972e85e9b8067aae812757fdf",
+      "bytes": 5108
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/METADATA_CHECKS.json",
+      "sha256": "a5abb37f18f2cba62699dd1b3711965bab7c3774584d088a4baf46170a296971",
+      "bytes": 1904
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/TRAINING_SELECTION_PIPELINE_DISCLOSURE.json",
+      "sha256": "46e6e11e0bab2fc5689bef5842e25981099271ae590382bde189bc932eda44bb",
+      "bytes": 679
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_half_mse.SOURCE_CAL.UNBOUND.json",
+      "sha256": "6b5ebd71ed18c8b5811afdc5820ba1080edf4a3fe8dcdd5facf7f67f04cfafe1",
+      "bytes": 4529
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_half_mse.SOURCE_TRAIN.PENDING.json",
+      "sha256": "62b49acbdfb7012bf2585e4fb8aadd9b7124bd76b5ddca80bef9fbfc44c9f936",
+      "bytes": 4291
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_huber.SOURCE_CAL.UNBOUND.json",
+      "sha256": "b4ab4e9efa6de7543af845124b8333e821e02cc0ad1f082d9d0bbe296187fafe",
+      "bytes": 4511
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/anomaly10_huber.SOURCE_TRAIN.PENDING.json",
+      "sha256": "e35744216ebfb7dff79aa5e5d8db735de9deec8442102292fbc238b014b20dd1",
+      "bytes": 4279
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/base0_half_mse.SOURCE_CAL.UNBOUND.json",
+      "sha256": "60a3f771944554e83b09acc60ba2b74be14b2c0374cebd090717c7aecd49bc28",
+      "bytes": 4501
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/base0_half_mse.SOURCE_TRAIN.PENDING.json",
+      "sha256": "64cc3bf8d4d93fe0b35ed5a1a2a8da481d649c9f47f7594ebc3dfae782621470",
+      "bytes": 4271
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_half_mse.SOURCE_CAL.UNBOUND.json",
+      "sha256": "3fed3d22ce025f54809edcfffad7fb5b517b35399f0e2bedf419ca3c0f567b33",
+      "bytes": 4571
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_half_mse.SOURCE_TRAIN.PENDING.json",
+      "sha256": "0082be6633f35db2da3cdb0f770cc55a55b53d761265b7bc1c555934e6d02332",
+      "bytes": 4321
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_huber.SOURCE_CAL.UNBOUND.json",
+      "sha256": "cb03e3e2abe9c95b71d21710683daf22b4bdc8942688d08d4e83e0a684f79f95",
+      "bytes": 4553
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/configs/normal_record10_huber.SOURCE_TRAIN.PENDING.json",
+      "sha256": "99fbc464a83915f4f4a920e092818b41a361e4d92809a697d97c217f2bbea1ae",
+      "bytes": 4309
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/l0/H5_COST16_PLAN.PENDING.json",
+      "sha256": "dc90db7f03dfd5f86bd68cfde61b268071e4a92a3c6ea10916005e3ea10cae74",
+      "bytes": 225086
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/l0/H5_COST16_ROOT_RELEASE.PENDING.json",
+      "sha256": "a28ee2d25e53f6f77a0941036abc7f29796ca79d71a858b1cfbad1dfd990740a",
+      "bytes": 2630
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/l0/H5_COST16_SOURCE_TRAIN.PENDING.json",
+      "sha256": "0e3cab0b7b86782df4d99c2785bf1fdbd605ca072ecd2a39877d7ea913a671f7",
+      "bytes": 4364
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/anomaly10_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+      "sha256": "a87c1e99e0fec7897933089234673269f23aa5cb5ae203b5d9737cfd88a84f73",
+      "bytes": 2620
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/anomaly10_huber.SOURCE_TRAIN.ROOT_PENDING.json",
+      "sha256": "ffd38e02c8715262ecf031bd55c88a2b06c79d10fbd82d23bc5e6452a1f0ee3f",
+      "bytes": 2614
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/base0_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+      "sha256": "0ba3af3becb6cf1404d7cde74f70ca7493f332fd890e70e6208c6b7894451931",
+      "bytes": 2612
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/normal_record10_half_mse.SOURCE_TRAIN.ROOT_PENDING.json",
+      "sha256": "52f424efb90f0409b902bb31ee5d34400a73bbe969944226e4453495d3cac205",
+      "bytes": 2632
+    },
+    {
+      "path": "preparations/hybrid_v1_H5_source_wave_20261103_v1/root_release_candidates/normal_record10_huber.SOURCE_TRAIN.ROOT_PENDING.json",
+      "sha256": "48bbc742235c15685b8a707833ff15ec67b13a50d81c0692b2d14a8462a34c88",
+      "bytes": 2626
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "experiment_id": "left_multievent_mixed_u_20261111_v1",
+  "source": "results/left_multievent_mixed_u_20261111_v1/PRIMARY_DECISION.md",
+  "source_sha256": "1e366e6344734fe6b71958d54afd9f886a715e50f832d86e152f3114aaf2dfdc",
+  "numbers": {
+    "scope": "SWaT targetU ABC2000,22queryevent,Cnormal vsBanomaly replacement",
+    "C_AP": 0.164798,
+    "B_AP": 0.234456,
+    "C_C3_TP": 640,
+    "B_C3_TP": 373,
+    "C_C3_FP": 3444,
+    "B_C3_FP": 3175,
+    "C_event_macro_coverage": 0.069297,
+    "B_event_macro_coverage": 0.035965,
+    "note": "ranking and coverage tradeoff, not stable pollution-specific harm"
+  }
+}

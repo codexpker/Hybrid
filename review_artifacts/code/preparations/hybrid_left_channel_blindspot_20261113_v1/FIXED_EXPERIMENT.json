@@ -1,0 +1,88 @@
+{
+  "id": "hybrid_left_channel_blindspot_20261113_v1",
+  "seed": 2025,
+  "updates": 2000,
+  "batch128": true,
+  "optimizer": "fresh Adam1e-4 fixed",
+  "loss": ".5 complete native +.5 masked-channel allH nativecoeffMS/cycle/cons",
+  "SELECT": "every200 min(.5native+.5masked) fixed channelplan, no query",
+  "infer": "allC blind masks, original native formula j endpoint then Cmean; only current/history <=t",
+  "train_role": "FIT only; no U_FIT/source retrain",
+  "domains": {
+    "PSM": {
+      "roles": {
+        "FIT": {
+          "path": "preparations/hybrid_native_predictive_cycle_20261113_v1/data/PSM_FIT.npz",
+          "sha256": "8f6262780c5d22dd302a4988ab9610cb40b67d2eb17631e24f9fec171836fea8",
+          "start": 0,
+          "length": 79488
+        },
+        "SELECT": {
+          "path": "preparations/hybrid_native_predictive_cycle_20261113_v1/data/PSM_SELECT.npz",
+          "sha256": "ea4b99af918a097a693decc6ad95c554cef6ff4a613c8d8e7de7da52a228f186",
+          "start": 80032,
+          "length": 25952
+        },
+        "CAL": {
+          "path": "preparations/hybrid_native_predictive_cycle_20261113_v1/data/PSM_CAL.npz",
+          "sha256": "dce3fdf25f18158c5f0839cb7b4fadb46dccc84778e07b9631abed36318df4a9",
+          "start": 106528,
+          "length": 25953
+        },
+        "QUERY": {
+          "path": "preparations/hybrid_native_predictive_cycle_20261113_v1/data/PSM_QUERY.npz",
+          "sha256": "4f7c172e27d9f515517a7129ecd9c0988581f136640f15f5573cbbfd9d756ab2",
+          "start": 0,
+          "length": 87841
+        }
+      },
+      "config": "preparations/hybrid_native_predictive_cycle_20261113_v1/configs/PSM.json",
+      "config_sha256": "5093f5d74902239e0e576dd7194683165fcc40900530a46f5cbe46a615a922f5",
+      "scaler": "preparations/hybrid_native_predictive_cycle_20261113_v1/PSM_FIT_ONLY_SCALER.json",
+      "scaler_sha256": "45f301fa421a18d3d2bb19b81bd319063bbea495e5bb9c5fcf6691c8bed02fc4",
+      "source_PT": "results/hybrid_native_predictive_cycle_20261113_v1/PSM_native/train/selected.pth",
+      "source_sha256": "9d5d813d59ce49bd8c73e9366a41cec600f54d1afc9020bb85c08ef75ad0f06d",
+      "source_python_step": 12400,
+      "plan_sha256": "f55e50f68805b6d6cebe6f8f75746c6490b25eab5e5d60a63c0f8a7faacd0c2b",
+      "channels": 25
+    },
+    "SWAT": {
+      "roles": {
+        "FIT": {
+          "path": "preparations/left_multievent_mixed_u_20261111_v1/data/FIT.npz",
+          "sha256": "591563937a01b0098854820ea8934d7367772100c34a677893f9dcb56c0bfd8f",
+          "start": 0,
+          "length": 296020
+        },
+        "SELECT": {
+          "path": "preparations/left_multievent_mixed_u_20261111_v1/data/SELECT.npz",
+          "sha256": "e2ef3091fcdb95af8957216187050b13f6493b7083d3f300fba7fcf283b807bd",
+          "start": 395781,
+          "length": 49336
+        },
+        "CAL": {
+          "path": "preparations/left_multievent_mixed_u_20261111_v1/data/CAL.npz",
+          "sha256": "147b89ddf4f488ba5363edc376ddd8cc17e0d6b20ccf352805f4e2bbc25dbdf3",
+          "start": 445661,
+          "length": 49339
+        },
+        "QUERY": {
+          "path": "preparations/left_multievent_mixed_u_20261111_v1/data/QUERY.npz",
+          "sha256": "98d504962ace1b8a49c787c4e691ad6d7e82057ce22bec4fd9c1fe8310853773",
+          "start": 608023,
+          "length": 336896
+        }
+      },
+      "config": "preparations/left_multievent_mixed_u_20261111_v1/configs/SWAT/model_configs_Left.json",
+      "config_sha256": "2574e826155a684389026c3c08db24a20586d3f51040281876cc2eb6a28129d6",
+      "scaler": "preparations/left_multievent_mixed_u_20261111_v1/FIT_ONLY_SCALER.json",
+      "scaler_sha256": "8ec724d8b12cebd0d70d33b92228b1f9de093b920c680d76e8e66d1609b3cc12",
+      "source_PT": "results/left_multievent_mixed_u_20261111_v1/left_train/model/SWAT/Left/checkpoints_0/checkpoint.pth",
+      "source_sha256": "64583950b79be351ba3d10b91d9e1c4b95b9b7d77a944260365e57dd24d79390",
+      "source_python_step": 36992,
+      "plan_sha256": "e93629a4d11bdf1ecc39be6d630c800a9e76668cd47c5bdbb7396ca9db53357f",
+      "channels": 31
+    }
+  },
+  "source_untouched": true
+}
