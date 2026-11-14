@@ -9,7 +9,6 @@ import hashlib
 import json
 import math
 from pathlib import Path
-import resource
 import time
 
 VARIABLES=('xmeas_9','xmeas_21','xmv_10')
@@ -89,6 +88,7 @@ def window_schedule():
 
 
 def extract(config_path):
+    import resource  # production extraction requires POSIX resource accounting
     cfg=json.loads(Path(config_path).read_text(encoding='utf-8'))
     if cfg['variables']!=list(VARIABLES) or cfg['max_seconds']!=300 or cfg['max_RSS_GiB']!=2:
         raise ValueError('Fixed normal extraction scope required')

@@ -1,4 +1,6 @@
 # Preserve exact baseline bytes (including line endings) across clones.
+# Bounded audit evidence hashes refer to these raw output bytes.
+docs/audit_c600125/** -text -whitespace
 # Public review export manifests hash the exported bytes, not normalized text.
 review_artifacts/** -text -whitespace
 # Retain the author's licensed control bytes and notices without restyling.

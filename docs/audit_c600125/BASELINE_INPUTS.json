@@ -1,0 +1,25 @@
+{
+  "base_commit": "c60012524d0a5c39337bdbcf258b1d581f35506b",
+  "attachment_manifest_verified": {
+    "Hybrid_Code_Audit_c600125_20261114.md": true,
+    "run_audit_checks.py": true,
+    "audit_checks.json": true
+  },
+  "inputs": {
+    "Hybrid_Code_Audit_c600125_20261114.md": {
+      "bytes": 18180,
+      "sha256": "2dc056e64946cb9d22052606bd30d0bd435df9fd8b871f57e3afbc909325beff"
+    },
+    "run_audit_checks.py": {
+      "bytes": 9358,
+      "sha256": "957a9742cca2849562ffea831f40463fc0f4d5d9e9c87a280b526a4c48004b94"
+    },
+    "audit_checks.json": {
+      "bytes": 3002,
+      "sha256": "0e8933369903849db9888c65274b3b59db217537e98b2b30c42cd6d16e2c3fb1"
+    }
+  },
+  "execution": "original unmodified run_audit_checks.py --repo <checkout at base commit> --output <new baseline_checks.json>",
+  "output_sha256": "ca04bfc61c76d0a739c453dc8540b1b030347f54686f061c7b0a3cbc67f1f1be",
+  "note": "14 bounded witnesses; not historical real-data replay or full integration tests"
+}

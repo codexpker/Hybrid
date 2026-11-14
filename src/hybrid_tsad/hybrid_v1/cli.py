@@ -9,7 +9,7 @@ import hashlib
 import json
 from pathlib import Path
 import numpy as np
-from .data import Run, load_manifest
+from .data import Run, load_manifest, record_identity
 from .training import fit, adapt, infer, calibrate_route, logit_threshold
 from .scoring import apply_calibration
 
@@ -249,9 +249,9 @@ def execute(config, phase, output):
             support = config.get("support")
             if synthetic:
                 h = config["history"]
-                support = {"K": 1, "events": [{"event_id": "synthetic_E1", "entity": "C", "run": "C_SUPPORT", "start": h+1, "end": h+3}],
-                    "normal": [{"matched_event_id": "synthetic_E1", "entity": "C", "run": "C_SUPPORT_NORMAL", "start": h+1, "end": h+3}],
-                    "forbidden": [{"entity": r.entity, "run": r.run, "start": r.start, "end": r.start+len(r.values)}
+                support = {"K": 1, "events": [{"event_id": "synthetic_E1", "domain": "C", "entity": "C", "run": "C_SUPPORT", "start": h+1, "end": h+3}],
+                    "normal": [{"matched_event_id": "synthetic_E1", "domain": "C", "entity": "C", "run": "C_SUPPORT_NORMAL", "start": h+1, "end": h+3}],
+                    "forbidden": [{"domain": r.domain, "entity": r.entity, "run": r.run, "start": r.start, "end": r.start+len(r.values)}
                                   for r in pool if r.role in {"QUERY", "NORMAL_SELECT", "NORMAL_CAL"}]}
             model, trace = adapt(source, route,
                 [r for r in pool if r.role == ("SUPPORT" if route == "F" else "FIT")],
@@ -286,10 +286,11 @@ def evaluate(config, output):
     output = Path(output); output.mkdir(parents=True, exist_ok=False)
     for entry in config["label_runs"]:
         labels = np.load(entry["path"], allow_pickle=False)
-        rows = [r for r in records if (r["entity"], r["run"]) == (entry["entity"], entry["run"]) and r["valid"]]
+        rows = [r for r in records if record_identity(r) == record_identity(entry) and r["valid"]]
         indices = np.array([r["index"]-entry.get("original_start", 0) for r in rows], dtype=np.int64)
         result = evaluate_arrays(indices, np.array([r["score"] for r in rows]), labels, config["threshold"])
-        save_json(output/(entry["entity"]+"_"+entry["run"]+".json"), _clean_json(result))
+        result["record_identity"] = dict(zip(("domain", "entity", "run"), record_identity(entry)))
+        save_json(output/(hashlib.sha256(json.dumps(record_identity(entry)).encode()).hexdigest()+".json"), _clean_json(result))
 
 
 def l0_approval(config_path, release_path, trusted_sha, output):

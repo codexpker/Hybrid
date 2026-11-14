@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "base_commit": "c60012524d0a5c39337bdbcf258b1d581f35506b",
+  "policy": "Unlisted tests are unit; no failed assertion is converted to skip. Every module gets a fresh CPU process. Integration exclusions are reported explicitly; direct unittest behavior unchanged.",
+  "integration": [
+    {
+      "id_prefix": "test_catch_baseline.CatchAdmissionTests.test_native_loader_and_defaults_cpu_only",
+      "requires": "CATCH_SOURCE_ROOT: pinned official CATCH checkout",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_catch_normal_runs.CatchNormalDataTests",
+      "requires": "CATCH_SOURCE_ROOT: pinned official CATCH checkout",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_controlled_wave.ControlledWaveEngineeringTests.test_real_v4_reference_has_infer_list_API_not_iter_infer",
+      "requires": "historical original_codes/hybrid_v1_psm_fixed_readout_v4.py",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_joint_cycle_core.Gate",
+      "requires": "RESEARCH_WORKSPACE: historical source config/initial.pt + official code roots",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_left_baseline.ConfigPermissionTests",
+      "requires": "LEFT_OFFICIAL_ROOT and archived PSM C-query configuration/contract",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_left_baseline.NormalDatasetTests",
+      "requires": "LEFT_OFFICIAL_ROOT pinned checkout + preprocessing",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_left_normal_public.PublicNormalTests",
+      "requires": "LEFT_SOURCE_ROOT: pinned configs/PSM/model_configs_{Left,0}.json",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_left_normal_public_train.TrainingContractTests.test_preview_rejects_seed_weights_caps_and_unknown_operation",
+      "requires": "LEFT source/normal training config fixture",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_reference_center.ReferenceCenterTests",
+      "requires": "HYBRID_V1_WORKSPACE: official TimeRadar/LEFT/TimesFM sources",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_roca_baseline.RoCATests",
+      "requires": "ROCA_SOURCE_ROOT + ROCA_SOURCE_MANIFEST pinned checkout",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_stage2_evaluation.EvaluationTests.test_preview_and_missing_official_dependency_never_fallback",
+      "requires": "HYBRID_FROZEN_READOUT_SNAPSHOT exact 32-file readout runtime and HYBRID_EVALUATION_CONTRACT; current metric hash must match historical runtime",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_stage2_evaluation.ThresholdAndStatisticsTests.test_prelabel_profile_resource_caps_and_overrun",
+      "requires": "same frozen runtime + metric/oracle identity; never rewrite expected hashes",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_stage2_u_matched.ActualTinyCPU",
+      "requires": "HYBRID_V1_WORKSPACE official source checkout (CPU synthetic integration only)",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_tep_normal_ridge.RidgeFixtures.test_normal_metadata_and_scaler_provenance_rejections",
+      "requires": "NORMAL_METADATA_PATH: exact historical normal metadata JSON",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_chunked_bank_infer_equivalence.RealSourceCPUParity",
+      "requires": "HYBRID_V1_WORKSPACE: official runtime/checkpoints for exact CPU infer parity",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_core.Core",
+      "requires": "HYBRID_V1_WORKSPACE: pinned official TimeRadar/LEFT/TimesFM source roots",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_event_readout_metadata.EventReadoutMetadata.test_cap_precedes_model_and_fresh_failure_never_imports_Torch",
+      "requires": "HYBRID_EVENT_QUERY_PREP/resources/event_query_child.py frozen external child",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_event_readout_metadata.EventReadoutMetadata.test_resource_exact_operation_caps_and_fresh_lifecycle",
+      "requires": "HYBRID_EVENT_QUERY_PREP/resources/event_query_child.py frozen external child",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_event_torch_l0.ActualFKernelL0",
+      "requires": "Explicit HYBRID_F_L0_RELEASE_SHA256 + official source assets; operational L0 not ordinary unit tests",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_named_readout.ActualWriterCPU.test_original_02844_vs_new_default_and_explicit_full_raw_rng_exact",
+      "requires": "HYBRID_V1_WORKSPACE: actual author/runtime readout parity",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_stage2_adaptation.ActualKernelCPU",
+      "requires": "HYBRID_V1_WORKSPACE official source assets",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_system_ablation_source.ConfigurationOnly",
+      "requires": "HYBRID_V1_WORKSPACE: frozen system plans/configs",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_system_ablation_source.ActualSourceCPU",
+      "requires": "HYBRID_V1_WORKSPACE: official sources/initial state",
+      "classification": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION"
+    },
+    {
+      "id_prefix": "test_chunked_bank.PointwiseAdapter.test_only_inference_section_changed_and_per_point_AST_identical",
+      "requires": "historical pre-chunk readout source byte prefix vs current API; current F04 identity semantics intentionally differ; retain integrity assertion",
+      "classification": "INCOMPATIBLE_CURRENT_CODE"
+    },
+    {
+      "id_prefix": "test_event_data.EventInputs.test_cold_seven_file_package_metadata_preview_without_worktree_or_torch",
+      "requires": "historical seven-file manifest with frozen data.py SHA; current F04 semantics differ, do not rewrite archived manifest",
+      "classification": "INCOMPATIBLE_CURRENT_CODE"
+    }
+  ],
+  "per_test_process_modules": [
+    "test_candidate_experiment",
+    "test_shared_engine"
+  ]
+}

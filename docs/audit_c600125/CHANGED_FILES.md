@@ -1,0 +1,34 @@
+# 修改文件清单
+
+基于 c600125；仅本独立修复分支的新代码、回归与交付材料。历史实验快照和结果未修改。
+
+- `.gitattributes`
+- `README.md`
+- `docs/audit_c600125/BASELINE_INPUTS.json`
+- `docs/audit_c600125/CHANGED_FILES.md`
+- `docs/audit_c600125/F06_TEST_RESULTS.json`
+- `docs/audit_c600125/F06_frozen_kernel_check.json`
+- `docs/audit_c600125/PRESERVATION_CHECK.json`
+- `docs/audit_c600125/REVIEW_AND_REPAIRS.md`
+- `docs/audit_c600125/baseline_checks.json`
+- `docs/audit_c600125/regression_results.json`
+- `docs/testing.md`
+- `pyproject.toml`
+- `scripts/run_test_profiles.py`
+- `src/hybrid_tsad/engine/weak_lag_wave.py`
+- `src/hybrid_tsad/hybrid_v1/cli.py`
+- `src/hybrid_tsad/hybrid_v1/data.py`
+- `src/hybrid_tsad/hybrid_v1/event_details.py`
+- `src/hybrid_tsad/hybrid_v1/fractional.py`
+- `src/hybrid_tsad/hybrid_v1/runtime_state.py`
+- `src/hybrid_tsad/hybrid_v1/training.py`
+- `src/hybrid_tsad/tep_normal_assets.py`
+- `tests/profiles.json`
+- `tests/test_audit_event_details.py`
+- `tests/test_audit_f04_identity.py`
+- `tests/test_audit_predictive_semantics.py`
+- `tests/test_audit_validation_state.py`
+- `tests/test_hybrid_v1_tools.py`
+- `tests/test_joint_cycle_core.py`
+- `tests/test_physical_validation.py`
+- `tests/test_test_profiles.py`

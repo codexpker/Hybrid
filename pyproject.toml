@@ -15,6 +15,7 @@ data = ["numpy", "pandas"]
 evaluation = ["numpy", "scikit-learn"]
 model = ["numpy", "pandas", "torch", "torch-frft"]
 test = ["numpy", "pandas", "scipy", "scikit-learn", "psutil", "threadpoolctl"]
+test-torch = ["torch", "einops"]
 tep = ["pyreadr"]
 profile = ["psutil"]
 

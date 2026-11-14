@@ -1,0 +1,154 @@
+{
+  "scope": "F06 bounded CPU software tests, no scientific training or real QUERY evaluation",
+  "initial_recursive_run": {
+    "modules": 129,
+    "tests_run": 863,
+    "failures": 2,
+    "errors": 11,
+    "skips": 16,
+    "explicit_integration_exclusions": 73,
+    "timeouts": 1,
+    "seconds": 584.6719999999041,
+    "note": "Initial classification pass: profiles extended after newly discovered subdirectory prerequisites. Original results retained unchanged. Not a green complete suite."
+  },
+  "targeted_reruns": [
+    {
+      "module": "test_candidate_experiment",
+      "tests_run": 22,
+      "status": "PASS",
+      "isolation": "per-case"
+    },
+    {
+      "module": "test_shared_engine",
+      "tests_run": 9,
+      "status": "PASS",
+      "isolation": "per-case"
+    },
+    {
+      "module": "test_test_profiles",
+      "tests_run": 2,
+      "status": "PASS"
+    },
+    {
+      "module": "test_physical_validation",
+      "tests_run": 8,
+      "status": "PASS"
+    },
+    {
+      "module": "test_tep_normal_assets",
+      "tests_run": 3,
+      "status": "PASS"
+    },
+    {
+      "module": "test_weak_lag",
+      "tests_run": 8,
+      "status": "PASS"
+    }
+  ],
+  "remaining_or_resolved": [
+    {
+      "test": "test_chunked_bank.PointwiseAdapter.test_only_inference_section_changed_and_per_point_AST_identical",
+      "module": "tests/hybrid_v1/test_chunked_bank.py",
+      "status": "INCOMPATIBLE_CURRENT_CODE",
+      "reason": "historical pre-chunk readout source byte prefix vs current API; current F04 identity semantics intentionally differ; retain integrity assertion"
+    },
+    {
+      "test": "test_chunked_bank_infer_equivalence.RealSourceCPUParity.test_real_tiny_multirun_infer_raw_rng_and_chunk_bank_exact",
+      "module": "tests/hybrid_v1/test_chunked_bank_infer_equivalence.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE: official runtime/checkpoints for exact CPU infer parity"
+    },
+    {
+      "test": "setUpClass (test_core.Core)",
+      "module": "tests/hybrid_v1/test_core.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE: pinned official TimeRadar/LEFT/TimesFM source roots"
+    },
+    {
+      "test": "test_event_data.EventInputs.test_cold_seven_file_package_metadata_preview_without_worktree_or_torch",
+      "module": "tests/hybrid_v1/test_event_data.py",
+      "status": "INCOMPATIBLE_CURRENT_CODE",
+      "reason": "historical seven-file manifest with frozen data.py SHA; current F04 semantics differ, do not rewrite archived manifest"
+    },
+    {
+      "test": "test_event_readout_metadata.EventReadoutMetadata.test_cap_precedes_model_and_fresh_failure_never_imports_Torch",
+      "module": "tests/hybrid_v1/test_event_readout_metadata.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_EVENT_QUERY_PREP/resources/event_query_child.py frozen external child"
+    },
+    {
+      "test": "test_event_readout_metadata.EventReadoutMetadata.test_resource_exact_operation_caps_and_fresh_lifecycle",
+      "module": "tests/hybrid_v1/test_event_readout_metadata.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_EVENT_QUERY_PREP/resources/event_query_child.py frozen external child"
+    },
+    {
+      "test": "test_event_torch_l0.ActualFKernelL0.test_K1_K3_actual_updates_frozen_source_and_CAL_nan_gate",
+      "module": "tests/hybrid_v1/test_event_torch_l0.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "Explicit HYBRID_F_L0_RELEASE_SHA256 + official source assets; operational L0 not ordinary unit tests"
+    },
+    {
+      "test": "test_named_readout.ActualWriterCPU.test_original_02844_vs_new_default_and_explicit_full_raw_rng_exact",
+      "module": "tests/hybrid_v1/test_named_readout.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE: actual author/runtime readout parity"
+    },
+    {
+      "test": "test_stage2_adaptation.ActualKernelCPU.test_train_calibrate_and_calibration_only_exact_existing_kernels",
+      "module": "tests/hybrid_v1/test_stage2_adaptation.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE official source assets"
+    },
+    {
+      "test": "setUpClass (test_system_ablation_source.ActualSourceCPU)",
+      "module": "tests/hybrid_v1/test_system_ablation_source.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE: official sources/initial state"
+    },
+    {
+      "test": "test_system_ablation_source.ConfigurationOnly.test_fixed_plans_flags_recipes_and_scope",
+      "module": "tests/hybrid_v1/test_system_ablation_source.py",
+      "status": "EXTERNAL_ASSET_OR_OPERATIONAL_INTEGRATION",
+      "reason": "HYBRID_V1_WORKSPACE: frozen system plans/configs"
+    },
+    {
+      "test": "test_candidate_experiment.TorchSyntheticTests.test_common_initialization_and_full_synthetic_stages",
+      "module": "tests/test_candidate_experiment.py",
+      "status": "RESOLVED_BY_PER_CASE_ISOLATION",
+      "reason": "Windows c10.dll import-order conflict; actual isolated rerun PASS"
+    },
+    {
+      "test": "test_shared_engine.SharedEngineTests.test_forecast_bank_matches_original_loop_on_cpu",
+      "module": "tests/test_shared_engine.py",
+      "status": "RESOLVED_BY_PER_CASE_ISOLATION",
+      "reason": "Windows c10.dll import-order conflict; actual isolated rerun PASS"
+    },
+    {
+      "module": "tests/test_stage2_readout.py",
+      "status": "UNRESOLVED_TIMEOUT",
+      "reason": "180-second module limit exceeded. Not retried or declared passing; no scientific job."
+    }
+  ],
+  "asset_bindings": {
+    "CATCH_SOURCE_ROOT": "UNBOUND",
+    "LEFT_OFFICIAL_ROOT": "UNBOUND",
+    "LEFT_SOURCE_ROOT": "UNBOUND",
+    "HYBRID_V1_WORKSPACE": "UNBOUND",
+    "ROCA_SOURCE_ROOT": "UNBOUND",
+    "ROCA_SOURCE_MANIFEST": "UNBOUND",
+    "NORMAL_METADATA_PATH": "UNBOUND",
+    "HYBRID_EVENT_QUERY_PREP": "UNBOUND",
+    "HYBRID_F_L0_RELEASE_SHA256": "UNBOUND"
+  },
+  "frozen_integration": {
+    "tests_run": 2,
+    "failures": 1,
+    "errors": 1,
+    "reason": "Current engine/evaluation.py differs from exact historical frozen kernel; other four kernels match",
+    "details": "F06_frozen_kernel_check.json"
+  },
+  "historical_results_changed": false,
+  "oracle_hashes_changed": false,
+  "full_suite_green": false
+}

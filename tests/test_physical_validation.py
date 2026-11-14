@@ -1,4 +1,5 @@
 """CPU-only provenance rejection tests; CUDA integration remains separately gated."""
+from contextlib import ExitStack
 import importlib.util
 import json
 from pathlib import Path
@@ -185,13 +186,14 @@ class PhysicalValidationCPUReferenceTests(unittest.TestCase):
         from hybrid_tsad.model import HybridPredictor
         from hybrid_tsad.engine.multi_readout import physical_reference,verify_physical_bank,HISTORY_SCALE_RTOL,HISTORY_SCALE_ATOL
         self.assertEqual((HISTORY_SCALE_RTOL,HISTORY_SCALE_ATOL),(2e-6,2e-6))
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory() as temp, ExitStack() as cleanup:
             root=Path(temp);data=np.full((105,52),np.float32(3000.10009765625),dtype="float32")
             array=root/"history.npy";np.save(array,data)
             q=dict(array_path=str(array),array_sha256_from_frozen_parent=record(array)["sha256"],origins=[100],local_start=0,local_end_exclusive=105)
             before=torch.get_rng_state().clone()
             with patch.object(torch.cuda,"is_available",side_effect=AssertionError("CPU must not probe CUDA")):
                 reference=physical_reference(q,PROFILE)
+            cleanup.callback(reference[0]._mmap.close)  # close before Windows removes the temporary file
             self.assertTrue(torch.equal(before,torch.get_rng_state()))
             scale=HybridPredictor.preprocess(SimpleNamespace(history=100),torch.tensor(data[None,:100].copy()))[3].numpy()[0]
             self.assertTrue(np.array_equal(reference[2],scale[None]))

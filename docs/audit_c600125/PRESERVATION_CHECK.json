@@ -1,0 +1,41 @@
+{
+  "base_commit": "c60012524d0a5c39337bdbcf258b1d581f35506b",
+  "preserved_paths": [
+    {
+      "path": "src/hybrid_tsad/left_predictive_cycle.py",
+      "base_git_object": "3d35ab25ea41df2d1ed4421a803aaeb2c446c7cf",
+      "unchanged": true,
+      "worktree_sha256": "c9a7752b1eac84be33a6c704d0a02a4ab150aa2dd8e092b790e11ac0819c1685"
+    },
+    {
+      "path": "src/hybrid_tsad/hybrid_v1/stage2_u_matched.py",
+      "base_git_object": "1938f0c974b4fdd16db2bcbaec3583d67e05038f",
+      "unchanged": true,
+      "worktree_sha256": "243a1c963e1687884315c9ab7f1efc6a3accd79258840f7940498db3d5ff13b1"
+    },
+    {
+      "path": "review_artifacts",
+      "base_git_object": "1272d9b39541cd8fe2f238992389c9b2c9ee78ec",
+      "unchanged": true
+    },
+    {
+      "path": "docs/provenance",
+      "base_git_object": "0efcd73ea5c0f6e88e97ab4e2351d064b7900173",
+      "unchanged": true
+    },
+    {
+      "path": "src/hybrid_tsad/engine/stage2_evaluation.py",
+      "base_git_object": "58691bbaaab3fc75ec80b4bcd18c5f1200abad0c",
+      "unchanged": true,
+      "worktree_sha256": "22219ec4eb816f84fd831b8db3629c63456a8758221c236bce995773dbc35cfb"
+    },
+    {
+      "path": "src/hybrid_tsad/engine/evaluation.py",
+      "base_git_object": "a82a6d6d10641d8cf19a87bdd835d4ffd6b9a39b",
+      "unchanged": true,
+      "worktree_sha256": "6d7011ba4550c8936b248d128188f1026b125794a8abe10987781ec4e7a6d240"
+    }
+  ],
+  "external_experiments": "not opened for modification or evaluation; all new output under separate audit preparation path",
+  "changed_algorithms_losses_scores_thresholds": false
+}

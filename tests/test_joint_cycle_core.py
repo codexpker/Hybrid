@@ -94,7 +94,7 @@ class Gate(unittest.TestCase):
    if route=='U':fits=[run('fit','FIT')];sels=[run('select','SELECT')];extra={}
    else:
     fits=[run('event','SUPPORT'),run('normal','SUPPORT')];sels=[run('select','NORMAL_SELECT')]
-    extra=dict(support=dict(K=1,events=[dict(event_id='E1',entity='e',run='event',start=513,end=515)],normal=[dict(matched_event_id='E1',entity='e',run='normal',start=513,end=515)],forbidden=[]))
+    extra=dict(support=dict(K=1,events=[dict(domain='SYNTHETIC',event_id='E1',entity='e',run='event',start=513,end=515)],normal=[dict(domain='SYNTHETIC',matched_event_id='E1',entity='e',run='normal',start=513,end=515)],forbidden=[]))
    m,report=core.adapt(self.model,route,fits,sels,history=512,horizon=32,steps=2,lr=.0003,kind='huber',seed=2025,validate_every=1,**extra)
    self.assertEqual(report['updates'],2);self.assertTrue(any(not torch.equal(m.state_dict()[n],self.model.state_dict()[n]) for n in m.state_dict() if n.startswith('fractional_cycle_decoder.')))
    self.assertTrue(all(torch.equal(m.state_dict()[n],self.model.state_dict()[n]) for n in m.state_dict() if n.startswith(('temporal.','tf_backbone.','lag.','ms_filter.'))))

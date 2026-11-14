@@ -1,0 +1,47 @@
+{
+  "frozen_root": "preparations/runtime_stage2_readout_a712825a_v1",
+  "identity_and_copy_match": true,
+  "python_files": 32,
+  "kernels": [
+    {
+      "path": "src/hybrid_tsad/engine/evaluation.py",
+      "expected": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+      "archived": "884acf7000166a33ac6467a3b60f9103ce1d21eb44135281a6dbeb025ef35e2d",
+      "current": "6d7011ba4550c8936b248d128188f1026b125794a8abe10987781ec4e7a6d240",
+      "archived_matches": true,
+      "current_matches": false
+    },
+    {
+      "path": "src/hybrid_tsad/engine/events.py",
+      "expected": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+      "archived": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+      "current": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+      "archived_matches": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/hybrid_tsad/engine/statistics.py",
+      "expected": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+      "archived": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+      "current": "dd69987ea4f2f4b94300dc82202b3c13b0109d1e02b0f61cf1f0847f6c14a6e9",
+      "archived_matches": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/hybrid_tsad/engine/official_affiliation.py",
+      "expected": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+      "archived": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+      "current": "b422b71d0b7d6de655b398b3bbd1d4b6f32c22e0270358a3e1502c0cbb8c2412",
+      "archived_matches": true,
+      "current_matches": true
+    },
+    {
+      "path": "src/hybrid_tsad/protocol.py",
+      "expected": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+      "archived": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+      "current": "f663b74af0758e7d6b604daac54e24ca45a9724fa4878c6421a6975b7152d3ed",
+      "archived_matches": true,
+      "current_matches": true
+    }
+  ]
+}

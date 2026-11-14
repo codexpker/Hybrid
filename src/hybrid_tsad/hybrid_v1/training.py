@@ -2,7 +2,7 @@
 import copy
 import time
 import numpy as np
-from .data import BalancedSampler, window, targets, arrived_window, arrived_targets, audit_events, resolve_plan
+from .data import BalancedSampler, window, targets, arrived_window, arrived_targets, audit_events, resolve_plan, record_identity, support_run
 from .objectives import ssl_objective
 from .scoring import residual_components, fit_calibration, apply_calibration, COMPONENTS
 
@@ -32,10 +32,9 @@ def update_policy(model, route):
 
 def validation(model, runs, history, horizon, kind, seed, limit=4, active_components=None, plan=None, timings=None):
     import torch
-    old = model.training; model.eval()
+    from .runtime_state import evaluation_state
     values = []
-    with torch.random.fork_rng(devices=[]), torch.no_grad():
-        torch.manual_seed(seed)
+    with evaluation_state(model, seed):
         groups = ([(r, [t]) for r, t in resolve_plan(runs, plan, history, horizon)] if plan is not None
                   else [(r, targets(r, history, horizon)[:limit]) for r in runs])
         for run, indices in groups:
@@ -49,7 +48,6 @@ def validation(model, runs, history, horizon, kind, seed, limit=4, active_compon
                 if timings is not None:
                     if next(model.parameters()).device.type == "cuda": torch.cuda.synchronize()
                     timings.append((run.domain, time.monotonic()-began))
-    model.train(old)
     if not values:
         raise ValueError("No legal SELECT supervision")
     return float(np.mean(values))
@@ -115,11 +113,11 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
                 raise ValueError("F needs exposure to each budgeted event and matched normal")
             positive = attempt % 2 == 0; i = (attempt//2) % support["K"]
             entry = support["events"][i] if positive else support["normal"][i]
-            run = next(x for x in fit_runs if (x.entity, x.run) == (entry["entity"], entry["run"]))
+            run = support_run(fit_runs, entry)
             target = int(rng.integers(entry["start"], entry["end"]))-run.start
             batch = tensor_batch(window(run, target, history, horizon), device)
             for blocked in support["forbidden"]:
-                if ((blocked["entity"], blocked["run"]) == (run.entity, run.run)
+                if (record_identity(blocked) == record_identity(run)
                         and batch["footprint"][0] < blocked["end"] and blocked["start"] < batch["footprint"][1]):
                     raise ValueError("Full support footprint overlaps held-out role")
             label, event_id = float(positive), support["events"][i]["event_id"]
@@ -141,11 +139,11 @@ def fit(model, fit_runs, select_runs, *, history, horizon, steps=2, lr=1e-3,
             logit = model.event_head(features).flatten()
             bce = torch.nn.functional.binary_cross_entropy_with_logits(logit, torch.full_like(logit, label))
             normal = support["normal"][i]
-            nr = next(x for x in fit_runs if (x.entity, x.run) == (normal["entity"], normal["run"]))
+            nr = support_run(fit_runs, normal)
             nb = tensor_batch(window(nr, int(rng.integers(normal["start"], normal["end"]))-nr.start, history, horizon), device)
             normal_footprint = nb["footprint"]
             for blocked in support["forbidden"]:
-                if ((blocked["entity"], blocked["run"]) == (nr.entity, nr.run)
+                if (record_identity(blocked) == record_identity(nr)
                         and nb["footprint"][0] < blocked["end"] and blocked["start"] < nb["footprint"][1]):
                     raise ValueError("Additional normal SSL full footprint overlaps held-out role")
             nf, nrec = passes(model, nb, seed+attempt+10000)

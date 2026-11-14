@@ -1,0 +1,27 @@
+{
+  "scope": "new bounded audit regressions only; no research training or real QUERY evaluation",
+  "tests_run": 34,
+  "failures": [],
+  "errors": [],
+  "skips": [],
+  "seconds": 1.2506169999251142,
+  "optional_CUDA_RNG_test_opted_in": true,
+  "local_GPU": "NVIDIA GeForce RTX 3080 Ti",
+  "CUDA_devices": 1,
+  "torch": "2.9.1+cu130",
+  "files": {
+    "test_audit_predictive_semantics": "ab77a57c590acbfb427d0d2f9acf36db72d777366f9a70f5647c76d533371b45",
+    "test_audit_validation_state": "f7eccdd117071f41af0acbbf615bae5ba8f174c30054883dd153d4acb8d83a2b",
+    "test_audit_f04_identity": "f5c9dde11acc851e4e62146cb7fa49f0aa6a7bf3c82af959b15dbc07d4366fb4",
+    "test_audit_event_details": "e1a1dbd94ab2d6a3879deada376a0ab49c9c4f1f65a7a1894a751c286e965a73",
+    "test_test_profiles": "93e7c7d919bcfb3343d56c57ce1f0727881b859ea09e0d1b39fd7b35d2bc419c"
+  },
+  "source_hash_semantics": "files: exact executed worktree bytes; git_index_files: Git-stored bytes after normal text EOL normalization; all ASTs identical",
+  "git_index_files": {
+    "test_audit_predictive_semantics": "ab77a57c590acbfb427d0d2f9acf36db72d777366f9a70f5647c76d533371b45",
+    "test_audit_validation_state": "f7eccdd117071f41af0acbbf615bae5ba8f174c30054883dd153d4acb8d83a2b",
+    "test_audit_f04_identity": "f5c9dde11acc851e4e62146cb7fa49f0aa6a7bf3c82af959b15dbc07d4366fb4",
+    "test_audit_event_details": "e1a1dbd94ab2d6a3879deada376a0ab49c9c4f1f65a7a1894a751c286e965a73",
+    "test_test_profiles": "b6e5b65368d0b740158267080237414ec40e1d1b4c148fcf54bb2806eea177a1"
+  }
+}

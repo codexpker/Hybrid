@@ -1,6 +1,41 @@
 """Run-contained multivariate windows. Learning records never contain labels."""
 from dataclasses import dataclass
 import numpy as np
+from collections.abc import Mapping
+
+
+def record_identity(record):
+    """Original observation identity; role must never hide cross-role overlap.
+
+    New multi-source interfaces require explicit domain/entity/run. Historical
+    manifests without domain are not silently assigned to an arbitrary source.
+    """
+    fields = ("domain", "entity", "run")
+    key = tuple(record.get(k) if isinstance(record, Mapping) else getattr(record, k, None) for k in fields)
+    if any(not isinstance(value, str) or not value for value in key):
+        raise ValueError("Explicit nonempty domain/entity/run identity required")
+    return key
+
+
+def intervals_overlap(a, b):
+    return (record_identity(a) == record_identity(b)
+            and a["start"] < b["end"] and b["start"] < a["end"])
+
+
+def support_run(runs, entry):
+    """Resolve a support interval by full original identity AND legal role.
+
+    Multiple disjoint SUPPORT segments of one record are legal; the complete
+    requested interval must belong to exactly one of them.
+    """
+    key = record_identity(entry)
+    if entry.get("role", "SUPPORT") != "SUPPORT":
+        raise ValueError("Support lookup requires SUPPORT role")
+    matches = [r for r in runs if record_identity(r) == key and r.role == "SUPPORT"
+               and r.start <= entry["start"] < entry["end"] <= r.start + len(r.values)]
+    if len(matches) != 1:
+        raise ValueError("Support interval needs one unambiguous domain/entity/run SUPPORT segment")
+    return matches[0]
 
 
 @dataclass
@@ -14,6 +49,7 @@ class Run:
     start: int = 0
 
     def __post_init__(self):
+        record_identity(self)
         self.values = np.asarray(self.values, dtype=np.float32)
         self.observed = np.asarray(self.observed, dtype=bool)
         if (self.values.ndim != 2 or self.observed.shape != self.values.shape
@@ -95,8 +131,9 @@ def audit_events(events, normal, forbidden, k, history=0, horizon=1):
     ids = [e["event_id"] for e in events]
     if len(set(ids)) != k or any(not x for x in ids):
         raise ValueError("Unique complete event IDs required")
-    def overlap(a, b):
-        return (a["entity"], a["run"]) == (b["entity"], b["run"]) and a["start"] < b["end"] and b["start"] < a["end"]
+    for entry in events + normal + forbidden:
+        record_identity(entry)
+    overlap = intervals_overlap
     for entry in events+normal:
         if entry["end"] <= entry["start"] or any(overlap(entry, x) for x in forbidden):
             raise ValueError("Support overlaps held-out footprint")
@@ -128,6 +165,19 @@ def load_manifest(path, roles=None):
     from pathlib import Path
     path = Path(path)
     entries = json.loads(path.read_text(encoding="utf-8"))["runs"]
+    # Validate metadata for ALL roles before role filtering, without opening
+    # held-out arrays. Filtering learning inputs must not hide FIT/QUERY overlap.
+    spans = []
+    for entry in entries:
+        record_identity(entry)
+        lo, hi = entry["bounds"]
+        if type(lo) is not int or type(hi) is not int or not 0 <= lo < hi:
+            raise ValueError("Invalid run/role bounds")
+        start = entry.get("original_start", 0)
+        span = dict(entry, start=start+lo, end=start+hi)
+        if any(intervals_overlap(span, other) for other in spans):
+            raise ValueError("Role ranges overlap inside original run")
+        spans.append(span)
     runs = []
     cache = {}
     for entry in entries:
@@ -186,7 +236,7 @@ def load_manifest(path, roles=None):
                         observed[lo:hi], start=entry.get("original_start", 0)+lo))
     for i, a in enumerate(runs):
         for b in runs[i+1:]:
-            if (a.entity, a.run) == (b.entity, b.run) and a.start < b.start+len(b.values) and b.start < a.start+len(a.values):
+            if record_identity(a) == record_identity(b) and a.start < b.start+len(b.values) and b.start < a.start+len(a.values):
                 raise ValueError("Role ranges overlap inside original run")
     return runs
 

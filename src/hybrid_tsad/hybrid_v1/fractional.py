@@ -6,6 +6,7 @@ encode/decode parity is separately testable without the public-D projection.
 from types import SimpleNamespace
 import torch
 from torch import nn
+from .runtime_state import isolated_rng
 
 
 class FractionalBackbone(nn.Module):
@@ -33,9 +34,7 @@ class FractionalBackbone(nn.Module):
         is_cuda = x.is_cuda
         devices = [x.device.index] if is_cuda else []
         # All state required for decode is explicit, local to this invocation.
-        with torch.random.fork_rng(devices=devices, enabled=mask_seed is not None):
-            if mask_seed is not None:
-                torch.manual_seed(int(mask_seed))
+        with isolated_rng(mask_seed, devices):
             for bi, (window, validity) in enumerate(zip(x, v)):
                 input_values = window.transpose(0, 1)  # C,W
                 valid_channel = validity.sum(0) >= 2

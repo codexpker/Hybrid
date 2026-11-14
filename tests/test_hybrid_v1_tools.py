@@ -43,11 +43,11 @@ class NumpyTools(unittest.TestCase):
         self.assertEqual(apply_calibration(dict(domain="A", r_tf=0., r_ms=0., r_pred=0.), zero)["score"], 0.)
 
     def test_event_budget_matching_and_holdout(self):
-        e = [{"entity": "x", "run": "r", "event_id": "E1", "start": 20, "end": 25}]
-        n = [{"entity": "x", "run": "r", "matched_event_id": "E1", "start": 5, "end": 10}]
+        e = [{"domain": "A", "entity": "x", "run": "r", "event_id": "E1", "start": 20, "end": 25}]
+        n = [{"domain": "A", "entity": "x", "run": "r", "matched_event_id": "E1", "start": 5, "end": 10}]
         self.assertEqual(audit_events(e, n, [], 1)["normal_points"], 5)
         with self.assertRaises(ValueError): audit_events(e, n, [], 0)
-        with self.assertRaises(ValueError): audit_events(e, n, [dict(entity="x", run="r", start=23, end=40)], 1)
+        with self.assertRaises(ValueError): audit_events(e, n, [dict(domain="A", entity="x", run="r", start=23, end=40)], 1)
 
     def test_static_recipes_and_runtime_missing_are_distinct(self):
         for active in (("r_ms", "r_pred"), ("r_tf", "r_pred"), ("r_tf", "r_ms"), ("r_pred",)):
@@ -88,9 +88,9 @@ class NumpyTools(unittest.TestCase):
             np.testing.assert_array_equal(a[key], b[key])
 
     def test_normal_ssl_full_footprint_forbidden_counterexample(self):
-        events = [dict(entity="E", run="positive", event_id="one", start=200, end=202)]
-        normal = [dict(entity="E", run="normal", matched_event_id="one", start=200, end=202)]
-        forbidden = [dict(entity="E", run="normal", start=100, end=150)]
+        events = [dict(domain="A", entity="E", run="positive", event_id="one", start=200, end=202)]
+        normal = [dict(domain="A", entity="E", run="normal", matched_event_id="one", start=200, end=202)]
+        forbidden = [dict(domain="A", entity="E", run="normal", start=100, end=150)]
         with self.assertRaisesRegex(ValueError, "Normal SSL full footprint"):
             audit_events(events, normal, forbidden, 1, history=128, horizon=2)
 
@@ -105,9 +105,9 @@ class TorchTools(unittest.TestCase):
         values = np.ones((400, 1), np.float32)
         runs = [Run("A", "e", name, "SUPPORT", values.copy(), np.ones_like(values, bool)) for name in ("positive", "normal")]
         select = [Run("A", "e", "select", "NORMAL_SELECT", values.copy(), np.ones_like(values, bool))]
-        support = dict(K=1, events=[dict(entity="e", run="positive", event_id="E", start=200, end=202)],
-            normal=[dict(entity="e", run="normal", matched_event_id="E", start=200, end=202)],
-            forbidden=[dict(entity="e", run="normal", start=100, end=150)])
+        support = dict(K=1, events=[dict(domain="A", entity="e", run="positive", event_id="E", start=200, end=202)],
+            normal=[dict(domain="A", entity="e", run="normal", matched_event_id="E", start=200, end=202)],
+            forbidden=[dict(domain="A", entity="e", run="normal", start=100, end=150)])
         def objective(*a, **k):
             return dict(total=model.fusion.weight.square().sum(), valid_windows=torch.ones(1, dtype=torch.bool))
         # Deliberately bypass static audit to prove the actual nb path itself
@@ -127,8 +127,8 @@ class TorchTools(unittest.TestCase):
         values = np.ones((40, 1), np.float32)
         runs = [Run("A", "e", name, "SUPPORT", values.copy(), np.ones_like(values, bool)) for name in ("positive", "normal")]
         select = [Run("A", "e", "select", "NORMAL_SELECT", values.copy(), np.ones_like(values, bool))]
-        events = [dict(entity="e", run="positive", event_id="E"+str(i), start=8+4*i, end=9+4*i) for i in range(3)]
-        normal = [dict(entity="e", run="normal", matched_event_id="E"+str(i), start=8+4*i, end=9+4*i) for i in range(3)]
+        events = [dict(domain="A", entity="e", run="positive", event_id="E"+str(i), start=8+4*i, end=9+4*i) for i in range(3)]
+        normal = [dict(domain="A", entity="e", run="normal", matched_event_id="E"+str(i), start=8+4*i, end=9+4*i) for i in range(3)]
         support = dict(K=3, events=events, normal=normal, forbidden=[])
         def objective(*args, **kwargs):
             loss = model.fusion.weight.square().mean()

@@ -1,0 +1,125 @@
+{
+  "commit": "c60012524d0a5c39337bdbcf258b1d581f35506b",
+  "source_blobs": {
+    "predictive": "3d35ab25ea41df2d1ed4421a803aaeb2c446c7cf",
+    "matched_u": "1938f0c974b4fdd16db2bcbaec3583d67e05038f"
+  },
+  "python": "3.12.12 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 20:05:38) [MSC v.1929 64 bit (AMD64)]",
+  "torch": "2.9.1+cu130",
+  "numpy": "2.4.4",
+  "actual_GPU_execution": false,
+  "real_data": false,
+  "optimizer_steps": 0,
+  "remote_writes": false,
+  "checks": [
+    {
+      "name": "terminal_supervision_vs_smoothed_score",
+      "history": 100,
+      "loss_before": 0.0,
+      "loss_after": 0.0,
+      "channel_score_before": 0.0,
+      "channel_score_after": 1.649999976158142,
+      "fixture_not_actual_experiment": true,
+      "coarse_output_not_in_archived_config": true
+    },
+    {
+      "name": "strict_past_split",
+      "history": 100,
+      "passed": true
+    },
+    {
+      "name": "terminal_supervision_vs_smoothed_score",
+      "history": 192,
+      "loss_before": 0.0,
+      "loss_after": 0.0,
+      "channel_score_before": 0.0,
+      "channel_score_after": 1.649999976158142,
+      "fixture_not_actual_experiment": true,
+      "coarse_output_not_in_archived_config": true
+    },
+    {
+      "name": "strict_past_split",
+      "history": 192,
+      "passed": true
+    },
+    {
+      "name": "same_input_two_targets_toy",
+      "rows": [
+        {
+          "output": 4.0,
+          "loss": 0.25,
+          "gradient": -0.5
+        },
+        {
+          "output": 4.5,
+          "loss": 0.125,
+          "gradient": 0.0
+        },
+        {
+          "output": 5.0,
+          "loss": 0.25,
+          "gradient": 0.5
+        }
+      ],
+      "proves_historical_cause": false
+    },
+    {
+      "name": "legacy_flag_restore_expression",
+      "before": [
+        true,
+        true,
+        false
+      ],
+      "after": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "name": "matched_U_actual_helper_restoration",
+      "exception_exit": false,
+      "passed": true
+    },
+    {
+      "name": "matched_U_actual_helper_restoration",
+      "exception_exit": true,
+      "passed": true
+    },
+    {
+      "name": "legacy_CPU_fork_cuda_seed_API_spy",
+      "cuda_seed_calls": [
+        17
+      ],
+      "real_CUDA_test": false
+    },
+    {
+      "name": "translation_invariance_of_normalization",
+      "maximum_difference": 0.0
+    },
+    {
+      "name": "hidden_target_excluded_from_statistics",
+      "passed": true
+    },
+    {
+      "name": "domain_omitted_from_overlap_identity",
+      "legacy_false_collision": true,
+      "source_expression_only": true
+    },
+    {
+      "name": "partial_event_detail_semantics",
+      "scored_points": 3,
+      "total_points": 10,
+      "main_eligible": false,
+      "reported_coverage": 0.0,
+      "all_false_longest_miss": 10,
+      "scope": "export detail; main aggregate excludes"
+    },
+    {
+      "name": "native_joint_SELECT_order_toy",
+      "native_best": 0,
+      "joint_best": 1,
+      "actual_checkpoint_change_not_proven": true
+    }
+  ]
+}

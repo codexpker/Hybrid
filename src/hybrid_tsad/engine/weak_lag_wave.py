@@ -9,7 +9,6 @@ import hashlib
 import json
 import platform
 from pathlib import Path
-import resource
 import sys
 import time
 from datetime import datetime, timezone
@@ -62,6 +61,7 @@ def require_release(config, release_path):
 
 def run_wave(config_path, release_path):
     release = require_release(config_path, release_path)
+    import resource  # only an authorized production run requires POSIX accounting
     out = Path(release['output']).resolve()
     if out.exists():
         raise ValueError('Immutable output already exists; never retry over results')
