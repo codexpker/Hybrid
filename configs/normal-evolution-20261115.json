@@ -1,0 +1,35 @@
+{
+  "id": "hybrid_normal_evolution_20261115_v1",
+  "seed": 2025,
+  "drawplan_seed": 2025,
+  "epochs": 20,
+  "batch_size": 128,
+  "score_batch_size": 128,
+  "learning_rate": 0.0001,
+  "variants": ["full", "time_only", "no_evolution"],
+  "model_factory": "hybrid_tsad.normal_evolution:NormalEvolution",
+  "model_kwargs": {"hidden": 64, "states": 4, "block": 4, "rank": 8},
+  "initialise_from_fit": true,
+  "score_representation": "replicated_scalar",
+  "domains": {
+    "TEP": {"history": 100, "channels": 3, "epochs": 20, "updates": 3760, "lr_schedule": "type2"},
+    "PSM": {"history": 192, "channels": 25, "epochs": 20, "updates": 12400, "lr_schedule": "type2"},
+    "SWAT": {"history": 192, "channels": 31, "epochs": 20, "patience": 3, "lr_schedule": "type1"}
+  },
+  "initialisation": {
+    "flow": "four identity affine couplings; odd layers conjugated by two-level Haar; no net initial rotation",
+    "means": "K linspace(...).long indices on all nonoverlap four-point FIT blocks; no SELECT/CAL/QUERY",
+    "noise": "FIT coordinate standard deviation, sigma=.05+9.95sigmoid(raw), inverse-logit probability clamp1e-6",
+    "mode_initial_probabilities": "uniform",
+    "transition": "diag .9, offdiag .1/3, row softmax",
+    "dynamic_diag": "zero",
+    "dynamic_factors": "seed2025 U=N(0,.02), V=N(0,.002), rank min(8,4C); no zero cross gradient",
+    "stable_dynamic_map": ".45*(diag(tanh(d))+UVt/(normF(U)*normF(V)+1e-8))"
+  },
+  "training_objective": "exact logforward joint trajectory NLL plus block-map log-Jacobian; divide by H*C; mean batch",
+  "selection": "same normalized trajectory NLL on normal SELECT H,2H,... once each epoch; lowest and earlier ties",
+  "scoring": "final-block predictive mixture Rosenblatt, fixed flattened time/channel order, mean -log(2min(v,1-v)); v clamp1e-7; no Jacobian added to score",
+  "no_evolution": "iid mode prior and A=0; transition/dynamics parameters frozen, fewer active parameters; map/emission active tensors start identically",
+  "CAL": "original legitimate CAL; unchanged mature common axes, original512 PSM/SWAT and8000 TEP points; ownq99higher strict>",
+  "resource": {"train_GiB": 20, "score_GiB": 30, "max_parallel": 4, "train_timeout_seconds": 10800, "score_timeout_seconds": 3600}
+}

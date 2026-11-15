@@ -98,6 +98,18 @@ def sample_batch(values, H, run, end, device):
     return torch.from_numpy(arr).to(device)
 
 
+def initialise_fit_model(cfg,model,fit,out):
+    """Optional factory hook; historical models/configurations do not enter it."""
+    if not cfg.get('initialise_from_fit',False):return
+    record=model.initialise_from_fit(fit)
+    record['state_sha256']={k:hashlib.sha256(v.detach().cpu().contiguous().numpy().tobytes()).hexdigest()
+                            for k,v in model.state_dict().items()}
+    record['active_parameters']=sum(p.numel()for p in model.parameters()if p.requires_grad)
+    record['all_parameters']=sum(p.numel()for p in model.parameters())
+    record['FIT_only']=True
+    dump(out/'INITIALISATION.json',record)
+
+
 @contextmanager
 def validation_mode(model, device):
     modes = [(m, m.training) for m in model.modules()]
@@ -139,6 +151,7 @@ def training(cfg, workspace, out, domain, variant, device):
     assert fit.shape[-1] == spec['channels']
     seed_everything(cfg['seed'], device)
     model = model_from_config(cfg, domain, variant, device)
+    initialise_fit_model(cfg,model,fit,out)
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg['learning_rate'])
     rng = np.random.default_rng(cfg['drawplan_seed'])
     # This complete plan is fixed before the first optimizer update, no labels.
@@ -250,16 +263,20 @@ def scoring(cfg, workspace, out, domain, variant, device, identity=False):
                     parts.append(evidence.cpu().numpy())
                 scores.append(np.concatenate(parts)); indices.append(index)
             channels = np.stack(scores)
-            score = channels.mean(-1)
+            score = channels[...,0] if cfg.get('score_representation')=='replicated_scalar' else channels.mean(-1)
+            if cfg.get('score_representation')=='replicated_scalar':
+                assert np.array_equal(channels,np.broadcast_to(score[...,None],channels.shape))
             f = out/(role+'.npz')
             np.savez_compressed(f,index=np.stack(indices),raw_score=score,channel_score=channels,
                  run=np.broadcast_to(runs[:,None],score.shape),fault=np.broadcast_to(faults[:,None],score.shape),
                  available_index=np.stack(indices),max_input_index=np.stack(indices),
-                 TEP_target9_diagnostic=channels[...,0] if domain=='TEP'else np.empty(0))
+                 TEP_target9_diagnostic=channels[...,0] if domain=='TEP'and cfg.get('score_representation')!='replicated_scalar'else np.empty(0))
             banks.append(dict(role=role,path=str(f),sha256=sha(f),shape=list(score.shape)))
     dump(out/'SCORE_RECEIPT.json',dict(status='COMPLETED',selected_PT_sha256=None if identity else sha(checkpoint),
          selected_update=None if identity else state['update'],roles=roles.access,banks=banks,labels_unopened=True,
-         threshold_not_fitted=True,no_QUERY_statistics=True))
+         threshold_not_fitted=True,no_QUERY_statistics=True,
+         **({'channel_score_semantics':'replicated joint scalar; not channel attribution',
+             'raw_score_taken_from_scalar_copy':True}if cfg.get('score_representation')=='replicated_scalar'else{})))
 
 
 def l0(cfg,workspace,out,domain,variant,device):
@@ -270,6 +287,7 @@ def l0(cfg,workspace,out,domain,variant,device):
     val,*_=roles.load('SELECT')
     seed_everything(cfg['seed'],device)
     model=model_from_config(cfg,domain,variant,device)
+    initialise_fit_model(cfg,model,values,out)
     optimizer=torch.optim.Adam(model.parameters(),lr=cfg['learning_rate'])
     x=sample_batch(values,H,np.zeros(B,int),np.arange(H,H+B),device)
     timings=[]
@@ -287,7 +305,11 @@ def l0(cfg,workspace,out,domain,variant,device):
     dump(out/'L0_RECEIPT.json',dict(status='PASS_DISCARDED',domain=domain,variant=variant,
          batch_size=B,loss=float(loss.detach()),normal_SELECT_loss=selected,
          update_seconds=timings,parameters=sum(p.numel()for p in model.parameters()),
-         roles=roles.access,no_CAL_QUERY=True,no_checkpoint_saved=True))
+         roles=roles.access,no_CAL_QUERY=True,no_checkpoint_saved=True,
+         **({'score_scalar_mean':float(scores[:,0].mean()),'score_scalar_min':float(scores[:,0].min()),
+             'score_scalar_max':float(scores[:,0].max()),
+             'loss_score_semantics':'normalized trajectory NLL for learning; predictive Rosenblatt compliance for detection; equality not asserted'}
+            if cfg.get('score_representation')=='replicated_scalar'else{})))
 
 
 def main():
