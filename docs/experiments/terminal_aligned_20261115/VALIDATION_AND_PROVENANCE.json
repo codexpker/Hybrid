@@ -1,0 +1,452 @@
+{
+  "engineering_base": "1bdd6e8164b48c64f300d128a82f741582f4510e",
+  "method_freeze_commit": "d888720",
+  "branch": "codex/terminal-aligned-hybrid-20261115",
+  "source_sha256": {
+    "src/hybrid_tsad/terminal_aligned_cycle.py": "85cab17990690715c3dcbe986f20577e8e3dc28cf761a0274c03c61a6f7ac5f8",
+    "src/hybrid_tsad/terminal_aligned_experiment.py": "2adb31da93f69f7c453dafaac516df9b22c9161adfce529e86505c064ed9991d",
+    "src/hybrid_tsad/left_predictive_cycle.py": "c9a7752b1eac84be33a6c704d0a02a4ab150aa2dd8e092b790e11ac0819c1685",
+    "src/hybrid_tsad/alarm_complementarity.py": "2a7dd442122d08b02db495de67c663c065983cfb700e1fcb052069898c51de8d",
+    "src/hybrid_tsad/engine/events.py": "562b9931d9782b877c0fb1d1081edf8f0860102c040d9696f89d1d4f0570169b",
+    "src/hybrid_tsad/hybrid_v1/evaluation.py": "72491c52bed3b6f1787ee634ddb9c0ef95ac6eaa16f333c0b83c10e1b329a831",
+    "configs/terminal-aligned-20261115.json": "de03ddcb552d21f6a8694baca2261b6ddcabc59b19b4cd58654aeabd8a94ce78"
+  },
+  "tests": {
+    "numerical_unit": 9,
+    "actual_official_synthetic": 1,
+    "official_subcases": 4,
+    "status": "PASS"
+  },
+  "status": "AUDITED_PRIMARY_ACCEPTED",
+  "weights_reused": [
+    {
+      "job": "TEP_native",
+      "criterion": "native",
+      "epoch": 20,
+      "step": 3760,
+      "selected_loss": 1.5408079624176025,
+      "checkpoint_sha256": "94df96067d16b201e1689bda1274ecb9e57937a93470bcb94bc107300e12d405",
+      "train_trace_sha256": "fc1191a6583e514f01ebabf4029983c8a83a296828c5ea8870c1517be7895368",
+      "training_updates": 3760,
+      "new_training": false,
+      "plan_sha256": "b42e4a2204ee0c03cc83748eca125190f065ffde4ca542592e09db91e9d93c1c",
+      "config_sha256": "cb9e8ec9521f10eea0377046033675ada3eb861f9dea5e8f61a92cb77dcd3cd4",
+      "scaler_sha256": "a69bd924ec88a42c29ed04d3f2f95f02f333b31f4f4df766277ad3633b2a53e6"
+    },
+    {
+      "job": "TEP_full",
+      "criterion": "joint",
+      "epoch": 20,
+      "step": 3760,
+      "selected_loss": 1.0391579866409302,
+      "checkpoint_sha256": "071d145f13d4a4653a023fd06841e3a0501b5b2b41b04c3ca4323abe6e994b8b",
+      "train_trace_sha256": "0fc2d7e86f710672be9a90b9e4d011fe7d9a3a1b43b3d15be14459c95901a51c",
+      "training_updates": 3760,
+      "new_training": false,
+      "plan_sha256": "b42e4a2204ee0c03cc83748eca125190f065ffde4ca542592e09db91e9d93c1c",
+      "config_sha256": "cb9e8ec9521f10eea0377046033675ada3eb861f9dea5e8f61a92cb77dcd3cd4",
+      "scaler_sha256": "a69bd924ec88a42c29ed04d3f2f95f02f333b31f4f4df766277ad3633b2a53e6"
+    },
+    {
+      "job": "TEP_history_only",
+      "criterion": "joint",
+      "epoch": 20,
+      "step": 3760,
+      "selected_loss": 1.053924798965454,
+      "checkpoint_sha256": "6c602186dfa6bc1caba475783fd1172755d01cd4a94eaf99798ae6db84c77952",
+      "train_trace_sha256": "da91a792aaf20cbe049dffd993a2d62e4a99efcfee5d62790f17a9628b794465",
+      "training_updates": 3760,
+      "new_training": false,
+      "plan_sha256": "b42e4a2204ee0c03cc83748eca125190f065ffde4ca542592e09db91e9d93c1c",
+      "config_sha256": "cb9e8ec9521f10eea0377046033675ada3eb861f9dea5e8f61a92cb77dcd3cd4",
+      "scaler_sha256": "a69bd924ec88a42c29ed04d3f2f95f02f333b31f4f4df766277ad3633b2a53e6"
+    },
+    {
+      "job": "PSM_native",
+      "criterion": "native",
+      "epoch": 20,
+      "step": 12400,
+      "selected_loss": 0.7124023124023721,
+      "checkpoint_sha256": "9d5d813d59ce49bd8c73e9366a41cec600f54d1afc9020bb85c08ef75ad0f06d",
+      "train_trace_sha256": "71b741ab350c57c9a6e2ba77ba27e9ac4ce13f4ffadc4ff5a5fd00177ea57312",
+      "training_updates": 12400,
+      "new_training": false,
+      "plan_sha256": "0c9dee7581a924ea0f3aca51f065ac1debd98c80dc8b9a5ad498d052cf36451b",
+      "config_sha256": "5093f5d74902239e0e576dd7194683165fcc40900530a46f5cbe46a615a922f5",
+      "scaler_sha256": "45f301fa421a18d3d2bb19b81bd319063bbea495e5bb9c5fcf6691c8bed02fc4"
+    },
+    {
+      "job": "PSM_full",
+      "criterion": "joint",
+      "epoch": 19,
+      "step": 11780,
+      "selected_loss": 0.4256564736366272,
+      "checkpoint_sha256": "74a004e45ae8db1697fc68033f388876daf1bd514dd1edbb93abf686b0b8e664",
+      "train_trace_sha256": "73da5e4d40c946fe027cbb8cd1585fdcdfed3caa65ffb44bd9ff4eee22898b6c",
+      "training_updates": 12400,
+      "new_training": false,
+      "plan_sha256": "0c9dee7581a924ea0f3aca51f065ac1debd98c80dc8b9a5ad498d052cf36451b",
+      "config_sha256": "5093f5d74902239e0e576dd7194683165fcc40900530a46f5cbe46a615a922f5",
+      "scaler_sha256": "45f301fa421a18d3d2bb19b81bd319063bbea495e5bb9c5fcf6691c8bed02fc4"
+    }
+  ],
+  "score_banks": [
+    {
+      "job": "TEP_native",
+      "role": "CAL",
+      "source_sha256": "5e9ecda637428d279613fa1104e39e18de293bc18ca1965a50173e749b8e83d5",
+      "derived_sha256": "5e9ecda637428d279613fa1104e39e18de293bc18ca1965a50173e749b8e83d5",
+      "checkpoint_sha256": "94df96067d16b201e1689bda1274ecb9e57937a93470bcb94bc107300e12d405",
+      "raw_sha256": "da25c7734ee4b0bf16c1a4d48dd79ace9ab29a17bba3d8321d211ffd5cfbee60",
+      "availability_sha256": "8face171705623203e89431f33381e66c64cd757ea4c8cb745552698f8058cc6"
+    },
+    {
+      "job": "TEP_native",
+      "role": "QUERY",
+      "source_sha256": "c11083784a2c5ba9422957815234a0c8f93b70b25d32a03b2c2888f77241f94a",
+      "derived_sha256": "c11083784a2c5ba9422957815234a0c8f93b70b25d32a03b2c2888f77241f94a",
+      "checkpoint_sha256": "94df96067d16b201e1689bda1274ecb9e57937a93470bcb94bc107300e12d405",
+      "raw_sha256": "4416c00a9777e6b26b211d87b93679289454c058af20c6cd200f28e2960b6794",
+      "availability_sha256": "07d8aeda2cf6650aa7af3d0ee3d47129c628e3d84def2dc987c378e4a0cccc3a"
+    },
+    {
+      "job": "TEP_native",
+      "role": "NORMAL_TEST",
+      "source_sha256": "1b8226ddaa5c8d489909b10d4ec11e509407d92d447ae53a57203efc91b8efc0",
+      "derived_sha256": "1b8226ddaa5c8d489909b10d4ec11e509407d92d447ae53a57203efc91b8efc0",
+      "checkpoint_sha256": "94df96067d16b201e1689bda1274ecb9e57937a93470bcb94bc107300e12d405",
+      "raw_sha256": "8291e5ee0f9ae452bde2678f527abff9c94efe0fb350b22c55e9e0ff7aaed5d9",
+      "availability_sha256": "d6a87eb84d76de9cd2f2aa5714118449204b9b5bb6c22f05dd1539c83e6824be"
+    },
+    {
+      "job": "TEP_full",
+      "role": "CAL",
+      "source_sha256": "d653bc0e98387f853846113f747943368f8801d6787cb165185986dca471be6a",
+      "derived_sha256": "5b838a5fe346b14a565893061c3017360841dc531e293b8f3322629454882428",
+      "checkpoint_sha256": "071d145f13d4a4653a023fd06841e3a0501b5b2b41b04c3ca4323abe6e994b8b",
+      "raw_sha256": "da25c7734ee4b0bf16c1a4d48dd79ace9ab29a17bba3d8321d211ffd5cfbee60",
+      "availability_sha256": "ceb6c228bf7f93182ba85a55a8b64e8e5be210b10983f0fdfb48a38d62072e2b"
+    },
+    {
+      "job": "TEP_full",
+      "role": "QUERY",
+      "source_sha256": "3dff62494dbd72c52283e19e24279e0075d4d29993eeeb469b6840c585d345f3",
+      "derived_sha256": "3bd2e53aa074df6513fe74a0b67e91b07e9b7d2e57c3a5bb3dcbe8a4d7679b99",
+      "checkpoint_sha256": "071d145f13d4a4653a023fd06841e3a0501b5b2b41b04c3ca4323abe6e994b8b",
+      "raw_sha256": "4416c00a9777e6b26b211d87b93679289454c058af20c6cd200f28e2960b6794",
+      "availability_sha256": "30cd1fef4096c7ad541025e75462c5a4ee82424c0f860ba3fd793c4abb747e1a"
+    },
+    {
+      "job": "TEP_full",
+      "role": "NORMAL_TEST",
+      "source_sha256": "61cd8d05060861cdf4c7dfc7af3b471da0e1563c02380ec52abcf87fe01c124c",
+      "derived_sha256": "a91c91faeb90babdc474fad081a138b066f462fd9d1633395b90091a8a6b7507",
+      "checkpoint_sha256": "071d145f13d4a4653a023fd06841e3a0501b5b2b41b04c3ca4323abe6e994b8b",
+      "raw_sha256": "8291e5ee0f9ae452bde2678f527abff9c94efe0fb350b22c55e9e0ff7aaed5d9",
+      "availability_sha256": "5e7c1525930818f7ae44f9b13758867d0e817c7aa6098bc6c92abb098be6236f"
+    },
+    {
+      "job": "TEP_history_only",
+      "role": "CAL",
+      "source_sha256": "2105c98014cbbd6725f1b36a21e404db0885c4b477c532150bccbd1ab8ae82e0",
+      "derived_sha256": "6656a4397208ff42ba8f93e8f18725a630ab8c093c4836cd139d7ef9b91a63cd",
+      "checkpoint_sha256": "6c602186dfa6bc1caba475783fd1172755d01cd4a94eaf99798ae6db84c77952",
+      "raw_sha256": "da25c7734ee4b0bf16c1a4d48dd79ace9ab29a17bba3d8321d211ffd5cfbee60",
+      "availability_sha256": "ceb6c228bf7f93182ba85a55a8b64e8e5be210b10983f0fdfb48a38d62072e2b"
+    },
+    {
+      "job": "TEP_history_only",
+      "role": "QUERY",
+      "source_sha256": "6a8d9a981682879c34781ce3bee0fbc9305088d3c6c0d894cf44f56ed27e0714",
+      "derived_sha256": "3274c116e0cf19559dce518a3515f72ab209a2ca512d6eea2ec62713743e6354",
+      "checkpoint_sha256": "6c602186dfa6bc1caba475783fd1172755d01cd4a94eaf99798ae6db84c77952",
+      "raw_sha256": "4416c00a9777e6b26b211d87b93679289454c058af20c6cd200f28e2960b6794",
+      "availability_sha256": "30cd1fef4096c7ad541025e75462c5a4ee82424c0f860ba3fd793c4abb747e1a"
+    },
+    {
+      "job": "TEP_history_only",
+      "role": "NORMAL_TEST",
+      "source_sha256": "fdea1611697f0eb6b8b02977495701c134b20e4681dd17492453f6d6c5f10102",
+      "derived_sha256": "162b537953249a7e3f6b113f496130818139656955097a97d11539d450e48760",
+      "checkpoint_sha256": "6c602186dfa6bc1caba475783fd1172755d01cd4a94eaf99798ae6db84c77952",
+      "raw_sha256": "8291e5ee0f9ae452bde2678f527abff9c94efe0fb350b22c55e9e0ff7aaed5d9",
+      "availability_sha256": "5e7c1525930818f7ae44f9b13758867d0e817c7aa6098bc6c92abb098be6236f"
+    },
+    {
+      "job": "PSM_native",
+      "role": "CAL",
+      "source_sha256": "95ed54207e137f73d83de37b9000b0a1d29a5cee035b6581b39b7b447e273867",
+      "derived_sha256": "95ed54207e137f73d83de37b9000b0a1d29a5cee035b6581b39b7b447e273867",
+      "checkpoint_sha256": "9d5d813d59ce49bd8c73e9366a41cec600f54d1afc9020bb85c08ef75ad0f06d",
+      "raw_sha256": "dce3fdf25f18158c5f0839cb7b4fadb46dccc84778e07b9631abed36318df4a9",
+      "availability_sha256": "76c355afed469ed1b1a87e0af441982bfe14283b516b15c8025de221962d0492"
+    },
+    {
+      "job": "PSM_native",
+      "role": "QUERY",
+      "source_sha256": "bd09951589f5f5be28a88e92d7c34bb8d4011aada2ab7355a073e5f2df6c2535",
+      "derived_sha256": "bd09951589f5f5be28a88e92d7c34bb8d4011aada2ab7355a073e5f2df6c2535",
+      "checkpoint_sha256": "9d5d813d59ce49bd8c73e9366a41cec600f54d1afc9020bb85c08ef75ad0f06d",
+      "raw_sha256": "4f7c172e27d9f515517a7129ecd9c0988581f136640f15f5573cbbfd9d756ab2",
+      "availability_sha256": "6d890a3c98565269fd65a676bfcdbba65e9c1c728699cee774d958b3f31bdbb8"
+    },
+    {
+      "job": "PSM_full",
+      "role": "CAL",
+      "source_sha256": "027641af9903d064f86744e807c4b0eda7c4f776283b997088f6b736c5a4414f",
+      "derived_sha256": "51d0babc4613670ef213e3516fccdac2551e178e5b8991094e83bcab01a4c9df",
+      "checkpoint_sha256": "74a004e45ae8db1697fc68033f388876daf1bd514dd1edbb93abf686b0b8e664",
+      "raw_sha256": "dce3fdf25f18158c5f0839cb7b4fadb46dccc84778e07b9631abed36318df4a9",
+      "availability_sha256": "6178e63a8b74a871768327f343892420c70980c2c76294970eee03ff1d6e0fa0"
+    },
+    {
+      "job": "PSM_full",
+      "role": "QUERY",
+      "source_sha256": "be8d925336551ae63ce44186f2c15aebe8a429825ab956847bd0b6c8472441d1",
+      "derived_sha256": "845a5a36ddf7441ff5fa3f4676674f93800e21bc072e3494db1303ab96708d1d",
+      "checkpoint_sha256": "74a004e45ae8db1697fc68033f388876daf1bd514dd1edbb93abf686b0b8e664",
+      "raw_sha256": "4f7c172e27d9f515517a7129ecd9c0988581f136640f15f5573cbbfd9d756ab2",
+      "availability_sha256": "41cfaacc68e29bd27b12a1d1d6e548ebf80d7f0827b052b148c6f060c73d88fe"
+    }
+  ],
+  "computation": {
+    "status": "COMPLETED",
+    "seconds": 28.485813856124878,
+    "GPU_hours": 0,
+    "new_training": false,
+    "new_forward": false,
+    "seed": 2025,
+    "metric_implementation_sha256": "f65223a67014d571f2eb175ca01e9933b06b12cdb6f8a35834bcc3a51134cb0a",
+    "source_sha256": "2adb31da93f69f7c453dafaac516df9b22c9161adfce529e86505c064ed9991d",
+    "QUERY_selection": false
+  },
+  "prepare_seconds": 13.748676776885986,
+  "new_training": false,
+  "new_forward": false,
+  "GPU_hours": 0,
+  "history_preserved": true,
+  "historical_evaluator_path": "review_artifacts/code/preparations/hybrid_native_predictive_cycle_20261113_v1/fixed_evaluate.py",
+  "historical_evaluator_sha256": "f65223a67014d571f2eb175ca01e9933b06b12cdb6f8a35834bcc3a51134cb0a",
+  "development_scope": [
+    "PSM",
+    "TEP"
+  ],
+  "independent_confirmation": false,
+  "scientific_decision": "NO-GO_LIMITED_TO_TERMINAL_ALIGNED_VERSION",
+  "independent_audit": {
+    "status": "PASS_BOUNDED",
+    "auditor": "terminal_alignment_auditor",
+    "independence": "Same-model-family role separation; not external blinded peer review",
+    "checks": [
+      {
+        "check": "checkpoint_normal_selection",
+        "job": "TEP_native",
+        "criterion": "native",
+        "epoch": 20,
+        "status": "PASS"
+      },
+      {
+        "check": "checkpoint_normal_selection",
+        "job": "TEP_full",
+        "criterion": "joint",
+        "epoch": 20,
+        "status": "PASS"
+      },
+      {
+        "check": "checkpoint_normal_selection",
+        "job": "TEP_history_only",
+        "criterion": "joint",
+        "epoch": 20,
+        "status": "PASS"
+      },
+      {
+        "check": "checkpoint_normal_selection",
+        "job": "PSM_native",
+        "criterion": "native",
+        "epoch": 20,
+        "status": "PASS"
+      },
+      {
+        "check": "checkpoint_normal_selection",
+        "job": "PSM_full",
+        "criterion": "joint",
+        "epoch": 19,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_full",
+        "role": "CAL",
+        "points": 8000,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_full",
+        "role": "QUERY",
+        "points": 344000,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_full",
+        "role": "NORMAL_TEST",
+        "points": 17200,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_history_only",
+        "role": "CAL",
+        "points": 8000,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_history_only",
+        "role": "QUERY",
+        "points": 344000,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "TEP_history_only",
+        "role": "NORMAL_TEST",
+        "points": 17200,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "PSM_full",
+        "role": "CAL",
+        "points": 25761,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_NumPy_formula_all_points",
+        "job": "PSM_full",
+        "role": "QUERY",
+        "points": 87329,
+        "exact": true,
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "LEFT_native",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Hybrid_full",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Hybrid_self_only",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Hybrid_nativeoff",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Ridge_H",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Ridge_C",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "P0",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "MeanFIT",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Simple_native_RidgeC_half",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "TEP",
+        "method": "Hybrid_legacy_same_weights",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "LEFT_native",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "Hybrid_full",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "Hybrid_nativeoff",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "P0",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "MeanFIT",
+        "status": "PASS"
+      },
+      {
+        "check": "independent_threshold_ranking_event_metrics",
+        "domain": "PSM",
+        "method": "Hybrid_legacy_same_weights",
+        "status": "PASS"
+      }
+    ],
+    "seconds": 14.831308364868164,
+    "GPU_hours": 0,
+    "formula": "Independent NumPy beta1 SmoothL1, no new/helper scoring invoked",
+    "scope": "all8 changed predictive banks; 5 checkpoint SELECT identities; all16 methods; every TEP fault/run strict/C3 and all22 scopes; PSM full/common axes",
+    "historical_core_and_archive_unchanged": true,
+    "scientific_decision": "Limited NO-GO supported: PSM sorting improves over old predictive score but remains below native with lower C3 event/point coverage; TEP remains below Ridge/simple combination and old predictive readout. No new architecture or U/F inference supported.",
+    "limits": [
+      "single training seed reused",
+      "historically exposed development data",
+      "TEP labels are simulator fault states; suffix right-censored at960",
+      "native SELECT criterion differs semantically but saved argmin is identical in both domains",
+      "not a new training experiment; no detection gain attributed to F02"
+    ],
+    "script_sha256": "b0065daa0902454450b1de843b92ed786a07a85bfe593b86d9ded550f24140e5"
+  }
+}

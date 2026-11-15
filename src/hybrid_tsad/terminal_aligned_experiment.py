@@ -45,10 +45,15 @@ def load(path):
 
 def prepare(workspace, output, config):
     started = time.time()
-    output.mkdir(parents=True, exist_ok=False)
     frozen = read(config)
     assert frozen['seed'] == 2025 and frozen['jobs'] == list(JOBS)
-    dump(output / 'FIXED_EXPERIMENT.json', frozen)
+    if output.exists():
+        # Only a pre-computation missing-asset recovery may reuse the directory.
+        assert read(output/'FIXED_EXPERIMENT.json') == frozen
+        assert all(p.name == 'FIXED_EXPERIMENT.json' or p.name.startswith('PREPARATION_FAILURE_') for p in output.iterdir())
+    else:
+        output.mkdir(parents=True)
+        dump(output / 'FIXED_EXPERIMENT.json', frozen)
     prep, history = workspace/'preparations'/HISTORY, workspace/'results'/HISTORY
     gate = read(prep/'DATA_GATE.json')
     provenance, selections, counts = [], [], []
