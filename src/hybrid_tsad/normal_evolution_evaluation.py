@@ -8,12 +8,26 @@ from pathlib import Path
 import time
 import numpy as np
 from .terminal_aligned_experiment import read, load, sha, dump, evaluator
-from .normality_density_evaluation import new_bank, table, evaluate_series, labels
+from .normality_density_evaluation import common_cal_bank, table, evaluate_series, labels
 from .normality_density_runner import RoleReader
 
 HISTORY = 'hybrid_normality_density_20261115_v1'
 VARIANTS = {'full':'Hybrid_evolution', 'time_only':'Hybrid_time_only',
             'no_evolution':'Hybrid_no_evolution'}
+
+
+def new_bank(output,domain,variant,role):
+    folder=output/domain/variant/'score'; receipt=read(folder/'SCORE_RECEIPT.json')
+    f=folder/f'{role}.npz'
+    assert sha(f)==next(row['sha256'] for row in receipt['banks'] if row['role']==role)
+    z=load(f)
+    assert receipt['raw_score_taken_from_scalar_copy']
+    assert np.array_equal(z['raw_score'],z['channel_score'][...,0])
+    assert np.array_equal(z['channel_score'],np.broadcast_to(z['raw_score'][...,None],z['channel_score'].shape))
+    assert np.array_equal(z['available_index'],z['index'])
+    assert np.array_equal(z['max_input_index'],z['index'])
+    assert np.all(np.diff(z['index'],axis=1)==1)
+    return common_cal_bank(z,domain,role),dict(path=str(f),sha256=sha(f))
 
 
 def aligned_values(bank, axis):
