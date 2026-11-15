@@ -1,0 +1,27 @@
+{
+  "id": "hybrid_terminal_aligned_20261115_v1",
+  "engineering_base": "1bdd6e8164b48c64f300d128a82f741582f4510e",
+  "seed": 2025,
+  "jobs": ["TEP_native", "TEP_full", "TEP_history_only", "PSM_native", "PSM_full"],
+  "historical_input_id": "hybrid_native_predictive_cycle_20261113_v1",
+  "changes": ["terminal supervised SmoothL1 score", "native SELECT criterion is native loss"],
+  "unchanged": ["architecture", "training loss", "loss coefficients", "training drawplan", "eligibility curriculum", "maximum updates", "data roles", "standardization", "native score", "causal input"],
+  "prediction_score": {
+    "components": ["time-target", "frequency_inverse-target", "multiscale-target", "multiscale-frequency_inverse"],
+    "rho": "SmoothL1 beta=1 float32 per sample per channel",
+    "alpha": "existing alpha_cycle_l, alpha_ms_l, alpha_cons_l",
+    "reduction": "retain all components; NumPy float32 mean over fixed supervised channels only",
+    "TEP_channels": [0],
+    "PSM_channels": "all25",
+    "smooth_k": "NOT USED in aligned prediction score"
+  },
+  "selection": {"native": "min eligible normal native loss; earlier tie", "full": "min eligible normal joint loss; earlier tie", "history_only": "min eligible normal joint loss; earlier tie"},
+  "TEP": {"FIT_runs": [1,60], "SELECT_runs": [61,80], "CAL_runs": [81,100], "TEST_runs": [201,220], "faults": [1,20], "related_faults": [4,11,14], "H":100, "scored_samples":[101,960], "CAL_samples":[101,500], "fault_start":161, "steady_start":561, "sample_minutes":3},
+  "PSM": {"FIT":[0,79488], "SELECT":[80032,105984], "CAL":[106528,132481], "QUERY":[512,87841], "H":192, "CAL_score_axis":[106720,132481], "CAL_selected_endpoints":"512 np.linspace int64 endpoints 106720..132480", "steady_offset":512},
+  "threshold": "each score own original shared CAL q99 method=higher, strict >",
+  "controls": ["native LEFT", "aligned Hybrid", "same-weight legacy predictive readout", "TEP aligned history-only", "TEP conditional Ridge", "TEP history Ridge", "TEP native LEFT + conditional Ridge fixed medianMAD half", "unchanged P0 and MeanFIT"],
+  "evaluation": "frozen historical evaluation implementation; AP/ROC, strict and C3, any-hit distinct from greedy one-to-one, delay with right censoring, normal points/fragments, steady coverage and longest miss; all20 faults plus fixed4/11/14; fullPSM",
+  "decision": "no further tuning or alternative readout; evaluate all prespecified comparisons; a tradeoff or isolated gain is not robust or multi-source evidence",
+  "QUERY_parameter_selection": false,
+  "no_robustness_or_multisource_claim": true
+}
