@@ -1,0 +1,31 @@
+{
+  "id": "hybrid_g36_persistent_lr_20261116_v1",
+  "data": "results/hybrid_g36_conditional_20261115_v1/data",
+  "output": "results/hybrid_g36_persistent_lr_20261116_v1/models",
+  "existing_fit_plan": "results/hybrid_g36_conditional_20261115_v1/models/shared/FIT_PLAN.npz",
+  "seed": 2025,
+  "methods": [
+    "full",
+    "linear"
+  ],
+  "hidden": 32,
+  "state_dim": 8,
+  "updates": 3000,
+  "batch_size": 64,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.0,
+  "gradient_clip_norm": 1.0,
+  "select_every": 300,
+  "resource": {
+    "train_GiB": 20,
+    "score_GiB": 30,
+    "timeout_seconds": 2700,
+    "max_parallel": 2
+  },
+  "task": "52 arrived rows; response rows4:52 in12 blocks; conditions rows0:48 in corresponding preceding4 blocks",
+  "loss": "exact H0 Kalman negative log likelihood minus flow Jacobian /192",
+  "selection": "normal SELECT0/every300 earliest min",
+  "prior": "selected transform of nonoverlap FIT4 response blocks, coordinate var(unbiased=False)+1e-4 diagonal",
+  "score": "integrated persistent offset H1 log marginal likelihood minus H0; sameweight normal NLL as ablation",
+  "gate": "full nonzero selected update and normal SELECT improves initialization; covariance hypotheses distinct and mathematical tests pass"
+}
