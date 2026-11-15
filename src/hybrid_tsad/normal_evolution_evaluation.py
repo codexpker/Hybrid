@@ -9,6 +9,7 @@ import time
 import numpy as np
 from .terminal_aligned_experiment import read, load, sha, dump, evaluator
 from .normality_density_evaluation import new_bank, table, evaluate_series, labels
+from .normality_density_runner import RoleReader
 
 HISTORY = 'hybrid_normality_density_20261115_v1'
 VARIANTS = {'full':'Hybrid_evolution', 'time_only':'Hybrid_time_only',
@@ -124,8 +125,38 @@ def evaluate(workspace,output):
     evaluator(workspace,output).evaluate_tep()
     for d in ('PSM','SWAT'): evaluate_series(workspace,output,d)
     external_psm(workspace,output)
+    observable_change_strata(workspace,output)
     dump(output/'evaluation/FINAL_EVALUATION_RECEIPT.json',dict(status='COMPLETED',seconds=time.monotonic()-start,
          implementation_sha256=sha(__file__),no_QUERY_parameter_selection=True))
+
+
+def observable_change_strata(workspace,output):
+    """Descriptive normal-change stress slices, not authenticated plant modes.
+
+    One fixed cutoff from FIT only. QUERY labels restrict retrospective normal
+    false-alarm reporting and never affect a threshold or a model parameter.
+    """
+    rows=[]
+    for domain in ('PSM','SWAT'):
+        rr=RoleReader(workspace,domain,['FIT','QUERY'])
+        fit,*_=rr.load('FIT')
+        cutoff=float(np.quantile(np.abs(fit[:,4:]-fit[:,:-4]).mean(-1),.9,method='higher'))
+        values,_,_,offset=rr.load('QUERY')
+        truth,_=labels(workspace,domain)
+        folder=output/'evaluation'/domain
+        for desc in read(folder/'RAW_SEAL.json')['methods']:
+            z=load(desc['path']);ix=z['QUERY_index'];loc=ix-offset[0]
+            assert (loc>=4).all() and (loc<values.shape[1]).all()
+            change=np.abs(values[0,loc]-values[0,loc-4]).mean(-1)
+            normal=~truth[ix].astype(bool);alarm=z['QUERY']>desc['threshold']
+            for name,mask in [('normal_high_change',normal&(change>cutoff)),
+                              ('normal_other',normal&(change<=cutoff))]:
+                n=int(mask.sum());fp=int(alarm[mask].sum())
+                rows.append(dict(domain=domain,method=desc['method'],stratum=name,
+                    FIT_delta4_q90=cutoff,normal_points=n,false_alarm_points=fp,
+                    strict_FPR=fp/n if n else None,
+                    interpretation='FIT-defined observed change; not verified operating state or authorized command'))
+    table(output/'evaluation/normal_change_strata.csv',rows)
 
 
 def main():
