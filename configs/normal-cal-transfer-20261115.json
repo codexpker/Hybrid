@@ -1,0 +1,121 @@
+{
+  "experiment": "hybrid_normal_cal_transfer_20261115_v1",
+  "frozen_model_commit": "d77252e17509d263d6d87a64c98b79516a935fd3",
+  "parent_result_commit": "402fe0d0160a3f8c5fe60fb4f2d3b3e7c54a3d60",
+  "methods": [
+    "Hybrid_full",
+    "LEFT_native",
+    "Student_identity"
+  ],
+  "weights_scores_C3_unchanged": true,
+  "threshold": {
+    "quantile": 0.99,
+    "method": "higher",
+    "comparison": "strict>",
+    "budget": 0.01
+  },
+  "PSM": {
+    "CAL_role": [
+      106528,
+      119504
+    ],
+    "CAL_score": [
+      106720,
+      119504
+    ],
+    "NORMAL_CHECK_role": [
+      120048,
+      132481
+    ],
+    "NORMAL_CHECK_score": [
+      120240,
+      132481
+    ],
+    "CAL_sample_count": 512,
+    "rule": "chronological midpoint of original untrained CAL; guard544; all subsequent complete NORMAL_CHECK endpoints; original full QUERY unchanged"
+  },
+  "SWAT": {
+    "source": "original DONOR only; not QUERY",
+    "source_interval": [
+      495000,
+      607479
+    ],
+    "midpoint": 551239,
+    "guard": 544,
+    "normal_boundary_erosion": 512,
+    "CAL_sample_count": 512,
+    "rule": "symmetric544 gap around fixed midpoint; retain every negative-label interval intersected with role and eroded512 on both boundaries; no QUERY labels or new score inspected for selection",
+    "CAL_role": [
+      495000,
+      550695
+    ],
+    "NORMAL_CHECK_role": [
+      551783,
+      607479
+    ]
+  },
+  "TEP": {
+    "CAL_runs": [
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90
+    ],
+    "NORMAL_CHECK_runs": [
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100
+    ],
+    "CAL_samples": [
+      101,
+      500
+    ],
+    "normal_test_runs": [
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215,
+      216,
+      217,
+      218,
+      219,
+      220
+    ],
+    "rule": "all20faultx20runQUERY unchanged; existing runs/cal data are historical development exposure"
+  },
+  "false_alarm_gate": "strict normal point FPR <= .01 on held normal CHECK AND downstream QUERY-normal posthoc (TEP separate normalTEST); C3 budget reported but never substitutes strict gate",
+  "claim": "empirical finite-record budget check, not population false-alarm certification; no tolerance tuned after results",
+  "statistics": "all event/run results; no independent point CI for overlapping windows",
+  "selection_prohibited": [
+    "threshold retuning",
+    "QUERY-label normal selection",
+    "score replacement",
+    "checkpoint change",
+    "discard unfavorable events"
+  ],
+  "new_training": false
+}
