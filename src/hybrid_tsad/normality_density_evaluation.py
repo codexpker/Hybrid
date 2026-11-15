@@ -228,7 +228,7 @@ def external_psm(workspace,output):
             training='targetFITnormal; ownSELECT/CAL'if d['method']!='Student_identity'else'no model training; targetFITscaler',
             alarm_comparison='own independent targetCAL in full-axis table',source_sha256=d['sha256']))
     source=workspace/'results/hybrid_v1_psm_U_scope2000_fixed_evaluation_20261107_v1'
-    for name,permission in [('TimeRadar_official_native','official source pretrained; native offline windows include future relative to some scored timestamps'),
+    for name,permission in [('TimeRadar_official_native','official source pretrained; target pre-test normalization statistics; native offline windows include future relative to some scored timestamps'),
                             ('HistoryMean512_ZS','no target fitting; historical source scales/calibration, strictpast512 mean')]:
         file=source/name/'common_axis_inputs.npz';z=load(file)
         assert np.array_equal(z['index'],idx)and z['valid'].all()
