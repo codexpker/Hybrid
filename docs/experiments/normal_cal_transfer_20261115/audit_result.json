@@ -1,0 +1,297 @@
+{
+  "status": "PASS_BOUNDED",
+  "auditor": "joint_density_scientific_auditor",
+  "independence": "same-model-family role separation, not external blind review",
+  "checks": [
+    {
+      "check": "SWAT_normal_qualification_footprints_and_roles",
+      "status": "PASS",
+      "CAL_points": 44051,
+      "CHECK_points": 47324,
+      "donor_events": 13,
+      "labels_source": "DONOR event bounds only",
+      "erosion": 512,
+      "physical_history": 192
+    },
+    {
+      "check": "SWAT_frozen_normal_forward_identity",
+      "status": "PASS",
+      "method": "Hybrid_full",
+      "normal_points": 91375,
+      "originalCAL_replay_max_error": 0
+    },
+    {
+      "check": "SWAT_frozen_normal_forward_identity",
+      "status": "PASS",
+      "method": "LEFT_native",
+      "normal_points": 91375,
+      "originalCAL_replay_max_error": 0
+    },
+    {
+      "check": "SWAT_frozen_normal_forward_identity",
+      "status": "PASS",
+      "method": "Student_identity",
+      "normal_points": 91375,
+      "originalCAL_replay_max_error": 0
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_full",
+      "threshold": 1.9773963689804077,
+      "strict_CHECK_FPR": 0.0,
+      "strict_downstream_FPR": 0.0007942685580848,
+      "both_budget_met": true
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "LEFT_native",
+      "threshold": 1.534715175628662,
+      "strict_CHECK_FPR": 0.001960624132015358,
+      "strict_downstream_FPR": 1.5885371161697193e-05,
+      "both_budget_met": true
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Student_identity",
+      "threshold": 4.527340888977051,
+      "strict_CHECK_FPR": 0.0,
+      "strict_downstream_FPR": 6.354148464678877e-05,
+      "both_budget_met": true
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_full",
+      "threshold": 1.2481987476348877,
+      "strict_CHECK_FPR": 0.0026202349759107428,
+      "strict_downstream_FPR": 0.9163533802021434,
+      "both_budget_met": false
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "LEFT_native",
+      "threshold": 0.455914705991745,
+      "strict_CHECK_FPR": 0.012213675936100076,
+      "strict_downstream_FPR": 0.0185962225448447,
+      "both_budget_met": false
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Student_identity",
+      "threshold": 1.5844850540161133,
+      "strict_CHECK_FPR": 0.026223480686332516,
+      "strict_downstream_FPR": 0.8350940898869397,
+      "both_budget_met": false
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_full",
+      "threshold": 1.3482838869094849,
+      "strict_CHECK_FPR": 0.0275,
+      "strict_downstream_FPR": 0.0109302325581395,
+      "both_budget_met": false
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_native",
+      "threshold": 1.6712156534194946,
+      "strict_CHECK_FPR": 0.008,
+      "strict_downstream_FPR": 0.0077906976744186,
+      "both_budget_met": true
+    },
+    {
+      "check": "CAL_only_threshold_normal_CHECK_QUERY_immutability_and_gate",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Student_identity",
+      "threshold": 1.6016048192977905,
+      "strict_CHECK_FPR": 0.0,
+      "strict_downstream_FPR": 0.0038372093023255,
+      "both_budget_met": true
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Student_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Student_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Student_identity"
+    },
+    {
+      "check": "frozen_transfer_protocol_and_readout_source_identity",
+      "status": "PASS",
+      "protocol_commit": "0f3f9bd",
+      "worker_SHA256": "b7cdd0ab2d5c577fb015926967eed069c431cb982a7a4d652b8e312152f248a2",
+      "new_forward_jobs": 3,
+      "all_exit_zero": true,
+      "experiment_GPU_hours": 0.008729493021965027
+    }
+  ],
+  "seconds": 3.6245596408843994,
+  "GPU_hours": 0,
+  "new_forward": false,
+  "new_training": false,
+  "scope": "new normal-CAL provenance/footprints and all9 method-domain CAL thresholds/CHECK, unchanged original QUERY arraybytes and AP/ROC, all TEP faults/run and PSM/SWAT event/normal/sustained metrics; strict dual budget gate",
+  "limits": [
+    "PSM/TEP newCHECK points were historically part of oldCAL; not unexposed scientific confirmation",
+    "SWAT normal qualification uses allowed known DONOR event labels, not a label-free normal discovery method",
+    "query-normal labels used only for posthoc budget diagnosis; no threshold fitting",
+    "finite observed budget check, not population false-alarm certification",
+    "all data are historically exposed development settings; no new U/robustness efficacy claim"
+  ],
+  "factual_gate_summary": [
+    {
+      "domain": "PSM",
+      "method": "Hybrid_full",
+      "normal_CHECK_FPR": 0.0,
+      "downstream_normal_FPR": 0.0007942685580848,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": true,
+      "both_budget_met": true,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "PSM",
+      "method": "LEFT_native",
+      "normal_CHECK_FPR": 0.0019606241320153,
+      "downstream_normal_FPR": 1.5885371161697193e-05,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": true,
+      "both_budget_met": true,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "PSM",
+      "method": "Student_identity",
+      "normal_CHECK_FPR": 0.0,
+      "downstream_normal_FPR": 6.354148464678877e-05,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": true,
+      "both_budget_met": true,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "SWAT",
+      "method": "Hybrid_full",
+      "normal_CHECK_FPR": 0.0026202349759107,
+      "downstream_normal_FPR": 0.9163533802021434,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": false,
+      "both_budget_met": false,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "SWAT",
+      "method": "LEFT_native",
+      "normal_CHECK_FPR": 0.0122136759361,
+      "downstream_normal_FPR": 0.0185962225448447,
+      "CHECK_budget_met": false,
+      "downstream_budget_met": false,
+      "both_budget_met": false,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "SWAT",
+      "method": "Student_identity",
+      "normal_CHECK_FPR": 0.0262234806863325,
+      "downstream_normal_FPR": 0.8350940898869397,
+      "CHECK_budget_met": false,
+      "downstream_budget_met": false,
+      "both_budget_met": false,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "TEP",
+      "method": "Hybrid_full",
+      "normal_CHECK_FPR": 0.0275,
+      "downstream_normal_FPR": 0.0109302325581395,
+      "CHECK_budget_met": false,
+      "downstream_budget_met": false,
+      "both_budget_met": false,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "TEP",
+      "method": "LEFT_native",
+      "normal_CHECK_FPR": 0.008,
+      "downstream_normal_FPR": 0.0077906976744186,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": true,
+      "both_budget_met": true,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    },
+    {
+      "domain": "TEP",
+      "method": "Student_identity",
+      "normal_CHECK_FPR": 0.0,
+      "downstream_normal_FPR": 0.0038372093023255,
+      "CHECK_budget_met": true,
+      "downstream_budget_met": true,
+      "both_budget_met": true,
+      "interpretation": "empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+    }
+  ],
+  "script_sha256": "f39d04b021fffe8201686ad900577aa686f76fa0b92f5acd1a29b21a3ef85db8",
+  "scientific_scope_note": "Observed transfer outcomes and strict budget gates verified; these do not prove all possible normal CAL choices are ineffective or revoke historical frozen NO-GO decisions."
+}

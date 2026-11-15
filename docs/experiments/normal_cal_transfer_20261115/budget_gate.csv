@@ -1,0 +1,10 @@
+domain,method,normal_CHECK_FPR,downstream_normal_FPR,CHECK_budget_met,downstream_budget_met,both_budget_met,interpretation
+PSM,Hybrid_full,0.0,0.0007942685580848,True,True,True,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+PSM,LEFT_native,0.0019606241320153,1.5885371161697193e-05,True,True,True,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+PSM,Student_identity,0.0,6.354148464678877e-05,True,True,True,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+SWAT,Hybrid_full,0.0026202349759107,0.9163533802021434,True,False,False,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+SWAT,LEFT_native,0.0122136759361,0.0185962225448447,False,False,False,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+SWAT,Student_identity,0.0262234806863325,0.8350940898869397,False,False,False,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+TEP,Hybrid_full,0.0275,0.0109302325581395,False,False,False,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+TEP,LEFT_native,0.008,0.0077906976744186,True,True,True,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"
+TEP,Student_identity,0.0,0.0038372093023255,True,True,True,"empirical held-normal budget, not independent population certification; QUERY normals used only posthoc"

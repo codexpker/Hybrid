@@ -1,9 +1,16 @@
 import unittest
 import numpy as np
 from hybrid_tsad.normal_cal_transfer import normal_metrics,subsample
+from hybrid_tsad.normal_cal_readout import normal_intervals
 
 
 class NormalTransfer(unittest.TestCase):
+    def test_official_event_complement_clips_to_authorized_role(self):
+        # No QUERY labels or scores enter qualification; half-open boundaries.
+        got=normal_intervals(10,30,np.array([0,15,24,35]),np.array([12,18,26,40]))
+        self.assertEqual(got,[(12,15),(18,24),(26,30)])
+        self.assertEqual(normal_intervals(19,23,np.array([15]),np.array([30])),[])
+
     def test_confirmation_never_bridges_missing_or_role_points(self):
         ix=np.array([1,2,4,5,6,10,11]);s=np.ones(7)
         strict,c3=normal_metrics(ix,s,.5)

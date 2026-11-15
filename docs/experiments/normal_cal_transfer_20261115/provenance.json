@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETED_AND_ACCEPTED",
+  "experiment_validity": "PASS_BOUNDED",
+  "normal_CAL_change_sufficient": false,
+  "Stage2_U_extension": false,
+  "new_candidate": false,
+  "score_or_checkpoint_changes": false,
+  "query_labels_fit_threshold": false,
+  "model_training_updates": 0,
+  "GPU_hours": 0.008729493021965027,
+  "audit_GPU_hours": 0,
+  "protocol_commit": "0f3f9bd",
+  "audit_sha256": "24034b09bc279c83a7f71a0c4ac961767557a37832d02f5a1b3d30805bfa7a17",
+  "all_CAL_seal_sha256": "bd7bd736f2a28a475640430bf0cd3720453181b7bedc8bd2f64e19985462f898",
+  "scientific_conclusion": "Observed normal-state score transfer fails in SWAT and Hybrid TEP; PSM empirical budget holds but useful sustained advantage not demonstrated. Not an alarm confirmation problem; not proof of all-threshold impossibility."
+}
