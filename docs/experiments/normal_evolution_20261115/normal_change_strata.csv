@@ -1,0 +1,27 @@
+domain,method,stratum,FIT_delta4_q90,normal_points,false_alarm_points,strict_FPR,interpretation
+PSM,Hybrid_full,normal_high_change,0.32276469469070435,4787,399,0.08335074159181116,FIT-defined observed change; not verified operating state or authorized command
+PSM,Hybrid_full,normal_other,0.32276469469070435,58164,6204,0.10666391582422116,FIT-defined observed change; not verified operating state or authorized command
+PSM,Hybrid_time_only,normal_high_change,0.32276469469070435,4787,505,0.10549404637560059,FIT-defined observed change; not verified operating state or authorized command
+PSM,Hybrid_time_only,normal_other,0.32276469469070435,58164,8122,0.13963963963963963,FIT-defined observed change; not verified operating state or authorized command
+PSM,Hybrid_no_evolution,normal_high_change,0.32276469469070435,4787,539,0.11259661583455191,FIT-defined observed change; not verified operating state or authorized command
+PSM,Hybrid_no_evolution,normal_other,0.32276469469070435,58164,8783,0.15100405749260712,FIT-defined observed change; not verified operating state or authorized command
+PSM,LEFT_native,normal_high_change,0.32276469469070435,4787,1,0.00020889910173386254,FIT-defined observed change; not verified operating state or authorized command
+PSM,LEFT_native,normal_other,0.32276469469070435,58164,0,0.0,FIT-defined observed change; not verified operating state or authorized command
+PSM,HistoryMean192_matched,normal_high_change,0.32276469469070435,4787,43,0.008982661374556089,FIT-defined observed change; not verified operating state or authorized command
+PSM,HistoryMean192_matched,normal_other,0.32276469469070435,58164,164,0.002819613506636407,FIT-defined observed change; not verified operating state or authorized command
+PSM,FIT_level_matched,normal_high_change,0.32276469469070435,4787,0,0.0,FIT-defined observed change; not verified operating state or authorized command
+PSM,FIT_level_matched,normal_other,0.32276469469070435,58164,0,0.0,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_full,normal_high_change,0.027898218482732773,28068,28024,0.9984323785093345,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_full,normal_other,0.027898218482732773,260539,260536,0.9999884854090942,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_time_only,normal_high_change,0.027898218482732773,28068,28034,0.9987886561208493,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_time_only,normal_other,0.027898218482732773,260539,260406,0.9994895198031772,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_no_evolution,normal_high_change,0.027898218482732773,28068,28033,0.9987530283596979,FIT-defined observed change; not verified operating state or authorized command
+SWAT,Hybrid_no_evolution,normal_other,0.027898218482732773,260539,260539,1.0,FIT-defined observed change; not verified operating state or authorized command
+SWAT,LEFT_native,normal_high_change,0.027898218482732773,28068,2812,0.10018526435798775,FIT-defined observed change; not verified operating state or authorized command
+SWAT,LEFT_native,normal_other,0.027898218482732773,260539,1172,0.0044983668471898644,FIT-defined observed change; not verified operating state or authorized command
+SWAT,HistoryMean192_matched,normal_high_change,0.027898218482732773,28068,2201,0.07841670229442782,FIT-defined observed change; not verified operating state or authorized command
+SWAT,HistoryMean192_matched,normal_other,0.027898218482732773,260539,1701,0.0065287730435750506,FIT-defined observed change; not verified operating state or authorized command
+SWAT,FIT_level_matched,normal_high_change,0.027898218482732773,28068,22882,0.8152344306683768,FIT-defined observed change; not verified operating state or authorized command
+SWAT,FIT_level_matched,normal_other,0.027898218482732773,260539,201048,0.7716618241414913,FIT-defined observed change; not verified operating state or authorized command
+SWAT,HistoryMean512,normal_high_change,0.027898218482732773,28068,2090,0.07446202080661252,FIT-defined observed change; not verified operating state or authorized command
+SWAT,HistoryMean512,normal_other,0.027898218482732773,260539,1396,0.00535812296815448,FIT-defined observed change; not verified operating state or authorized command

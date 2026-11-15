@@ -1,0 +1,327 @@
+{
+  "status": "PASS_BOUNDED",
+  "auditor": "joint_density_scientific_auditor",
+  "independence": "same-model-family role separation; not external blind peer review",
+  "checks": [
+    {
+      "check": "21raw_SHA_and_18formal_plus3L0_OS_accounting",
+      "status": "PASS",
+      "experiment_GPU_hours": 1.1781583195262484
+    },
+    {
+      "check": "fixed_model_runner_config_identity",
+      "status": "PASS",
+      "commit": "ac240c7"
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "full",
+      "selected_update": 3760,
+      "actual_updates": 3760,
+      "double_formula_max_error": 2.220446049250313e-15,
+      "double_CDF_max_error": 1.3322676295501878e-15,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "time_only",
+      "selected_update": 3760,
+      "actual_updates": 3760,
+      "double_formula_max_error": 6.661338147750939e-16,
+      "double_CDF_max_error": 7.771561172376096e-16,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "no_evolution",
+      "selected_update": 3760,
+      "actual_updates": 3760,
+      "double_formula_max_error": 8.881784197001252e-16,
+      "double_CDF_max_error": 1.4432899320127035e-15,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "three_variants_common_initial_59tensors_and_DRAWPLAN",
+      "status": "PASS",
+      "domain": "TEP",
+      "state_tensors": 59,
+      "plan_SHA256": "b42e4a2204ee0c03cc83748eca125190f065ffde4ca542592e09db91e9d93c1c"
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "full",
+      "selected_update": 3720,
+      "actual_updates": 12400,
+      "double_formula_max_error": 1.290079154614432e-12,
+      "double_CDF_max_error": 3.186340080674199e-14,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "time_only",
+      "selected_update": 620,
+      "actual_updates": 12400,
+      "double_formula_max_error": 8.175682353339653e-13,
+      "double_CDF_max_error": 4.884981308350689e-15,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "no_evolution",
+      "selected_update": 4960,
+      "actual_updates": 12400,
+      "double_formula_max_error": 8.5848661512955e-11,
+      "double_CDF_max_error": 2.2315482794965646e-14,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "three_variants_common_initial_59tensors_and_DRAWPLAN",
+      "status": "PASS",
+      "domain": "PSM",
+      "state_tensors": 59,
+      "plan_SHA256": "0c9dee7581a924ea0f3aca51f065ac1debd98c80dc8b9a5ad498d052cf36451b"
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "full",
+      "selected_update": 4624,
+      "actual_updates": 11560,
+      "double_formula_max_error": 7.438494264988549e-14,
+      "double_CDF_max_error": 3.1086244689504383e-15,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "time_only",
+      "selected_update": 2312,
+      "actual_updates": 9248,
+      "double_formula_max_error": 5.9222982073947605e-09,
+      "double_CDF_max_error": 1.0902390101819037e-13,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "independent_HMM_Rosenblatt_formula_SELECTION_roles_and_scalar",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "no_evolution",
+      "selected_update": 6936,
+      "actual_updates": 13872,
+      "double_formula_max_error": 1.3282708266615373e-12,
+      "double_CDF_max_error": 5.329070518200751e-15,
+      "initialised_from_FIT": true
+    },
+    {
+      "check": "three_variants_common_initial_59tensors_and_DRAWPLAN",
+      "status": "PASS",
+      "domain": "SWAT",
+      "state_tensors": 59,
+      "plan_SHA256": "06b3a6e2f8ef85636bed14e4f490729b69ac6f9ca9618106326dca71e526ddf0"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_no_evolution"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "HistoryMean100_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_target9"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Ridge_H"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Ridge_C"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Simple_native_RidgeC_half"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_no_evolution"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "HistoryMean192_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_no_evolution"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "HistoryMean192_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "HistoryMean512"
+    },
+    {
+      "check": "same_A40_first_CAL128_selected_model_replay",
+      "status": "PASS",
+      "models": 9,
+      "bitexact": true,
+      "no_QUERY": true,
+      "no_training": true
+    },
+    {
+      "check": "FIT_only_normal_change_strata",
+      "domain": "PSM",
+      "status": "PASS",
+      "authenticated_operating_modes": false
+    },
+    {
+      "check": "FIT_only_normal_change_strata",
+      "domain": "SWAT",
+      "status": "PASS",
+      "authenticated_operating_modes": false
+    },
+    {
+      "check": "independent_TEP_run_cluster_differences_and_CI",
+      "status": "PASS",
+      "cells": 630,
+      "draws": 2000,
+      "clusters": 20,
+      "not_independent_point_statistics": true
+    },
+    {
+      "check": "independent_external_common_axis_ranking",
+      "status": "PASS",
+      "methods": 8,
+      "offline_TimeRadar_separate": true
+    }
+  ],
+  "CPU_seconds": 12.996397972106934,
+  "GPU_hours": 0.0007583800951639811,
+  "limits": [
+    "one seed; historically exposed development domains",
+    "current four-point block detection, not strictlypast singlepoint forecast",
+    "latent mixture PIT score is empirical calibrated, not certified false-alarm probability",
+    "replicated channel container is not perchannel attribution",
+    "no_evolution has fewer active parameters despite shared initial tensors",
+    "A-norm bound does not guarantee observable anomaly identifiability",
+    "initial shared tensors do not imply finite-precision transform outputs bitexact",
+    "CPU_ACTUAL_SHAPES gradient_squares_HMM label actually measures absolute gradient sum; finite nonzero evidence only"
+  ],
+  "script_sha256": "b8d2aa9d2e3f8e9b58c60d4e5d35954e3f6216409977ce3128b4127fa362bafa",
+  "GPU_hours_startup_cleanup_conservative_upper_bound": 0.000980170038011339,
+  "GPU_replay_script_sha256": "0bec2a479b346fff62d14b3f23a3209c14687237150b4b4392260512c75abd84",
+  "supplement_CPU_seconds": 12.813616752624512,
+  "supplement_script_sha256": "811974679178db1bd35d555cee2656f7d26a3a0a07e3c99a48506373a393f37d",
+  "scope_limited_scientific_observation": "TEP all-fault event/coverage gains over native LEFT are real at increased normal false alarms, but full does not establish independent benefit over time-only/no-evolution; PSM/SWAT high false alarms invalidate usable sustained gain. Positive task-specific findings remain, no universal impossibility inference."
+}
