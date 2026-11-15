@@ -139,16 +139,78 @@ def score(w,config,cfg,out,method,device,gate):
     dump(out/'SCORE_RECEIPT.json',dict(status='COMPLETED',method=method,banks=banks,roles=data.access,FIT_prior_access=ar['roles'],prior_sha256=sha(out/'FIT_PRIOR.npz'),selected_update=state['update'],PT_sha256=sha(trainpath/'selected.pth'),immutable=True,no_labels_decoded=True,no_threshold_fitting=True,gate_sha256=sha(gate)))
 
 
+
+def frozen_linear_inputs(w,config,cfg,release_path,method):
+    """Exact new readout authorization; never impersonates the old full gate."""
+    release=read(release_path)
+    if release.get('status')!='LINEAR_FROZEN_READOUT_RELEASED' or method!='linear' or release.get('method')!='linear':
+        raise PermissionError('Frozen linear-only readout authorization required')
+    root=w/cfg['output'];trainpath=root/'linear/train';assessment=root/'linear/assess'
+    required=dict(config_sha256=config,train_receipt_sha256=trainpath/'TRAIN_RECEIPT.json',
+                  checkpoint_sha256=trainpath/'selected.pth',assess_receipt_sha256=assessment/'ASSESS_RECEIPT.json',
+                  prior_sha256=assessment/'FIT_PRIOR.npz',stop_gate_sha256=root/'NORMAL_GATE.json',
+                  data_manifest_sha256=w/cfg['data']/'manifest.json',scaler_sha256=w/cfg['data']/'scaler.npz',
+                  runner_sha256=Path(__file__),model_sha256=Path(__file__).with_name('g36_persistent_model.py'))
+    for key,path in required.items():
+        if release.get(key)!=sha(path):raise PermissionError('Frozen identity mismatch: '+key)
+    tr=read(trainpath/'TRAIN_RECEIPT.json');ar=read(assessment/'ASSESS_RECEIPT.json')
+    assert tr['method']=='linear' and tr['selected_update']==1200 and tr['selected_sha256']==release['checkpoint_sha256']
+    assert ar['method']=='linear' and ar['selected_update']==1200 and ar['checkpoint_sha256']==release['checkpoint_sha256'] and ar['prior_sha256']==release['prior_sha256']
+    assert read(root/'NORMAL_GATE.json')['status']=='NORMAL_GATE_FAILED_STOP'
+    out=(w/release['output']).resolve()
+    expected=(w/'results/g36_linear_frozen_readout_20261116_v1/linear/score').resolve()
+    if out!=expected:raise PermissionError('Only the fixed new output directory is allowed')
+    return release,trainpath,assessment,out
+
+
+def frozen_linear_score(w,config,cfg,out,device,release_path):
+    release,trainpath,assessment,expected=frozen_linear_inputs(w,config,cfg,release_path,'linear')
+    assert out==expected
+    tracked=[trainpath/'selected.pth',assessment/'FIT_PRIOR.npz',trainpath/'TRAIN_RECEIPT.json',assessment/'ASSESS_RECEIPT.json',w/cfg['output']/'NORMAL_GATE.json']
+    originals={str(p):sha(p)for p in tracked}
+    state=torch.load(trainpath/'selected.pth',map_location='cpu',weights_only=True)
+    assert state['method']=='linear' and state['update']==1200 and state['config']==cfg
+    model=make(cfg,'linear',device);model.load_state_dict(state['state'],strict=True);model.eval();before=hashes(model)
+    with np.load(assessment/'FIT_PRIOR.npz',allow_pickle=False)as z:prior=torch.from_numpy(z['diagonal'].copy()).to(device)
+    assert prior.shape==(16,) and torch.isfinite(prior).all()and(prior>0).all()
+    data=Data(w,cfg,['SELECT','CAL','QUERY']);banks=[]
+    with torch.no_grad():
+        for record in data.manifest['records']:
+            if record['role']not in ['SELECT','CAL','QUERY']:continue
+            values,index=data.load(record);ends=np.arange(51,len(values));parts={}
+            for begin in range(0,len(ends),64):
+                e=ends[begin:begin+64];r=model.components(batch(values,e,device),prior)
+                assert all(torch.isfinite(v).all()for v in r.values())
+                for key,value in r.items():parts.setdefault(key,[]).append(value.cpu().numpy())
+            fields={k:np.concatenate(v)for k,v in parts.items()};ix=index[ends]
+            assert ix[0]==record['first_scored_index']and len(ix)==record['n_scored']
+            file=out/(record['run']+'__'+record['role']+'.npz')
+            np.savez_compressed(file,index=ix,available_index=ix,max_input_index=ix,max_condition_index=ix-4,min_input_index=ix-51,**fields)
+            banks.append(dict(run=record['run'],role=record['role'],path=str(file),sha256=sha(file),points=len(ix)))
+    assert len(banks)==6 and before==hashes(model)
+    assert all(sha(Path(p))==value for p,value in originals.items())
+    dump(out/'SCORE_RECEIPT.json',dict(status='COMPLETED',method='linear',banks=banks,roles=data.access,
+         selected_update=1200,PT_sha256=release['checkpoint_sha256'],prior_sha256=release['prior_sha256'],
+         release_sha256=sha(release_path),immutable=True,no_labels_decoded=True,no_threshold_fitting=True,
+         no_FIT_values_access=True,no_prior_refit=True,no_training=True,old_gate_unchanged=True,
+         original_sha256=originals,readout='same frozen model: score=integrated LR, normal_nll retained for paired ablation'))
+
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument('phase',choices=['prepare','l0','train','assess','score']);p.add_argument('--workspace',type=Path,required=True);p.add_argument('--config',type=Path,required=True);p.add_argument('--method',choices=['full','linear']);p.add_argument('--device',default='cpu');p.add_argument('--gate',type=Path)
+    p=argparse.ArgumentParser();p.add_argument('phase',choices=['prepare','l0','train','assess','score','linear_readout']);p.add_argument('--workspace',type=Path,required=True);p.add_argument('--config',type=Path,required=True);p.add_argument('--method',choices=['full','linear']);p.add_argument('--device',default='cpu');p.add_argument('--gate',type=Path)
     a=p.parse_args();w=a.workspace.resolve();config=a.config.resolve();cfg=read(config);torch.set_num_threads(2);torch.set_num_interop_threads(1)
     if a.phase=='prepare':return prepare(w,config,cfg)
-    out=w/cfg['output']/a.method/a.phase;out.mkdir(parents=True,exist_ok=False);device=torch.device(a.device);start=time.time();rc=0
+    if a.phase=='linear_readout':
+        if a.gate is None:raise PermissionError('Frozen linear readout authorization required')
+        _,_,_,out=frozen_linear_inputs(w,config,cfg,a.gate,a.method)
+    else:out=w/cfg['output']/a.method/a.phase
+    out.mkdir(parents=True,exist_ok=False);device=torch.device(a.device);start=time.time();rc=0
     if device.type=='cuda':
-        torch.cuda.set_device(device);torch.cuda.set_per_process_memory_fraction((30 if a.phase=='score'else 20)*1024**3/torch.cuda.get_device_properties(device).total_memory,device);torch.cuda.reset_peak_memory_stats(device);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
+        torch.cuda.set_device(device);torch.cuda.set_per_process_memory_fraction((30 if a.phase in ['score','linear_readout']else 20)*1024**3/torch.cuda.get_device_properties(device).total_memory,device);torch.cuda.reset_peak_memory_stats(device);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     dump(out/'START.json',dict(pid=os.getpid(),method=a.method,phase=a.phase,start_unix=start,config_sha256=sha(config),runner_sha256=sha(__file__),model_sha256=sha(Path(__file__).with_name('g36_persistent_model.py')),CUDA_VISIBLE_DEVICES=os.environ.get('CUDA_VISIBLE_DEVICES')))
     try:
-        if a.phase=='score':
+        if a.phase=='linear_readout':frozen_linear_score(w,config,cfg,out,device,a.gate)
+        elif a.phase=='score':
             if a.gate is None:raise PermissionError('Root normal gate required')
             score(w,config,cfg,out,a.method,device,a.gate)
         elif a.phase=='assess':assess(w,config,cfg,out,a.method,device)
