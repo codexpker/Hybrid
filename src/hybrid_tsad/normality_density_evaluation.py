@@ -246,9 +246,10 @@ def external_psm(workspace,output):
     for d in read(folder/'RAW_SEAL.json')['methods']:
         z=load(d['path']);assert np.array_equal(z['QUERY_index'][:len(idx)],idx)
         score=z['QUERY'][:len(idx)]
+        no_training=d['method'] in ('Student_identity','Student_Haar_identity','FIT_level_matched') or d['method'].startswith('HistoryMean')
         rows.append(dict(method=d['method'],AP=float(average_precision_score(truth[idx],score)),ROC=float(roc_auc_score(truth[idx],score)),
             points=len(idx),inference='causal endpoint; Hybrid uses observed trailing-windowjointNLL',
-            training='targetFITnormal; ownSELECT/CAL'if d['method']!='Student_identity'else'no model training; targetFITscaler',
+            training='no model training or SELECT; targetFITscaler and fixed CAL'if no_training else'targetFITnormal; ownSELECT/CAL',
             alarm_comparison='own independent targetCAL in full-axis table',source_sha256=d['sha256']))
     source=workspace/'results/hybrid_v1_psm_U_scope2000_fixed_evaluation_20261107_v1'
     for name,permission in [('TimeRadar_official_native','official source pretrained; target pre-test normalization statistics; native offline windows include future relative to some scored timestamps'),

@@ -1,0 +1,327 @@
+{
+  "status": "PASS_BOUNDED",
+  "auditor": "joint_density_scientific_auditor",
+  "independence": "same-model-family role separation, not external blinded peer review",
+  "checks": [
+    {
+      "check": "all_raw_bank_hashes_and_job_exits",
+      "status": "PASS",
+      "banks": 28,
+      "jobs": 21,
+      "GPU_hours": 0.8582385614183214
+    },
+    {
+      "check": "fixed_model_runner_deployment_identity",
+      "status": "PASS",
+      "commit": "d77252e"
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "full",
+      "selected_update": 3760,
+      "updates": 3760,
+      "max_absolute_replay_error": 7.152557373046875e-07,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "time_only",
+      "selected_update": 3760,
+      "updates": 3760,
+      "max_absolute_replay_error": 3.5762786865234375e-07,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "TEP",
+      "variant": "local",
+      "selected_update": 3760,
+      "updates": 3760,
+      "max_absolute_replay_error": 5.960464477539062e-07,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "full",
+      "selected_update": 620,
+      "updates": 12400,
+      "max_absolute_replay_error": 0.0013206005096435547,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "time_only",
+      "selected_update": 6820,
+      "updates": 12400,
+      "max_absolute_replay_error": 0.00405120849609375,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "PSM",
+      "variant": "local",
+      "selected_update": 8680,
+      "updates": 12400,
+      "max_absolute_replay_error": 0.003027677536010742,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "full",
+      "selected_update": 16184,
+      "updates": 23120,
+      "max_absolute_replay_error": 0.01304268091917038,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "time_only",
+      "selected_update": 2312,
+      "updates": 9248,
+      "max_absolute_replay_error": 0.020620107650756836,
+      "replayed_batches": 4
+    },
+    {
+      "check": "checkpoint_SELECT_permissions_and_CPU_numerical_diagnostic",
+      "status": "PASS",
+      "domain": "SWAT",
+      "variant": "local",
+      "selected_update": 16184,
+      "updates": 23120,
+      "max_absolute_replay_error": 0.01986539363861084,
+      "replayed_batches": 4
+    },
+    {
+      "check": "same_A40_same_batch_frozen_forward_replay",
+      "status": "PASS",
+      "cases": 9,
+      "exact": true,
+      "no_training": true,
+      "no_QUERY": true
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Hybrid_local"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Student_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "LEFT_target9"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Ridge_H"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Ridge_C"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Simple_native_RidgeC_half"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "P0"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "MeanFIT"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "HistoryMean100_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "TEP",
+      "method": "Student_Haar_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Hybrid_local"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Student_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "HistoryMean192_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "PSM",
+      "method": "Student_Haar_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_full"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_time_only"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Hybrid_local"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Student_identity"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "HistoryMean192_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "FIT_level_matched"
+    },
+    {
+      "check": "independent_threshold_ranking_and_alarm_metrics",
+      "status": "PASS",
+      "domain": "SWAT",
+      "method": "Student_Haar_identity"
+    },
+    {
+      "check": "independent_external_common_axis_ranking",
+      "methods": 10,
+      "TimeRadar_offline_permissions_separate": true,
+      "status": "PASS"
+    },
+    {
+      "check": "permission_metadata_correction",
+      "status": "PASS",
+      "numeric_columns_and_original_file_preserved": true
+    }
+  ],
+  "seconds": 20.410075902938843,
+  "GPU_hours": 0.0003643014033635457,
+  "GPU_hours_with_startup_failure_conservative_upper_bound": 0.001952758361111111,
+  "scope": "source/deployment identity;28rawbanks;9selected checkpoints;sample same-A40 replay;CPU diagnostics only;all30methods ownCAL ranking alarms, TEP20fault20run+normal,PSM/SWAT fullaxis event and longcoverage",
+  "scientific_decision": "Limited NO-GO for the complete joint-density candidate: PSM ranking increases over native LEFT but sustained detection not established; SWAT high ranking/coverage accompanied by near-total normal false alarms; TEP learned/time-frequency benefit not established over untrained Student density controls.",
+  "limitations": [
+    "single seed and historically exposed development data",
+    "Haar/normalizing flow/window likelihood are established components",
+    "per-channel allocations are not marginal normality",
+    "TCN and Haar internal operations do not prove directed Self/Cross-lag detection",
+    "newSWATtype1LRphase differs from historicalLEFT; do not claim exactupdate matched comparator",
+    "TEP joint3channel primary differs from target9Ridge and oldsimple comparator",
+    "CPU/CUDA replay is not bitexact; same-A40 replay is bitexact; original fixed A40 scores remain canonical",
+    "one auditor metadata-offset assumption failure retained; no scientific run failure; exact total auditGPU startuptime unavailable, conservative end-to-end upper bound retained"
+  ],
+  "script_sha256": "32b02e8830172417c50b66e47ae9a05276a59c1f271a79372fa0efdb71cbb453",
+  "external_check_script_sha256": "27b41bc61c7c7733709743672c7c2496ace3464d635b5e2ea3aa88435ca23877",
+  "nonblocking_metadata_finding": "CORRECTED: untrained controls now identified as no model training/no SELECT; separate permissions_v2 table preserves original file and all numerical columns.",
+  "CPU_CUDA_numerical_limit": "CPU perchannel replay discrepancies up to0.02062011; CPU32/64 agreement in checked PSM case does not eliminate CUDA backend differences. No cross-platform bitexact claim. Original A40 canonical scores were independently replayed bitexact for all9 trained model firstCAL B128."
+}

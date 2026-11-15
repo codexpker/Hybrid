@@ -1,0 +1,11 @@
+{
+  "model_commit": "d77252e17509d263d6d87a64c98b79516a935fd3",
+  "evaluation_definition_commit": "21ccb65",
+  "seed": 2025,
+  "GPU_hours": 0.8582385614183214,
+  "failures": 0,
+  "resubmissions": 0,
+  "scope": "historically_exposed_target_normal_training_development; not blind confirmation",
+  "raw_relative": "results/hybrid_normality_density_20261115_v1",
+  "evaluation_seconds": 24.249805212020874
+}

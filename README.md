@@ -1,5 +1,13 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-15 新一代完整方法与论文初稿：实际执行终态
+
+独立研发分支`codex/hybrid-joint-normality-20261115`已完成交替时域/Haar域的可逆联合正常性密度模型、九组真实训练、三域固定评价和关键结果独审。训练与异常评分同为归一化联合NLL，没有恢复已停止预测/遮蔽候选。实际模型见[src/hybrid_tsad/normality_density.py](src/hybrid_tsad/normality_density.py)，配置见[configs/normality-density-20261115.json](configs/normality-density-20261115.json)。
+
+[主验收与完整比较](docs/experiments/normality_density_20261115/RESULTS.md)：PSM排序有真实正项，但持续检测未改善；SWaT接近全部正常点报警；TEP存在覆盖/误报取舍且尚未建立超出简单密度的学习增量。因此该完整候选不进入U/F或继续局部调参，不能作为已验证的论文贡献。44项有界独审通过不等于科研收益成立。四节可编辑稿见[manuscript/next_generation_20261115](manuscript/next_generation_20261115/README.md)。main、原审阅快照及全部历史正负实验保持。
+
+以下日期段落是历史阶段状态，不代表本研发分支当前仍在等待旧审计、复现或任务授权。
+
 ## 2026-11-14 有界审计工程修复
 
 `fix/audit-c600125` 从下述固定审阅提交独立派生；复核 F01—F06、必要工程修复及真实测试见[复核结果](docs/audit_c600125/REVIEW_AND_REPAIRS.md)和[测试分组](docs/testing.md)。旧审阅分支、main、历史评分/选权/实验结论不变；本分支没有训练或恢复候选。需要精确历史身份时必须使用原 commit/runtime，不能将修复后的接口冒充旧快照。
