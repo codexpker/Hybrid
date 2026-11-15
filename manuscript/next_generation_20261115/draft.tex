@@ -511,6 +511,15 @@ Known controlled tasks, reported separately from public-data scores, are
 required for those claims. Stopped reference-center, masked-inference,
 SOC, routing, and shared-prediction candidates are not resumed.
 
+Before opening the new QUERY results, we also fix the zero-parameter
+untrained full-model score as a control. All affine couplings and the
+input affine start at identity, leaving one net orthogonal Haar analysis
+followed by the same Student-t prior. This control is computed directly
+from observed windows without fitting or additional training; it
+separates learning from the change in an independent non-Gaussian prior
+under coordinate rotation. It is not an alternative score chosen from
+QUERY performance.
+
 \subsection{Calibration, events, and sustained
 detection}\label{calibration-events-and-sustained-detection}
 

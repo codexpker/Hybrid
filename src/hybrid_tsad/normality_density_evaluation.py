@@ -51,6 +51,26 @@ def past_mean_and_level(values,loc,H):
     return np.mean(np.abs(current-mean),axis=-1),np.mean(np.abs(current),axis=-1)
 
 
+def untrained_haar_prior(values,loc,H):
+    """Zero-parameter initial full-model density, not a score candidate search.
+
+    The four untrained couplings and input affine are identity, leaving one
+    net Haar analysis. This control separates learned effects from the change
+    of factorized Student prior induced by an orthogonal coordinate rotation.
+    """
+    import torch
+    from .normality_density import haar,NormalityDensity
+    result=np.empty(loc.shape,np.float32)
+    with torch.no_grad():
+        for r in range(len(values)):
+            for i in range(0,loc.shape[1],128):
+                end=loc[r,i:i+128]
+                assert np.all(end>=H-1)and np.all(end<values.shape[1])
+                x=np.stack([values[r,t-H+1:t+1]for t in end])
+                result[r,i:i+len(end)]=NormalityDensity.prior_nll(haar(torch.from_numpy(x))).mean((1,2)).numpy()
+    return result
+
+
 def new_bank(output,domain,variant,role):
     folder=output/domain/variant/'score'
     receipt=read(folder/'SCORE_RECEIPT.json')
@@ -112,7 +132,7 @@ def seal(workspace,output,config):
         # Strong simple current-level and strictly-past mean baselines under
         # exactly this domain's scaler and physical roles, no QUERY fitting.
         rr=RoleReader(workspace,domain,roles)
-        mean_history={};fit_level={}
+        mean_history={};fit_level={};haar_prior={}
         H=cfg['domains'][domain]['history']
         for role in roles:
             values,runs,faults,offsets=rr.load(role)
@@ -120,8 +140,11 @@ def seal(workspace,output,config):
             score,level=past_mean_and_level(values,loc,H)
             mean_history[role]=score if domain=='TEP'else score[0]
             fit_level[role]=level if domain=='TEP'else level[0]
+            prior=untrained_haar_prior(values,loc,H)
+            haar_prior[role]=prior if domain=='TEP'else prior[0]
         entries[f'HistoryMean{H}_matched']=mean_history
         entries['FIT_level_matched']=fit_level
+        entries['Student_Haar_identity']=haar_prior
         selected=None
         if domain=='PSM':selected=np.linspace(106720,132480,512,dtype=np.int64)
         if domain=='SWAT':selected=np.linspace(446173,494999,512,dtype=np.int64)
@@ -240,6 +263,8 @@ def external_psm(workspace,output):
 
 
 def main():
+    import torch
+    torch.set_num_threads(2)
     ap=argparse.ArgumentParser();ap.add_argument('phase',choices=['seal','evaluate'])
     ap.add_argument('--workspace',type=Path,required=True);ap.add_argument('--output',type=Path,required=True);ap.add_argument('--config',type=Path)
     a=ap.parse_args()
