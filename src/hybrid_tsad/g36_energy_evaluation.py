@@ -40,6 +40,28 @@ def paired_summary(healthy_score, fault_score, threshold, mask):
     return row
 
 
+def score_resolution(banks, output):
+    """Read-only posthoc score support diagnosis; never a replacement score."""
+    rows = []
+    for method, folder in banks.items():
+        for path in sorted(Path(folder).glob('*__*.npz')):
+            with np.load(path, allow_pickle=False) as z:
+                if 'normal_tail_count' not in z:
+                    continue
+                s, count = z['score'], z['normal_tail_count']
+                d, observed = z['normal_distance'], z['observed_distance']
+                assert np.array_equal(count, (d >= observed[:, None]).sum(1))
+                run, role = path.stem.split('__')
+                rows.append(dict(method=method, run=run, role=role, n=len(s),
+                    distinct_scores=len(np.unique(s)), zero_tail_count=int((count == 0).sum()),
+                    zero_tail_fraction=float((count == 0).mean()),
+                    min_score=float(s.min()), max_score=float(s.max()),
+                    observed_distance_mean=float(observed.mean()),
+                    normal_distance_mean=float(d.mean()), bank_sha256=sha(path)))
+    with Path(output).open('x', encoding='utf-8', newline='') as f:
+        pd.DataFrame(rows).to_csv(f, index=False)
+
+
 def run(data, bank_file, previous_pairs, output):
     banks = {k: Path(v) for k, v in json.loads(bank_file.read_text()).items()}
     inputs = [bank_file, data/'manifest.json', data/'scaler.npz']
