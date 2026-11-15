@@ -12,7 +12,9 @@ from .normality_density_evaluation import common_cal_bank, table, evaluate_serie
 from .normality_density_runner import RoleReader
 
 HISTORY = 'hybrid_normality_density_20261115_v1'
-VARIANTS = {'full':'Hybrid_evolution', 'time_only':'Hybrid_time_only',
+# Keep the established metric engine's primary-method key. The experiment
+# directory, config and source hashes identify this new model, not old V1.
+VARIANTS = {'full':'Hybrid_full', 'time_only':'Hybrid_time_only',
             'no_evolution':'Hybrid_no_evolution'}
 
 
