@@ -72,3 +72,6 @@ LEFT/条件Ridge/历史Ridge严格事件P/R/F1分别为2.8846%/100%/5.6075%、0.
 完整产物：`research_workspace/results/hybrid_g36_context_energy_20261115_v1`。主要CSV随本文提供；原始权重、逐点分数、目标/预测及正常探针距离、选权轨迹和配置保留在外部结果目录。主固定评价与后验分数饱和诊断分开记录，后者没有改变前者结果。
 
 独立关键复核已完成并由主Agent验收：12银行逐点tail与energy复算、5方法1215指标单元一致，两个真实检查点各8个CAL点CPU重放通过（最大差4.77e-7、tail计数完全相等）。见原始产物`audit/AUDIT.json`及`PRIMARY_ACCEPTANCE.json`。独审GPU0，职责独立、同模型家族，不冒称外部盲审。
+
+
+后续只读解释补充：[连续energy与预测诊断](CONTINUOUS_DIAGNOSIS.md)。原固定评分NO-GO保持；零报警不足以否定正常关系学习，连续energy不是新增部署判据。
