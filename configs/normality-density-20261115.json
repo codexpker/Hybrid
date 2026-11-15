@@ -1,0 +1,53 @@
+{
+  "id": "hybrid_normality_density_20261115_v1",
+  "seed": 2025,
+  "drawplan_seed": 2025,
+  "epochs": 20,
+  "batch_size": 128,
+  "score_batch_size": 128,
+  "learning_rate": 0.0001,
+  "variants": [
+    "full",
+    "time_only",
+    "local",
+    "identity"
+  ],
+  "model_factory": "hybrid_tsad.normality_density:NormalityDensity",
+  "model_kwargs": {
+    "hidden": 64
+  },
+  "domains": {
+    "TEP": {
+      "history": 100,
+      "channels": 3,
+      "epochs": 20,
+      "updates": 3760,
+      "lr_schedule": "type2"
+    },
+    "PSM": {
+      "history": 192,
+      "channels": 25,
+      "epochs": 20,
+      "updates": 12400,
+      "lr_schedule": "type2"
+    },
+    "SWAT": {
+      "history": 192,
+      "channels": 31,
+      "epochs": 20,
+      "patience": 3,
+      "lr_schedule": "type1"
+    }
+  },
+  "selection": "mean whole-window NLL at H,2H,... legal SELECT endpoints once per epoch; min, earlier ties; no QUERY labels",
+  "score": "joint NLL/window scalar via time and channel mean; assign current endpoint; no online future; perchannel diagnostics only",
+  "CAL": "same legal own q99 higher strict>,TEP8000 CAL points;PSM/SWAT512 fixed mature endpoints",
+  "train_budget": "PSM/TEP same maxupdates as shared study;SWAT same20epoch max+patience3 asLEFT,actualupdates may differ",
+  "resource": {
+    "train_GiB": 20,
+    "score_GiB": 30,
+    "max_parallel": 4,
+    "train_timeout_seconds": 10800,
+    "score_timeout_seconds": 3600
+  }
+}
