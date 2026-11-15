@@ -1,0 +1,102 @@
+{
+  "status": "PASS_BOUNDED",
+  "auditor": "joint_density_scientific_auditor",
+  "independence": "same-model-family role separation; not external blind peer review",
+  "checks": [
+    {
+      "check": "data_role_values_endpoint_labels_common_plan_and_event_isolation",
+      "status": "PASS",
+      "train_events": 10,
+      "SELECT_events": 3,
+      "positive_train_endpoints": 5420,
+      "positive_SELECT_endpoints": 1424,
+      "between_train_SELECT_footprint_gap": 1031,
+      "QUERY_support_donors": false
+    },
+    {
+      "check": "all_OS_and_raw_bank_seal",
+      "status": "PASS",
+      "GPU_hours": 0.10188849535253312,
+      "job_count": 5
+    },
+    {
+      "check": "same_INIT_plan_trainable_path_SELECT_frozen_state_and_rawlogit_replay",
+      "status": "PASS",
+      "arm": "tail25",
+      "q": 0.25,
+      "updates": 2000,
+      "selected_update": 2000,
+      "CAL_CPU_replay_maxerror": 0.00034046173095703125,
+      "logit_high_is_anomalous": true
+    },
+    {
+      "check": "same_INIT_plan_trainable_path_SELECT_frozen_state_and_rawlogit_replay",
+      "status": "PASS",
+      "arm": "mean",
+      "q": 1.0,
+      "updates": 2000,
+      "selected_update": 2000,
+      "CAL_CPU_replay_maxerror": 0.000667572021484375,
+      "logit_high_is_anomalous": true
+    },
+    {
+      "check": "same_A40_rawlogit_replay_and_isolated_SELECT_label_direction",
+      "status": "PASS",
+      "arms": 2,
+      "CAL_batch": 128,
+      "SELECT_positive_normal_points_each": 32,
+      "no_QUERY": true,
+      "bitexact": true
+    },
+    {
+      "check": "independent_CAL_ranking_strict_C3_matching_anyhit_steady_misses",
+      "status": "PASS",
+      "method": "Hybrid_F_tail25"
+    },
+    {
+      "check": "independent_CAL_ranking_strict_C3_matching_anyhit_steady_misses",
+      "status": "PASS",
+      "method": "Hybrid_F_mean"
+    },
+    {
+      "check": "independent_CAL_ranking_strict_C3_matching_anyhit_steady_misses",
+      "status": "PASS",
+      "method": "LEFT_native"
+    },
+    {
+      "check": "independent_CAL_ranking_strict_C3_matching_anyhit_steady_misses",
+      "status": "PASS",
+      "method": "HistoryMean512"
+    },
+    {
+      "check": "fixed_evaluation_implementation_identity",
+      "status": "PASS",
+      "commit": "6c6cace"
+    },
+    {
+      "check": "paired_event_difference_table",
+      "status": "PASS",
+      "rows": 44
+    }
+  ],
+  "CPU_seconds": 2.508657932281494,
+  "GPU_hours": 0.0006855573256810506,
+  "GPU_hours_startup_cleanup_conservative_upper_bound": 0.0010621020555555555,
+  "no_training": true,
+  "scientific_scope": "q=.25 vs q=1 event-balanced F supervision only; not U robustness, final method validation or independent runs",
+  "facts": "Tail slightly increases detected points but false points rise, both match2/22 and zero nine-long-event interior coverage. Tail local eventPrecision/F1/fragment benefits retained; no overall stable sustained increment established.",
+  "limits": [
+    "one seed, one historically exposed SWAT recording",
+    "ten TRAIN support events plus three additional labelled SELECT events, not ten total labels",
+    "minibatch group32 top8 is a sampled tail approximation, not exact full-event CVaR",
+    "native LEFT and HistoryMean have different anomaly-supervision rights and exceed1percent normalFPR at their original thresholds",
+    "firstCAL CPU replay is numerical-tolerance comparison, not cross-platform bitexact guarantee",
+    "all candidate/source/previous negative conclusions remain unchanged"
+  ],
+  "script_sha256": "1f3aaa46a479681bcb5d8d485b126650d115346c0d72892c560d0e39d3f71517",
+  "scope_notes": [
+    "Independent float64 mean of logged float32 group losses requires float32 rounding tolerance; actual formula remains groupwise top8/mean32 with classes .5/.5.",
+    "One auditor replay command initially had a syntax error before Python executed or GPU initialized; no scientific job retried or changed.",
+    "Actual A40 audit command starts timer before torch imports; reported process body2.468s with end-to-endSSH startup/cleanup conservative upper bound3.824s."
+  ]
+}
