@@ -1,0 +1,36 @@
+{
+  "id": "hybrid_event_tail_f_20261115_v1",
+  "primary_pair": ["Hybrid_F_tail25", "Hybrid_F_mean"],
+  "methods": [
+    {
+      "name": "Hybrid_F_tail25",
+      "CAL": "results/hybrid_event_tail_f_20261115_v1/tail25/score/CAL.npz",
+      "QUERY": "results/hybrid_event_tail_f_20261115_v1/tail25/score/QUERY.npz",
+      "training_permission": "same-target normal pretrained LEFT; 10 chronological labelled support events; 3 labelled SELECT events; q=.25 risk; F development only"
+    },
+    {
+      "name": "Hybrid_F_mean",
+      "CAL": "results/hybrid_event_tail_f_20261115_v1/mean/score/CAL.npz",
+      "QUERY": "results/hybrid_event_tail_f_20261115_v1/mean/score/QUERY.npz",
+      "training_permission": "identical initialization, support/SELECT labels, draw plan, optimizer and 2000 updates; q=1 grouped mean risk"
+    },
+    {
+      "name": "LEFT_native",
+      "CAL": "results/left_multievent_mixed_u_20261111_v1/left_score/CAL.npz",
+      "QUERY": "results/left_multievent_mixed_u_20261111_v1/left_score/QUERY.npz",
+      "training_permission": "existing same-target normal training and normal SELECT; no anomaly supervision; causal trailing-window endpoint score"
+    },
+    {
+      "name": "HistoryMean512",
+      "CAL": "results/left_multievent_mixed_u_20261111_v1/HistoryMean512/CAL.npz",
+      "QUERY": "results/left_multievent_mixed_u_20261111_v1/HistoryMean512/QUERY.npz",
+      "training_permission": "no neural training; strictly past512 predictor; original FIT scaler and perchannel residual scale from the same normal CAL"
+    }
+  ],
+  "CAL": "unchanged 512 indices linspace(446173,494999); own q99 higher; score strictly greater than threshold",
+  "QUERY": [608535,944919],
+  "confirmation": "three consecutive observed threshold exceedances; no backfill or bridging gaps",
+  "long_interior": "all original events longer than512; interval after first512 samples; not certified physical-fault steady state",
+  "scope": "one seed, one historical SWaT recording; 22 complete query events including9 long; no blind confirmation or U robustness claim",
+  "decision": "tail vs mean independent increment; retain all outcomes. No q, event, threshold, last-checkpoint or seed rescue. Report observed normalFPR and fragments alongside coverage."
+}
