@@ -1,5 +1,7 @@
 # Research engineering rules
 
+- User authorization (2026-11-16): after each completed code change passes its relevant checks, commit and push the current research branch to `codexpker/Hybrid` without requesting permission again. Publish valid negative results as well. Maintain `codex/latest` as the stable latest-code pointer using ordinary fast-forward pushes; preserve `main` and historical review snapshots, never force-push. Report the branch link and exact commit SHA. If publishing fails, report the real error rather than claiming synchronization.
+- Before pushing, inspect the outgoing changes for credentials, private raw data/weights and unauthorized third-party assets. Do not include unrelated uncommitted user edits. This authorization covers research code and publishable configurations/results, not private assets or unverified scientific claims.
 - Read README, docs/research_scope.md and provenance records before changing algorithms.
 - This is an independent candidate, not an official TimeRadar or TimesFM implementation. Never claim anomaly-contamination robustness or model improvements without appropriate evidence.
 - When official source exists, inspect its actual code and pin its revision before implementing a related change. Separate reused code, independently written code and conceptual references. Do not redistribute unlicensed upstream code or weights.
