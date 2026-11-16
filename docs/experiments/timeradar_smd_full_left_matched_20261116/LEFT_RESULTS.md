@@ -1,6 +1,6 @@
 # Fixed same-data-permission LEFT external comparison
 
-Status: completed and independently checked for this four-case subset. The fixed full-SMD28 extension is still running; these rows do not represent that completed study.
+Status: completed and independently checked for this four-case subset. The fixed full-SMD28 extension is now completed; see RESULTS.md for its separate full-axis and common-axis reports.
 
 | Entity | Method | AP | ROC-AUC | Strict normal FPR (%) | C3 any-hit events | C3 matched event recall (%) | C3 anomaly coverage (%) |
 |---|---|---:|---:|---:|---:|---:|---:|
@@ -46,6 +46,6 @@ The CSV retains strict/C3 precision, recall, F1, false-positive points/fragments
 
 - Raw matched CSV SHA256: `a9b42297e16b196399a370db42bec2933b2896abc717feed475a1da21dd6289b`.
 - LEFT raw-score global seal SHA256: `bb419cf0a8301b96768aba06f6e3763183508f0107dcb9f332ecb7bfee16709a`.
-- Same-family independent responsibility audit LEFT subset: PASS; receipt SHA256 `723960464a0a8aa33601eec240aa92f72d1a98f0594a0d2ee73c96593579fbca`. This is not an external blinded review. The final full-SMD audit remains pending.
+- Same-family independent responsibility audit LEFT subset: PASS; receipt SHA256 `723960464a0a8aa33601eec240aa92f72d1a98f0594a0d2ee73c96593579fbca`. This is not an external blinded review. The final full-SMD audit is also complete (SHA db7bb22156d84c9cae047fb3170c6fafbaf01f062f7d81ea0e79a9613646b4d9).
 - Baseline implementation commit: `d3fd9750bb8a28333742578d209eb2868cd96756`; fixed scientific recipe for TimeRadar adapters remains `7480d5f215292ced9d0a9328eed274aff805584e`.
 - No raw observations, checkpoints, private identifiers, credentials, or upstream third-party source files are published here.

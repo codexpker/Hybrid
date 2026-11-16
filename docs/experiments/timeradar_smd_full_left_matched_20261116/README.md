@@ -11,7 +11,7 @@ Freeze the method at `7480d5f215292ced9d0a9328eed274aff805584e`. No model, initi
 
 ## Fixed reporting
 
-Report original3, additional25 and all28 separately: per-machine AP/ROC, Cross−Self/Head, entity macro mean, median and win/tie/loss by the strict sign of the canonical metric difference (zero means tie, no tuned tolerance). This is one SMD domain with historical exposure, not28 independent domains or blind confirmation. Preserve PSM three-seed negatives separately.
+Report original3, additional25 and all28 separately: per-machine AP/ROC, Cross鈭扴elf/Head, entity macro mean, median and win/tie/loss by the strict sign of the canonical metric difference (zero means tie, no tuned tolerance). This is one SMD domain with historical exposure, not28 independent domains or blind confirmation. Preserve PSM three-seed negatives separately.
 
 The native model comparison keeps complete original scored axes. For a five-method comparison including causal HistoryMean512, use the previously fixed per-record common axis `[512,floor(test_length/100)*100)`; do not mix it with full-axis AP. Save all strict-point and C3 confusion counts/Precision/Recall/F1, any-hit and one-to-one events, normal false positives/fragments, original event coverage, long steady coverage/longest misses and UNKNOWN tails. Native TimeRadar/Hybrid remain offline window/batch-dependent scores. CAL remains own q99/higher/strict>; no QUERY threshold or recipe choice.
 
@@ -24,3 +24,7 @@ LEFT is trained normally from scratch; TimeRadar uses official pretraining plus 
 ## Execution
 
 No cumulative GPU approval cap; at most4 independent A40 jobs,20GiB train/30GiB score, bounded per-job timeouts and complete PID/GPU/start/end/peak/exit/actual GPU-time records. TimeRadar initially uses0/1/2; LEFT uses3, then explicitly releases3 via a completion handoff followed by a real free-device check. No process is killed to reclaim another user's resource. Actual completion events trigger CPU evaluation and one bounded final independent recomputation; routine documentation does not block independent jobs. Code and safe public aggregates are pushed after relevant checks, preserving main/review snapshots and unrelated manuscript edits.
+
+## Completed results
+
+Full28 fixed evaluation and final key audit are complete. See [RESULTS.md](RESULTS.md), [matched LEFT results](LEFT_RESULTS.md), and [public provenance](PROVENANCE_PUBLIC.json). All original3/new25/all28 rows, failures/resource recovery and the PSM three-seed negatives are retained.
