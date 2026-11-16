@@ -72,13 +72,13 @@
     "STATISTICS.json": "fc525ae45c5d250d9c2bfd69a56ec146b6b64beff5b435faf8c678c90d10943c",
     "training_selection.csv": "ba7cae7024a88f7288311497a7da469188b70d847a8c22f0b92cca9d0bd3ed21",
     "figures/machine-1-1_PR_ROC_separate_seeds.png": "09c90e8f929168d4aef7ea0d41831605cde27d0d1b7c5eb696f22dbd74200ba4",
-    "figures/machine-1-1_PR_ROC_separate_seeds.svg": "1d7e23065bc05c5ce399d669a93025203b8f6e66f8d47192bae45f15feba2197",
+    "figures/machine-1-1_PR_ROC_separate_seeds.svg": "1c7387b799e30c6329ba9eda2f4e3047eb35a17c710ad44124eb198fe553770c",
     "figures/machine-1-2_PR_ROC_separate_seeds.png": "deebb04c7ba53bf2b4c9bf2e709200069bbddcea39fac3e35dd088de7bbcd352",
-    "figures/machine-1-2_PR_ROC_separate_seeds.svg": "248b0ef83a1890e0286d45d19aca6396e208250177e49a46de60d08500bb9d2a",
+    "figures/machine-1-2_PR_ROC_separate_seeds.svg": "ca975bc005213fe1793eb7c8d5d548e81b62b7e50cf3d07e006325ce83d63331",
     "figures/machine-1-3_PR_ROC_separate_seeds.png": "4dca32e379e04fd5f53884da4af6a7e51ac371076eb4132f934cd62f851088e2",
-    "figures/machine-1-3_PR_ROC_separate_seeds.svg": "d3e3773aa793ffb2fab66a5e22dda4a6128c14a04fc6bce072705abd277d57e3",
+    "figures/machine-1-3_PR_ROC_separate_seeds.svg": "c14547e9cb10d13b4910176b4bc52f9a822b085ee29afb8ae3c5c2b398e6af6d",
     "figures/PSM_PR_ROC_separate_seeds.png": "84ccaafbe3bc8542b0ab57a298a20dbbee214f4903ee574e3ea8cb68d5d8d4c3",
-    "figures/PSM_PR_ROC_separate_seeds.svg": "2042271b53842ee6c7e0bdd326322a59240c90b929e47c11788d88cd0a73f27d"
+    "figures/PSM_PR_ROC_separate_seeds.svg": "905cb27f754188cfa7e1290810426940c5f8febfabf923b3c5b7b2dbc1d4c801"
   },
   "private_assets_not_published": [
     "Raw data and labels",
@@ -89,5 +89,34 @@
   ],
   "method_changes": false,
   "query_selection": false,
-  "external_training_repeated": false
+  "external_training_repeated": false,
+  "public_SVG_export_format": {
+    "change": "Trim Matplotlib trailing spaces only; original external SVGs and all scientific arrays/metrics unchanged",
+    "figures": [
+      {
+        "figure": "machine-1-1_PR_ROC_separate_seeds.svg",
+        "original_raw_sha256": "1d7e23065bc05c5ce399d669a93025203b8f6e66f8d47192bae45f15feba2197",
+        "public_format_sha256": "1c7387b799e30c6329ba9eda2f4e3047eb35a17c710ad44124eb198fe553770c",
+        "SVG_XML_equivalent_after_whitespace_normalization": true
+      },
+      {
+        "figure": "machine-1-2_PR_ROC_separate_seeds.svg",
+        "original_raw_sha256": "248b0ef83a1890e0286d45d19aca6396e208250177e49a46de60d08500bb9d2a",
+        "public_format_sha256": "ca975bc005213fe1793eb7c8d5d548e81b62b7e50cf3d07e006325ce83d63331",
+        "SVG_XML_equivalent_after_whitespace_normalization": true
+      },
+      {
+        "figure": "machine-1-3_PR_ROC_separate_seeds.svg",
+        "original_raw_sha256": "d3e3773aa793ffb2fab66a5e22dda4a6128c14a04fc6bce072705abd277d57e3",
+        "public_format_sha256": "c14547e9cb10d13b4910176b4bc52f9a822b085ee29afb8ae3c5c2b398e6af6d",
+        "SVG_XML_equivalent_after_whitespace_normalization": true
+      },
+      {
+        "figure": "PSM_PR_ROC_separate_seeds.svg",
+        "original_raw_sha256": "2042271b53842ee6c7e0bdd326322a59240c90b929e47c11788d88cd0a73f27d",
+        "public_format_sha256": "905cb27f754188cfa7e1290810426940c5f8febfabf923b3c5b7b2dbc1d4c801",
+        "SVG_XML_equivalent_after_whitespace_normalization": true
+      }
+    ]
+  }
 }
