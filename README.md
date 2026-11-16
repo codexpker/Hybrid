@@ -1,5 +1,11 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-16 当前固定实验：完整 TimeRadar 跨变量残差适配
+
+从 `ab65ff6` 派生 `codex/timeradar-cross-variable-20261116`，复用原官方源码、预训练权重、完整前向和原生方差评分，比较零更新、重构头适配、等参数非跨变量适配和跨变量适配。固定 PSM 与预选三台 SMD 开发实体，不重跑八基准复现。代码与冻结定义见[本轮实验入口](docs/experiments/timeradar_cross_variable_20261116/README.md)。所有原生 TimeRadar 结果属于整窗及批次共享 FRFT 阶数的离线评价；新增适配不是已验证的时滞或污染鲁棒机制。
+
+最新可用代码持续推送到 `codex/latest`；main、审阅快照及历史正负结果保留。下文均为历史阶段记录，不代表当前任务仍在等待旧阶段授权。
+
 ## 2026-11-15 新一代完整方法与论文初稿：实际执行终态
 
 独立研发分支`codex/hybrid-joint-normality-20261115`已完成交替时域/Haar域的可逆联合正常性密度模型、九组真实训练、三域固定评价和关键结果独审。训练与异常评分同为归一化联合NLL，没有恢复已停止预测/遮蔽候选。实际模型见[src/hybrid_tsad/normality_density.py](src/hybrid_tsad/normality_density.py)，配置见[configs/normality-density-20261115.json](configs/normality-density-20261115.json)。
