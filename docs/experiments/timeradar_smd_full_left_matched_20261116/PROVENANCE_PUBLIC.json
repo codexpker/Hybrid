@@ -40,14 +40,15 @@
     "five_method_common_paired_summary.csv": "8383abeb5501c6f653e690b1203ee893bd0876912729b80c81c78a25781ec807"
   },
   "public_metrics_sha256": {
-    "native_full_28x4.csv": "360fd27735e968c7e9034a119ad4c80cc12750ef000cd700e7381984d2bd7c03",
-    "common_28x5.csv": "d41ebd68aed36c0a9e3749a6e0b48c1edfc0c93a26dfdcc95eb6f48c338e5fda",
-    "native_full_macro_median.csv": "b90ad7f856c1f769218655739d19ccfaac2d84b630a57c649eece24ebf6a896c",
-    "native_full_paired_deltas.csv": "8b707022cdb1044230f703aa51b4ec0abd3bb64cf06b13c6b470e81ae2692b64",
-    "native_full_paired_summary.csv": "245b8b32d3f519d10e36d050053264cbbf43456fdbd9b8f32b8261b0c051888f",
-    "five_method_common_macro_median.csv": "56a4f8393f6ca68eb3d345f535e82952c01984ff28668974d913d17c805c7d88",
-    "five_method_common_paired_deltas.csv": "0ea6a2801891a8e7d33b9737c9f0610c23065e354d32ce600610769fef9d90bd",
-    "five_method_common_paired_summary.csv": "8383abeb5501c6f653e690b1203ee893bd0876912729b80c81c78a25781ec807"
+    "native_full_28x4.csv": "d06db3c1d52eb07959f8d7f8f82744646162f52dcfa86e2c70d11e4e2f904279",
+    "common_28x5.csv": "8a835e5f33f4b1551477f873ec0683c05859bc56097290840bfdda4533cce234",
+    "native_full_macro_median.csv": "09cadd4c14b873eb38de1152e9fd32c0075728ba6ec7d558e2da3719b198bc2f",
+    "native_full_paired_deltas.csv": "e5dd843fe8a59ef7cb1d8ce5932be33eb721b79168f32a52c1490a23b52602e5",
+    "native_full_paired_summary.csv": "fc0325d5e076a2205c6845ea4b03d3e3d356f87d0b2d709b4f559e987d882f61",
+    "five_method_common_macro_median.csv": "3929129d5f37d95361e81095cec6a6dee0091989ebaaf4ed0206a0657a8d22d3",
+    "five_method_common_paired_deltas.csv": "bcf04ab2b5a1aa8c0228e8f7781b00de42402ddec626ac5972e78a912bb7f53b",
+    "five_method_common_paired_summary.csv": "1ed9d253b72e72bc8a2084d22f3ab0579234dfc524efe006bad9003ce1a3d577",
+    "matched_left_external.csv": "4fb747acb01c93188defa4c87a55aff770a3935758614d6cfd258e93f608fd82"
   },
   "input_study_references": [
     "timeradar_cross_variable_repeat_20261116",
@@ -64,5 +65,62 @@
   ],
   "LEFT_implementation_commit": "d3fd9750bb8a28333742578d209eb2868cd96756",
   "resource_identity_adapter_commit": "d31f93f",
-  "public_code_is_not_a_raw_data_or_checkpoint_distribution": true
+  "public_code_is_not_a_raw_data_or_checkpoint_distribution": true,
+  "publication_byte_identity": "Public CSV uses Git LF normalization; canonical external raw keeps original CRLF. Hashes are distinguished; parsed field values are identical.",
+  "publication_CSV_equivalence": {
+    "native_full_28x4.csv": {
+      "raw_sha256": "360fd27735e968c7e9034a119ad4c80cc12750ef000cd700e7381984d2bd7c03",
+      "public_git_blob_sha256": "d06db3c1d52eb07959f8d7f8f82744646162f52dcfa86e2c70d11e4e2f904279",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "common_28x5.csv": {
+      "raw_sha256": "d41ebd68aed36c0a9e3749a6e0b48c1edfc0c93a26dfdcc95eb6f48c338e5fda",
+      "public_git_blob_sha256": "8a835e5f33f4b1551477f873ec0683c05859bc56097290840bfdda4533cce234",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "native_full_macro_median.csv": {
+      "raw_sha256": "b90ad7f856c1f769218655739d19ccfaac2d84b630a57c649eece24ebf6a896c",
+      "public_git_blob_sha256": "09cadd4c14b873eb38de1152e9fd32c0075728ba6ec7d558e2da3719b198bc2f",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "native_full_paired_deltas.csv": {
+      "raw_sha256": "8b707022cdb1044230f703aa51b4ec0abd3bb64cf06b13c6b470e81ae2692b64",
+      "public_git_blob_sha256": "e5dd843fe8a59ef7cb1d8ce5932be33eb721b79168f32a52c1490a23b52602e5",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "native_full_paired_summary.csv": {
+      "raw_sha256": "245b8b32d3f519d10e36d050053264cbbf43456fdbd9b8f32b8261b0c051888f",
+      "public_git_blob_sha256": "fc0325d5e076a2205c6845ea4b03d3e3d356f87d0b2d709b4f559e987d882f61",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "five_method_common_macro_median.csv": {
+      "raw_sha256": "56a4f8393f6ca68eb3d345f535e82952c01984ff28668974d913d17c805c7d88",
+      "public_git_blob_sha256": "3929129d5f37d95361e81095cec6a6dee0091989ebaaf4ed0206a0657a8d22d3",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "five_method_common_paired_deltas.csv": {
+      "raw_sha256": "0ea6a2801891a8e7d33b9737c9f0610c23065e354d32ce600610769fef9d90bd",
+      "public_git_blob_sha256": "bcf04ab2b5a1aa8c0228e8f7781b00de42402ddec626ac5972e78a912bb7f53b",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "five_method_common_paired_summary.csv": {
+      "raw_sha256": "8383abeb5501c6f653e690b1203ee893bd0876912729b80c81c78a25781ec807",
+      "public_git_blob_sha256": "1ed9d253b72e72bc8a2084d22f3ab0579234dfc524efe006bad9003ce1a3d577",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    },
+    "matched_left_external.csv": {
+      "raw_sha256": "a9b42297e16b196399a370db42bec2933b2896abc717feed475a1da21dd6289b",
+      "public_git_blob_sha256": "4fb747acb01c93188defa4c87a55aff770a3935758614d6cfd258e93f608fd82",
+      "parsed_CSV_values_identical": true,
+      "only_CRLF_to_LF": true
+    }
+  }
 }
