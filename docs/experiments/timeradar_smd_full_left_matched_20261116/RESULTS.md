@@ -183,4 +183,5 @@ Across these three PSM seeds, Cross-minus-Head AP is negative each time. Cross-m
 - [Native group macro/median](native_full_macro_median.csv); [native paired per-machine deltas](native_full_paired_deltas.csv); [native paired group signs](native_full_paired_summary.csv).
 - [Common-axis macro/median](five_method_common_macro_median.csv); [common-axis paired deltas](five_method_common_paired_deltas.csv); [common-axis paired signs](five_method_common_paired_summary.csv).
 - [Matched LEFT external24 rows](matched_left_external.csv); [public provenance and primary acceptance](PROVENANCE_PUBLIC.json).
+- Public CSV line endings follow Git LF normalization; raw archive CRLF and public Git-blob SHA are distinguished in provenance. All parsed fields are identical; raw scientific files are unchanged.
 - Raw observations, model weights, private machine credentials/addresses and third-party source assets are not uploaded. Detailed raw banks/configs/indices/checkpoints/traces remain in the local/server research archive.
