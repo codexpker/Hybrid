@@ -1,0 +1,68 @@
+{
+  "id": "left_same_permission_20261116_v1",
+  "official_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+  "official_source": "preparations/left_baseline_build_20261101_v1/upstream",
+  "official_source_hashes": {
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863",
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+    "models/CrossAD/Basic_CrossAD.py": "f9b1dc5996be896ab45a6f78f7e6ce94d680d951cca3a62ae759d23467f4e3f2",
+    "models/CrossAD/Attention_Blocks.py": "c0460930efcb8c8c4375ea6b80bd0ca14246d7f4c8feaa493f692d2c93c95ce1",
+    "models/CrossAD/EncDec.py": "c3c68f63fdd5cda3c219687d52bdd6c2a97d0ce416da747399dde92d3408f36c",
+    "models/CrossAD/Context_Blocks.py": "0fad86b3c9bb4984bd4f09743abcf784b44513a6e601606e9134b17ffbcf09a4"
+  },
+  "thop_site": "preparations/left_baseline_build_20261101_v1/deps_thop_transport2_v1/site",
+  "data_binding": "preparations/timeradar_cross_variable_20261116_v1/data_binding.json",
+  "data_binding_sha256": "d10cd11eca48f570f0e4a122f133cd8be60792c743ba68e0554f293ec4e82149",
+  "records": {
+    "PSM": "PSM",
+    "machine-1-1": "SMD",
+    "machine-1-2": "SMD",
+    "machine-1-3": "SMD"
+  },
+  "seed": 2024,
+  "evaluation_seed": 84551,
+  "score_batch_size": 128,
+  "cal_quantile": 0.99,
+  "train_memory_gib": 20,
+  "score_memory_gib": 30,
+  "train_timeout_seconds": 14400,
+  "score_timeout_seconds": 3600,
+  "official_configs": {
+    "PSM": {
+      "model_configs_Left.json": {
+        "path": "preparations/left_baseline_build_20261101_v1/upstream/configs/PSM/model_configs_Left.json",
+        "sha256": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4"
+      },
+      "model_configs_0.json": {
+        "path": "preparations/left_baseline_build_20261101_v1/upstream/configs/PSM/model_configs_0.json",
+        "sha256": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f"
+      },
+      "train_configs.json": {
+        "path": "preparations/left_baseline_build_20261101_v1/upstream/configs/PSM/train_configs.json",
+        "sha256": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab"
+      }
+    },
+    "SMD": {
+      "model_configs_Left.json": {
+        "path": "preparations/cross_domain_left_arx_20261111_v1/configs/SMD/model_configs_Left.json",
+        "sha256": "dd5aaf0238ea3e1f10bd5d944b6baacd53067eba8759db081c29e36620bc3bd4"
+      },
+      "model_configs_0.json": {
+        "path": "preparations/cross_domain_left_arx_20261111_v1/configs/SMD/model_configs_0.json",
+        "sha256": "ac14696992d5a005a444fac0c75cce172a94b2d5138006593d004a5105268d54"
+      },
+      "train_configs.json": {
+        "path": "preparations/cross_domain_left_arx_20261111_v1/configs/SMD/train_configs.json",
+        "sha256": "0a6b4cc8bb0b53f8ed63bfd1ad71741a15114ab7b458827b819054a90bbf6995"
+      }
+    }
+  },
+  "training_permission": "FIT normal/nominal reconstruction; SELECT native epoch loss; scaler FIT-only supplied; no CAL/QUERY in learning",
+  "comparison_scope": "Same target roles/scaler, different native architecture/source initialization/update/compute budget vs TimeRadar adapters",
+  "native_train_rule": "20epochs max, patience3, exact author optimizer/scheduler/early stopping; no 8000 update cap",
+  "native_score_rule": "LEFT.infer, native W192 full nonoverlap offline, NumPy channel mean, tails UNKNOWN; CAL q99 higher >"
+}
