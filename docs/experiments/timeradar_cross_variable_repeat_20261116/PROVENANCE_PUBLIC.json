@@ -1,0 +1,93 @@
+{
+  "fixed_method_commit": "9deb6c508be5bb0aac35d10ad4986769ecf8ad1e",
+  "repeat_config_commit": "7cb6cb288cbb795e0d7ab0b4b842ec53099f02a8",
+  "scientific_runtime_commit": "fa4c07cbd7361f76ecfd905c8cbe9adb06fddcec",
+  "analysis_code_commit": "951e2fc7e192c04ba4ad2d3fc1d56dd695ad2ec5",
+  "training_seeds": [
+    2024,
+    2025,
+    2026
+  ],
+  "new_training_seeds": [
+    2025,
+    2026
+  ],
+  "score_seed": 2024,
+  "select_seed": 84551,
+  "new_training_jobs": 24,
+  "new_score_jobs": 24,
+  "new_raw_banks": 48,
+  "reused_2024_raw_banks": 32,
+  "new_config_identities": {
+    "2025": {
+      "filename": "timeradar-cross-variable-repeat-seed2025-20261116.json",
+      "sha256": "438d89fcaa426a8aa26618464655f70710ae56bee3809ddaec9c3ba00652fb8c",
+      "permitted_differences": [
+        "id",
+        "output",
+        "seed"
+      ]
+    },
+    "2026": {
+      "filename": "timeradar-cross-variable-repeat-seed2026-20261116.json",
+      "sha256": "59f706f61e26d664e4aa406c805cfc59b26667292dcf4cf700b7709f9ae09ac8",
+      "permitted_differences": [
+        "id",
+        "output",
+        "seed"
+      ]
+    }
+  },
+  "source_sha256": {
+    "timeradar_cross_variable.py": "9c4a7d7762226b7a5d2b75fa7b98ad03c032c908abd425929f35a97c0d51d5f7",
+    "timeradar_cross_variable_runner.py": "9667897a42b0e2087c85baba3bb2c8602088370e002c24d43da601e748faa57b",
+    "timeradar_cross_variable_evaluation.py": "6077ccf194eee92323cc45238f246ab89468e60314cd39de5bffe5fef1900cd0",
+    "timeradar_cross_variable_reproducibility.py": "0cf45e9c181a0f8ad490691f0a1845b6318df22ba3478555916781be4b8bfa61"
+  },
+  "original_raw_seal_sha256": "e073be13716f3b11e3121043c9c74086a20f560b6f5519cf619b9b3d8e91f146",
+  "new_global_raw_seal_sha256": "d0011c54c86fb175ca573e816873c03921457c3e503db8ce16aedb040e67dd95",
+  "old_2024_metrics_sha256": "61697563a1aa7d99a403b6e3e1062246f5be3f0697a825c09e04d4cb100edd90",
+  "audit_sha256": "65937c61fa98a5c9abfb63e4db4600ae33007b82a154e23f30b41c54ab5a353d",
+  "compute_receipt_sha256": "ee201dccddb749587fa6c186c6a9d4ff0bc93cda50a1e7a5973a16ea95d89859",
+  "new_GPU_hours": 4.575959801740116,
+  "new_GPU_hours_by_seed": {
+    "2025": 2.2887759442461864,
+    "2026": 2.2871838574939303
+  },
+  "new_audit_GPU_hours": 0,
+  "previous_2024_GPU_hours_not_rebilled": 2.2981926223966807,
+  "three_seed_comparison_GPU_hours": 6.874152424136797,
+  "scope_of_total": "Only this fixed three-seed comparison incl its original checks; not all historical Hybrid research",
+  "CPU_analysis_wall_seconds": 11.547000000005937,
+  "CPU_analysis_environment": {
+    "Python": "3.12.12 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 20:05:38) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "2.4.4",
+    "sklearn": "1.4.2",
+    "matplotlib": "3.10.8"
+  },
+  "public_files_sha256": {
+    "mean_sample_SD.csv": "8ebc2b1d9540ca70a301c835cb69d5ac1f3bf83ac3948690b508b3589ad5ab29",
+    "paired_cross_differences.csv": "b322d675f599df1c32ab30f200c49eca30e64412f783c9ad3ccceec6666a9320",
+    "per_entity_seed_metrics.csv": "25515c072559ce4d51c8b1acc8c31e857f0f7f730a68e20ce9a2394b7d1da1b9",
+    "STATISTICS.json": "fc525ae45c5d250d9c2bfd69a56ec146b6b64beff5b435faf8c678c90d10943c",
+    "training_selection.csv": "ba7cae7024a88f7288311497a7da469188b70d847a8c22f0b92cca9d0bd3ed21",
+    "figures/machine-1-1_PR_ROC_separate_seeds.png": "09c90e8f929168d4aef7ea0d41831605cde27d0d1b7c5eb696f22dbd74200ba4",
+    "figures/machine-1-1_PR_ROC_separate_seeds.svg": "1d7e23065bc05c5ce399d669a93025203b8f6e66f8d47192bae45f15feba2197",
+    "figures/machine-1-2_PR_ROC_separate_seeds.png": "deebb04c7ba53bf2b4c9bf2e709200069bbddcea39fac3e35dd088de7bbcd352",
+    "figures/machine-1-2_PR_ROC_separate_seeds.svg": "248b0ef83a1890e0286d45d19aca6396e208250177e49a46de60d08500bb9d2a",
+    "figures/machine-1-3_PR_ROC_separate_seeds.png": "4dca32e379e04fd5f53884da4af6a7e51ac371076eb4132f934cd62f851088e2",
+    "figures/machine-1-3_PR_ROC_separate_seeds.svg": "d3e3773aa793ffb2fab66a5e22dda4a6128c14a04fc6bce072705abd277d57e3",
+    "figures/PSM_PR_ROC_separate_seeds.png": "84ccaafbe3bc8542b0ab57a298a20dbbee214f4903ee574e3ea8cb68d5d8d4c3",
+    "figures/PSM_PR_ROC_separate_seeds.svg": "2042271b53842ee6c7e0bdd326322a59240c90b929e47c11788d88cd0a73f27d"
+  },
+  "private_assets_not_published": [
+    "Raw data and labels",
+    "Model checkpoints",
+    "Raw score and curve arrays",
+    "Absolute filesystem/server paths and credentials",
+    "Unrelated manuscript edits"
+  ],
+  "method_changes": false,
+  "query_selection": false,
+  "external_training_repeated": false
+}

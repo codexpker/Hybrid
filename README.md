@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-16 当前配方三种子重复性：已完成并验收
+
+固定 `9deb6c5` 的完整TimeRadar跨变量适配配方，复用2024全部原件，仅新增2025/2026的24次匹配训练及24次评分。[逐实体逐种子、配对差和PR/ROC曲线](docs/experiments/timeradar_cross_variable_repeat_20261116/RESULTS.md)已完成关键独立复算：三台SMD各三个种子相对等参Self及Head均有AP增量；PSM负项和误报代价保留。建议保持配方进入更广泛固定验证，不判整体NO-GO，也不宣称已取得跨域低误报持续优势。SMD三台机器属于一个数据域，本轮未自动追加新方法或更广矩阵。
+
 ## 2026-11-16 当前固定实验：完整 TimeRadar 跨变量残差适配
 
 从 `ab65ff6` 派生 `codex/timeradar-cross-variable-20261116`，复用原官方源码、预训练权重、完整前向和原生方差评分，比较零更新、重构头适配、等参数非跨变量适配和跨变量适配。固定 PSM 与预选三台 SMD 开发实体，不重跑八基准复现。代码与冻结定义见[本轮实验入口](docs/experiments/timeradar_cross_variable_20261116/README.md)。所有原生 TimeRadar 结果属于整窗及批次共享 FRFT 阶数的离线评价；新增适配不是已验证的时滞或污染鲁棒机制。

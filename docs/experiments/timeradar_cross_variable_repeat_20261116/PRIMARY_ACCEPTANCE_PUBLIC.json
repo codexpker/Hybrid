@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETED_AUDITED_ACCEPTED",
+  "method_commit": "9deb6c508be5bb0aac35d10ad4986769ecf8ad1e",
+  "verdict": "REPEATED_LOCAL_SMD_AP_GAIN; WORTH_BROADER_FIXED_VALIDATION; NOT_GLOBAL_NO_GO_OR_ESTABLISHED_CROSS_DOMAIN_ADVANTAGE",
+  "all_three_SMD_entity_AP_seed_pairs_positive_for_Self_and_Head": true,
+  "PSM_AP_and_false_alarm_cost_retained": true,
+  "SMD_entities_are_one_domain": true,
+  "audit_sha256": "65937c61fa98a5c9abfb63e4db4600ae33007b82a154e23f30b41c54ab5a353d",
+  "new_global_raw_seal_sha256": "d0011c54c86fb175ca573e816873c03921457c3e503db8ce16aedb040e67dd95",
+  "new_GPU_hours": 4.575959801740116,
+  "new_audit_GPU_hours": 0,
+  "new_jobs_remaining": 0,
+  "new_method_or_broader_matrix_dispatched": false,
+  "query_based_recipe_or_threshold_changes": false,
+  "historical_results_preserved": true
+}

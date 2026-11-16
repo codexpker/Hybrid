@@ -1,0 +1,41 @@
+{
+  "status": "PASS_BOUNDED_INDEPENDENT_AUDIT",
+  "original_report_sha256": "65937c61fa98a5c9abfb63e4db4600ae33007b82a154e23f30b41c54ab5a353d",
+  "raw_identity": {
+    "new_banks": 48,
+    "old_banks_unchanged": 32,
+    "native_variance_mean_max_relative": 4.7587278118044196e-07,
+    "full_offline_batch_availability_exact": true,
+    "matched_score_streams": true
+  },
+  "metrics": {
+    "rows": 36,
+    "new_full_metric_rows_independently_recomputed": 24,
+    "old_metric_rows_exactly_reused": 12,
+    "numeric_event_cells": 24864,
+    "statistic_cells": 4408,
+    "old_curve_files_SHA_identical": 35,
+    "new_PR_ROC_exact": 24,
+    "CAL_marker_strict_greater": true,
+    "paired_before_sample_SD": true,
+    "NA_not_zeroed": true,
+    "no_online_delay_claim": true
+  },
+  "checkpoint_check": {
+    "status": "PASS",
+    "train_jobs": 24,
+    "within_seed_initial_plan_mask_matched": true,
+    "frozen_body_selected_final_exact": true,
+    "normal_earliest_min_SELECT": true
+  },
+  "cost": {
+    "new_outer_GPU_hours": 4.575959801740116,
+    "new_jobs": 48,
+    "audit_GPU_hours": 0,
+    "old_GPU_hours_not_rebilled": true
+  },
+  "evidence_reused": "2024 accepted source, parity, copy probe and event-formula tests; no new GPU/model forward",
+  "independence": "Same-family role-separated auditor, not external blinded review",
+  "scope": "Three training seeds; fixed historically exposed PSM and three entities of the same SMD domain. No blind confirmation, lag, online or contamination claim.",
+  "audit_attempt_note": "Auditor-only metadata assumption about final.pth config was corrected to the unchanged real runner schema. Original failed attempt is retained; scientific files/results were not changed."
+}
