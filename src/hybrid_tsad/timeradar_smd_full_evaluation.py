@@ -97,17 +97,80 @@ def summaries(rows,entities,methods):
     return dict(status='COMPLETED'if complete else'INCOMPLETE',macro=macro,paired_rows=pairs,paired_summary=pair_summary)
 
 
-def gate(w,registry):
-    root=w/'results/timeradar_smd_full_20261116_v1';seal=root/'RAW_BANK_SEAL.json';raw=read(seal)
+def verify_resource_recovery(w,root,seal,expected):
+    """Validate one unstarted score recovery without rewriting the 198-bank seal."""
+    prep=w/'preparations/timeradar_smd_full_20261116_v1'
+    if seal!=root/'RECOVERED_RAW_BANK_SEAL.json':raise ValueError('Explicit supported recovery seal path required')
+    raw=read(seal);original_path=root/'RAW_BANK_SEAL.json'
+    original_global=prep/'ALL_SMD_EXTENSION_RAW_BANK_SEAL.json'
+    start_path=prep/'RESOURCE_RECOVERY_START.json';final_path=prep/'RESOURCE_RECOVERY_FINAL_SEAL.json'
+    final,start=read(final_path),read(start_path)
+    checked(seal,final['recovered_result_seal_sha256'])
+    if {k:v for k,v in final.items()if k!='recovered_result_seal_sha256'}!=raw:raise PermissionError('Recovery wrapper does not bind the same result')
+    checked(original_path,raw['original_controller_result_sha256']);checked(original_global,raw['original_controller_global_sha256'])
+    checked(start_path,raw['recovery_start_sha256'])
+    original=read(original_path);prior_global=read(original_global)
+    if prior_global['result_seal_sha256']!=ev.sha(original_path):raise PermissionError('Original global/result seal chain mismatch')
+    if (original['status']!='COMPLETED_WITH_FAILURES'or len(original['banks'])!=198
+            or raw['status']!='COMPLETED'or not raw['resource_recovery_only']or not raw['original_198_banks_unchanged']):
+        raise ValueError('Only the declared 198+2 resource recovery is accepted')
+    old={b['relative']:b for b in original['banks']};new={b['relative']:b for b in raw['banks']}
+    if len(old)!=198 or len(new)!=200 or set(new)!=expected:raise ValueError('Recovered bank set must be exactly the fixed 200')
+    if any(new.get(k)!=v for k,v in old.items()):raise PermissionError('An original 198-bank identity changed')
+    job=raw['recovery_job'];rid,arm=job['record'],job['arm']
+    additions={f'{rid}/{arm}/score/{r}.npz'for r in ('CAL','QUERY')}
+    if set(new)-set(old)!=additions or job['phase']!='score'or job['exit_code']!=0:raise ValueError('Recovery must add one successful score job and its two banks')
+    if (len(original['jobs'])!=174 or len(raw['jobs'])!=175 or raw['jobs']!=original['jobs']+[job]
+            or any(j['exit_code']!=0 for j in raw['jobs'])
+            or any((j['record'],j['arm'],j['phase'])==(rid,arm,'score')for j in original['jobs'])):
+        raise ValueError('Recovery must not repeat an already executed score or any training')
+    if (start['original_result_sha256']!=ev.sha(original_path)or start['original_global_sha256']!=ev.sha(original_global)
+            or not start['no_retraining']or not start['no_prior_score_execution']
+            or start['preflight_rejection_GPU_hours']!=0 or start['recovery_gpu']!=job['gpu']):
+        raise PermissionError('Unstarted resource recovery authorization identity mismatch')
+    rejection=local(w,start['preflight_rejection_path']);checked(rejection,start['preflight_rejection_sha256'])
+    reject=read(rejection)
+    if (reject['record'],reject['arm'])!=(rid,arm)or raw['resource_preflight_rejections']!=original['failures']:
+        raise PermissionError('Original resource rejection must remain disclosed')
+    prefix=prep/'jobs'/f'{rid}__{arm}__score'
+    launch_path=Path(str(prefix)+'_LAUNCH.json');exit_path=Path(str(prefix)+'_EXIT.json')
+    launch=read(launch_path)
+    if read(exit_path)!=job or launch['pid']!=job['pid']or launch['gpu']!=job['gpu']:raise PermissionError('Recovery launch/exit job identity mismatch')
+    command=launch['command']
+    if ('score'not in command or command[command.index('--record')+1]!=rid or command[command.index('--arm')+1]!=arm):
+        raise PermissionError('Recovery command is not the original score identity')
+    cp=local(w,command[command.index('--config')+1]);checked(cp,start['config_sha256'])
+    wave=next(v for v in raw['waves']if rid in v['records'])
+    if wave['config_sha256']!=start['config_sha256']:raise PermissionError('Recovery changed wave configuration')
+    train_path=root/rid/arm/'train/TRAIN_RECEIPT.json';score_path=root/rid/arm/'score/SCORE_RECEIPT.json'
+    train,score=read(train_path),read(score_path)
+    if (train['record']!=rid or train['arm']!=arm or score['record']!=rid or score['arm']!=arm or score['status']!='COMPLETED'
+            or train['updates']!=2000 or train['selected_sha256']!=start['selected_sha256']
+            or score['checkpoint_sha256']!=train['selected_sha256']or score['config_sha256']!=start['config_sha256']):
+        raise PermissionError('Recovery must reuse the selected trained checkpoint and same config')
+    hashes={Path(b['path']).name:b['sha256']for b in score['banks']}
+    for role in ('CAL','QUERY'):
+        relative=f'{rid}/{arm}/score/{role}.npz'
+        if hashes[f'{role}.npz']!=new[relative]['sha256']:raise PermissionError('Recovery score receipt bank identity mismatch')
+        checked(root/relative,new[relative]['sha256'])
+    return {str(p):ev.sha(p)for p in (original_path,original_global,start_path,final_path,rejection,
+                                     launch_path,exit_path,cp,train_path,score_path)}
+
+
+def gate(w,registry,*,model_seal=None):
+    root=w/'results/timeradar_smd_full_20261116_v1'
+    seal=root/'RAW_BANK_SEAL.json'if model_seal is None else local(w,model_seal)
+    raw=read(seal)
     if raw['status']not in ('COMPLETED','COMPLETED_WITH_FAILURES'):
         raise FileNotFoundError('A complete global terminal seal is required before labels')
     new={r['id']for r in registry['records']if r['id']not in OLD}
     expected={f'{r}/{a}/score/{role}.npz'for r in new for a in FULL_METHODS for role in ('CAL','QUERY')}
+    recovery_inputs=verify_resource_recovery(w,root,seal,expected)if model_seal is not None else{}
     actual={b['relative']for b in raw['banks']}
     if len(actual)!=len(raw['banks'])or not actual<=expected:raise ValueError('Unexpected/duplicate sealed banks')
     if raw['status']=='COMPLETED'and actual!=expected:raise ValueError('Successful global seal must bind all 200 banks')
     for b in raw['banks']:checked(root/b['relative'],b['sha256'])
-    configs={};assets={str(seal):ev.sha(seal)}
+    configs={};assets={str(seal):ev.sha(seal),**recovery_inputs}
     for wave in raw['waves']:
         cp=local(w,wave['config_path']);checked(cp,wave['config_sha256']);cfg=read(cp)
         bp=local(w,cfg['data_binding']);checked(bp,cfg['data_binding_sha256']);binding=read(bp)
@@ -142,13 +205,13 @@ def checked_bank(folder,rid,arm,record,config=None):
 def _na(rid,arm,reason):return dict(record=rid,arm=arm,status='MISSING_OR_FAILED',reason=reason,seed=2024,AP=None,ROC_AUC=None)
 
 
-def run(workspace,output):
+def run(workspace,output,*,model_seal=None):
     started=time.monotonic();w,output=Path(workspace),Path(output)
     prep=w/'preparations/timeradar_smd_full_20261116_v1'
     registry_path=prep/'full28_registry.json';registry=read(registry_path)
     names=[r['id']for r in registry['records']]
     if len(set(names))!=28 or registry['expected_entities']!=28:raise ValueError('Fixed complete 28-name registry required')
-    root,configs,inputs=gate(w,registry)  # All new model banks sealed before labels.
+    root,configs,inputs=gate(w,registry,model_seal=model_seal)  # All new model banks sealed before labels.
     binding_path=prep/'data_binding_full28.json';binding={r['id']:r for r in read(binding_path)['records']}
     ep=prep/'evaluation_manifest_full28.json';evalmeta={r['id']:r for r in read(ep)['records']}
     inputs.update({str(p):ev.sha(p)for p in (registry_path,binding_path,ep)})
@@ -331,6 +394,7 @@ def compare_left(workspace,output):
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--workspace',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--left-comparison',action='store_true')
+    p.add_argument('--model-seal',type=Path)
     a=p.parse_args()
     if a.left_comparison:compare_left(a.workspace,a.output)
-    else:run(a.workspace,a.output)
+    else:run(a.workspace,a.output,model_seal=a.model_seal)
