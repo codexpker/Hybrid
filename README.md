@@ -1,5 +1,13 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-16 当前：固定选择性通道上下文适配实验
+
+完整[SMD28扩展与同权限LEFT比较](docs/experiments/timeradar_smd_full_left_matched_20261116/RESULTS.md)已经完成并独立复算：原3台可重复AP正项保留，但新增25台Cross相对Self为10胜15负，未建立广泛稳定增量。均值Cross停止扩种、扩域和污染矩阵；完整TimeRadar基础保留。
+
+当前只在适配层将其他变量等权平均替换为接收变量相关的软上下文聚合，保留原生自身残差、骨干、解码器和L1评分。PSM及原3台SMD固定seed2024；旧结果兼容复用，新增参数与等参非跨变量控制、供体信息干预及因果权限边界见[本轮固定定义](docs/experiments/timeradar_selective_context_20261116/README.md)。这是正在验证的结构假设，尚无新的检测收益或无关通道根因结论。
+
+以下阶段记录保留其历史状态，不代表当前自动扩展旧任务。
+
 ## 2026-11-16 当前配方三种子重复性：已完成并验收
 
 固定 `9deb6c5` 的完整TimeRadar跨变量适配配方，复用2024全部原件，仅新增2025/2026的24次匹配训练及24次评分。[逐实体逐种子、配对差和PR/ROC曲线](docs/experiments/timeradar_cross_variable_repeat_20261116/RESULTS.md)已完成关键独立复算：三台SMD各三个种子相对等参Self及Head均有AP增量；PSM负项和误报代价保留。建议保持配方进入更广泛固定验证，不判整体NO-GO，也不宣称已取得跨域低误报持续优势。SMD三台机器属于一个数据域，本轮未自动追加新方法或更广矩阵。
