@@ -1,0 +1,36 @@
+{
+  "data": "results/hybrid_g36_conditional_20261115_v1/data",
+  "upstream": "preparations/left_baseline_build_20261101_v1/upstream",
+  "source_model_config": "preparations/left_multievent_mixed_u_20261111_v1/configs/SWAT/model_configs_Left.json",
+  "id": "g36_frozen_response_correction_20261116_v1",
+  "output": "results/g36_frozen_response_correction_20261116_v1",
+  "seed": 2025,
+  "history": 48,
+  "block": 4,
+  "response_channels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "batch_size": 64,
+  "LEFT_checkpoint": "results/hybrid_g36_conditional_20261115_v1/models/LEFT_native/train/selected.pth",
+  "LEFT_train_receipt": "results/hybrid_g36_conditional_20261115_v1/models/LEFT_native/train/TRAIN_RECEIPT.json",
+  "ridge_model": "results/hybrid_g36_conditional_20261115_v1/ridge/ridge_conditional/model.npz",
+  "ridge_banks": "results/hybrid_g36_conditional_20261115_v1/ridge/ridge_conditional",
+  "methods": [
+    "T_only",
+    "TF"
+  ],
+  "lambda_mean_scalar": 1.0,
+  "normal_gate": "TF normal SELECT scalar MSE strictly below both frozen Ridge and T_only",
+  "feature": "mean time-token and mean frequency-token of original fusion output before prototype; T-only masks F slot but fused T already includes frequency",
+  "feature_standardization": "FIT only mean/std floor1e-6; shared T_only and TF",
+  "objective": "mean over N*16 residual squared + lambda*Frobenius W squared; no bias; sum-loss alpha=N*16 at lambda1",
+  "resource": {
+    "timeout_seconds": 2700,
+    "score_GiB": 30,
+    "max_parallel": 1
+  },
+  "LEFT_provenance_manifest": "results/hybrid_g36_conditional_20261115_v1/models/shared/MANIFEST.json"
+}
