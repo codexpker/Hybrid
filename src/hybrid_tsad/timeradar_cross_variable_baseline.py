@@ -33,11 +33,17 @@ def history_mean512(values):
     return result
 
 
-def produce(workspace,output):
+def produce(workspace,output,*,data_binding=None,record_ids=None):
     w,output=Path(workspace),Path(output)
-    binding=w/'preparations/timeradar_cross_variable_20261116_v1/data_binding.json'
+    binding=(w/'preparations/timeradar_cross_variable_20261116_v1/data_binding.json'if data_binding is None else Path(data_binding))
+    if not binding.is_absolute():binding=w/binding
     meta=json.loads(binding.read_text(encoding='utf8'))
+    if record_ids is not None:
+        selected=set(record_ids)
+        if not selected or not selected<={r['id']for r in meta['records']}:raise ValueError('Explicit valid record IDs required')
+        meta['records']=[r for r in meta['records']if r['id']in selected]
     output.mkdir(parents=True,exist_ok=False);started=time.monotonic();receipts=[]
+    with(output/'baseline_producer_snapshot.py').open('xb')as handle:handle.write(Path(__file__).read_bytes())
     for record in meta['records']:
         folder=output/record['id']/'history_mean512'/'score';folder.mkdir(parents=True)
         roles=[];banks=[]
@@ -63,6 +69,7 @@ def produce(workspace,output):
         _dump(folder/'SCORE_RECEIPT.json',receipt);receipts.append(receipt)
     _dump(output/'SEAL.json',dict(status='COMPLETED_SCORE_ONLY_PENDING_MODEL_BANK_SEAL',
         records=len(receipts),banks=sum(len(r['banks'])for r in receipts),seconds=time.monotonic()-started,
+        record_ids=[r['record']for r in receipts],data_binding_sha256=sha(binding),
         labels_read=False,GPU_hours=0,source_sha256=sha(__file__),receipts=receipts))
     return receipts
 
@@ -128,8 +135,9 @@ if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--workspace',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--evaluate-common',action='store_true');p.add_argument('--model-results',type=Path)
     p.add_argument('--baseline-results',type=Path)
+    p.add_argument('--data-binding',type=Path);p.add_argument('--records',nargs='+')
     a=p.parse_args()
     if a.evaluate_common:
         if a.model_results is None or a.baseline_results is None:p.error('Both score roots required')
         compare_common(a.workspace,a.model_results,a.baseline_results,a.output)
-    else:produce(a.workspace,a.output)
+    else:produce(a.workspace,a.output,data_binding=a.data_binding,record_ids=a.records)
