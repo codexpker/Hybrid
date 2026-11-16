@@ -43,3 +43,9 @@ CATCH, ICLR2025, [paper](https://arxiv.org/abs/2410.12261), [official fixed code
 Zero/disabled equivalence, complex layout, K/B/P isolation, receiver-specific context, finite single-channel fallback, active Q/K gradients after up updates, and exact capacity matching precede real training. Fixed FIT-only diagnostics use the first four complete windows, compare selective versus forced-uniform context with identical weights/RNG, and intervene on a named donor value. Check effects on actual residuals, decoder outputs and native scores. Joint channel permutation is equivariant and is not an effective falsification. No forced-uniform QUERY scoring candidate is added.
 
 Use at most four existing A40 tasks, training20GiB/scoring30GiB, fresh device checks and bounded job timeouts. Record actual occupied time, PIDs, failures and cleanup; preserve other users' work. One bounded key-result audit follows completion. Keep all negative evidence and do not automatically expand local variants if the increment is insufficient.
+
+## Actual execution identity
+
+The first FIT integration run completed its numerical checks but failed when writing a receipt: the descriptive `interventions` keyword collided with the statistics dictionary. Four failed FIT jobs and their actual compute remain archived; no formal training or QUERY evaluation occurred in that run. The sole repair renames that descriptive field to `intervention_definition`.
+
+The execution config is therefore `configs/timeradar-selective-context-v2-20261116.json`, whose only differences from the original config are `id` and `output`. This is an output-identity repair, not a second scientific candidate. The evaluator must explicitly receive this config. Both original failed and repaired-run identities are retained; the aggregation formula and all training/scoring settings are unchanged.

@@ -148,7 +148,7 @@ def mechanism(w, config_path, cfg, out, record, arm, device):
         zero_and_disabled_native_bitexact=True, zero_native_L1score_bitexact=True, diagnostic_optimizer_steps=diagnostic_steps,
         initial_adapter_state=initial_adapter, final_adapter_state=base.state_hashes(m.adapter),
         trainable_parameters=expected, roles=reader.access, input_windows=4,
-        interventions='donor0 value only, fixed Q/K; uniform other-variable weights; FIT only',
+        intervention_definition='donor0 value only, fixed Q/K; uniform other-variable weights; FIT only',
         limitations='No query or scientific benefit; C1 falls back to h, C2 has one donor and unidentifiable Q/K selection', **readout))
     m.close()
 
