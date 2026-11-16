@@ -197,16 +197,18 @@ def score(w,config,cfg,out,record,arm,device):
     seed(cfg['score_seed'],device);data=RoleReader(w,cfg,record,['CAL','QUERY']);spec=cfg['records'][record];banks=[]
     with torch.no_grad():
         for role in ['CAL','QUERY']:
-            values,index=data.load(role);scores=[];positions=[];available=[];window_end=[];rng_stream=[]
+            values,index=data.load(role);scores=[];positions=[];available=[];window_end=[];rng_stream=[];channel_variance=[];reconstruction_mean=[]
             for starts in native_batches(values,spec['batch_size']):
                 rng_stream.append(hashlib.sha256((torch.cuda.get_rng_state(device)if device.type=='cuda'else torch.get_rng_state()).cpu().numpy().tobytes()).hexdigest())
                 x=tensor_windows(values,starts,device);_,outputs=m(x,norm=spec['norm'],copies=cfg['copies'])
                 s=m.cal_anomaly_score(x,outputs,nn.MSELoss(),L=spec['L']);assert s.shape==x.shape[:2]and torch.isfinite(s).all()
                 scores.append(s.cpu().numpy().reshape(-1));positions.extend(index[t:t+100]for t in starts)
+                channel_variance.append(outputs.var(0).cpu().numpy().reshape(-1,x.shape[-1]))
+                reconstruction_mean.append(outputs.mean(0).cpu().numpy().reshape(-1,x.shape[-1]))
                 available.append(np.full(len(starts)*100,index[starts[-1]+99],dtype=np.int64))
                 window_end.append(np.repeat(index[starts+99],100))
             idx=np.concatenate(positions);score_=np.concatenate(scores);assert len(idx)==len(values)//100*100
-            p=out/(role+'.npz');np.savez_compressed(p,index=idx,score=score_,available_index=np.concatenate(available),max_input_index=np.concatenate(available),window_end_index=np.concatenate(window_end))
+            p=out/(role+'.npz');np.savez_compressed(p,index=idx,score=score_,available_index=np.concatenate(available),max_input_index=np.concatenate(available),window_end_index=np.concatenate(window_end),channel_variance=np.concatenate(channel_variance),reconstruction_mean=np.concatenate(reconstruction_mean))
             banks.append(dict(record=record,role=role,path=str(p),sha256=sha(p),points=len(idx),unscored_tail=len(values)%100,mask_RNG_stream_sha256=hashlib.sha256(''.join(rng_stream).encode()).hexdigest(),batch_size=spec['batch_size'],score_seed=cfg['score_seed']))
     assert state_hashes(m)==before
     dump(out/'SCORE_RECEIPT.json',dict(status='COMPLETED',config_sha256=sha(config),native_state_hashes=native_before,reused_zero=False,arm=arm,record=record,selected_update=selected,checkpoint_sha256=checkpoint_sha,banks=banks,roles=data.access,native_score='original cal_anomaly_score, original mean MSE argument, L1 variance only',mode='offline complete100 window; no strict online alarm claim',immutable=True,no_labels_decoded=True,no_threshold_fitting=True));m.close()
