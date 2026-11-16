@@ -1,0 +1,163 @@
+{
+  "id": "timeradar_smd_full_20261116_wave2_v1",
+  "data_binding": "preparations/timeradar_smd_full_20261116_v1/data_binding_wave2.json",
+  "data_binding_sha256": "88294a6ea074c66c99a89e67b5150d5af754601752b6e68009d851f9a2b912c0",
+  "output": "results/timeradar_smd_full_20261116_v1",
+  "author_source": "preparations/timeradar_cross_variable_20261116_v1/runtime/official/TimeRadar.py",
+  "author_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "checkpoint": "preparations/timeradar_cross_variable_20261116_v1/runtime/official/checkpoint.pth",
+  "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "model": {
+    "seq_len": 100,
+    "hidden_dim": 64,
+    "d_model": 256,
+    "depth": 10,
+    "patch_len": 5,
+    "mask_mode": "c"
+  },
+  "adapter_rank": 16,
+  "arms": [
+    "decoder_head",
+    "self",
+    "cross"
+  ],
+  "seed": 2024,
+  "select_seed": 84551,
+  "score_seed": 2024,
+  "copies": 10,
+  "updates": 2000,
+  "learning_rate": 0.0001,
+  "betas": [
+    0.9,
+    0.95
+  ],
+  "eps": 1e-08,
+  "weight_decay": 0.1,
+  "warmup_steps": 200,
+  "select_every": 200,
+  "records": {
+    "machine-1-6": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-1-7": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-1-8": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-2": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-3": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-4": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-5": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-6": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-7": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-8": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-2-9": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-10": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-11": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-4": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-5": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-6": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-7": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-8": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    },
+    "machine-3-9": {
+      "batch_size": 32,
+      "norm": 1,
+      "L": 1,
+      "copies": 10
+    }
+  },
+  "selection": "own normal SELECT mean reconstruction MSE all full windows, fixed batch/masks; 0/every200 min earlier ties",
+  "scoring": "unaltered native cal_anomaly_score L1; CAL then QUERY one seed2024 stream, offline100/batch FRFT sharing",
+  "normalization": "one scaler FIT-only per record; same fourarms; native norm fixed per record",
+  "resource": {
+    "max_parallel": 4,
+    "train_GiB": 20,
+    "score_GiB": 30,
+    "timeout_seconds": 7200
+  }
+}
