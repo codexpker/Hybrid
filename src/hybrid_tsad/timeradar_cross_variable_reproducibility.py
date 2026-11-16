@@ -149,6 +149,8 @@ def accepted_curves(workspace,output):
         index,score,_=ev._load_bank(path);labels,lp=_labels(w,rid)
         _curve(output/rid/arm/'seed2024',index,score,labels,rid=rid,arm=arm,seed=2024,
                inputs={str(p):ev.sha(p)for p in (path,csvpath,lp,seal)},metric_row=row)
+    with(output/'curve_array_producer_snapshot.py').open('xb')as handle:
+        handle.write(Path(__file__).read_bytes())
     ev._dump(output/'RECEIPT.json',dict(status='COMPLETED_ACCEPTED_2024_CURVES_ONLY',rows=12,
         old_metrics_csv_sha256=OLD_CSV_SHA,new_training=False,new_forward=False,old_metrics_recomputed=False,
         GPU_hours=0,source_sha256=ev.sha(__file__)))
