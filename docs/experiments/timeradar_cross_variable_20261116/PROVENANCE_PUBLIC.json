@@ -1,0 +1,74 @@
+{
+  "base_commit": "ab65ff6cc2becb37150a86e18a7933730b99612d",
+  "science_source_commit": "fa4c07cbd7361f76ecfd905c8cbe9adb06fddcec",
+  "official_TimeRadar_commit": "4e06d0ad2bbe4c7e349c5a230fa5787d186e1eb2",
+  "official_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "raw_bank_seal_sha256": "e073be13716f3b11e3121043c9c74086a20f560b6f5519cf619b9b3d8e91f146",
+  "seed": 2024,
+  "updates_per_arm": 2000,
+  "environment": {
+    "Python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+    "torch": "2.8.0+cu128",
+    "numpy": "1.26.4",
+    "torch_frft": "0.8.1",
+    "cuda": "12.8",
+    "cudnn": 91002,
+    "devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA A40",
+        "memory_bytes": 47697690624
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA A40",
+        "memory_bytes": 47697690624
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA A40",
+        "memory_bytes": 47697690624
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA A40",
+        "memory_bytes": 47697690624
+      }
+    ]
+  },
+  "GPU_hours_model_outer": 2.2972291113932926,
+  "GPU_hours_independent_replay": 0.0009635110033882989,
+  "GPU_hours_total": 2.2981926223966807,
+  "GPU_phases": {
+    "parity": {
+      "jobs": 2,
+      "GPU_hours": 0.0019134716855155097
+    },
+    "train": {
+      "jobs": 12,
+      "GPU_hours": 2.267999862101343
+    },
+    "score": {
+      "jobs": 16,
+      "GPU_hours": 0.02731577760643429
+    }
+  },
+  "public_csv_sha256": {
+    "external_psm_common.csv": "9e38b2640dda32e71618f41fac383b4f40f900f18b3388b370f4a3677ad30a91",
+    "internal_full_axis.csv": "61697563a1aa7d99a403b6e3e1062246f5be3f0697a825c09e04d4cb100edd90",
+    "same_permission_simple_common.csv": "70820741b08603a857d6ec7acd312d2f1754b2bc57f470f164bc02477c25214e",
+    "training_selection.csv": "d72dbe6d9c81000b06f2c6565b42c951a45921f4ac016b2ccf001410fb775c29"
+  },
+  "private_assets_omitted": [
+    "Raw data",
+    "Model checkpoints",
+    "Absolute local/server path manifests",
+    "Credentials and unrelated manuscript edits"
+  ],
+  "historical_results_unchanged": true,
+  "scientific_scope": "Development / historical exposure; one seed; offline native TimeRadar vs explicitly causal simple baseline; no lag/robustness confirmation",
+  "runtime_runner_sha256": "9667897a42b0e2087c85baba3bb2c8602088370e002c24d43da601e748faa57b",
+  "runtime_adapter_sha256": "9c4a7d7762226b7a5d2b75fa7b98ad03c032c908abd425929f35a97c0d51d5f7",
+  "runtime_config_sha256": "2a986aeb61e7985d09c7960916a0bd151ed2046afa2690e3eebf2b68329f065e"
+}

@@ -1,0 +1,660 @@
+{
+  "purpose": "Public provenance summary; not the private-path runtime binding",
+  "runtime_binding_sha256": "d10cd11eca48f570f0e4a122f133cd8be60792c743ba68e0554f293ec4e82149",
+  "roles": "FIT-only scaler; SELECT/CAL separated by 100 points; QUERY original test",
+  "records": [
+    {
+      "id": "PSM",
+      "dataset": "PSM",
+      "channels": 25,
+      "channel_order": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_14",
+        "feature_15",
+        "feature_16",
+        "feature_17",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24"
+      ],
+      "train_points": 132481,
+      "query_points": 87841,
+      "sources": [
+        {
+          "filename": "PSM.csv",
+          "sha256": "38e446209e82df94b82c11aa43d87e3671da86167ed794c1b7be5eb91fc0e8ac",
+          "bytes": 199747390
+        }
+      ],
+      "scaler_sha256": "7ab5d323949f1883cb4c441d24795f38e6c9fd2f7230ee4f195f6fbbff1e06e5",
+      "scaler_fit_bounds": [
+        0,
+        79488
+      ],
+      "score_config": {
+        "batch_size": 64,
+        "norm": 0,
+        "L": 1,
+        "copies": 10
+      },
+      "roles": [
+        {
+          "dataset": "PSM",
+          "entity": "PSM",
+          "run": "train",
+          "role": "FIT",
+          "sha256": "2cba61cad2e09e84a1c7c080c705e9d4d20a162a0796fd9eb0419972129c3a9b",
+          "shape": [
+            79488,
+            25
+          ],
+          "bounds_half_open": [
+            0,
+            79488
+          ],
+          "n_windows": 794,
+          "scored_points": 79400,
+          "unscored_tail": 88,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "PSM",
+          "entity": "PSM",
+          "run": "train",
+          "role": "SELECT",
+          "sha256": "51d53510d9c9aa046ba7367716a444f298d910edf7982b4f68db755f53642093",
+          "shape": [
+            26396,
+            25
+          ],
+          "bounds_half_open": [
+            79588,
+            105984
+          ],
+          "n_windows": 263,
+          "scored_points": 26300,
+          "unscored_tail": 96,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "PSM",
+          "entity": "PSM",
+          "run": "train",
+          "role": "CAL",
+          "sha256": "cd26af3448a2baf6d92683733eb1e2c4d4698d6f8604e38ef76f614813ba4a19",
+          "shape": [
+            26397,
+            25
+          ],
+          "bounds_half_open": [
+            106084,
+            132481
+          ],
+          "n_windows": 263,
+          "scored_points": 26300,
+          "unscored_tail": 97,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "PSM",
+          "entity": "PSM",
+          "run": "test",
+          "role": "QUERY",
+          "sha256": "5ab9e34a6288f61e2511c60ead3ed8da400127a6145c6ee73542f3ce387c517d",
+          "shape": [
+            87841,
+            25
+          ],
+          "bounds_half_open": [
+            0,
+            87841
+          ],
+          "n_windows": 878,
+          "scored_points": 87800,
+          "unscored_tail": 41,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        }
+      ]
+    },
+    {
+      "id": "machine-1-1",
+      "dataset": "SMD",
+      "channels": 38,
+      "channel_order": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_14",
+        "feature_15",
+        "feature_16",
+        "feature_17",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24",
+        "feature_25",
+        "feature_26",
+        "feature_27",
+        "feature_28",
+        "feature_29",
+        "feature_30",
+        "feature_31",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_37"
+      ],
+      "train_points": 28479,
+      "query_points": 28479,
+      "sources": [
+        {
+          "filename": "machine-1-1_train.txt",
+          "sha256": "ecebd2933ccdc1126e2abbfb538762dbde16410cebc77257a7b96e1e1fbcf753",
+          "bytes": 9739818
+        },
+        {
+          "filename": "machine-1-1_test.txt",
+          "sha256": "bdb801d8d52ce6b0c4a20c310edf31b5cee9bc82eb84fb38e7d4a19309b16ddb",
+          "bytes": 9739818
+        },
+        {
+          "filename": "machine-1-1_test_label.txt",
+          "sha256": "cddf33441ae480c6074e173c897d4715eb893f24a7078d3d3e1b79b200c7cd19",
+          "bytes": 56958
+        }
+      ],
+      "scaler_sha256": "e5fa9b2709bb7ed29cb51cd3b7175bed3c370b8b09585281a6fa744799fac831",
+      "scaler_fit_bounds": [
+        0,
+        17087
+      ],
+      "score_config": {
+        "batch_size": 32,
+        "norm": 1,
+        "L": 1,
+        "copies": 10
+      },
+      "roles": [
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-1",
+          "run": "train",
+          "role": "FIT",
+          "sha256": "84f9cf95efb9389708b6900426d887dc0c354a7830b4bdced298f509f9578e05",
+          "shape": [
+            17087,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            17087
+          ],
+          "n_windows": 170,
+          "scored_points": 17000,
+          "unscored_tail": 87,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-1",
+          "run": "train",
+          "role": "SELECT",
+          "sha256": "26ca395dfb2a66c10102190e85c6489fca17f006dab46ac5add8565fe18c9401",
+          "shape": [
+            5596,
+            38
+          ],
+          "bounds_half_open": [
+            17187,
+            22783
+          ],
+          "n_windows": 55,
+          "scored_points": 5500,
+          "unscored_tail": 96,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-1",
+          "run": "train",
+          "role": "CAL",
+          "sha256": "9ed1843f57525313d985a0d0deea050ada4308ffb01fea5f8eeb91450d94388b",
+          "shape": [
+            5596,
+            38
+          ],
+          "bounds_half_open": [
+            22883,
+            28479
+          ],
+          "n_windows": 55,
+          "scored_points": 5500,
+          "unscored_tail": 96,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-1",
+          "run": "test",
+          "role": "QUERY",
+          "sha256": "706337c45e3bdb739d7070062b3444d5262566542490dd1f5547456b744f9475",
+          "shape": [
+            28479,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            28479
+          ],
+          "n_windows": 284,
+          "scored_points": 28400,
+          "unscored_tail": 79,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        }
+      ]
+    },
+    {
+      "id": "machine-1-2",
+      "dataset": "SMD",
+      "channels": 38,
+      "channel_order": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_14",
+        "feature_15",
+        "feature_16",
+        "feature_17",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24",
+        "feature_25",
+        "feature_26",
+        "feature_27",
+        "feature_28",
+        "feature_29",
+        "feature_30",
+        "feature_31",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_37"
+      ],
+      "train_points": 23694,
+      "query_points": 23694,
+      "sources": [
+        {
+          "filename": "machine-1-2_train.txt",
+          "sha256": "7f6f63ec34ce616c87b4c30d66fd52ad1b21149634ae3ff7bb1827a76d6ef79a",
+          "bytes": 8103348
+        },
+        {
+          "filename": "machine-1-2_test.txt",
+          "sha256": "f409991af7c049d3f286a8cf89dc2fa99114bea8753f6c3aea4bd24cb03eb015",
+          "bytes": 8103348
+        },
+        {
+          "filename": "machine-1-2_test_label.txt",
+          "sha256": "c2dbb3e4f89c9eb48f30fd1ddae48b80e7ae7ad7ca9abf2ffd71b6557ef2bb20",
+          "bytes": 47388
+        }
+      ],
+      "scaler_sha256": "7923a792753b2b0aab0e86958fab1030d0494c9348efd5f973b701317e367ff8",
+      "scaler_fit_bounds": [
+        0,
+        14216
+      ],
+      "score_config": {
+        "batch_size": 32,
+        "norm": 1,
+        "L": 1,
+        "copies": 10
+      },
+      "roles": [
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-2",
+          "run": "train",
+          "role": "FIT",
+          "sha256": "4a7faeccb60a8926807cad4bc54a76cfb144e77aaf1195d715101f2d6e51c9dd",
+          "shape": [
+            14216,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            14216
+          ],
+          "n_windows": 142,
+          "scored_points": 14200,
+          "unscored_tail": 16,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-2",
+          "run": "train",
+          "role": "SELECT",
+          "sha256": "bb4aee0ef7268d9b1fdde465486e624e09bc9dcba5c67a20f32bbfb5d039ae83",
+          "shape": [
+            4639,
+            38
+          ],
+          "bounds_half_open": [
+            14316,
+            18955
+          ],
+          "n_windows": 46,
+          "scored_points": 4600,
+          "unscored_tail": 39,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-2",
+          "run": "train",
+          "role": "CAL",
+          "sha256": "fcc1b5531eb946062719f831bbd2129a3e3b83100e53b6e1fec2ce29297072c9",
+          "shape": [
+            4639,
+            38
+          ],
+          "bounds_half_open": [
+            19055,
+            23694
+          ],
+          "n_windows": 46,
+          "scored_points": 4600,
+          "unscored_tail": 39,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-2",
+          "run": "test",
+          "role": "QUERY",
+          "sha256": "755afb386d76a9bba84860364b0a7b362b955839132a79fe0b234b4052314ed9",
+          "shape": [
+            23694,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            23694
+          ],
+          "n_windows": 236,
+          "scored_points": 23600,
+          "unscored_tail": 94,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        }
+      ]
+    },
+    {
+      "id": "machine-1-3",
+      "dataset": "SMD",
+      "channels": 38,
+      "channel_order": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_14",
+        "feature_15",
+        "feature_16",
+        "feature_17",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24",
+        "feature_25",
+        "feature_26",
+        "feature_27",
+        "feature_28",
+        "feature_29",
+        "feature_30",
+        "feature_31",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_37"
+      ],
+      "train_points": 23702,
+      "query_points": 23703,
+      "sources": [
+        {
+          "filename": "machine-1-3_train.txt",
+          "sha256": "a4ef16a49d921e0ba9497ce2690d3833eb4a85f9a8a88392de4c3fde42e413ac",
+          "bytes": 8106084
+        },
+        {
+          "filename": "machine-1-3_test.txt",
+          "sha256": "f3c134d45ffa7aed66587dba893111396c8c7ea3b6fa7f76895955b26b1a75ef",
+          "bytes": 8106426
+        },
+        {
+          "filename": "machine-1-3_test_label.txt",
+          "sha256": "755d57179625682172ae85f9483749cff576ff3282d0af294271a40ab6ea7b28",
+          "bytes": 47406
+        }
+      ],
+      "scaler_sha256": "ed20bbf9e2162af1c1cd7e63b268238236d2b871853dbe8489bfaa06ac9c3349",
+      "scaler_fit_bounds": [
+        0,
+        14221
+      ],
+      "score_config": {
+        "batch_size": 32,
+        "norm": 1,
+        "L": 1,
+        "copies": 10
+      },
+      "roles": [
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-3",
+          "run": "train",
+          "role": "FIT",
+          "sha256": "07a1cd264a70b676897573beae60b09d6d7451088e9e4996848f5cf7a47a56c0",
+          "shape": [
+            14221,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            14221
+          ],
+          "n_windows": 142,
+          "scored_points": 14200,
+          "unscored_tail": 21,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-3",
+          "run": "train",
+          "role": "SELECT",
+          "sha256": "76147d3471e5910e760933d826f71d3477d69e15e8a1f8c5537ca422ced90e16",
+          "shape": [
+            4640,
+            38
+          ],
+          "bounds_half_open": [
+            14321,
+            18961
+          ],
+          "n_windows": 46,
+          "scored_points": 4600,
+          "unscored_tail": 40,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-3",
+          "run": "train",
+          "role": "CAL",
+          "sha256": "c237e63ab8b2ec6c227d65a15bfa1348e62fea45642b6228cad391d97edf5d39",
+          "shape": [
+            4641,
+            38
+          ],
+          "bounds_half_open": [
+            19061,
+            23702
+          ],
+          "n_windows": 46,
+          "scored_points": 4600,
+          "unscored_tail": 41,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        },
+        {
+          "dataset": "SMD",
+          "entity": "machine-1-3",
+          "run": "test",
+          "role": "QUERY",
+          "sha256": "bc761cc31cb908430084bbd846355876696e76a9f9ab3ce79519bb3dc76afef0",
+          "shape": [
+            23703,
+            38
+          ],
+          "bounds_half_open": [
+            0,
+            23703
+          ],
+          "n_windows": 237,
+          "scored_points": 23700,
+          "unscored_tail": 3,
+          "fields": [
+            "x",
+            "index"
+          ],
+          "format": "npz"
+        }
+      ]
+    }
+  ]
+}

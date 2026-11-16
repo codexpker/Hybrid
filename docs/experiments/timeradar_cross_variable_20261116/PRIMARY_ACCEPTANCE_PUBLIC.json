@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETED_AUDITED_ACCEPTED",
+  "experiment": "timeradar_cross_variable_20261116_v1",
+  "scientific_verdict": "LIMITED_SMD_SORTING_AND_POINT_COVERAGE_SUPPORT; NO_ESTABLISHED_CONTROLLED_FPR_CROSS_DOMAIN_SUSTAINED_ADVANTAGE",
+  "audit_report_sha256": "d3d9c530f6c717ccbac207fbd0930a3c2282a402e036c60e94179ccc8b8288c3",
+  "raw_bank_seal_sha256": "e073be13716f3b11e3121043c9c74086a20f560b6f5519cf619b9b3d8e91f146",
+  "source_commit": "fa4c07cbd7361f76ecfd905c8cbe9adb06fddcec",
+  "GPU_hours_total": 2.2981926223966807,
+  "remaining_jobs": 0,
+  "successor_recipe_dispatched": false,
+  "normalization_threshold_or_QUERY_selection_changes": false,
+  "SMD_cross_minus_self_AP_pp": [
+    1.2810209757982083,
+    0.4654432755380855,
+    0.20912949384020996
+  ],
+  "PSM_cross_minus_self_AP_pp": -0.1019583245324722,
+  "interpretation": "Valid local positives are preserved. One historically exposed seed2024 development comparison, not independent confirmation, lag modeling, contamination robustness, or established paper novelty."
+}

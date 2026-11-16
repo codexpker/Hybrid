@@ -1,0 +1,25 @@
+{
+  "status": "PASS_BOUNDED_INDEPENDENT_AUDIT",
+  "original_report_sha256": "d3d9c530f6c717ccbac207fbd0930a3c2282a402e036c60e94179ccc8b8288c3",
+  "raw_banks": 32,
+  "matched_rows": 43,
+  "independently_recomputed_cells": 54174,
+  "native_initialization_roles_masks_freeze_selection_verified": true,
+  "CPU_channel_variance_reduction_max_abs_error": 0.25,
+  "CPU_channel_variance_reduction_max_relative_error": 4.692379604875896e-07,
+  "numeric_note": "Float32 CPU/GPU mean reductions: max abs0.25 occurs around million-scale scores; canonical native GPU score is retained for all rankings, never replaced by CPU reduction. Full PSM first-CAL score/channelvar replay is bitexact.",
+  "full_CAL_native_score_max_abs_error": 0.0,
+  "same_copy_decoder_adapter_formula_checked": true,
+  "no_cross_sample_or_copy_mix": true,
+  "GPU_hours_including_independent_replay": 2.2981926223966807,
+  "independence": "Role-separated same-family auditor; not external blinded peer review.",
+  "review_scope": "Incremental implementation, raw identities, one frozen full-CAL replay, final fixed metrics; no new scientific training or whole-repository audit.",
+  "audit_source_sha256": {
+    "checkpoint_states.py": "7f04c2e191dfe40882c438bf34758e59184200585fcf593fac628ac6c07e32f0",
+    "copy_probe_numpy.py": "f0b0a33c4eb0aa02f4d8d51f8a38b706ee8c94dfc34b1de7ece9d2c3b68d9037",
+    "final_recompute.py": "f6f1667e4b104f45fbdab087a3450e808eb8e9ce593490f3a137a2cd12f04137",
+    "independent_metrics.py": "9ebd88767befc632eaf177dcbabdd5ecfdcb2763861fa26203cc3b142d071c39",
+    "launch_cal_replay.py": "3ea1238fbc7bd94d858a7b8a92086b44e497342c9e2bfa97de28d76f969859de",
+    "replay_cal_copy.py": "f9843c513ea03a7499706422d21a84666bcff512ee1f20de191b7861c8e96cb7"
+  }
+}
