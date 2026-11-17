@@ -1,0 +1,83 @@
+{
+  "seeds": [
+    2025,
+    2026,
+    2027
+  ],
+  "accepted_seed2025_result_sha256": "ae3930022aa2c8a4130e0e2500adf66a36fe300182cfdc8feb2cb8e9d2d6046c",
+  "raw_aggregation_result_sha256": "7ff69a87bbba5bb66428b9e4fc4b3a394cc0c8d190748c230047256e76833643",
+  "executed_aggregator_source_sha256": "11d0156ff31230c6a470511ab7b0f7cb30e7a31367a91e82e596566438cd217b",
+  "publication_source_sha256": "11d0156ff31230c6a470511ab7b0f7cb30e7a31367a91e82e596566438cd217b",
+  "fixed_evaluator_source_sha256": "5b3414161b11de59f4f6548c72daec1e7e54be5ac50dd92f84a5b309270e78ef",
+  "exports": [
+    {
+      "name": "per_seed_common.csv",
+      "raw_sha256": "6c273a9a44e3a7ccb0eb25d1973ca31de135dc55214eb29a1799925e811c8a3c",
+      "public_sha256": "647fc7f9b82d0004cb6b374445437275b2197a654724044680f02da1db8970ea"
+    },
+    {
+      "name": "per_seed_native.csv",
+      "raw_sha256": "89f0718216aa1f1399f4cdb595c9a05c538bad4ff38d8303b828dd691b2886ac",
+      "public_sha256": "3b5bb9e8defec586238c4b8098d801509e0c53df5938c5037f26d6eaefbcbe7b"
+    },
+    {
+      "name": "external_common.csv",
+      "raw_sha256": "b2ad026ca77efc233242e5bd6ac1b3b1400180e96303b33dc041d85d49967c61",
+      "public_sha256": "d9d652af371435191e754e53e7b9d088bd9abc72859795250e1d11684321bdf1"
+    },
+    {
+      "name": "external_native.csv",
+      "raw_sha256": "bde38cd7ae3df0ebd029aa32d8ba677e0a0e97f79109b4ac45bbaac13009a3ee",
+      "public_sha256": "5f881c8a64de6fd0157a25d49555a352fb989f09d513eb77a20088de8c63160f"
+    },
+    {
+      "name": "per_entity_three_seed_summary.csv",
+      "raw_sha256": "402b3ddbaa8a59096a2acbc0e18b6044704cfb2ea4014cfcd1b25544f0f03710",
+      "public_sha256": "5bde0aa3800042adb97cec304c450829cbe2e102348a7fb5a78d034b504e2235"
+    },
+    {
+      "name": "per_seed_SMD_macro_median.csv",
+      "raw_sha256": "b7db32d74db48fa25db7aeef5c1cb843a293945879daaffbeb9eacc149d3952d",
+      "public_sha256": "7e102169b6c2f9b0ffd92f5e47c43180dbb3846377e7ccd8a47f5dd8eaa70ecf"
+    },
+    {
+      "name": "SMD_macro_median_three_seed_summary.csv",
+      "raw_sha256": "fb2b15a449469f6eb39c0edf4d1c30e208c309ce6608c6d3e91cc18534669449",
+      "public_sha256": "85f92907178c7f4a2d6c1d497e4bf238e3c93c4baffa4495f745dcef07fb562e"
+    },
+    {
+      "name": "per_seed_paired_deltas.csv",
+      "raw_sha256": "4f9a92d7b8a48725c50edece690512eb9d71d905f843474a603036e0ac610bba",
+      "public_sha256": "0179a38fcc4c7f3989deb699e5b4565ffd99b9d457258c3db4e395f212ced960"
+    },
+    {
+      "name": "per_entity_paired_three_seed_summary.csv",
+      "raw_sha256": "101b01585ee2af54bb31c08a586792e333ee7346195688166c939b8e6ff6bc1a",
+      "public_sha256": "fd291790efa111eed7ebe4b64b026aca3d9af9a09b0cad9bad7612b2b3fece03"
+    },
+    {
+      "name": "per_seed_SMD_paired_summary.csv",
+      "raw_sha256": "12fc3155f3c92e224b1d0f25bdc4be62385f9a01711d19f4ba7a328dd0dca133",
+      "public_sha256": "6354bec23e3d4f5938fb13152eb24defcb8ac71291df102cc12847f6afb87c0d"
+    },
+    {
+      "name": "SMD_paired_three_seed_summary.csv",
+      "raw_sha256": "74ca5b47d29d47ddf2d64b87783a71db66f51ef8624c9db7cd893a7df83948e5",
+      "public_sha256": "215916677f3c0397ceb6a71b7fb8d9c6bb305e4d199bbcc627f0f68af238cc25"
+    },
+    {
+      "name": "parameters_and_compute.csv",
+      "raw_sha256": "fdcfb8f094d2c15bc2c83fceacb31a0bc53c793225e3ffeb49791ec2d7f2fb6d",
+      "public_sha256": "1cff4ddf9e998ef1ccf1a60f4c152c0b5779850b5be547213aded12fdf4c41f5"
+    }
+  ],
+  "inference": "No new forward pass performed by aggregation; new banks produced by the fixed executor",
+  "withheld": "Raw arrays, checkpoints, private host paths and raw resource/score receipts.",
+  "primary_training_check_sha256": "75a8927519878ba4de97cafc4860d2c6d3a95e6b9f25c67f01e2d43620e7838b",
+  "primary_training_check_status": "PASS",
+  "primary_recomputation_sha256": "2d0e775cfb4845f48efe33bd1f97013b6466cfe53c7248d384ede5c17d8013f2",
+  "primary_recomputation_status": "PASS",
+  "executed_aggregator_snapshot_sha256": "11d0156ff31230c6a470511ab7b0f7cb30e7a31367a91e82e596566438cd217b",
+  "source_corpus_sha256": "42abd86aacbe81c0aee2bdbef0c93d83463aaf6d889843a37221e8f99d56d86d",
+  "source_corpus_usage": "Same accepted source instances reused across all three seeds; not three independent generated datasets."
+}

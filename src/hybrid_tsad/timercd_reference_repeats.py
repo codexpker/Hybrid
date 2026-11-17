@@ -106,7 +106,12 @@ def run(workspace, output, config2026, config2027):
         if cfg['train_seed'] != seed:
             raise ValueError('Configuration must identify the prespecified seed')
         sp = local(w, cfg['output']) / 'RAW_BANK_SEAL.json'; seal = read(sp)
-        bp = local(w, cfg['data_binding']); records = {r['id']: r for r in read(bp)['records']}
+        bp = checked(local(w, cfg['data_binding']), evaluation.fixed.DATA_SHA)
+        if cfg['data_binding_sha256'] != evaluation.fixed.DATA_SHA or tuple(cfg['arms']) != evaluation.MODELS:
+            raise PermissionError('Repetition must retain the original role binding and the two fixed arms')
+        records = {r['id']: r for r in read(bp)['records']}
+        if len(records) != 29:
+            raise ValueError('All29 fixed objects required before either new seed is evaluated')
         evaluation.terminal_gate(seal, records)
         if seal['config_sha256'] != ev.sha(path):
             raise PermissionError('Frozen repetition config identity mismatch')
