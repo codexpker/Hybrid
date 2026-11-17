@@ -1,0 +1,53 @@
+{
+  "official_code_commit": "b031773e323bc0e6c9dcd8c9119b800ec4d70f8c",
+  "official_checkpoint_sha256": "a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0",
+  "source_generator_commit": "73eb733f3026e32bf9edfde1d4c3b787358908e7",
+  "accepted_baseline_result_sha256": "f2121a878eab1ddb753b7db24b3f4fcedbf6742f68bceebe7e9c62ff30291b76",
+  "raw_result_sha256": "ae3930022aa2c8a4130e0e2500adf66a36fe300182cfdc8feb2cb8e9d2d6046c",
+  "executed_evaluator_source_sha256": "5b3414161b11de59f4f6548c72daec1e7e54be5ac50dd92f84a5b309270e78ef",
+  "publication_source_sha256": "5b3414161b11de59f4f6548c72daec1e7e54be5ac50dd92f84a5b309270e78ef",
+  "metrics_source_sha256": "6077ccf194eee92323cc45238f246ab89468e60314cd39de5bffe5fef1900cd0",
+  "exports": [
+    {
+      "name": "common_29x9.csv",
+      "raw_sha256": "b19aa51c744f89673a0ac1add1330729b30118d28999494f61635e589a5008d7",
+      "public_sha256": "823eb8214cc632fbaf84b736bfb165eb8e7dee4532ea11f56af68f00aec680d6"
+    },
+    {
+      "name": "native_29x7.csv",
+      "raw_sha256": "f51974250ec7b29ad7e465d6cc6b6840a8b391e2f8257d4d202b629407cc71f7",
+      "public_sha256": "121ddd3c5b55abee89973d00e740e421bbd45eeaeadcc274c14f36c1e6a85872"
+    },
+    {
+      "name": "common_SMD_macro_median.csv",
+      "raw_sha256": "fef3c797386f4298010a93a93c432d8844a2d03d22512d641b65d73faef63ea6",
+      "public_sha256": "9fd5d831712fb5e593ba2c802e5524267e5fad353c883c208a11b98bb365c842"
+    },
+    {
+      "name": "native_SMD_macro_median.csv",
+      "raw_sha256": "4954dfdf10dc9f4a47d68bc41074eec31351448e54bdda52c265fcf65285675f",
+      "public_sha256": "83afbf6c78171c51343a72794444783ab8cbe366f083bb6cfdfdceb7515adf59"
+    },
+    {
+      "name": "common_all29_paired_deltas.csv",
+      "raw_sha256": "72442c09f77ed68c0b9ad9fdd74c9f8c7547caec772e9c67f009ad08bd7b33ac",
+      "public_sha256": "a3ae6dbc1ed00d490c5d12a1efb33e4ad062a102fdec836d279ca18ad8e25284"
+    },
+    {
+      "name": "common_SMD_paired_summary.csv",
+      "raw_sha256": "f2673f15b6e04f68be6c58605ef4364b078206fc5a98543fa40d0109e961a46a",
+      "public_sha256": "1eb0479c2fa7cff89f7710f3959b4febeff91bd095c887d03307fccf3375b872"
+    },
+    {
+      "name": "parameters_and_compute.csv",
+      "raw_sha256": "1dff9c945314459df9cd9b541da2e72b54090b243e841175e7f8949fd48e3d2e",
+      "public_sha256": "796ae8d47a58272c4614817dcae15dbabd3e0222e267100b854a36ff6ade062b"
+    }
+  ],
+  "withheld": "Raw weights, arrays, raw receipts and private machine paths are not public exports.",
+  "primary_recomputation_sha256": "29a289d52d6664a496923d4c2402b1427583534aaf2460e26c23c87971ee861b",
+  "primary_verification_status": "PASS",
+  "executed_source_snapshot_sha256": "5b3414161b11de59f4f6548c72daec1e7e54be5ac50dd92f84a5b309270e78ef",
+  "source_manifest_sha256": "f4781a46000e886b64516594e28e5b766012ecbd309ff73806a092133e172fd9",
+  "generator_usage": "Separately hashed historical-reference-controlled variant of the pinned generator; not the original authors corpus or unchanged generator. See IMPLEMENTATION.md."
+}
