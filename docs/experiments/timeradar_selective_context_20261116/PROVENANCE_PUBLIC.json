@@ -1,0 +1,29 @@
+{
+  "status": "COMPLETED_AUDITED_PRIMARY_ACCEPTED",
+  "decision": "LIMITED_NO_GO_FIXED_SELECTIVE_RECIPE",
+  "scientific_implementation_commit": "45e0e91b031e3983b9e4076f367e5fe1fed478e2",
+  "audit_sha256": "5d65ccd259738ca5633969d341e07465c6c05e18e53fdce5f8c1403babc22a5a",
+  "GPU_hours": 1.649843907488717,
+  "tables": {
+    "native_full_4x6.csv": {
+      "raw_sha256": "458495e0371aa60e2a4110cb40941d910a48c0b6234283612e24c243e4bae3a9",
+      "public_LF_sha256": "d49a271f0f2d7ea858221631320427b22f05945eb7724e8942ce027638a74c58"
+    },
+    "matched_external_4x8.csv": {
+      "raw_sha256": "87f927880c0520a3af27ed3510fe6f57c009d0ee377b60858721261d32847b17",
+      "public_LF_sha256": "48bc53a10fe6e60489cc2656091a21556be6e91740eab6f87dc017fb17bb92f1"
+    },
+    "aggregation_ablation.csv": {
+      "raw_sha256": "6f3d8fd554ef26f3b2a28116ebc293c3d553b4a024fddfcb1976bda891e25747",
+      "public_LF_sha256": "7cdd7b19ae66bffa0f68b1c8cb14f7dec8201f729b0b10f822880df688263900"
+    },
+    "paired_native_differences.csv": {
+      "raw_sha256": "f095b0040ca6956407df12f15a72e94a5487f0eccbc7139fa3b8ae686d06b64b",
+      "public_LF_sha256": "ff3cfc8fb86190141c784719e45e05831dc741cf305d0db589feaad1b9ef757f"
+    },
+    "paired_external_differences.csv": {
+      "raw_sha256": "fe5137c7dcdcbd4167840957c7d293a85309796bfdce08e76787b4eb7854c4a5",
+      "public_LF_sha256": "529611d92c3b01f90d97a46dc74ac17ac52133f5f880904fc840da13ed73cb91"
+    }
+  }
+}
