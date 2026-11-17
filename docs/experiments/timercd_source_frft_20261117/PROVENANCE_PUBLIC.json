@@ -1,0 +1,52 @@
+{
+  "official_code_commit": "b031773e323bc0e6c9dcd8c9119b800ec4d70f8c",
+  "official_checkpoint_sha256": "a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0",
+  "source_generator_commit": "73eb733f3026e32bf9edfde1d4c3b787358908e7",
+  "accepted_baseline_result_sha256": "f2121a878eab1ddb753b7db24b3f4fcedbf6742f68bceebe7e9c62ff30291b76",
+  "metrics_source_sha256": "6077ccf194eee92323cc45238f246ab89468e60314cd39de5bffe5fef1900cd0",
+  "raw_result_sha256": "b71efa13ea480fa853b12f832e56fd74265e3687ec649775d74a28b5311ea2cc",
+  "exports": [
+    {
+      "name": "common_29x14.csv",
+      "raw_sha256": "dde05b86bec3efd2e6b6d3ae0ba6dbaaa937a6213d2bfc5533e966d9d599b00e",
+      "public_sha256": "c2ada5b83f6c6da8ce25512f03e5a48658806b953273a9eb4509daa506a4870c"
+    },
+    {
+      "name": "native_29x12.csv",
+      "raw_sha256": "12915d57316241b0c700bdfbf1dee86dbcb13ac162c6ccf589bac5ded96e788e",
+      "public_sha256": "17bf00bbe165f00b1260f060f1bb83d307864621d299d66e31b7c21d94b7552d"
+    },
+    {
+      "name": "common_SMD_macro_median.csv",
+      "raw_sha256": "8ef321f6aea01577cd9fc98f15cdb5c6e78c9eb4d4b2c09d64aace13dea23a54",
+      "public_sha256": "e4eceba49f58646d98bc6dcccbcf84a4fb419e9ca2478a30797f88dadac53109"
+    },
+    {
+      "name": "native_SMD_macro_median.csv",
+      "raw_sha256": "e57a0c65e61ad534c9b8191d3428c4b3e4910246f1c27236e5c39d1ad441c6c3",
+      "public_sha256": "05688f91d73924356fdc76407c0b8c4d708d5110063b9b87e4e08bd5f48732fc"
+    },
+    {
+      "name": "common_all29_paired_deltas.csv",
+      "raw_sha256": "b2fad1fee47a111ad72c4bb2684c1ca93f99151848ed986117ed241a15a34b57",
+      "public_sha256": "2e5859a9044477f421903b0f16c5ddd475b97345ac0a384154c7311abc6c5d36"
+    },
+    {
+      "name": "common_SMD_paired_summary.csv",
+      "raw_sha256": "61187355489c81e8c073441120cee4defc38068b45f2204b44e30dd003748483",
+      "public_sha256": "5fc1335331a43380ac23f4608ea744fbea999aa7c527abdafb6eefda5a17cd53"
+    },
+    {
+      "name": "parameters_and_compute.csv",
+      "raw_sha256": "6387685ab3e680f85c9051d3d652e30437f096944efa22f7f28d40339fdabcef",
+      "public_sha256": "88e15d3b56f3a4991150d6470fe873934d696f5e20da239c1111bab58204def5"
+    }
+  ],
+  "withheld": "Raw weights, arrays, raw receipts and private server paths are not public exports.",
+  "executed_evaluator_source_sha256": "6b4cb5033196315f15a901e65bde2486676d11373a836ddfc5a8042616aa6c2b",
+  "publication_source_sha256": "88098d9a50cfb92bc6bb55388f65c4ddb51278c4211d817c1fd1219c5cabcdf1",
+  "primary_raw_cache_recomputation_sha256": "06efa094186ce6a4ae29be8bf12df54df68a8bd9b667fbed63913cb5b05345e5",
+  "primary_verification_status": "PASS_ALL_348_NEW_METRIC_ROWS",
+  "executed_source_snapshot_recovery": "Known publication edits reversed; exact SHA matches source hash recorded during execution; raw result unchanged",
+  "source_snapshot_identity_receipt_sha256": "5eef4c0dcccd2707868750ab2b7701f57d7b371e70d9061feff6e29e4d431ba5"
+}

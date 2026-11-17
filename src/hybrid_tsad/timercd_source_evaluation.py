@@ -170,15 +170,155 @@ def run(workspace, output, config):
             p = root / 'train' / model / filename
             if p.exists():
                 receipts.append(dict(model=model, filename=filename, sha256=ev.sha(p), content=read(p)))
+    costs = []
+    controllers = {}
+    for phase in ('profile', 'train', 'score'):
+        p = root / (phase + '_controller') / 'COMPLETED.json'
+        if p.exists():
+            controllers[phase] = read(p)
+            inputs[str(p)] = ev.sha(p)
+    # The terminal seal accounts for every successful score job, including an
+    # authorized recovery of never-launched jobs after a prelaunch GPU
+    # occupancy-check block. Its underlying cause is not inferred here.
+    # Do not require a falsely successful original controller receipt.
+    controllers['score'] = seal
+    for model in MODELS:
+        receipt = training[model]['receipt']
+        row = dict(model=model, parameters=receipt['parameters'],
+                   new_parameters=receipt['parameters'] - 37056515,
+                   trainable_parameters=receipt['trainable'],
+                   selected_step=receipt['selected_step'], updates=receipt['updates'],
+                   source_instances=receipt['source_instances'],
+                   sample_exposures=receipt['sample_exposures'],
+                   timepoints_exposed=receipt['timepoints_exposed'],
+                   checkpoint_sha256=training[model]['checkpoint_sha256'])
+        for phase in ('profile', 'train', 'score'):
+            jobs = [j for j in controllers.get(phase, {}).get('jobs', []) if j['arm'] == model]
+            row[phase + '_GPU_hours'] = sum(j['GPU_hours'] for j in jobs) if jobs else None
+            row[phase + '_jobs'] = len(jobs)
+        costs.append(row)
+    ev._write_csv(output / 'parameters_and_compute.csv', costs)
     ev._dump(output / 'RESULT.json', dict(status='COMPLETED', native_rows=native, common_rows=common,
         common_SMD=common_stats, native_SMD=native_stats, source_training_receipts=receipts,
-        common_SMD_paired_summary=smd_summary, new_evaluations=348,
+        common_SMD_paired_summary=smd_summary, parameters_and_compute=costs, new_evaluations=348,
         CPU_seconds=time.monotonic() - start, GPU_hours=0, inputs=inputs,
         source_sha256=ev.sha(__file__), evaluator_sha256=ev.sha(ev.__file__),
         new_forward=False, score_expression='original archived abnormal-minus-normal logits for all new arms',
         limits='Development offline comparison. All 29 objects retained. A and B permissions differ. '
                'SMD is one exposed domain; LEFT only 3/28, missing entities remain NA. No source/target contamination claim.'))
     return native, common
+
+
+def publish(output, public):
+    """Export safe numerical tables and a bounded results description.
+
+    Original raw result/receipts deliberately stay outside the public repository.
+    Publication does not recompute metrics, choose an arm, or change an axis.
+    """
+    output, public = Path(output), Path(public)
+    result = read(output / 'RESULT.json')
+    if result['status'] != 'COMPLETED':
+        raise ValueError('Only complete fixed evaluation can be published')
+    public.mkdir(parents=True, exist_ok=True)
+    names = ('common_29x14.csv', 'native_29x12.csv', 'common_SMD_macro_median.csv',
+             'native_SMD_macro_median.csv', 'common_all29_paired_deltas.csv',
+             'common_SMD_paired_summary.csv', 'parameters_and_compute.csv')
+    if any((public / name).exists() for name in names + ('RESULTS.md', 'PROVENANCE_PUBLIC.json')):
+        raise FileExistsError('Never overwrite a prior published numerical result')
+    exported = []
+    for name in names:
+        source = output / name
+        text = source.read_text(encoding='utf-8')
+        if any(marker in text for marker in ('/home/', '192.168.', 'D:\\', 'C:\\', 'ghp_', 'token=')):
+            raise PermissionError('Potentially private content in outbound numerical table: ' + name)
+        destination = public / name
+        destination.write_text(text, encoding='utf-8', newline='\n')
+        exported.append(dict(name=name, raw_sha256=ev.sha(source), public_sha256=ev.sha(destination)))
+    lookup = {(r['record'], r['arm']): r for r in result['common_rows']}
+    summary = {(r['method'], r['metric']): r for r in result['common_SMD']['macro']}
+    methods = list(dict.fromkeys(r['arm'] for r in result['common_rows']))
+    def f(value, percentage=False):
+        if value is None:
+            return 'NA'
+        return f'{value * (100 if percentage else 1):.6f}'
+    def mean(m, metric):
+        return summary[m, metric]['macro_mean']
+    lines = ['# TimeRCD-source local FRFT residual: fixed matched evaluation', '',
+        'Hybrid is the proposed candidate, not a renamed official model. This one-seed development '
+        'comparison tests local patch representation only. Native/time/FRFT share the official initial '
+        'weights, synthetic instances, source validation, exposure, backbone/head update policy and '
+        'budget. The temporal and FRFT residuals have equal parameter counts. No target QUERY or its '
+        'labels enter training or selection. This is synthetic supervision plus auxiliary masked '
+        'self-supervision, not purely unsupervised training.', '',
+        '## Common-axis SMD28', '',
+        '| Method / permission | Valid n/28 | AP macro | AP median | ROC macro | Strict normal FPR (%) | '
+        'C3 normal FPR (%) | C3 event recall (%) | C3 event F1 (%) | C3 anomaly coverage (%) | C3 long steady (%) |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for m in methods:
+        n = summary[m, 'AP']['n_valid']
+        vals = [f(mean(m, 'AP')), f(summary[m, 'AP']['median']), f(mean(m, 'ROC_AUC'))]
+        vals += [f(mean(m, metric), True) for metric in ('strict_normal_FPR', 'confirmed3_normal_FPR',
+            'confirmed3_one_to_one_eventRecall', 'confirmed3_one_to_one_eventF1',
+            'confirmed3_complete_event_point_coverage', 'confirmed3_long_steady_macro_coverage')]
+        lines.append('| ' + m + f' | {n} | ' + ' | '.join(vals) + ' |')
+    lines += ['', 'LEFT has compatible results for only 3/28 SMD entities. Its subset summary is not '
+        'an all-28 comparison. SMD28 represents one exposed domain, not 28 independent datasets. '
+        'Long-steady metrics retain their own non-NA denominator (see macro CSV).', '',
+        '## PSM common axis', '',
+        '| Method / permission | AP | ROC | Strict normal FPR (%) | C3 normal FPR (%) | C3 any-hit events | '
+        'C3 one-to-one matched events | C3 event F1 (%) | C3 anomaly coverage (%) | C3 long steady (%) |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for m in methods:
+        r = lookup['PSM', m]
+        vals = [f(r.get('AP')), f(r.get('ROC_AUC')), f(r.get('strict_normal_FPR'), True),
+                f(r.get('confirmed3_normal_FPR'), True), str(r.get('confirmed3_any_hit_events', 'NA')),
+                str(r.get('confirmed3_matched_events', 'NA')), f(r.get('confirmed3_one_to_one_eventF1'), True),
+                f(r.get('confirmed3_complete_event_point_coverage'), True),
+                f(r.get('confirmed3_long_steady_macro_coverage'), True)]
+        lines.append('| ' + m + ' | ' + ' | '.join(vals) + ' |')
+    lines += ['', '## Matched source-arm increments (SMD28)', '',
+        '| Permission | Candidate − reference | AP mean difference | AP median difference | Positive / tie / negative |',
+        '|---|---|---:|---:|---|']
+    for r in result['common_SMD_paired_summary']:
+        if r['metric'] == 'AP':
+            lines.append(f"| {r['candidate'].split('__')[1]} | {r['candidate']} − {r['reference']} | "
+                f"{f(r['mean_difference'])} | {f(r['median_difference'])} | {r['positive']} / {r['tie']} / {r['negative']} |")
+    lines += ['', '## Permissions, scoring and preserved limits', '',
+        '- B_fit_only is the main constrained track: the same original raw FIT statistics are used once. '
+        'A_official_role separately normalizes each complete CAL/QUERY role using that role; it remains '
+        'an offline native-statistics reference. Both use full noncausal context windows, never an online claim.',
+        '- Every new and original TimeRCD comparison row uses the archived abnormal-minus-normal head '
+        'logit. Each score computes its own original CAL q99/higher threshold and uses strict greater-than. '
+        'No inverse-probability logits, score fusion or QUERY-fitted threshold is used.',
+        '- Main differences use common_29x14.csv exclusively. Native full QUERY axes are separately '
+        'preserved in native_29x12.csv; never subtract results across those axes. Official probability '
+        'results remain archived in the prior release.',
+        '- TimeRadar zero/Head/Self/mean-Cross, History Mean512 and compatible LEFT rows are immutable '
+        'prior results. Their different training/context permissions remain disclosed in table metadata. '
+        'The old reconstruction-adaptation branch is closed and is not recovered here.',
+        '- Any-hit and one-to-one event matches are different quantities. Full strict/C3 metrics, '
+        'false-alarm points/fragments, sustained coverage and longest missed spans remain in the CSVs. '
+        'First-hit positions are offline index offsets, not causal detection delays.',
+        '- Single source seed2025 and exposed development data cannot establish broad repeatability, '
+        'multi-source pretraining benefit, delay-mechanism identification or mixed-unlabeled robustness.', '',
+        '## Cost and source provenance', '',
+        'See parameters_and_compute.csv for parameter counts, selected step, sample exposure and per-arm '
+        'profile/training/scoring GPU wall time. The three arms have identical source update budgets. '
+        'PROVENANCE_PUBLIC.json contains only content identities; raw checkpoint files, role arrays, '
+        'private machine paths and raw receipts are not redistributed.', '',
+        'This fixed candidate does not authorize a follow-up architecture, normalization, scoring, seed or '
+        'threshold search. Scientific interpretation is based on the complete fixed tables, including losses.', '']
+    (public / 'RESULTS.md').write_text('\n'.join(lines), encoding='utf-8')
+    ev._dump(public / 'PROVENANCE_PUBLIC.json', dict(
+        official_code_commit='b031773e323bc0e6c9dcd8c9119b800ec4d70f8c',
+        official_checkpoint_sha256='a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0',
+        source_generator_commit='73eb733f3026e32bf9edfde1d4c3b787358908e7',
+        accepted_baseline_result_sha256=BASELINE_SHA,
+        executed_evaluator_source_sha256=result['source_sha256'],
+        publication_source_sha256=ev.sha(__file__), metrics_source_sha256=ev.sha(ev.__file__),
+        raw_result_sha256=ev.sha(output / 'RESULT.json'), exports=exported,
+        withheld='Raw weights, arrays, raw receipts and private server paths are not public exports.'))
+    return public
 
 
 if __name__ == '__main__':

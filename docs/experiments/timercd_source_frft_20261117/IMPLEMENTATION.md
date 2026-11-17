@@ -28,6 +28,12 @@ MSE of the original synthetic input. The mask uses actual checkpoint patch16 and
 15% patches, with the author's small Gaussian replacement. Original padding labels
 are excluded before binarization; reconstruction also excludes padding. These
 two integration safeguards apply identically to all arms; upstream is unchanged.
+At fixed length512 there are32 patches: `floor(32*0.15)=4` are masked, so the
+effective masked-time fraction is12.5%, not15%. Each FIT instance is exposed
+exactly3 times:4608 sample exposures,2359296 labeled timepoints and18874368
+channel-scalars per arm. The additional masked forward uses the same instances.
+The realized FIT anomaly-point fraction is12589/786432=1.6008%; generator
+anomaly-sample ratio0.5 must not be interpreted as50% anomalous timepoints.
 The reconstruction target is the original input, not the generator's uncorrupted
 counterpart. The latter is not used as privileged training supervision.
 
@@ -38,7 +44,7 @@ exposure. This is synthetic supervised anomaly learning plus auxiliary masked
 self-supervision, not pure unsupervised learning or demonstrated contamination
 robustness. The bounded continuation is not a full official pretraining reproduction.
 Its public config fixes length512/C8,1536 FIT/256 SELECT, three epochs, batch3,
-AdamW1e-4/wd1e-5; source SELECT joint loss alone chooses checkpoints including
+AdamW1e-4/wd1e-5 and shared gradient norm clipping1.0; source SELECT joint loss alone chooses checkpoints including
 step0. The public code default supplies lr1e-4/batch3; the paper's full pretraining
 uses lr5e-4/dynamic batch and a much larger corpus. No real QUERY chooses these.
 
@@ -47,6 +53,8 @@ Reference for joint training and the reconstruction role: Time-RCD paper,
 Public API source lacks a complete pretraining loop; the project runner explicitly
 wires its supplied CE and reconstruction definitions with their summed objective.
 Masks and source instance order are paired; training RNG resets after construction.
+Here unmasked/"clean" CE input means the original synthetic input including its
+synthetic anomalies; it does not mean training only on normal samples.
 
 Evaluation keeps all PSM/SMD28 objects, window5000/batch1 and original axes.
 B uses original FIT statistics once; A retains whole-role statistics and is an
@@ -54,3 +62,9 @@ offline parallel reference. Every new score is abnormal-minus-normal raw logit;
 each own CAL uses q99/higher and strict greater-than. Old accepted external tables
 are hash-reused, never replaced by per-object preferred values. All are development
 results, not independent confirmation or evidence about physical causality/lags.
+
+Execution environment is frozen separately from local development checks. The
+server uses Python3.12.13/PyTorch2.8.0+cu128/CUDA12.8/torch-frft0.8.1,
+NumPy1.26.4/SciPy1.15.3. Local CPU checks used PyTorch2.9.1+cu130 and
+torch-frft0.8.2; no numerical equivalence across these environments is assumed.
+Official core37,056,515 parameters; either residual arm37,074,468 (+17,953).
