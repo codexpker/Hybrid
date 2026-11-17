@@ -1,0 +1,36 @@
+{
+  "status": "COMPLETED_PRIMARY_RECOMPUTED",
+  "GPU_hours": 0.23740052507983314,
+  "primary_recomputed_rows": 116,
+  "independent_audit": false,
+  "source_commit": "b031773e323bc0e6c9dcd8c9119b800ec4d70f8c",
+  "checkpoint_HF_revision": "0880420070a524efe14d7e163b34dcca90d2be1b",
+  "checkpoint_SHA256": "a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0",
+  "raw_bank_seal_SHA256": "5174bacf7333bd81ae1efccfbda24125a6209f91a37e57678f5d6cbb8820411e",
+  "tables": {
+    "native_29x6.csv": {
+      "raw_SHA256": "a6b62dfebcfe900fbccf33f601a40ec8ff7b813c7ac9a9a8c58beb04e5d7c208",
+      "public_LF_SHA256": "13cf7c355fc399e1a86322d7a9ee14e64f6b330858834c6b3be318d3b42dd41b"
+    },
+    "common_29x8.csv": {
+      "raw_SHA256": "8bdb48e700732749359c6e16cae863163c2fa5230c8fdb4bfc3d0e94db7cb920",
+      "public_LF_SHA256": "7fa8a49e870dc76d57e9cc8ec1b0e363b541fde6e08adcee88aeb75994c3a17d"
+    },
+    "native_SMD_macro_median.csv": {
+      "raw_SHA256": "9c10ca60ee5b925c38d0403fa9097366d32542079f5d772914411e35434de22f",
+      "public_LF_SHA256": "4470738ebfc4465112dac8efb0adbdaccec7f748a7ee1e7da5b874750669dca3"
+    },
+    "common_SMD_macro_median.csv": {
+      "raw_SHA256": "06c6b1ee7b2bcf0b07c05970e0d30168c5d0a3281029a4d0c3247f25c10bda77",
+      "public_LF_SHA256": "a78391a1624d6caad386a49cae10402bf733c6a400c36fdb009d3ccf2756df32"
+    },
+    "common_SMD_paired_deltas.csv": {
+      "raw_SHA256": "4b197f924361a0b4967890304eaabb6b5c40a09e6434d91f3a975e2461e2fcc5",
+      "public_LF_SHA256": "3b1a48f31685a028504f72f7feb5fe7f313393a59c73298f24645b05fc8b0987"
+    },
+    "common_SMD_paired_summary.csv": {
+      "raw_SHA256": "e3dc21ab8367678733df2193a398c37c59b47b6e7e4ebdf7a9e10646bfa68743",
+      "public_LF_SHA256": "8f9b96520c5abdccb7a086e7238c837cc1c7656921f1230392edd08645f35ded"
+    }
+  }
+}
