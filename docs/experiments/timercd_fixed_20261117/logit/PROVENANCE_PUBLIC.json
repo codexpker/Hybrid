@@ -1,0 +1,45 @@
+{
+  "status": "COMPLETED_PRIMARY_RECOMPUTED_NUMERICAL_DIAGNOSIS_CLOSED",
+  "score_expression": "archived abnormal-minus-normal logit for all A/B29",
+  "calibration": "original CAL logits q99 higher strict >",
+  "new_GPU_hours": 0,
+  "new_forward": false,
+  "training": false,
+  "primary_recomputed_rows": 116,
+  "original_probability_results_unchanged": true,
+  "tables": {
+    "common_29x8.csv": {
+      "raw_sha256": "72b9c153095923208e8a573586a1d1c75d2086d8d268d5dfa59bb8d7d9da548a",
+      "public_LF_sha256": "fb2e9355aec0179b29f6ea41a37004a4e9a4a31ed6dddd86c3dded0b68360356"
+    },
+    "native_29x6.csv": {
+      "raw_sha256": "4ba4cc6a297f8210d916985c8cc7262ec6d158297a467b10e426dd12f77469a1",
+      "public_LF_sha256": "0bd15e31d948c98d5b795633d1f09a661184143a8bf8b68c446e198bcce8a9f2"
+    },
+    "common_SMD_macro_median.csv": {
+      "raw_sha256": "a1ba38a8dc300b2c1d5788d232839df9633f9fa80b3f5b4b6fa6e68ccebf35d9",
+      "public_LF_sha256": "051482f45ac200ca4f98f4622b97adcd867c66d89191010a0d2d50b96a8ae111"
+    },
+    "native_SMD_macro_median.csv": {
+      "raw_sha256": "30be924a705ba9b846fdbd34a8ae49cec6df67ce049787aefb32d98944bc2a91",
+      "public_LF_sha256": "b031eb78249f05737f8a56c9cfb633bdfb12cda23b33a57ffd0582dae34faecb"
+    },
+    "common_SMD_paired_deltas.csv": {
+      "raw_sha256": "8c520ade5b72bf009f28ee15def9d1cf592fbbd941169d4570f1a307d0a6e0c2",
+      "public_LF_sha256": "d39a3ebc41a50025d45a26de28bfc0eb54d4c297f9c0ecaa4e1ca9a7bb3b7c04"
+    },
+    "common_SMD_paired_summary.csv": {
+      "raw_sha256": "9f5d79907ce6ad02d597a2df28780c623d57327c50270dfbf719720678a75061",
+      "public_LF_sha256": "b8ab7d3d4ca34fce7e1ead0f318f3c1a36bc237e10f211c0c5819414c9332c7c"
+    },
+    "probability_logit_operating_comparison.csv": {
+      "raw_sha256": "2ec8e0ec808c69a86be9f9e7d0a8d0d7255b6ed78018e0a4efc674972a534179",
+      "public_LF_sha256": "8bace543724f891a38322a3bf8d2b259275890b8155cfac1c6d9f2f306cf37d0"
+    },
+    "paired_all29_AP_ROC.csv": {
+      "raw_sha256": "f22a6a05fd0704b94ff347b997d84c629b8fe06958ec75354d805e752b668ffa",
+      "public_LF_sha256": "ac6eba8ab08dc41102ce5949502e9f59fc9cfcb440ec3b6549c0e9edbfacbf4b"
+    }
+  },
+  "source_sha256": "f313e6ffe25bcb1819293227f0448d0d64acfbb9ffc020536e4a5ab85ba2dec6"
+}

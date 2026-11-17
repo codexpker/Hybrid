@@ -43,7 +43,7 @@ def terminal_gate(raw,records):
     return set(actual)
 
 
-def load_new_bank(path,record,role,arm,descriptor):
+def load_new_bank(path,record,role,arm,descriptor,*,score_expression="probability"):
     checked(path,descriptor['sha256'])
     spec=next(r for r in record['roles']if r['role']==role);lo,hi=spec['bounds_half_open']
     expected=np.arange(lo,hi,dtype=np.int64)
@@ -59,6 +59,13 @@ def load_new_bank(path,record,role,arm,descriptor):
         if not np.array_equal(end,expected_end):raise ValueError('Original nonoverlapping native5000 window identity changed')
         expected_available=np.full(len(index),hi-1,dtype=np.int64)if arm=='A_official_role'else end
         if not np.array_equal(available,expected_available):raise ValueError('Statistics-pool availability not disclosed correctly')
+        if score_expression == 'logit':
+            logit=z['logit'].copy()
+            if not np.array_equal(logit,z['head_logits'][:,1]-z['head_logits'][:,0]) or not np.isfinite(logit).all():
+                raise ValueError('Archived finite original head-logit difference required')
+            score=logit
+        elif score_expression != 'probability':
+            raise ValueError('Fixed probability or original logit expression only')
     return index,score,available
 
 
@@ -120,7 +127,7 @@ def inherited_tables(w,records):
     return native,common,inputs
 
 
-def run(workspace,output,*,config):
+def run(workspace,output,*,config,score_expression="probability"):
     began=time.monotonic();w,output=Path(workspace),Path(output);cp=local(w,config);cfg=read(cp)
     root=local(w,cfg['output']);sp=root/'RAW_BANK_SEAL.json';seal=read(sp)
     bp=w/'preparations/timercd_fixed_20261117_v1/data_binding.json';checked(bp,DATA_SHA)
@@ -146,7 +153,7 @@ def run(workspace,output,*,config):
                 missing=dict(record=rid,arm=arm,status='MISSING_OR_FAILED',AP=None,ROC_AUC=None,
                              reason='No complete paired CAL/QUERY banks in terminal seal; fixed entity retained')
                 native.append(dict(missing));common.append(dict(missing));continue
-            banks={role:load_new_bank(root/key,record,role,arm,descriptors[key])for role,key in keys.items()}
+            banks={role:load_new_bank(root/key,record,role,arm,descriptors[key],score_expression=score_expression)for role,key in keys.items()}
             tau=ev.cal_threshold(banks['CAL'][1]);index,score,available=banks['QUERY']
             if labels is None:
                 lp=local(w,labelsmeta[rid]['path']);checked(lp,labelsmeta[rid]['sha256']);inputs[str(lp)]=ev.sha(lp)
@@ -165,7 +172,7 @@ def run(workspace,output,*,config):
                     axis_start=int(axis[0]),axis_end_exclusive=int(axis[-1])+1,
                     statistics_permission='whole CAL and QUERY each normalized independently; offline future-role statistics'if arm==ARMS[0]
                     else'raw FIT mean/std(ddof0), std0->1e-8 once; frozen model; offline within-window observations',
-                    score_definition='Official pretrained anomaly_head mean channel logits then softmax class1; no logit substitution')
+                    score_definition=('Archived abnormal minus normal head logit; own CAL logit q99higher strict>' if score_expression=='logit' else 'Official pretrained anomaly_head mean channel logits then softmax class1; no logit substitution'),score_expression=score_expression)
                 rows.append(row);new.append(row)
                 for stream in ('strict','confirmed3'):
                     path=folder/(stream+'_event_details.json');events.append(dict(record=rid,arm=arm,scope=scope,stream=stream,
@@ -184,7 +191,7 @@ def run(workspace,output,*,config):
         timing='Offline_first_hit_offset only; missed/unobserved intervals remain UNKNOWN/NA, never online delay'))
     ev._dump(output/'RESULT.json',dict(status='COMPLETED'if len(actual)==116 else'INCOMPLETE',native_rows=native,common_rows=common,
         native_SMD=native_stats,common_SMD=common_stats,old_metrics_recomputed=False,new_method_evaluations=len(new),
-        CPU_seconds=time.monotonic()-began,GPU_hours=0,new_forward=False,inputs=inputs,
+        CPU_seconds=time.monotonic()-began,GPU_hours=0,new_forward=False,score_expression=score_expression,inputs=inputs,
         source_sha256=ev.sha(__file__),evaluator_sha256=ev.sha(ev.__file__),
         axis_scope='Native rows have method-own axes and are descriptive, not matched. All common rows share actual fixed intersection.',
         statistics='One exposed SMD domain. Macro/median and strict signs describe fixed entities; no pooled-point independent inference.',
@@ -195,4 +202,4 @@ def run(workspace,output,*,config):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--workspace',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--config',type=Path,required=True);a=p.parse_args();run(a.workspace,a.output,config=a.config)
+    p.add_argument('--config',type=Path,required=True);p.add_argument('--score-expression',choices=['probability','logit'],default='probability');a=p.parse_args();run(a.workspace,a.output,config=a.config,score_expression=a.score_expression)
