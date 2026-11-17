@@ -1,0 +1,62 @@
+{
+  "A_official_role_QUERY": {
+    "n": 796261,
+    "p0_fraction": 0.0,
+    "p1_fraction": 0.0007271485103502495,
+    "merged_points_fraction": 0.0011654470079534222,
+    "max_merged_logit_span": 42.76083755493164,
+    "inversion_bins": 0,
+    "SMD": {
+      "probability_AP": 0.4862383870323343,
+      "logit_AP": 0.4863655856982085,
+      "probability_ROC": 0.8386350406542015,
+      "logit_ROC": 0.8386351454672875
+    },
+    "PSM": {
+      "probability_AP": 0.3587739599159309,
+      "logit_AP": 0.35877395991593086,
+      "probability_ROC": 0.5504617131392955,
+      "logit_ROC": 0.5504617131392955
+    },
+    "max_abs_AP_difference": 0.004043915057738656,
+    "max_abs_ROC_difference": 5.012846077678823e-06
+  },
+  "A_official_role_CAL": {
+    "n": 165289,
+    "p0_fraction": 0.0,
+    "p1_fraction": 0.00019965030945797967,
+    "merged_points_fraction": 0.0002722504219881541,
+    "max_merged_logit_span": 14.77638053894043,
+    "inversion_bins": 0
+  },
+  "B_fit_only_QUERY": {
+    "n": 796261,
+    "p0_fraction": 3.390847975726552e-05,
+    "p1_fraction": 0.020458116120216863,
+    "merged_points_fraction": 0.02793430797188359,
+    "max_merged_logit_span": 16835773.266319275,
+    "inversion_bins": 0,
+    "SMD": {
+      "probability_AP": 0.41038949570462263,
+      "logit_AP": 0.47211463995021247,
+      "probability_ROC": 0.8569634318647676,
+      "logit_ROC": 0.8595680757628322
+    },
+    "PSM": {
+      "probability_AP": 0.30227286465295533,
+      "logit_AP": 0.3022728566197777,
+      "probability_ROC": 0.4757163488362657,
+      "logit_ROC": 0.4757163488362656
+    },
+    "max_abs_AP_difference": 0.789621262469905,
+    "max_abs_ROC_difference": 0.025912504226771826
+  },
+  "B_fit_only_CAL": {
+    "n": 165289,
+    "p0_fraction": 0.0,
+    "p1_fraction": 0.015548524100212355,
+    "merged_points_fraction": 0.01580867450344548,
+    "max_merged_logit_span": 6617989.0877838135,
+    "inversion_bins": 0
+  }
+}
