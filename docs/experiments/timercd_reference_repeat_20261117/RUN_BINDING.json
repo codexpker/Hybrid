@@ -1,0 +1,30 @@
+{
+  "fixed_before_target_results": true,
+  "original_seed2025_reused": true,
+  "records": [
+    {
+      "seed": 2026,
+      "config": "configs/timercd-reference-repeat-seed2026-20261117.json",
+      "config_sha256": "3d7d7a57b87d5e0cb8107e0fdace73fa310aca4033691bdf86114b899b0f90b9",
+      "plan": "source_plan_seed2026.json",
+      "plan_sha256": "adc7540686030c96f12eba474c2920d24c14aa85e1bcbecc4e4fcc27cb7c64c7",
+      "source_asset_sha256": "42abd86aacbe81c0aee2bdbef0c93d83463aaf6d889843a37221e8f99d56d86d",
+      "train_mask_seed": 8456100,
+      "select_mask_seed_base": 8455100,
+      "updates": 1536,
+      "sample_exposures": 4608
+    },
+    {
+      "seed": 2027,
+      "config": "configs/timercd-reference-repeat-seed2027-20261117.json",
+      "config_sha256": "2265b76c3139417c1df1ee424e3a687d4d40a90296f8c7450abf259d794d459a",
+      "plan": "source_plan_seed2027.json",
+      "plan_sha256": "111de4db797750a83492bfa399dbb383beb2cc263c888d1c425283db294845b2",
+      "source_asset_sha256": "42abd86aacbe81c0aee2bdbef0c93d83463aaf6d889843a37221e8f99d56d86d",
+      "train_mask_seed": 8457100,
+      "select_mask_seed_base": 8455100,
+      "updates": 1536,
+      "sample_exposures": 4608
+    }
+  ]
+}
