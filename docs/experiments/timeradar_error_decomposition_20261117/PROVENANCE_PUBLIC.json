@@ -1,0 +1,13 @@
+{
+  "rows": 72,
+  "GPU_hours": 0,
+  "new_training": false,
+  "new_forward": false,
+  "threshold_fit": false,
+  "fixed_weight": 0.9,
+  "table_raw_sha256": "51584365e3bd45ccacc1c61313e73500387d5b275276fcf0697990ed25becfdf",
+  "table_public_LF_sha256": "425bd38d9f8ddb0c65c0f88614592c286fa0f28f070811f6b3ec9cc6e8517f84",
+  "source_sha256": "de178bdbe61cbe6b51f142f04673fc1f1e1cfab3c7d92a7740817efb350f98f5",
+  "formula": "V=channelmean cached sample variance; E=channelmean squared mean-reconstruction error; E+0.9V; pointwise float32",
+  "original_conclusions_unchanged": true
+}
