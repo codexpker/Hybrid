@@ -14,7 +14,8 @@ class AdapterOnlyTests(unittest.TestCase):
 
     def wrapper(self, arm='cross'):
         torch.manual_seed(2024)
-        old=TimeRadarCrossVariable(FakeNative(),arm,2)
+        native=FakeNative();native.register_buffer('tau_fixture',torch.tensor(.25))
+        old=TimeRadarCrossVariable(native,arm,2)
         before=copy.deepcopy(old.state_dict());rng=torch.get_rng_state().clone()
         result=AdapterOnlyTimeRadar(old)
         self.assertTrue(torch.equal(rng,torch.get_rng_state()))

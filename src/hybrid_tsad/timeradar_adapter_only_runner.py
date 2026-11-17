@@ -90,8 +90,12 @@ def mechanism(w, cfg, out, record, arm, device):
     finally:hook.remove()
     assert steps[-1]['adapter_gradient_norms']['up.weight']>0 and steps[-1]['adapter_gradient_norms']['down.weight']>0
     mode=[q.training for q in m.modules()];rng=torch.get_rng_state().clone()
+    cuda_rng=torch.cuda.get_rng_state(device).clone() if device.type=='cuda' else None
+    before_select=base.state_hashes(m.native)
     with base.validation_mode(m,device):m(x,norm=spec['norm'],copies=cfg['copies'])
     assert mode==[q.training for q in m.modules()] and torch.equal(rng,torch.get_rng_state())
+    if cuda_rng is not None:assert torch.equal(cuda_rng,torch.cuda.get_rng_state(device))
+    assert base.state_hashes(m.native)==before_select
     base.dump(out/'MECHANISM_RECEIPT.json',dict(status='PASS_FIT_ONLY',record=record,arm=arm,roles=reader.access,
         zero_disabled_native_bitexact=True,initial_adapter_state=initial_adapter,final_adapter_state=base.state_hashes(m.adapter),
         trainable_parameters=16912,steps=steps,native_freeze=proof,mode_RNG_restored=True,no_labels_decoded=True))
