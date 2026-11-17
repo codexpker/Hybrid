@@ -1,5 +1,11 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-17 当前适配实现分支已完成评估并结束
+
+“冻结TimeRadar编码器＋目标域重构训练＋浅层跨变量适配”已完成评估，未建立广泛稳定增量，不再作为接近定型的论文主方法。停止追加聚合器、冻结策略、正则、蒸馏、评分组合和训练预算搜索。完整TimeRadar、LEFT、原三台SMD重复性正项、全部负项及原始代码/权重/分数/统计保持，不能把成熟基线或历史最好值记为Hybrid贡献。第二篇仍定位方法论文；后续方法决策与本分支明确分开，本次没有提出新候选或启动计算。
+
+[既有草稿中的结果与边界](manuscript/next_generation_20261115/draft.md#completed-adaptation-branch-evidence-17-november-2026)已同步。以下段落为历史阶段状态，不代表当前任务仍在运行或旧方案仍待扩展。
+
 ## 2026-11-16 当前：固定选择性通道上下文适配实验
 
 完整[SMD28扩展与同权限LEFT比较](docs/experiments/timeradar_smd_full_left_matched_20261116/RESULTS.md)已经完成并独立复算：原3台可重复AP正项保留，但新增25台Cross相对Self为10胜15负，未建立广泛稳定增量。均值Cross停止扩种、扩域和污染矩阵；完整TimeRadar基础保留。

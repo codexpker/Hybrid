@@ -1,10 +1,12 @@
 ---
 title: "Hybrid: Time–Frequency and Temporal Normality Modeling for Industrial Time-Series Anomaly Detection"
 author: []
-date: "Working draft, 15 November 2026"
+date: "Working draft, updated 17 November 2026"
 lang: en
 bibliography: references.bib
 ---
+
+> **Research status, 17 November 2026.** Hybrid remains the intended proposed method for a methods paper. The implementation branch consisting of a frozen TimeRadar encoder, target-domain reconstruction training and shallow channel adapters has completed evaluation without establishing a broad, stable independent increment. It is closed, not a near-final paper method. TimeRadar, LEFT and other mature methods remain external references; their results and historical best values are not Hybrid contributions. Earlier density-model definitions and setup retained below are historical records of a stopped candidate, not the current architecture or validated contributions. No new candidate is specified here.
 
 # Introduction
 
@@ -12,7 +14,7 @@ Industrial monitoring requires more than recognizing abrupt, high-amplitude depa
 
 Time–frequency representations offer a useful way to describe both local variation and temporal organization. TimeRadar learns a fractional time–frequency representation and combines reconstruction with contextual deviation learning [@timeradar2026]. LEFT learns interacting temporal, spectral, and multiscale views, followed by joint representation learning and reconstruction [@left2026]. These methods motivate a richer representation than a single instantaneous vector. However, a representation with good reconstruction or prediction accuracy does not automatically provide a useful anomaly ranking. A flexible reconstruction model may reconstruct a sustained abnormal state, and a predictor may improve normal accuracy without increasing the separation between abnormal responses and difficult normal transitions. These are empirical risks, rather than universal properties of either modeling family.
 
-The central question of this work is therefore whether a common learning and detection criterion can preserve useful level, temporal, and cross-variable information while distinguishing persistent departures from legitimate normal-state variation. We study a complete Hybrid model rather than treating an additional feature branch as sufficient evidence of improvement. The candidate considered in this draft learns a joint density of observed causal windows using invertible transformations that alternate between the time domain and an orthogonal wavelet domain. The same normalized negative log-likelihood is minimized on normal-reference training windows and evaluated when the current observation arrives. This changes the learning and scoring basis; it is not a new weighting of the previously studied reconstruction and prediction scores.
+The central research question remains whether time-frequency and temporal information can distinguish weak and persistent departures from legitimate normal-state variation. The historical density candidate and the subsequently evaluated shallow TimeRadar adaptation branch have not established a generally effective solution. Hybrid remains the proposed-method identity for this research; no evaluated baseline, isolated favorable ablation or stopped implementation is promoted to the final method. The completed evidence below constrains future method decisions without itself supplying a new architecture.
 
 Several boundaries matter. First, an exact density is not a semantic definition of normality: a high-likelihood input can still be undesirable, and a legitimate new operating state can have low likelihood. Second, a causal endpoint detector may use the current observation after it arrives, but it must not use later observations. This is different from predicting the current observation from strictly earlier inputs. Third, statistical cross-variable dependence is not evidence of physical causation or a verified directed lag mechanism. Finally, robustness to unlabeled training contamination requires a separate experiment after the detector has demonstrated useful baseline discrimination. Performance that remains unchanged near a detection floor does not establish robustness.
 
@@ -56,7 +58,7 @@ The endpoint permission permits the current observation $x_t$ after arrival and 
 
 Ground-truth anomaly events are maximal contiguous positive intervals in the fixed official label sequence, subject to the preregistered boundary and censoring rules. Their labels are used only for evaluation after model and calibration choices have been frozen. A weak anomaly refers to a small change relative to an explicitly defined training scale, not an uncertain label or a short event. A sustained anomaly is assessed through its event-level discovery and within-event coverage, including a predefined steady portion when one exists. Public fault labels alone do not identify which variable, lag, or physical relationship is abnormal.
 
-## A common normality-learning and scoring criterion
+## Historical formulation: stopped joint-density candidate
 
 Channelwise location and scale $(\mu_c,\sigma_c)$ are estimated using legal FIT data only. With a fixed positive numerical floor on scale, the model receives $\widetilde X_{t,c}=(X_{t,c}-\mu_c)/\sigma_c$. This operation preserves within-window level relative to FIT; it does not subtract each window's own mean. Let $f_\theta:\mathbb R^{H\times C}\rightarrow\mathbb R^{H\times C}$ be invertible, and write $z_t=f_\theta(\widetilde X_t)$. With a factorized Student-t prior of fixed degrees of freedom $\nu=5$,
 
@@ -88,7 +90,7 @@ This first evaluation establishes only the candidate's basic detection capabilit
 
 # Experimental Setup
 
-## Fixed public-data settings
+## Historical joint-density candidate: fixed public-data settings
 
 The data roles are inherited from the existing frozen assets; they are not reselected using candidate scores. Every input window must be contained in a legal role or its explicitly authorized causal context. No physical record is split into overlapping training and query windows, and no discontinuous records are concatenated. Existing guards are retained where they exceed the candidate's actual footprint. The candidate uses $H=192$ for PSM and SWaT and $H=100$ for TEP. These settings are fixed before candidate QUERY results are opened.
 
@@ -139,3 +141,27 @@ TEP and PSM reuse the frozen normal training draw plans and maximum update count
 A single seed on exposed development data supports screening, not a statistically confirmed generalization claim. Event-level paired summaries retain every event, while TEP uncertainty uses simulation run as a clustering unit; overlapping points are not independent replications. If the candidate demonstrates useful detection, subsequent confirmation freezes the implementation before new independent entities or runs are opened and includes repeated seeds. No significance claim is made from an event count that overstates the number of independent operating runs.
 
 The candidate is supported only if an improvement relevant to weak or sustained anomaly detection can be attributed to the learning criterion or its temporal/multiscale structure and is not purchased through a severe increase in normal false alarms. It need not dominate every dataset or every metric. Conversely, a small AP change alone, an overall likelihood rescaling, improved training loss, or a threshold-only gain does not establish a methodological contribution. If the fixed complete design lacks a useful effect relative to the mature methods and simple controls, this candidate is stopped without a sequence of post hoc score, threshold, or architectural adjustments.
+
+
+# Completed adaptation-branch evidence (17 November 2026)
+
+This section records the evaluated implementation, not the final Hybrid method. Official TimeRadar weights, its complete forward/scoring chain and historical native configuration were retained. The native L=1 score is copy variance; no post-hoc reconstruction readout is substituted. Target FIT, normal SELECT, separate CAL, masks and checkpoints were fixed without QUERY labels. All TimeRadar/LEFT results here are offline retrospective; cropping or three-point confirmation does not make them strict online detections.
+
+The original three SMD machines showed reproducible Cross-over-Self AP gains under three fixed training seeds. Those local positives remain valid. In the complete seed2024 SMD28 extension, however, Cross-minus-Self AP averaged +0.0483 percentage points with median -0.0194 and13 wins/15 losses. On the additional25 machines the mean was -0.0242 percentage points (10 wins/15 losses). SMD is one exposed domain; the machines are not independent datasets. PSM three-seed negatives and false-alarm costs remain in the evidence. The matched-data LEFT comparison was mixed, with different initialization and native training budgets explicitly retained, including the unfinished SMD curriculum.
+
+Receiver-specific soft aggregation changed actual information sources, decoder outputs and native scores, but improved AP over mean Cross only on SMD1-1 and reduced three-point anomaly coverage in all four development cases. Exact-parameter controls did not support a stable independent selective-aggregation contribution. The fixed recipe was stopped. Cache-only E and E+0.9V diagnostics exposed some information omitted by V, but those advantages already existed before adaptation; they did not rescue the adaptation claim or become a selected new method.
+
+The final matched experiment isolated whether the native decoder needed to update. It froze every native parameter and buffer, kept the decoder in eval mode, and retained autograd through its operations. Only16912 adapter parameters were trained. Four tasks used seed2024 and2000 updates with identical initialization, FIT draws, masks, SELECT and CAL rules. Earlier decoder-plus-adapter and zero-update results were reused.
+
+| Development task | Zero AP | Decoder+Self AP | Adapter-only Self AP | Decoder+Cross AP | Adapter-only Cross AP |
+|---|---:|---:|---:|---:|---:|
+| PSM | .431166 | .426359 | .429517 | .425339 | .428966 |
+| SMD1-1 | .609689 | .603667 | .595749 | .616477 | .601071 |
+| SMD1-2 | .282421 | .298940 | .293192 | .303594 | .283690 |
+| SMD1-3 | .357354 | .383640 | .357892 | .385731 | .361542 |
+
+Freezing partly recovered PSM ranking but did not exceed zero-update AP; its Cross three-point false-positive rate fell to zero while anomaly coverage fell4.233% to0.122% and event hits fell11 to2. All three SMD adapter-only Cross AP values were below joint-update Cross. Cross-over-Self under the frozen decoder had two positive and two negative AP differences. These results do not identify decoder updating as the sole cause of the earlier limitations. Normal reconstruction improvement is not credited as detection improvement.
+
+The branch status is **evaluated; no broad, stable independent increment established**. No additional aggregator, freezing schedule, regularizer, distillation, scoring combination or training-budget search is pursued within it. This does not reject the complete TimeRadar foundation, erase local positives or settle all possible cross-variable methods. Raw code, weights, scores, statistics and negative evidence remain bound to their original versions. Future method decisions are separate from this closed branch. The paper remains a methods paper; the completed diagnostics are research evidence, not a change to an evaluation-paper contribution.
+
+Numerical sources and full permissions/ROC/event/false-alarm/coverage tables: [three-seed results](../../docs/experiments/timeradar_cross_variable_repeat_20261116/RESULTS.md), [SMD28 and matched LEFT](../../docs/experiments/timeradar_smd_full_left_matched_20261116/RESULTS.md), [selective aggregation](../../docs/experiments/timeradar_selective_context_20261116/RESULTS.md), [fixed error decomposition](../../docs/experiments/timeradar_error_decomposition_20261117/RESULTS.md), [decoder-freeze paired comparison](../../docs/experiments/timeradar_adapter_only_20261117/RESULTS.md). Auxiliary results do not replace the formal V comparisons. No new model or GPU job was run for this editorial update.
