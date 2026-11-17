@@ -1,0 +1,9 @@
+# Frozen-native adapter-only comparison
+
+This bounded experiment changes only parameter permissions: the complete original TimeRadar, including decoder parameters and tau buffers, stays frozen/eval; the historical rank16 self/cross ComplexChannelAdapter alone trains (16912 parameters). The decoder forward is not under no_grad: its derivatives must reach the decoder-input adapter. No selector, new loss or architecture is added.
+
+The extension consumes the already constructed historical wrapper, reuses the identical native/adapter objects, removes its old hook and attaches the same adapter to the new wrapper. Construction consumes no extra RNG. The shared historical train/selection/score functions are unchanged, with original FIT plan/masks, seed2024,2000 updates,200 warmup,normal SELECT earliest-min,source881/checkpoint528,norm/c10 and original L1 variance score. Native/head/decoder+adapter self/cross results are reused.
+
+Beyond the old kernel's non-decoder freeze check, every phase verifies the complete native state including decoder and buffers against its initial hash. Training also checks native tensors saved in both selected and final checkpoints. FIT-only L0 checks actual gradient flow from frozen decoder outputs into adapter, finite up/down gradients after updates, zero/disabled native identity, and validation mode/RNG restoration. All old modules, checkpoints and failure artifacts remain unchanged.
+
+The eight formal scores retain official score/index/availability, per-channel copy variance and reconstruction mean. Pointwise reconstruction-error E and E+.9V are later derived on the same cached axis without new forwards; label evaluation starts only after all16 banks are globally sealed and mirrored. Native remains offline100-window/batch-shared-FRFT, without strict online/lag claims.
