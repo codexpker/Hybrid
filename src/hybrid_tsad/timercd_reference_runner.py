@@ -72,8 +72,9 @@ def evaluate_source(model,samples,ids,cfg,device):
 def train(w,cfg,out,arm,device,profile=False):
     import torch
     seed(cfg["train_seed"])
-    source_root=resolve(w,cfg["output"]);source_manifest=read(source_root/"SOURCE_MANIFEST.json")
+    source_root=resolve(w,cfg.get("source_root",cfg["output"]));source_manifest=read(source_root/"SOURCE_MANIFEST.json")
     assert sha(source_root/"source.pkl")==source_manifest["source_sha256"]
+    if "source_asset_sha256" in cfg:assert cfg["source_asset_sha256"]==source_manifest["source_sha256"]
     with (source_root/"source.pkl").open("rb") as f:samples=pickle.load(f)
     det=get_model(w,cfg,arm,cfg["source_channels"],device);model=det._tester.model
     seed(cfg["train_seed"])
@@ -96,7 +97,7 @@ def train(w,cfg,out,arm,device,profile=False):
     if not profile:validation(0)
     model.train();start=time.time()
     for step,ids in enumerate(batches,1):
-        batch=make_batch(samples,ids,device,cfg["mask_seed"]+step,16,arm)
+        batch=make_batch(samples,ids,device,cfg.get("train_mask_seed",cfg["mask_seed"])+step,16,arm)
         optimizer.zero_grad(set_to_none=True)
         joint,ce,mse=loss_terms(model,batch)
         if not torch.isfinite(joint):raise RuntimeError("Nonfinite training loss")
