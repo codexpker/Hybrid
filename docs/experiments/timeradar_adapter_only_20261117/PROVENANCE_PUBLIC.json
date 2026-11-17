@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETED_PRIMARY_CHECKED",
+  "independent_audit": false,
+  "GPU_hours": 2.0051954378684362,
+  "primary_check": "All8 raw APROC and complete native freeze receipts verified",
+  "raw_table_sha256": {
+    "paired_comparison.csv": "f4c977aefbbfe80d4eaa1a0fe7cd4b88e0347203eb299f1f0494b91d1058ba30",
+    "official_V_24rows.csv": "f2745d53fa908b9035e9b7a59e4f3977316871ccabb99dec5bb7f5365df12cb3",
+    "auxiliary_decomposition_96rows.csv": "7bd06ab4be81098e0b5fd251ddc70008633ed91795b372514f679a53411c830e",
+    "paired_differences.csv": "76b1f0e2fbc1d846812d18e6fa7d0318006865f57c9f80c5b89035a13c387d5a"
+  },
+  "public_newlines": "LF; scientific fields unchanged",
+  "scientific_code_commit": "74e8ab224e776dc7625a5d02ee0bc035f0bf84b5"
+}
