@@ -44,13 +44,24 @@ def rng_hashes(torch):
         CUDA=[hashlib.sha256(v.cpu().numpy().tobytes()).hexdigest()for v in torch.cuda.get_rng_state_all()])
 
 
+def apply_numeric_replacements(batch,row_ids,bank):
+    """Replace only first-half T slots, without calling any RNG or using labels."""
+    if row_ids is None:return np.empty(0,np.int64)
+    assert len(row_ids)==128 and batch.shape[0]==256
+    at=np.flatnonzero(row_ids>=0)
+    batch[at]=bank[row_ids[at]]
+    return at
+
+
 def run_task(args):
     task=read(args.task);root=args.output;workspace=args.workspace
     root.mkdir(parents=True,exist_ok=False);began=time.monotonic()
     arm=args.replay_arm or "noU";source=task["source"];w=task["scoring"]["window"]
     keep_mode=getattr(args,"preservation_mode",None)
+    exposure_path=getattr(args,"exposure_bundle",None)
     assert task["domain"]in {"PSM","SWAT"}and w==192 and task["training"]["batch"]==256
     if keep_mode:assert arm=="R"and args.seed==2025
+    if exposure_path:assert not keep_mode and arm in {"R","TT"}and args.seed==2025
     import torch
     torch.set_num_threads(1);torch.set_num_interop_threads(1);torch.cuda.set_device(0)
     cap=30 if arm=="noU"else 20
@@ -110,6 +121,24 @@ def run_task(args):
         with np.load(args.replay_plan)as z:plan={k:z[k].copy()for k in z.files}
         expected=plan_arrays(task,args.seed)
         assert set(plan)==set(expected)and all(np.array_equal(plan[k],expected[k])for k in plan)
+        replacement_rows=None;replacement_bank=None
+        if exposure_path:
+            manifest=read(exposure_path)
+            assert manifest["scaler_sha256"]==sha(scaler_file)and manifest["base_sampling_plan_sha256"]==sha(args.replay_plan)
+            assert manifest["donor_labels_or_identity_in_bundle"]is False
+            slot_file=workspace/manifest["slot_map"]["relative"];bank_file=workspace/manifest["window_bank"]["relative"]
+            assert sha(slot_file)==manifest["slot_map"]["sha256"]and sha(bank_file)==manifest["window_bank"]["sha256"]
+            with np.load(slot_file)as z:
+                assert z.files==["replacement_row"];replacement_rows=z["replacement_row"].copy()
+            replacement_bank=np.load(bank_file,mmap_mode="r",allow_pickle=False)
+            assert replacement_rows.shape==(2000,128)and np.sum(replacement_rows>=0)==25600
+            assert np.array_equal(np.sort(replacement_rows[replacement_rows>=0]),np.arange(25600))
+            assert replacement_bank.shape==(25600,w,c)and replacement_bank.dtype==np.float32
+            dump(root/"EXPOSURE_BINDING.json",dict(manifest_sha256=sha(exposure_path),
+                slot_map_sha256=sha(slot_file),window_bank_sha256=sha(bank_file),
+                replacement_rows=25600,total_T_slots=256000,total_batch_slots=512000,
+                only_first_half_T_modified=True,numeric_bundle_only=True,labels_or_donor_identity_read=False,
+                normalization="already transformed once by frozen author scaler",audit_metadata_not_read=True))
         role_values={name:load_role(name)for name in sorted(allowed)}
         pairs=task["arms"][arm];mapping={"T":("T","T_starts"),"S":("S","S_starts"),
                                       "T_prime":("T","T_prime_starts"),"S_prime":("S","S_prime_starts")}
@@ -122,6 +151,9 @@ def run_task(args):
                 role,key=mapping[part];values=role_values[role]
                 halves.append(np.stack([np.float32(values[int(a):int(a)+w])for a in plan[key][step]]))
             batch=np.concatenate(halves);assert batch.shape==(256,w,c)
+            if replacement_rows is not None:
+                at=apply_numeric_replacements(batch,replacement_rows[step],replacement_bank)
+                assert np.isfinite(batch).all()
             optimizer.zero_grad();batch_tensor=torch.from_numpy(batch).cuda()
             native_loss=model(batch_tensor,None,None,None)[0]
             loss=native_loss
@@ -139,7 +171,8 @@ def run_task(args):
             grads=[p.grad for p in model.parameters()if p.grad is not None]
             assert grads and all(torch.isfinite(g).all()for g in grads)
             optimizer.step();assert model.step==source["python_step"]+step+1
-            trace.append(dict(update=step+1,loss=float(loss.detach()),python_step=model.step))
+            trace.append(dict(update=step+1,loss=float(loss.detach()),python_step=model.step,
+                              replaced_T_slots=0 if replacement_rows is None else int(len(at))))
             if(step+1)%500==0:print(json.dumps(dict(event="UPDATE",seed=args.seed,arm=arm,**trace[-1])),flush=True)
         endpoint=train/"endpoint2000.pth";torch.save(model.state_dict(),endpoint)
         torch.save(optimizer.state_dict(),train/"optimizer2000.pth")
@@ -151,7 +184,9 @@ def run_task(args):
             training_roles=accesses.copy(),labels_read=False,CAL_QUERY_read=False,endpoint_only=True,
             trainable_parameters=sum(p.numel()for p in model.parameters()if p.requires_grad),
             training_seconds=time.monotonic()-started,allocated=torch.cuda.max_memory_allocated(),
-            reserved=torch.cuda.max_memory_reserved()))
+            reserved=torch.cuda.max_memory_reserved(),numeric_bundle_only=bool(exposure_path),
+            exposure_manifest_sha256=sha(exposure_path)if exposure_path else None,
+            donor_labels_or_identity_read=False,replaced_T_slots=25600 if exposure_path else 0))
         if keep_mode:
             assert teacher_before==tensor_hashes(teacher)and teacher.step==source["python_step"]
             assert all(p.grad is None for p in teacher.parameters())

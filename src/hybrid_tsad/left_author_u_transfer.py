@@ -44,6 +44,7 @@ def main():
     parser.add_argument("--seed",type=int,default=2025)
     parser.add_argument("--task",type=Path)
     parser.add_argument("--preservation-mode",choices=["P","V"])
+    parser.add_argument("--exposure-bundle",type=Path)
     args=parser.parse_args()
     if args.preservation_mode and args.task is None:parser.error("Preservation requires an explicit frozen domain task")
     if args.task is not None:
