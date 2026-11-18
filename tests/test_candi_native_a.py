@@ -11,13 +11,25 @@ def test_native_window_score_is_assigned_to_real_endpoint_without_padding():
         assert np.array_equal(starts+9,np.arange(*axis))
 
 
-def test_full_reference_chunk_keeps_distance_and_acceptance_mask():
+def test_query_chunk_keeps_full_reference_distance_and_acceptance_mask():
     import torch
     generator=torch.Generator().manual_seed(2025)
     q=torch.randn(4,5,generator=generator);r=torch.randn(37,5,generator=generator)
     cov=torch.randn(5,5,generator=generator);inv=cov@cov.T
     difference=q[:,None,:]-r[None,:,:]
     expected=((difference@inv)*difference).sum(-1).min(1).values[:,None]
-    actual=chunked_mahalanobis(q,r,inv,chunk=7)
+    actual=chunked_mahalanobis(q,r,inv,chunk=2)
     assert torch.allclose(actual,expected,rtol=1e-6,atol=1e-6)
     assert torch.equal(actual<3.5,expected<3.5)
+
+
+def test_readout_loader_uses_its_own_rng():
+    import torch
+    from torch.utils.data import DataLoader,TensorDataset
+    values=TensorDataset(torch.arange(12))
+    torch.manual_seed(2025);before=torch.get_rng_state().clone()
+    list(DataLoader(values,batch_size=4,shuffle=False,num_workers=0))
+    assert not torch.equal(before,torch.get_rng_state())  # Preserve the real counterexample.
+    torch.set_rng_state(before)
+    list(DataLoader(values,batch_size=4,shuffle=False,num_workers=0,generator=torch.Generator().manual_seed(2025)))
+    assert torch.equal(before,torch.get_rng_state())

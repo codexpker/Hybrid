@@ -1,0 +1,24 @@
+{
+  "units": "seconds",
+  "charged_again_this_round": false,
+  "SWAT": {
+    "normal_source_training_seconds": 3877.443655194016,
+    "normal_source_cost_definition": "Historical TRAIN_RECEIPT train_seconds; separate from adaptation jobs",
+    "normal_source_receipt": "results/left_swat_author_20261118_v1/TRAIN_RECEIPT.json",
+    "TT_A_job_seconds": 274.4720286319498,
+    "R_A_job_seconds": 274.16824932489544,
+    "adaptation_cost_definition": "Historical owned job wall includes startup, adaptation, CAL/QUERY readout and cleanup; not isolated optimizer time",
+    "adaptation_receipts": "results/left_author_swat_source_replay_20261118_v1/lifecycles/{TT,R}/OS_WAIT.json"
+  },
+  "PSM": {
+    "normal_source_job_seconds": 981.6994731270242,
+    "normal_source_cost_definition": "Historical source job wall; not claimed to isolate training from startup/other job work",
+    "normal_source_receipt": "results/left_psm_R_seed2025_20261101_v1/R_TRAIN_LAUNCH_v1/OS_WAIT.json",
+    "TT_A_job_seconds": 249.33551766490564,
+    "R_A_job_seconds": 247.9652030018624,
+    "noU_readout_recovery_job_seconds": 6.279282429954037,
+    "adaptation_cost_definition": "Historical owned job wall includes startup, adaptation, CAL/QUERY readout and cleanup; not isolated optimizer time",
+    "adaptation_receipts": "results/left_author_psm_source_replay_20261118_v1/seed2025/lifecycles/{TT,R}/OS_WAIT.json",
+    "noU_readout_receipt": "results/left_author_psm_source_replay_20261118_v1/RECOVERY_LIFECYCLES/2025_noU/OS_WAIT.json"
+  }
+}

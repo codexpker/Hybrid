@@ -34,14 +34,15 @@ def score_starts(axis,window=10):
     return np.arange(axis[0]-window+1,axis[1]-window+1,dtype=np.int64)
 
 
-def chunked_mahalanobis(query,reference,inverse,chunk=256):
+def chunked_mahalanobis(query,reference,inverse,chunk=4):
+    """Bound query rows while preserving the original complete reference axis."""
     import torch
-    best=torch.full((len(query),),float("inf"),device=query.device,dtype=query.dtype)
-    for first in range(0,len(reference),chunk):
-        difference=query[:,None,:]-reference[None,first:first+chunk,:]
+    result=[]
+    for q in query.split(chunk):
+        difference=q[:,None,:]-reference[None,:,:]
         distances=torch.sum((difference@inverse)*difference,dim=-1)
-        best=torch.minimum(best,distances.min(dim=1).values)
-    return best[:,None]
+        result.append(distances.min(dim=1).values[:,None])
+    return torch.cat(result)
 
 
 def runtime_label_free_selection(cls,chunked=True):
@@ -191,7 +192,8 @@ def worker(args):
             starts=score_starts(axis,w);input_lo=int(starts[0]);input_hi=int(starts[-1]+w)
             # CAL and QUERY are separately materialized; no concatenated context.
             values=scaler.transform(np.asarray(raw_target[input_lo:input_hi],dtype=np.float32))
-            dl=DataLoader(Windows(values,starts-input_lo),batch_size=256,shuffle=False,drop_last=False,num_workers=0)
+            dl=DataLoader(Windows(values,starts-input_lo),batch_size=256,shuffle=False,drop_last=False,num_workers=0,
+                generator=torch.Generator().manual_seed(2025))
             out=[]
             with torch.no_grad():
                 for x in dl:out.append(model.get_anomaly_scores(x.cuda()).cpu().numpy())
