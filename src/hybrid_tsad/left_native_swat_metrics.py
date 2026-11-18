@@ -25,6 +25,26 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def load_author_metric(path):
+    if sha(path) != AUTHOR_METRIC_SHA:
+        raise ValueError("Expected frozen author metric source")
+    spec = importlib.util.spec_from_file_location("pinned_left_auc_vus", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.metricor()
+
+
+def continuous_metrics(truth, score, author_metric):
+    with threadpool_limits(limits=1):
+        ap = average_precision_score(truth, score)
+        roc = roc_auc_score(truth, score)
+        precision, recall, _ = precision_recall_curve(truth, score)
+        trapezoid = auc(recall, precision)
+        curves = author_metric.RangeAUC_volume_opt(truth, score, windowSize=100, thre=250)
+    return dict(AP=float(ap), ROC_AUC=float(roc), AUC_PR_trapezoidal=float(trapezoid),
+                VUS_ROC=float(curves[-2]), VUS_PR=float(curves[-1])), curves[:4]
+
+
 def run(raw, label, author_metric, out):
     if out.exists():
         raise FileExistsError(out)
@@ -53,17 +73,8 @@ def run(raw, label, author_metric, out):
     if all_labels.shape != (START + TEST_POINTS,) or not np.isin(all_labels, (0, 1)).all():
         raise ValueError("Original SWaT binary label axis changed")
     truth = all_labels[index]
-    spec = importlib.util.spec_from_file_location("pinned_left_auc_vus", author_metric)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    with threadpool_limits(limits=1):
-        ap = average_precision_score(truth, score)
-        roc = roc_auc_score(truth, score)
-        precision, recall, _ = precision_recall_curve(truth, score)
-        trapezoid = auc(recall, precision)
-        tpr, fpr, vus_precision, windows, vus_roc, vus_pr = (
-            module.metricor().RangeAUC_volume_opt(truth, score, windowSize=100, thre=250)
-        )
+    metrics, (tpr, fpr, vus_precision, windows) = continuous_metrics(
+        truth, score, load_author_metric(author_metric))
 
     result = {
         "status": "COMPLETED",
@@ -75,11 +86,7 @@ def run(raw, label, author_metric, out):
         "scored_positive_points": int(truth.sum()),
         "context": "Offline whole-window scores. Effective availability is each 192-point window end.",
         "available_index_used_in_metrics": False,
-        "AP": float(ap),
-        "ROC_AUC": float(roc),
-        "AUC_PR_trapezoidal": float(trapezoid),
-        "VUS_ROC": float(vus_roc),
-        "VUS_PR": float(vus_pr),
+        **metrics,
         "VUS": {"implementation": "LEFT metricor.RangeAUC_volume_opt",
                 "windowSize": 100, "thre": 250, "author_metric_sha256": AUTHOR_METRIC_SHA},
         "threshold_metrics": None,
