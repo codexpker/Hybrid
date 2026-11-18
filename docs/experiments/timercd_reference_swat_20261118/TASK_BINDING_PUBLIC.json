@@ -1,0 +1,141 @@
+{
+  "record": "SWAT",
+  "data_binding_sha256": "824cf3185b4c214c1a2f0fab34d91b8be7f88ce09983912d17a44594b2aa1bdc",
+  "channels": [
+    "FIT101",
+    "LIT101",
+    "P101",
+    " AIT201",
+    "AIT202",
+    "AIT203",
+    "FIT201",
+    "P203",
+    "P205",
+    "DPIT301",
+    "FIT301",
+    "LIT301",
+    "P301",
+    "P302",
+    "AIT401",
+    "AIT402",
+    "FIT401",
+    "LIT401",
+    "AIT501",
+    "AIT502",
+    "AIT503",
+    "AIT504",
+    "FIT501",
+    "FIT502",
+    "FIT503",
+    "FIT504",
+    "PIT501",
+    "PIT502",
+    "PIT503",
+    "FIT601",
+    "P602"
+  ],
+  "original_csv_sha256": "a8bad2c5f770dbd04e7ad44f58f565caf1c4fe1a68ab62d2d8625adb4d4cdceb",
+  "roles": [
+    {
+      "role": "FIT",
+      "shape": [
+        296020,
+        31
+      ],
+      "original_start": 0,
+      "end": 296020,
+      "sha256": "591563937a01b0098854820ea8934d7367772100c34a677893f9dcb56c0bfd8f",
+      "score_start": null,
+      "score_end": 296020
+    },
+    {
+      "role": "CAL",
+      "shape": [
+        49339,
+        31
+      ],
+      "original_start": 445661,
+      "end": 495000,
+      "sha256": "147b89ddf4f488ba5363edc376ddd8cc17e0d6b20ccf352805f4e2bbc25dbdf3",
+      "score_start": 446173,
+      "score_end": 495000
+    },
+    {
+      "role": "QUERY",
+      "shape": [
+        336896,
+        31
+      ],
+      "original_start": 608023,
+      "end": 944919,
+      "sha256": "98d504962ace1b8a49c787c4e691ad6d7e82057ce22bec4fd9c1fe8310853773",
+      "score_start": 608535,
+      "score_end": 944919
+    }
+  ],
+  "fit_statistics_sha256": "2e775cdb9aceaee59d5dfe87638fb87275cf54dd8a3e975d0184ac4b8814d624",
+  "cal_selection_sha256": "e92d7fa39b8c72967dcc938f2c4b9a9c2a9c1f927993016bd5306c3fbbff5e88",
+  "CAL_selected_points": 512,
+  "CAL_selection_definition": "np.linspace(446173,494999,512,dtype=np.int64)",
+  "QUERY_scored_axis": [
+    608535,
+    944919
+  ],
+  "eligible_event_count": 22,
+  "long_event_count": 9,
+  "long_definition": "duration >512; steady begins at original event start+512",
+  "models": [
+    {
+      "id": "official_zero",
+      "seed": null,
+      "training_arm": "official",
+      "checkpoint_sha256": "a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0",
+      "selected_step": null
+    },
+    {
+      "id": "batch2025",
+      "seed": 2025,
+      "training_arm": "batch",
+      "checkpoint_sha256": "ddbf2aa664072320989cd181d763644162ff0789371132443912374fd2cd4b16",
+      "selected_step": 1536
+    },
+    {
+      "id": "reference2025",
+      "seed": 2025,
+      "training_arm": "reference",
+      "checkpoint_sha256": "6a973d3598b451d58095ee623d82f517261ef21dba2196aed2af347394934b9d",
+      "selected_step": 1024
+    },
+    {
+      "id": "batch2026",
+      "seed": 2026,
+      "training_arm": "batch",
+      "checkpoint_sha256": "ec71291517f85126de0e25fa9e82d92d62f66b2b62868f308fba6cfa7ba64a3b",
+      "selected_step": 1024
+    },
+    {
+      "id": "reference2026",
+      "seed": 2026,
+      "training_arm": "reference",
+      "checkpoint_sha256": "8882661f7a612985c71cc72423415fbe5c5913681931d694aae6337587862f08",
+      "selected_step": 1280
+    },
+    {
+      "id": "batch2027",
+      "seed": 2027,
+      "training_arm": "batch",
+      "checkpoint_sha256": "05ec75464aa7dff54c839026371191ca5fd64f6f51f89ddb2641a88a0cc7cc3c",
+      "selected_step": 1280
+    },
+    {
+      "id": "reference2027",
+      "seed": 2027,
+      "training_arm": "reference",
+      "checkpoint_sha256": "3b687764634d553631075306247ad53acaa0b9ea67ac47804c7f5f40343aa0af",
+      "selected_step": 1024
+    }
+  ],
+  "new_training": false,
+  "score": "original abnormal minus normal raw class logit",
+  "offline": true
+}
