@@ -78,13 +78,36 @@ def queue(args):
     devices={int(row.split(",")[0]):row.split(",")[1].strip().removeprefix("GPU-")for row in rows.splitlines()if row.strip()}
     eligible=[(d,s)for d in ["SWAT","PSM"]for s in seeds if read(case_root(root,d,s,seeds)/"BUNDLE/STATUS.json")["status"]=="QUALIFIED"]
     tasks=[(d,s,arm,condition)for d,s in eligible for arm in ["TT","R"]for condition in ["B","C"]]
+    recovery=getattr(args,"recover_unstarted",False);prior_jobs=[];guard_failures=[]
+    def life_name(domain,seed,arm,condition):
+        return (domain+"_"if seeds==[2025]else f"{domain}_{seed}_")+arm+"_"+condition
+    if recovery:
+        missing=[]
+        for domain,seed,arm,condition in tasks:
+            oldlife=root/"lifecycles"/life_name(domain,seed,arm,condition)
+            folder=case_root(root,domain,seed,seeds)/(arm+"_"+condition)
+            wait=read(oldlife/"OS_WAIT.json")if(oldlife/"OS_WAIT.json").exists()else None
+            if wait and wait["status"]=="COMPLETED":
+                assert (folder/"RECEIPT.json").is_file()and wait["OS_exit_code"]==0
+                prior_jobs.append(wait)
+            else:
+                # Recover only the fixed never-started difference, never a failed training.
+                assert not(oldlife/"STARTED.json").exists()and not folder.exists()
+                if wait:
+                    assert wait["OS_exit_code"]is None and wait["cleanup"]is None
+                    guard_failures.append(wait)
+                missing.append((domain,seed,arm,condition))
+        tasks=missing
+        assert tasks and not(root/"GLOBAL_RAW_BANK_SEAL.json").exists()
     for domain,seed in eligible:
         d=case_root(root,domain,seed,seeds);f=read(d/"FROZEN.json")
         assert sha(d/"TASK.json")==f["task_sha256"]and sha(d/"SAMPLING_PLAN.npz")==f["plan_sha256"]
         assert sha(Path(__file__).with_name("left_domain_replay.py"))==f["worker_sha256"]
     def job(domain,seed,arm,condition,gpu):
         d=case_root(root,domain,seed,seeds)
-        name=arm+"_"+condition;life=root/"lifecycles"/((domain+"_"if seeds==[2025]else f"{domain}_{seed}_")+name);life.mkdir(parents=True,exist_ok=False)
+        name=arm+"_"+condition
+        life=root/("recovery_unstarted_lifecycles"if recovery else"lifecycles")/life_name(domain,seed,arm,condition)
+        life.mkdir(parents=True,exist_ok=False)
         began=time.monotonic();utc=datetime.datetime.now(datetime.timezone.utc).isoformat();code=None;cleanup=None;error=None
         try:
             dump(life/"GPU_GUARD.json",gpu_guard(devices[gpu],gpu,20))
@@ -113,7 +136,7 @@ def queue(args):
             dump(root/"GLOBAL_RAW_BANK_SEAL.json",dict(status="NA",reason="No qualified domains",banks=[],jobs=[]));return
         def lane(i):return[job(d,s,a,c,args.gpus[i])for d,s,a,c in tasks[i::n]]
         with concurrent.futures.ThreadPoolExecutor(max_workers=n)as pool:
-            jobs=[j for group in pool.map(lane,range(n))for j in group]
+            jobs=prior_jobs+[j for group in pool.map(lane,range(n))for j in group]
         allbanks=[]
         for domain,seed in eligible:
             d=case_root(root,domain,seed,seeds)
@@ -125,19 +148,27 @@ def queue(args):
                         assert sha(d/name/bank["relative"])==bank["sha256"]
                         banks.append(dict(bank,relative=name+"/"+bank["relative"],arm=arm,condition=condition))
             dj=[j for j in jobs if j["domain"]==domain and j["seed"]==seed]
+            failed=[j for j in guard_failures if j["domain"]==domain and j["seed"]==seed]
             dump(d/"RAW_BANK_SEAL.json",dict(status="COMPLETED",no_labels_decoded_by_learner=True,
-                banks=banks,jobs=dj,actual_GPU_hours=sum(j["actual_GPU_seconds"]for j in dj)/3600))
+                banks=banks,jobs=dj,guard_failures=failed,
+                actual_GPU_hours=sum(j["actual_GPU_seconds"]for j in dj+failed)/3600))
             allbanks.extend(dict(b,relative=str((d/b["relative"]).relative_to(root)),domain=domain,seed=seed)for b in banks)
         dump(root/"GLOBAL_RAW_BANK_SEAL.json",dict(status="COMPLETED",no_labels_decoded_by_learner=True,
             banks=allbanks,jobs=jobs,eligible_domains=sorted(set(d for d,s in eligible)),seeds=seeds,
-            actual_GPU_hours=sum(j["actual_GPU_seconds"]for j in jobs)/3600))
+            guard_failures=guard_failures,recovered_unstarted_only=recovery,
+            original_controller_failure_preserved=(root/"FAILED.json").exists(),
+            guard_attempt_wall_seconds=sum(j["actual_GPU_seconds"]for j in guard_failures),
+            guard_attempt_GPU_allocated_seconds=0,
+            cost_note="Conservative job-wall ledger includes prelaunch guard attempts; those allocated no CUDA process",
+            actual_GPU_hours=sum(j["actual_GPU_seconds"]for j in jobs+guard_failures)/3600))
     except BaseException as ex:
-        dump(root/"FAILED.json",dict(error=repr(ex)));raise
+        dump(root/("RECOVERY_FAILED.json"if recovery else"FAILED.json"),dict(error=repr(ex)));raise
 
 
 if __name__=="__main__":
     p=argparse.ArgumentParser();p.add_argument("phase",choices=["prepare","queue"])
     p.add_argument("--workspace",type=Path,required=True);p.add_argument("--output",type=Path,required=True)
     p.add_argument("--configs",type=Path);p.add_argument("--gpus",type=int,nargs="+",default=[0,1,2,3])
-    p.add_argument("--seed",type=int,default=2025);p.add_argument("--seeds",type=int,nargs="+");a=p.parse_args()
+    p.add_argument("--seed",type=int,default=2025);p.add_argument("--seeds",type=int,nargs="+")
+    p.add_argument("--recover-unstarted",action="store_true");a=p.parse_args()
     prepare(a)if a.phase=="prepare"else queue(a)

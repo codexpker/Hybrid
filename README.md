@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-18 Fixed exposure replication completed and locked
+
+LEFT+source replay R and matched TT now have three fixed seeds on SWaT/PSM for the same controlled B/C exposure, reusing all A/noU/SS and seed2025 artifacts. Exactly16 new models completed. SWaT protection repeats in direction with lower absolute R-B false alarms than TT-B, but no added events and limited long-event macro coverage. PSM retains different ranking/coverage/false-alarm responses, not a general robustness win. [Complete main and paired tables](docs/experiments/left_replay_exposure_repeat_20261118/RESULTS.md), [per-seed results](docs/experiments/left_replay_exposure_repeat_20261118/PER_SEED_TABLE.md), [fixed curves](docs/experiments/left_replay_exposure_repeat_20261118/curves/CURVE_FINDINGS.md), [updated manuscript](manuscript/next_generation_20261115/draft.md). This fixed contamination experiment is locked; no further rate/seed/loss/module search is launched. Native LEFT and mature replay retain their attribution. P/V and older stopped branches remain historical.
+
 ## 2026-11-18 Fixed additional-anomaly exposure with LEFT source replay
 
 Eight seed2025 native LEFT TT/R x B/C adaptations are complete, reusing A/noU/SS. Only the shared target half receives the fixed25,600 donor replacements,5% of all window exposure; source and target-prime plans remain unchanged. SWaT supports a bounded replay retention effect under this pressure condition with false-alarm costs. PSM has no corresponding AP-specific contamination harm and does not establish a cross-task robustness claim. [Full paired results and costs](docs/experiments/left_replay_exposure_20261118/RESULTS.md), [current draft](manuscript/next_generation_20261115/draft.md). P/V remains stopped. Native LEFT and source replay retain their attribution; these results are not relabeled as an original Hybrid mechanism. No successor variant is launched.

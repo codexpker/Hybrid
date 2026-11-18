@@ -1,6 +1,6 @@
 # SWaT seed2025 TT/R × A/B/C：缓存曲线与九长事件
 
-CPU缓存解释性评价；没有导入模型、推理、训练、选择阈值或生成训练/门控输入。只覆盖seed2025，不替代正在进行的重复实验。A缓存来自原source-replay，B/C来自current-U exposure。所有输入SHA见`CHECKS.json`，本目录产物SHA见`OUTPUT_SHA256.json`；可复现脚本为`build_curves.py`。
+CPU缓存解释性评价；没有导入模型、推理、训练、选择阈值或生成训练/门控输入。只覆盖seed2025，三种子重复结果在上级主表独立报告，不由此图替代。A缓存来自原source-replay，B/C来自current-U exposure。所有输入SHA见`CHECKS.json`，原始归档产物SHA见`ARCHIVED_OUTPUT_SHA256.json`（包括留在外部的完整曲线）；公开文件SHA见`PUBLISHED_SHA256.json`；可复现脚本为`build_curves.py`。
 
 ## 一致性与权限
 

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "domains": {
+    "SWAT": {
+      "slot_map_and_B_C_donor_starts_bitexact": true,
+      "training_repeated": false,
+      "original_slot_map_sha256": "db1bed52cc3a4bacac5d8ecdb3cef95e46ade045a100ed65a45f9ce9e641e15d"
+    },
+    "PSM": {
+      "slot_map_and_B_C_donor_starts_bitexact": true,
+      "training_repeated": false,
+      "original_slot_map_sha256": "db1bed52cc3a4bacac5d8ecdb3cef95e46ade045a100ed65a45f9ce9e641e15d"
+    }
+  },
+  "seed_default": 2025
+}

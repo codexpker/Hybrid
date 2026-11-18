@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "main_metrics_sha256": "98112f0caccca15b6544db9e6074558fc400ee040ecac909ad96ef066f557832",
+  "compared_numeric_cells": 8192,
+  "max_absolute_difference": 2.842170943040401e-14,
+  "CSV_numeric_cells": 16248,
+  "CSV_max_absolute_difference": 0.0,
+  "numeric_donor_scalars_verified": 1101004800,
+  "old_2025_and_A_noU_SS_ranking_reused": true,
+  "scope": "New any-hit, chronological one-to-one and offline first-hit/availability offsets independently checked. Same-family role-independent audit. n3 adaptation seeds share events and original model. Positive FP interaction is higher cost-change, not necessarily higher absolute RB cost.",
+  "same_model_family_role_separated_review": true,
+  "new_jobs": 16,
+  "new_banks": 32,
+  "individual_data_tests_passed": 5,
+  "individual_statistics_tests_passed": 3,
+  "combined_collection_status": "BLOCKED_BY_LOCAL_c10_DLL_INITIALIZATION; original record retained",
+  "independent_CPU_seconds": 359.1720000000205,
+  "main_CPU_seconds": 126.31300000002375,
+  "plot_CPU_seconds": 25.324240099987946
+}

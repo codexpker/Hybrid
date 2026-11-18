@@ -71,6 +71,16 @@ def inputs(workspace,root,repeat_seeds=None):
                     or not out["readout_state_step_RNG_immutable"]):
                     raise ValueError("Frozen learning/information permissions changed")
                 checked(folder/"train/endpoint2000.pth",train["checkpoint_sha256"])
+                initial=read_json(folder/"INITIAL_IDENTITY.json")
+                if initial["training_seed"]!=seed or initial["initial_python_step"]!=task["source"]["python_step"]:
+                    raise ValueError("Recorded initial seed/runtime does not match the assigned task")
+                if repeat_seeds:
+                    previous=old_a_plan(workspace,domain,seed).parent/arm
+                    if domain=="SWAT":previous=previous/"train"
+                    accepted_initial=read_json(previous/"INITIAL_IDENTITY.json")
+                    if (initial["state_sha256"]!=accepted_initial["state_sha256"]
+                        or initial["rng"]!=accepted_initial["rng"]):
+                        raise ValueError("New B/C model initialization or training RNG differs from its own matched A")
                 trace=read_json(folder/"train/TRACE.json")["steps"]
                 if sum(x["replaced_T_slots"]for x in trace)!=25600:raise ValueError("Actual replacement exposure mismatch")
                 scores={}
@@ -84,6 +94,8 @@ def inputs(workspace,root,repeat_seeds=None):
                     plan_sha256=train["plan_sha256"],bundle_manifest_sha256=sha(manifest_path),
                     slot_map_sha256=sha(case/"BUNDLE/learner/SLOT_MAP.npz"),
                     normalized_bank_sha256=bind["window_bank_sha256"],task_sha256=sha(case/"TASK.json"))
+                identities[identity_key]["initial_identity_sha256"]=sha(folder/"INITIAL_IDENTITY.json")
+                identities[identity_key]["training_seed"]=initial["training_seed"]
     # Labels only enter this evaluation after every new bank, identity and permission check.
     labels={}
     for domain in domains:

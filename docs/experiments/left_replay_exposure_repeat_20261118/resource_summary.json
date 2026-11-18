@@ -1,0 +1,14 @@
+{
+  "new_training_jobs": 16,
+  "new_score_banks": 32,
+  "reused_seed2025_BC_jobs": 8,
+  "source_initial_training_repeated": false,
+  "all_successful_trainings_unique": true,
+  "successful_job_GPU_hours": 1.190615706367082,
+  "prelaunch_guard_wall_seconds": 0.19352616695687175,
+  "prelaunch_guard_CUDA_seconds": 0,
+  "conservative_ledger_GPU_hours": 1.190669463635681,
+  "recovered_never_started_jobs": 2,
+  "original_failure_artifacts_preserved": true,
+  "raw_seal_sha256": "e57fedb402e97feea3e70872a0a99be31c2084b2e940d600e8aeb5cef1ad7669"
+}

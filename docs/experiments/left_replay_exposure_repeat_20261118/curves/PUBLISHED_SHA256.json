@@ -1,0 +1,21 @@
+{
+  "scope": "SHA256 of Git canonical blob bytes for published counterparts; immutable raw hashes are separately retained in ARCHIVED_OUTPUT_SHA256.json",
+  "sha256": {
+    "ARCHIVED_OUTPUT_SHA256.json": "ee750d6d7b13662716ade9afb998f0bbcda8237626fe82f3f54e6bebea49b853",
+    "CHECKS.json": "3c348ea08f10041aec7b62fd2b166a1197479be37ad3e6d211fb04f3aa8ef1ca",
+    "CURVE_FINDINGS.md": "2ed35ea61e9525eef03fc9091e3e9c0c9014b30eda998b166d7f83b0c8afdde2",
+    "PR_lowFPR_ROC.pdf": "941b1a11c32b2a01021daf99af5536903e33b11578bda70606bcc884f32ec135",
+    "PR_lowFPR_ROC.png": "d7ba2ee237dd3656f91bf51b35b90587a74453e42d6f4499e99bd9532f78571e",
+    "PR_lowFPR_ROC.svg": "fabc7c50e4354d52142a276f354bcf632a483c655a416405897aba6d7bb8f623",
+    "build_curves.py": "c673bda9ac2fea2a885af91d73977744cd2141e3b5f58ba47170a5229f8b83ce",
+    "long_event_coverage_denominators.pdf": "8fceb90394d6ce37aae2ab2e7278ce9a6bbeb1466f2de2dbf233e65526df7b19",
+    "long_event_coverage_denominators.png": "2736fb47705f84fdf26609e17676c685a8dc7b217ac11b9f476b3b0c685e3e78",
+    "long_event_coverage_denominators.svg": "444d46ce1f3537177c0d925d36b215691e865a2ff5e46f1fbd8415705b994cc4",
+    "long_events_all_streams.csv": "aa396f9b48c762e09cc21d53b5d732b828c5c08c9666a341855a352ecd0e4f1c",
+    "macro_pooled_summary.csv": "82368ec380d2613b06f52e9292c098412c40ee4fd623934ff3d8985eb6e1f32b",
+    "macro_vs_pooled.pdf": "a0c0ef85590979dab05ba349fcfb51e3b9a85944cd155c7c51ece677fa91c06f",
+    "macro_vs_pooled.png": "89c20c25c22f54fe82fa3d9df05ad6f56ee07b9144957b035e66661902436346",
+    "macro_vs_pooled.svg": "3483864a0820a5690ef1c2746f7d13a78ef943b1dfb7e6d43ff193b4aeb55ef2",
+    "operating_points.csv": "307bfd8c9c1b2f55544fbec7368b2341f1381b83d0962c9470a0fc14a0cef8bc"
+  }
+}
