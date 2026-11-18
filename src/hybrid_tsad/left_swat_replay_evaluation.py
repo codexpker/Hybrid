@@ -103,15 +103,25 @@ def baseline_inputs(cache, natural, metrics_path):
     return scores, previous
 
 
-def replay_inputs(natural, replay):
-    target_path = checked(natural / "U/U_PLAN.npz", TARGET_PLAN_SHA)
-    with np.load(target_path, allow_pickle=False) as archive:
-        expected_plan = make_replay_plan(archive["base_starts"])
+def replay_inputs(natural, replay, seed=2025):
+    if seed == 2025:
+        target_path = checked(natural / "U/U_PLAN.npz", TARGET_PLAN_SHA)
+        with np.load(target_path, allow_pickle=False) as archive:
+            target = archive["base_starts"]
+    else:
+        target = np.random.default_rng(seed).integers(0, 90000 - WINDOW + 1, size=(UPDATES, 128))
+        target_path = replay / "TARGET_PLAN.npz"
+        with np.load(target_path, allow_pickle=False) as archive:
+            if not np.array_equal(archive["base_starts"], target):
+                raise ValueError("New seed target plan must follow the predetermined sampling rule")
+    target_sha = sha(target_path)
+    expected_plan = make_replay_plan(target, seed=seed)
     plan_path = replay / "SAMPLING_PLAN.npz"
     plan_sha = sha(plan_path)
     frozen_plan = read_json(replay / "PLAN_FREEZE.json")
     if (frozen_plan["status"] != "FROZEN_BEFORE_TRAINING_OR_QUERY" or frozen_plan["labels_read"]
-            or frozen_plan["plan_sha256"] != plan_sha or frozen_plan["target_plan_sha256"] != TARGET_PLAN_SHA):
+            or frozen_plan["plan_sha256"] != plan_sha or frozen_plan["seed"] != seed
+            or frozen_plan["target_plan_sha256"] != target_sha):
         raise ValueError("Replay plan must be frozen before training or QUERY access")
     with np.load(plan_path, allow_pickle=False) as plan:
         if set(plan.files) != set(expected_plan) or any(
@@ -141,11 +151,11 @@ def replay_inputs(natural, replay):
         if (trained["status"] != "COMPLETED" or trained["initial_python_step"] != INIT_STEP
                 or trained["final_python_step"] != INIT_STEP + UPDATES or trained["updates"] != UPDATES
                 or trained["labels_read"] or trained["CAL_QUERY_read"] or not trained["endpoint_only"]
-                or trained["optimizer"] != "Adam lr1e-4" or trained["seed"] != 2025
+                or trained["optimizer"] != "Adam lr1e-4" or trained["seed"] != seed
                 or trained["train_role"] != roles[model] or trained["plan_sha256"] != plan_sha
                 or binding["arm"] != model or binding["pairing"] != pairings[model] or binding["batch"] != 256
                 or binding["labels_read"] or not binding["single_full_native_forward_per_update"]
-                or binding["plan_sha256"] != plan_sha or binding["original_target_plan_sha256"] != TARGET_PLAN_SHA
+                or binding["plan_sha256"] != plan_sha or binding["original_target_plan_sha256"] != target_sha
                 or exposure["batch"] != 256 or not exposure["full_batch_native_loss"]
                 or exposure["optimizer_steps"] != UPDATES or exposure["native_forward_calls"] != UPDATES
                 or exposure["window_exposures"] != UPDATES * 256):
@@ -167,7 +177,8 @@ def replay_inputs(natural, replay):
         scores[model] = banks(root, bank_ids, True)
         identities[model] = dict(checkpoint_sha256=trained["checkpoint_sha256"], score_sha256=bank_ids,
                                  training_seconds=trained["training_seconds"])
-    return scores, dict(plan_sha256=plan_sha, original_target_plan_sha256=TARGET_PLAN_SHA,
+    return scores, dict(seed=seed, plan_sha256=plan_sha,
+                        original_target_plan_sha256=TARGET_PLAN_SHA if seed == 2025 else None,
                         seal_sha256=sha(seal_path), arms=identities, actual_GPU_hours=seal["actual_GPU_hours"])
 
 

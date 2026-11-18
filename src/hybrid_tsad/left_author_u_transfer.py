@@ -6,6 +6,7 @@ is sealed; no labels, donor metadata, validation or checkpoint selection occur.
 import argparse
 import importlib.util
 import json
+import random
 import time
 from pathlib import Path
 
@@ -14,10 +15,10 @@ import numpy as np
 from hybrid_tsad.left_swat_author import sha, read, dump
 
 
-def make_replay_plan(target_plan):
+def make_replay_plan(target_plan,seed=2025):
     """Three fixed independent streams, without labels or validation choices."""
     assert target_plan.shape==(2000,128)
-    streams=np.random.SeedSequence(2025).spawn(3)
+    streams=np.random.SeedSequence(seed).spawn(3)
     source=np.random.default_rng(streams[0]).integers(0,396000-192+1,size=(2000,128))
     target_prime=np.random.default_rng(streams[1]).integers(0,90000-192+1,size=(2000,128))
     source_prime=np.random.default_rng(streams[2]).integers(0,396000-192+1,size=(2000,128))
@@ -40,8 +41,12 @@ def main():
     parser.add_argument("--output",type=Path,required=True)
     parser.add_argument("--replay-arm",choices=["R","TT","SS"])
     parser.add_argument("--replay-plan",type=Path)
+    parser.add_argument("--seed",type=int,default=2025)
     args=parser.parse_args()
     workspace,root=args.workspace,args.output
+    training_roles=({"R":{"T":[495000,585000],"S":[0,396000]},
+                     "TT":{"T":[495000,585000]},"SS":{"S":[0,396000]}}[args.replay_arm]
+                    if args.replay_arm else {"T":[495000,585000]})
     root.mkdir(parents=True,exist_ok=False)
     began=time.monotonic()
     oldprep=workspace/"preparations/left_multievent_mixed_u_20261111_v1"
@@ -50,7 +55,9 @@ def main():
     spec=importlib.util.spec_from_file_location("original_native_helpers",oldpath)
     old=importlib.util.module_from_spec(spec);spec.loader.exec_module(old)
     torch=old.base.setup_torch(20)
-    old.base.seed(torch)
+    # Actual global training/dropout streams, not merely sampler labels.
+    random.seed(args.seed);np.random.seed(args.seed)
+    torch.manual_seed(args.seed);torch.cuda.manual_seed_all(args.seed)
     author=workspace/"results/left_swat_author_20261118_v1"
     source=read(author/"TRAIN_RECEIPT.json")
     checkpoint=author/"model/SWAT/Left/checkpoints_0/checkpoint.pth"
@@ -72,7 +79,8 @@ def main():
          source_final_python_step=52581,scaler_sha256=sha(scalar_file),worker_sha256=sha(__file__),
          accepted_raw_values_sha256=read(author/"SOURCE_BINDING.json")["ALL_VALUES_sha256"],
          U_FIT=[495000,585000],CAL=[585544,607479],QUERY_input=[608023,944919],
-         QUERY_score=[608535,944856],labels_read=False,source_readonly=True))
+         QUERY_score=[608535,944856],labels_read=False,source_readonly=True,training_seed=args.seed,
+         actual_training_roles=training_roles,role_intervals_are_axes_not_access_claims=True))
     # The accepted array is mmap-backed. Only this role slice is materialized now.
     values=np.load(oldprep/"data/ALL_VALUES.npy",mmap_mode="r",allow_pickle=False)
     assert values.shape==(944919,31)and values.dtype==np.float64
@@ -83,9 +91,14 @@ def main():
     if args.replay_arm:
         if args.replay_plan is None:raise ValueError("Replay requires the frozen shared numerical plan")
         with np.load(args.replay_plan)as z:plan={k:z[k].copy()for k in z.files}
-        original_plan=workspace/"results/left_author_swat_u_transfer_20261118_v1/U/U_PLAN.npz"
-        assert sha(original_plan)=="1d4dbd9cfbeb8dcbcf218f7a3bb46176c290a29406392b5eb8a5835f37afa966"
-        with np.load(original_plan)as z:expected_plans=make_replay_plan(z["base_starts"])
+        if args.seed==2025:
+            original_plan=workspace/"results/left_author_swat_u_transfer_20261118_v1/U/U_PLAN.npz"
+            assert sha(original_plan)=="1d4dbd9cfbeb8dcbcf218f7a3bb46176c290a29406392b5eb8a5835f37afa966"
+        else:
+            original_plan=args.replay_plan.parent/"TARGET_PLAN.npz"
+        with np.load(original_plan)as z:target_plan=z["base_starts"].copy()
+        assert np.array_equal(target_plan,np.random.default_rng(args.seed).integers(0,90000-192+1,size=(2000,128)))
+        expected_plans=make_replay_plan(target_plan,args.seed)
         assert set(plan)==set(expected_plans)and all(np.array_equal(plan[k],expected_plans[k])for k in plan)
         source_fit=None
         if args.replay_arm!="TT":
@@ -95,19 +108,24 @@ def main():
         batch_size=256
         dump(root/"REPLAY_BINDING.json",dict(arm=args.replay_arm,plan_sha256=sha(plan_file),
             original_target_plan_sha256=sha(original_plan),source_role=[0,396000],target_role=[495000,585000],
-            RNG="SeedSequence(2025).spawn(3): S,T_prime,S_prime",batch=256,halves=128,
+            RNG=f"SeedSequence({args.seed}).spawn(3): S,T_prime,S_prime",training_seed=args.seed,batch=256,halves=128,
             pairing={"R":["T","S"],"TT":["T","T_prime"],"SS":["S_prime","S"]}[args.replay_arm],
             single_full_native_forward_per_update=True,labels_read=False))
     else:
-        plan=np.random.default_rng(2025).integers(0,len(fit)-192+1,size=(2000,128))
+        plan=np.random.default_rng(args.seed).integers(0,len(fit)-192+1,size=(2000,128))
         plan_file=root/"U_PLAN.npz"
         np.savez_compressed(plan_file,base_starts=plan)
         batch_size=128
     train=root/"train";train.mkdir()
-    dump(train/"INITIAL_IDENTITY.json",dict(checkpoint_sha256=expected,python_step=model.step,
+    initial_identity=dict(checkpoint_sha256=expected,python_step=model.step,
          state_sha256=original_hash,rng=old.rngs(torch),scaler_sha256=sha(scalar_file),
          plan_sha256=sha(plan_file),U_FIT=[495000,585000],labels_read=False,
-         condition="original unlabeled background; no replacement or donor access"))
+         condition="original unlabeled background; no replacement or donor access",training_seed=args.seed)
+    if args.replay_arm:
+        initial_identity.pop("U_FIT")
+        initial_identity.update(condition="native single batch "+args.replay_arm,
+                                actual_training_roles=training_roles)
+    dump(train/"INITIAL_IDENTITY.json",initial_identity)
     optimizer=torch.optim.Adam(model.parameters(),lr=1e-4)
     trace=[];train_started=time.monotonic()
     for update in range(2000):
@@ -132,12 +150,12 @@ def main():
         reserved=torch.cuda.max_memory_reserved(),labels_read=False,CAL_QUERY_read=False,
         train_role=({"R":[[495000,585000],[0,396000]],"TT":[495000,585000],"SS":[0,396000]}[args.replay_arm]
                     if args.replay_arm else [495000,585000]),
-        optimizer="Adam lr1e-4",seed=2025,endpoint_only=True))
+        optimizer="Adam lr1e-4",seed=args.seed,endpoint_only=True))
     if args.replay_arm:
         dump(train/"EXPOSURE_RECEIPT.json",dict(arm=args.replay_arm,updates=2000,
              batch=256,window_exposures=512000,optimizer_steps=2000,native_forward_calls=2000,
              initial_python_step=52581,final_python_step=model.step,full_batch_native_loss=True,
-             source_role=[0,396000],target_role=[495000,585000],plan_sha256=sha(plan_file)))
+             actual_training_roles=training_roles,plan_sha256=sha(plan_file)))
     # Open readout roles only now, after the fixed endpoint was persisted.
     model.eval();state_before=old.hashes(model);rng_before=old.rngs(torch)
     banks=[];coverage=[]
