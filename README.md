@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-18 Fixed additional-anomaly exposure with LEFT source replay
+
+Eight seed2025 native LEFT TT/R x B/C adaptations are complete, reusing A/noU/SS. Only the shared target half receives the fixed25,600 donor replacements,5% of all window exposure; source and target-prime plans remain unchanged. SWaT supports a bounded replay retention effect under this pressure condition with false-alarm costs. PSM has no corresponding AP-specific contamination harm and does not establish a cross-task robustness claim. [Full paired results and costs](docs/experiments/left_replay_exposure_20261118/RESULTS.md), [current draft](manuscript/next_generation_20261115/draft.md). P/V remains stopped. Native LEFT and source replay retain their attribution; these results are not relabeled as an original Hybrid mechanism. No successor variant is launched.
+
 ## 2026-11-17 当前适配实现分支已完成评估并结束
 
 “冻结TimeRadar编码器＋目标域重构训练＋浅层跨变量适配”已完成评估，未建立广泛稳定增量，不再作为接近定型的论文主方法。停止追加聚合器、冻结策略、正则、蒸馏、评分组合和训练预算搜索。完整TimeRadar、LEFT、原三台SMD重复性正项、全部负项及原始代码/权重/分数/统计保持，不能把成熟基线或历史最好值记为Hybrid贡献。第二篇仍定位方法论文；后续方法决策与本分支明确分开，本次没有提出新候选或启动计算。

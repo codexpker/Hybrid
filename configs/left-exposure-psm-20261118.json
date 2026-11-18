@@ -1,0 +1,157 @@
+{
+  "experiment": "left_current_u_exposure_20261118_v1",
+  "domain": "PSM",
+  "source": {
+    "checkpoint": {
+      "relative": "results/left_psm_R_seed2025_20261101_v1/model/PSM/Left/checkpoints_0/checkpoint.pth",
+      "sha256": "e07a50bde4a470b79590b6392f4cb883f715e6205a78c308293f522f5656d64c"
+    },
+    "scaler": {
+      "relative": "results/left_psm_R_seed2025_20261101_v1/SCALER_R.json",
+      "sha256": "41da46ca635f3053d8970f5fe1eb0565117a0f69be92590cac2092d9bb50bfb3",
+      "format": "json_statistics"
+    },
+    "model_config": {
+      "relative": "preparations/left_baseline_build_20261101_v1/upstream/configs/PSM/model_configs_Left.json",
+      "sha256": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4"
+    },
+    "upstream": "preparations/left_baseline_build_20261101_v1/upstream",
+    "upstream_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+    "model_sha256": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "python_step": 16540,
+    "selected_epoch": 20,
+    "scaler_fit": [
+      0,
+      132481
+    ],
+    "scaler_includes_validation": true
+  },
+  "data": {
+    "source_train": {
+      "relative": "data/common_psm_raw_20261029_v1/prefix.npy",
+      "sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+      "shape": [
+        132481,
+        25
+      ],
+      "record_id": "PSM_train"
+    },
+    "target_test": {
+      "relative": "data/common_psm_raw_20261029_v1/test.npy",
+      "sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+      "shape": [
+        87841,
+        25
+      ],
+      "record_id": "PSM_test"
+    }
+  },
+  "roles": {
+    "SOURCE_FIT": [
+      0,
+      105984
+    ],
+    "U_FIT": [
+      0,
+      17568
+    ],
+    "CAL": [
+      18112,
+      21960
+    ],
+    "QUERY": [
+      22504,
+      87841
+    ]
+  },
+  "score_axes": {
+    "CAL": [
+      18240,
+      21888
+    ],
+    "QUERY": [
+      22656,
+      87744
+    ]
+  },
+  "CAL": {
+    "points": 512,
+    "selection": "linspace(18240,21887,512,dtype=int64)",
+    "quantile": 0.99,
+    "method": "higher",
+    "comparison": ">"
+  },
+  "labels": {
+    "relative": "data/common_psm_20261028_v1/test_label.npy",
+    "sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+    "shape": [
+      87841
+    ],
+    "evaluation_only": true
+  },
+  "seeds": [
+    2025
+  ],
+  "arms": {
+    "R": [
+      "T",
+      "S"
+    ],
+    "TT": [
+      "T",
+      "T_prime"
+    ],
+    "SS": [
+      "S_prime",
+      "S"
+    ]
+  },
+  "sampler": {
+    "T": "default_rng(seed)",
+    "others": "SeedSequence(seed).spawn(3): S,T_prime,S_prime",
+    "updates": 2000,
+    "half_batch": 128
+  },
+  "training": {
+    "batch": 256,
+    "updates": 2000,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "all_parameters_trainable": true,
+    "single_forward_per_update": true,
+    "checkpoint": "endpoint2000"
+  },
+  "scoring": {
+    "window": 192,
+    "stride": 192,
+    "anchor": 0,
+    "batch": 128,
+    "channel_reduction": "original float32 mean",
+    "mode": "offline full-window native infer"
+  },
+  "source_asset_policy": "reuse named author-protocol checkpoint; no author retraining; old step0 score cache incompatible with actual source step16540",
+  "maximum_concurrency": 4,
+  "train_cap_GiB": 20,
+  "score_cap_GiB": 30,
+  "job_timeout_seconds": 1800,
+  "exposure": {
+    "seed": 2025,
+    "conditions": [
+      "B",
+      "C"
+    ],
+    "arms": [
+      "TT",
+      "R"
+    ],
+    "T_replacement_slots": 25600,
+    "T_slots": 256000,
+    "all_slots": 512000,
+    "RNG_entropy": [
+      2025,
+      20261118,
+      10
+    ],
+    "preservation_loss": false
+  }
+}

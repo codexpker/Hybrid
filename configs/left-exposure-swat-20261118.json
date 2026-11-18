@@ -1,0 +1,167 @@
+{
+  "experiment": "left_current_u_exposure_20261118_v1",
+  "domain": "SWAT",
+  "source": {
+    "checkpoint": {
+      "relative": "results/left_swat_author_20261118_v1/model/SWAT/Left/checkpoints_0/checkpoint.pth",
+      "sha256": "064747db9b1c24ce10d8678b00b2f72e504b4bcb4bec32b93399747234c5630d"
+    },
+    "scaler": {
+      "relative": "results/left_swat_author_20261118_v1/SCALER.npz",
+      "sha256": "f46e9aa07179c7dd3a215846b502d4a1de11d7351369970ce45d0717433cccf2",
+      "format": "npz"
+    },
+    "model_config": {
+      "relative": "preparations/left_swat_author_20261118_v1/configs/SWAT/model_configs_Left.json",
+      "sha256": "2574e826155a684389026c3c08db24a20586d3f51040281876cc2eb6a28129d6"
+    },
+    "upstream": "preparations/left_baseline_build_20261101_v1/upstream",
+    "upstream_commit": "3fadb4811797075e233076b9faceb0d8ec59b697",
+    "model_sha256": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "python_step": 52581,
+    "selected_epoch": 14,
+    "scaler_fit": [
+      0,
+      495000
+    ],
+    "scaler_includes_validation": true
+  },
+  "data": {
+    "source_train": {
+      "relative": "preparations/left_multievent_mixed_u_20261111_v1/data/ALL_VALUES.npy",
+      "sha256": "d2304906b800ea47365b864886bd83fa79de9202190f75dccb6ef7f22d00cafa",
+      "shape": [
+        944919,
+        31
+      ],
+      "record_id": "SWAT_DADA"
+    },
+    "target_test": {
+      "relative": "preparations/left_multievent_mixed_u_20261111_v1/data/ALL_VALUES.npy",
+      "sha256": "d2304906b800ea47365b864886bd83fa79de9202190f75dccb6ef7f22d00cafa",
+      "shape": [
+        944919,
+        31
+      ],
+      "record_id": "SWAT_DADA"
+    }
+  },
+  "roles": {
+    "SOURCE_FIT": [
+      0,
+      396000
+    ],
+    "U_FIT": [
+      495000,
+      585000
+    ],
+    "CAL": [
+      585544,
+      607479
+    ],
+    "QUERY": [
+      608023,
+      944919
+    ]
+  },
+  "score_axes": {
+    "CAL": [
+      585624,
+      607320
+    ],
+    "QUERY": [
+      608535,
+      944856
+    ]
+  },
+  "CAL": {
+    "points": 512,
+    "selection": "linspace(585624,607319,512,dtype=int64)",
+    "quantile": 0.99,
+    "method": "higher",
+    "comparison": ">"
+  },
+  "labels": {
+    "relative": "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz",
+    "sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+    "shape": [
+      944919
+    ],
+    "evaluation_only": true
+  },
+  "seeds": [
+    2025
+  ],
+  "arms": {
+    "R": [
+      "T",
+      "S"
+    ],
+    "TT": [
+      "T",
+      "T_prime"
+    ],
+    "SS": [
+      "S_prime",
+      "S"
+    ]
+  },
+  "sampler": {
+    "T": "default_rng(seed)",
+    "others": "SeedSequence(seed).spawn(3): S,T_prime,S_prime",
+    "updates": 2000,
+    "half_batch": 128
+  },
+  "training": {
+    "batch": 256,
+    "updates": 2000,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "all_parameters_trainable": true,
+    "single_forward_per_update": true,
+    "checkpoint": "endpoint2000"
+  },
+  "scoring": {
+    "window": 192,
+    "stride": 192,
+    "anchor": 495000,
+    "batch": 128,
+    "channel_reduction": "original float32 mean",
+    "mode": "offline full-window native infer"
+  },
+  "source_asset_policy": "reuse named SWAT author source checkpoint/runtime/scaler; original R plan frozen",
+  "maximum_concurrency": 4,
+  "train_cap_GiB": 20,
+  "score_cap_GiB": 30,
+  "job_timeout_seconds": 1800,
+  "score_window_axes": {
+    "CAL": [
+      585624,
+      607320
+    ],
+    "QUERY": [
+      608472,
+      944856
+    ]
+  },
+  "exposure": {
+    "seed": 2025,
+    "conditions": [
+      "B",
+      "C"
+    ],
+    "arms": [
+      "TT",
+      "R"
+    ],
+    "T_replacement_slots": 25600,
+    "T_slots": 256000,
+    "all_slots": 512000,
+    "RNG_entropy": [
+      2025,
+      20261118,
+      10
+    ],
+    "preservation_loss": false
+  }
+}

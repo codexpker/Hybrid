@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "main_metrics_sha256": "3d53bf346edf2bdfafe677a2487b13341b70528d1094eb85c0aa0066a3d7b3ca",
+  "compared_numeric_cells": 1624,
+  "max_absolute_difference": 0.0,
+  "CSV_numeric_cells": 1592,
+  "CSV_max_absolute_difference": 0.0,
+  "numeric_donor_scalars_verified": 550502400,
+  "scope": "Any-hit, chronological one-to-one matching and offline first-hit/availability offsets independently checked. No causal delay claim. Positive FP/FPR differences are increased costs, opposite direction to higher-is-better ranking/coverage. PSM all-attack CAL remains empirical, not certified normal FPR. Single-seed exposed-domain controlled evidence.",
+  "same_model_family_role_separated_review": true,
+  "formal_GPU_jobs": 8,
+  "new_score_banks": 16,
+  "failed_GPU_jobs": 0,
+  "actual_GPU_hours": 0.5849222277452807,
+  "main_CPU_seconds": 47.67200000002049,
+  "independent_CPU_wall_seconds": 145.76499999995576,
+  "implementation_commit": "5d585333a6170f38995e9c48943160296bc4a639",
+  "raw_seal_sha256": "c9a267bf72eef665f83754e79b768ae8aeea87097e77af5a599219bf428d2825"
+}

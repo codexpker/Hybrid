@@ -1,0 +1,105 @@
+{
+  "qualification": {
+    "domain": "SWAT",
+    "U_FIT": [
+      495000,
+      585000
+    ],
+    "points": 90000,
+    "anomaly_labeled_points": 5187,
+    "full_anomaly_windows": 3468,
+    "full_normal_windows": 82903,
+    "eligible_B_event_runs": 9,
+    "total_UFIT_event_runs": 9,
+    "event_boundaries_at_U_edges_censored": false,
+    "donor_selection": "uniform legal stride-one starts, with replacement; no model scores; no extra distance filter",
+    "labels_only_constructor": true,
+    "channels_physically_affected": "UNKNOWN"
+  },
+  "RNG_entropy": [
+    2025,
+    20261118,
+    10
+  ],
+  "spawn_keys": {
+    "slots": [
+      0
+    ],
+    "B": [
+      1
+    ],
+    "C": [
+      2
+    ]
+  },
+  "shared_selected_T_slots": 25600,
+  "T_exposures": 256000,
+  "full_batch_exposures": 512000,
+  "nominal_T_replacement_fraction": 0.1,
+  "nominal_full_batch_replacement_fraction": 0.05,
+  "baseline_anomaly_labeled_time_exposure": {
+    "T": 2877932,
+    "T_prime": 2816892,
+    "replaced_original_T": 279602,
+    "T_total_time": 49152000,
+    "full_batch_total_time": 98304000,
+    "R_A": 2877932,
+    "TT_A": 5694824
+  },
+  "conditions": {
+    "B": {
+      "unique_donor_windows": 3466,
+      "maximum_repeat_count": 19,
+      "repeated_presentations": 22134,
+      "event_presentations": [
+        5677,
+        1907,
+        1397,
+        1455,
+        33,
+        1741,
+        5713,
+        3866,
+        3811
+      ],
+      "distinct_B_events_presented": 9,
+      "real_input_float32_changed_scalars": 125138029,
+      "real_input_changed_scalar_fraction_full_batch": 0.04106354383243028,
+      "anomaly_labeled_time_exposure": {
+        "T_after": 7513530,
+        "TT_after": 10330422,
+        "R_after": 7513530
+      },
+      "TT_event_time_fraction": 0.10508648681640625,
+      "R_event_time_fraction": 0.07643157958984376
+    },
+    "C": {
+      "unique_donor_windows": 21982,
+      "maximum_repeat_count": 4,
+      "repeated_presentations": 3618,
+      "event_presentations": null,
+      "distinct_B_events_presented": null,
+      "real_input_float32_changed_scalars": 124099616,
+      "real_input_changed_scalar_fraction_full_batch": 0.04072279275873656,
+      "anomaly_labeled_time_exposure": {
+        "T_after": 2598330,
+        "TT_after": 5415222,
+        "R_after": 2598330
+      },
+      "TT_event_time_fraction": 0.05508648681640625,
+      "R_event_time_fraction": 0.02643157958984375
+    }
+  },
+  "scalar_event_label_copies_are_nominal_not_physical_channel_truth": true,
+  "effective_supervision": {
+    "real_full_windows": 512000,
+    "real_observed_time_positions": 98304000,
+    "real_observed_scalar_positions": 3047424000,
+    "padding_positions": 0,
+    "exact_anomalous_gradient_contribution": "UNKNOWN: native frequency/multiscale losses and prototype eligibility mix time evidence",
+    "source_S_time_label_exposure": "zero under original author normal-history role, not certified physical channel truth"
+  },
+  "audit_only_not_read_by_learner": true,
+  "base_sampling_plan_sha256": "82cc66790b6aa90c09e31f53895c65bf88583310ecafcd95578188abc39fceec",
+  "slot_map_sha256": "db1bed52cc3a4bacac5d8ecdb3cef95e46ade045a100ed65a45f9ce9e641e15d"
+}

@@ -1,6 +1,28 @@
-# Current training hypothesis: source-output preservation (18 November 2026)
+# Current basis: native LEFT with source replay R
 
-This section defines the completed P/V experiment, evaluated at seed2025 on SWaT and PSM. It adds a training constraint to the completed native LEFT source-replay control R, retaining the native architecture, loss chain and inference. It is separate from the stopped density design archived below. Neither functional preservation nor replay is claimed as an invention.
+The current topic is adaptation and detection retention of time–frequency multiview detectors under mixed-unlabeled target data. The empirical basis is complete native LEFT plus established source replay R, not a new backbone or an original replay mechanism. The native objective, prototype/curriculum state updates, retrospective full-window inference and per-model CAL remain intact. P/V is stopped and retained below solely as historical evidence; no preservation term or teacher enters the current experiment.
+
+## Matched additional-exposure construction
+
+For each domain, A is the unchanged natural U-FIT plan: $R_A=[T,S]$, $TT_A=[T,T']$. R and TT share T position by position; T′ is an independent target draw and S is actual source FIT. With 2,000 updates and 128 windows per half, T has 256,000 exposure slots and each full plan has 512,000. These counts measure repeated training exposures, not independent observations.
+
+The current factorial comparison is $\{TT,R\}\times\{B,C\}$. A constructor may inspect labels only within current U-FIT to qualify full 192-point abnormal donors (B) and full 192-point normal donors (C). It replaces the same 25,600 shared-T slots in both conditions and both arms: 10% of T and 5% of all exposures. Within each condition, donor draws are paired across R/TT. T′ and S do not change. Current-U-FIT eligibility is confirmed: SWaT has3,468 all-abnormal /82,903 all-normal windows with nine qualifying abnormal event intervals; PSM has649 /12,852 windows with five qualifying intervals. Repeated overlapping windows are not independent events. Achieved exposure and donor reuse are audited separately from training.
+
+The learner remains label-free: it receives windows, runs the original native forward/loss and updates without donor labels, anomaly weights or label-based skipping. Construction is nevertheless label-assisted and must be disclosed. The natural background may already contain anomalies. Consequently, matching added abnormal exposure does not equate total contamination between R and TT; neither B−A nor the slot fraction is the total anomalous-point proportion. Donors must be role-contained and valid at the complete-window level. There is no QUERY-based donor selection.
+
+## Paired estimand and reporting
+
+For a metric $M$, arm $a\in\{R,TT\}$ and condition $k\in\{A,B,C\}$, let $M_{a,k}$ denote the evaluated outcome. Report absolute values and all within-arm B−C, B−A and C−A differences, followed by
+
+$$I_M=(M_{R,B}-M_{R,C})-(M_{TT,B}-M_{TT,C}).$$
+
+B−C estimates the controlled abnormal-versus-normal replacement contrast under the shared slot plan; C−A checks normal replacement/composition effects against the original plan. Interpret $I_M$ in each metric's direction and together with absolute ranking, event discovery, sustained coverage and normal false alarms. The experiment does not require B to harm either arm and cannot turn an unchanged detection floor or a favorable difference of differences into proof of robustness. It neither identifies unknown contamination in deployment nor certifies difficult-normal protection.
+
+Initialization, native training schedule, original role permissions, update budget, shared draws, inference and CAL rules are held to the matched contract. Each resulting model is calibrated on the same authorized CAL locations in its own score units; CAL is not a learning input. PSM's previously verified all-attack CAL remains a limitation, not a normal 1% false-alarm certification. All eight fixed-seed jobs and native readouts are complete. SWaT has I_AP=+2.4355pp and I_C3coverage=+37.8236pp, with no added events and adverse false-positive costs; PSM has I_AP=-0.3120pp and positive B-C AP in both arms, so a ranking-specific contamination penalty is not established. The absolute/difference tables and0.584922GPUh cost are in the [result report](../../docs/experiments/left_replay_exposure_20261118/RESULTS.md). No successor variant follows automatically. Completed two-domain three-seed replay positives and coverage trade-offs remain in [the draft](draft.md); the displayed P/V and density sections are historical stopped definitions, not the current learning rule.
+
+# Historical stopped P/V source-output preservation experiment
+
+This historical section defines the completed P/V experiment, evaluated at seed2025 on SWaT and PSM. It added a training constraint to native LEFT source-replay R and is now stopped. Its formulas and results are retained, but neither term defines the current learning rule. It is separate from the stopped density design archived below. Neither functional preservation nor replay is claimed as an invention.
 
 ## Frozen teacher, source permission, and outputs
 
@@ -38,7 +60,7 @@ The hypothesis is that preserving source reconstruction functions can improve th
 
 # Historical stopped design: alternating-domain joint normality density
 
-**Historical implementation snapshot:** `d77252e17509d263d6d87a64c98b79516a935fd3`, `src/hybrid_tsad/normality_density.py`. The following mathematical account is retained for traceability of a stopped candidate, not the current P/V definition or an established efficacy claim.
+**Historical implementation snapshot:** `d77252e17509d263d6d87a64c98b79516a935fd3`, `src/hybrid_tsad/normality_density.py`. The following mathematical account is retained for traceability of a stopped candidate, not the current LEFT-plus-replay definition or an established efficacy claim.
 
 ## Input and invertible computation
 
@@ -56,7 +78,7 @@ The inverse is explicit. The conditioner depends only on the unchanged masked pa
 
 The full forward sequence is affine input transform, coupling 0, Haar analysis, coupling 1, Haar synthesis, coupling 2, Haar analysis, coupling 3. Two-level orthogonal Haar transforms act on time, leave channel count unchanged, and preserve both dimension and total energy. Adjacent pairs $(a,b)$ map to $((a+b)/\sqrt2,(a-b)/\sqrt2)$ recursively on the low-frequency block. Because $H$ is divisible by four, no padding is needed and $|\det W|=1$. No hidden projection or discarded scale requires an approximate Jacobian.
 
-The current parameter counts are 200,990 (TEP, three channels), 223,738 (PSM, 25 channels), and 229,942 (SWaT, 31 channels). Full, time-only, and local variants have equal counts within a dataset. Time-only omits the fixed Haar changes of coordinates; local retains them but uses conditioner dilations $(1,1,1,1)$. The latter has local dependence per conditioner; it should not be claimed that composing coupling layers produces a perfectly independent nine-sample model.
+The historical parameter counts are 200,990 (TEP, three channels), 223,738 (PSM, 25 channels), and 229,942 (SWaT, 31 channels). Full, time-only, and local variants have equal counts within a dataset. Time-only omits the fixed Haar changes of coordinates; local retains them but uses conditioner dilations $(1,1,1,1)$. The latter has local dependence per conditioner; it should not be claimed that composing coupling layers produces a perfectly independent nine-sample model.
 
 ## Learning and detection
 
