@@ -1,0 +1,66 @@
+{
+  "status": "PASS_BOUNDED",
+  "main_sha256": "57e3e8957d7ad53406107ce731d0b3ebc33b35c5e45d6911907ae74d9bdcda98",
+  "global_seal_sha256": "61670b71f5c81d3d60be1ec117d328fa18ffc7948c53ad8ab567e9070dbcfe65",
+  "independent_new_raw_comparisons": 312,
+  "reused_LEFT_numeric_identity_comparisons": 540,
+  "contrasts_from_checked_inputs": 516,
+  "total_numeric_comparisons": 1368,
+  "max_difference": 4.440892098500626e-16,
+  "CSV_numeric_comparisons": 1580,
+  "CSV_max_difference": 0.0,
+  "official_source_files_hash_and_git_blob_checked": 31,
+  "source_scaler_raw_value_rebuild": {
+    "status": "PASS",
+    "rows": [
+      {
+        "domain": "SWAT",
+        "source_sha256": "d2304906b800ea47365b864886bd83fa79de9202190f75dccb6ef7f22d00cafa",
+        "fit": [
+          0,
+          396000
+        ],
+        "scaler_sha256": "c7853d1ea5268a2b6cff478f848bc9d080084c4641f3cc6d663b8a49adff6201",
+        "max_abs_differences": {
+          "mean": 0.0,
+          "variance": 0.0,
+          "scale": 0.0
+        },
+        "exact": true
+      },
+      {
+        "domain": "PSM",
+        "source_sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+        "fit": [
+          0,
+          105984
+        ],
+        "scaler_sha256": "84b052e25d315bcdc495dd396e3d64875415c8adf6e7beade5ab4a2ed7bbfa49",
+        "max_abs_differences": {
+          "mean": 0.0,
+          "variance": 0.0,
+          "scale": 0.0
+        },
+        "exact": true
+      }
+    ],
+    "no_model_calls": true,
+    "no_target_or_labels_read": true
+  },
+  "GPU_hours": 0.12353340532669486,
+  "original_failures_preserved": 2,
+  "recovery_OS0_jobs": 2,
+  "recovery": {
+    "PSM": "original RNG side effect retained; model immutable; six endpoint batches replay exact; existing CANDI banks reused",
+    "SWAT": "source retained; 66 CPU RNG draws and first/last reference checks support SANA restoration; first U only, full-reference query microbatch; original gate retained"
+  },
+  "findings": [
+    "SWAT noU/CANDI CAL512 q99 thresholds independently reproduced; C3 normal FPR 279160/288544 and 280916/288544; high any-hit21/22 and steady coverage do not imply usable event detection. One-to-one5/22 to4/22.",
+    "PSM AP changes -2.432919817e-7; C3 point/any-hit/matching/coverage unchanged; no stable adaptation gain in this single-seed setting.",
+    "PSM CAL512 all attack; SWAT CAL38/512 attack; neither constitutes certified normal false-alarm control.",
+    "CANDI scores map complete past/current10-point MSE to endpoints. LEFT reused192-point whole-window retrospective scores, different source scaler permissions and adaptation budget.",
+    "SWAT gate0.5 means plain-noU vs adapted-CANDI includes SANA insertion plus updates, not a clean attribution to FPM.",
+    "Recovery full-pool/update equivalence is a bounded numerical check, not bitwise proof for all inputs. No software root cause inferred from detection outcomes."
+  ],
+  "scope": "Same-family role-independent audit, not external blind review. Independently raw rank, CAL, strict/C3 points, greedy one-to-one events, any-hit, long macro/pooled coverage, longest miss and hit-only offsets. Official VUS dependency shared and pinned; no model training/inference or old VUS recomputation. Source scaler independently rebuilt from actual raw FIT. Original implementation/recovery paths reviewed; source lifecycle/selection/update traces checked."
+}

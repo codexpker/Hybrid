@@ -1,0 +1,116 @@
+{
+  "experiment": "candi_native_a_20261118_v1",
+  "domain": "PSM",
+  "data": {
+    "source_train": {
+      "relative": "data/common_psm_raw_20261029_v1/prefix.npy",
+      "sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+      "shape": [
+        132481,
+        25
+      ],
+      "record_id": "PSM_train"
+    },
+    "target_test": {
+      "relative": "data/common_psm_raw_20261029_v1/test.npy",
+      "sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+      "shape": [
+        87841,
+        25
+      ],
+      "record_id": "PSM_test"
+    }
+  },
+  "roles": {
+    "SOURCE_FIT": [
+      0,
+      105984
+    ],
+    "U_FIT": [
+      0,
+      17568
+    ],
+    "CAL": [
+      18112,
+      21960
+    ],
+    "QUERY": [
+      22504,
+      87841
+    ]
+  },
+  "score_axes": {
+    "CAL": [
+      18240,
+      21888
+    ],
+    "QUERY": [
+      22656,
+      87744
+    ]
+  },
+  "CAL": {
+    "points": 512,
+    "selection": "linspace(18240,21887,512,dtype=int64)",
+    "quantile": 0.99,
+    "method": "higher",
+    "comparison": ">"
+  },
+  "labels": {
+    "relative": "data/common_psm_20261028_v1/test_label.npy",
+    "sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+    "shape": [
+      87841
+    ],
+    "evaluation_only": true
+  },
+  "seeds": [
+    2025
+  ],
+  "scoring": {
+    "window": 10,
+    "stride": 1,
+    "batch": 256,
+    "definition": "official whole-window/channel mean MSE mapped to actual window endpoint",
+    "available_at": "current window endpoint",
+    "labels": "point labels only in separate evaluator; never window-any-positive",
+    "padding": false
+  },
+  "maximum_concurrency": 4,
+  "train_cap_GiB": 20,
+  "score_cap_GiB": 30,
+  "job_timeout_seconds": 1800,
+  "source": {
+    "upstream": "results/candi_native_a_20261118_v1/upstream",
+    "commit": "28c9679e503832f59e351208cde63657fcb51cad",
+    "normal_FIT": [
+      0,
+      105984
+    ],
+    "normal_SELECT": [
+      105984,
+      132481
+    ],
+    "all_model_parameters_trained": true,
+    "normal_selection": "minimum native MSE on SOURCE_SELECT at epochs5/10/15/20/25/30",
+    "optimizer": "Adam lr1e-4 wd1e-4; official cosine warmup5, max30epochs",
+    "compatible_checkpoint_found": false
+  },
+  "adaptation": {
+    "kind": "full official FPM + input/output SANA",
+    "order": "one chronological pass through every legal U_FIT window",
+    "batch": 256,
+    "drop_last": false,
+    "target_labels_read": false,
+    "stop": "freeze after last U_FIT batch; no CAL/QUERY updates",
+    "SWAT_preset": "official scripts/SWaT/SWaT_alpha_5.0.sh",
+    "PSM_preset": "official config defaults; no author PSM preset"
+  },
+  "CANDI": {
+    "alpha": 0.5,
+    "learning_rate": 0.0001,
+    "steps": 1,
+    "gating_init": 0.0,
+    "minimum_samples": 16
+  }
+}

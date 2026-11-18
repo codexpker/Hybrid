@@ -2,6 +2,8 @@
 
 The current topic is adaptation and detection retention of time–frequency multiview detectors under mixed-unlabeled target data. The empirical basis is complete native LEFT plus established source replay R, not a new backbone or an original replay mechanism. The native objective, prototype/curriculum state updates, retrospective full-window inference and per-model CAL remain intact. P/V is stopped and retained below solely as historical evidence; no preservation term or teacher enters the current experiment.
 
+The natural-mixture and additional-exposure experiments are locked after two tasks and three seeds. A completed seed2025 external CANDI comparison retains its official MLP, full FPM and input/output SANA, with source training and source-SELECT references, chronological U-FIT adaptation and frozen CAL/QUERY. It does not modify this R rule or become a Hybrid module. Its own noU comparison establishes no useful net adaptation increment in the fixed task; cross-backbone ranking advantages and coverage costs are reported separately. CANDI's10-point endpoint MSE, FIT-only scaler and update schedule differ from native LEFT's192-point retrospective outputs and original scaler. See the [full fixed comparison](../../docs/experiments/candi_native_a_20261118/RESULTS.md); no follow-up method, seed or B/C matrix is automatically opened.
+
 ## Matched additional-exposure construction
 
 For each domain, A is the unchanged natural U-FIT plan: $R_A=[T,S]$, $TT_A=[T,T']$. R and TT share T position by position; T′ is an independent target draw and S is actual source FIT. With 2,000 updates and 128 windows per half, T has 256,000 exposure slots and each full plan has 512,000. These counts measure repeated training exposures, not independent observations.

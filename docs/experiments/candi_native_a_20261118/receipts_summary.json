@@ -1,0 +1,112 @@
+{
+  "upstream_commit": "28c9679e503832f59e351208cde63657fcb51cad",
+  "global_raw_sha256": "61670b71f5c81d3d60be1ec117d328fa18ffc7948c53ad8ab567e9070dbcfe65",
+  "metrics_sha256": "57e3e8957d7ad53406107ce731d0b3ebc33b35c5e45d6911907ae74d9bdcda98",
+  "GPU_hours": 0.12353340532669486,
+  "main_CPU_seconds": 43.84399999998277,
+  "domains": {
+    "SWAT": {
+      "source": {
+        "source_selected_sha256": "1f14719a93e1a24ec1eaff0db7edfff6cd3000dfb25570327b96c9e2d8cbf7a6",
+        "selected_epoch_zero_based": 29,
+        "selected_update": 46380,
+        "total_updates": 46380,
+        "epochs": 30,
+        "source_FIT": [
+          0,
+          396000
+        ],
+        "source_SELECT": [
+          396000,
+          495000
+        ],
+        "scaler_sha256": "c7853d1ea5268a2b6cff478f848bc9d080084c4641f3cc6d663b8a49adff6201",
+        "source_data_sha256": "d2304906b800ea47365b864886bd83fa79de9202190f75dccb6ef7f22d00cafa",
+        "source_only": true,
+        "labels_read": false,
+        "validation_windows": 98991,
+        "training_seconds": 201.81400650111027
+      },
+      "adaptation": {
+        "endpoint_sha256": "74a4408c6195ef91a355df11ef0730e84804e596196cb38646bd19cef8dc4f8a",
+        "U_FIT": [
+          495000,
+          585000
+        ],
+        "windows_seen": 89991,
+        "expected_windows": 89991,
+        "chronological_single_pass": true,
+        "hard_selected": 4005,
+        "moderate_selected": 54513,
+        "rejected_windows": 31473,
+        "adaptation_groups": 344,
+        "optimizer_steps": 1720,
+        "pending_hard": 0,
+        "pending_moderate": 0,
+        "source_backbone_unchanged": true,
+        "labels_read": false,
+        "target_CAL_QUERY_used_for_adaptation": false,
+        "FPM_reference": "complete normal SOURCE_SELECT",
+        "source_FPM_threshold": 0.023201391100883484,
+        "adaptation_seconds": 118.69378273095936,
+        "initial_SANA_reconstruction_sha256": "24d11a2a632ede3b5cda76696c9c26a3c752ae9c08ab64d9ad463124122a349e",
+        "kernel": "query<=4/full-reference native formula",
+        "source_training_repeated": false
+      },
+      "readout_recovery_seconds": 24.863653680775315,
+      "readout_peak_allocated_GiB": 0.9302964210510254,
+      "whole_training_peak": "NA: original failed jobs did not archive phase peaks",
+      "source_selected_epoch_one_based": 30
+    },
+    "PSM": {
+      "source": {
+        "source_selected_sha256": "19dad6d4d6dec80149899db5a06e9d3d9b15a26d9fb8d57e29a51b8503dd583e",
+        "selected_epoch_zero_based": 29,
+        "selected_update": 12390,
+        "total_updates": 12390,
+        "epochs": 30,
+        "source_FIT": [
+          0,
+          105984
+        ],
+        "source_SELECT": [
+          105984,
+          132481
+        ],
+        "scaler_sha256": "84b052e25d315bcdc495dd396e3d64875415c8adf6e7beade5ab4a2ed7bbfa49",
+        "source_data_sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+        "source_only": true,
+        "labels_read": false,
+        "validation_windows": 26488,
+        "training_seconds": 57.0957271088846
+      },
+      "adaptation": {
+        "endpoint_sha256": "a7ebd7db0343bbea97b01398acac023616da6f8277bdf728789d9eeef07badf9",
+        "U_FIT": [
+          0,
+          17568
+        ],
+        "windows_seen": 17559,
+        "expected_windows": 17559,
+        "chronological_single_pass": true,
+        "hard_selected": 48,
+        "moderate_selected": 6727,
+        "rejected_windows": 10784,
+        "adaptation_groups": 48,
+        "optimizer_steps": 48,
+        "pending_hard": 3,
+        "pending_moderate": 0,
+        "source_backbone_unchanged": true,
+        "labels_read": false,
+        "target_CAL_QUERY_used_for_adaptation": false,
+        "FPM_reference": "complete normal SOURCE_SELECT",
+        "source_FPM_threshold": 0.6783157968521099,
+        "adaptation_seconds": 5.35095914802514
+      },
+      "readout_recovery_seconds": 1.158773633884266,
+      "readout_peak_allocated_GiB": 0.10490751266479492,
+      "whole_training_peak": "NA: original failed jobs did not archive phase peaks",
+      "source_selected_epoch_one_based": 30
+    }
+  }
+}
