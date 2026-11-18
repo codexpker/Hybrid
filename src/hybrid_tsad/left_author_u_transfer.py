@@ -14,10 +14,32 @@ import numpy as np
 from hybrid_tsad.left_swat_author import sha, read, dump
 
 
+def make_replay_plan(target_plan):
+    """Three fixed independent streams, without labels or validation choices."""
+    assert target_plan.shape==(2000,128)
+    streams=np.random.SeedSequence(2025).spawn(3)
+    source=np.random.default_rng(streams[0]).integers(0,396000-192+1,size=(2000,128))
+    target_prime=np.random.default_rng(streams[1]).integers(0,90000-192+1,size=(2000,128))
+    source_prime=np.random.default_rng(streams[2]).integers(0,396000-192+1,size=(2000,128))
+    assert not np.array_equal(target_plan,target_prime)and not np.array_equal(source,source_prime)
+    return dict(T_starts=target_plan.copy(),S_starts=source,T_prime_starts=target_prime,S_prime_starts=source_prime)
+
+
+def replay_batch(target,source,plan,update,arm):
+    pairs={"R":((target,"T_starts"),(source,"S_starts")),
+           "TT":((target,"T_starts"),(target,"T_prime_starts")),
+           "SS":((source,"S_prime_starts"),(source,"S_starts"))}
+    halves=[np.stack([np.float32(values[int(a):int(a)+192])for a in plan[key][update]])
+            for values,key in pairs[arm]]
+    return np.concatenate(halves,axis=0)
+
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--workspace",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
+    parser.add_argument("--replay-arm",choices=["R","TT","SS"])
+    parser.add_argument("--replay-plan",type=Path)
     args=parser.parse_args()
     workspace,root=args.workspace,args.output
     root.mkdir(parents=True,exist_ok=False)
@@ -54,19 +76,44 @@ def main():
     # The accepted array is mmap-backed. Only this role slice is materialized now.
     values=np.load(oldprep/"data/ALL_VALUES.npy",mmap_mode="r",allow_pickle=False)
     assert values.shape==(944919,31)and values.dtype==np.float64
-    fit=(np.array(values[495000:585000],dtype=np.float64,order="F",copy=True)-mean)/scale
-    assert fit.shape==(90000,31)and np.isfinite(fit).all()
-    plan=np.random.default_rng(2025).integers(0,len(fit)-192+1,size=(2000,128))
-    np.savez_compressed(root/"U_PLAN.npz",base_starts=plan)
+    fit=None
+    if args.replay_arm!="SS":
+        fit=(np.array(values[495000:585000],dtype=np.float64,order="F",copy=True)-mean)/scale
+        assert fit.shape==(90000,31)and np.isfinite(fit).all()
+    if args.replay_arm:
+        if args.replay_plan is None:raise ValueError("Replay requires the frozen shared numerical plan")
+        with np.load(args.replay_plan)as z:plan={k:z[k].copy()for k in z.files}
+        original_plan=workspace/"results/left_author_swat_u_transfer_20261118_v1/U/U_PLAN.npz"
+        assert sha(original_plan)=="1d4dbd9cfbeb8dcbcf218f7a3bb46176c290a29406392b5eb8a5835f37afa966"
+        with np.load(original_plan)as z:expected_plans=make_replay_plan(z["base_starts"])
+        assert set(plan)==set(expected_plans)and all(np.array_equal(plan[k],expected_plans[k])for k in plan)
+        source_fit=None
+        if args.replay_arm!="TT":
+            source_fit=(np.array(values[:396000],dtype=np.float64,order="F",copy=True)-mean)/scale
+            assert source_fit.shape==(396000,31)and np.isfinite(source_fit).all()
+        plan_file=args.replay_plan
+        batch_size=256
+        dump(root/"REPLAY_BINDING.json",dict(arm=args.replay_arm,plan_sha256=sha(plan_file),
+            original_target_plan_sha256=sha(original_plan),source_role=[0,396000],target_role=[495000,585000],
+            RNG="SeedSequence(2025).spawn(3): S,T_prime,S_prime",batch=256,halves=128,
+            pairing={"R":["T","S"],"TT":["T","T_prime"],"SS":["S_prime","S"]}[args.replay_arm],
+            single_full_native_forward_per_update=True,labels_read=False))
+    else:
+        plan=np.random.default_rng(2025).integers(0,len(fit)-192+1,size=(2000,128))
+        plan_file=root/"U_PLAN.npz"
+        np.savez_compressed(plan_file,base_starts=plan)
+        batch_size=128
     train=root/"train";train.mkdir()
     dump(train/"INITIAL_IDENTITY.json",dict(checkpoint_sha256=expected,python_step=model.step,
          state_sha256=original_hash,rng=old.rngs(torch),scaler_sha256=sha(scalar_file),
-         plan_sha256=sha(root/"U_PLAN.npz"),U_FIT=[495000,585000],labels_read=False,
+         plan_sha256=sha(plan_file),U_FIT=[495000,585000],labels_read=False,
          condition="original unlabeled background; no replacement or donor access"))
     optimizer=torch.optim.Adam(model.parameters(),lr=1e-4)
     trace=[];train_started=time.monotonic()
     for update in range(2000):
-        batch=np.stack([np.float32(fit[int(a):int(a)+192])for a in plan[update]])
+        batch=(replay_batch(fit,source_fit,plan,update,args.replay_arm)if args.replay_arm else
+               np.stack([np.float32(fit[int(a):int(a)+192])for a in plan[update]]))
+        assert batch.shape==(batch_size,192,31)
         optimizer.zero_grad();loss=model(torch.from_numpy(batch).cuda(),None,None,None)[0]
         assert torch.isfinite(loss);loss.backward()
         grads=[p.grad for p in model.parameters()if p.grad is not None]
@@ -79,11 +126,18 @@ def main():
     dump(train/"TRACE.json",dict(steps=trace))
     dump(train/"RECEIPT.json",dict(status="COMPLETED",source_checkpoint_sha256=expected,
         checkpoint_sha256=sha(endpoint),updates=2000,initial_python_step=52581,final_python_step=model.step,
-        plan_sha256=sha(root/"U_PLAN.npz"),scaler_sha256=sha(scalar_file),
+        plan_sha256=sha(plan_file),scaler_sha256=sha(scalar_file),
         trainable_parameters=sum(p.numel()for p in model.parameters()if p.requires_grad),
         training_seconds=time.monotonic()-train_started,allocated=torch.cuda.max_memory_allocated(),
         reserved=torch.cuda.max_memory_reserved(),labels_read=False,CAL_QUERY_read=False,
-        train_role=[495000,585000],optimizer="Adam lr1e-4",seed=2025,endpoint_only=True))
+        train_role=({"R":[[495000,585000],[0,396000]],"TT":[495000,585000],"SS":[0,396000]}[args.replay_arm]
+                    if args.replay_arm else [495000,585000]),
+        optimizer="Adam lr1e-4",seed=2025,endpoint_only=True))
+    if args.replay_arm:
+        dump(train/"EXPOSURE_RECEIPT.json",dict(arm=args.replay_arm,updates=2000,
+             batch=256,window_exposures=512000,optimizer_steps=2000,native_forward_calls=2000,
+             initial_python_step=52581,final_python_step=model.step,full_batch_native_loss=True,
+             source_role=[0,396000],target_role=[495000,585000],plan_sha256=sha(plan_file)))
     # Open readout roles only now, after the fixed endpoint was persisted.
     model.eval();state_before=old.hashes(model);rng_before=old.rngs(torch)
     banks=[];coverage=[]

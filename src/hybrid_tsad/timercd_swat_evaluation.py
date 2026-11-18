@@ -56,9 +56,10 @@ def threshold(index, score):
     return float(np.quantile(score[pos], .99, method='higher')), selected
 
 
-def evaluate_score(index, score, labels, tau, available):
+def evaluate_score(index, score, labels, tau, available, *, query_stop=QUERY_END, ranking=None):
     index, score, labels = np.asarray(index), np.asarray(score), np.asarray(labels)
-    if (not np.array_equal(index, np.arange(QUERY_START, QUERY_END)) or score.shape != index.shape
+    if (not QUERY_START < query_stop <= QUERY_END
+            or not np.array_equal(index, np.arange(QUERY_START, query_stop)) or score.shape != index.shape
             or not np.isfinite(score).all() or labels.shape != (QUERY_END,)
             or not np.isin(labels, [0, 1]).all()):
         raise ValueError('Keep the complete original SWaT label axis and exact fixed scored QUERY axis')
@@ -70,8 +71,10 @@ def evaluate_score(index, score, labels, tau, available):
     eligible = [e for e in events if e['main_eligible']]
     if len(eligible) != 22 or sum(e['total_points'] > 512 for e in eligible) != 9:
         raise ValueError('Original22 complete SWaT events including9 long events must remain')
-    ap = float(average_precision_score(labels[index], score))
-    roc = float(roc_auc_score(labels[index], score))
+    if ranking is None:
+        ranking = dict(AP=float(average_precision_score(labels[index], score)),
+                       ROC_AUC=float(roc_auc_score(labels[index], score)))
+    ap, roc = ranking['AP'], ranking['ROC_AUC']
     strict = score > tau; rows, details, alarms = [], [], []
     for stream, bits in (('strict', strict), ('confirmed3', confirmed(index, strict))):
         full = np.zeros(len(labels), bool); full[index] = bits
