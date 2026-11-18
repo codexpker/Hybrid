@@ -166,7 +166,8 @@ def curves(output, domain, labels, scores, rows):
         for axis in axes[1:]:
             axis.plot(fpr, tpr, color=color)
         row = next(r for r in rows if r["method"] == model and r["stream"] == "strict")
-        axes[0].scatter(row["Recall"], row["Precision"], edgecolor=color, facecolor="white", zorder=5)
+        if row["Precision"] is not None:
+            axes[0].scatter(row["Recall"], row["Precision"], edgecolor=color, facecolor="white", zorder=5)
         axes[1].scatter(row["normal_FPR"], row["Recall"], edgecolor=color, facecolor="white", zorder=5)
         if row["normal_FPR"] <= .05:
             axes[2].scatter(row["normal_FPR"], row["Recall"], edgecolor=color, facecolor="white", zorder=5)

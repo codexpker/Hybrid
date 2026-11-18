@@ -1,6 +1,44 @@
-# Implemented method definition: alternating-domain joint normality density
+# Current training hypothesis: source-output preservation (18 November 2026)
 
-**Implementation snapshot:** `d77252e17509d263d6d87a64c98b79516a935fd3`, `src/hybrid_tsad/normality_density.py`. This is a mathematical account of implemented behavior, not an experiment plan or an established efficacy claim. It is a new complete Hybrid candidate; it does not rename the native LEFT model.
+This section defines the completed P/V experiment, evaluated at seed2025 on SWaT and PSM. It adds a training constraint to the completed native LEFT source-replay control R, retaining the native architecture, loss chain and inference. It is separate from the stopped density design archived below. Neither functional preservation nor replay is claimed as an invention.
+
+## Frozen teacher, source permission, and outputs
+
+For each domain, let $\theta_0$ denote its fixed native pretrained LEFT checkpoint and $\theta$ the adapting student initialized from it. A frozen teacher with parameters $\theta_0$ reads only the authorized source FIT windows $S$; it does not read target FIT $T$, SELECT, CAL, QUERY or labels. R trains with the native objective on concatenated target/source batches $[T,S]$. Each preservation term is evaluated on the same source half, without replacement by newly selected examples.
+
+For a source batch of $B$ windows of length $T_w=192$ with $C$ channels, native `_forward` returns three reconstructions with identical shape $B\times192\times C$ and the same input-coordinate units:
+
+$$g_1(\theta;S)=\widehat X,\qquad g_2(\theta;S)=\widehat X_{\leftarrow f},\qquad g_3(\theta;S)=\widehat X_{\mathrm{ms}}.$$
+
+These are respectively `X_hat`, `X_hat_from_S` and `X_hat_ms`. They are outputs of interacting, shared native pathways, not three independent views or three independently trained teachers. Define $\Delta_v=g_v(\theta;S)-\operatorname{stopgrad}g_v(\theta_0;S)$, $\overline\Delta=\frac13\sum_{v=1}^3\Delta_v$, and $D=BT_wC$. The squared norm below sums all batch, time and channel entries. With all outputs evaluated in the same source coordinate system,
+
+$$P=\frac{\|\overline\Delta\|_F^2}{D},\qquad V=\frac{1}{3D}\sum_{v=1}^3\|\Delta_v\|_F^2,$$
+
+$$\mathcal L_P=\mathcal L_{\mathrm{native},R}+\lambda P,\qquad \mathcal L_V=\mathcal L_{\mathrm{native},R}+\lambda V,\qquad\lambda=1.$$
+
+Here $\mathcal L_{\mathrm{native},R}$ is the complete native LEFT loss on $[T,S]$, including its original weighted components and state updates. The added terms constrain source outputs, not their agreement with ground truth or their deployed anomaly scores. In particular, native reconstruction heads need not be accurate merely because their teacher responses are preserved.
+
+The finite-dimensional variance identity gives
+
+$$V-P=\frac{1}{3D}\sum_{v=1}^3\|\Delta_v-\overline\Delta\|_F^2\geq0.$$
+
+To verify it, expand $\Delta_v=(\Delta_v-\overline\Delta)+\overline\Delta$; the summed cross term vanishes because $\sum_v(\Delta_v-\overline\Delta)=0$. P permits cancellation between pathway drifts; V also penalizes their dispersion. Equality holds exactly when all three drift tensors coincide. At the same $\lambda$, V is therefore pointwise at least as strong as P; this is not an equal-strength comparison or a clean isolation of independent-view information. A V advantage alone would not identify which of stronger preservation and reduced cancellation caused it. The identity imposes no ordering on downstream AP, false alarms or event coverage.
+
+## State-safe differentiable preservation pass
+
+The replay training pass retains native training behavior. The additional student preservation pass uses eval behavior while retaining autograd through its outputs; the teacher uses eval behavior and `no_grad`. Around these auxiliary forwards, execution snapshots and restores mutable buffers, the native running `step`, every module's individual train/eval flag, and CPU/CUDA RNG states. Restoring only the root mode would destroy heterogeneous child modes. Eval alone is also insufficient because native forward code can update non-parameter state. Restoration must preserve the student's autograd graph; a successful backward and frozen-state check are execution requirements, not detection evidence.
+
+The auxiliary forwards must not advance the replay RNG trajectory or permanently update prototypes/curriculum state. Native R and P/V share initialization, replay draws and update schedule; teacher and auxiliary student forward/backward costs are reported separately. Matching optimizer steps does not imply matching total computation. The teacher and auxiliary terms are absent at inference: the native score, native readout permission, CAL locations and threshold rule remain unchanged, with each model calibrated in its own native score units.
+
+## Prior work and falsifiable scope
+
+Replay and teacher-response preservation are mature ideas. [Buzzega et al., NeurIPS 2020, §3/Eq5](https://proceedings.neurips.cc/paper_files/paper/2020/file/b704ea2c39778f07c617f6b7ce480e9e-Paper.pdf) uses stored historical logits for Dark Experience Replay. This experiment instead fixes one domain-specific native reconstruction teacher and compares two aggregations of source-output drift. It does not reproduce DER, its reservoir, classification objective or reported benchmarks. The native interacting reconstructions belong to LEFT, not to a new backbone.
+
+The hypothesis is that preserving source reconstruction functions can improve the replay adaptation trade-off without changing inference. Its evidence must come from V−R, V−P and P−R under fixed training and evaluation. Ranking, coverage and false-alarm effects are reported jointly; an aggregate-only improvement belongs to P, while a V advantage must be interpreted with its stronger preservation constraint. All four runs and bounded key-result review are complete. V has not established incremental benefit over R or P. P retains a SWaT ranking positive and PSM event-coverage trade-off, with PSM ranking loss and higher false positives. See the completed tables and costs in [the result report](../../docs/experiments/left_source_preservation_20261118/RESULTS.md). No automatic variant follows. Contamination identification and general robustness require their own evidence.
+
+# Historical stopped design: alternating-domain joint normality density
+
+**Historical implementation snapshot:** `d77252e17509d263d6d87a64c98b79516a935fd3`, `src/hybrid_tsad/normality_density.py`. The following mathematical account is retained for traceability of a stopped candidate, not the current P/V definition or an established efficacy claim.
 
 ## Input and invertible computation
 

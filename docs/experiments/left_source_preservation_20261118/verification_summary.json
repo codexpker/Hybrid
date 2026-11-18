@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "compared_numeric_cells": 648,
+  "max_absolute_difference": 0.0,
+  "CSV_numeric_cells": 640,
+  "CSV_max_absolute_difference": 0.0,
+  "main_metrics_sha256": "cc6c159673b87f566e1a7b5bd42572baaf3a542e5654988407786c852fc363ed",
+  "scope": "role-separated same-model-family bounded raw recompute; event matching F1 and separate delay not independently recomputed",
+  "baseline_metrics_sha256": {
+    "SWAT": "353b96f7493bf7bb22ed4d44274116b54cfa7044238186bb3a82ebd173f0b885",
+    "PSM": "0ec57ff0474f5bcd88c60118a061bbe65cc220a54115e30c8957e4ee6ed10716"
+  },
+  "formal_training_jobs": 4,
+  "new_score_banks": 8,
+  "measured_GPU_hours": 0.4734554292838503,
+  "diagnostic_wall_upper_seconds": 3.8469933,
+  "accounted_GPU_hour_upper_bound": 0.4745240385338503
+}
