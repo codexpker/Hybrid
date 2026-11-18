@@ -61,7 +61,7 @@ def run_task(args):
     exposure_path=getattr(args,"exposure_bundle",None)
     assert task["domain"]in {"PSM","SWAT"}and w==192 and task["training"]["batch"]==256
     if keep_mode:assert arm=="R"and args.seed==2025
-    if exposure_path:assert not keep_mode and arm in {"R","TT"}and args.seed==2025
+    if exposure_path:assert not keep_mode and arm in {"R","TT"}and args.seed in {2025,2026,2027}
     import torch
     torch.set_num_threads(1);torch.set_num_interop_threads(1);torch.cuda.set_device(0)
     cap=30 if arm=="noU"else 20
@@ -124,6 +124,7 @@ def run_task(args):
         replacement_rows=None;replacement_bank=None
         if exposure_path:
             manifest=read(exposure_path)
+            assert manifest.get("sampling_seed",2025)==args.seed
             assert manifest["scaler_sha256"]==sha(scaler_file)and manifest["base_sampling_plan_sha256"]==sha(args.replay_plan)
             assert manifest["donor_labels_or_identity_in_bundle"]is False
             slot_file=workspace/manifest["slot_map"]["relative"];bank_file=workspace/manifest["window_bank"]["relative"]

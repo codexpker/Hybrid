@@ -22,7 +22,17 @@ def legal_windows(labels,width=192):
     return np.flatnonzero(counts==width),np.flatnonzero(counts==0),counts
 
 
-def construct(workspace,task_path,base_plan,out):
+def draw_replacements(b_legal,c_legal,seed=2025):
+    entropy=[int(seed),*ENTROPY[1:]]
+    streams=np.random.SeedSequence(entropy).spawn(3)
+    selected=np.sort(np.random.default_rng(streams[0]).choice(256000,25600,replace=False))
+    rows=np.full(256000,-1,np.int32);rows[selected]=np.arange(25600,dtype=np.int32)
+    picked={condition:legal[np.random.default_rng(stream).integers(0,len(legal),size=25600)]
+            for condition,legal,stream in [("B",b_legal,streams[1]),("C",c_legal,streams[2])]}
+    return selected,rows.reshape(2000,128),picked
+
+
+def construct(workspace,task_path,base_plan,out,seed=2025):
     out.mkdir(parents=True,exist_ok=False);audit=out/"audit_only";audit.mkdir()
     task=read(task_path);domain=task["domain"];w=task["scoring"]["window"]
     assert w==192
@@ -46,11 +56,9 @@ def construct(workspace,task_path,base_plan,out):
         dump(out/"STATUS.json",dict(status="NA",reason="No legal full-192 anomaly or normal donors",qualification=qualification))
         return qualification
     with np.load(base_plan)as z:plan={k:z[k].copy()for k in z.files}
-    expected=plan_arrays(task,2025)
+    expected=plan_arrays(task,seed)
     assert set(plan)==set(expected)and all(np.array_equal(plan[k],expected[k])for k in plan)
-    streams=np.random.SeedSequence(ENTROPY).spawn(3)
-    selected=np.sort(np.random.default_rng(streams[0]).choice(256000,25600,replace=False))
-    rows=np.full(256000,-1,np.int32);rows[selected]=np.arange(25600,dtype=np.int32);rows=rows.reshape(2000,128)
+    selected,rows,picked_by_condition=draw_replacements(b_legal,c_legal,seed)
     learner=out/"learner";learner.mkdir()
     np.savez_compressed(learner/"SLOT_MAP.npz",replacement_row=rows)
     source=workspace/task["data"]["target_test"]["relative"]
@@ -65,8 +73,8 @@ def construct(workspace,task_path,base_plan,out):
     T_count=counts[plan["T_starts"]];Tp_count=counts[plan["T_prime_starts"]]
     replaced_original=T_count.reshape(-1)[selected]
     base_time=int(T_count.sum());prime_time=int(Tp_count.sum());removed_time=int(replaced_original.sum())
-    for condition,legal,stream in [("B",b_legal,streams[1]),("C",c_legal,streams[2])]:
-        picked=legal[np.random.default_rng(stream).integers(0,len(legal),size=25600)]
+    for condition in ["B","C"]:
+        picked=picked_by_condition[condition]
         bankpath=learner/(condition+"_WINDOWS.npy")
         bank=np.lib.format.open_memmap(bankpath,mode="w+",dtype=np.float32,shape=(25600,w,c))
         changed=0
@@ -101,12 +109,12 @@ def construct(workspace,task_path,base_plan,out):
                          "shape":[25600,w,c],"dtype":"float32"},
             scaler_sha256=sha(sf),base_sampling_plan_sha256=sha(base_plan),
             updates=2000,half_batch=128,replacement_rows=25600,source_units="frozen author scaler; do not standardize again",
-            donor_labels_or_identity_in_bundle=False)
+            donor_labels_or_identity_in_bundle=False,sampling_seed=int(seed))
         dump(learner/(condition+"_MANIFEST.json"),manifest)
     np.savez_compressed(audit/"TIME_LABEL_AUDIT.npz",U_FIT_time_labels=y,event_start_U_relative=events,
         event_end_U_relative=ends,T_window_anomaly_time_count=T_count,T_prime_window_anomaly_time_count=Tp_count,
         selected_T_flat_slots=selected)
-    report=dict(qualification=qualification,RNG_entropy=ENTROPY,spawn_keys={"slots":[0],"B":[1],"C":[2]},
+    report=dict(qualification=qualification,seed=int(seed),RNG_entropy=[int(seed),*ENTROPY[1:]],spawn_keys={"slots":[0],"B":[1],"C":[2]},
         shared_selected_T_slots=25600,T_exposures=256000,full_batch_exposures=512000,
         nominal_T_replacement_fraction=.1,nominal_full_batch_replacement_fraction=.05,
         baseline_anomaly_labeled_time_exposure=dict(T=base_time,T_prime=prime_time,
@@ -130,5 +138,5 @@ def construct(workspace,task_path,base_plan,out):
 if __name__=="__main__":
     p=argparse.ArgumentParser();p.add_argument("--workspace",type=Path,required=True)
     p.add_argument("--task",type=Path,required=True);p.add_argument("--base-plan",type=Path,required=True)
-    p.add_argument("--output",type=Path,required=True);a=p.parse_args()
-    construct(a.workspace,a.task,a.base_plan,a.output)
+    p.add_argument("--output",type=Path,required=True);p.add_argument("--seed",type=int,default=2025);a=p.parse_args()
+    construct(a.workspace,a.task,a.base_plan,a.output,a.seed)
