@@ -316,6 +316,123 @@ def run(workspace, output, config):
     return exports
 
 
+def publish(output, public):
+    """Export only derived SWaT comparison/complete-event summaries and hashes."""
+    output, public = Path(output), Path(public); result = read(output / 'RESULT.json')
+    if result['status'] != 'COMPLETED':
+        raise ValueError('Complete seven-model evaluation required')
+    names = ('comparison', 'ranking', 'three_seed_summary', 'paired_per_seed',
+             'paired_three_seed_summary', 'per_event_complete_query', 'parameters_and_compute')
+    public.mkdir(parents=True, exist_ok=True)
+    if any((public / (n + '.csv')).exists() for n in names) or (public / 'RESULTS.md').exists():
+        raise FileExistsError('Do not overwrite published scientific results')
+    identities = []
+    for name in names:
+        source = output / (name + '.csv'); text = source.read_text(encoding='utf-8')
+        if any(s in text for s in ('/home/', '192.168.', 'D:\\', 'C:\\', 'ghp_', 'token=')):
+            raise PermissionError('Potentially private export: ' + name)
+        target = public / source.name; target.write_text(text, encoding='utf-8', newline='\n')
+        identities.append(dict(name=source.name, raw_sha256=io.sha(source), public_sha256=io.sha(target)))
+    rows = result['tables']['comparison']
+    lookup = {(r['model_id'], r['stream']): r for r in rows}
+    summary = {(r['method'], r['stream'], r['metric']): r for r in result['tables']['three_seed_summary']}
+    model_ids = list(MODEL_IDS) + ['LEFT_native', 'HistoryMean512', 'TimeRadar']
+    def f(v, percent=False):
+        return 'NA' if v is None else f'{v * (100 if percent else 1):.6f}'
+    def ms(r, percent=False):
+        return f(r['mean'], percent) + ' ± ' + f(r['sample_SD'], percent)
+    lines = ['# SWaT31: seven frozen TimeRCD models, original B-only protocol', '',
+        'No model is trained or selected in this evaluation. The official zero-update model and the '
+        'already source-selected batch/reference checkpoints for seeds2025/2026/2027 are scored once '
+        'on the existing exposed SWaT roles. These are model-comparison results, not a new Hybrid '
+        'architecture, lag mechanism or contamination-robustness claim.', '',
+        '## Fixed common QUERY axis', '',
+        '| Model | AP | ROC | Strict normal FPR (%) | C3 normal FPR (%) | C3 any-hit | C3 one-to-one matches | '
+        'C3 event F1 (%) | C3 anomaly point coverage (%) | Long9 steady macro (%) | Long9 steady pooled (%) | C3 longest miss |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for model in model_ids:
+        strict, c3 = lookup[model, 'strict'], lookup[model, 'confirmed3']
+        values = [f(strict.get('AP')), f(strict.get('ROC_AUC')), f(strict.get('normal_FPR'), True),
+            f(c3.get('normal_FPR'), True), str(c3.get('auxiliary_any_hit_events', 'NA')),
+            str(c3.get('M', 'NA')), f(c3.get('one_to_one_eventF1'), True),
+            f(c3.get('event_point_coverage'), True), f(c3.get('long_steady_macro_coverage'), True),
+            f(c3.get('long_steady_point_coverage'), True), str(c3.get('max_event_miss_points', 'NA'))]
+        lines.append('| ' + model + ' | ' + ' | '.join(values) + ' |')
+    lines += ['', 'TimeRadar is NA because no cached bank was qualified with this exact QUERY/CAL '
+        'role identity; the old reproduction is retained and is not rerun. LEFT is a target-normal '
+        'FIT/SELECT-trained external comparison, whereas the seven TimeRCD models have no target '
+        'training. History Mean512 additionally fits per-channel median residual scales on the '
+        'same512 CAL points before setting its threshold. Its operating results are not represented '
+        'as equal calibration permission. No cross-permission superiority claim follows from this table.', '',
+        '## Three source-seed summaries (mean ± sample SD)', '',
+        '| Arm | AP | ROC | Strict normal FPR (%) | C3 normal FPR (%) | C3 event F1 (%) | '
+        'C3 anomaly point coverage (%) | Long9 steady macro (%) | Long9 steady pooled (%) |',
+        '|---|---:|---:|---:|---:|---:|---:|---:|---:|']
+    for method in ('batch', 'reference'):
+        keys = [('strict', 'AP', False), ('strict', 'ROC_AUC', False), ('strict', 'normal_FPR', True),
+                ('confirmed3', 'normal_FPR', True), ('confirmed3', 'one_to_one_eventF1', True),
+                ('confirmed3', 'event_point_coverage', True), ('confirmed3', 'long_steady_macro_coverage', True),
+                ('confirmed3', 'long_steady_point_coverage', True)]
+        lines.append('| ' + method + ' | ' + ' | '.join(ms(summary[method, stream, metric], pct)
+                                                       for stream, metric, pct in keys) + ' |')
+    lines += ['', 'The official frozen model appears once per stream and receives no artificial '
+        'three-seed SD. Training-seed summaries use ddof1 on the same fixed recording and events, '
+        'not three independent SWaT domains.', '',
+        '## Fixed source-seed paired differences', '',
+        '| Reference arm minus comparator | Metric / stream | Seed2025 | Seed2026 | Seed2027 | Mean ± sample SD |',
+        '|---|---|---:|---:|---:|---:|']
+    for comparator in ('batch', 'official_zero'):
+        for metric, stream in [('AP', 'strict'), ('ROC_AUC', 'strict'),
+                               ('normal_FPR', 'confirmed3'), ('event_point_coverage', 'confirmed3'),
+                               ('long_steady_macro_coverage', 'confirmed3')]:
+            row = next(r for r in result['tables']['paired_three_seed_summary']
+                       if r['reference'] == comparator and r['metric'] == metric and r['stream'] == stream)
+            values = [f(row[f'seed{s}']) for s in SEEDS] + [ms(row)]
+            lines.append('| reference − ' + comparator + ' | ' + metric + ' / ' + stream + ' | '
+                         + ' | '.join(values) + ' |')
+    lines += ['', 'Pair differences above use raw fractions, not percentage-point scaling. Positive '
+        'false-alarm differences are costs. Reference-minus-batch is the matched source-training '
+        'comparison; reference-minus-official tests change from frozen pretrained weights, with '
+        'different source-training exposure.', '',
+        '## Preserved SWaT definitions and permissions', '',
+        '- Original31 channel identities/order and raw FIT/CAL/QUERY roles are retained. Each model '
+        'uses exactly the original FIT population mean/std once, with the official zero-std safeguard. '
+        'No QUERY statistic or target training is used.',
+        '- Full input roles remain CAL445661:495000 and QUERY608023:944919. Native5000-point windows '
+        'are anchored at those original input starts. Only after forward inference are scores cropped '
+        'to the old QUERY608535:944919 axis (336384 points). This is not a new window origin.',
+        '- All seven use raw abnormal-minus-normal head logits and the same pre-existing512 CAL '
+        'indices linspace(446173,494999,512,int64), q99/higher and strict greater-than. Full CAL is '
+        'read out but is not substituted as a new calibration pool. CAL and QUERY never share context.',
+        '- Main event evaluation retains22 fully covered, non-boundary-censored QUERY events. '
+        'Long events are duration>512 (nine events), with steady coverage from original event start+512. '
+        'This is the existing SWaT definition, not the PSM/SMD steady-after192 definition.',
+        '- Strict and current-point C3 confirmation, any-hit and one-to-one event matching remain '
+        'distinct. The full CSVs retain point counts, false-alarm fragments, event metrics and long '
+        'missed spans. Only the fixed22 complete QUERY events are exported in per_event_complete_query; '
+        'outside-QUERY events remain unobserved/NA in raw coverage records, never false misses.',
+        '- TimeRCD uses noncausal full-window context: first-hit and availability offsets are offline '
+        'descriptions, not online detection-delay claims. LEFT/H512 native endpoint permissions are '
+        'disclosed separately. Processed sample positions do not establish a physical sampling clock.', '',
+        '## Cost and provenance', '',
+        f"New frozen inference cost is {result['inference_GPU_hours']:.9f} GPUh, with zero optimizer "
+        'updates. parameters_and_compute.csv records each model cost and peak allocated memory. '
+        'No historical training cost is charged again. Safe provenance identifies raw seals and '
+        'accepted baseline tables without exporting raw observations, labels, weights or private '
+        'host paths. This fixed evaluation does not automatically authorize a new model, normalization, '
+        'window, score or threshold variant.', '']
+    (public / 'RESULTS.md').write_text('\n'.join(lines), encoding='utf-8')
+    io._dump(public / 'PROVENANCE_PUBLIC.json', dict(
+        official_code_commit='b031773e323bc0e6c9dcd8c9119b800ec4d70f8c',
+        raw_result_sha256=io.sha(output / 'RESULT.json'),
+        executed_evaluator_source_sha256=result['source_sha256'], publication_source_sha256=io.sha(__file__),
+        event_kernel_sha256=result['event_kernel_sha256'], alarm_kernel_sha256=result['alarm_kernel_sha256'],
+        accepted_baseline_comparison_sha256=BASELINE_SHA, accepted_baseline_seal_sha256=BASELINE_SEAL_SHA,
+        label_metadata_sha256=LABEL_SHA, split_facts_sha256=SPLIT_SHA,
+        exports=identities, withheld='Raw observations, label arrays, weights, host paths and raw receipts.'))
+    return public
+
+
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('--workspace', type=Path, required=True)

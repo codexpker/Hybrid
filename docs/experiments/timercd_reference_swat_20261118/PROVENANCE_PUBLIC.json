@@ -1,0 +1,57 @@
+{
+  "official_code_commit": "b031773e323bc0e6c9dcd8c9119b800ec4d70f8c",
+  "raw_result_sha256": "ecaf4f0a0f2e9616bfdac646755c846bee1f7e3586c45fc8571d7d19d7cf428e",
+  "executed_evaluator_source_sha256": "b5f475ad0ce51746691bf068159136746b2544bf340b2a318fab873449d78f21",
+  "publication_source_sha256": "b5f475ad0ce51746691bf068159136746b2544bf340b2a318fab873449d78f21",
+  "event_kernel_sha256": "72491c52bed3b6f1787ee634ddb9c0ef95ac6eaa16f333c0b83c10e1b329a831",
+  "alarm_kernel_sha256": "2a7dd442122d08b02db495de67c663c065983cfb700e1fcb052069898c51de8d",
+  "accepted_baseline_comparison_sha256": "9987795c25df4ef2fa7e2566219a9d4aa7d33b6ab62de49d790b37b192e7f1e3",
+  "accepted_baseline_seal_sha256": "58630216d7acc535c72b3b25cc4874d4aa0d38d334ecb2b4d16248870a1d1e6c",
+  "label_metadata_sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+  "split_facts_sha256": "07618aa08c944aedbc8477dbb2f6d81029c37a6bb3278dd6f2dd40cf07dece2f",
+  "exports": [
+    {
+      "name": "comparison.csv",
+      "raw_sha256": "44b519f2d231a5e2b5ec7c7d027428ac95e6d37b1d8ef69452d753b9376b64f8",
+      "public_sha256": "5b6f1577bc6285bba2dcbdf87668b8442d7d02ebe8b9072e10693ba98d6f850b"
+    },
+    {
+      "name": "ranking.csv",
+      "raw_sha256": "7341582a32b76d26f5bded687dbdb4b41518e1920e868bef394fd0ce8cf6c5e2",
+      "public_sha256": "34ddbf8fc9983bd891a673306e42d16de8cfad4673a08bf884d98330b83d648f"
+    },
+    {
+      "name": "three_seed_summary.csv",
+      "raw_sha256": "328f1627a76f89a3d45dd475bba11885ba152d703aa184bef826ae2cd5218164",
+      "public_sha256": "f444763f5156fe852f41a1fad1d7efa8818629bd0eda85d977f65bdea12fe2fc"
+    },
+    {
+      "name": "paired_per_seed.csv",
+      "raw_sha256": "51f4b051bc115cd4dc418c3cafd1997461554fede0ebcb6e9618224c291b4ef5",
+      "public_sha256": "043d688da7cc928def7346c2ea277c8beaad36b5a8d29ec7a784ea3f54472def"
+    },
+    {
+      "name": "paired_three_seed_summary.csv",
+      "raw_sha256": "81a7290691bed3b4d3b15bcbb3aaf048fed169ebe3f0af010d081d6a090ebe6d",
+      "public_sha256": "5de65bc84f81c924361b8dfca4a4ab9d2f78edab584ae383177a5c39da866b19"
+    },
+    {
+      "name": "per_event_complete_query.csv",
+      "raw_sha256": "940971c6d01c0550ca15aeb9804dbf840e330210c768eb4903d69a39c23c4a94",
+      "public_sha256": "21c55a275eaf21fbfe111766f482f768dd2426d640f88c55e303777ee90c188f"
+    },
+    {
+      "name": "parameters_and_compute.csv",
+      "raw_sha256": "206fd0e9b7418905e997c49bfb5033505f299b2c3766658338fc9b28a73030e2",
+      "public_sha256": "e80a207785be87f39b242c5aa3c94b909d10eb0dc70b175293e55918c9c15f90"
+    }
+  ],
+  "withheld": "Raw observations, label arrays, weights, host paths and raw receipts.",
+  "primary_recomputation_sha256": "9928e01d9479ecf09657141a10e2f162a9401aa46f98017d4499b70c0bf247e6",
+  "primary_recomputation_status": "PASS",
+  "primary_binding_check_sha256": "6ea83bd47a641a40d3c0911e0f4e05fe524ce7eb384aeb6ba5a036e82def04cc",
+  "primary_binding_check_status": "PASS",
+  "executed_evaluator_snapshot_sha256": "b5f475ad0ce51746691bf068159136746b2544bf340b2a318fab873449d78f21",
+  "fixed_CAL_rule": "Only original512 linspace endpoints; q99 higher; strict greater-than; no full-CAL redefinition",
+  "fixed_long_rule": "duration strictly greater than512; steady from original event start+512; nine eligible events"
+}
