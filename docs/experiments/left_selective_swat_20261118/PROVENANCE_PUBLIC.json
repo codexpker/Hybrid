@@ -1,0 +1,60 @@
+{
+  "raw_result_sha256": "87e99987fe8d17e6c4260d2bed8342dc4eb6120c89f4293807c09a88545e54e0",
+  "executed_evaluator_source_sha256": "f12b67ddc541ab2819072b99b43ea29efc3e848da446a2f16dafd43967e1105a",
+  "publication_source_sha256": "fd953cc1bef2748b78ade3f0b2b16feae339dbb06e2ef799ad15b0c414ad1f97",
+  "metric_source_sha256": "b5f475ad0ce51746691bf068159136746b2544bf340b2a318fab873449d78f21",
+  "accepted_ABC2000_comparison_sha256": "9987795c25df4ef2fa7e2566219a9d4aa7d33b6ab62de49d790b37b192e7f1e3",
+  "accepted_ABC2000_seal_sha256": "58630216d7acc535c72b3b25cc4874d4aa0d38d334ecb2b4d16248870a1d1e6c",
+  "learner_plan_sha256": "444e61197b6d4951853af6d6396c087d4decc2bc791f25ce52fce0b5ed71e0e6",
+  "ordinary_UC_loss_audit_reference_sha256": "4dd985d0031ef52d19e72ae35749e1f0f7a776378f392e1d312329090c4f82b4",
+  "accepted_frozen_TimeRCD_table_sha256": "5b6f1577bc6285bba2dcbdf87668b8442d7d02ebe8b9072e10693ba98d6f850b",
+  "label_metadata_sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+  "exports": [
+    {
+      "name": "comparison.csv",
+      "raw_sha256": "4cfb60b8327719882a3ab5a0bd299ce7b9e18b623f53990c4901f3628a6ab20f",
+      "public_sha256": "1a634f18f04c826a7c26d9c48666b90f487bf70b3593e0cbd92324cde53acd26"
+    },
+    {
+      "name": "paired_contrasts.csv",
+      "raw_sha256": "502fe29fe1d684291753faa6797ec424300996e89b9fde7c0b3aaf8cd760fef2",
+      "public_sha256": "9c5e43ad56f17c5402b2d47b82b5391ebbb8183bf72a3d4976f5406c08c28633"
+    },
+    {
+      "name": "per_event_complete_query.csv",
+      "raw_sha256": "e6606a0da82d504122d8a18322f018394a5ba57c779c83c2fc61b46799524fae",
+      "public_sha256": "2a0f0fe2ada2c0eb6ace7415090d07b72e6eb6de19daa63b41a57e8c4db0b81e"
+    },
+    {
+      "name": "retention_groups.csv",
+      "raw_sha256": "c2c7637c505b86bd529c99405a2f5f237cb8f15895f08476a6816d2413c03855",
+      "public_sha256": "7fbfaa619d266468c440fb829f675875a80afedef72761442339bf99a1867900"
+    },
+    {
+      "name": "retained_donor_events.csv",
+      "raw_sha256": "51ac72e51c522a4464b37006169982bcc09bf3539d5e7a1f56cf7cbfd6fa5b3d",
+      "public_sha256": "8f8c5b34039516d776fd8bf7d933dba858ad194ff9090efb89f4eb4f79c80dc5"
+    },
+    {
+      "name": "supervision_exposure.csv",
+      "raw_sha256": "d40eb895d7e988c2adad8078791a179e69136ca55c124cd17e1edbbf937f92a1",
+      "public_sha256": "055e479934242c922d1e1fc29a567d49f8bf9b332c827d1488d9a7104dba7a79"
+    },
+    {
+      "name": "parameters_and_compute.csv",
+      "raw_sha256": "231e27e6730a2c322288a403d4986f7b58fbb8cc73a374179b41377a7827dba9",
+      "public_sha256": "ab1344aef5b1defd960c139a8b445bce8ae1ec45aeddc0e1261d93f383a401c4"
+    },
+    {
+      "name": "frozen_TimeRCD_external.csv",
+      "raw_sha256": "1817f1076572cfc3c37a3fde62665280ef09a051750ad4e9d143ffc7a5c57bfa",
+      "public_sha256": "b90268f91e804fbcf816280eaf91dde215288ead47826e728afaba474c78f0d0"
+    }
+  ],
+  "withheld": "Raw input/label arrays, weights, per-slot audit arrays, private paths and raw receipts.",
+  "independent_audit_receipt_sha256": "5da51e9f5b7f1946db343b2d412ed41b10736e3c9f13018861e8fe318d714da3",
+  "independent_audit_status": "PASS_BOUNDED",
+  "independent_audit_scope": "Eight new own_CAL_q99 strict/C3 rows,152 numerical comparisons; same-family role-separated, not external blinded audit",
+  "executed_evaluator_snapshot_sha256": "f12b67ddc541ab2819072b99b43ea29efc3e848da446a2f16dafd43967e1105a",
+  "historical_metrics_recomputed": false
+}

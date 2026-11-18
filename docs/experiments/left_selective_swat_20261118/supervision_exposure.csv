@@ -1,0 +1,7 @@
+method,condition,offered_forward_windows,replacement_windows,replacement_window_fraction,retained_gradient_windows,retained_gradient_fraction,retained_attack_label_windows,offered_attack_time_label_points,offered_time_points,retained_attack_time_label_points,retained_target_time_points,retained_attack_time_label_support_fraction,physical_affected_scalar_fraction,physical_affected_scalar_reason,all_forward_and_native_prototype_windows,discarded_loss_slots_still_participate_in_forward_and_prototype_updates
+B_trim,B,256000,25600,0.1,206000,0.8046875,13726,4915200,49152000,2635392,39552000,0.06663106796116505,,Attack-time labels do not identify actually affected channels,256000,True
+B_random,B,256000,25600,0.1,206000,0.8046875,20527,4915200,49152000,3941184,39552000,0.09964563106796116,,Attack-time labels do not identify actually affected channels,256000,True
+C_trim,C,256000,25600,0.1,206000,0.8046875,0,0,49152000,0,39552000,0.0,,Attack-time labels do not identify actually affected channels,256000,True
+C_random,C,256000,25600,0.1,206000,0.8046875,0,0,49152000,0,39552000,0.0,,Attack-time labels do not identify actually affected channels,256000,True
+U_B,B,256000,25600,0.1,256000,1.0,25600,4915200,49152000,4915200,49152000,0.1,,Attack-time labels do not identify actually affected channels,256000,True
+U_C,C,256000,25600,0.1,256000,1.0,0,0,49152000,0,49152000,0.0,,Attack-time labels do not identify actually affected channels,256000,True
