@@ -4,6 +4,7 @@ The original SWaT CLI is unchanged. This implementation is selected only by
 its explicit --task argument; labels are reserved entirely for evaluation.
 """
 import argparse
+import copy
 import concurrent.futures
 import datetime
 import json
@@ -47,7 +48,9 @@ def run_task(args):
     task=read(args.task);root=args.output;workspace=args.workspace
     root.mkdir(parents=True,exist_ok=False);began=time.monotonic()
     arm=args.replay_arm or "noU";source=task["source"];w=task["scoring"]["window"]
-    assert task["domain"]=="PSM"and w==192 and task["training"]["batch"]==256
+    keep_mode=getattr(args,"preservation_mode",None)
+    assert task["domain"]in {"PSM","SWAT"}and w==192 and task["training"]["batch"]==256
+    if keep_mode:assert arm=="R"and args.seed==2025
     import torch
     torch.set_num_threads(1);torch.set_num_interop_threads(1);torch.cuda.set_device(0)
     cap=30 if arm=="noU"else 20
@@ -61,12 +64,15 @@ def run_task(args):
     upstream=workspace/source["upstream"]
     assert sha(upstream/"models/Left/LEFT.py")==source["model_sha256"]
     sys.path.insert(0,str(upstream));from models.Left.LEFT import Left
-    cfg=read(config_file);c=cfg["enc_in"];assert cfg["seq_len"]==w and c==25
+    cfg=read(config_file);c=cfg["enc_in"];assert cfg["seq_len"]==w and c==task["data"]["target_test"]["shape"][1]
     model=Left(SimpleNamespace(**cfg)).cuda()
     loaded=model.load_state_dict(torch.load(checkpoint,map_location="cpu",weights_only=True),strict=False)
     assert not loaded.missing_keys and all(k.endswith(("total_ops","total_params"))for k in loaded.unexpected_keys)
     model.step=source["python_step"]
-    statistics=read(scaler_file)["statistics"];mean=np.asarray(statistics["mean"]);scale=np.asarray(statistics["scale"])
+    if source["scaler"]["format"]=="json_statistics":
+        statistics=read(scaler_file)["statistics"];mean=np.asarray(statistics["mean"]);scale=np.asarray(statistics["scale"])
+    else:
+        with np.load(scaler_file)as z:mean=z["mean"].copy();scale=z["scale"].copy()
     assert mean.shape==scale.shape==(c,)and np.all(scale>0)
     records={}
     for key,item in task["data"].items():
@@ -88,6 +94,18 @@ def run_task(args):
         scaler_sha256=sha(scaler_file),initial_python_step=model.step,training_seed=args.seed,
         state_sha256=tensor_hashes(model),rng=rng_hashes(torch),task_sha256=sha(args.task),
         actual_training_roles=sorted(allowed),labels_read=False,worker_sha256=sha(__file__)))
+    teacher=None;teacher_before=None;keep_trace=[]
+    if keep_mode:
+        from hybrid_tsad.left_source_preservation import preservation_loss,gradient_norm
+        teacher=copy.deepcopy(model).eval()
+        for parameter in teacher.parameters():parameter.requires_grad_(False)
+        teacher_before=tensor_hashes(teacher)
+        assert teacher_before==tensor_hashes(model)
+        dump(root/"PRESERVATION_BINDING.json",dict(mode=keep_mode,coefficient=1.0,
+            source_only_second_half=[128,256],teacher_checkpoint_sha256=sha(checkpoint),
+            teacher_python_step=source["python_step"],teacher_eval=True,teacher_frozen=True,
+            monitored_updates=[1,500,1000,1500,2000],
+            helper_sha256=sha(Path(__file__).with_name("left_source_preservation.py"))))
     if arm!="noU":
         with np.load(args.replay_plan)as z:plan={k:z[k].copy()for k in z.files}
         expected=plan_arrays(task,args.seed)
@@ -104,7 +122,19 @@ def run_task(args):
                 role,key=mapping[part];values=role_values[role]
                 halves.append(np.stack([np.float32(values[int(a):int(a)+w])for a in plan[key][step]]))
             batch=np.concatenate(halves);assert batch.shape==(256,w,c)
-            optimizer.zero_grad();loss=model(torch.from_numpy(batch).cuda(),None,None,None)[0]
+            optimizer.zero_grad();batch_tensor=torch.from_numpy(batch).cuda()
+            native_loss=model(batch_tensor,None,None,None)[0]
+            loss=native_loss
+            if keep_mode:
+                penalty=preservation_loss(model,teacher,batch_tensor[128:],keep_mode)
+                loss=native_loss+penalty
+                if step+1 in [1,500,1000,1500,2000]:
+                    parameters=[p for p in model.parameters()if p.requires_grad]
+                    gn=gradient_norm(native_loss,parameters);gk=gradient_norm(penalty,parameters)
+                    assert np.isfinite(gn)and np.isfinite(gk)
+                    keep_trace.append(dict(update=step+1,native_loss=float(native_loss.detach()),
+                        preservation_loss=float(penalty.detach()),native_gradient_L2=gn,
+                        preservation_gradient_L2=gk,gradient_ratio=gk/gn if gn else None))
             assert torch.isfinite(loss);loss.backward()
             grads=[p.grad for p in model.parameters()if p.grad is not None]
             assert grads and all(torch.isfinite(g).all()for g in grads)
@@ -122,27 +152,37 @@ def run_task(args):
             trainable_parameters=sum(p.numel()for p in model.parameters()if p.requires_grad),
             training_seconds=time.monotonic()-started,allocated=torch.cuda.max_memory_allocated(),
             reserved=torch.cuda.max_memory_reserved()))
+        if keep_mode:
+            assert teacher_before==tensor_hashes(teacher)and teacher.step==source["python_step"]
+            assert all(p.grad is None for p in teacher.parameters())
+            dump(train/"PRESERVATION_TRACE.json",dict(mode=keep_mode,coefficient=1.0,records=keep_trace,
+                teacher_state_unchanged=True,teacher_gradients_none=True,
+                native_training_forward_calls=2000,student_source_eval_forward_calls=2000,
+                teacher_source_eval_forward_calls=2000,teacher_only_source_FIT=True))
     else:endpoint=checkpoint
     allowed={"CAL","QUERY"};model.eval();before=tensor_hashes(model);rng=rng_hashes(torch);banks=[];coverage=[]
     torch.cuda.reset_peak_memory_stats()
     for role in ["CAL","QUERY"]:
         values=load_role(role);origin,end=task["roles"][role];lo,hi=task["score_axes"][role]
-        starts=np.arange(lo,hi,w,dtype=np.int64)
-        assert lo>=origin and hi<=end and np.all((starts-task["scoring"]["anchor"])%w==0)
+        winlo,winhi=task.get("score_window_axes",task["score_axes"])[role]
+        starts=np.arange(winlo,winhi,w,dtype=np.int64)
+        assert winlo>=origin and winhi<=end and np.all((starts-task["scoring"]["anchor"])%w==0)
         chunks=[]
         with torch.no_grad():
             for at in range(0,len(starts),128):
                 batch=np.stack([np.float32(values[a-origin:a-origin+w])for a in starts[at:at+128]])
                 raw=model.infer(torch.from_numpy(batch).cuda(),None,None,None)[0]
                 assert raw.shape==(len(batch),w,c)and torch.isfinite(raw).all();chunks.append(raw.cpu().numpy())
-        per_channel=np.concatenate(chunks).reshape(-1,c);score=per_channel.mean(-1)
-        axis=np.arange(lo,hi,dtype=np.int64);assert len(score)==len(axis)and score.dtype==np.float32
+        per_channel=np.concatenate(chunks).reshape(-1,c);axis=np.arange(winlo,winhi,dtype=np.int64)
+        available=np.repeat(starts+w-1,w);keep=(axis>=lo)&(axis<hi)
+        axis=axis[keep];available=available[keep];per_channel=per_channel[keep];score=per_channel.mean(-1)
+        assert len(score)==len(axis)and score.dtype==np.float32
         path=root/(role+".npz")
-        np.savez_compressed(path,index=axis,absolute_time_index=axis,available_index=np.repeat(starts+w-1,w),
+        np.savez_compressed(path,index=axis,absolute_time_index=axis,available_index=available,
             canonical_score=score,score=score,per_channel=per_channel,valid=np.ones(len(axis),bool),
             window_start=starts,window_end_exclusive=starts+w)
         banks.append(dict(role=role,relative=path.name,sha256=sha(path),points=len(axis),axis=[lo,hi]))
-        coverage.append(dict(role=role,input=[origin,end],full_windows=[lo,hi],windows=len(starts)))
+        coverage.append(dict(role=role,input=[origin,end],full_windows=[winlo,winhi],score_axis=[lo,hi],windows=len(starts)))
     assert before==tensor_hashes(model)and rng==rng_hashes(torch)
     assert model.step==source["python_step"]+(0 if arm=="noU"else 2000)
     dump(root/"RECEIPT.json",dict(status="COMPLETED",arm=arm,seed=args.seed,checkpoint_sha256=sha(endpoint),
