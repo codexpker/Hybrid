@@ -14,47 +14,60 @@ from .left_swat_replay_repeats import write_csv
 from .timercd_swat_evaluation import evaluate_score
 
 
-def inputs(workspace,root):
+def inputs(workspace,root,repeat_seeds=None):
     seal=read_json(root/"GLOBAL_RAW_BANK_SEAL.json")
     domains=seal["eligible_domains"]
     if seal["status"]!="COMPLETED"or not seal["no_labels_decoded_by_learner"]:
         raise ValueError("Require a sealed complete label-free-learner stage")
-    expected={f"{d}/{a}_{c}/{r}.npz"for d in domains for a in ["TT","R"]for c in ["B","C"]for r in ["CAL","QUERY"]}
+    cases=[(d,s,root/d/f"seed{s}")for d in domains for s in repeat_seeds]if repeat_seeds else[(d,2025,root/d)for d in domains]
+    expected={str((folder/f"{a}_{c}/{r}.npz").relative_to(root)).replace("\\","/")
+              for d,s,folder in cases for a in ["TT","R"]for c in ["B","C"]for r in ["CAL","QUERY"]}
     ids={b["relative"].replace("\\","/"):b["sha256"]for b in seal["banks"]}
-    if set(ids)!=expected or len(seal["jobs"])!=4*len(domains)or any(j["OS_exit_code"]!=0 for j in seal["jobs"]):
+    if set(ids)!=expected or len(seal["jobs"])!=4*len(cases)or any(j["OS_exit_code"]!=0 for j in seal["jobs"]):
         raise ValueError("Incomplete fixed B/C tasks")
     pending=[];identities={"seal_sha256":sha(root/"GLOBAL_RAW_BANK_SEAL.json"),"GPU_hours":seal["actual_GPU_hours"]}
-    for domain in domains:
-        task=read_json(root/domain/"TASK.json");frozen=read_json(root/domain/"FROZEN.json")
-        checked(root/domain/"TASK.json",frozen["task_sha256"])
-        checked(root/domain/"SAMPLING_PLAN.npz",frozen["plan_sha256"])
-        with np.load(root/domain/"BUNDLE/learner/SLOT_MAP.npz")as z:slots=z["replacement_row"].copy()
+    tasks_by_domain={}
+    for domain,seed,case in cases:
+        task=read_json(case/"TASK.json");frozen=read_json(case/"FROZEN.json")
+        checked(case/"TASK.json",frozen["task_sha256"])
+        checked(case/"SAMPLING_PLAN.npz",frozen["plan_sha256"])
+        from .left_exposure_run import old_a_plan
+        if sha(old_a_plan(workspace,domain,seed))!=frozen["plan_sha256"]:
+            raise ValueError("Each condition must reuse its own accepted A sampler, not seed2025 copies")
+        if domain in tasks_by_domain:
+            previous=tasks_by_domain[domain]
+            if any(task[k]!=previous[k]for k in ["source","data","roles","score_axes","labels",
+                                                "scoring","CAL","training","sampler"]if k in task or k in previous):
+                raise ValueError("Frozen scientific task changed across adaptation seeds")
+        tasks_by_domain[domain]=task
+        with np.load(case/"BUNDLE/learner/SLOT_MAP.npz")as z:slots=z["replacement_row"].copy()
         if slots.shape!=(2000,128)or np.sum(slots>=0)!=25600:raise ValueError("Replacement count changed")
         for arm in ["TT","R"]:
             for condition in ["B","C"]:
-                name=arm+"_"+condition;folder=root/domain/name
+                name=arm+"_"+condition;folder=case/name
                 train=read_json(folder/"train/RECEIPT.json");out=read_json(folder/"RECEIPT.json")
                 bind=read_json(folder/"EXPOSURE_BINDING.json")
-                manifest_path=root/domain/"BUNDLE/learner"/(condition+"_MANIFEST.json")
+                manifest_path=case/"BUNDLE/learner"/(condition+"_MANIFEST.json")
                 manifest=read_json(checked(manifest_path,train["exposure_manifest_sha256"]))
                 if (train["updates"]!=2000 or train["batch"]!=256 or train["native_forward_calls"]!=2000
-                    or train["seed"]!=2025 or train["initial_python_step"]!=task["source"]["python_step"]
+                    or train["seed"]!=seed or train["initial_python_step"]!=task["source"]["python_step"]
                     or train["final_python_step"]!=task["source"]["python_step"]+2000
                     or train["source_checkpoint_sha256"]!=task["source"]["checkpoint"]["sha256"]
                     or train["scaler_sha256"]!=task["source"]["scaler"]["sha256"]
                     or train["plan_sha256"]!=frozen["plan_sha256"]or train["labels_read"]or train["CAL_QUERY_read"]
                     or train["donor_labels_or_identity_read"]or train["replaced_T_slots"]!=25600
                     or out["checkpoint_sha256"]!=train["checkpoint_sha256"]
-                    or out["python_step"]!=train["final_python_step"]or out["seed"]!=2025 or out["arm"]!=arm
+                    or out["python_step"]!=train["final_python_step"]or out["seed"]!=seed or out["arm"]!=arm
                     or out["source_checkpoint_sha256"]!=task["source"]["checkpoint"]["sha256"]
                     or out["scaler_sha256"]!=task["source"]["scaler"]["sha256"]or not out["source_checkpoint_unchanged"]
                     or not bind["only_first_half_T_modified"]or not bind["numeric_bundle_only"]
                     or bind["manifest_sha256"]!=sha(manifest_path)
-                    or bind["slot_map_sha256"]!=sha(root/domain/"BUNDLE/learner/SLOT_MAP.npz")
+                    or bind["slot_map_sha256"]!=sha(case/"BUNDLE/learner/SLOT_MAP.npz")
                     or bind["window_bank_sha256"]!=manifest["window_bank"]["sha256"]
                     or manifest["slot_map"]["sha256"]!=bind["slot_map_sha256"]
                     or manifest["scaler_sha256"]!=task["source"]["scaler"]["sha256"]
                     or manifest["base_sampling_plan_sha256"]!=frozen["plan_sha256"]
+                    or manifest.get("sampling_seed",2025)!=seed
                     or not out["readout_state_step_RNG_immutable"]):
                     raise ValueError("Frozen learning/information permissions changed")
                 checked(folder/"train/endpoint2000.pth",train["checkpoint_sha256"])
@@ -62,18 +75,19 @@ def inputs(workspace,root):
                 if sum(x["replaced_T_slots"]for x in trace)!=25600:raise ValueError("Actual replacement exposure mismatch")
                 scores={}
                 for role,axis in task["score_axes"].items():
-                    relative=f"{domain}/{name}/{role}.npz"
+                    relative=str((folder/(role+".npz")).relative_to(root)).replace("\\","/")
                     scores[role]=score_bank(checked(root/relative,ids[relative]),axis,
                         task["data"]["target_test"]["shape"][1],task["scoring"]["anchor"])
-                pending.append((domain,arm,condition,task,scores))
-                identities[f"{domain}/{name}"]=dict(checkpoint_sha256=train["checkpoint_sha256"],
+                pending.append((domain,seed,arm,condition,task,scores)if repeat_seeds else(domain,arm,condition,task,scores))
+                identity_key=f"{domain}/{seed}/{name}"if repeat_seeds else f"{domain}/{name}"
+                identities[identity_key]=dict(checkpoint_sha256=train["checkpoint_sha256"],
                     plan_sha256=train["plan_sha256"],bundle_manifest_sha256=sha(manifest_path),
-                    slot_map_sha256=sha(root/domain/"BUNDLE/learner/SLOT_MAP.npz"),
-                    normalized_bank_sha256=bind["window_bank_sha256"],task_sha256=sha(root/domain/"TASK.json"))
+                    slot_map_sha256=sha(case/"BUNDLE/learner/SLOT_MAP.npz"),
+                    normalized_bank_sha256=bind["window_bank_sha256"],task_sha256=sha(case/"TASK.json"))
     # Labels only enter this evaluation after every new bank, identity and permission check.
     labels={}
     for domain in domains:
-        task=read_json(root/domain/"TASK.json");d=task["labels"];path=checked(workspace/d["relative"],d["sha256"])
+        task=tasks_by_domain[domain];d=task["labels"];path=checked(workspace/d["relative"],d["sha256"])
         if path.suffix==".npz":
             with np.load(path)as z:labels[domain]=z["label"].copy()
         else:labels[domain]=np.load(path).reshape(-1)

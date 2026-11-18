@@ -1,0 +1,94 @@
+{
+  "status": "CPU_CACHE_CHECKS_PASS",
+  "input_sha256": {
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\TASK.json": "080b684e2bf41516448e76d78364fd393ef5b796bfdb9208915ac3bcee3196e1",
+    "results\\left_current_u_exposure_20261118_v1\\GLOBAL_RAW_BANK_SEAL.json": "c9a267bf72eef665f83754e79b768ae8aeea87097e77af5a599219bf428d2825",
+    "results\\left_author_swat_source_replay_metrics_20261118_v1\\METRICS.json": "353b96f7493bf7bb22ed4d44274116b54cfa7044238186bb3a82ebd173f0b885",
+    "results\\left_current_u_exposure_metrics_20261118_v1\\METRICS.json": "3d53bf346edf2bdfafe677a2487b13341b70528d1094eb85c0aa0066a3d7b3ca",
+    "results\\left_current_u_exposure_metrics_20261118_v1\\EVENTS.json": "72482812a576c7b942690bf1da4779d01baa846bfbb2d177661b82fcea41e5d5",
+    "results\\left_author_swat_source_replay_metrics_20261118_v1\\EVENTS.json": "b250f6114611168b836860a72a3d402c58fbe06eba5e8e097b2c5920da6a9eae",
+    "preparations\\left_multievent_mixed_u_20261111_v1\\SWAT_LABEL_METADATA.npz": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+    "results\\left_author_swat_source_replay_20261118_v1\\TT\\CAL.npz": "2bbccc016402b6aa26234fa505cd971bb0677677bd6b5a080a17863cfa353967",
+    "results\\left_author_swat_source_replay_20261118_v1\\TT\\QUERY.npz": "448931f2c5bdb0324ddb215e62bb3fbbfac40a91e5b633bccbbf41e8adb2b53f",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\TT_B\\CAL.npz": "add8c9800320bc20f9b43a82f0f2d6cb149a7d9a93aa90f6a37877e49280810a",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\TT_B\\QUERY.npz": "b1f63115a70cd4f82dc9ee2005a2bc650f1e4ee6adac8b730d0e905237982560",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\TT_C\\CAL.npz": "49c304f212c011bc4415498d5e65b374f0ea325d7abc9148e2e6e0939b36ef40",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\TT_C\\QUERY.npz": "6beaffb5b26154268109dc5ea06e31866179d1c30a39ec195bc80a6c277c7528",
+    "results\\left_author_swat_source_replay_20261118_v1\\R\\CAL.npz": "0918c875134ffe7178910ef2b8ab3c84cdab4bb1b16356f3fa6cb51b2ec0dc43",
+    "results\\left_author_swat_source_replay_20261118_v1\\R\\QUERY.npz": "593d6188699a65af727ba68809b18de8bf432c2da4a7f938f03714494df1f407",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\R_B\\CAL.npz": "991fbb005549ea0fd4a8bfd3bfe3382b152fe1232aacb7028fb04653f9e0cada",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\R_B\\QUERY.npz": "3576e4cca727894f44db37a136f41d6306ac43c88b94f189d5c14e1f0408d07c",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\R_C\\CAL.npz": "caf1455936a0bdfa3562833502677dc2681ed00d333862e2e19dd13bcff895b4",
+    "results\\left_current_u_exposure_20261118_v1\\SWAT\\R_C\\QUERY.npz": "e75d7a6ad23a52ab2027b4a502d03109728e43424163864ce115b410c3788128"
+  },
+  "query_axis": [
+    608535,
+    944856
+  ],
+  "query_points": 336321,
+  "CAL_axis": [
+    585624,
+    607320
+  ],
+  "CAL_points": 512,
+  "threshold_rule": "np.quantile(q=.99,method=higher); score strictly greater; no curve selection",
+  "nine_long_events": [
+    {
+      "event_id": "E000016",
+      "start": 612000,
+      "end_exclusive": 612721,
+      "steady_denominator": 209
+    },
+    {
+      "event_id": "E000018",
+      "start": 637954,
+      "end_exclusive": 638651,
+      "steady_denominator": 185
+    },
+    {
+      "event_id": "E000020",
+      "start": 667910,
+      "end_exclusive": 668522,
+      "steady_denominator": 100
+    },
+    {
+      "event_id": "E000021",
+      "start": 693296,
+      "end_exclusive": 694741,
+      "steady_denominator": 933
+    },
+    {
+      "event_id": "E000022",
+      "start": 722828,
+      "end_exclusive": 758728,
+      "steady_denominator": 35388
+    },
+    {
+      "event_id": "E000024",
+      "start": 775060,
+      "end_exclusive": 776231,
+      "steady_denominator": 659
+    },
+    {
+      "event_id": "E000026",
+      "start": 842679,
+      "end_exclusive": 843280,
+      "steady_denominator": 89
+    },
+    {
+      "event_id": "E000030",
+      "start": 884680,
+      "end_exclusive": 885220,
+      "steady_denominator": 28
+    },
+    {
+      "event_id": "E000035",
+      "start": 938501,
+      "end_exclusive": 940191,
+      "steady_denominator": 1178
+    }
+  ],
+  "event_comparisons": "Recomputed strict/C3 coverage agrees exactly with accepted event records and macro/pooled aggregates; event matching NOT recomputed",
+  "mode": "offline full-window, available at window end; not causal delay",
+  "cpu_seconds": 25.324240099987946
+}
