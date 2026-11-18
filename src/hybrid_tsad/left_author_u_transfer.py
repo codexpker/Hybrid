@@ -42,7 +42,11 @@ def main():
     parser.add_argument("--replay-arm",choices=["R","TT","SS"])
     parser.add_argument("--replay-plan",type=Path)
     parser.add_argument("--seed",type=int,default=2025)
+    parser.add_argument("--task",type=Path)
     args=parser.parse_args()
+    if args.task is not None:
+        from hybrid_tsad.left_domain_replay import run_task
+        return run_task(args)
     workspace,root=args.workspace,args.output
     training_roles=({"R":{"T":[495000,585000],"S":[0,396000]},
                      "TT":{"T":[495000,585000]},"SS":{"S":[0,396000]}}[args.replay_arm]

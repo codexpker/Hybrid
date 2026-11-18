@@ -56,21 +56,22 @@ def threshold(index, score):
     return float(np.quantile(score[pos], .99, method='higher')), selected
 
 
-def evaluate_score(index, score, labels, tau, available, *, query_stop=QUERY_END, ranking=None):
+def evaluate_score(index, score, labels, tau, available, *, query_stop=QUERY_END, ranking=None,
+                   query_start=QUERY_START, original_length=QUERY_END, expected_events=(22, 9)):
     index, score, labels = np.asarray(index), np.asarray(score), np.asarray(labels)
-    if (not QUERY_START < query_stop <= QUERY_END
-            or not np.array_equal(index, np.arange(QUERY_START, query_stop)) or score.shape != index.shape
-            or not np.isfinite(score).all() or labels.shape != (QUERY_END,)
+    if (not 0 <= query_start < query_stop <= original_length
+            or not np.array_equal(index, np.arange(query_start, query_stop)) or score.shape != index.shape
+            or not np.isfinite(score).all() or labels.shape != (original_length,)
             or not np.isin(labels, [0, 1]).all()):
-        raise ValueError('Keep the complete original SWaT label axis and exact fixed scored QUERY axis')
+        raise ValueError('Keep the complete original label axis and exact fixed scored QUERY axis')
     if available.shape != index.shape or np.any(available < index):
         raise ValueError('Preserve actual offline input availability')
     scored = np.zeros(len(labels), bool); scored[index] = True
     available_full = np.arange(len(labels)); available_full[index] = available
     events = legacy._coverage(labels, scored, 0)
     eligible = [e for e in events if e['main_eligible']]
-    if len(eligible) != 22 or sum(e['total_points'] > 512 for e in eligible) != 9:
-        raise ValueError('Original22 complete SWaT events including9 long events must remain')
+    if expected_events is not None and (len(eligible), sum(e['total_points'] > 512 for e in eligible)) != expected_events:
+        raise ValueError('Original complete event and long-event counts changed')
     if ranking is None:
         ranking = dict(AP=float(average_precision_score(labels[index], score)),
                        ROC_AUC=float(roc_auc_score(labels[index], score)))
@@ -117,8 +118,8 @@ def evaluate_score(index, score, labels, tau, available, *, query_stop=QUERY_END
             event_macro_coverage=float(np.mean(coverage)),
             event_point_coverage=eligible_alarm_points / eligible_points,
             worst_event_coverage=min(coverage), long_event_count=len(steady),
-            long_steady_macro_coverage=float(np.mean(steady)),
-            long_steady_point_coverage=steady_alarm_points / steady_points,
+            long_steady_macro_coverage=float(np.mean(steady)) if steady else None,
+            long_steady_point_coverage=steady_alarm_points / steady_points if steady_points else None,
             long_steady_total_points=steady_points, max_event_miss_points=max(misses),
             delay_hit_only_median=None,
             offline_first_hit_offset_median=float(np.median(first_offsets)) if first_offsets else None,
