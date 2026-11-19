@@ -1,0 +1,373 @@
+{
+  "status": "AUDIT_COMPLETED",
+  "checks": 25227,
+  "max_absolute_difference": 1.1102230246251565e-16,
+  "tolerance": 1e-10,
+  "differences": [],
+  "identities": {
+    "results\\native_v_conditioning_20261119_v1\\GLOBAL_RAW_BANK_SEAL.json": "120dbf7a74280e6a3b717ea57d800dff6ff2c07d5608fb8f8a51b8dd13a3cdd1",
+    "results\\native_v_conditioning_metrics_20261119_v1\\METRICS.json": "a3c31f2325174a02fb76bd76486013064c71e83e5909ed90368f9b46e3ce9ccb",
+    "results\\native_v_conditioning_metrics_20261119_v1\\EVENTS.json": "6d54b9be99457c42f1c873fe345a30fafbfc09991e7d9983e8df8bf6d96b8789",
+    "results\\native_v_conditioning_metrics_20261119_v1\\EVENT_PAIRS.csv": "1ea4e86a6cc166a79d8f1f6934c78b0685e6bccbe20371920de9c86f0cadf984",
+    "results\\native_v_conditioning_metrics_20261119_v1\\methods.csv": "59be5493e6fc5e81337eb5f022f5694b154b0452371696e021a56acf4c9a02cd",
+    "results\\native_v_conditioning_metrics_20261119_v1\\paired.csv": "c5684da0c796fb2a99ff7607d4b5a2d417b00429f448cbec216880cdb46dd39e",
+    "results\\native_v_conditioning_curves_20261119_v1\\CURVE_RECEIPT.json": "4b3a29eb3056397b573c6dc94e8cdff8f859b6017a99996afa9d8c559c739053",
+    "results\\native_v_conditioning_curves_20261119_v1\\OPERATING_POINTS.csv": "36862b96149825c1950150b5bd546d72dd9b5b1130014da4c4e5fba03d650d31",
+    "results\\native_v_conditioning_curves_20261119_v1\\PSM_FULL_CURVES.npz": "5cc7b6b5551ba0f2516c64c454ae0ee6f48e3abd274d3644b48aebe4de382313",
+    "results\\native_v_conditioning_curves_20261119_v1\\SWAT_FULL_CURVES.npz": "b2404dcd786d6bba60c5603d0bfe7e77b191f3ef167cd765df8ad3a718bbc9fa"
+  },
+  "scope": "One bounded same-model-family role-separated audit; not external double blind. No training/neural forward/GPU/scientific code edits.",
+  "independent": "NumPy AP/ROC, order statistics/CAL, strict/C3, original event qualification, greedy1to1/anyhit, longmacro/pooled/miss/pairs; sklearn only for exact full curve array regression",
+  "VUS": "Pinned official LEFT RangeAUC_volume_opt windowSize100 thre250; shared implementation, not independent mathematical rewrite; only8 new states recomputed",
+  "metadata": {
+    "seal_sha256": "120dbf7a74280e6a3b717ea57d800dff6ff2c07d5608fb8f8a51b8dd13a3cdd1",
+    "jobs": 34,
+    "actual_GPU_hours": 2.290003054230474,
+    "models": [
+      {
+        "domain": "SWAT",
+        "method": "B",
+        "selected_epoch": 14,
+        "checkpoint_sha256": "deba1a88d9be43b148caba8d986bbb37c1368069d66182b5d5149e165da0f47e",
+        "parameters": 509091,
+        "updates": 3880,
+        "exposure": 494360
+      },
+      {
+        "domain": "SWAT",
+        "method": "C",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "f125cbb9c49bd9d238155bddf6d87a15eb5f204f7ef986c160b335639a168161",
+        "parameters": 587011,
+        "updates": 3880,
+        "exposure": 494360
+      },
+      {
+        "domain": "SWAT",
+        "method": "D",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "9bd7121c94a7088d40fa72e9b0e80370daf68d84b33dc2e495cb9f39b06d313a",
+        "parameters": 698143,
+        "updates": 3880,
+        "exposure": 494360
+      },
+      {
+        "domain": "PSM",
+        "method": "B",
+        "selected_epoch": 16,
+        "checkpoint_sha256": "c7275f615194f2841244d2677ee545cbaff06ffc7de2bd322894bf09b7f13253",
+        "parameters": 410787,
+        "updates": 1040,
+        "exposure": 131840
+      },
+      {
+        "domain": "PSM",
+        "method": "C",
+        "selected_epoch": 7,
+        "checkpoint_sha256": "15f2fcf046b682a9bf47e7f4f5e3089ba6f2870938f54b13ddd2c97548d65228",
+        "parameters": 584707,
+        "updates": 1040,
+        "exposure": 131840
+      },
+      {
+        "domain": "PSM",
+        "method": "D",
+        "selected_epoch": 19,
+        "checkpoint_sha256": "5f655d2c0ede79ef9d4b1f38ab102931790c271eb829284c46214c9206920667",
+        "parameters": 655129,
+        "updates": 1040,
+        "exposure": 131840
+      }
+    ],
+    "cache": [
+      {
+        "domain": "SWAT",
+        "role": "SOURCE_FIT",
+        "sha256": "23aca3c2ce01b509ad063f90aa0c1ca388097da706308e4c9eedf33695d15c59",
+        "points": 24718,
+        "record_id": "SWAT_DADA",
+        "max_V_from_terminalcopies_abs_difference": 2.208509364276523e-07
+      },
+      {
+        "domain": "SWAT",
+        "role": "SOURCE_SELECT",
+        "sha256": "de3d7e3178e0006ec227dfb664527a5c8e148d9c85e1651276b00bb3a33a2038",
+        "points": 6156,
+        "record_id": "SWAT_DADA",
+        "max_V_from_terminalcopies_abs_difference": 7.32311596363111e-08
+      },
+      {
+        "domain": "SWAT",
+        "role": "CAL",
+        "sha256": "a54a1ea5a5ff5e5ed453682ce538a2c62e099b6a889df024e849c26591a61185",
+        "points": 512,
+        "record_id": "SWAT_DADA",
+        "max_V_from_terminalcopies_abs_difference": 9.712800985717251e-08
+      },
+      {
+        "domain": "SWAT",
+        "role": "QUERY",
+        "sha256": "c6c5f3a127acf42c43c1f49cbb75a3d2955ea2dd649efd297659d97f95018766",
+        "points": 336321,
+        "record_id": "SWAT_DADA",
+        "max_V_from_terminalcopies_abs_difference": 4.5045010121924633e-07
+      },
+      {
+        "domain": "PSM",
+        "role": "SOURCE_FIT",
+        "sha256": "3b430487b5fb38a01b4735a737935008c12dc4ce25de281633d3e60e955744b2",
+        "points": 6592,
+        "record_id": "PSM_train",
+        "max_V_from_terminalcopies_abs_difference": 2.885310905753613e-07
+      },
+      {
+        "domain": "PSM",
+        "role": "SOURCE_SELECT",
+        "sha256": "cde23b1e05ccfd8e62843c8bb552bb1c425a4ac405b8fb653350da18e7cd3e8a",
+        "points": 1625,
+        "record_id": "PSM_train",
+        "max_V_from_terminalcopies_abs_difference": 1.6792142210064753e-07
+      },
+      {
+        "domain": "PSM",
+        "role": "CAL",
+        "sha256": "7b0ae234090e10deecde40d8fda26de319e148482c078f2cf1817730075face0",
+        "points": 512,
+        "record_id": "PSM_test",
+        "max_V_from_terminalcopies_abs_difference": 2.77572386186975e-08
+      },
+      {
+        "domain": "PSM",
+        "role": "QUERY",
+        "sha256": "c573865adbf440b5b51ada06116c2247c6b21f849a2afec81e9a86b20dbb71a4",
+        "points": 64728,
+        "record_id": "PSM_test",
+        "max_V_from_terminalcopies_abs_difference": 6.300952017923578e-07
+      }
+    ],
+    "formulas": [
+      {
+        "domain": "SWAT",
+        "method": "A",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "A",
+        "role": "QUERY",
+        "points": 336321,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "B",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "B",
+        "role": "QUERY",
+        "points": 336321,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "C",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "C",
+        "role": "QUERY",
+        "points": 336321,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "D",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "SWAT",
+        "method": "D",
+        "role": "QUERY",
+        "points": 336321,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "A",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "A",
+        "role": "QUERY",
+        "points": 64728,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "B",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "B",
+        "role": "QUERY",
+        "points": 64728,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "C",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "C",
+        "role": "QUERY",
+        "points": 64728,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "D",
+        "role": "CAL",
+        "points": 512,
+        "score_max_abs_difference": 0.0
+      },
+      {
+        "domain": "PSM",
+        "method": "D",
+        "role": "QUERY",
+        "points": 64728,
+        "score_max_abs_difference": 0.0
+      }
+    ],
+    "step0": {
+      "SWAT": {
+        "tau_native": 0.23049013316631317,
+        "tau_step0": 2.713370492237684,
+        "order_reversals": 0,
+        "newly_compressed_adjacent_values": 0,
+        "native_tie_pairs_split": 0,
+        "strict_alarm_disagreements": 0,
+        "native_ranking": {
+          "AP": 0.795725473846651,
+          "ROC_AUC": 0.857851696292976,
+          "AUC_PR_trapezoidal": 0.7957141110093292
+        },
+        "step0_ranking": {
+          "AP": 0.795725473846651,
+          "ROC_AUC": 0.857851696292976,
+          "AUC_PR_trapezoidal": 0.7957141110093292
+        }
+      },
+      "PSM": {
+        "tau_native": 0.1491694450378418,
+        "tau_step0": 0.42098673801708447,
+        "order_reversals": 0,
+        "newly_compressed_adjacent_values": 0,
+        "native_tie_pairs_split": 0,
+        "strict_alarm_disagreements": 0,
+        "native_ranking": {
+          "AP": 0.5509523733731589,
+          "ROC_AUC": 0.7350481167276486,
+          "AUC_PR_trapezoidal": 0.5509369072081882
+        },
+        "step0_ranking": {
+          "AP": 0.5509523733731589,
+          "ROC_AUC": 0.7350481167276486,
+          "AUC_PR_trapezoidal": 0.5509369072081882
+        }
+      }
+    },
+    "identities": {
+      "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+      "data/common_psm_20261028_v1/test_label.npy": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/A/CAL/BANK.npz": "436d39bc2527c6824d267c4be3c31afa88e098b6598fdaad8b9dd1132f8e2d5e",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/A/QUERY/BANK.npz": "4f6b345de071253569c7ed1054527f002064e42c1e8844f5ee65ae4acbd10ddb",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/B/CAL/BANK.npz": "0449b28d1e5d12530d38457e12f64dbaf21f2bfc158b898cdb1919628b801133",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/B/QUERY/BANK.npz": "b606df884ee25ecc07f4c2509bb9c6b235a2ec789fb4b1d9a74f7141c8cd8533",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/C/CAL/BANK.npz": "63f8b5030b5c71c50672571bece6bc69c66bab7b77042142570467c9452d27f0",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/C/QUERY/BANK.npz": "3448a8b5e5ec36f22dbeb65fe647d104df2f1dc9f8e2c816f165fe6c81e037b6",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/D/CAL/BANK.npz": "cf365354a6bfe3801755eb1532e92d7cedd483b2f9a59855916956f3297df81a",
+      "results/native_v_conditioning_20261119_v1/banks/SWAT/D/QUERY/BANK.npz": "43814e40fd7722b46c898cd99a5c6bce9501c51ae3567bfc3859cd78451c90e0",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/A/CAL/BANK.npz": "67ad82292b11cd8fd09469a3f272930ea75ebc067afef2cf8c6e24ea5f53b450",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/A/QUERY/BANK.npz": "26e54dd3f0e74093c091356fe242efa0bd0c6ad5f37877298032eeb8210e965e",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/B/CAL/BANK.npz": "166d296b50bd51f6510dde6964233e533d329083ea9c01d8ec2a3dc7eb920e67",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/B/QUERY/BANK.npz": "4c04fe7caebe49595444c63362eff004da2ee0bf19857d9774fc9a666395d94d",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/C/CAL/BANK.npz": "93dd3092b6a2042f6afd9de24e7ff5346233d24bfca47c43bf27d9294a5d9f26",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/C/QUERY/BANK.npz": "7fc86f5457a1977029df1dab3c11eb66f9abc8a65cb022b268ac54cd125579ca",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/D/CAL/BANK.npz": "097ccebd05597221e47e2f28ca62445074ac25449b05a9c4b5ad18348ea16004",
+      "results/native_v_conditioning_20261119_v1/banks/PSM/D/QUERY/BANK.npz": "312fdd3780cbcb1e1a9a15bc988202bc0ecbf3ac67ba2426041eefb5a42e9177"
+    },
+    "CPU_wall_seconds": 7.8610341000021435
+  },
+  "curve_arrays_checked": 48,
+  "audit_artifacts": {
+    "compare.py": "085238ec8b35951a19eacf4d74f7665b19b413bf0fa7dd1385087a5e16324741",
+    "INDEPENDENT_RECOMPUTE.json": "828a3082b0a67150846a3c9b9b8cf8e38e6bdd94612655f9481d54d2beb5ce08",
+    "recompute.py": "a737c5816e757d1360863a4803e040aa873b89d28147e8f27d056b0945c6e9b7",
+    "SHARED_VUS.json": "c1d16eb9d5ec7a61b88a3725ff811d212e7ffceeb6096caf58364b3c5c447361"
+  },
+  "limitations": [
+    "Single seed, two historically exposed development tasks; no R or contamination claim.",
+    "PSM CAL512/512 attack; fixed operating points do not certify1% normal FPR.",
+    "B/C not equal-parameter models; D changes target/loss/head/teacher dependence.",
+    "Native GPU state/RNG/freeze witnesses inspected via receipts, not rerun.",
+    "PSM all-positive point recall and complete-event coverage use different denominators; longmacro and pooled remain separate."
+  ],
+  "training_runtime_manifest_sha256": "da2a8ac311a37ba5fa51f9506f371e3a7c59ca368af11bdd14479dda5389e22c",
+  "runtime_reviewed_actual_byte_hashes": {
+    "preparations/native_v_conditioning_20261119_v1/runtime_training/hybrid_tsad/native_v_conditioning.py": "da0cba058a682c2929abd3e8885bc46bca6ac622f2654450de97fca4bbc0662a",
+    "preparations/native_v_conditioning_20261119_v1/runtime_training/hybrid_tsad/native_v_conditioning_queue.py": "20c988a82435f8d7a8685c98515740af10e5022bc994861d78b11b0dd6eef594",
+    "preparations/native_v_conditioning_20261119_v1/runtime_training/hybrid_tsad/native_v_conditioning_runner.py": "a8cf1968a462548473caa0a5080269b940c89702b231790f3c381946ef474bbe",
+    "preparations/native_v_conditioning_20261119_v1/runtime_training/hybrid_tsad/hybrid_v1/temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+    "preparations/native_v_conditioning_20261119_v1/runtime_training/hybrid_tsad/hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478"
+  },
+  "public_model_manifest_sha256": "4e8b9bac05b6582d06637355bf4464fffe95dbfca811457b9406c0fcf7ffbaf0",
+  "public_model_selected_epoch_update_loss_fields_verified": true,
+  "public_export_verification": {
+    "checks": 89,
+    "ranking_rows": 25,
+    "operating_rows": 23,
+    "C3_pair_rows": 10,
+    "manuscript_rows": 8,
+    "rounded_values_exact": true,
+    "public_csv_curve_bytes_equal": true,
+    "user_initial_two_spaces_preserved": true,
+    "CPU_wall_seconds": 0.0234999000094831,
+    "identities": {
+      "hybrid_ad\\docs\\experiments\\timeradar_native_v_conditioning_20261119\\RESULTS.md": "8d1bccb29d406e2292d65238cfea0b4a08bb50f0a2f9f8edc92c73f492c06731",
+      "hybrid_ad\\docs\\experiments\\timeradar_native_v_conditioning_20261119\\ARTIFACT_MANIFEST.json": "528baa147c3776832b4a43a278c51ccbf8569e90a6ae6e30fb11d77b085ea752",
+      "hybrid_ad\\docs\\experiments\\timeradar_native_v_conditioning_20261119\\TRAINING_COSTS.csv": "95c56f91bcfdca3cd8960eb4c6197b930526421d53989d1d732ddf9890cbecd9",
+      "hybrid_ad\\manuscript\\next_generation_20261115\\draft.md": "7bb5a34ed4d09921963adfe01d2304ca83a0e0bd67a2d63002b4b38626746c8a"
+    },
+    "scope": "Export-only rounding/byte/permission check; no scientific metric recomputation",
+    "training_cost_receipt_fields_verified": 150,
+    "event_P_R_F1_fraction_unit_clarified": true
+  },
+  "measured_timing_note": {
+    "independent_metadata_Numpy_wall_seconds": 7.8610341000021435,
+    "metadata_plus_new8_shared_VUS_wall_seconds": 75.61647340003401,
+    "final_comparison_CLI_wall_seconds": 6.5665918,
+    "export_CPU_wall_seconds": 0.0234999000094831,
+    "scope": "wall clock, not process CPU; VUS total includes metadata; brief static/read commands not fully instrumented, no exact cumulative CPU-total claim"
+  }
+}
