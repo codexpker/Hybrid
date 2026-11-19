@@ -1,0 +1,13 @@
+domain,left,right,n,spearman,pearson,same_realized_generated_samples,interpretation
+SWAT,A_noU,B_noU,336321,0.9770262459353747,0.978342044063677,False,"correlation of archived complete model scores, not component complementarity"
+SWAT,A_noU,A_R,336321,0.3727343657363723,0.7228511093764666,False,"correlation of archived complete model scores, not component complementarity"
+SWAT,A_noU,B_R,336321,0.4545347628938242,0.7567672526091418,False,"correlation of archived complete model scores, not component complementarity"
+SWAT,B_noU,A_R,336321,0.3438616207879995,0.7364287902137053,False,"correlation of archived complete model scores, not component complementarity"
+SWAT,B_noU,B_R,336321,0.42185563216147043,0.7627279648297033,False,"correlation of archived complete model scores, not component complementarity"
+SWAT,A_R,B_R,336321,0.8007951259724032,0.982857787838827,False,"correlation of archived complete model scores, not component complementarity"
+PSM,A_noU,B_noU,64728,0.9997728168433998,0.9999873375124974,False,"correlation of archived complete model scores, not component complementarity"
+PSM,A_noU,A_R,64728,0.8584538981660768,0.9898259581260368,False,"correlation of archived complete model scores, not component complementarity"
+PSM,A_noU,B_R,64728,0.8600091217648594,0.9900004945103832,False,"correlation of archived complete model scores, not component complementarity"
+PSM,B_noU,A_R,64728,0.8596105129731869,0.9897941411565777,False,"correlation of archived complete model scores, not component complementarity"
+PSM,B_noU,B_R,64728,0.8611081107361616,0.9899718705244246,False,"correlation of archived complete model scores, not component complementarity"
+PSM,A_R,B_R,64728,0.9950638457247679,0.9997189125448744,False,"correlation of archived complete model scores, not component complementarity"
