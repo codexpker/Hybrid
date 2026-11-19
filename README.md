@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-19 当前：冻结TimeRadar响应几何的A/B匹配实验
+
+已实现严格512点历史条件生成器，使用TimesFM3官方轻量模块而非官方3.0权重。A使用原值与逐窗口独立的冻结TimeRadar响应，B使用相同生成器的原值能量评分；SWaT/PSM seed2025分别保存正常源训练noU与固定源重放R状态。真实CUDA输入梯度、冻结、掩码与随机性检查通过，训练正在执行，尚不宣称检测增量。仅公开数据，不恢复V1或已停止适配；LEFT+R、MLP、CANDI、完整TimeRadar保留比较身份。[固定实现与数学定义](docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md)，[当前方法正文](manuscript/next_generation_20261115/method_definition.md)。原有实验、评分轴和负结果不覆盖。
+
 ## 2026-11-19 跨骨干TT／R比较完成
 
 只新增SWaT/PSM seed2025的plain MLP TT/R四次适配，源初态、LEFT/CANDI及旧分数全部复用。两个骨干均有R−TT排序正项，但MLP在SWaT仍约96%正常误报，PSM排序更强却持续覆盖显著降低。LEFT保留具体操作与覆盖价值，同时参数／成本更高；这些结果不构成时频机制因果或Hybrid原创贡献。[完整七方法表、骨干内部配对差、曲线与成本](docs/experiments/mlp_replay_20261119/RESULTS.md)，[当前正文](manuscript/next_generation_20261115/draft.md)。本轮基础骨干／普通重放比较已收口，不自动追加MLP种子、污染比例、损失或阈值搜索。既有LEFT＋R两域三种子结论保持锁定。
