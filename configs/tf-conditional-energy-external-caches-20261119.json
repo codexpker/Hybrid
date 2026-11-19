@@ -1,0 +1,316 @@
+{
+  "compatible_models": [
+    {
+      "domain": "SWAT",
+      "method": "MLP_noU",
+      "banks": {
+        "CAL": {
+          "path": "results/candi_native_a_20261118_v1/SWAT/noU/CAL.npz",
+          "sha256": "d34e284fc0c8d0816e9e49a73c4af1a240299ad68633cfadaaac075fe3e2b9b1"
+        },
+        "QUERY": {
+          "path": "results/candi_native_a_20261118_v1/SWAT/noU/QUERY.npz",
+          "sha256": "3e4690d88e85203da8978697f6caef7358848d1285973bea211b27665d66d014"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP normal source initialization, FIT-only scaler, author normal SELECT; no target updates"
+    },
+    {
+      "domain": "SWAT",
+      "method": "CANDI_A",
+      "banks": {
+        "CAL": {
+          "path": "results/candi_native_a_20261118_v1/SWAT/CANDI/CAL.npz",
+          "sha256": "2c58bdb3475f70931c5f71691363059d30c6cc130a090068779476b88576b6fd"
+        },
+        "QUERY": {
+          "path": "results/candi_native_a_20261118_v1/SWAT/CANDI/QUERY.npz",
+          "sha256": "c7020e6a65345b649197f13918ebcd4e355dd02ed7ba1b1ba9400f5993c93101"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point whole-window MSE at endpoint; SOURCE_FIT-only scaler; normal source MLP; CANDI U-only FPM/SANA then frozen"
+    },
+    {
+      "domain": "SWAT",
+      "method": "MLP_TT",
+      "banks": {
+        "CAL": {
+          "path": "results/mlp_replay_20261119_v1/SWAT/TT/CAL.npz",
+          "sha256": "2c1c30e69e50ef7cf1177e8f961083b6f73f8e152d78c92eaa74bdf4eddf5b3c"
+        },
+        "QUERY": {
+          "path": "results/mlp_replay_20261119_v1/SWAT/TT/QUERY.npz",
+          "sha256": "8cf956725962b591e0ed008691026d5c28b87b393b3b0902e5c987868d229b3d"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP; FIT-only scaler; existing2000xB256 replay/TT; different context/objective/exposure from candidate"
+    },
+    {
+      "domain": "SWAT",
+      "method": "MLP_R",
+      "banks": {
+        "CAL": {
+          "path": "results/mlp_replay_20261119_v1/SWAT/R/CAL.npz",
+          "sha256": "859c126bed1421735e1b896794460a0e9c5a0af2014cd8b416b672fb512b6f68"
+        },
+        "QUERY": {
+          "path": "results/mlp_replay_20261119_v1/SWAT/R/QUERY.npz",
+          "sha256": "738fc21fc0597ba694d7dff5fc2413586ed99a5251e1b2ce06288f4d195b1031"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP; FIT-only scaler; existing2000xB256 replay/TT; different context/objective/exposure from candidate"
+    },
+    {
+      "domain": "PSM",
+      "method": "MLP_noU",
+      "banks": {
+        "CAL": {
+          "path": "results/candi_native_a_20261118_v1/PSM/noU/CAL.npz",
+          "sha256": "b30212be592818c86d2af11958cc5717bb17a4f6e64fbbf039622c5603217c5e"
+        },
+        "QUERY": {
+          "path": "results/candi_native_a_20261118_v1/PSM/noU/QUERY.npz",
+          "sha256": "7119c681175ee3167615a7f5ac8f42d84d1e42f65f815f2bd5e89d158bc4f749"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP normal source initialization, FIT-only scaler, author normal SELECT; no target updates"
+    },
+    {
+      "domain": "PSM",
+      "method": "CANDI_A",
+      "banks": {
+        "CAL": {
+          "path": "results/candi_native_a_20261118_v1/PSM/CANDI/CAL.npz",
+          "sha256": "99ae6356bcf697b58a5f52f33a6ad22ca1a884d4e1a1a2f0d8171174bd024d5c"
+        },
+        "QUERY": {
+          "path": "results/candi_native_a_20261118_v1/PSM/CANDI/QUERY.npz",
+          "sha256": "a26c53b183b3640fddc2ac6d385b635a154f797818f6a8c850d06332ed36eca3"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point whole-window MSE at endpoint; SOURCE_FIT-only scaler; normal source MLP; CANDI U-only FPM/SANA then frozen"
+    },
+    {
+      "domain": "PSM",
+      "method": "MLP_TT",
+      "banks": {
+        "CAL": {
+          "path": "results/mlp_replay_20261119_v1/PSM/TT/CAL.npz",
+          "sha256": "ee29ffa1117f5c098d0106610dbc0a834836ea7f3beaea49d49ab65784d8da14"
+        },
+        "QUERY": {
+          "path": "results/mlp_replay_20261119_v1/PSM/TT/QUERY.npz",
+          "sha256": "3e9a623912a7df42838f272dd826418573c3b82f743951793407d6508463e633"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP; FIT-only scaler; existing2000xB256 replay/TT; different context/objective/exposure from candidate"
+    },
+    {
+      "domain": "PSM",
+      "method": "MLP_R",
+      "banks": {
+        "CAL": {
+          "path": "results/mlp_replay_20261119_v1/PSM/R/CAL.npz",
+          "sha256": "eeb2f7a80d4bbf01c2c809b186318722d70ba79a9ab3509e87fe677b81d51498"
+        },
+        "QUERY": {
+          "path": "results/mlp_replay_20261119_v1/PSM/R/QUERY.npz",
+          "sha256": "a8f5cc5653d854da3b95d8f66d69b9864874f6287b24ea1bddec1f0cbd7aefe9"
+        }
+      },
+      "causal": true,
+      "permission": "native10-point MLP; FIT-only scaler; existing2000xB256 replay/TT; different context/objective/exposure from candidate"
+    },
+    {
+      "domain": "SWAT",
+      "method": "LEFT_noU",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_swat_u_cache_20261118_v1/CAL.npz",
+          "sha256": "ca7e1ce638c2f50e3ac68a4f41ebc1cf95f1d3158f963ba97754785fb8841a1c"
+        },
+        "QUERY": {
+          "path": "results/left_author_swat_u_cache_20261118_v1/QUERY.npz",
+          "sha256": "f039da378684532ea46180f3c5749e8941a4ad192f07e93aab6a90060e58a64a"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "SWAT",
+      "method": "LEFT_TT",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_swat_source_replay_20261118_v1/TT/CAL.npz",
+          "sha256": "2bbccc016402b6aa26234fa505cd971bb0677677bd6b5a080a17863cfa353967"
+        },
+        "QUERY": {
+          "path": "results/left_author_swat_source_replay_20261118_v1/TT/QUERY.npz",
+          "sha256": "448931f2c5bdb0324ddb215e62bb3fbbfac40a91e5b633bccbbf41e8adb2b53f"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "SWAT",
+      "method": "LEFT_R",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_swat_source_replay_20261118_v1/R/CAL.npz",
+          "sha256": "0918c875134ffe7178910ef2b8ab3c84cdab4bb1b16356f3fa6cb51b2ec0dc43"
+        },
+        "QUERY": {
+          "path": "results/left_author_swat_source_replay_20261118_v1/R/QUERY.npz",
+          "sha256": "593d6188699a65af727ba68809b18de8bf432c2da4a7f938f03714494df1f407"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "PSM",
+      "method": "LEFT_noU",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/noU/CAL.npz",
+          "sha256": "35dcf1853626b557bfeebe72560de91d2263961855f6652c07b0c771dc553f2b"
+        },
+        "QUERY": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/noU/QUERY.npz",
+          "sha256": "3d247a19899de63add4a5a605f9c51cbafc01969b37246b670e316a4746faf6e"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "PSM",
+      "method": "LEFT_TT",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/seed2025/TT/CAL.npz",
+          "sha256": "7a1f129ba8c3c50f7f6327767bbef8c91b6faeb9820eeb0f354edf5808edefa7"
+        },
+        "QUERY": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/seed2025/TT/QUERY.npz",
+          "sha256": "75cd62cc3b7e9209cc88bb2eaacf371746c7cd85bfb00ec7c363c5f02971d8ea"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "PSM",
+      "method": "LEFT_R",
+      "banks": {
+        "CAL": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/seed2025/R/CAL.npz",
+          "sha256": "839b4496569a2877700dd4e25b5272c558f4e88e53506f03e6c498726d6c702d"
+        },
+        "QUERY": {
+          "path": "results/left_author_psm_source_replay_20261118_v1/seed2025/R/QUERY.npz",
+          "sha256": "60afb954e08980f8fa55850fe9f1d6eefbeabcafae956300198723723448884f"
+        }
+      },
+      "causal": false,
+      "permission": "native192-point nonoverlapping whole-window retrospective scores; normal-prefix scaler includes SOURCE_SELECT; existing noU or2000xB256 native updates; not same-context/compute ablation"
+    },
+    {
+      "domain": "PSM",
+      "method": "HistoryMean512",
+      "causal": true,
+      "banks": {
+        "CAL": {
+          "path": "results/hybrid_v1_psm_Z1_fixed_evaluation_20261102_v1/history_mean512/calculation_inputs.npz",
+          "sha256": "f1c792db8c65d95783c6ac183f5bbca22de3621164384d70c0aac4e40c6a423a"
+        },
+        "QUERY": {
+          "path": "results/hybrid_v1_psm_Z1_fixed_evaluation_20261102_v1/history_mean512/calculation_inputs.npz",
+          "sha256": "f1c792db8c65d95783c6ac183f5bbca22de3621164384d70c0aac4e40c6a423a"
+        }
+      },
+      "bank_keys": {
+        "index_key": "index",
+        "score_key": "score",
+        "available_key": "available_index",
+        "valid_key": "valid"
+      },
+      "permission": "cached causal history512 with unchanged legacy source-calibrated residual scaling; new own mixed-CAL threshold; not FIT-only candidate normalization"
+    }
+  ],
+  "ranking_only_models": [
+    {
+      "domain": "PSM",
+      "method": "TimeRadar_native",
+      "causal": false,
+      "path": "results/timeradar_cross_variable_20261116_v1/PSM/zero/score/QUERY.npz",
+      "sha256": "5e49cd7fd8df736ce6e8c50e506ae169438f0aa1292bd7c49afc0edbc60f928a",
+      "bank_keys": {
+        "index_key": "index",
+        "score_key": "score",
+        "available_key": "available_index"
+      },
+      "reason": "Original full native offline score; batch-shared order may cross the new CAL role, so no new legal threshold",
+      "permission": "Official pretrained zero-update TimeRadar; original100-window/batched offline L1; old FIT/scoring permissions"
+    },
+    {
+      "domain": "SWAT",
+      "method": "HistoryMean512",
+      "causal": true,
+      "path": "results/left_multievent_mixed_u_20261111_v1/fixed_scores/HistoryMean512.npz",
+      "sha256": "2566b41f8550bcebcbd24919362274aecdc26688e017e8b878aaa6183e6ac7f5",
+      "bank_keys": {
+        "index_key": "index",
+        "score_key": "score",
+        "available_key": null
+      },
+      "reason": "Cached CAL is old normal-prefix role, not new mixed CAL; ranking only without new computation",
+      "permission": "Accepted strictly-past512 historical predictor; original source residual scaling retained"
+    }
+  ],
+  "labels": {
+    "SWAT": {
+      "path": "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz",
+      "sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+      "key": "label",
+      "length": 944919
+    },
+    "PSM": {
+      "path": "data/common_psm_20261028_v1/test_label.npy",
+      "sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+      "key": "label",
+      "length": 87841
+    }
+  },
+  "author_metric": "literature/novelty_review/left_source_20261031/ts_ad_evaluation/auc_vus/metrics.py",
+  "incompatible_models": [
+    {
+      "domain": "SWAT",
+      "method": "TimeRadar",
+      "status": "NA_NO_VERIFIED_COMPATIBLE_ROLE_BANK"
+    },
+    {
+      "domain": "PSM",
+      "method": "TimeRadar",
+      "status": "RANK_ONLY_OFFLINE_HISTORICAL_CONTEXT",
+      "reason": "Old batch-shared order used test contexts outside new CAL; cannot use it as a legal new CAL readout"
+    },
+    {
+      "domain": "SWAT",
+      "method": "HistoryMean512",
+      "status": "RANK_ONLY_NO_CURRENT_MIXED_CAL",
+      "reason": "Accepted CAL belongs to old normal-prefix role; never substitute its threshold for the new mixed role"
+    }
+  ],
+  "created_without_opening_labels_or_score_arrays": true,
+  "original_metric_axes_and_thresholds_preserved": true
+}

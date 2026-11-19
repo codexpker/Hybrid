@@ -1,4 +1,65 @@
-# Current basis: native LEFT with source replay R
+# Current candidate: conditional energy in frozen TimeRadar response geometry
+
+The current implemented research candidate combines a strictly historical
+conditional generator with the frozen official TimeRadar response function.
+Only public SWaT31 and PSM25 are used. BAEF-AD laboratory records, weak labels,
+experimental runs and enterprise data are excluded. The former LEFT+R results
+remain locked external learning controls; they are not replaced or renamed.
+No new detection result is asserted while the fixed A/B experiment is running.
+
+Let $h_t=x_{t-512:t-1}$ and let $v_k=G_\theta(h_t,\epsilon_k)$ be four independent
+conditional current-value draws. $G_\theta$ uses the official TimesFM3 residual
+and mixing blocks at a lightweight configuration, including variate attention;
+it does not load official TimesFM3 pretrained weights or its quantile head.
+The current observation is excluded from the generator input. A separate
+frozen TimeRadar invocation evaluates each $[x_{t-99:t-1},v]$ window with its
+own order and ten fixed complementary masks, preserving the native complex
+encoding, decoding, iFRFT and magnitude projection [@timeradar2026].
+
+The full geometry is
+
+$$g_{h_t}(v)=\left[v/\sqrt C,\;\operatorname{vec}r_{h_t}(v)/(s_r\sqrt{1000C})\right],$$
+
+where $s_r$ is fixed using only normal SOURCE_FIT responses. The paired raw-only
+model uses $g_{h_t}(v)=v/\sqrt C$. Both minimize and report the same energy score
+
+$$s_t=\frac14\sum_{k=1}^4\|g_{h_t}(v_k)-g_{h_t}(x_t)\|_2
+-\frac1{24}\sum_{k\ne l}\|g_{h_t}(v_k)-g_{h_t}(v_l)\|_2.$$
+
+This is half the convention in the authors' generative scoring-rule code
+[@generative_scoring2024]. Conditional generative energy training is an
+established method; the hypothesis here is that fixed adaptive time-frequency
+response geometry supplies useful detection evidence beyond the matched raw
+geometry. The raw coordinates preserve injectivity, supporting strict
+properness of the population score under finite first moments. This does not
+guarantee abnormal observations have high score, calibrated normal false-alarm
+control, or robustness when mixed adaptation learns abnormal states.
+
+Only the generator is optimized. Generated-input gradients pass through the
+frozen response computation; no_grad is restricted to observed responses.
+Separate B=1 calls avoid sharing the fractional order across independent
+windows or draws. eval() does not fix native random masks: isolated seed84551
+is explicitly restored per response call, while generation noise has its own
+paired streams. The two arms share source initialization and plans,2000 source
+updates with normal SELECT selection including step0, then2000 fixed-endpoint
+1:1 source-replay updates. They retain separate noU and R states. These are
+same-domain normal initializations and natural mixed adaptations, not a new
+heterogeneous pretraining experiment. Replay itself is not an originality
+claim. The candidate uses logicalB16; historical LEFT+R usesB256, so external
+cost/exposure comparisons are not equal-budget objective ablations.
+
+Strict history plus current requires513 valid points. SWaT uses the existing
+336321-point common axis; PSM excludes360 additional initial points solely for
+this footprint, leaving64728 points. Cached methods are recropped without
+changing their original scores. Their availability indices, source statistics
+and offline permissions remain explicit. New mixed-CAL points are legal for
+the actual footprint and thresholds use q99/higher/strict greater-than in each
+model's own units. PSM's all-attack CAL remains a limitation. No favorable
+results from old replay or controlled-contamination experiments are inherited
+by this untested candidate. The running implementation and fixed definitions
+are recorded in [the implementation note](../../docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md).
+
+# Locked external learning basis: native LEFT with source replay R
 
 The current topic is adaptation and detection retention of time–frequency multiview detectors under mixed-unlabeled target data. The empirical basis is complete native LEFT plus established source replay R, not a new backbone or an original replay mechanism. The native objective, prototype/curriculum state updates, retrospective full-window inference and per-model CAL remain intact. P/V is stopped and retained below solely as historical evidence; no preservation term or teacher enters the current experiment.
 

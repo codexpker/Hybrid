@@ -34,3 +34,24 @@ def test_threshold_uses_same512_points_and_strict_higher():
     expected = score[np.searchsorted(index, chosen)]
     assert threshold == np.quantile(expected, .99, method="higher")
     assert np.sum(expected > threshold) == 5
+
+
+def test_legacy_saved_axis_uses_declared_keys_without_score_conversion(tmp_path):
+    path = tmp_path / "legacy.npz"
+    index = np.arange(12)
+    valid = index >= 2
+    score = np.arange(12, dtype=np.float32) / 7
+    np.savez(path, index=index, score=score, available=index, valid=valid)
+    i, s, a = select_bank(path, (3, 11), causal=True, index_key="index",
+        score_key="score", available_key="available", valid_key="valid")
+    np.testing.assert_array_equal(s, score[3:11])
+    np.testing.assert_array_equal(i, a)
+
+
+def test_incomplete_new_bank_seal_rejected_before_any_label_read(tmp_path):
+    import json
+    from hybrid_tsad.conditional_response_evaluation import new_descriptors
+    (tmp_path / "GLOBAL_RAW_BANK_SEAL.json").write_text(json.dumps(
+        dict(status="COMPLETED", no_labels_decoded=True, banks=[])))
+    with pytest.raises(ValueError, match="All16"):
+        new_descriptors(tmp_path, tmp_path)
