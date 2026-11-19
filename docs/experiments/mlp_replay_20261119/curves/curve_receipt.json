@@ -1,0 +1,80 @@
+{
+  "status": "FINAL7_CACHE_CURVES_PASS",
+  "domains": {
+    "SWAT": {
+      "axis": [
+        608535,
+        944856
+      ],
+      "methods": [
+        "LEFT_noU",
+        "LEFT_TT_A",
+        "LEFT_R_A",
+        "MLP_noU",
+        "CANDI_A",
+        "MLP_TT_A",
+        "MLP_R_A"
+      ]
+    },
+    "PSM": {
+      "axis": [
+        22656,
+        87744
+      ],
+      "methods": [
+        "LEFT_noU",
+        "LEFT_TT_A",
+        "LEFT_R_A",
+        "MLP_noU",
+        "CANDI_A",
+        "MLP_TT_A",
+        "MLP_R_A"
+      ]
+    }
+  },
+  "input_sha256": {
+    "results/candi_native_a_metrics_20261118_v1/METRICS.json": "57e3e8957d7ad53406107ce731d0b3ebc33b35c5e45d6911907ae74d9bdcda98",
+    "results/candi_native_a_20261118_v1/GLOBAL_RAW_BANK_SEAL.json": "61670b71f5c81d3d60be1ec117d328fa18ffc7948c53ad8ab567e9070dbcfe65",
+    "results/candi_native_a_20261118_v1/SWAT/TASK.json": "e5b800e5d9478d8d6f7a1bec56817e5862adf3fd4c5ba64093bb8717a2e80f20",
+    "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+    "results/left_author_swat_source_replay_metrics_20261118_v1/METRICS.json": "353b96f7493bf7bb22ed4d44274116b54cfa7044238186bb3a82ebd173f0b885",
+    "results/candi_native_a_20261118_v1/SWAT/noU/QUERY.npz": "3e4690d88e85203da8978697f6caef7358848d1285973bea211b27665d66d014",
+    "results/candi_native_a_20261118_v1/SWAT/CANDI/QUERY.npz": "c7020e6a65345b649197f13918ebcd4e355dd02ed7ba1b1ba9400f5993c93101",
+    "results/candi_native_a_20261118_v1/PSM/TASK.json": "5d1341abe083c0fb2834870f1fdc2ac7561df8d41b631e16959eae9e6441c4ed",
+    "data/common_psm_20261028_v1/test_label.npy": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+    "results/left_author_psm_source_replay_metrics_20261118_v1/METRICS.json": "0ec57ff0474f5bcd88c60118a061bbe65cc220a54115e30c8957e4ee6ed10716",
+    "results/candi_native_a_20261118_v1/PSM/noU/QUERY.npz": "7119c681175ee3167615a7f5ac8f42d84d1e42f65f815f2bd5e89d158bc4f749",
+    "results/candi_native_a_20261118_v1/PSM/CANDI/QUERY.npz": "a26c53b183b3640fddc2ac6d385b635a154f797818f6a8c850d06332ed36eca3",
+    "results/mlp_replay_20261119_v1/CURVE_EXTRAS.json": "dc3b1e4983f3d6ff25885eb4a7e66de04cc1addc79dbbff0d57078807f546323",
+    "results/mlp_replay_20261119_v1/SWAT/TT/QUERY.npz": "8cf956725962b591e0ed008691026d5c28b87b393b3b0902e5c987868d229b3d",
+    "results/mlp_replay_metrics_20261119_v1/METRICS.json": "b1bc2557bc6625e4b376c47ecfbafd6c6b8201b1a922eddbf27a149e9b1610f0",
+    "results/mlp_replay_20261119_v1/SWAT/R/QUERY.npz": "738fc21fc0597ba694d7dff5fc2413586ed99a5251e1b2ce06288f4d195b1031",
+    "results/mlp_replay_20261119_v1/PSM/TT/QUERY.npz": "3e9a623912a7df42838f272dd826418573c3b82f743951793407d6508463e633",
+    "results/mlp_replay_20261119_v1/PSM/R/QUERY.npz": "a8f5cc5653d854da3b95d8f66d69b9864874f6287b24ea1bddec1f0cbd7aefe9"
+  },
+  "cpu_wall_seconds": 7.323861299955752,
+  "inference": false,
+  "training": false,
+  "threshold_search": false,
+  "checks": "exact TP/FP, AP/ROC-AUC vs accepted metrics; endpoint bank axes/availability; fixed CAL thresholds referenced, not refit",
+  "layout_reexport_cpu_wall_seconds": 3.980230199988,
+  "final7_total_cpu_wall_seconds": 11.304091499943752,
+  "layout_note": "Legends outside panels; reused exact saved arrays/operating_points; numerical SHA unchanged",
+  "plot_module_sha256": "5cf62092e0b6caa08e0961902181ac13d1cc44e8630926233cafd1de25e56320",
+  "prep5_cpu_wall_seconds": 8.060424800030887,
+  "all_curve_work_cpu_wall_seconds": 19.36451629997464,
+  "publication_note": "Public copy uses workspace-relative input identities; original unchanged receipt/NPZ in external result root.",
+  "external_numeric_array_sha256": {
+    "PSM_CURVE_ARRAYS.npz": "efcdb8a5029a0f799e5973bd5021677176d52d4d2bb24bc53afcf439ca235b43",
+    "SWAT_CURVE_ARRAYS.npz": "095d9e72a31563ee6b35500cdb41996828003f3efed87b6c92df471ff1a071d5"
+  },
+  "public_SVG_formatting": "Only trailing line whitespace removed in public SVG copies; non-whitespace token sequences identical and XML valid; original external exports unchanged.",
+  "public_figure_sha256": {
+    "PSM_PR_ROC.pdf": "00352ab36abef244562c07e2ed9e622c135aa57844898b0ddb5902a6ee767662",
+    "PSM_PR_ROC.png": "6306259ffa50279ed31a53a144a3c02b9f0d08fe44e29bd8dd7b0f7f78b57b76",
+    "PSM_PR_ROC.svg": "3529b37be21811478b93c516891c004ecb47ec8077ac63846119e9262501f9c3",
+    "SWAT_PR_ROC.pdf": "a22ec6e33f54c83927432d8abc124bba8bd89602888756ebf96d4d15bf37e01b",
+    "SWAT_PR_ROC.png": "760eec5790c12269b4aac90f241b6e11a7f79517c9bb780ecb9aaed53988bc3c",
+    "SWAT_PR_ROC.svg": "b4d90018a7a35fe2d31838146329665a5f03c67bf33f7795f4100622c284f452"
+  }
+}

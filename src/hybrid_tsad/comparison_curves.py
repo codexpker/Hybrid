@@ -190,10 +190,75 @@ def render(workspace, output, extras=None):
     return record
 
 
+def reexport_layout(output):
+    """Re-export the same accepted arrays/points with legends outside panels."""
+    start = time.perf_counter()
+    output = Path(output)
+    receipt = read(output/'CURVE_RECEIPT.json')
+    if receipt['status'] != 'FINAL7_CACHE_CURVES_PASS':
+        raise ValueError('Layout refresh requires the completed final seven comparison')
+    manifest = read(output/'OUTPUT_SHA256.json')
+    # Confirm all numerical artifacts are unchanged before and after layout export.
+    numeric = ['operating_points.csv', 'SWAT_CURVE_ARRAYS.npz', 'PSM_CURVE_ARRAYS.npz']
+    for name in numeric:
+        if sha(output/name) != manifest[name]:
+            raise ValueError('Changed fixed curve/operating-point artifact')
+    with (output/'operating_points.csv').open(encoding='utf-8',newline='') as f:
+        rows = list(csv.DictReader(f))
+    import matplotlib
+    matplotlib.use('Agg')
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import PercentFormatter
+    plt.rcParams.update({'font.size':10,'svg.fonttype':'none','pdf.fonttype':42})
+    for domain in AXES:
+        fig, axes = plt.subplots(1,3,figsize=(16,7.7))
+        outside=[]
+        with np.load(output/f'{domain}_CURVE_ARRAYS.npz') as z:
+            for name,(color,style) in zip(METHODS,STYLES):
+                r=next(r for r in rows if r['domain']==domain and r['model']==name)
+                kw=dict(color=color,linestyle=style,lw=1.6)
+                axes[0].plot(z[name+'_recall'],z[name+'_precision'],label=f"{name} (AP {float(r['AP']):.3f})",**kw)
+                for ax in axes[1:]:
+                    ax.plot(z[name+'_FPR'],z[name+'_TPR'],label=f"{name} (AUC {float(r['ROC_AUC']):.3f})",**kw)
+                    ax.scatter(float(r['FPR']),float(r['recall']),s=40,facecolors='white',edgecolors=color,zorder=4)
+                axes[0].scatter(float(r['recall']),float(r['precision']),s=40,facecolors='white',edgecolors=color,zorder=4)
+                if float(r['FPR'])>.05:
+                    outside.append(f"{name}: FPR {100*float(r['FPR']):.2f}%, recall {100*float(r['recall']):.2f}%")
+        axes[0].set(title='Complete precision–recall',xlabel='Recall',ylabel='Precision',xlim=(0,1),ylim=(0,1.02))
+        for ax,limit,title in [(axes[1],1,'Complete ROC'),(axes[2],.05,'ROC: normal FPR 0–5%')]:
+            ax.set(title=title,xlabel='Normal false-positive rate',ylabel='Recall / true-positive rate',xlim=(0,limit),ylim=(0,1.02))
+        for ax in axes:
+            ax.grid(alpha=.2);ax.xaxis.set_major_formatter(PercentFormatter(1));ax.yaxis.set_major_formatter(PercentFormatter(1))
+            ax.legend(loc='upper center',bbox_to_anchor=(.5,-.19),fontsize=8,frameon=False)
+        fig.suptitle(f'{domain} seed2025 | natural A | 7 cached methods | own fixed CAL operating points')
+        note='Open circles: original own-model CAL q99/higher/>; no threshold selection. Mixed CAL; PSM CAL all attack-labeled.'
+        note+='\nLEFT: retrospective wholewindow192; MLP/CANDI: length10 endpoint. Permissions/training exposure differ.'
+        note+='\nOutside low-FPR panel: '+('; '.join(outside) if outside else 'none')
+        fig.text(.5,.015,note,ha='center',fontsize=8)
+        fig.tight_layout(rect=(0,.14,1,.95))
+        for ext in ('png','pdf','svg'):
+            fig.savefig(output/f'{domain}_PR_ROC.{ext}',dpi=180,bbox_inches='tight')
+        plt.close(fig)
+    for name in numeric:
+        if sha(output/name)!=manifest[name]:
+            raise ValueError('Layout export changed numerical artifacts')
+    seconds=time.perf_counter()-start
+    receipt['layout_reexport_cpu_wall_seconds']=seconds
+    receipt['final7_total_cpu_wall_seconds']=receipt['cpu_wall_seconds']+seconds
+    receipt['layout_note']='Legends outside panels; reused exact saved arrays/operating_points; numerical SHA unchanged'
+    receipt['plot_module_sha256']=sha(Path(__file__))
+    (output/'CURVE_RECEIPT.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
+    (output/'OUTPUT_SHA256.json').write_text(json.dumps({p.name:sha(p) for p in output.iterdir()
+        if p.is_file() and p.name!='OUTPUT_SHA256.json'},indent=2),encoding='utf-8')
+    return receipt
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--extras',type=Path)
+    parser.add_argument('--layout-only',action='store_true',help='Re-export existing final7 arrays, without raw reads or curve recomputation')
     args=parser.parse_args()
-    print(json.dumps(render(args.workspace,args.output,args.extras),indent=2))
+    result=reexport_layout(args.output) if args.layout_only else render(args.workspace,args.output,args.extras)
+    print(json.dumps(result,indent=2))

@@ -1,0 +1,25 @@
+{
+  "status": "PASS_BOUNDED",
+  "main_sha256": "b1bc2557bc6625e4b376c47ecfbafd6c6b8201b1a922eddbf27a149e9b1610f0",
+  "new_raw_comparisons": 320,
+  "reused_numeric_comparisons": 968,
+  "paired_comparisons": 1376,
+  "total_comparisons": 2664,
+  "max_difference": 2.220446049250313e-16,
+  "CSV_comparisons": 2840,
+  "CSV_max_difference": 0.0,
+  "identity_check_sha256": "5239a37f08f4b8aa8ac63eb9d68737b4e2d9f87d66b552eea0ee0d4e2f59d6b4",
+  "global_seal_sha256": "5d806cec1c4171f8527aee75a2720ddfb84b09bcc925aa40a9a58634b0f482fe",
+  "GPU_hours": 0.020469919781187652,
+  "new_OS0_jobs": 4,
+  "new_score_banks": 8,
+  "old_models_retrained_or_rescored": false,
+  "scope": "Same-family role-separated independent audit, not external blind review. Four new raw score banks independently recomputed including AP/ROC/official pinned VUS, CAL q99 higher strict>, strict/C3 points, greedy one-to-one versus any-hit, macro/pooled long coverage, longest miss and hit-only offsets. Fixed official VUS dependency shared. All 192-origin to10-suffix planned slots verified, end-state Adam step2000, 12 actual changed tensors and role/identity checks. Training not independently rerun; readout immutability checked from actual frozen worker and receipts, no independent model inference. Old20 rows identity-checked/reused.",
+  "limits": [
+    "single seed2025; no seed or domain pooling",
+    "PSM CAL512 all attack and SWAT38/512 attack: not certified normal FPR",
+    "CANDI/MLP native10 endpoint versus LEFT192 whole-window retrospective and different scalers/source objectives: cross-backbone differences are not isolated representation causality",
+    "R replaces half of target exposures with source; R-TT interpretation includes source retention and target dose, not pollution-specific proof",
+    "first-hit offset medians are hit-only and cannot alone measure delayed/missed events"
+  ]
+}

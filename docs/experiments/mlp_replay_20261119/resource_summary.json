@@ -1,0 +1,119 @@
+{
+  "jobs": [
+    {
+      "domain": "SWAT",
+      "arm": "TT",
+      "GPU": 0,
+      "actual_GPU_seconds": 20.11706303502433,
+      "parameters": 140584,
+      "phases": {
+        "SETUP": {
+          "allocated": 11059200,
+          "reserved": 25165824,
+          "seconds": 0.7059179050847888
+        },
+        "TRAINING": {
+          "allocated": 22226944,
+          "reserved": 27262976,
+          "seconds": 10.090145633090287
+        },
+        "READOUT": {
+          "allocated": 21910528,
+          "reserved": 27262976,
+          "seconds": 3.5087742139585316
+        }
+      }
+    },
+    {
+      "domain": "SWAT",
+      "arm": "R",
+      "GPU": 1,
+      "actual_GPU_seconds": 21.240241357125342,
+      "parameters": 140584,
+      "phases": {
+        "SETUP": {
+          "allocated": 11059200,
+          "reserved": 25165824,
+          "seconds": 0.9584214370697737
+        },
+        "TRAINING": {
+          "allocated": 22226944,
+          "reserved": 27262976,
+          "seconds": 9.862768620951101
+        },
+        "READOUT": {
+          "allocated": 21910528,
+          "reserved": 27262976,
+          "seconds": 3.5594575710128993
+        }
+      }
+    },
+    {
+      "domain": "PSM",
+      "arm": "TT",
+      "GPU": 2,
+      "actual_GPU_seconds": 17.214194640982896,
+      "parameters": 94624,
+      "phases": {
+        "SETUP": {
+          "allocated": 10720768,
+          "reserved": 25165824,
+          "seconds": 0.3042614769656211
+        },
+        "TRAINING": {
+          "allocated": 21149696,
+          "reserved": 27262976,
+          "seconds": 9.57850656285882
+        },
+        "READOUT": {
+          "allocated": 20894720,
+          "reserved": 27262976,
+          "seconds": 0.6411639719735831
+        }
+      }
+    },
+    {
+      "domain": "PSM",
+      "arm": "R",
+      "GPU": 3,
+      "actual_GPU_seconds": 15.120212179142982,
+      "parameters": 94624,
+      "phases": {
+        "SETUP": {
+          "allocated": 10720768,
+          "reserved": 25165824,
+          "seconds": 0.3550071900244802
+        },
+        "TRAINING": {
+          "allocated": 21149696,
+          "reserved": 27262976,
+          "seconds": 9.193174293963239
+        },
+        "READOUT": {
+          "allocated": 20894720,
+          "reserved": 27262976,
+          "seconds": 0.6478760270401835
+        }
+      }
+    }
+  ],
+  "new_total_GPU_hours": 0.020469919781187652,
+  "LEFT_parameters": {
+    "SWAT": 3742202,
+    "PSM": 4519985
+  },
+  "LEFT_parameter_source": "accepted R TRAIN_RECEIPT trainable_parameters, no new forward",
+  "history_cost_not_charged_again": true,
+  "LEFT_parameter_receipts": {
+    "SWAT": {
+      "relative": "results/left_author_swat_source_replay_20261118_v1/R/train/RECEIPT.json",
+      "sha256": "161c1a3654bc69f18900d7fed0a4a5f8d99cd65f634531c3abc67ba44de52f28",
+      "field": "trainable_parameters"
+    },
+    "PSM": {
+      "relative": "results/left_author_psm_source_replay_20261118_v1/seed2025/R/train/RECEIPT.json",
+      "sha256": "721ccc03a6597d4c3b596052b513b7a322021aa5283bab2d494c26f55f80a97f",
+      "field": "trainable_parameters"
+    }
+  }
+}

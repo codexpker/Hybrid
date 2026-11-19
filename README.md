@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-19 跨骨干TT／R比较完成
+
+只新增SWaT/PSM seed2025的plain MLP TT/R四次适配，源初态、LEFT/CANDI及旧分数全部复用。两个骨干均有R−TT排序正项，但MLP在SWaT仍约96%正常误报，PSM排序更强却持续覆盖显著降低。LEFT保留具体操作与覆盖价值，同时参数／成本更高；这些结果不构成时频机制因果或Hybrid原创贡献。[完整七方法表、骨干内部配对差、曲线与成本](docs/experiments/mlp_replay_20261119/RESULTS.md)，[当前正文](manuscript/next_generation_20261115/draft.md)。本轮基础骨干／普通重放比较已收口，不自动追加MLP种子、污染比例、损失或阈值搜索。既有LEFT＋R两域三种子结论保持锁定。
+
 ## 2026-11-18 Fixed exposure replication completed and locked
 
 LEFT+source replay R and matched TT now have three fixed seeds on SWaT/PSM for the same controlled B/C exposure, reusing all A/noU/SS and seed2025 artifacts. Exactly16 new models completed. SWaT protection repeats in direction with lower absolute R-B false alarms than TT-B, but no added events and limited long-event macro coverage. PSM retains different ranking/coverage/false-alarm responses, not a general robustness win. [Complete main and paired tables](docs/experiments/left_replay_exposure_repeat_20261118/RESULTS.md), [per-seed results](docs/experiments/left_replay_exposure_repeat_20261118/PER_SEED_TABLE.md), [fixed curves](docs/experiments/left_replay_exposure_repeat_20261118/curves/CURVE_FINDINGS.md), [updated manuscript](manuscript/next_generation_20261115/draft.md). This fixed contamination experiment is locked; no further rate/seed/loss/module search is launched. Native LEFT and mature replay retain their attribution. P/V and older stopped branches remain historical.

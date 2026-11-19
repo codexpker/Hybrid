@@ -1,12 +1,12 @@
 ---
 title: "Hybrid: Time–Frequency and Temporal Normality Modeling for Industrial Time-Series Anomaly Detection"
 author: []
-date: "Working draft, updated 18 November 2026"
+date: "Working draft, updated 19 November 2026"
 lang: en
 bibliography: references.bib
 ---
 
-> **Research status, 18 November 2026.** The current empirical basis is complete native LEFT plus established source replay R. Its SWaT/PSM three-seed natural-mixture and fixed additional-exposure experiments are now locked, retaining SWaT protection, PSM boundaries and long-event costs. A complete external CANDI comparison has finished under the same role and QUERY definitions, with its own native source training and U-FIT adaptation followed by frozen evaluation. It does not establish an adaptation gain over its own unadapted backbone in these settings. No external method, replay mechanism or numerical repair is credited as Hybrid originality. Stopped P/V, density, masking and TimeRadar candidates remain historical evidence; no successor is automatically started.
+> **Research status, 19 November 2026.** Native LEFT plus mature source replay R remains the working basis, with its locked SWaT/PSM three-seed natural-mixture and controlled-exposure evidence unchanged. The latest fixed comparison adds only plain MLP TT/R at seed2025, reusing its accepted source initialization and exactly matched LEFT exposure endpoints. Replay improves ranking over TT in both backbones, but this is not a time–frequency-specific invention. MLP offers strong low-cost ranking, with severe SWaT false alarms and very low PSM sustained coverage at the fixed mixed-CAL operating points. LEFT retains useful configuration-level operating trade-offs, not an established original Hybrid contribution. Complete CANDI remains an external reference; no further backbone/replay search or successor candidate is automatically started.
 
 # Introduction
 
@@ -126,22 +126,26 @@ R−TT AP is positive and actual normal false-positive counts are lower in all t
 
 PSM's fixed CAL role contains 3,848/3,848 attack-labeled points, and all 512 selected calibration points are attack-labeled. This composition was checked after training and score freezing; calibration was not relocated. Each model uses its own strict-greater-than `q99/higher` threshold on the same CAL locations. This mixed-CAL operating point cannot certify a normal 1% false-alarm budget. QUERY normal false positives remain measurable using evaluation labels, but their reduction can accompany the large recall and coverage reductions reported above. Ranking metrics and thresholded operational behavior must therefore remain separate. The repetitions share one initial model per domain, both tasks have development exposure, and natural target/source contrasts do not isolate a causal anomaly-contamination effect. These results do not establish an original Hybrid contribution.
 
-# Complete external adaptation reference: CANDI
+# Complete external adaptation references and matched plain-MLP replay
 
-We evaluated the complete released CANDI MLP, FPM and input/output SANA chain [@candi2026], pinned to commit `28c9679e503832f59e351208cde63657fcb51cad`. Each domain uses seed2025, one native normal-source training and one chronological pass over its existing natural mixed U-FIT, then freezes for CAL and QUERY. LEFT noU, TT-A and R-A are the accepted seed2025 cached results, not selected three-seed winners. This comparison does not change the locked LEFT+R learning rule or constitute a new Hybrid method.
+We evaluated the complete released CANDI MLP, FPM and input/output SANA chain [@candi2026], pinned to commit `28c9679e503832f59e351208cde63657fcb51cad`. Each domain uses seed2025, one native normal-source training and one chronological pass over its existing natural mixed U-FIT, then freezes for CAL and QUERY. LEFT noU, TT-A and R-A are the accepted seed2025 cached results, not selected three-seed winners. A subsequent fixed comparison adds only four plain-MLP TT/R adaptations from the same accepted source models, without SANA or FPM. It reuses the identical192-point exposure endpoints as LEFT but presents each actual10-point suffix to the MLP. Both arms use fresh Adam1e-4 with defaults, batch256,2000 updates and fixed endpoints. This comparison does not change the locked LEFT+R learning rule or constitute a new Hybrid method.
 
 | Domain | Method | AP | ROC-AUC | VUS-PR | VUS-ROC | Strict normal FPR | Strict recall | C3 event F1 | C3 complete-event coverage |
 |:--|:--|--:|--:|--:|--:|--:|--:|--:|--:|
-| SWAT | LEFT noU | 0.607560 | 0.842267 | 0.606345 | 0.829634 | 1.758% | 60.960% | 0.082645 | 60.789% |
-| SWAT | LEFT TT-A | 0.610342 | 0.884582 | 0.618301 | 0.881642 | 1.852% | 54.587% | 0.074257 | 54.369% |
-| SWAT | LEFT R-A | 0.629347 | 0.885512 | 0.639265 | 0.884546 | 1.782% | 58.327% | 0.073710 | 57.948% |
-| SWAT | CANDI backbone noU | 0.783949 | 0.856207 | 0.543552 | 0.696882 | 96.770% | 97.997% | 0.175439 | 97.980% |
-| SWAT | CANDI adapted A | 0.783885 | 0.856961 | 0.541710 | 0.695700 | 97.383% | 98.003% | 0.125000 | 97.984% |
-| PSM | LEFT noU | 0.583688 | 0.771345 | 0.575447 | 0.775647 | 15.602% | 43.613% | 0.104046 | 65.710% |
-| PSM | LEFT TT-A | 0.572727 | 0.733239 | 0.562617 | 0.740466 | 25.378% | 63.665% | 0.140468 | 80.955% |
-| PSM | LEFT R-A | 0.587891 | 0.748194 | 0.586017 | 0.761687 | 11.190% | 42.314% | 0.089474 | 61.901% |
-| PSM | CANDI backbone noU | 0.604606 | 0.810453 | 0.625606 | 0.819068 | 4.251% | 31.869% | 0.235294 | 49.062% |
-| PSM | CANDI adapted A | 0.604606 | 0.810451 | 0.625607 | 0.819065 | 4.253% | 31.869% | 0.235294 | 49.062% |
+| SWAT | LEFT_noU | 0.607560 | 0.842267 | 0.606345 | 0.829634 | 1.758% | 60.960% | 0.082645 | 60.789% |
+| SWAT | LEFT_TT_A | 0.610342 | 0.884582 | 0.618301 | 0.881642 | 1.852% | 54.587% | 0.074257 | 54.369% |
+| SWAT | LEFT_R_A | 0.629347 | 0.885512 | 0.639265 | 0.884546 | 1.782% | 58.327% | 0.073710 | 57.948% |
+| SWAT | MLP_noU | 0.783949 | 0.856207 | 0.543552 | 0.696882 | 96.770% | 97.997% | 0.175439 | 97.980% |
+| SWAT | MLP_TT_A | 0.776102 | 0.845163 | 0.514483 | 0.665694 | 96.220% | 98.014% | 0.185185 | 97.997% |
+| SWAT | MLP_R_A | 0.782007 | 0.863262 | 0.541789 | 0.702566 | 96.132% | 98.018% | 0.119048 | 98.001% |
+| SWAT | CANDI_A | 0.783885 | 0.856961 | 0.541710 | 0.695700 | 97.383% | 98.003% | 0.125000 | 97.984% |
+| PSM | LEFT_noU | 0.583688 | 0.771345 | 0.575447 | 0.775647 | 15.602% | 43.613% | 0.104046 | 65.710% |
+| PSM | LEFT_TT_A | 0.572727 | 0.733239 | 0.562617 | 0.740466 | 25.378% | 63.665% | 0.140468 | 80.955% |
+| PSM | LEFT_R_A | 0.587891 | 0.748194 | 0.586017 | 0.761687 | 11.190% | 42.314% | 0.089474 | 61.901% |
+| PSM | MLP_noU | 0.604606 | 0.810453 | 0.625606 | 0.819068 | 4.251% | 31.869% | 0.235294 | 49.062% |
+| PSM | MLP_TT_A | 0.491079 | 0.755309 | 0.537025 | 0.776429 | 1.773% | 6.924% | 0.204082 | 6.462% |
+| PSM | MLP_R_A | 0.631848 | 0.819876 | 0.681092 | 0.844464 | 0.898% | 4.348% | 0.302521 | 3.146% |
+| PSM | CANDI_A | 0.604606 | 0.810451 | 0.625607 | 0.819065 | 4.253% | 31.869% | 0.235294 | 49.062% |
 
 CANDI's SWaT AP changes0.78394872 to0.78388480 after adaptation; its C3 normal false-positive rate increases96.748% to97.356%. Any-hit remains21/22, while one-to-one matches fall5/22 to4/22 because long alarms can overlap several events without providing distinct detections. High coverage at this operating point is not evidence of useful false-alarm-controlled persistence. On PSM, AP changes0.604605815 to0.604605571, strict false positives increase by one, and C3 metrics are identical. Thus complete FPM/SANA adaptation has not demonstrated a useful incremental effect over its own plain source backbone in this fixed protocol.
 
@@ -154,6 +158,27 @@ Each model uses its own q99/higher/strict-greater threshold on the same512 mixed
 Actual CANDI acceptance is4005 hard and54513 moderate windows on SWaT, with1720 SGD steps; PSM accepts48 hard and6727 moderate windows, with48 steps and three pending hard windows left unflushed. Both source models train once for30 epochs and select epoch30 using normal validation only. The complete episode consumes0.1235334053 A40 hours, including two retained engineering failures and two recovery jobs; main CPU evaluation takes43.844 seconds. No source training or PSM adaptation is repeated. Selected-window anomaly counts and complete failed-phase training peaks were not archived and remain unavailable, rather than inferred. Readout-only peaks are not reported as training peaks.
 
 A same-family role-independent bounded review checks1368 numerical/identity/contrast entries (maximum difference4.44e-16),1580 exact CSV entries, official source identities, scalers rebuilt from source FIT, calibration, events and recovery provenance. VUS shares the pinned official dependency; old LEFT VUS is reused. This is not external blind review. [The complete method table and implementation record](../../docs/experiments/candi_native_a_20261118/RESULTS.md) retains strict/C3 precision and recall, matching versus any-hit, long macro/pooled coverage, misses, offsets, costs and all limitations. CANDI remains an external reference; this result neither overturns the locked replay evidence nor supplies a Hybrid original contribution. No additional CANDI seed, B/C matrix or successor loss is started.
+
+## What the matched backbone comparison establishes
+
+| Domain | Backbone | R−TT AP (percentage points) | R−noU AP (percentage points) | R−TT C3 normal FP | R−TT C3 complete-event coverage (percentage points) |
+|:--|:--|--:|--:|--:|--:|
+| SWAT | LEFT | +1.900460 | +2.178684 | -168 | +3.579128 |
+| SWAT | MLP | +0.590511 | -0.194179 | -305 | +0.004186 |
+| PSM | LEFT | +1.516445 | +0.420339 | -6810 | -19.054387 |
+| PSM | MLP | +14.076916 | +2.724260 | -300 | -3.316278 |
+
+Plain MLP plus replay does not dominate the complete LEFT-plus-replay configuration. On SWaT, MLP R has higher AP but96.090% C3 normal false positives and5/22 one-to-one matches; LEFT R has1.512% and15/22, with57.948% complete-event coverage. On PSM, MLP R has higher AP/ROC/VUS and fewer false alarms, yet C3 complete-event coverage is3.146% versus61.901%, long-steady macro coverage1.380% versus59.734%, and the longest miss2025 versus399 points. These are observed full-configuration trade-offs at each model's own fixed mixed-CAL threshold, not equal-FPR or isolated representation comparisons. PSM's all-attack CAL especially limits normal-FPR interpretation.
+
+Within the PSM MLP, replay raises AP from0.491079(TT) to0.631848 and reduces C3 false-positive points659 to359. However, matching falls20 to18/48 and coverage6.462% to3.146%. Event F1 rises because substantially fewer alarm fragments are produced, not because more events are found. Relative to its own noU, R loses coverage49.062% to3.146% despite higher ranking. On SWaT, the small R−TT AP gain coexists with unusably high normal alarms and no added distinct events. Neither fewer alarms nor higher AP alone establishes better adaptation.
+
+The positive R−TT ranking contrast in both architectures supports source replay as a general learning control, rather than an exclusive property of time–frequency representations. It does not identify anomaly-specific protection in MLP, where no B/C experiment was performed. LEFT retains configuration-level value for the observed industrial operating point and sustained coverage, at higher cost; this cannot be attributed specifically to its frequency mechanism because context, scaling and native objectives differ. Mature LEFT and replay are not renamed as Hybrid originality.
+
+MLP parameters are140584/94624 on SWaT/PSM, versus3742202/4519985 for the actual LEFT configurations. New MLP R training/readout takes9.863/3.559 seconds on SWaT and9.193/0.648 on PSM. Owned job walls are21.240/15.120 seconds, versus historical LEFT R274.168/247.965 seconds including startup/readout. These are recorded task costs, not context-normalized microbenchmarks. All four new jobs exit0 without retries or source retraining, consuming0.0204699198 A40 GPU hours; main CPU evaluation takes26.953 seconds. All12 MLP parameter tensors update, with the source weights/scaler/config retained and readout weights/RNG/optimizer frozen.
+
+The full cached PR/ROC and0--5% FPR curves retain every original CAL point, including explicit out-of-panel points. They explain ranking versus the chosen empirical operation; no curve is used to replace thresholds. One same-family role-independent raw-result review passes2664 numerical comparisons (maximum2.22e-16) and2840 exact CSV comparisons, including complete endpoint plans, identities, raw metrics and events. The official VUS dependency is shared; old20 rows/VUS are reused. [Complete tables, curves, costs and limitations](../../docs/experiments/mlp_replay_20261119/RESULTS.md) retain all outcomes.
+
+The fixed decision is to retain LEFT+R as the current sustained-coverage-oriented working basis and MLP noU/TT/R as mandatory low-cost strong controls. No universal winner or original Hybrid mechanism is established by this comparison. The baseline-backbone and ordinary-replay comparison now closes without added seeds, contamination ratios, losses, thresholds or an automatically generated successor. The methods-paper objective and the locked two-task three-seed replay evidence remain unchanged.
 
 # Historical stopped P/V source-output preservation experiment
 
