@@ -90,7 +90,8 @@ def render(workspace, root, metrics, output):
             fig, axes = plt.subplots(1, 3, figsize=(17, 7))
             outside, empty, rank_only = [], [], []
             for number, name in enumerate(names):
-                color = plt.get_cmap("tab20")(number % 20)
+                primary_colors = ("#0072B2", "#D55E00", "#009E73", "#CC79A7")
+                color = primary_colors[number] if number < 4 else plt.get_cmap("tab20")((2 * number) % 20)
                 style = "-" if name in METHODS.values() else "--"
                 op = points[name]
                 kw = dict(color=color, linestyle=style, lw=1.5)

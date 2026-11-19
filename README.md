@@ -1,8 +1,8 @@
 # Hybrid TSAD 独立研究工程
 
-## 2026-11-19 原生V条件动态协议（仅准备，未正式训练）
+## 2026-11-19 原生V条件动态：固定验证完成
 
-已核固定官方TimeRadar的FTFRecon/CDL执行路径及原生V，六个正常源窗口的B1末点、固定掩码、独立性与数值检查通过；本轮仅耗用4.990秒GPU作业时间，未实现或训练条件模型。唯一拟验证问题是严格历史对原生V条件分位数的判别价值，设置原生V、简单MLP条件化、TimesFM3官方轻量模块条件化及原值预测残差参照。已给出正常源训练/SELECT、共同轴/CAL、数学定义、成本与GO意见；等待主研究决策，不自动开跑。旧Energy候选仍停止，旧权重/分数/阈值不改。[协议与GO意见](docs/experiments/timeradar_native_v_conditioning_20261119/PROTOCOL.md)，[正常工程检查摘要](docs/experiments/timeradar_native_v_conditioning_20261119/NORMAL_ENGINEERING_SUMMARY.json)。
+公开SWaT31/PSM25、seed2025的A原生V、B历史MLP分位数、C官方TimesFM3轻量模块分位数和D原值预测参照已完成。六次正常源训练、16评分银行及34实际GPU作业全成功，累计2.290003054 GPU小时；13项增量测试通过。B/C未建立超出A的检测增量，C不自动进入R；保留A在SWaT的具体能力、长宏/合并覆盖失衡，以及D在PSM的有限正项。PSM全攻击CAL、外部上下文和统计权限差异完整保留。[完整方法/配对/逐事件结果与曲线](docs/experiments/timeradar_native_v_conditioning_20261119/RESULTS.md)、[实现](docs/experiments/timeradar_native_v_conditioning_20261119/IMPLEMENTATION.md)、[六个项目模型与SHA](docs/experiments/timeradar_native_v_conditioning_20261119/models/MODEL_MANIFEST.json)、[实际运行及缓存身份](docs/experiments/timeradar_native_v_conditioning_20261119/ARTIFACT_MANIFEST.json)。官方TimeRadar权重仅绑定身份，不重新分发；TimesFM只复用官方代码，没有官方预训练权重。旧Energy及其他已停止分支保持停止，未开启适配或新候选。
 
 ## 2026-11-19 已完成：冻结TimeRadar响应几何的A/B匹配实验
 

@@ -346,7 +346,7 @@ def event_contrasts(events):
     for e in events:
         if e["method"] != METHODS["C"] or not e["main_eligible"]:
             continue
-        row = {k: e.get(k) for k in ("domain", "stream", "event_id", "start", "end", "total_points")}
+        row = {k: e.get(k) for k in ("domain", "stream", "event_id", "start", "end_exclusive", "total_points")}
         for m in METHODS.values():
             v = lookup[e["domain"], m, e["stream"], e["event_id"]]
             for k in ("coverage", "steady_after512_coverage", "longest_miss_points", "steady_longest_miss_points", "delay_points"):

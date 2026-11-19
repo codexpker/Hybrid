@@ -1,0 +1,130 @@
+{
+  "status": "SIX_NORMAL_SOURCE_SELECTIONS_FROZEN",
+  "protocol_commit": "1be5e0001ae80b787302c2fc62f58860e101cd11",
+  "artifacts": [
+    {
+      "domain": "SWAT",
+      "method": "B",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/SWAT_B_SELECTED.pth",
+      "sha256": "deba1a88d9be43b148caba8d986bbb37c1368069d66182b5d5149e165da0f47e",
+      "bytes": 2039585,
+      "parameters": 509091,
+      "epoch": 14,
+      "updates": 2716,
+      "source_SELECT_loss": 0.008627162648685596,
+      "scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+      "source_permutation_sha256": "52a0c2b19ea39ee6db8d9f9fdd391f42e2b00a91b3f017d44d3320313addb7e9",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    },
+    {
+      "domain": "SWAT",
+      "method": "C",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/SWAT_C_SELECTED.pth",
+      "sha256": "f125cbb9c49bd9d238155bddf6d87a15eb5f204f7ef986c160b335639a168161",
+      "bytes": 2376345,
+      "parameters": 587011,
+      "epoch": 20,
+      "updates": 3880,
+      "source_SELECT_loss": 0.003428210654292615,
+      "scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+      "source_permutation_sha256": "52a0c2b19ea39ee6db8d9f9fdd391f42e2b00a91b3f017d44d3320313addb7e9",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    },
+    {
+      "domain": "SWAT",
+      "method": "D",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/SWAT_D_SELECTED.pth",
+      "sha256": "9bd7121c94a7088d40fa72e9b0e80370daf68d84b33dc2e495cb9f39b06d313a",
+      "bytes": 2820825,
+      "parameters": 698143,
+      "epoch": 20,
+      "updates": 3880,
+      "source_SELECT_loss": 0.0031352877845788963,
+      "scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+      "source_permutation_sha256": "52a0c2b19ea39ee6db8d9f9fdd391f42e2b00a91b3f017d44d3320313addb7e9",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    },
+    {
+      "domain": "PSM",
+      "method": "B",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/PSM_B_SELECTED.pth",
+      "sha256": "c7275f615194f2841244d2677ee545cbaff06ffc7de2bd322894bf09b7f13253",
+      "bytes": 1646369,
+      "parameters": 410787,
+      "epoch": 16,
+      "updates": 832,
+      "source_SELECT_loss": 0.20247525510521464,
+      "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+      "source_permutation_sha256": "569bc3592e9118eb0ee9381868e09f10a9ef0bc7bb449b6c103d59e5162f6358",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    },
+    {
+      "domain": "PSM",
+      "method": "C",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/PSM_C_SELECTED.pth",
+      "sha256": "15f2fcf046b682a9bf47e7f4f5e3089ba6f2870938f54b13ddd2c97548d65228",
+      "bytes": 2367129,
+      "parameters": 584707,
+      "epoch": 7,
+      "updates": 364,
+      "source_SELECT_loss": 0.3256618318099242,
+      "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+      "source_permutation_sha256": "569bc3592e9118eb0ee9381868e09f10a9ef0bc7bb449b6c103d59e5162f6358",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    },
+    {
+      "domain": "PSM",
+      "method": "D",
+      "relative": "docs/experiments/timeradar_native_v_conditioning_20261119/models/PSM_D_SELECTED.pth",
+      "sha256": "5f655d2c0ede79ef9d4b1f38ab102931790c271eb829284c46214c9206920667",
+      "bytes": 2648793,
+      "parameters": 655129,
+      "epoch": 19,
+      "updates": 988,
+      "source_SELECT_loss": 0.23162127082622969,
+      "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+      "source_permutation_sha256": "569bc3592e9118eb0ee9381868e09f10a9ef0bc7bb449b6c103d59e5162f6358",
+      "no_official_pretrained_tensors": true,
+      "content_keys": [
+        "epoch",
+        "loss",
+        "model",
+        "updates"
+      ]
+    }
+  ],
+  "third_party_pretrained_weights_included": false,
+  "raw_data_or_prediction_banks_included": false,
+  "timesfm_code_commit": "e51928e27119cb17bebc005be2696b75e0a9e688",
+  "source_license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+}

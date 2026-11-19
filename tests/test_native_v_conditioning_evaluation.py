@@ -3,7 +3,7 @@ import pytest
 
 from hybrid_tsad.native_v_conditioning_evaluation import (
     exact_cal, quantile_score, raw_residual, step0_equivalence,
-    point_formula_gate, sealed_inputs)
+    point_formula_gate, sealed_inputs, event_contrasts, METHODS)
 
 
 def test_quantiles_keep_units_ties_and_negative_scores():
@@ -83,3 +83,13 @@ def test_contradictory_label_seal_is_rejected_before_asset_access(tmp_path):
         dict(status="COMPLETED", no_labels_decoded=True, labels_read=True)))
     with pytest.raises(ValueError, match="label-free"):
         sealed_inputs(tmp_path, tmp_path)
+
+
+def test_event_pair_export_retains_half_open_boundaries():
+    events = [dict(domain="PSM", method=m, stream="strict", event_id=1,
+        main_eligible=True, start=10, end_exclusive=30, total_points=20,
+        coverage=.5, steady_after512_coverage=None, longest_miss_points=10,
+        steady_longest_miss_points=None, delay_points=2) for m in METHODS.values()]
+    result = event_contrasts(events)
+    assert len(result) == 1 and result[0]["end_exclusive"] == 30
+    assert result[0]["end_exclusive"] - result[0]["start"] == result[0]["total_points"]
