@@ -1,7 +1,11 @@
 # Frozen response geometry / conditional energy: fixed A–B experiment
 
-Status: actual source training running, no QUERY labels opened. This is a new,
-public-data-only experiment, not a restoration of V1 or its stopped adapters.
+Status: completed with all8 training phases and16 sealed banks, followed by
+one bounded independent result recomputation. The frozen-response increment
+has not established detection gains that survive adaptation; the SWaT noU
+false-alarm/coverage trade-off is retained. See [complete results](RESULTS.md)
+and [verification/costs](VERIFICATION.md). No automatic expansion is launched.
+This public-data-only experiment does not restore V1 or its stopped adapters.
 
 ## Fixed computation
 

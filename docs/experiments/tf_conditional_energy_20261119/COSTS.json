@@ -1,0 +1,84 @@
+{
+  "status": "COMPLETE_FORMAL_JOBS_WITH_DISCLOSED_PROFILE_TIMING_GAP",
+  "raw_seal_sha256": "2ff0f6539e5596f77124679632358c6de522b84741b14866655cc9fca2b4f7ac",
+  "formal_source_scale_train_readout_GPU_hours": 21.39534015408355,
+  "postseal_point_check_owned_GPU_seconds": 5.841920046135783,
+  "known_owned_job_GPU_hours": 21.39696290965192,
+  "readout_guard_rejected_seconds": 0.17685629008337855,
+  "point_guard_rejected_seconds": 1.1042037960141897,
+  "guard_rejections_GPU_occupancy_seconds": 0,
+  "profile_success_recorded_body_GPU_seconds": 9.131848728982732,
+  "profile_configuration_failure_retained": true,
+  "profile_stdout_birth_to_final_write_observed_seconds": {
+    "failed_SWAT_config": 2.170955066,
+    "retry1_SWAT": 4.200913051,
+    "final_SWAT": 4.310910775,
+    "final_PSM": 4.82187099
+  },
+  "profile_timing_limit": "These observed intervals are not exact GPU occupancy; import/exit/cleanup were not fully instrumented. Do not claim a precise grand total including profiles.",
+  "scientific_training_or_completed_score_repeated": false,
+  "readout_original_controller_failed_guard_retained": true,
+  "readout_missing_only_recovered": 1,
+  "postseal_point_check_successful_GPU_runs": 1,
+  "grouped_formal_jobs": {
+    "PSM/A/R/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 3656.150890331948
+    },
+    "SWAT/B/source/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 929.5353744910099
+    },
+    "PSM/B/R/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 919.1295847869478
+    },
+    "SWAT/A/source/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 3940.0655183780473
+    },
+    "SWAT/B/R/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 930.1265110429376
+    },
+    "PSM/A/source/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 3574.8955532228574
+    },
+    "PSM/None/None/scale": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 15.640642818063498
+    },
+    "PSM/B/source/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 918.7104975108523
+    },
+    "SWAT/A/R/train": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 3774.385633246042
+    },
+    "SWAT/None/None/scale": {
+      "successful_jobs": 1,
+      "unstarted_guards": 0,
+      "owned_GPU_seconds": 49.46898951288313
+    },
+    "NA/NA/NA/NA": {
+      "successful_jobs": 64,
+      "unstarted_guards": 1,
+      "owned_GPU_seconds": 58315.11535935919
+    }
+  },
+  "main_evaluation_CPU_wall_seconds": 333.56199999997625,
+  "independent_review_max_difference": 2.220446049250313e-16,
+  "metrics_sha256": "79f56bdd4005149dd506c774a328c5bfe033f62a84f11d3a35d2c8f6a90b25fa",
+  "audit_sha256": "d828c60ab84fcd16f1168fd1e17e78c275fc9c3891cbc3006b15aa9de10d4d9b"
+}

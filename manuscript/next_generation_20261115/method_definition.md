@@ -1,11 +1,13 @@
-# Current candidate: conditional energy in frozen TimeRadar response geometry
+# Completed candidate: conditional energy in frozen TimeRadar response geometry
 
 The current implemented research candidate combines a strictly historical
 conditional generator with the frozen official TimeRadar response function.
 Only public SWaT31 and PSM25 are used. BAEF-AD laboratory records, weak labels,
 experimental runs and enterprise data are excluded. The former LEFT+R results
 remain locked external learning controls; they are not replaced or renamed.
-No new detection result is asserted while the fixed A/B experiment is running.
+The fixed A/B experiment is complete. It does not establish a response-geometry
+ranking increment that survives mixed adaptation. The bounded SWaT noU
+false-alarm/coverage trade-off is retained; this candidate is not expanded.
 
 Let $h_t=x_{t-512:t-1}$ and let $v_k=G_\theta(h_t,\epsilon_k)$ be four independent
 conditional current-value draws. $G_\theta$ uses the official TimesFM3 residual
@@ -56,8 +58,17 @@ and offline permissions remain explicit. New mixed-CAL points are legal for
 the actual footprint and thresholds use q99/higher/strict greater-than in each
 model's own units. PSM's all-attack CAL remains a limitation. No favorable
 results from old replay or controlled-contamination experiments are inherited
-by this untested candidate. The running implementation and fixed definitions
-are recorded in [the implementation note](../../docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md).
+by this candidate. The implementation and fixed definitions are recorded in
+[the implementation note](../../docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md).
+The completed [full method and paired tables](../../docs/experiments/tf_conditional_energy_20261119/RESULTS.md)
+retain all positive and negative results. SWaT A−B AP is−1.0594pp/noU and
+−7.8658pp/R; PSM is+0.0165pp and−0.5707pp. SWaT A_noU C3 normal FPR is.8917%
+versus B16.8674%, while complete-event coverage is63.8676% versus74.7933%.
+After R, A's SWaT coverage falls to1.0486% and long steady macro/pooled
+coverage to.1809%/.1238%. This is not a persistent-detection or pollution
+robustness contribution. Threshold-free ranking losses cannot be explained
+by CAL alone; this experiment does not uniquely locate the learning cause.
+No new candidate or local repair is started automatically.
 
 # Locked external learning basis: native LEFT with source replay R
 

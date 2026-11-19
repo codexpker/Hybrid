@@ -2,7 +2,7 @@
 
 ## 2026-11-19 当前：冻结TimeRadar响应几何的A/B匹配实验
 
-已实现严格512点历史条件生成器，使用TimesFM3官方轻量模块而非官方3.0权重。A使用原值与逐窗口独立的冻结TimeRadar响应，B使用相同生成器的原值能量评分；SWaT/PSM seed2025分别保存正常源训练noU与固定源重放R状态。真实CUDA输入梯度、冻结、掩码与随机性检查通过，训练正在执行，尚不宣称检测增量。仅公开数据，不恢复V1或已停止适配；LEFT+R、MLP、CANDI、完整TimeRadar保留比较身份。[固定实现与数学定义](docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md)，[当前方法正文](manuscript/next_generation_20261115/method_definition.md)。原有实验、评分轴和负结果不覆盖。
+严格512点历史条件生成器及SWaT/PSM seed2025的A/B、noU/R固定实验已完成，TimesFM3复用官方轻量模块而非官方权重。冻结TimeRadar响应未建立可保持到混合适配后的独立排序增量：A−B AP在SWaT为−1.0594pp/noU、−7.8658pp/R，PSM为+0.0165pp、−0.5707pp。保留SWaT noU显著减少误报但牺牲覆盖的局部取舍，不将其升级为普遍优势。8次训练、16银行、48方法/stream指标及一次职责独立复算完成；正式作业加点检21.396963已完整计量GPU小时，早期profile进退计时缺口另列。本配方不自动扩展，不恢复旧分支。[完整方法表与A/B配对表](docs/experiments/tf_conditional_energy_20261119/RESULTS.md)，[实现与公式](docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md)，[验证与成本](docs/experiments/tf_conditional_energy_20261119/VERIFICATION.md)。仅公开数据；LEFT+R、MLP、CANDI、完整TimeRadar保持比较身份，旧结果不覆盖。
 
 ## 2026-11-19 跨骨干TT／R比较完成
 
