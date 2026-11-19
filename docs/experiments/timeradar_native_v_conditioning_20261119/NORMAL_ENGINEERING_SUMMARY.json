@@ -1,0 +1,219 @@
+{
+  "source_commit": "4e06d0ad2bbe4c7e349c5a230fa5787d186e1eb2",
+  "source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "script_sha256": "11cee69a6f71024100ea5d29c21a11f71c4e98a11282f0cda5096cd6d41387e2",
+  "native_parameters": 1636043,
+  "trainable_parameters": 0,
+  "norm": 0,
+  "copies": 10,
+  "mask_mode": "c",
+  "mask_seed": 84551,
+  "official_score": "cal_anomaly_score(anomaly_criterion=None,L=1); variance over copies, default correction1, channel mean, terminal99",
+  "B1_only": true,
+  "mixed_batch_not_run": true,
+  "CPU_CUDA_RNG_unchanged": true,
+  "all_parameters_and_buffers_unchanged": true,
+  "all_modes_eval": true,
+  "all_gradients_none": true,
+  "no_optimizer": true,
+  "no_generator": true,
+  "no_adapter": true,
+  "no_Energy": true,
+  "no_QUERY_or_labels_read": true,
+  "unique_normal_windows": 6,
+  "total_native_B1_forward_calls": 60,
+  "status": "PASS_ENGINEERING_ONLY",
+  "formal_training_run": false,
+  "source_reference_files": [
+    {
+      "path": "models/TimeRadar.py",
+      "git_blob": "70d6e216193cfb721d81d41f3910f9d93e6c55d9",
+      "sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+      "bytes": 14587,
+      "transport_note": "One extra LF introduced by local patch writer removed only after exact fixed official blob match; no historical runtime edited"
+    },
+    {
+      "path": "exp/exp_anomaly_detection_timeradar.py",
+      "git_blob": "b95a7116ed1e30271d43764a32ff510543037bbf",
+      "sha256": "ab7208da3f5c1e201e76167b6d8003d12e0fd357bef721a053598b5d9c222ab0",
+      "bytes": 19931,
+      "transport_note": "One extra LF introduced by local patch writer removed only after exact fixed official blob match; no historical runtime edited"
+    },
+    {
+      "path": "scripts/anomaly_detection/SWAT.sh",
+      "git_blob": "c73938867b7033a7b7b3836e938f649562468104",
+      "sha256": "e4fdf57a4f953a1c867ef0a24053c2e2a57f6b1900dedebf24aaebc5611f0296",
+      "bytes": 1998,
+      "transport_note": "One extra LF introduced by local patch writer removed only after exact fixed official blob match; no historical runtime edited"
+    },
+    {
+      "path": "scripts/anomaly_detection/PSM.sh",
+      "git_blob": "4ac3b216737e9efeb021e75533d4f2834b30c68c",
+      "sha256": "9b572a2f938aabcee2cddabe013abcca61dd55e74251c5351a6f67c7af306e64",
+      "bytes": 2006,
+      "transport_note": "One extra LF introduced by local patch writer removed only after exact fixed official blob match; no historical runtime edited"
+    }
+  ],
+  "domains": {
+    "SWAT": {
+      "channels": 31,
+      "source_fit_role": [
+        0,
+        396000
+      ],
+      "fixed_window_repeat_bitexact": true,
+      "changed_neighbours_in_B1_loop_bitexact": true,
+      "input_order_permutation_bitexact": true,
+      "timing_point": 512,
+      "warmup_calls": 1,
+      "timing_repeats": 16,
+      "timings_seconds": [
+        0.011405112920328975,
+        0.011410152073949575,
+        0.011370213935151696,
+        0.011392081854864955,
+        0.011359215946868062,
+        0.01139046298339963,
+        0.011355119990184903,
+        0.01136937108822167,
+        0.01141922501847148,
+        0.011382514145225286,
+        0.011429039994254708,
+        0.01140181883238256,
+        0.011462536174803972,
+        0.011381607037037611,
+        0.011353848036378622,
+        0.011402895906940103
+      ],
+      "median_seconds": 0.011391272419132292,
+      "min_seconds": 0.011353848036378622,
+      "max_seconds": 0.011462536174803972,
+      "timing_scope": "CUDA-synchronized original native B1 forward plus cal_anomaly_score(criterion=None,L1); excludes data transfer and fork/seed setup",
+      "peak_allocated_bytes": 107586048,
+      "normal_points": [
+        {
+          "t": 512,
+          "window_start": 413,
+          "window_end_exclusive": 513,
+          "available_index": 512,
+          "terminal_position": 99,
+          "native_V": 0.7144983410835266,
+          "numpy_ddof1_V": 0.7144982538724659,
+          "absolute_difference": 8.721106070641582e-08,
+          "E_terminal": 87.44794782415354,
+          "fixture_sha256": "d7559c6a7a362f6598794c2403bedef66c69f4422bd416618fa9257b91402f13"
+        },
+        {
+          "t": 1024,
+          "window_start": 925,
+          "window_end_exclusive": 1025,
+          "available_index": 1024,
+          "terminal_position": 99,
+          "native_V": 0.7549167275428772,
+          "numpy_ddof1_V": 0.7549167669841741,
+          "absolute_difference": 3.9441296895148525e-08,
+          "E_terminal": 86.29246702494028,
+          "fixture_sha256": "ce2418ff9992d2c205bc28ec2422fda098ac6f7cbd0f6c47f1c03d1f03e5dbb8"
+        },
+        {
+          "t": 2048,
+          "window_start": 1949,
+          "window_end_exclusive": 2049,
+          "available_index": 2048,
+          "terminal_position": 99,
+          "native_V": 0.8350002765655518,
+          "numpy_ddof1_V": 0.8350002837353426,
+          "absolute_difference": 7.169790872119108e-09,
+          "E_terminal": 7.97926623348173,
+          "fixture_sha256": "5ddc2992cf2b55ff306af3d1f0dc58aa39c56a29a3fba21679b9f57e289ba044"
+        }
+      ]
+    },
+    "PSM": {
+      "channels": 25,
+      "source_fit_role": [
+        0,
+        105984
+      ],
+      "fixed_window_repeat_bitexact": true,
+      "changed_neighbours_in_B1_loop_bitexact": true,
+      "input_order_permutation_bitexact": true,
+      "timing_point": 512,
+      "warmup_calls": 1,
+      "timing_repeats": 16,
+      "timings_seconds": [
+        0.010488606058061123,
+        0.010434990981593728,
+        0.01040577795356512,
+        0.010481371078640223,
+        0.010436125099658966,
+        0.010438357945531607,
+        0.010450087953358889,
+        0.010453843045979738,
+        0.010424732929095626,
+        0.010451946873217821,
+        0.010401009116321802,
+        0.010406077839434147,
+        0.010423500090837479,
+        0.01047982182353735,
+        0.010469184955582023,
+        0.010429867077618837
+      ],
+      "median_seconds": 0.010437241522595286,
+      "min_seconds": 0.010401009116321802,
+      "max_seconds": 0.010488606058061123,
+      "timing_scope": "CUDA-synchronized original native B1 forward plus cal_anomaly_score(criterion=None,L1); excludes data transfer and fork/seed setup",
+      "peak_allocated_bytes": 90223616,
+      "normal_points": [
+        {
+          "t": 512,
+          "window_start": 413,
+          "window_end_exclusive": 513,
+          "available_index": 512,
+          "terminal_position": 99,
+          "native_V": 0.16783885657787323,
+          "numpy_ddof1_V": 0.1678388455064545,
+          "absolute_difference": 1.1071418726249505e-08,
+          "E_terminal": 0.37040673547863884,
+          "fixture_sha256": "ba3d3613fbe14738bf6188ad6eaee1ed0c40d358ccd6121739e1d636a6cd5e57"
+        },
+        {
+          "t": 1024,
+          "window_start": 925,
+          "window_end_exclusive": 1025,
+          "available_index": 1024,
+          "terminal_position": 99,
+          "native_V": 0.05340847745537758,
+          "numpy_ddof1_V": 0.053408482663730765,
+          "absolute_difference": 5.208353186236803e-09,
+          "E_terminal": 0.5967646245675973,
+          "fixture_sha256": "a448878a0a1b820ca99ee43b6aa4da02f1187af4d2a4a8bda1368d9c3158ff26"
+        },
+        {
+          "t": 2048,
+          "window_start": 1949,
+          "window_end_exclusive": 2049,
+          "available_index": 2048,
+          "terminal_position": 99,
+          "native_V": 0.05114855244755745,
+          "numpy_ddof1_V": 0.05114854760329934,
+          "absolute_difference": 4.844258112701727e-09,
+          "E_terminal": 0.20052314882656233,
+          "fixture_sha256": "d3a7fa13bdce537d0cbf31b17825eb28f29278af0e2452da54c95a3f069aaa70"
+        }
+      ]
+    }
+  },
+  "gate_sha256": "00d27d9d9d5ce1c6043d3534256a361afcc74a1b1444685c8f40e4660aeafff3",
+  "actual_owned_GPU_seconds": 4.9902617710176855,
+  "actual_GPU_hours": 0.0013861838252826905,
+  "OS_exit_code": 0,
+  "cleanup_status": "NO_LIVE_GROUP_MEMBERS",
+  "future_cost_is_estimate": true,
+  "proposed_native_bank_points": 441164,
+  "compatible_normal_points_already_saved": 6,
+  "pure_forward_GPU_hours_projection": 1.376483071651989,
+  "GO_opinion": "GO_for_bounded_source_training_after_main_research_decision; no training automatically launched",
+  "E_formula_only": "MSE(mean-copy reconstruction,input), engineering formula distinction only; not an adopted score"
+}

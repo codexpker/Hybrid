@@ -1,6 +1,10 @@
 # Hybrid TSAD 独立研究工程
 
-## 2026-11-19 当前：冻结TimeRadar响应几何的A/B匹配实验
+## 2026-11-19 原生V条件动态协议（仅准备，未正式训练）
+
+已核固定官方TimeRadar的FTFRecon/CDL执行路径及原生V，六个正常源窗口的B1末点、固定掩码、独立性与数值检查通过；本轮仅耗用4.990秒GPU作业时间，未实现或训练条件模型。唯一拟验证问题是严格历史对原生V条件分位数的判别价值，设置原生V、简单MLP条件化、TimesFM3官方轻量模块条件化及原值预测残差参照。已给出正常源训练/SELECT、共同轴/CAL、数学定义、成本与GO意见；等待主研究决策，不自动开跑。旧Energy候选仍停止，旧权重/分数/阈值不改。[协议与GO意见](docs/experiments/timeradar_native_v_conditioning_20261119/PROTOCOL.md)，[正常工程检查摘要](docs/experiments/timeradar_native_v_conditioning_20261119/NORMAL_ENGINEERING_SUMMARY.json)。
+
+## 2026-11-19 已完成：冻结TimeRadar响应几何的A/B匹配实验
 
 严格512点历史条件生成器及SWaT/PSM seed2025的A/B、noU/R固定实验已完成，TimesFM3复用官方轻量模块而非官方权重。冻结TimeRadar响应未建立可保持到混合适配后的独立排序增量：A−B AP在SWaT为−1.0594pp/noU、−7.8658pp/R，PSM为+0.0165pp、−0.5707pp。保留SWaT noU显著减少误报但牺牲覆盖的局部取舍，不将其升级为普遍优势。8次训练、16银行、48方法/stream指标及一次职责独立复算完成；正式作业加点检21.396963已完整计量GPU小时，早期profile进退计时缺口另列。本配方不自动扩展，不恢复旧分支。[完整方法表与A/B配对表](docs/experiments/tf_conditional_energy_20261119/RESULTS.md)，[实现与公式](docs/experiments/tf_conditional_energy_20261119/IMPLEMENTATION.md)，[验证与成本](docs/experiments/tf_conditional_energy_20261119/VERIFICATION.md)。仅公开数据；LEFT+R、MLP、CANDI、完整TimeRadar保持比较身份，旧结果不覆盖。
 
