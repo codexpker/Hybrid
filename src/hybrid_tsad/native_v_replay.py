@@ -288,7 +288,7 @@ def gate_target_mean(w,root,domain):
     receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),nominal_SOURCE_FIT_windows=2,labels_read=False,
         loss_identity_absolute_error=float((old_loss-new_loss-difference).detach().abs()),gradient_identity_max_absolute_error=maximum,
         graph_connected_E=True,frozen_except_decoder=True,all_modules_eval=True,RNG_restored=True,
-        plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=training_seed(task)==2025,paired_plan_verified=True,gate_models_discarded=True,
+        plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=training_seed(task)==2025 and task.get('domain')!='SMD',paired_plan_verified=True,gate_models_discarded=True,
         estimated_train_seconds_per_arm=read(w/'results'/EXPERIMENT/task.get('timing_reference_domain',domain)/'GATE.json')['estimated_train_seconds_per_arm']*1.25,
         elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated())
     dump(out/'GATE.json',receipt);dump(root/domain/'GATE.json',receipt)
