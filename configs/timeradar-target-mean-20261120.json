@@ -1,0 +1,22 @@
+{
+  "experiment": "timeradar_target_mean_20261120_v1",
+  "output": "results/timeradar_target_mean_20261120_v1",
+  "domains": ["SWAT", "PSM"], "seed": 2025,
+  "arms": ["R_target_mean"], "loss_profile": "target_mean_source_copy",
+  "reuse_root": "results/timeradar_native_v_replay_20261120_v1",
+  "reuse_global_sha256": "6220f28d1b865b83629ad9426933d64c164d5968b26f4c180ae8c0f88686d51e",
+  "reuse_metrics_sha256": "2dfd4d51a434b90308db120905c9e709907f1b0d3abb49f30182e75c2f6f67df",
+  "prepare": "byte-copy original TASK.json,SCALER.npz,PLAN.npz for each domain; never sample new inputs",
+  "source_loss": "mean((outputs-x[None])^2), all ten copies, full100xC",
+  "target_loss": "mean((outputs.mean(0)-x)^2), full100xC, differentiable mean without detach",
+  "logical_batch": "32 target+32 source; each B1 loss divided64; one optimizer step; no additional0.5",
+  "identity": "copyMSE=E+0.9*V_fullwindow(correction1); L_original_R-L_new=0.45*mean(V_T)",
+  "diagnostics": "same single native forward: fullwindow E_T,V_T,E_S,V_S at every update; detached only when archiving",
+  "unchanged": "official initial PT,only decoder trainable,entire model eval,2000endpoint,freshAdamW1e-4,beta(.9,.95),eps1e-8,original parameter-name wd.1 grouping,warmup200,B1norm0,84551maskc10copies,sourceFITscaler,original axes/CAL512",
+  "scoring": "original nativeV terminal99,correction1,meanC; float32V cast float64; no E or mixture score",
+  "freeze_name": "ALL_MODELS_FROZEN.json", "frozen_model_count": 2,
+  "new_banks": 4, "native_readout_jobs": 10,
+  "old_banks": "reference only; no score or metric rerun",
+  "source_reference_TASK": "copied metadata is immutable old R contract; CONFIG.loss_profile is current single change",
+  "resources": {"maximum_A40": 4,"train_GiB":20,"readout_GiB":30,"timeout":"prior measured cost with conservative margin"}
+}

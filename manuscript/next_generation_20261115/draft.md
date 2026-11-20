@@ -131,6 +131,28 @@ On SWaT, R−TT AP/ROC are -0.590/-0.209pp; small coverage gains cost additional
 
 The six trainings and30 readout jobs plus engineering checks consumed8.080724 A40 GPU hours, including startup/cleanup, with no failed or duplicate jobs. One role-separated same-family review matched16458 fields (maximum difference3.33e-16), including raw-score identity, paired exposure, calibration and complete-event accounting; shared official VUS code is disclosed. Full strict/C3 metrics, hit-only delays, censored misses, event macro/pooled coverage and cost/SHA records are in `docs/experiments/timeradar_native_v_replay_20261120/`. These are two exposed tasks, one seed, a mature backbone and replay policy; neither mixed-contamination robustness nor heterogeneous Stage1 training is established. No B/C R, further seed, loss or scoring variation follows automatically.
 
+
+# Fixed target-mean / source-copy reconstruction comparison
+
+This prospective single-factor experiment retains the preceding native TimeRadar head-only R initialization, paired T/S plan, effective batch64,2000 endpoint updates, optimizer and V inference. It changes only the target-window reconstruction constraint. No conditional-V B/C, old channel adapter, new backbone, score fusion or supervised target-label training is restored. Both public tasks, SWaT31 and PSM25, and seed2025 are fixed before new results.
+
+For ten reconstructions $o_{w,m,j,c}$ of a single actual window, define
+
+$$\bar o_{w,j,c}=\frac1{10}\sum_{m=1}^{10}o_{w,m,j,c},\qquad
+E_w=\frac1{100C}\sum_{j,c}(\bar o_{w,j,c}-x_{w,j,c})^2,$$
+
+$$V_w=\frac1{100C}\sum_{j,c}\frac1{9}\sum_{m=1}^{10}(o_{w,m,j,c}-\bar o_{w,j,c})^2.$$
+
+Here $V_w$ is the full-window mean unbiased copy variance, not the terminal native detection score. The classical squared-error decomposition gives $L_{copy,w}=E_w+0.9V_w$. With32 target and32 source windows in the same logical batch, the new objective is
+
+$$L_{new}=\frac1{64}\left[\sum_{w\in T}E_w+\sum_{w\in S}(E_w+0.9V_w)\right].$$
+
+At identical parameters, windows and masks, the original R objective satisfies $L_R-L_{new}=0.45\,\operatorname{mean}_{w\in T}V_w$, including equality of parameter gradients. Training directly computes the mean-reconstruction MSE for target windows, rather than subtracting two large quantities. The mean remains differentiable, uses all100 positions and channels, and introduces no extra half weighting. Source windows retain the original ten-copy MSE. Each native forward remains B=1; each window contributes its loss divided by64 before a single optimizer update. $E_T,V_T,E_S,V_S$ are recorded from the same forwards and do not introduce another training pass.
+
+The inference criterion remains the unchanged channel-mean, correction1 copy variance at position99. An increase in training variance does not establish improved anomaly discrimination. The hypothesis tested is whether removing direct target-copy agreement pressure, while retaining source-copy reconstruction, provides an actual detection increment over matched R. Classical decomposition, official TimeRadar and mature replay retain their original attribution; a new contribution would require the paired detection evidence, not merely this identity.
+
+The primary contrast is new minus R; noU, TT and SS are retained unchanged. Common QUERY axes,512 mixed-CAL observations and each model's q99/higher/strict> threshold remain fixed. SWaT has34 attack-labeled selected CAL points and PSM512; no normal1% false-alarm guarantee follows. Point AP/ROC, fixed VUS, strict/C3 operating outcomes, one-to-one versus any-hit events, long-event macro/pooled coverage and longest misses will all be reported. QUERY curves are descriptive only. Results are pending; no protection, robustness or detection-gain claim is made before completion.
+
 # Historical stopped conditional-energy candidate and fixed geometry comparison
 
 Given strictly past observations $h_t=x_{t-512:t-1}$, a lightweight conditional generator produces $v_k=G_\theta(h_t,\epsilon_k)$, $k=1,\ldots,4$. It uses the official TimesFM3 residual and mixing blocks at width128, two layers, four heads and patch16, including variate attention. Shared8 and per-variate8 independent Gaussian noise allow joint current-value draws. No current target value enters this predictor. The generator has612626 trainable parameters; the separate official TimeRadar response operator retains1,636,043 frozen parameters. This is not the official330M TimesFM3 model, an official quantile forecast, or a restoration of the old Hybrid V1.

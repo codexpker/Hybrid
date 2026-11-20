@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.metrics import average_precision_score, precision_recall_curve, roc_auc_score, roc_curve
 
 from .native_v_conditioning_evaluation import (
-    AXES, METHODS, EXTERNAL_MANIFEST, EXTERNAL_MANIFEST_SHA, checked, load_bank, read, sha)
+    AXES, METHODS, TARGET_MEAN_ARM, EXTERNAL_MANIFEST, EXTERNAL_MANIFEST_SHA, checked, load_bank, read, sha)
 from .conditional_response_evaluation import select_bank
 
 
@@ -18,8 +18,11 @@ def render(workspace, root, metrics, output):
     if output.exists():
         raise FileExistsError(output)
     result = read(metrics)
-    if result["status"] != "COMPLETED" or sha(root / "GLOBAL_RAW_BANK_SEAL.json") != result["raw_seal_sha256"]:
+    target_mean = result.get("mode") == "native_target_mean"
+    seal_key = "global_seal_sha256" if target_mean else "raw_seal_sha256"
+    if result["status"] != "COMPLETED" or sha(root / "GLOBAL_RAW_BANK_SEAL.json") != result[seal_key]:
         raise ValueError("Only sealed, fully evaluated scores may be plotted")
+    primary_names = ["noU", "TT", "SS", "R", TARGET_MEAN_ARM] if target_mean else list(METHODS.values())
     checked(w, dict(relative=EXTERNAL_MANIFEST, sha256=EXTERNAL_MANIFEST_SHA))
     manifest = read(w / EXTERNAL_MANIFEST)
     models, labels, inputs = {}, {}, {str(metrics): sha(metrics)}
@@ -34,14 +37,19 @@ def render(workspace, root, metrics, output):
             values = with_label.reshape(-1)
         labels[d] = values[slice(*axis)]
         models[d] = {}
-        for m, name in METHODS.items():
+        for name in primary_names:
             row = next(r for r in result["rows"] if r["domain"] == d and r["method"] == name and r["stream"] == "strict")
-            p = root / "banks" / d / m / "QUERY" / "BANK.npz"
+            if target_mean:
+                descriptor = next(b for b in result["bank_manifest"] if b["domain"] == d and b["method"] == name and b["role"] == "QUERY")
+                p = checked(w, descriptor)
+            else:
+                m = next(m for m, n in METHODS.items() if n == name)
+                p = root / "banks" / d / m / "QUERY" / "BANK.npz"
             if sha(p) != row["bank_QUERY_sha256"]:
                 raise ValueError("New score identity changed")
             bank = load_bank(p)
             np.testing.assert_array_equal(bank["absolute_time_index"], np.arange(*axis))
-            models[d][name] = (bank["canonical_score"], row)
+            models[d][name] = (bank["canonical_score"] if "canonical_score" in bank else bank["V"].astype(np.float64), row)
             inputs[str(p)] = sha(p)
     for descriptor in manifest["compatible_models"] + manifest["ranking_only_models"]:
         d, name = descriptor["domain"], descriptor["method"]
@@ -86,13 +94,15 @@ def render(workspace, root, metrics, output):
             points[name] = op
             all_points.append(op)
         np.savez_compressed(output / (d + "_FULL_CURVES.npz"), **arrays)
-        for scope, names in (("ABCD", list(METHODS.values())), ("EXTERNAL", list(group))):
+        for scope, names in (("TARGET_MEAN" if target_mean else "ABCD", primary_names), ("EXTERNAL", list(group))):
             fig, axes = plt.subplots(1, 3, figsize=(17, 7))
             outside, empty, rank_only = [], [], []
             for number, name in enumerate(names):
                 primary_colors = ("#0072B2", "#D55E00", "#009E73", "#CC79A7")
-                color = primary_colors[number] if number < 4 else plt.get_cmap("tab20")((2 * number) % 20)
-                style = "-" if name in METHODS.values() else "--"
+                if target_mean:
+                    primary_colors += ("#E69F00",)
+                color = primary_colors[number] if number < len(primary_colors) else plt.get_cmap("tab20")((2 * number) % 20)
+                style = "-" if name in primary_names else "--"
                 op = points[name]
                 kw = dict(color=color, linestyle=style, lw=1.5)
                 axes[0].plot(arrays[name + "_recall"], arrays[name + "_precision"],
@@ -126,8 +136,8 @@ def render(workspace, root, metrics, output):
                 caption += "\nNo positive alarms; PR precision undefined: " + ", ".join(empty)
             import textwrap
             caption = "\n".join(textwrap.fill(line, width=170) for line in caption.splitlines())
-            fig.suptitle(f"{d} | seed2025 | fixed common axis {AXES[d]} | {scope}\n"
-                "A/B/C/D causal endpoint; external context and training permissions differ")
+            permission = "Native-V arms: current100 endpoint; external permissions differ" if target_mean else "A/B/C/D causal endpoint; external context and training permissions differ"
+            fig.suptitle(f"{d} | seed2025 | fixed common axis {AXES[d]} | {scope}\n" + permission)
             fig.text(.02, .025, caption, fontsize=8, va="bottom")
             fig.tight_layout(rect=(0, .19, 1, .90))
             for extension in ("png", "pdf", "svg"):

@@ -101,9 +101,9 @@ def role_index(w,d,task,role):
     return np.load(path,allow_pickle=False)
 
 
-def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None):
+def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='ALL_SIX_MODELS_FROZEN.json'):
     # CAL/QUERY values are unavailable to this entry until all6 models freeze.
-    if role in ['CAL','QUERY']:assert read(root/'ALL_SIX_MODELS_FROZEN.json')['status']=='COMPLETED'
+    if role in ['CAL','QUERY']:assert read(root/freeze_name)['status']=='COMPLETED'
     d=root/domain;task=read(d/'TASK.json');out=root/'cache'/domain/role/f'part{part}';out.mkdir(parents=True,exist_ok=False)
     started=time.monotonic();device=setup(30 if role in ['CAL','QUERY'] else 20)
     native=load_native(w,device)

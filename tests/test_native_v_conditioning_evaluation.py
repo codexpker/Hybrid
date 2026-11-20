@@ -3,7 +3,8 @@ import pytest
 
 from hybrid_tsad.native_v_conditioning_evaluation import (
     exact_cal, quantile_score, raw_residual, step0_equivalence,
-    point_formula_gate, sealed_inputs, event_contrasts, METHODS, replay_pairs, replay_sealed_inputs)
+    point_formula_gate, sealed_inputs, event_contrasts, METHODS, replay_pairs, replay_sealed_inputs,
+    target_mean_inputs, TARGET_MEAN_ARM)
 
 
 def test_quantiles_keep_units_ties_and_negative_scores():
@@ -113,3 +114,24 @@ def test_replay_label_guard_precedes_asset_loading(tmp_path):
         status="COMPLETED", labels_read=True, no_labels_decoded=False)))
     with pytest.raises(ValueError, match="label-free"):
         replay_sealed_inputs(tmp_path, tmp_path)
+
+
+def test_target_mean_label_guard_precedes_asset_loading(tmp_path):
+    import json
+    (tmp_path / "GLOBAL_RAW_BANK_SEAL.json").write_text(json.dumps(dict(
+        status="COMPLETED", labels_read=True, no_labels_decoded=False)))
+    with pytest.raises(ValueError, match="label-free"):
+        target_mean_inputs(tmp_path, tmp_path)
+
+
+def test_single_factor_comparisons_use_new_minus_all_four_baselines():
+    rows = [dict(domain=d, method=m, stream=s, AP=value, normal_FPR=value / 10)
+            for d in ("SWAT", "PSM") for s in ("strict", "confirmed3")
+            for m, value in (("noU", .3), ("TT", .2), ("SS", .6), ("R", .5), (TARGET_MEAN_ARM, .4))]
+    contrasts = tuple((TARGET_MEAN_ARM, m) for m in ("R", "noU", "TT", "SS"))
+    result = replay_pairs(rows, contrasts)
+    assert len(result) == 16 and all(r["n"] == 1 and r["sample_SD"] is None for r in result)
+    assert {r["contrast"] for r in result} == {TARGET_MEAN_ARM + "−" + m for m in ("R", "noU", "TT", "SS")}
+    for r in result:
+        expected = dict(noU=.3, TT=.2, SS=.6, R=.5)[r["contrast"].split("−")[1]]
+        assert r["AP"] == .4 - expected

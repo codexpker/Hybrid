@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-20 正在执行：目标均值重构／源逐副本重构单因素比较
+
+固定旧TimeRadar R的全部初始化、抽样、优化和原生V读出，只将目标半批改为十副本均值重构MSE，源半批保持原损失。SWaT、PSM各一个seed2025新模型；旧noU/TT/SS/R结果完整复用。22项相关CPU测试通过，真实正常数据工程检查后自动接续两次训练及固定评价。当前没有新检测结果，不提前宣称收益或污染鲁棒性。[唯一改动与计算定义](docs/experiments/timeradar_target_mean_20261120/IMPLEMENTATION.md)、[固定配置](configs/timeradar-target-mean-20261120.json)。不扩系数、种子、数据域或其他分支。
+
 ## 2026-11-20 原生TimeRadar头部适配：TT／SS／R固定比较完成
 
 SWaT31/PSM25、seed2025六次适配及12份新银行已完成，旧A/noU完整复用。保留官方权重、SOURCE_FIT scaler与原生末点V，仅更新原重构头；每个原生forward严格B=1，以64窗梯度累积实现匹配批量。PSM R−TT的AP/ROC为+5.426/+2.151pp，持续覆盖部分恢复但误报上升；SWaT未建立相同的有用增量。PSM R相对SS保留排序正项，但覆盖代价仍在；不解释为污染因果或Hybrid原创贡献。38个GPU作业全部成功并清理，实际8.080724358 GPU小时；一次关键独审通过。

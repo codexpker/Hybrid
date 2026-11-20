@@ -14,6 +14,7 @@ from .native_v_conditioning_runner import read, dump, role_values, setup, seed
 
 EXPERIMENT='timeradar_native_v_replay_20261120_v1'
 OLD='native_v_conditioning_20261119_v1'
+TARGET_MEAN_EXPERIMENT='timeradar_target_mean_20261120_v1'
 
 
 def sampling_plan(source_count,target_count,updates=2000,half=32,seed_value=2025):
@@ -64,6 +65,25 @@ def prepare(w,root):
         official_initial_checkpoint='528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c',labels_read=False))
 
 
+def prepare_target_mean(w,root):
+    import shutil
+    old=w/'results'/EXPERIMENT;frozen=old/'GLOBAL_RAW_BANK_SEAL.json'
+    assert sha(frozen)=='6220f28d1b865b83629ad9426933d64c164d5968b26f4c180ae8c0f88686d51e'
+    root.mkdir(parents=True,exist_ok=False);binding=[]
+    for domain in ['SWAT','PSM']:
+        target=root/domain;target.mkdir()
+        for name in ['TASK.json','SCALER.npz','PLAN.npz']:
+            source=old/domain/name;shutil.copyfile(source,target/name)
+            assert sha(source)==sha(target/name)
+            binding.append(dict(domain=domain,name=name,original_relative=str(source.relative_to(w)),sha256=sha(source)))
+    dump(root/'CONFIG.json',dict(experiment=TARGET_MEAN_EXPERIMENT,seed=2025,loss_profile='target_mean_source_copy',
+        arms=['R_target_mean'],models=2,freeze_name='ALL_MODELS_FROZEN.json',inherited_copied_bytes=binding,
+        reuse_global_relative=str(frozen.relative_to(w)),reuse_global_sha256=sha(frozen),
+        reuse_metrics_sha256='2dfd4d51a434b90308db120905c9e709907f1b0d3abb49f30182e75c2f6f67df',
+        actual_loss='U_FIT E_window; SOURCE_FIT copyMSE; per window /64 and one optimizer step',
+        unchanged='official initial/scaler/PLAN/optimizer/warmup/budget/B1 masks/score/axes/CAL',labels_read=False))
+
+
 def decoder_model(w,device):
     model=load_native(w,device)
     model.decoder.requires_grad_(True);model.eval()
@@ -88,13 +108,26 @@ def input_windows(values,lo,starts,device):
         yield torch.from_numpy(values[relative:relative+100].copy()).to(device)[None]
 
 
-def accumulate(model,windows,device,divisor):
+def reconstruction_components(outputs,x):
+    """All terms keep their graph; variance is over ten copies, full100xC."""
+    if outputs.shape[0]!=10:raise ValueError('Exactly ten copies required')
+    return ((outputs-x[None]).square().mean(),(outputs.mean(0)-x).square().mean(),outputs.var(0,correction=1).mean())
+
+
+def accumulate(model,windows,device,divisor,loss_mode='copy',diagnostics=None):
     losses=[];orders=[];hook=model.net.register_forward_hook(lambda m,a,o:orders.append(float(o.detach().reshape(-1)[0])))
     try:
         for x in windows:
             with fixed_native_rng(device):_,outputs=model(x,norm=0,mask_mode='c',copies=10)
             assert outputs.shape==(10,1,100,x.shape[-1])
-            loss=(outputs-x[None]).square().mean();assert torch.isfinite(loss)
+            if loss_mode=='copy'and diagnostics is None:
+                loss=(outputs-x[None]).square().mean()
+            else:
+                full,E,V=reconstruction_components(outputs,x)
+                loss=E if loss_mode=='mean'else full
+                if loss_mode not in ['mean','copy']:raise ValueError(loss_mode)
+                if diagnostics is not None:diagnostics.append(dict(E=float(E.detach()),V=float(V.detach()),copy=float(full.detach())))
+            assert torch.isfinite(loss)
             (loss/divisor).backward();losses.append(float(loss.detach()))
     finally:hook.remove()
     assert losses and all(p.grad is None or torch.isfinite(p.grad).all()for p in model.parameters())
@@ -108,38 +141,47 @@ def role_arrays(w,root,domain,roles):
     return task,arrays
 
 
-def train(w,root,domain,arm):
+def train(w,root,domain,arm,loss_profile='native'):
     assert read(root/domain/'GATE.json')['status']=='PASS_ENGINEERING_ONLY'
     out=root/'train'/domain/arm;out.mkdir(parents=True,exist_ok=False);start=time.monotonic();device=setup(20)
     roles=['SOURCE_FIT']if arm=='SS'else['U_FIT']if arm=='TT'else['SOURCE_FIT','U_FIT']
     task,arrays=role_arrays(w,root,domain,roles);p=root/domain/'PLAN.npz';assert sha(p)==task['replay_training']['sampling_plan_sha256']
     with np.load(p)as z:plan={k:z[k].copy()for k in z.files}
     seed();model=decoder_model(w,device);initial=state_hashes(model);opt=optimizer(model);trace=[]
+    target_mean=loss_profile=='target_mean_source_copy'
+    if loss_profile not in ['native','target_mean_source_copy']or(target_mean and arm!='R_target_mean'):raise ValueError('Fixed R target-mean profile only')
+    pair_arm='R'if target_mean else arm
     for step in range(2000):
         lr=1e-4*min((step+1)/200,1.)
         for group in opt.param_groups:group['lr']=lr
-        opt.zero_grad(set_to_none=True);losses=[];orders=[]
-        for role,starts in paired_starts(plan,plan['source_starts'],plan['target_starts'],arm,step):
+        opt.zero_grad(set_to_none=True);losses=[];orders=[];components={}
+        for role,starts in paired_starts(plan,plan['source_starts'],plan['target_starts'],pair_arm,step):
             values,_,lo,_=arrays[role]
-            loss,order=accumulate(model,input_windows(values,lo,starts,device),device,64);losses.append(loss);orders+=order
+            diagnostic=[]if target_mean else None
+            mode='mean'if target_mean and role=='U_FIT'else'copy'
+            loss,order=accumulate(model,input_windows(values,lo,starts,device),device,64,mode,diagnostic);losses.append(loss);orders+=order
+            if target_mean:
+                tag='T'if role=='U_FIT'else'S'
+                components.update({k+'_'+tag:float(np.mean([r[k]for r in diagnostic]))for k in ['E','V','copy']})
         assert len(orders)==64
         gradient=float(torch.stack([p.grad.norm()for p in model.decoder.parameters()if p.grad is not None]).norm())
         assert np.isfinite(gradient);opt.step()
         trace.append(dict(update=step+1,loss=float(np.mean(losses)),gradient_norm=gradient,lr=lr,
-            per_window_order_sha256=hashlib.sha256(np.asarray(orders,np.float32).tobytes()).hexdigest()))
+            per_window_order_sha256=hashlib.sha256(np.asarray(orders,np.float32).tobytes()).hexdigest(),**components))
         if(step+1)%200==0:print(json.dumps(dict(event='TRAIN_PROGRESS',domain=domain,arm=arm,update=step+1,elapsed=time.monotonic()-start)),flush=True)
     final=state_hashes(model);frozen={k:v for k,v in initial.items()if not k.startswith('decoder.')}
     assert all(final[k]==v for k,v in frozen.items())and any(final[k]!=initial[k]for k in initial if k.startswith('decoder.'))
     assert all(not m.training for m in model.modules())
     checkpoint=out/'ENDPOINT.pth';torch.save(dict(model=model.state_dict(),update=2000,domain=domain,arm=arm),checkpoint)
     torch.save(opt.state_dict(),out/'OPTIMIZER.pth');dump(out/'TRACE.json',trace)
+    profile_binding=dict(loss_profile=loss_profile)if target_mean else{}
     dump(out/'TRAIN_RECEIPT.json',dict(status='COMPLETED',domain=domain,arm=arm,seed=2025,updates=2000,logical_batch=64,
         B1_forward_count=128000,exposures=128000,roles_read=roles,labels_read=False,CAL_QUERY_opened=False,
         checkpoint_relative=str(checkpoint.relative_to(w)),checkpoint_sha256=sha(checkpoint),optimizer_sha256=sha(out/'OPTIMIZER.pth'),
         plan_sha256=sha(p),scaler_sha256=task['scaler_sha256'],initial_state_hashes=initial,final_state_hashes=final,
         frozen_parameters_buffers_unchanged=True,all_modules_eval=True,trainable_names=[n for n,p in model.named_parameters()if p.requires_grad],
         trainable_parameters=sum(p.numel()for p in model.parameters()if p.requires_grad),
-        elapsed_GPU_seconds=time.monotonic()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved()))
+        elapsed_GPU_seconds=time.monotonic()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**profile_binding))
     print(json.dumps(dict(event='TRAINING_COMPLETED',domain=domain,arm=arm)),flush=True)
 
 
@@ -181,13 +223,49 @@ def gate(w,root,domain):
     print(json.dumps(dict(event='GATE_COMPLETED',**receipt)),flush=True)
 
 
+def gate_target_mean(w,root,domain):
+    out=root/domain/'engineering_gate';out.mkdir();device=setup(20);started=time.monotonic();seed()
+    task,arrays=role_arrays(w,root,domain,['SOURCE_FIT']);model=decoder_model(w,device);before=state_hashes(model);opt=optimizer(model)
+    assert sha(root/domain/'PLAN.npz')==task['replay_training']['sampling_plan_sha256']
+    values,_,lo,_=arrays['SOURCE_FIT'];windows=list(input_windows(values,lo,[lo+413,lo+925],device))
+    rng=(torch.get_rng_state().clone(),torch.cuda.get_rng_state(device).clone());terms=[]
+    for x in windows:
+        with fixed_native_rng(device):_,outputs=model(x,norm=0,mask_mode='c',copies=10)
+        full,E,V=reconstruction_components(outputs,x);torch.testing.assert_close(full,E+.9*V,rtol=2e-5,atol=2e-6)
+        terms.append((full,E,V))
+    old_loss=(terms[0][0]+terms[1][0])/2;new_loss=(terms[0][1]+terms[1][0])/2;difference=.45*terms[0][2]
+    torch.testing.assert_close(old_loss-new_loss,difference,rtol=2e-5,atol=2e-6)
+    params=list(model.decoder.parameters());a=torch.autograd.grad(old_loss,params,retain_graph=True)
+    b=torch.autograd.grad(new_loss,params,retain_graph=True);c=torch.autograd.grad(difference,params,retain_graph=True)
+    for x,y,z in zip(a,b,c):torch.testing.assert_close(x-y,z,rtol=2e-4,atol=2e-5)
+    maximum=max(float((x-y-z).abs().max())for x,y,z in zip(a,b,c))
+    opt.zero_grad(set_to_none=True);new_loss.backward();assert any(p.grad is not None and torch.count_nonzero(p.grad)>0 for p in params)
+    assert all(p.grad is None for p in model.parameters()if not p.requires_grad);opt.step()
+    after=state_hashes(model);assert all(after[k]==v for k,v in before.items()if not k.startswith('decoder.'))
+    assert all(not m.training for m in model.modules())and torch.equal(rng[0],torch.get_rng_state())and torch.equal(rng[1],torch.cuda.get_rng_state(device))
+    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,normal_SOURCE_FIT_windows=2,labels_read=False,
+        loss_identity_absolute_error=float((old_loss-new_loss-difference).detach().abs()),gradient_identity_max_absolute_error=maximum,
+        graph_connected_E=True,frozen_except_decoder=True,all_modules_eval=True,RNG_restored=True,
+        plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=True,gate_models_discarded=True,
+        estimated_train_seconds_per_arm=read(w/'results'/EXPERIMENT/domain/'GATE.json')['estimated_train_seconds_per_arm']*1.25,
+        elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated())
+    dump(out/'GATE.json',receipt);dump(root/domain/'GATE.json',receipt)
+    print(json.dumps(dict(event='GATE_COMPLETED',**receipt)),flush=True)
+
+
+def matrix_spec(root):
+    config=read(root/'CONFIG.json')
+    if config.get('loss_profile')=='target_mean_source_copy':return ['R_target_mean'],'ALL_MODELS_FROZEN.json',2
+    return ['TT','SS','R'],'ALL_SIX_MODELS_FROZEN.json',6
+
+
 def scoring_cases(w,root):
     import shutil
-    frozen=read(root/'ALL_SIX_MODELS_FROZEN.json');assert frozen['status']=='COMPLETED'and len(frozen['trainings'])==6
-    for arm in ['TT','SS','R']:
+    arms,freeze_name,count=matrix_spec(root)
+    frozen=read(root/freeze_name);assert frozen['status']=='COMPLETED'and len(frozen['trainings'])==count
+    for arm in arms:
         case=root/'readout'/arm;case.mkdir(parents=True,exist_ok=False)
-        dump(case/'ALL_SIX_MODELS_FROZEN.json',dict(status='COMPLETED',parent_relative=str((root/'ALL_SIX_MODELS_FROZEN.json').relative_to(w)),
-            parent_sha256=sha(root/'ALL_SIX_MODELS_FROZEN.json')))
+        dump(case/freeze_name,dict(status='COMPLETED',parent_relative=str((root/freeze_name).relative_to(w)),parent_sha256=sha(root/freeze_name)))
         for domain in ['SWAT','PSM']:
             target=case/domain;target.mkdir();shutil.copyfile(root/domain/'TASK.json',target/'TASK.json');shutil.copyfile(root/domain/'SCALER.npz',target/'SCALER.npz')
             receipt=root/'train'/domain/arm/'TRAIN_RECEIPT.json';selected=read(receipt)
@@ -198,53 +276,54 @@ def scoring_cases(w,root):
 
 def score_cache(w,root,domain,arm,role,part,parts):
     from .native_v_conditioning_runner import cache
-    frozen=read(root/'ALL_SIX_MODELS_FROZEN.json')
+    _,freeze_name,_=matrix_spec(root);frozen=read(root/freeze_name)
     selected=next(r for r in frozen['trainings']if r['domain']==domain and r['arm']==arm)
     checkpoint=w/selected['checkpoint_relative'];assert sha(checkpoint)==selected['checkpoint_sha256']
-    cache(w,root/'readout'/arm,domain,role,part,parts,native_checkpoint=checkpoint)
+    cache(w,root/'readout'/arm,domain,role,part,parts,native_checkpoint=checkpoint,freeze_name=freeze_name)
 
 
 def queue_score(w,root):
     from .native_v_conditioning_queue import run_jobs
     from .native_v_conditioning_runner import merge_cache
-    scoring_cases(w,root)
+    scoring_cases(w,root);arms,freeze_name,_=matrix_spec(root)
     tasks=[(domain+'_'+arm+'_'+role+'_'+str(part),['score_cache','--domain',domain,'--arm',arm,'--role',role,'--part',str(part),'--parts',str(parts)],30,7200)
-        for arm in ['TT','SS','R']for domain in ['SWAT','PSM']for role,parts in [('CAL',1),('QUERY',4)]for part in range(parts)]
+        for arm in arms for domain in ['SWAT','PSM']for role,parts in [('CAL',1),('QUERY',4)]for part in range(parts)]
     jobs=run_jobs(w,root,'native_readout',tasks,'hybrid_tsad.native_v_replay');banks=[];reused=[]
     for domain in ['SWAT','PSM']:
-        for arm in ['TT','SS','R']:
+        for arm in arms:
             for role in ['CAL','QUERY']:
                 case=root/'readout'/arm;merge_cache(w,case,domain,role);p=case/'cache'/domain/role/'SEALED.json';sealed=read(p)
                 banks.append(dict(domain=domain,method=arm,role=role,relative=sealed['relative'],sha256=sealed['sha256'],
                     receipt_relative=str(p.relative_to(w)),receipt_sha256=sha(p)))
-        for role in ['CAL','QUERY']:
+        for role in ([]if arms==['R_target_mean']else['CAL','QUERY']):
             p=w/'results'/OLD/'banks'/domain/'A'/role/'RECEIPT.json';r=read(p);assert sha(w/r['relative'])==r['sha256']
             reused.append(dict(domain=domain,method='noU',role=role,relative=r['relative'],sha256=r['sha256'],receipt_relative=str(p.relative_to(w)),receipt_sha256=sha(p)))
-    alljobs=read(root/'GATES_COMPLETED.json')['jobs']+read(root/'ALL_SIX_MODELS_FROZEN.json')['jobs']+jobs
+    alljobs=read(root/'GATES_COMPLETED.json')['jobs']+read(root/freeze_name)['jobs']+jobs
     trainings=[]
     for domain in ['SWAT','PSM']:
-        for arm in ['TT','SS','R']:
+        for arm in arms:
             p=root/'train'/domain/arm/'TRAIN_RECEIPT.json';row=read(p)
             trainings.append(dict(row,train_receipt_relative=str(p.relative_to(w)),train_receipt_sha256=sha(p)))
     dump(root/'GLOBAL_RAW_BANK_SEAL.json',dict(status='COMPLETED',no_labels_decoded=True,labels_read=False,banks=banks,noU_reused=reused,
-        trainings=trainings,jobs=alljobs,actual_GPU_hours=sum(j['actual_GPU_seconds']for j in alljobs)/3600))
-    print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',new_banks=12,reused_noU_banks=4)),flush=True)
+        trainings=trainings,jobs=alljobs,reuse_binding=read(root/'CONFIG.json').get('reuse_global_sha256'),actual_GPU_hours=sum(j['actual_GPU_seconds']for j in alljobs)/3600))
+    print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',new_banks=len(banks),reused_noU_banks=len(reused))),flush=True)
 
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','gate','train','queue_gate','queue_train','score_cache','queue_score']);p.add_argument('--workspace',required=True,type=Path)
-    p.add_argument('--output',type=Path);p.add_argument('--domain',choices=['SWAT','PSM']);p.add_argument('--arm',choices=['TT','SS','R'])
+    p.add_argument('--output',type=Path);p.add_argument('--domain',choices=['SWAT','PSM']);p.add_argument('--arm',choices=['TT','SS','R','R_target_mean'])
+    p.add_argument('--loss-profile',choices=['native','target_mean_source_copy'],default='native')
     p.add_argument('--role',choices=['CAL','QUERY']);p.add_argument('--part',type=int,default=0);p.add_argument('--parts',type=int,default=1)
-    a=p.parse_args();root=a.output or a.workspace/'results'/EXPERIMENT
-    if a.action=='prepare':prepare(a.workspace,root)
-    elif a.action=='gate':gate(a.workspace,root,a.domain)
-    elif a.action=='train':train(a.workspace,root,a.domain,a.arm)
+    a=p.parse_args();new=a.loss_profile=='target_mean_source_copy';root=a.output or a.workspace/'results'/(TARGET_MEAN_EXPERIMENT if new else EXPERIMENT)
+    if a.action=='prepare':(prepare_target_mean if new else prepare)(a.workspace,root)
+    elif a.action=='gate':(gate_target_mean if new else gate)(a.workspace,root,a.domain)
+    elif a.action=='train':train(a.workspace,root,a.domain,a.arm,a.loss_profile)
     elif a.action=='score_cache':score_cache(a.workspace,root,a.domain,a.arm,a.role,a.part,a.parts)
     elif a.action=='queue_score':queue_score(a.workspace,root)
     else:
         from .native_v_conditioning_queue import run_jobs
         if a.action=='queue_gate':
-            jobs=run_jobs(a.workspace,root,'engineering_gate',[(d,['gate','--domain',d],20,600)for d in ['SWAT','PSM']],'hybrid_tsad.native_v_replay')
+            jobs=run_jobs(a.workspace,root,'engineering_gate',[(d,['gate','--domain',d]+(['--loss-profile',a.loss_profile]if new else[]),20,600)for d in ['SWAT','PSM']],'hybrid_tsad.native_v_replay')
             dump(root/'GATES_COMPLETED.json',dict(status='COMPLETED',jobs=jobs,labels_read=False))
         else:
             assert read(root/'GATES_COMPLETED.json')['status']=='COMPLETED'
@@ -252,11 +331,12 @@ def main():
             for d in ['SWAT','PSM']:
                 seconds=read(root/d/'GATE.json')['estimated_train_seconds_per_arm']
                 timeout=max(3600,int(seconds*1.8+600))
-                tasks.extend((d+'_'+arm,['train','--domain',d,'--arm',arm],20,timeout)for arm in ['TT','SS','R'])
+                tasks.extend((d+'_'+arm,['train','--domain',d,'--arm',arm]+(['--loss-profile',a.loss_profile]if new else[]),20,timeout)for arm in (['R_target_mean']if new else['TT','SS','R']))
             jobs=run_jobs(a.workspace,root,'decoder_training',tasks,'hybrid_tsad.native_v_replay')
-            dump(root/'ALL_SIX_MODELS_FROZEN.json',dict(status='COMPLETED',jobs=jobs,labels_read=False,trainings=[
-                read(root/'train'/d/arm/'TRAIN_RECEIPT.json')for d in ['SWAT','PSM']for arm in ['TT','SS','R']]))
-            print(json.dumps(dict(event='STAGE_COMPLETED',stage='ALL_SIX_MODELS_FROZEN')),flush=True)
+            arms,freeze_name,count=matrix_spec(root)
+            dump(root/freeze_name,dict(status='COMPLETED',models=count,jobs=jobs,labels_read=False,trainings=[
+                read(root/'train'/d/arm/'TRAIN_RECEIPT.json')for d in ['SWAT','PSM']for arm in arms]))
+            print(json.dumps(dict(event='STAGE_COMPLETED',stage=freeze_name.removesuffix('.json'))),flush=True)
 
 
 if __name__=='__main__':main()

@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from hybrid_tsad.native_v_replay import sampling_plan,pool_starts,paired_starts,optimizer,input_windows,accumulate
+from hybrid_tsad.native_v_replay import sampling_plan,pool_starts,paired_starts,optimizer,input_windows,accumulate,reconstruction_components
 
 
 def test_paired_streams_and_nonoverlap_role_pools():
@@ -48,3 +48,20 @@ def test_two_half_accumulation_equals_mean_independent_window_objective():
     right,_=accumulate(m,(v[None]for v in x[2:]),torch.device('cpu'),4)
     assert abs((left+right)/2-float(expected.detach()))<1e-6
     for p,g in zip(m.decoder.parameters(),gradients):torch.testing.assert_close(p.grad,g,rtol=1e-6,atol=1e-7)
+
+
+def test_copy_mean_variance_loss_and_gradient_identity():
+    torch.manual_seed(2025)
+    T=torch.randn(10,1,100,3,dtype=torch.float64,requires_grad=True)
+    S=torch.randn(10,1,100,3,dtype=torch.float64,requires_grad=True)
+    yT=torch.randn(1,100,3,dtype=torch.float64);yS=torch.randn(1,100,3,dtype=torch.float64)
+    fullT,E_T,V_T=reconstruction_components(T,yT);fullS,E_S,V_S=reconstruction_components(S,yS)
+    torch.testing.assert_close(fullT,E_T+.9*V_T,rtol=1e-13,atol=1e-13)
+    torch.testing.assert_close(fullS,E_S+.9*V_S,rtol=1e-13,atol=1e-13)
+    old=(fullT+fullS)/2;new=(E_T+fullS)/2
+    torch.testing.assert_close(old-new,.45*V_T,rtol=1e-13,atol=1e-13)
+    a=torch.autograd.grad(old,(T,S),retain_graph=True);b=torch.autograd.grad(new,(T,S),retain_graph=True)
+    c=torch.autograd.grad(.45*V_T,T)[0]
+    torch.testing.assert_close(a[0]-b[0],c,rtol=1e-12,atol=1e-14)
+    torch.testing.assert_close(a[1]-b[1],torch.zeros_like(S),rtol=0,atol=0)
+    assert torch.count_nonzero(b[0])>0
