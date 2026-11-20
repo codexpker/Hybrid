@@ -1,5 +1,13 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-20 固定SMD子集验证完成
+
+只在预定machine-3-2／3-3上新增seed2025的R和MeanT四次适配，noU仅补兼容当前norm0／独立B1协议的必要推理。两实体MeanT相对R的AP分别−0.214／−0.484pp，ROC和两项VUS亦较低；3-3虽优于noU，但R的排序收益更强。保留3-3原CAL下三连误报75→60、匹配事件9→10/16的有限正项，同时披露严格召回下降、低误报三连区间代价及最长漏检未改善。
+
+两个固定QUERY均无>512点完整事件，长稳态宏／合并覆盖记NA，不能补零或宣称已完成长异常推广验证。当前证据不足将MeanT提升为跨任务正式方法主线，继续保留PSM可重复的局部学习结果及所有SWaT/SMD负项；不继续换机器、加种子或调配方。这是已曝光SMD两个实体的单种子验证，不是盲测试或全28台结论。
+
+[完整方法表、MeanT−R／noU及低误报补表](docs/experiments/timeradar_target_mean_smd_20261120/RESULTS.md)、[原始精度CSV](docs/experiments/timeradar_target_mean_smd_20261120/methods.csv)、[模型/缓存身份](docs/experiments/timeradar_target_mean_smd_20261120/MODEL_AND_CACHE_IDENTITIES.json)。18个实际GPU作业成功并清理，新增3.228192A40GPU小时；首轮部署缺已有依赖的CPU导入失败原件保留，无成功计算重跑。[配置](configs/timeradar-target-mean-smd-20261120.json)／[复核记录](docs/experiments/timeradar_target_mean_smd_20261120/KEY_RESULT_REVIEW.json)。
+
 ## 2026-11-20 R／R-MeanT三种子固定重复已完成
 
 八次新增适配及16份新银行已完成，seed2025、noU、TT/SS与兼容外部结果全部复用。PSM的R-MeanT−R AP三seed均正，均值+0.891±0.505pp；相对单个冻结noU为+1.029±0.122pp。SWaT AP为−0.427±0.241pp，未建立对应持续检出收益。PSM三连原CAL下召回+5.393±2.816pp伴随正常误报+2.256±2.678pp；两项VUS相对R的代价、事件匹配及noU覆盖差距完整保留。SD均为样本SD(ddof=1)，n=3，是共享官方初态下的适配随机性重复，不是三个预训练模型或独立域。

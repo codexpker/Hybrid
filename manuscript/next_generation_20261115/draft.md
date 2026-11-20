@@ -196,6 +196,25 @@ The cached2025 low-FPR supplement remains immutable as a source: PSM C3 area/a i
 
 The new computation consumed10.828306A40GPUh including startup and cleanup:52 successful jobs (four engineering gates, eight adaptations, forty readout parts). One additional guard rejection occurred before process launch and used zero GPU seconds; only the ten unstarted readout items were recovered after the original thirty successful items closed. Original error/cleanup records are retained. Native weights, scalers, optimizer states and numerical banks remain archived outside publicGit; code, configurations, complete metrics and content hashes are published. This resource interruption did not change the fixed experiment matrix or any score.
 
+## Fixed SMD subset scope check
+
+The preassigned, historically exposed SMD machine-3-2 and machine-3-3 extend the frozen target-mean hypothesis at seed2025. They are two entities of one dataset, not two independent domains, blind confirmation or the full28-machine benchmark. Only four adaptations are new: R and R-MeanT per entity, each from identical official pretrained weights and a fresh optimizer. SOURCE_FIT is each native train record's[0,14221), and natural U-FIT is the previously isolated test value prefix[0,7901); no donor/target labels enter learning. Separate train CAL roles preserve the one-point entity boundary difference. They have no independent point labels, so calibration attack counts are NA and no normal1%FPR certification is claimed. The fixed scored QUERY remains[8957,23703),14746 points per entity; the oldnorm1/batch32 caches were incompatible with the current source-FIT standardized norm0/B1 nativeV and were not substituted.
+
+| Entity | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| machine-3-2 | noU | 0.036035 | 0.503761 | 0.068493 | 0.728434 |
+| machine-3-2 | R | 0.037968 | 0.527994 | 0.136598 | 0.761325 |
+| machine-3-2 | R-MeanT | 0.035829 | 0.517616 | 0.084654 | 0.737006 |
+| machine-3-3 | noU | 0.043771 | 0.532765 | 0.066217 | 0.664504 |
+| machine-3-3 | R | 0.092484 | 0.653673 | 0.132917 | 0.782451 |
+| machine-3-3 | R-MeanT | 0.087649 | 0.626640 | 0.119191 | 0.753943 |
+
+R-MeanT falls below R on all four ranking metrics in both entities. AP differences are-0.214pp on3-2 and-0.484pp on3-3. On3-3 it still exceeds noU by4.388pp AP, but R is stronger, so this does not establish the independent benefit of the mean constraint. At original CAL,3-3 C3 false positives75->60 and matched events9->10/16 are retained as an operating positive; recall remains only1.724->1.897% and longest miss is368 in both. Strict recall instead falls8.448->7.931% and longest miss96->134. On3-2 C3 hits, recall and longest miss do not change. Both QUERY sets contain zero qualified duration>512 complete events: long steady macro/pooled coverage and their changes are NA, not zero and not evidence against long-fault observability.
+
+Low-FPR results do not rescue a broad claim. On3-3 the strict normalized area through1% improves0.589pp relative to R, but through5% declines0.757pp; its C3 cap1/3/5 recall differences are-0.517/-1.379/-1.034pp. All caps are posthoc descriptions under unchanged formulas, not learned deployment thresholds. The complete8/16-event sets, ineligible-event NA rows and bothMeanT-R/noU comparisons are preserved in the fixed-subset tables.
+
+Across the entire accepted evidence, PSM retains repeatable AP/ROC and some wider-budget positives; the2025 longest-miss improvement1228->879 did not repeat in2026/2027 (both arms1228), and event-discovery gains did not repeat. SWaT AP negatives repeated. The additional SMD evidence therefore supports retaining a PSM-local learning result plus the disclosed3-3 operating tradeoff, rather than promoting the current constraint into a broadly established Hybrid method contribution. TimeRadar, replay and the classical error/disagreement identity retain their provenance. No further entity, seed, threshold or recipe is selected from these outcomes.
+
 # Historical stopped conditional-energy candidate and fixed geometry comparison
 
 Given strictly past observations $h_t=x_{t-512:t-1}$, a lightweight conditional generator produces $v_k=G_\theta(h_t,\epsilon_k)$, $k=1,\ldots,4$. It uses the official TimesFM3 residual and mixing blocks at width128, two layers, four heads and patch16, including variate attention. Shared8 and per-variate8 independent Gaussian noise allow joint current-value draws. No current target value enters this predictor. The generator has612626 trainable parameters; the separate official TimeRadar response operator retains1,636,043 frozen parameters. This is not the official330M TimesFM3 model, an official quantile forecast, or a restoration of the old Hybrid V1.

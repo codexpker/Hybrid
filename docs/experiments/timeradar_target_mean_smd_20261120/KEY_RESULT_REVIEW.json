@@ -1,0 +1,42 @@
+{
+  "status": "AUDIT_COMPLETED_PASS",
+  "checks_passed": 6883,
+  "checks_total": 6883,
+  "max_absolute_difference": 1.1102230246251565e-16,
+  "differences": [],
+  "metrics_sha256": "a6026b377c2eb8d3e7dcef3ae14c6f90f9a3ffe7a24e3c8d6c86cb64d785029d",
+  "global_seal_sha256": "ec07497f3de71ba15edbc1b7660ff7f38e6aca9f60a42c7a3eec5170a1591efa",
+  "independent_raw_sha256": "0f6652b7b2c6ad23d00083253df33a7a2e54d55c57940587b279bf1b213ba05a",
+  "shared_VUS_sha256": "a183425785ac293fcacdafbb69e72e6b1b238c4190a81728ebf3d1916b8c8149",
+  "preparation_sha256": "71158258125eb7531db17f72a82fd1d3f340e9d986a823553368acef843cc8c2",
+  "endpoint_check_sha256": "a6eb8760cc6e642ed689524c2ca95eb6962b614e27c171c808ef941242506516",
+  "rows": 12,
+  "paired_rows": 8,
+  "low_rows": 12,
+  "low_paired_rows": 8,
+  "event_rows": 216,
+  "resource": {
+    "actual_GPU_jobs": 18,
+    "all_actual_jobs_OS0_cleanup": true,
+    "actual_GPU_hours": 3.2281915972053925,
+    "initial_controller_failure": "CPU-only pre-model import failure retained; exact OS code/CPU duration not independently instrumented, NA"
+  },
+  "CPU_cost": {
+    "preparation_seconds": 0.07594030001200736,
+    "endpoint_seconds": 0.4565635999897495,
+    "NumPy_plus_sharedVUS_seconds": 19.444516199990176,
+    "comparison_seconds": 0.03861710004275665,
+    "record_scaler_seconds": 0.22172989998944104
+  },
+  "scope": "One incremental SMD32/33 seed2025 audit; all own NumPy AP/ROC/CAL/events/lowFPR; six VUS shared pinned official LEFT implementation window100/thre250, not independent mathematical rewrite. Same-family role-separated, not external double blind.",
+  "limitations": [
+    "Two historically exposed SMD entities, not full SMD or independent domains",
+    "No train point labels: CAL selected_attack_points NA; train CAL never indexed into test labels",
+    "All eligible long_event_count=0; long steady macro/pooled NA, no long-event validation claim",
+    "Native saved FP32 V promoted FP64 remains canonical; terminal copy variance only tolerance validation",
+    "No training, neural forward, GPU, threshold selection or QUERY callback",
+    "Initial pre-GPU import failure CPU wall and exact parent OS exit NA, preserved separately"
+  ],
+  "record_scaler_check_sha256": "72de633ab668aca16718c5f3a093ebab6338c041b121220b3d4d641b6eb890e3",
+  "record_scaler_checks": 24
+}

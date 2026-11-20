@@ -1,0 +1,40 @@
+{
+  "status": "PUBLIC_EXPORT_PASS",
+  "checks": 11180,
+  "differences": [],
+  "metrics_sha256": "a6026b377c2eb8d3e7dcef3ae14c6f90f9a3ffe7a24e3c8d6c86cb64d785029d",
+  "FINAL_AUDIT_sha256": "cba7f237c814f859441557293d96e4f3ac5b70540d899622c914cf2a52330180",
+  "public_file_hashes": {
+    "COMPUTE.csv": "281aed041471c0c9dc62947b1e86e1f351a706d077ae1a1553d5623703a1b227",
+    "ENDPOINT_REVIEW.json": "a6eb8760cc6e642ed689524c2ca95eb6962b614e27c171c808ef941242506516",
+    "events.csv": "59f617f6627c2957df33bfc474415ecf25c405154fd7b4949e666896d8931f8d",
+    "IMPLEMENTATION.md": "a54293bdf3feb288bf141251405ffae3c3d2252d4871f7ccc2c23d9386ebd448",
+    "KEY_RESULT_REVIEW.json": "cba7f237c814f859441557293d96e4f3ac5b70540d899622c914cf2a52330180",
+    "learning_pairs.csv": "3a32292bf314cd6d9963c9f1255c553084f3573c94cb754eebc7538cbfe1b522",
+    "LOW_FPR_PAIRS.csv": "b5b0fd1ac6c3eee30696ebd8c362fc0877763e5f358f5b114a9df8c82010c260",
+    "LOW_FPR_SUPPLEMENT.csv": "e14d573ee48eb70af06a251b5a63f6477f0c49f106370d496159cab4cac5e050",
+    "methods.csv": "a6d77c9894d414c2b54d91aec463c4fd18fb770328a569f02f74796063083ad5",
+    "MODEL_AND_CACHE_IDENTITIES.json": "6e725d9fe7a673fa3c2d2c10bea52a43df11e13a4fc3b93e10cbeb10593414e1",
+    "PROVENANCE.json": "5332cdb019481cd1d1c8d1db6b54ed4e102c03f408dbfc1944768a726775cad3",
+    "RESULTS.md": "f78db552fadada152e93197f2560e1afd1892c8c09ab94f6b0ebc177b32e2b07"
+  },
+  "draft_sha256": "175b57f43bda75232cffa9a2225f404c260257238d45d72e39714f7cc0e5ada6",
+  "table_rows": {
+    "ranking": 6,
+    "operation": 12,
+    "pair": 8,
+    "low": 12,
+    "draft_ranking": 6
+  },
+  "CSV_rows": {
+    "methods": 12,
+    "pairs": 8,
+    "low": 12,
+    "lowpairs": 8,
+    "events": 216,
+    "compute": 18
+  },
+  "CPU_wall_seconds": 0.12258560000918806,
+  "scope": "Same bounded audit finite export rounding/unit/NA/identity/cost/safe-artifact check only; no metric recompute, model forward, GPU, files changed or git action",
+  "limitations": "Same-family role separation, not external double blind; prior PSM/SWaT numerical evidence only citation checked, not reevaluated."
+}

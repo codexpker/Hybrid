@@ -1,0 +1,68 @@
+{
+  "status": "ENDPOINT_READ_ONLY_PASS",
+  "checks_passed": 37109,
+  "models": [
+    {
+      "entity": "machine-3-2",
+      "arm": "R",
+      "endpoint_sha256": "ae646d88bdcb266fbfdfd63d1be5f955313c15ea801e73ad60007e94c4cee9d4",
+      "optimizer_sha256": "07fcdf58eb13e25a66d74425fe26ddc2279ddf393fae93f1921f062cfdd1b9ae",
+      "trace_sha256": "a794878edd7b5a74909e9a6f929e71aa65532b1fc84941cbbc575e879456db8c",
+      "train_receipt_sha256": "aed70351481170372ebbe1bdc01f2373be4e418c554840d8337fbe0c6416cbce",
+      "updates": 2000,
+      "B1_windows": 128000,
+      "nondecoder_actual_tensors_exact_PT": true,
+      "all_9_decoder_tensors_changed": true,
+      "actual_optimizer_steps": 2000,
+      "max_loss_identity_abs_error": 0.0
+    },
+    {
+      "entity": "machine-3-2",
+      "arm": "R_target_mean",
+      "endpoint_sha256": "7cbfd4562b92555804a23f3b374faae147c98f821569e290bfa8f2faca380299",
+      "optimizer_sha256": "764c5ad110851d10de7eaa2bb5b123ae22a9a8aefed4361d91ce8074691407a9",
+      "trace_sha256": "2ed04d1fa47ea609dede05bfab4f363f53ec70af7c3f2ed073de810c7f8176b0",
+      "train_receipt_sha256": "e6240f9087f77f34f56477e8bc1cfd22577852f1bba47203c6b68090527d8585",
+      "updates": 2000,
+      "B1_windows": 128000,
+      "nondecoder_actual_tensors_exact_PT": true,
+      "all_9_decoder_tensors_changed": true,
+      "actual_optimizer_steps": 2000,
+      "max_loss_identity_abs_error": 1.9339495338499546e-07
+    },
+    {
+      "entity": "machine-3-3",
+      "arm": "R",
+      "endpoint_sha256": "f74be93560b544aa04647d22b4054561a2e54bb2cdce064413364cf8dd6f158b",
+      "optimizer_sha256": "1320284e7fe016501c91675403ef57fdefd83e72b3fd38601c72d364855b459c",
+      "trace_sha256": "9a94bc0370288e8f563a3138106d2b72fcff4dd4660c74522377dc46ebedf5c4",
+      "train_receipt_sha256": "8a716147ebdc549bbd210b67572256a68b85352f014265cb98abc08d837709ea",
+      "updates": 2000,
+      "B1_windows": 128000,
+      "nondecoder_actual_tensors_exact_PT": true,
+      "all_9_decoder_tensors_changed": true,
+      "actual_optimizer_steps": 2000,
+      "max_loss_identity_abs_error": 0.0
+    },
+    {
+      "entity": "machine-3-3",
+      "arm": "R_target_mean",
+      "endpoint_sha256": "e755dba7ce4d095bedc6460cb7718b26f7006a53101e995fd5ee72f6bb1dbf95",
+      "optimizer_sha256": "dcf936cdb39e8fc17ce62dd8366ea4a8b867f2086ba25f6eab1a94405f125da5",
+      "trace_sha256": "25e7a8be1b4c8ca5df6ce46df96d1712d576c89a4616ca45c4662ebf4a8ae5ce",
+      "train_receipt_sha256": "cedb4dac5fb318bbdbd43c4fceaea870667ce77233d6783919461f888bd0874a",
+      "updates": 2000,
+      "B1_windows": 128000,
+      "nondecoder_actual_tensors_exact_PT": true,
+      "all_9_decoder_tensors_changed": true,
+      "actual_optimizer_steps": 2000,
+      "max_loss_identity_abs_error": 4.32512024389764e-08
+    }
+  ],
+  "ALL_MODELS_FROZEN_sha256": "d9449ffc66e013fd4843f77ad04cd9532306c6df07179f8137ea4d11d6aa802f",
+  "official_initial_PT_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "CPU_wall_seconds": 0.4565635999897495,
+  "scope": "Four actual endpoints plus optimizer state and all8000 trace rows only; no QUERY arrays/labels or neural forward",
+  "independence": "same-family role separated; not external double blind",
+  "cost_note": "Training jobs four OS0; initial controller CPU-only import failure is separate and retained. Final owned GPU cost deferred to GLOBAL seal."
+}

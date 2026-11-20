@@ -1,0 +1,56 @@
+{
+  "raw_seal_sha256": "ec07497f3de71ba15edbc1b7660ff7f38e6aca9f60a42c7a3eec5170a1591efa",
+  "METRICS_sha256": "a6026b377c2eb8d3e7dcef3ae14c6f90f9a3ffe7a24e3c8d6c86cb64d785029d",
+  "actual_GPU_hours": 3.2281915972053925,
+  "new_trainings": 4,
+  "new_banks": 12,
+  "seed": 2025,
+  "normal_CAL_attack_count": null,
+  "QUERY_axis": [
+    8957,
+    23703
+  ],
+  "historically_exposed": true,
+  "full_SMD_claim": false,
+  "contamination_causal_claim": false,
+  "no_successor": true,
+  "export_script_sha256": "a96bad328381877f032ef380f1199f2e546a45a8d610af75702594342b3efae0",
+  "official_source_commit": "4e06d0ad2bbe4c7e349c5a230fa5787d186e1eb2",
+  "official_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "implementation_commit": "7aeb20b3fedb33c9fa5a08e1f197d04644098d00",
+  "key_review_sha256": "cba7f237c814f859441557293d96e4f3ac5b70540d899622c914cf2a52330180",
+  "preparation_review_sha256": "71158258125eb7531db17f72a82fd1d3f340e9d986a823553368acef843cc8c2",
+  "endpoint_review_sha256": "a6eb8760cc6e642ed689524c2ca95eb6962b614e27c171c808ef941242506516",
+  "runtime_manifest_sha256": "9d1ec98c06b4ea1dc7d682cf41d4d1051132a380fad09dbecdfe4279c9a85cb7",
+  "runtime_files": {
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/native_v_conditioning.py": "da0cba058a682c2929abd3e8885bc46bca6ac622f2654450de97fca4bbc0662a",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/native_v_conditioning_queue.py": "0a223545aa318599d9821b5b0a8d6269f531629c78d7694fa7a42676fbbea80f",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/native_v_conditioning_runner.py": "d0b47698f0e8c8a9bba3bf74132c05770b8cab91a768e258d8454d18b8e6f775",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/native_v_replay.py": "6280d915c6cef2945e610d16a636d09458eb50720b56fc377fafac05620afa13",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/__init__.py": "1b3a4799089886649f1cea8ff00d536bc7fbf1eb2ffcc33f1a853c61e2b58159",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/hybrid_v1/temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+    "preparations/timeradar_target_mean_smd_20261120_v1/runtime_v2/hybrid_tsad/hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478"
+  },
+  "reuse_asset_check_sha256": "f9d8bec529bd433f8f93f26bf43bc64d1e75bdfb65c3e6399b24b21c0afb3543",
+  "annotations_sha256": "6a4c45c37c7ece6dcda41f1fdec6cd9db7142748effd6ea8f5d0df997e045120",
+  "initial_launch_failure_sha256": "ed7ac91a16904b3db085516da32677294e2adf18b5ad9dc9d9c62e518dc9e3b6",
+  "initial_launch_GPU_hours": 0,
+  "initial_launch_CPU_seconds": null,
+  "initial_launch_exact_OS_code": null,
+  "actual_GPU_jobs": 18,
+  "all_actual_GPU_jobs_OS0_cleared": true,
+  "unique_targeted_CPU_tests_passed": 34,
+  "scientific_interpretation": "No independent broad SMD ranking/VUS advantage over R; retain limited3-3 CAL-operation positive and PSM-local repeated evidence",
+  "qualified_complete_events": {
+    "machine-3-2": 8,
+    "machine-3-3": 16
+  },
+  "qualified_long_events": {
+    "machine-3-2": 0,
+    "machine-3-3": 0
+  },
+  "unknown_long_coverage_is_not_zero": true,
+  "no_QUERY_label_callback": true,
+  "no_successful_training_or_inference_repeated": true,
+  "code_runtime_note": "Future gate receipt provenance/nominal wording corrected; original executed runtime/gates/TASK/weights/banks retained unchanged."
+}

@@ -285,7 +285,7 @@ def gate_target_mean(w,root,domain):
     assert all(p.grad is None for p in model.parameters()if not p.requires_grad);opt.step()
     after=state_hashes(model);assert all(after[k]==v for k,v in before.items()if not k.startswith('decoder.'))
     assert all(not m.training for m in model.modules())and torch.equal(rng[0],torch.get_rng_state())and torch.equal(rng[1],torch.cuda.get_rng_state(device))
-    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),nominal_SOURCE_FIT_windows=2,labels_read=False,
+    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),labels_read=False,**({'nominal_SOURCE_FIT_windows':2}if task.get('domain')=='SMD'else{'normal_SOURCE_FIT_windows':2}),
         loss_identity_absolute_error=float((old_loss-new_loss-difference).detach().abs()),gradient_identity_max_absolute_error=maximum,
         graph_connected_E=True,frozen_except_decoder=True,all_modules_eval=True,RNG_restored=True,
         plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=training_seed(task)==2025 and task.get('domain')!='SMD',paired_plan_verified=True,gate_models_discarded=True,
