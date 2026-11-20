@@ -1,0 +1,40 @@
+{
+  "status": "PUBLIC_EXPORT_CHECK_COMPLETED",
+  "scope": "Export-only continuation; no scientific metric/model recomputation",
+  "checks": 90706,
+  "differences": [],
+  "primary_ranking_rows": 10,
+  "operating_rows": 20,
+  "pair_rows": 16,
+  "external_ranking_rows": 17,
+  "manuscript_rows": 10,
+  "event_rows": 1070,
+  "event_pairs": 140,
+  "training_component_rows": 4000,
+  "curve_operating_points": 27,
+  "FINAL_AUDIT_sha256": "4c312683182c43f395d9509263807909c52fa1a66e11c22a62985cad9a424cac",
+  "CPU_wall_seconds": 0.3745076000341214,
+  "identities": {
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\RESULTS.md": "ee9e6c5562a18ae3e894fa5637bc51dc44fa068d04e3f39b17a9589c75327938",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\PROVENANCE.json": "5611712f40aa749d2982702f55c8785efc8b2c0e08c2b8ac7dd6f7edddce16b5",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\methods.csv": "4fcedaa53f7fe263e04256e8df4abe7fc3291338ced36819d3d94c8f1b765db7",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\single_factor_pairs.csv": "34a487375146750e635340e3b06d1922665fe9a535b92d952a57f69b32349744",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\events.csv": "6887a8fc3763aec79ec58c9497561ad3422ab97de3606c28a024821f9e868938",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\event_pairs.csv": "32dd8f48ae84d5abe6eae91b94ab38e1307ea238129f1f171ea51620ed6827c2",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\training_components.csv": "3f38e9542c81a8d608bed9b6ec2bb33870f53701b01fb5f7e63475bc4eb4f158",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\training_component_summary.csv": "d32c5e048005682c3a8fa82b593fb2c79ca828d2f5c9936acf2da8694ba53d7e",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\curves\\OPERATING_POINTS.csv": "971d518f07e0d60ddc85fef72234ce4ded01a863f051d4c541bb8c49ef4d745d",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_20261120\\curves\\CURVE_RECEIPT.json": "1ecaaa312f830a52992211b4176c473495474a05c947df53d6640332afdebc09",
+    "hybrid_ad\\manuscript\\next_generation_20261115\\draft.md": "9e5235e6f94e6223687fc68de5b7a395e9617bc792d687356affa25f57a5b1af"
+  },
+  "narrative_checked": [
+    "PSM ranking/coverage positive with false-alarm and VUS costs; SWAT negative/mixed retained",
+    "strict/C3,fullpoint/eventcoverage,1to1/anyhit,macro/pooled separated",
+    "first/last100 are changing samples and weights, not fixed cohort; no oldR E/V forward",
+    "correction1 not an independent-copy unbiased uncertainty claim",
+    "nativeV inference unchanged; target differentiable mean objective only",
+    "current CAL34/512; historical external permissions/CAL not assumed identical",
+    "mature attribution and no contamination causality/originality/successor",
+    "same-family role-separated, not external double blind"
+  ]
+}

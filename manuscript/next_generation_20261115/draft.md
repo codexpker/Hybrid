@@ -6,7 +6,7 @@ lang: en
 bibliography: references.bib
 ---
 
-> **Research status, 20 November 2026.** The native-V conditional quantile B/C candidate remains stopped. A separate public SWaT/PSM head-only TimeRadar TT/SS/R comparison has completed six fixed2000-update trainings,12 new banks and one bounded independent result recomputation; frozen A/noU is reused. PSM replay recovers ranking and part of coverage relative to TT with higher false alarms; SWaT does not establish a corresponding useful increment. Official TimeRadar and mature replay retain their attribution. These natural-mixture development results identify neither contamination causality nor an original Hybrid contribution. No successor is automatically launched.
+> **Research status,20 November2026.** The fixed target-mean/source-copy TimeRadar R comparison has completed two trainings and four new banks on public SWaT/PSM seed2025; all oldnoU/TT/SS/R and external scores are reused. PSM has a bounded AP/ROC and sustained-coverage increment overR with substantially higher normal false alarms and lowerVUS; SWaT has no corresponding clear gain. Source/target reconstruction constraints are therefore not established as a stable two-task contribution or contamination robustness. One key result review has passed. All former stopped candidates remain stopped; no successor is automatically launched.
 
 # Introduction
 
@@ -14,7 +14,7 @@ Industrial monitoring requires more than recognizing abrupt, high-amplitude depa
 
 Time–frequency representations offer a useful way to describe both local variation and temporal organization. TimeRadar learns a fractional time–frequency representation and combines reconstruction with contextual deviation learning [@timeradar2026]. LEFT learns interacting temporal, spectral, and multiscale views, followed by joint representation learning and reconstruction [@left2026]. These methods motivate a richer representation than a single instantaneous vector. However, a representation with good reconstruction or prediction accuracy does not automatically provide a useful anomaly ranking. A flexible reconstruction model may reconstruct a sustained abnormal state, and a predictor may improve normal accuracy without increasing the separation between abnormal responses and difficult normal transitions. These are empirical risks, rather than universal properties of either modeling family.
 
-The latest question is whether head-only natural-mixture reconstruction updates preserve native masked-reconstruction disagreement, and whether historical source replay changes that trade-off. The preceding fixed study of conditional quantiles of official TimeRadar V did not establish a benefit and remains stopped; its raw-variable forecasting and simple history controls are retained as historical evidence. The earlier conditional-energy study remains a separate stopped experiment, not a matching control for this formulation. Mature source replay and complete external models remain learning references rather than inventions or evidence inherited by the latest candidate.
+The latest question is whether changing only target-window copy agreement in a source-replay head update improves native masked-reconstruction disagreement as anomaly evidence. The matched head-only TT/SS/R comparison remains its fixed learning reference. The preceding fixed study of conditional quantiles of official TimeRadar V did not establish a benefit and remains stopped; its raw-variable forecasting and simple history controls are retained as historical evidence. The earlier conditional-energy study remains a separate stopped experiment, not a matching control for this formulation. Mature source replay and complete external models remain learning references rather than inventions or evidence inherited by the latest candidate.
 
 Several boundaries matter. First, an exact density is not a semantic definition of normality: a high-likelihood input can still be undesirable, and a legitimate new operating state can have low likelihood. Second, a causal endpoint detector may use the current observation after it arrives, but it must not use later observations. This is different from predicting the current observation from strictly earlier inputs. Third, statistical cross-variable dependence is not evidence of physical causation or a verified directed lag mechanism. Finally, robustness to unlabeled training contamination requires a separate experiment after the detector has demonstrated useful baseline discrimination. Performance that remains unchanged near a detection floor does not establish robustness.
 
@@ -134,7 +134,7 @@ The six trainings and30 readout jobs plus engineering checks consumed8.080724 A4
 
 # Fixed target-mean / source-copy reconstruction comparison
 
-This prospective single-factor experiment retains the preceding native TimeRadar head-only R initialization, paired T/S plan, effective batch64,2000 endpoint updates, optimizer and V inference. It changes only the target-window reconstruction constraint. No conditional-V B/C, old channel adapter, new backbone, score fusion or supervised target-label training is restored. Both public tasks, SWaT31 and PSM25, and seed2025 are fixed before new results.
+This completed single-factor experiment retains the preceding native TimeRadar head-only R initialization, paired T/S plan, effective batch64,2000 endpoint updates, optimizer and V inference. It changes only the target-window reconstruction constraint. No conditional-V B/C, old channel adapter, new backbone, score fusion or supervised target-label training is restored. Both public tasks, SWaT31 and PSM25, and seed2025 are fixed before new results.
 
 For ten reconstructions $o_{w,m,j,c}$ of a single actual window, define
 
@@ -143,7 +143,7 @@ E_w=\frac1{100C}\sum_{j,c}(\bar o_{w,j,c}-x_{w,j,c})^2,$$
 
 $$V_w=\frac1{100C}\sum_{j,c}\frac1{9}\sum_{m=1}^{10}(o_{w,m,j,c}-\bar o_{w,j,c})^2.$$
 
-Here $V_w$ is the full-window mean unbiased copy variance, not the terminal native detection score. The classical squared-error decomposition gives $L_{copy,w}=E_w+0.9V_w$. With32 target and32 source windows in the same logical batch, the new objective is
+Here $V_w$ is the full-window mean correction1 copy variance, not the terminal native detection score. The classical squared-error decomposition gives $L_{copy,w}=E_w+0.9V_w$. With32 target and32 source windows in the same logical batch, the new objective is
 
 $$L_{new}=\frac1{64}\left[\sum_{w\in T}E_w+\sum_{w\in S}(E_w+0.9V_w)\right].$$
 
@@ -151,7 +151,31 @@ At identical parameters, windows and masks, the original R objective satisfies $
 
 The inference criterion remains the unchanged channel-mean, correction1 copy variance at position99. An increase in training variance does not establish improved anomaly discrimination. The hypothesis tested is whether removing direct target-copy agreement pressure, while retaining source-copy reconstruction, provides an actual detection increment over matched R. Classical decomposition, official TimeRadar and mature replay retain their original attribution; a new contribution would require the paired detection evidence, not merely this identity.
 
-The primary contrast is new minus R; noU, TT and SS are retained unchanged. Common QUERY axes,512 mixed-CAL observations and each model's q99/higher/strict> threshold remain fixed. SWaT has34 attack-labeled selected CAL points and PSM512; no normal1% false-alarm guarantee follows. Point AP/ROC, fixed VUS, strict/C3 operating outcomes, one-to-one versus any-hit events, long-event macro/pooled coverage and longest misses will all be reported. QUERY curves are descriptive only. Results are pending; no protection, robustness or detection-gain claim is made before completion.
+The primary contrast is new minus R; noU, TT and SS are retained unchanged. Common QUERY axes,512 mixed-CAL observations and each model's q99/higher/strict> threshold remain fixed. SWaT has34 attack-labeled selected CAL points and PSM512; no normal1% false-alarm guarantee follows. Point AP/ROC, fixed VUS, strict/C3 operating outcomes, one-to-one versus any-hit events, long-event macro/pooled coverage and longest misses will all be reported. QUERY curves are descriptive only. The fixed results are reported below; a bounded ranking increment is distinguished from operating cost and does not establish contamination robustness.
+
+
+## Fixed target-mean results and decision
+
+| Task | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| SWAT | noU | 0.795725 | 0.857852 | 0.576600 | 0.708990 |
+| SWAT | TT | 0.767373 | 0.840286 | 0.635916 | 0.795740 |
+| SWAT | SS | 0.759642 | 0.840201 | 0.629941 | 0.793154 |
+| SWAT | R | 0.761478 | 0.838195 | 0.638054 | 0.789673 |
+| SWAT | R-MeanT | 0.759388 | 0.841620 | 0.610312 | 0.783951 |
+| PSM | noU | 0.550952 | 0.735048 | 0.484578 | 0.648161 |
+| PSM | TT | 0.497243 | 0.712915 | 0.520744 | 0.714204 |
+| PSM | SS | 0.534776 | 0.731992 | 0.520077 | 0.697853 |
+| PSM | R | 0.551502 | 0.734425 | 0.552609 | 0.721470 |
+| PSM | R-MeanT | 0.560142 | 0.742163 | 0.546871 | 0.714094 |
+
+Against matchedR, PSM AP/ROC improve0.864/0.774pp. C3 long-event macro/pooled coverage rises42.016/54.195% to53.380/72.179%, longest miss falls1228 to879, matched events11 to12 and any-hit11 to14. However normal FPR rises3.589% to8.924%, event F1 falls.081181 to.076433, and VUS-PR/ROC fall. Against noU, ranking improves and false alarms fall but sustained coverage remains lower; against SS, ranking improves and false alarms fall but coverage is lower. This is a real limited ranking/coverage positive with cost, not demonstrated low-FPR preservation.
+
+On SWaT, AP drops0.209pp while ROC gains0.342pp; both VUS fall againstR. C3 FPR1.330% to1.247% is accompanied by recall67.039% to66.461%, long macro11.347% to11.266%, pooled79.974% to79.401% and longest miss4951 to5172; matched/any-hit stays10. Relative to noU, both new VUS retain a positive but AP/ROC and coverage remain lower. The source/target constraint has not established a stable two-task advantage.
+
+All actual training functions, source roles, scalers, plans, masks, budget and nativeV inference remained fixed;4000 per-update order hashes matcholdR. E_T/V_T andE_S/V_S are archived from the same forwards. Full-window variance decreases in both new training traces; neither that trend nor training loss is a detection criterion, and the old/new loss decomposition is evaluated at identical weights, not between diverged trajectories.
+
+Two trainings and10 native readouts plus gates consumed2.747930A40GPUh with14 successful cleaned jobs. One bounded independent same-family review checked45048 fields (max2.22e-16); the two new VUS states share pinned official metric code and oldVUS is reused. Complete method/operating tables, all events, single-factor contrasts, source-component traces and fullPR/low-FPRROC curves are in `docs/experiments/timeradar_target_mean_20261120/`. Exact mixed-CAL34/512 attack composition is unchanged. Mature TimeRadar, replay and error–disagreement decomposition retain their attribution. The candidate is recorded with its limited PSM positives and substantial costs; no coefficient, TT-mean, teacher, backbone, seed or data extension is automatically launched.
 
 # Historical stopped conditional-energy candidate and fixed geometry comparison
 
