@@ -1,0 +1,101 @@
+{
+  "experiment": "TIMERADAR-TARGET-MEAN-SMD32-33-20261120",
+  "entities": [
+    "machine-3-2",
+    "machine-3-3"
+  ],
+  "seed": 2025,
+  "methods": [
+    "noU",
+    "R",
+    "R_target_mean"
+  ],
+  "new_training_count": 4,
+  "training": {
+    "seed": 2025,
+    "updates": 2000,
+    "batch": 64,
+    "half": 32,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "bias_LayerNorm_weight_decay": 0,
+    "warmup": 200,
+    "checkpoint": "endpoint2000_no_SELECT",
+    "trainable": "native.decoder only; all modules eval",
+    "loss": "per window mean10x100xC MSE /64, accumulated B1 then one optimizer step",
+    "SOURCE_FIT_pool": 142,
+    "U_FIT_pool": 79,
+    "sampling_plan_sha256": "b7f9975e4649d800d7935439d3bf9bdca666139e29fd3ae1990ed7631205cc1c",
+    "pool": "complete non-overlap100 windows anchored independently at each role lo",
+    "masks": "each B1 CPU/CUDA fork_rng reset84551,copies10 complementary"
+  },
+  "roles": {
+    "machine-3-2": {
+      "SOURCE_FIT": [
+        0,
+        14221
+      ],
+      "SOURCE_SELECT": [
+        14765,
+        18961
+      ],
+      "U_FIT": [
+        0,
+        7901
+      ],
+      "CAL": [
+        19505,
+        23702
+      ],
+      "QUERY": [
+        8445,
+        23703
+      ]
+    },
+    "machine-3-3": {
+      "SOURCE_FIT": [
+        0,
+        14221
+      ],
+      "SOURCE_SELECT": [
+        14765,
+        18962
+      ],
+      "U_FIT": [
+        0,
+        7901
+      ],
+      "CAL": [
+        19506,
+        23703
+      ],
+      "QUERY": [
+        8445,
+        23703
+      ]
+    }
+  },
+  "labels_in_training": false,
+  "QUERY_axis": [
+    8957,
+    23703
+  ],
+  "CAL_count": 512,
+  "native_inference": {
+    "norm": 0,
+    "window": 100,
+    "batch": 1,
+    "copies": 10,
+    "mask_seed": 84551,
+    "L": 1,
+    "score": "terminal correction1 V mean channels"
+  },
+  "role_records_required": true,
+  "native_train_health": "unknown; nominal source, not independently certified healthy"
+}

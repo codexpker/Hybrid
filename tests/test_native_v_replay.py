@@ -93,3 +93,28 @@ def test_actual_seed_is_parameterized_not_a_filename(monkeypatch):
             assert not torch.equal(*draws)
     finally:np.random.set_state(state)
     with pytest.raises(ValueError):training_seed(dict(replay_training=dict(seed=True)))
+
+
+def test_role_record_fragment_mapping_and_train_cal_identity(tmp_path):
+    from hybrid_tsad.native_v_conditioning_runner import role_values,record_for_role
+    from hybrid_tsad.native_v_conditioning import sha
+    raw=np.arange(240,dtype=np.float32).reshape(120,2)
+    np.savez(tmp_path/'cal.npz',values=raw)
+    np.savez(tmp_path/'SCALER.npz',mean=np.array([1.,2.]),std=np.array([2.,4.]))
+    rec=dict(relative='cal.npz',sha256=sha(tmp_path/'cal.npz'),key='values',shape=[120,2],record_id='entity_train',storage_origin=1000)
+    task=dict(channels=2,roles={'CAL':[1010,1100]},role_records={'CAL':rec},data={},scaler_sha256=sha(tmp_path/'SCALER.npz'))
+    normalized,actual,lo,binding=role_values(tmp_path,tmp_path,task,'CAL')
+    np.testing.assert_array_equal(actual,raw[10:100].astype(np.float64))
+    np.testing.assert_array_equal(normalized,((raw[10:100]-np.array([1.,2.]))/np.array([2.,4.])).astype(np.float32))
+    assert lo==1010 and binding['record_id']=='entity_train'
+    # Old default still maps SOURCE to train and other roles to target.
+    old=dict(data={'source_train':1,'target_test':2})
+    assert record_for_role(old,'SOURCE_FIT')==1 and record_for_role(old,'CAL')==2
+
+
+def test_smd_fixed_pools_plan_and_no_window_identity_collision():
+    s=pool_starts([0,14221]);t=pool_starts([0,7901])
+    assert len(s)==142 and len(t)==79 and s[-1]+100==14200 and t[-1]+100==7900
+    p=sampling_plan(len(s),len(t));q=sampling_plan(len(s),len(t))
+    assert all(np.array_equal(p[k],q[k])for k in p)
+    assert np.array_equal(paired_starts(p,s,t,'R',0)[0][1],t[p['T'][0]])

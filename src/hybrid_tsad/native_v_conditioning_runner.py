@@ -85,12 +85,23 @@ def prepare(w,root):
         roles=['SOURCE_FIT','SOURCE_SELECT','CAL','QUERY'],source_only_training=True,normal_fixture_reuse=True))
 
 
+def record_for_role(task,role):
+    binding=task.get('role_records',{}).get(role)
+    if isinstance(binding,dict):return binding
+    return task['data'][binding or('source_train'if role.startswith('SOURCE')else'target_test')]
+
+
 def role_values(w,d,task,role):
     if role not in task['roles']:raise PermissionError(role)
-    rec=task['data']['source_train'if role.startswith('SOURCE')else'target_test']
-    raw=np.load(w/rec['relative'],mmap_mode='r');assert list(raw.shape)==rec['shape']and raw.shape[1]==task['channels']
+    rec=record_for_role(task,role)
+    if rec.get('key'):
+        assert sha(w/rec['relative'])==rec['sha256']
+        with np.load(w/rec['relative'],allow_pickle=False)as z:raw=z[rec['key']].copy()
+    else:raw=np.load(w/rec['relative'],mmap_mode='r')
+    assert list(raw.shape)==rec['shape']and raw.shape[1]==task['channels']
     lo,hi=task['roles'][role]
-    actual=np.array(raw[lo:hi],dtype=np.float64,copy=True)
+    origin=int(rec.get('storage_origin',0));assert lo-origin>=0 and hi-origin<=len(raw)
+    actual=np.array(raw[lo-origin:hi-origin],dtype=np.float64,copy=True)
     with np.load(d/'SCALER.npz',allow_pickle=False)as z:values=np.asarray((actual-z['mean'])/z['std'],dtype=np.float32)
     assert np.isfinite(values).all()and sha(d/'SCALER.npz')==task['scaler_sha256']
     return values,actual,lo,rec
@@ -101,7 +112,7 @@ def role_index(w,d,task,role):
     return np.load(path,allow_pickle=False)
 
 
-def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='ALL_SIX_MODELS_FROZEN.json',metadata=None):
+def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='ALL_SIX_MODELS_FROZEN.json',metadata=None,canonical_native_V=False,normal_fixture_reuse=True):
     # CAL/QUERY values are unavailable to this entry until all6 models freeze.
     if role in ['CAL','QUERY']:assert read(root/freeze_name)['status']=='COMPLETED'
     d=root/domain;task=read(d/'TASK.json');out=root/'cache'/domain/role/f'part{part}';out.mkdir(parents=True,exist_ok=False)
@@ -126,13 +137,13 @@ def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='
     bits=actual_mask_bits(c,device);np.savez_compressed(out/'MASK_BITS.npz',mask=bits)
     captured=[]
     hook=native.net.register_forward_hook(lambda module,args,result:captured.append(result.detach()))
-    reused=0;full=0;fixtures=[];old=w/'results/timeradar_native_v_protocol_20261119_v1';gate=read(old/'NATIVE_V_NORMAL_GATE.json')
-    assert gate['source_sha256']==SOURCE_SHA and gate['checkpoint_sha256']==WEIGHT_SHA
+    reused=0;full=0;fixtures=[];old=w/'results/timeradar_native_v_protocol_20261119_v1';gate=read(old/'NATIVE_V_NORMAL_GATE.json')if normal_fixture_reuse else None
+    if gate is not None:assert gate['source_sha256']==SOURCE_SHA and gate['checkpoint_sha256']==WEIGHT_SHA
     with torch.no_grad():
         for i,t in enumerate(index):
             relative=int(t)-lo;assert relative>=512 and relative<len(values)
             x=values[relative-99:relative+1];input=torch.from_numpy(x.copy()).to(device)[None];captured.clear()
-            reusable=native_checkpoint is None and role=='SOURCE_FIT'and int(t)in [512,1024,2048]
+            reusable=normal_fixture_reuse and native_checkpoint is None and role=='SOURCE_FIT'and int(t)in [512,1024,2048]
             if reusable:
                 entry=next(v for v in gate['domains'][domain]['points']if v['t']==int(t));p=old/entry['fixture_relative']
                 assert sha(p)==entry['fixture_sha256']and gate['domains'][domain]['scaler_sha256']==task['scaler_sha256']
@@ -154,12 +165,12 @@ def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='
     assert np.isfinite(V).all()and np.all(V>=0)and np.isfinite(reconstruction).all()
     reference=reconstruction.astype(np.float64).var(1,ddof=1).mean(-1)
     assert np.allclose(V,reference,rtol=1e-5,atol=1e-7)
-    canonical=dict(canonical_score=V.astype(np.float64),feature_start=index-99,feature_end_exclusive=index+1)if native_checkpoint is not None else{}
-    legacy_history=dict(history_start=index-512,history_end_exclusive=index)if native_checkpoint is None else{}
+    canonical=dict(canonical_score=V.astype(np.float64),feature_start=index-99,feature_end_exclusive=index+1)if native_checkpoint is not None or canonical_native_V else{}
+    legacy_history=dict(history_start=index-512,history_end_exclusive=index)if native_checkpoint is None and not canonical_native_V else{}
     path=out/'BANK.npz';np.savez_compressed(path,absolute_time_index=index,available_index=index,V=V,reconstruction_terminal=reconstruction,
         actual_order=orders,current_raw=raw_current,current_normalized=normalized_current,
         window_start=index-99,window_end_exclusive=index+1,**legacy_history,**canonical)
-    dump(out/'RECEIPT.json',dict(status='COMPLETED',domain=domain,entity=task['entity'],record_id=record['record_id'],role=role,part=part,parts=parts,
+    dump(out/'RECEIPT.json',dict(status='COMPLETED',domain=task.get('domain',domain),entity=task['entity'],record_id=record['record_id'],role=role,part=part,parts=parts,
         relative=str(path.relative_to(w)),sha256=sha(path),count=n,index_sha256=hashlib.sha256(index.tobytes()).hexdigest(),
         scaler_sha256=task['scaler_sha256'],source_sha256=SOURCE_SHA,checkpoint_sha256=actual_checkpoint_sha,channel_order=task['channel_order'],
         mask_seed=84551,mask_shape=list(bits.shape),mask_bits_sha256=hashlib.sha256(bits.tobytes()).hexdigest(),mask_file_sha256=sha(out/'MASK_BITS.npz'),
@@ -182,7 +193,7 @@ def merge_cache(w,root,domain,role,metadata=None):
             for k in z.files:arrays.setdefault(k,[]).append(z[k].copy())
     combined={k:np.concatenate(v)for k,v in arrays.items()};assert np.array_equal(combined['absolute_time_index'],role_index(w,d,task,role))
     bank=folder/'BANK.npz';assert not bank.exists();np.savez_compressed(bank,**combined)
-    dump(folder/'SEALED.json',dict(status='COMPLETED',domain=domain,entity=task['entity'],record_id=receipts[0]['record_id'],role=role,
+    dump(folder/'SEALED.json',dict(status='COMPLETED',domain=task.get('domain',domain),entity=task['entity'],record_id=receipts[0]['record_id'],role=role,
         relative=str(bank.relative_to(w)),sha256=sha(bank),count=len(combined['V']),parts=[dict(relative=str(p.relative_to(w)),sha256=sha(p))for p in paths],
         mask_bits_sha256=mask_hash,scaler_sha256=task['scaler_sha256'],labels_read=False,**(metadata or {})))
     if role=='SOURCE_FIT':

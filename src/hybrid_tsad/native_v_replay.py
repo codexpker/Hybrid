@@ -16,6 +16,8 @@ EXPERIMENT='timeradar_native_v_replay_20261120_v1'
 OLD='native_v_conditioning_20261119_v1'
 TARGET_MEAN_EXPERIMENT='timeradar_target_mean_20261120_v1'
 REPEAT_EXPERIMENT='timeradar_target_mean_repeat_20261120_v1'
+SMD_EXPERIMENT='timeradar_target_mean_smd_20261120_v1'
+SMD_ENTITIES=['machine-3-2','machine-3-3']
 
 
 def training_seed(task):
@@ -283,11 +285,11 @@ def gate_target_mean(w,root,domain):
     assert all(p.grad is None for p in model.parameters()if not p.requires_grad);opt.step()
     after=state_hashes(model);assert all(after[k]==v for k,v in before.items()if not k.startswith('decoder.'))
     assert all(not m.training for m in model.modules())and torch.equal(rng[0],torch.get_rng_state())and torch.equal(rng[1],torch.cuda.get_rng_state(device))
-    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),normal_SOURCE_FIT_windows=2,labels_read=False,
+    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),nominal_SOURCE_FIT_windows=2,labels_read=False,
         loss_identity_absolute_error=float((old_loss-new_loss-difference).detach().abs()),gradient_identity_max_absolute_error=maximum,
         graph_connected_E=True,frozen_except_decoder=True,all_modules_eval=True,RNG_restored=True,
         plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=training_seed(task)==2025,paired_plan_verified=True,gate_models_discarded=True,
-        estimated_train_seconds_per_arm=read(w/'results'/EXPERIMENT/domain/'GATE.json')['estimated_train_seconds_per_arm']*1.25,
+        estimated_train_seconds_per_arm=read(w/'results'/EXPERIMENT/task.get('timing_reference_domain',domain)/'GATE.json')['estimated_train_seconds_per_arm']*1.25,
         elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated())
     dump(out/'GATE.json',receipt);dump(root/domain/'GATE.json',receipt)
     print(json.dumps(dict(event='GATE_COMPLETED',**receipt)),flush=True)
@@ -295,6 +297,7 @@ def gate_target_mean(w,root,domain):
 
 def matrix_spec(root):
     config=read(root/'CONFIG.json')
+    if config.get('smd_extension'):return ['R','R_target_mean'],'ALL_MODELS_FROZEN.json',4
     if config.get('matched_repeat'):return ['R','R_target_mean'],'ALL_MODELS_FROZEN.json',4
     if config.get('loss_profile')=='target_mean_source_copy':return ['R_target_mean'],'ALL_MODELS_FROZEN.json',2
     return ['TT','SS','R'],'ALL_SIX_MODELS_FROZEN.json',6
@@ -319,6 +322,8 @@ def scoring_cases(w,root):
 def score_cache(w,root,domain,arm,role,part,parts):
     from .native_v_conditioning_runner import cache
     _,freeze_name,_=matrix_spec(root);frozen=read(root/freeze_name)
+    if read(root/'CONFIG.json').get('smd_extension'):
+        return smd_score_cache(w,root,domain,arm,role,part,parts)
     selected=next(r for r in frozen['trainings']if r['domain']==domain and r['arm']==arm)
     checkpoint=w/selected['checkpoint_relative'];assert sha(checkpoint)==selected['checkpoint_sha256']
     meta=dict(seed=selected['seed'],method=arm)if read(root/'CONFIG.json').get('matched_repeat')else None
@@ -396,13 +401,123 @@ def queue_repeats(w,root):
     print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',banks=16)),flush=True)
 
 
+
+def prepare_smd(w,root):
+    import copy
+    root.mkdir(parents=True,exist_ok=False)
+    base=w/'data/mechanism_validation_smd3_group_20261105_v1'
+    template=read(w/'results'/EXPERIMENT/'PSM/TASK.json')
+    for entity in SMD_ENTITIES:
+        out=root/entity;out.mkdir();manifest=read(base/entity/'ROLE_MANIFEST.json')
+        records={r['role']:r for r in manifest['roles']}
+        task=copy.deepcopy(template);task.update(experiment=SMD_EXPERIMENT,domain='SMD',entity=entity,channels=38,
+            channel_order=[f'original_array_column_{i}'for i in range(38)],timing_reference_domain='SWAT',
+            channel_order_source={'description':'Official SMD original38 stored columns'},
+            source_health='UNKNOWN_NATIVE_TRAIN; not independently certified healthy',
+            authorization='Original DONOR value role is explicitly authorized as natural unlabeled U_FIT in current task',
+            historical_exposure=True,blind_confirmation=False)
+        task['roles']={};task['role_records']={};task['indexes']={}
+        for role,oldrole in [('SOURCE_FIT','FIT'),('SOURCE_SELECT','SELECT'),('U_FIT','DONOR'),('CAL','CAL'),('QUERY','QUERY')]:
+            r=records[oldrole];p=base/entity/f'{oldrole}.npz';assert sha(p)==r['sha256']
+            task['roles'][role]=r['original_bounds']
+            task['role_records'][role]=dict(relative=p.relative_to(w).as_posix(),sha256=sha(p),key='values',shape=r['expected_shape'],
+                record_id=entity+'_'+r['parent_split'],parent_split=r['parent_split'],parent_sha256=r['parent_sha256'],storage_origin=r['original_start'])
+        # Identity excludes role. Check all distinct permissions on the same physical record.
+        rs=list(task['roles'])
+        for i,a in enumerate(rs):
+            for b in rs[i+1:]:
+                if task['role_records'][a]['record_id']==task['role_records'][b]['record_id']:
+                    assert max(task['roles'][a][0],task['roles'][b][0])>=min(task['roles'][a][1],task['roles'][b][1])
+        task['data']={'source_train':task['role_records']['SOURCE_FIT'],'target_test':task['role_records']['QUERY']}
+        with np.load(base/entity/'FIT.npz',allow_pickle=False)as z:fit=np.asarray(z['values'],dtype=np.float64)
+        assert fit.shape==(14221,38)and np.isfinite(fit).all()
+        mean=fit.mean(0);std=fit.std(0,ddof=0);std[std<1e-8]=1
+        np.savez_compressed(out/'SCALER.npz',mean=mean,std=std);task['scaler_sha256']=sha(out/'SCALER.npz')
+        eligibility=base/'audit_only'/f'{entity}_TARGET_ELIGIBILITY.npz'
+        with np.load(eligibility,allow_pickle=False)as z:
+            grid=z['CAL_arrived_target_original'].copy();query=z['QUERY_arrived_target_original'].copy()
+        assert len(grid)>=512 and np.array_equal(query,np.arange(8957,23703))
+        cal=grid[np.linspace(0,len(grid)-1,512,dtype=np.int64)]
+        for role,idx in [('CAL',cal),('QUERY',query)]:
+            lo,hi=task['roles'][role];assert np.all(idx>=lo+512)and np.all(idx<hi)
+            p=out/f'{role}_INDEX.npy';np.save(p,idx)
+            task['indexes'][role]=dict(relative=p.relative_to(w).as_posix(),sha256=sha(p),count=len(idx),first=int(idx[0]),last=int(idx[-1]),record_id=task['role_records'][role]['record_id'])
+        source=pool_starts(task['roles']['SOURCE_FIT']);target=pool_starts(task['roles']['U_FIT'])
+        plan=sampling_plan(len(source),len(target),seed_value=2025)
+        np.savez_compressed(out/'PLAN.npz',**plan,source_starts=source,target_starts=target)
+        task['replay_training']=copy.deepcopy(template['replay_training']);task['replay_training'].update(seed=2025,SOURCE_FIT_pool=len(source),U_FIT_pool=len(target),sampling_plan_sha256=sha(out/'PLAN.npz'))
+        task['inherited_reference_not_executed']=['old source training/SELECT predictors','history512 predictor','source_noU_bank_root']
+        for key in ['source_noU_bank_root','source_permutation_sha256','training','source_qualifications']:
+            task.pop(key,None)
+        dump(out/'TASK.json',task)
+        dump(out/'POOL_EXPOSURE.json',dict(pool_counts={'SOURCE_FIT':len(source),'U_FIT':len(target)},
+            streams={k:dict(exposure=int(v.size),unique_pool_windows=int(len(np.unique(v))),repeated_exposures=int(v.size-len(np.unique(v))))for k,v in plan.items()},labels_read=False))
+        label=w/'data/event_smd_20261030_v1'/f'{entity}_test_label.txt'
+        # Fingerprint only; training never opens this evaluation-only asset.
+        dump(out/'EVALUATION_BINDING.json',dict(relative=label.relative_to(w).as_posix(),sha256=sha(label),format='txt',CAL_labels_available=False))
+    dump(root/'CONFIG.json',dict(experiment=SMD_EXPERIMENT,smd_extension=True,domains=SMD_ENTITIES,arms=['R','R_target_mean'],seed=2025,
+        models=4,freeze_name='ALL_MODELS_FROZEN.json',official_initial_checkpoint='528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c',
+        CAL_rule='Original CAL_arrived_target_original fixed linspace512; q99 higher strict >',labels_read=False))
+
+
+def smd_score_cache(w,root,domain,arm,role,part,parts):
+    from .native_v_conditioning_runner import cache
+    frozen=read(root/'ALL_MODELS_FROZEN.json');checkpoint=None
+    if arm!='noU':
+        selected=next(r for r in frozen['trainings']if r['domain']==domain and r['arm']==arm)
+        checkpoint=w/selected['checkpoint_relative'];assert sha(checkpoint)==selected['checkpoint_sha256']
+    cache(w,root/'readout'/arm,domain,role,part,parts,native_checkpoint=checkpoint,freeze_name='ALL_MODELS_FROZEN.json',
+        metadata=dict(seed=2025,method=arm),canonical_native_V=True,normal_fixture_reuse=False)
+
+
+def queue_smd(w,root):
+    import shutil
+    from .native_v_conditioning_queue import run_jobs
+    from .native_v_conditioning_runner import merge_cache
+    gates=run_jobs(w,root,'smd_engineering_gate',[(d,['gate','--domain',d,'--loss-profile','target_mean_source_copy'],20,600)for d in SMD_ENTITIES],'hybrid_tsad.native_v_replay')
+    dump(root/'GATES_COMPLETED.json',dict(status='COMPLETED',jobs=gates))
+    tasks=[]
+    for d in SMD_ENTITIES:
+        timeout=max(3600,int(read(root/d/'GATE.json')['estimated_train_seconds_per_arm']*1.8+600))
+        for arm in ['R','R_target_mean']:
+            profile='target_mean_source_copy'if arm=='R_target_mean'else'native'
+            tasks.append((d+'_'+arm,['train','--domain',d,'--arm',arm,'--loss-profile',profile],20,timeout))
+    trains=run_jobs(w,root,'smd_decoder_training',tasks,'hybrid_tsad.native_v_replay')
+    rows=[]
+    for d in SMD_ENTITIES:
+        for arm in ['R','R_target_mean']:
+            p=root/'train'/d/arm/'TRAIN_RECEIPT.json';rows.append(dict(read(p),train_receipt_relative=p.relative_to(w).as_posix(),train_receipt_sha256=sha(p)))
+    dump(root/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED',models=4,trainings=rows,jobs=trains,labels_read=False))
+    print(json.dumps(dict(event='STAGE_COMPLETED',stage='ALL_FOUR_MODELS_FROZEN')),flush=True)
+    for arm in ['noU','R','R_target_mean']:
+        case=root/'readout'/arm;case.mkdir(parents=True,exist_ok=False)
+        dump(case/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED',parent_relative=(root/'ALL_MODELS_FROZEN.json').relative_to(w).as_posix(),parent_sha256=sha(root/'ALL_MODELS_FROZEN.json')))
+        for d in SMD_ENTITIES:
+            out=case/d;out.mkdir()
+            for n in ['TASK.json','SCALER.npz']:shutil.copyfile(root/d/n,out/n)
+    tasks=[(d+'_'+arm+'_'+role,['score_cache','--domain',d,'--arm',arm,'--role',role],30,3600)
+        for d in SMD_ENTITIES for arm in ['noU','R','R_target_mean']for role in ['CAL','QUERY']]
+    scores=run_jobs(w,root,'smd_native_readout',tasks,'hybrid_tsad.native_v_replay');banks=[]
+    for d in SMD_ENTITIES:
+        for arm in ['noU','R','R_target_mean']:
+            for role in ['CAL','QUERY']:
+                case=root/'readout'/arm;merge_cache(w,case,d,role,metadata=dict(seed=2025,method=arm))
+                p=case/'cache'/d/role/'SEALED.json';r=read(p)
+                banks.append(dict(domain=d,entity=d,method=arm,seed=2025,role=role,relative=r['relative'],sha256=r['sha256'],receipt_relative=p.relative_to(w).as_posix(),receipt_sha256=sha(p)))
+    jobs=gates+trains+scores
+    dump(root/'GLOBAL_RAW_BANK_SEAL.json',dict(status='COMPLETED',models=4,banks=banks,trainings=rows,jobs=jobs,no_labels_decoded=True,labels_read=False,actual_GPU_hours=sum(j['actual_GPU_seconds']for j in jobs)/3600))
+    print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',banks=12)),flush=True)
+
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','gate','train','queue_gate','queue_train','score_cache','queue_score','prepare_repeats','queue_repeats']);p.add_argument('--workspace',required=True,type=Path)
-    p.add_argument('--output',type=Path);p.add_argument('--domain',choices=['SWAT','PSM']);p.add_argument('--arm',choices=['TT','SS','R','R_target_mean'])
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','gate','train','queue_gate','queue_train','score_cache','queue_score','prepare_repeats','queue_repeats','prepare_smd','queue_smd']);p.add_argument('--workspace',required=True,type=Path)
+    p.add_argument('--output',type=Path);p.add_argument('--domain',choices=['SWAT','PSM']+SMD_ENTITIES);p.add_argument('--arm',choices=['TT','SS','R','R_target_mean','noU'])
     p.add_argument('--loss-profile',choices=['native','target_mean_source_copy'],default='native')
     p.add_argument('--role',choices=['CAL','QUERY']);p.add_argument('--part',type=int,default=0);p.add_argument('--parts',type=int,default=1)
-    a=p.parse_args();new=a.loss_profile=='target_mean_source_copy';root=a.output or a.workspace/'results'/(REPEAT_EXPERIMENT if a.action in ['prepare_repeats','queue_repeats']else TARGET_MEAN_EXPERIMENT if new else EXPERIMENT)
-    if a.action=='prepare_repeats':prepare_repeats(a.workspace,root)
+    a=p.parse_args();new=a.loss_profile=='target_mean_source_copy';root=a.output or a.workspace/'results'/(SMD_EXPERIMENT if a.action in ['prepare_smd','queue_smd']else REPEAT_EXPERIMENT if a.action in ['prepare_repeats','queue_repeats']else TARGET_MEAN_EXPERIMENT if new else EXPERIMENT)
+    if a.action=='prepare_smd':prepare_smd(a.workspace,root)
+    elif a.action=='queue_smd':queue_smd(a.workspace,root)
+    elif a.action=='prepare_repeats':prepare_repeats(a.workspace,root)
     elif a.action=='queue_repeats':queue_repeats(a.workspace,root)
     elif a.action=='prepare':(prepare_target_mean if new else prepare)(a.workspace,root)
     elif a.action=='gate':(gate_target_mean if new else gate)(a.workspace,root,a.domain)

@@ -7,6 +7,56 @@ from hybrid_tsad.native_v_conditioning_evaluation import (
     target_mean_inputs, TARGET_MEAN_ARM, adaptation_pair_rows, repeat_inputs)
 
 
+def test_smd_cal_uses_separate_train_record_and_never_indexes_test_labels(monkeypatch):
+    from hybrid_tsad import native_v_conditioning_evaluation as ev
+    from hybrid_tsad import left_native_swat_metrics as metrics
+    monkeypatch.setattr(metrics, "load_author_metric", lambda p: None)
+    monkeypatch.setattr(metrics, "continuous_metrics", lambda y, s, m: (
+        {"AP": .4, "ROC_AUC": .6, "VUS_PR": .3, "VUS_ROC": .5}, ([], [], [], [])))
+    index = np.arange(*ev.SMD_FIXED_QUERY)
+    # Different physical record: deliberately above the entire test label axis.
+    cal_index = np.arange(40000, 40512, dtype=np.int64)
+    def bank(t, score):
+        return dict(absolute_time_index=t, available_index=t, window_start=t-99,
+                    window_end_exclusive=t+1, V=score.copy(), canonical_score=score.copy())
+    cal = bank(cal_index, np.linspace(.1, 1., 512))
+    query = bank(index, .1 + np.abs(np.sin(np.arange(len(index))*.01)))
+    labels = np.zeros(23703, np.int8)
+    labels[9000:9700] = 1; labels[12000:12020] = 1
+    rows, events, _ = ev.evaluate_smd_arrays("machine-3-2", "R", cal, query, cal_index, labels, None)
+    assert len(rows) == 2 and all(r["domain"] == "SMD" for r in rows)
+    assert all(r["entity"] == "machine-3-2" and r["CAL_selected_attack_points"] is None for r in rows)
+    assert all(r["Ntrue"] == 2 and r["long_event_count"] == 1 for r in rows)
+    assert rows[0]["threshold"] == np.quantile(cal["canonical_score"], .99, method="higher")
+    assert len(events) == 4
+    with pytest.raises(ValueError, match="predeclared"):
+        ev.evaluate_smd_arrays("machine-1-1", "R", cal, query, cal_index, labels, None)
+
+
+def test_smd_incomplete_seal_blocks_all_data_and_label_reads(tmp_path, monkeypatch):
+    import json
+    from hybrid_tsad import native_v_conditioning_evaluation as ev
+    (tmp_path / "GLOBAL_RAW_BANK_SEAL.json").write_text(json.dumps(dict(
+        status="COMPLETED", labels_read=True, no_labels_decoded=True)))
+    monkeypatch.setattr(np, "load", lambda *a, **k: pytest.fail("incomplete seal must block arrays"))
+    with pytest.raises(ValueError, match="label-free"):
+        ev.smd_inputs(tmp_path, tmp_path)
+
+
+def test_smd_pairs_are_per_entity_single_seed_and_keep_unqualified_as_NA():
+    from hybrid_tsad import native_v_conditioning_evaluation as ev
+    rows = [dict(entity=e, method=m, stream=s, AP=v, long_steady_macro_coverage=None)
+            for e in ev.SMD_FIXED_ENTITIES for s in ("strict", "confirmed3")
+            for m, v in (("noU", .2), ("R", .1), (ev.TARGET_MEAN_ARM, .3))]
+    pairs = ev.smd_learning_pairs(rows)
+    assert len(pairs) == 8
+    assert all(r["n"] == 1 and r["sample_SD"] is None for r in pairs)
+    assert all(r["long_steady_macro_coverage"] is None for r in pairs)
+    assert {r["entity"] for r in pairs} == set(ev.SMD_FIXED_ENTITIES)
+    for r in pairs:
+        assert r["AP"] == pytest.approx(.2 if r["contrast"].endswith("−R") else .1)
+
+
 def test_quantiles_keep_units_ties_and_negative_scores():
     v = np.array([.2, 2., .5], np.float32)
     q = np.array([[.05, .2, .4], [1., 1., 1.], [-1., 0., 1.]], np.float32)

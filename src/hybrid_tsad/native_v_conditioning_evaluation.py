@@ -850,6 +850,179 @@ def run_target_mean_repeat(workspace, root, output, workers=2):
     return result
 
 
+SMD_FIXED_ENTITIES = ("machine-3-2", "machine-3-3")
+SMD_FIXED_QUERY = (8957, 23703)
+
+
+def evaluate_smd_arrays(entity, arm, cal, query, points, labels, metric_path):
+    """Same native V, CAL and event definitions; train CAL has no test labels.
+
+    Entity identity never becomes a claim of a separate data domain. The old
+    H512-qualified QUERY axis remains fixed although native V needs100 points.
+    """
+    from .left_native_swat_metrics import continuous_metrics, load_author_metric
+    from .timercd_swat_evaluation import evaluate_score
+    if entity not in SMD_FIXED_ENTITIES or arm not in ("noU", "R", TARGET_MEAN_ARM):
+        raise ValueError("Only the two predeclared entities and three methods")
+    index = query["absolute_time_index"]
+    if not np.array_equal(index, np.arange(*SMD_FIXED_QUERY)):
+        raise ValueError("Keep the previously fixed full QUERY axis")
+    for bank in (cal, query):
+        t = bank["absolute_time_index"]
+        for key, value in (("available_index", t), ("window_start", t-99), ("window_end_exclusive", t+1)):
+            np.testing.assert_array_equal(bank[key], value)
+        point_formula_gate("A", bank)
+    tau = exact_cal(cal["absolute_time_index"], cal["canonical_score"], points)
+    if np.asarray(labels).shape != (SMD_FIXED_QUERY[1],):
+        raise ValueError("Original test label record, not train CAL or window labels")
+    ranking, surface = continuous_metrics(labels[index], query["canonical_score"], load_author_metric(metric_path))
+    rows, events, _, _ = evaluate_score(index, query["canonical_score"], labels, tau, index,
+        query_start=SMD_FIXED_QUERY[0], query_stop=SMD_FIXED_QUERY[1], original_length=len(labels),
+        expected_events=None, ranking=ranking)
+    rows, events = causal_timing(rows, events)
+    for row in rows:
+        row.update(ranking, domain="SMD", entity=entity, method=arm, arm=arm,
+            seed=None if arm == "noU" else 2025, reference_trial_seed=2025,
+            QUERY_axis=list(SMD_FIXED_QUERY), CAL_points=512,
+            CAL_exceedances=int(np.sum(cal["canonical_score"] > tau)),
+            CAL_selected_attack_points=None,
+            CAL_label_NA_reason="CAL belongs to published train record; no independent point labels; never index test labels by train times",
+            calibration="same512 source-train CAL points; own q99/higher/strict>; nominal normal not independent healthy certification",
+            training="official frozen TimeRadar" if arm == "noU" else "paired source-FIT/natural mixed target-U; existing decoder only",
+            loss_profile="none" if arm == "noU" else "native" if arm == "R" else "target_mean_source_copy",
+            updates=0 if arm == "noU" else 2000, logical_batch=None if arm == "noU" else 64,
+            native_mask_seed=84551, trainable_parameters=0 if arm == "noU" else 793610,
+            model_parameters=NATIVE_PARAMETERS, historically_exposed=True, blind=False,
+            endpoint_selection="official fixed weights" if arm == "noU" else "fixed2000; no SELECT/QUERY checkpoint selection")
+    for event in events:
+        event.update(domain="SMD", entity=entity, method=arm, seed=None if arm == "noU" else 2025)
+    return rows, events, surface
+
+
+def smd_learning_pairs(rows):
+    """Fixed within-entity contrasts; n1/SDNA, never pool the two machines."""
+    fields = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC", "FP", "TP", "normal_FPR", "Recall", "F1",
+              "M", "auxiliary_any_hit_events", "one_to_one_eventF1", "normal_alarm_fragments",
+              "event_macro_coverage", "event_point_coverage", "long_steady_macro_coverage",
+              "long_steady_point_coverage", "max_event_miss_points", "delay_hit_only_median")
+    lookup = {(r["entity"], r["method"], r["stream"]): r for r in rows}
+    pairs = []
+    for entity in SMD_FIXED_ENTITIES:
+        for stream in ("strict", "confirmed3"):
+            for control in ("R", "noU"):
+                a, b = lookup[entity, TARGET_MEAN_ARM, stream], lookup[entity, control, stream]
+                pairs.append(dict(domain="SMD", entity=entity, seed=2025, stream=stream,
+                    contrast=TARGET_MEAN_ARM+"−"+control, n=1, sample_SD=None,
+                    **{k: None if a.get(k) is None or b.get(k) is None else a[k]-b[k] for k in fields}))
+    return pairs
+
+
+def smd_inputs(workspace, root):
+    """Twelve bank/four endpoint barrier before opening any new test labels."""
+    seal = read(root / "GLOBAL_RAW_BANK_SEAL.json")
+    if seal.get("status") != "COMPLETED" or seal.get("labels_read") is not False or seal.get("no_labels_decoded") is not True:
+        raise ValueError("Complete label-free SMD seal required")
+    expected = {(e, a, r) for e in SMD_FIXED_ENTITIES for a in ("noU", "R", TARGET_MEAN_ARM) for r in ("CAL", "QUERY")}
+    records = {(b["domain"], b["method"], b["role"]): b for b in seal["banks"]}
+    models = {(r["domain"], r["arm"]): r for r in seal["trainings"]}
+    if (len(seal["banks"]) != 12 or set(records) != expected or len(seal["trainings"]) != 4 or len(models) != 4
+            or set(models) != {(e, a) for e in SMD_FIXED_ENTITIES for a in ("R", TARGET_MEAN_ARM)}):
+        raise ValueError("Exactly two entities, three scores and four adaptations")
+    tasks, paths = {}, {}
+    for entity in SMD_FIXED_ENTITIES:
+        task = read(root/entity/"TASK.json"); tasks[entity] = task
+        if task["channels"] != 38 or task["seed"] != 2025 or task["native"]["norm"] != 0:
+            raise ValueError("Keep seed2025/native norm0 and all38 channels")
+        if (task["native"]["checkpoint_sha256"] != "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c"
+                or task["native"]["source_sha256"] != "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317"):
+            raise ValueError("Fixed official source/checkpoint required")
+        cal = np.load(checked(workspace, task["indexes"]["CAL"]), allow_pickle=False)
+        query = np.load(checked(workspace, task["indexes"]["QUERY"]), allow_pickle=False)
+        if cal.shape != (512,) or np.any(np.diff(cal) <= 0) or not np.array_equal(query, np.arange(*SMD_FIXED_QUERY)):
+            raise ValueError("Fixed legal CAL and complete common QUERY")
+        if task["indexes"]["CAL"]["record_id"] == task["indexes"]["QUERY"]["record_id"]:
+            raise ValueError("This task uses train CAL and separate test QUERY")
+        rr, mm = models[entity,"R"], models[entity,TARGET_MEAN_ARM]
+        for model in (rr, mm):
+            if (model["status"] != "COMPLETED" or model["seed"] != 2025 or model["updates"] != 2000
+                    or model["logical_batch"] != 64 or model["exposures"] != 128000
+                    or model["B1_forward_count"] != 128000 or model["labels_read"]
+                    or model["CAL_QUERY_opened"] or model["roles_read"] != ["SOURCE_FIT", "U_FIT"]
+                    or not model["all_modules_eval"] or not model["frozen_parameters_buffers_unchanged"]):
+                raise ValueError("Fixed training permissions, budget, mode or scope changed")
+            checked(workspace, dict(relative=model["checkpoint_relative"], sha256=model["checkpoint_sha256"]))
+        for key in ("scaler_sha256", "plan_sha256", "initial_state_hashes", "trainable_names", "trainable_parameters"):
+            if rr[key] != mm[key]: raise ValueError("Paired initial, plan or scope differs: "+key)
+        if rr.get("loss_profile", "native") != "native" or mm["loss_profile"] != "target_mean_source_copy":
+            raise ValueError("Single target loss factor changed")
+        for role in ("CAL", "QUERY"):
+            reference = None
+            for arm in ("noU", "R", TARGET_MEAN_ARM):
+                descriptor = records[entity,arm,role]; p = checked(workspace, descriptor)
+                receipt = read(checked(workspace, dict(relative=descriptor["receipt_relative"], sha256=descriptor["receipt_sha256"])))
+                if receipt["labels_read"] or receipt["scaler_sha256"] != rr["scaler_sha256"]:
+                    raise ValueError("Readout scaler/label permissions mismatch")
+                for part in receipt["parts"]:
+                    pr = read(checked(workspace, part))
+                    expected_checkpoint = task["native"]["checkpoint_sha256"] if arm == "noU" else models[entity,arm]["checkpoint_sha256"]
+                    if (pr["checkpoint_sha256"] != expected_checkpoint or not pr["B1_only"] or pr["mask_seed"] != 84551
+                            or pr["labels_read"] or not pr["native_immutable"] or not pr["CPU_CUDA_RNG_restored"]):
+                        raise ValueError("Fixed native checkpoint, B1 mask or immutable state changed")
+                bank = load_bank(p)
+                point_formula_gate("A", bank)
+                np.testing.assert_array_equal(bank["absolute_time_index"], cal if role == "CAL" else query)
+                if reference is not None:
+                    for key in ("absolute_time_index", "available_index", "current_raw", "current_normalized", "window_start", "window_end_exclusive", "actual_order"):
+                        np.testing.assert_array_equal(bank[key], reference[key])
+                reference = bank; paths[entity,arm,role] = p
+    return seal, tasks, paths
+
+
+def run_target_mean_smd(workspace, root, output, workers=2):
+    """Fixed two-machine extension; no other task's historical score is edited."""
+    start = time.perf_counter()
+    workspace, root, output = (Path(p).resolve() for p in (workspace, root, output))
+    if output.exists(): raise FileExistsError(output)
+    seal, tasks, paths = smd_inputs(workspace, root)
+    metric = read(checked(workspace, dict(relative=EXTERNAL_MANIFEST, sha256=EXTERNAL_MANIFEST_SHA)))["author_metric"]
+    rows, events, surfaces, low, checks = [], [], {}, [], {}
+    from .native_v_conditioning_curves import low_fpr_entry
+    for entity in SMD_FIXED_ENTITIES:
+        task = tasks[entity]
+        descriptor = read(root/entity/"EVALUATION_BINDING.json")
+        p = checked(workspace, descriptor)
+        labels = (np.loadtxt(p, dtype=np.int8) if descriptor.get("format") == "txt" else
+                  np.load(p, allow_pickle=False) if p.suffix == ".npy" else load_bank(p)[descriptor["key"]])
+        labels = np.asarray(labels).reshape(-1)
+        points = np.load(checked(workspace, task["indexes"]["CAL"]), allow_pickle=False)
+        for arm in ("noU", "R", TARGET_MEAN_ARM):
+            cal, query = (load_bank(paths[entity,arm,r]) for r in ("CAL", "QUERY"))
+            rr, ee, surface = evaluate_smd_arrays(entity, arm, cal, query, points, labels, workspace/metric)
+            for row in rr:
+                row.update(bank_CAL_sha256=sha(paths[entity,arm,"CAL"]), bank_QUERY_sha256=sha(paths[entity,arm,"QUERY"]))
+            ll, arrays = low_fpr_entry(query["absolute_time_index"], query["canonical_score"], labels, rr,
+                dict(domain="SMD", entity=entity, method=arm, seed=None if arm == "noU" else 2025))
+            rows.extend(rr); events.extend(ee); low.extend(ll)
+            for key, value in zip(("TPR", "FPR", "precision", "windows"), surface):
+                surfaces[f"{entity}_{arm}_{key}"] = value
+            for key, value in arrays.items(): surfaces[f"{entity}_{arm}_LOW_{key}"] = value
+            checks[entity+"_"+arm] = dict(CAL=point_formula_gate("A", cal), QUERY=point_formula_gate("A", query))
+    paired = smd_learning_pairs(rows)
+    output.mkdir(parents=True)
+    from .left_swat_replay_repeats import write_csv
+    write_csv(output/"methods.csv", rows); write_csv(output/"learning_pairs.csv", paired)
+    write_csv(output/"LOW_FPR_SUPPLEMENT.csv", low)
+    np.savez_compressed(output/"VUS_AND_LOW_CURVES.npz", **surfaces)
+    (output/"EVENTS.json").write_text(json.dumps(events,indent=2,allow_nan=False),encoding="utf-8")
+    result = dict(status="COMPLETED", rows=rows, paired=paired, low_fpr=low,
+        formula_checks=checks, global_seal_sha256=sha(root/"GLOBAL_RAW_BANK_SEAL.json"),
+        actual_GPU_hours=seal["actual_GPU_hours"], cpu_wall_seconds=time.perf_counter()-start,
+        interpretation="single-seed fixed historically exposed SMD subset, not fullSMD/blind/independent domains; normal train CAL not query labels",
+        bank_manifest=seal["banks"])
+    (output/"METRICS.json").write_text(json.dumps(result,indent=2,allow_nan=False),encoding="utf-8")
+    return result
+
+
 def run(workspace, root, output, workers=2):
     started = time.perf_counter()
     workspace, root, output = Path(workspace).resolve(), Path(root).resolve(), Path(output).resolve()
@@ -939,9 +1112,9 @@ if __name__ == "__main__":
     for key in ("workspace", "root", "out"):
         parser.add_argument("--" + key, type=Path, required=True)
     parser.add_argument("--workers", type=int, default=2)
-    parser.add_argument("--mode", choices=("conditioning", "head-replay", "target-mean", "target-mean-repeat"), default="conditioning")
+    parser.add_argument("--mode", choices=("conditioning", "head-replay", "target-mean", "target-mean-repeat", "target-mean-smd"), default="conditioning")
     args = parser.parse_args()
     fn = {"conditioning": run, "head-replay": run_head_replay, "target-mean": run_target_mean,
-          "target-mean-repeat": run_target_mean_repeat}[args.mode]
+          "target-mean-repeat": run_target_mean_repeat, "target-mean-smd": run_target_mean_smd}[args.mode]
     result = fn(args.workspace, args.root, args.out, args.workers)
     print(f"Completed {len(result['rows'])} fixed method/stream rows")
