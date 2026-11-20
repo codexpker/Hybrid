@@ -4,7 +4,7 @@ import pytest
 from hybrid_tsad.native_v_conditioning_evaluation import (
     exact_cal, quantile_score, raw_residual, step0_equivalence,
     point_formula_gate, sealed_inputs, event_contrasts, METHODS, replay_pairs, replay_sealed_inputs,
-    target_mean_inputs, TARGET_MEAN_ARM)
+    target_mean_inputs, TARGET_MEAN_ARM, adaptation_pair_rows, repeat_inputs)
 
 
 def test_quantiles_keep_units_ties_and_negative_scores():
@@ -135,3 +135,31 @@ def test_single_factor_comparisons_use_new_minus_all_four_baselines():
     for r in result:
         expected = dict(noU=.3, TT=.2, SS=.6, R=.5)[r["contrast"].split("−")[1]]
         assert r["AP"] == .4 - expected
+
+
+def test_adaptation_repetition_pairs_same_seed_and_single_noU_reference():
+    rows = []
+    for d in ("SWAT", "PSM"):
+        for stream in ("strict", "confirmed3"):
+            rows.append(dict(domain=d, method="noU", seed=None, stream=stream, AP=.4))
+            for index, seed_value in enumerate((2025, 2026, 2027)):
+                rows.append(dict(domain=d, method="R", seed=seed_value, stream=stream, AP=.1 + index * .1))
+                rows.append(dict(domain=d, method=TARGET_MEAN_ARM, seed=seed_value, stream=stream, AP=.2 + index * .2))
+    pairs, summary = adaptation_pair_rows(rows, fields=("AP",))
+    assert len(pairs) == 24 and len(summary) == 8
+    same_seed = [p for p in pairs if p["domain"] == "SWAT" and p["stream"] == "strict" and p["contrast"].endswith("−R")]
+    np.testing.assert_allclose([p["AP"] for p in same_seed], [.1, .2, .3])
+    s = next(s for s in summary if s["domain"] == "SWAT" and s["stream"] == "strict" and s["contrast"].endswith("−R"))
+    assert s["n"] == 3 and s["ddof"] == 1
+    assert np.isclose(s["mean"], .2) and np.isclose(s["sample_SD"], .1)
+    noU = [p for p in pairs if p["domain"] == "SWAT" and p["stream"] == "strict" and p["contrast"].endswith("−noU")]
+    np.testing.assert_allclose([p["AP"] for p in noU], [-.2, 0, .2])
+    assert all(p["noU_is_single_fixed_reference"] for p in noU)
+
+
+def test_repeat_label_guard_runs_before_any_asset_or_label_read(tmp_path):
+    import json
+    (tmp_path / "GLOBAL_RAW_BANK_SEAL.json").write_text(json.dumps(dict(
+        status="COMPLETED", labels_read=True, no_labels_decoded=False)))
+    with pytest.raises(ValueError, match="label-free"):
+        repeat_inputs(tmp_path, tmp_path)

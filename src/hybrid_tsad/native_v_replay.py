@@ -15,6 +15,13 @@ from .native_v_conditioning_runner import read, dump, role_values, setup, seed
 EXPERIMENT='timeradar_native_v_replay_20261120_v1'
 OLD='native_v_conditioning_20261119_v1'
 TARGET_MEAN_EXPERIMENT='timeradar_target_mean_20261120_v1'
+REPEAT_EXPERIMENT='timeradar_target_mean_repeat_20261120_v1'
+
+
+def training_seed(task):
+    value=task['replay_training'].get('seed',2025)
+    if isinstance(value,bool)or not isinstance(value,int)or value<0:raise ValueError('Non-negative integer training seed')
+    return value
 
 
 def sampling_plan(source_count,target_count,updates=2000,half=32,seed_value=2025):
@@ -84,6 +91,37 @@ def prepare_target_mean(w,root):
         unchanged='official initial/scaler/PLAN/optimizer/warmup/budget/B1 masks/score/axes/CAL',labels_read=False))
 
 
+def prepare_repeats(w,root):
+    import shutil
+    old=w/'results'/EXPERIMENT;mean=w/'results'/TARGET_MEAN_EXPERIMENT
+    references=[dict(relative=str((r/'GLOBAL_RAW_BANK_SEAL.json').relative_to(w)),sha256=sha(r/'GLOBAL_RAW_BANK_SEAL.json'))for r in [old,mean]]
+    assert [r['sha256']for r in references]==['6220f28d1b865b83629ad9426933d64c164d5968b26f4c180ae8c0f88686d51e','a54a115c3f007c761e38d93b6d95b68211d527b88a90a6bef789de0b51889d31']
+    root.mkdir(parents=True,exist_ok=False);baseline_checks=[]
+    for domain in ['SWAT','PSM']:
+        with np.load(old/domain/'PLAN.npz')as z:base={k:z[k].copy()for k in z.files}
+        recreated=sampling_plan(len(base['source_starts']),len(base['target_starts']),seed_value=2025)
+        assert all(np.array_equal(recreated[k],base[k])for k in recreated)
+        baseline_checks.append(dict(domain=domain,seed2025_arrays_equal=True,original_plan_sha256=sha(old/domain/'PLAN.npz')))
+    for value in [2026,2027]:
+        sr=root/f'seed{value}';sr.mkdir()
+        for domain in ['SWAT','PSM']:
+            out=sr/domain;out.mkdir();task=read(old/domain/'TASK.json')
+            with np.load(old/domain/'PLAN.npz')as z:source=z['source_starts'].copy();target=z['target_starts'].copy()
+            plan=sampling_plan(len(source),len(target),seed_value=value)
+            np.savez_compressed(out/'PLAN.npz',**plan,source_starts=source,target_starts=target)
+            shutil.copyfile(old/domain/'SCALER.npz',out/'SCALER.npz');assert sha(out/'SCALER.npz')==task['scaler_sha256']
+            task['seed']=value;task['replay_training']['seed']=value
+            task['replay_training']['sampling_plan_sha256']=sha(out/'PLAN.npz')
+            task['experiment']=REPEAT_EXPERIMENT;task['matched_repeat_arms']=['R','R_target_mean']
+            task['inherited_reference_not_executed']=['SOURCE_SELECT','source_permutation_sha256','original training(B/C/D)']
+            dump(out/'TASK.json',task)
+        dump(sr/'CONFIG.json',dict(experiment=REPEAT_EXPERIMENT,seed=value,matched_repeat=True,
+            arms=['R','R_target_mean'],models=4,freeze_name='ALL_MODELS_FROZEN.json',labels_read=False))
+    dump(root/'CONFIG.json',dict(experiment=REPEAT_EXPERIMENT,seeds=[2026,2027],new_models=8,new_banks=16,
+        baseline_seed2025_reused=True,baseline_references=references,paired_arms=['R','R_target_mean'],labels_read=False))
+    dump(root/'SEED2025_PLAN_EQUIVALENCE.json',dict(status='PASS',checks=baseline_checks,no_training_or_inference=True))
+
+
 def decoder_model(w,device):
     model=load_native(w,device)
     model.decoder.requires_grad_(True);model.eval()
@@ -147,7 +185,9 @@ def train(w,root,domain,arm,loss_profile='native'):
     roles=['SOURCE_FIT']if arm=='SS'else['U_FIT']if arm=='TT'else['SOURCE_FIT','U_FIT']
     task,arrays=role_arrays(w,root,domain,roles);p=root/domain/'PLAN.npz';assert sha(p)==task['replay_training']['sampling_plan_sha256']
     with np.load(p)as z:plan={k:z[k].copy()for k in z.files}
-    seed();model=decoder_model(w,device);initial=state_hashes(model);opt=optimizer(model);trace=[]
+    seed_value=training_seed(task);seed(seed_value);model=decoder_model(w,device);initial=state_hashes(model);opt=optimizer(model);trace=[]
+    seed_binding=dict(seed=seed_value)if seed_value!=2025 else{}
+    seed_receipt=dict(effective_torch_CPU_seed=int(torch.initial_seed()),effective_torch_CUDA_seed=int(torch.cuda.initial_seed()))if seed_value!=2025 else{}
     target_mean=loss_profile=='target_mean_source_copy'
     if loss_profile not in ['native','target_mean_source_copy']or(target_mean and arm!='R_target_mean'):raise ValueError('Fixed R target-mean profile only')
     pair_arm='R'if target_mean else arm
@@ -172,16 +212,16 @@ def train(w,root,domain,arm,loss_profile='native'):
     final=state_hashes(model);frozen={k:v for k,v in initial.items()if not k.startswith('decoder.')}
     assert all(final[k]==v for k,v in frozen.items())and any(final[k]!=initial[k]for k in initial if k.startswith('decoder.'))
     assert all(not m.training for m in model.modules())
-    checkpoint=out/'ENDPOINT.pth';torch.save(dict(model=model.state_dict(),update=2000,domain=domain,arm=arm),checkpoint)
+    checkpoint=out/'ENDPOINT.pth';torch.save(dict(model=model.state_dict(),update=2000,domain=domain,arm=arm,**seed_binding),checkpoint)
     torch.save(opt.state_dict(),out/'OPTIMIZER.pth');dump(out/'TRACE.json',trace)
-    profile_binding=dict(loss_profile=loss_profile)if target_mean else{}
-    dump(out/'TRAIN_RECEIPT.json',dict(status='COMPLETED',domain=domain,arm=arm,seed=2025,updates=2000,logical_batch=64,
+    profile_binding=dict(loss_profile=loss_profile)if target_mean or seed_value!=2025 else{}
+    dump(out/'TRAIN_RECEIPT.json',dict(status='COMPLETED',domain=domain,arm=arm,seed=seed_value,updates=2000,logical_batch=64,
         B1_forward_count=128000,exposures=128000,roles_read=roles,labels_read=False,CAL_QUERY_opened=False,
         checkpoint_relative=str(checkpoint.relative_to(w)),checkpoint_sha256=sha(checkpoint),optimizer_sha256=sha(out/'OPTIMIZER.pth'),
         plan_sha256=sha(p),scaler_sha256=task['scaler_sha256'],initial_state_hashes=initial,final_state_hashes=final,
         frozen_parameters_buffers_unchanged=True,all_modules_eval=True,trainable_names=[n for n,p in model.named_parameters()if p.requires_grad],
         trainable_parameters=sum(p.numel()for p in model.parameters()if p.requires_grad),
-        elapsed_GPU_seconds=time.monotonic()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**profile_binding))
+        elapsed_GPU_seconds=time.monotonic()-start,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**profile_binding,**seed_receipt))
     print(json.dumps(dict(event='TRAINING_COMPLETED',domain=domain,arm=arm)),flush=True)
 
 
@@ -225,7 +265,7 @@ def gate(w,root,domain):
 
 def gate_target_mean(w,root,domain):
     out=root/domain/'engineering_gate';out.mkdir();device=setup(20);started=time.monotonic();seed()
-    task,arrays=role_arrays(w,root,domain,['SOURCE_FIT']);model=decoder_model(w,device);before=state_hashes(model);opt=optimizer(model)
+    task,arrays=role_arrays(w,root,domain,['SOURCE_FIT']);seed(training_seed(task));model=decoder_model(w,device);before=state_hashes(model);opt=optimizer(model)
     assert sha(root/domain/'PLAN.npz')==task['replay_training']['sampling_plan_sha256']
     values,_,lo,_=arrays['SOURCE_FIT'];windows=list(input_windows(values,lo,[lo+413,lo+925],device))
     rng=(torch.get_rng_state().clone(),torch.cuda.get_rng_state(device).clone());terms=[]
@@ -243,10 +283,10 @@ def gate_target_mean(w,root,domain):
     assert all(p.grad is None for p in model.parameters()if not p.requires_grad);opt.step()
     after=state_hashes(model);assert all(after[k]==v for k,v in before.items()if not k.startswith('decoder.'))
     assert all(not m.training for m in model.modules())and torch.equal(rng[0],torch.get_rng_state())and torch.equal(rng[1],torch.cuda.get_rng_state(device))
-    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,normal_SOURCE_FIT_windows=2,labels_read=False,
+    receipt=dict(status='PASS_ENGINEERING_ONLY',domain=domain,seed=training_seed(task),normal_SOURCE_FIT_windows=2,labels_read=False,
         loss_identity_absolute_error=float((old_loss-new_loss-difference).detach().abs()),gradient_identity_max_absolute_error=maximum,
         graph_connected_E=True,frozen_except_decoder=True,all_modules_eval=True,RNG_restored=True,
-        plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=True,gate_models_discarded=True,
+        plan_sha256=sha(root/domain/'PLAN.npz'),old_plan_bytes_reused=training_seed(task)==2025,paired_plan_verified=True,gate_models_discarded=True,
         estimated_train_seconds_per_arm=read(w/'results'/EXPERIMENT/domain/'GATE.json')['estimated_train_seconds_per_arm']*1.25,
         elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated())
     dump(out/'GATE.json',receipt);dump(root/domain/'GATE.json',receipt)
@@ -255,6 +295,7 @@ def gate_target_mean(w,root,domain):
 
 def matrix_spec(root):
     config=read(root/'CONFIG.json')
+    if config.get('matched_repeat'):return ['R','R_target_mean'],'ALL_MODELS_FROZEN.json',4
     if config.get('loss_profile')=='target_mean_source_copy':return ['R_target_mean'],'ALL_MODELS_FROZEN.json',2
     return ['TT','SS','R'],'ALL_SIX_MODELS_FROZEN.json',6
 
@@ -271,7 +312,8 @@ def scoring_cases(w,root):
             receipt=root/'train'/domain/arm/'TRAIN_RECEIPT.json';selected=read(receipt)
             dump(target/'SCORE_BINDING.json',dict(domain=domain,arm=arm,checkpoint_relative=selected['checkpoint_relative'],
                 actual_endpoint_sha256=selected['checkpoint_sha256'],train_receipt_relative=str(receipt.relative_to(w)),train_receipt_sha256=sha(receipt),
-                actual_feature_window=100,feature_end='t inclusive',legacy512_predictor_not_executed=True))
+                actual_feature_window=100,feature_end='t inclusive',legacy512_predictor_not_executed=True,
+                **(dict(seed=selected['seed'])if read(root/'CONFIG.json').get('matched_repeat')else{})))
 
 
 def score_cache(w,root,domain,arm,role,part,parts):
@@ -279,7 +321,8 @@ def score_cache(w,root,domain,arm,role,part,parts):
     _,freeze_name,_=matrix_spec(root);frozen=read(root/freeze_name)
     selected=next(r for r in frozen['trainings']if r['domain']==domain and r['arm']==arm)
     checkpoint=w/selected['checkpoint_relative'];assert sha(checkpoint)==selected['checkpoint_sha256']
-    cache(w,root/'readout'/arm,domain,role,part,parts,native_checkpoint=checkpoint,freeze_name=freeze_name)
+    meta=dict(seed=selected['seed'],method=arm)if read(root/'CONFIG.json').get('matched_repeat')else None
+    cache(w,root/'readout'/arm,domain,role,part,parts,native_checkpoint=checkpoint,freeze_name=freeze_name,metadata=meta)
 
 
 def queue_score(w,root):
@@ -309,13 +352,59 @@ def queue_score(w,root):
     print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',new_banks=len(banks),reused_noU_banks=len(reused))),flush=True)
 
 
+def queue_repeats(w,root):
+    from .native_v_conditioning_queue import run_jobs
+    from .native_v_conditioning_runner import merge_cache
+    tasks=[(f'seed{value}_{domain}',['gate','--output',str(root/f'seed{value}'),'--domain',domain,'--loss-profile','target_mean_source_copy'],20,600)
+        for value in [2026,2027]for domain in ['SWAT','PSM']]
+    gates=run_jobs(w,root,'repeat_engineering_gate',tasks,'hybrid_tsad.native_v_replay')
+    dump(root/'GATES_COMPLETED.json',dict(status='COMPLETED',jobs=gates,labels_read=False))
+    tasks=[]
+    for value in [2026,2027]:
+        sr=root/f'seed{value}'
+        for domain in ['SWAT','PSM']:
+            timeout=max(3600,int(read(sr/domain/'GATE.json')['estimated_train_seconds_per_arm']*1.8+600))
+            for arm in ['R','R_target_mean']:
+                profile='target_mean_source_copy'if arm=='R_target_mean'else'native'
+                tasks.append((f'seed{value}_{domain}_{arm}',['train','--output',str(sr),'--domain',domain,'--arm',arm,'--loss-profile',profile],20,timeout))
+    training_jobs=run_jobs(w,root,'repeat_decoder_training',tasks,'hybrid_tsad.native_v_replay')
+    for value in [2026,2027]:
+        sr=root/f'seed{value}';rows=[read(sr/'train'/d/arm/'TRAIN_RECEIPT.json')for d in ['SWAT','PSM']for arm in ['R','R_target_mean']]
+        assert len(rows)==4 and all(r['seed']==value and r['updates']==2000 for r in rows)
+        dump(sr/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED',models=4,seed=value,trainings=rows,labels_read=False))
+    dump(root/'ALL_EIGHT_MODELS_FROZEN.json',dict(status='COMPLETED',models=8,jobs=training_jobs,labels_read=False,
+        seed_seals=[dict(seed=value,relative=str((root/f'seed{value}'/'ALL_MODELS_FROZEN.json').relative_to(w)),sha256=sha(root/f'seed{value}'/'ALL_MODELS_FROZEN.json'))for value in [2026,2027]]))
+    print(json.dumps(dict(event='STAGE_COMPLETED',stage='ALL_EIGHT_MODELS_FROZEN')),flush=True)
+    for value in [2026,2027]:scoring_cases(w,root/f'seed{value}')
+    tasks=[(f'seed{value}_{domain}_{arm}_{role}_{part}',
+        ['score_cache','--output',str(root/f'seed{value}'),'--domain',domain,'--arm',arm,'--role',role,'--part',str(part),'--parts',str(parts)],30,7200)
+        for value in [2026,2027]for arm in ['R','R_target_mean']for domain in ['SWAT','PSM']for role,parts in [('CAL',1),('QUERY',4)]for part in range(parts)]
+    score_jobs=run_jobs(w,root,'repeat_native_readout',tasks,'hybrid_tsad.native_v_replay');banks=[];trainings=[]
+    for value in [2026,2027]:
+        sr=root/f'seed{value}'
+        for domain in ['SWAT','PSM']:
+            for arm in ['R','R_target_mean']:
+                p=sr/'train'/domain/arm/'TRAIN_RECEIPT.json';trainings.append(dict(read(p),train_receipt_relative=str(p.relative_to(w)),train_receipt_sha256=sha(p)))
+                for role in ['CAL','QUERY']:
+                    case=sr/'readout'/arm;merge_cache(w,case,domain,role,metadata=dict(seed=value,method=arm))
+                    p=case/'cache'/domain/role/'SEALED.json';sealed=read(p)
+                    banks.append(dict(domain=domain,method=arm,seed=value,role=role,relative=sealed['relative'],sha256=sealed['sha256'],receipt_relative=str(p.relative_to(w)),receipt_sha256=sha(p)))
+    jobs=gates+training_jobs+score_jobs
+    dump(root/'GLOBAL_RAW_BANK_SEAL.json',dict(status='COMPLETED',models=8,banks=banks,trainings=trainings,jobs=jobs,
+        baseline_seed2025_references=read(root/'CONFIG.json')['baseline_references'],no_labels_decoded=True,labels_read=False,
+        actual_GPU_hours=sum(j['actual_GPU_seconds']for j in jobs)/3600))
+    print(json.dumps(dict(event='STAGE_COMPLETED',stage='GLOBAL_RAW_BANK_SEAL',banks=16)),flush=True)
+
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','gate','train','queue_gate','queue_train','score_cache','queue_score']);p.add_argument('--workspace',required=True,type=Path)
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','gate','train','queue_gate','queue_train','score_cache','queue_score','prepare_repeats','queue_repeats']);p.add_argument('--workspace',required=True,type=Path)
     p.add_argument('--output',type=Path);p.add_argument('--domain',choices=['SWAT','PSM']);p.add_argument('--arm',choices=['TT','SS','R','R_target_mean'])
     p.add_argument('--loss-profile',choices=['native','target_mean_source_copy'],default='native')
     p.add_argument('--role',choices=['CAL','QUERY']);p.add_argument('--part',type=int,default=0);p.add_argument('--parts',type=int,default=1)
-    a=p.parse_args();new=a.loss_profile=='target_mean_source_copy';root=a.output or a.workspace/'results'/(TARGET_MEAN_EXPERIMENT if new else EXPERIMENT)
-    if a.action=='prepare':(prepare_target_mean if new else prepare)(a.workspace,root)
+    a=p.parse_args();new=a.loss_profile=='target_mean_source_copy';root=a.output or a.workspace/'results'/(REPEAT_EXPERIMENT if a.action in ['prepare_repeats','queue_repeats']else TARGET_MEAN_EXPERIMENT if new else EXPERIMENT)
+    if a.action=='prepare_repeats':prepare_repeats(a.workspace,root)
+    elif a.action=='queue_repeats':queue_repeats(a.workspace,root)
+    elif a.action=='prepare':(prepare_target_mean if new else prepare)(a.workspace,root)
     elif a.action=='gate':(gate_target_mean if new else gate)(a.workspace,root,a.domain)
     elif a.action=='train':train(a.workspace,root,a.domain,a.arm,a.loss_profile)
     elif a.action=='score_cache':score_cache(a.workspace,root,a.domain,a.arm,a.role,a.part,a.parts)

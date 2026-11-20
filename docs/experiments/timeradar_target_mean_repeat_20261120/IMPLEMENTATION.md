@@ -1,0 +1,9 @@
+# Fixed repetition of native R and target-mean R
+
+Only seeds2026 and2027 are new. Each seed/domain uses one immutable PLAN shared by R and R_target_mean. The pool is the previous complete100-point non-overlapping grid at each role origin. T uses `default_rng(seed)` and S/Tprime/Sprime use the three independent children of `SeedSequence(seed)`. Preparation compares regenerated2025 streams with the accepted original PLAN arrays, without retraining2025. Scalers, role boundaries, channel order, calibration points and query axes remain unchanged.
+
+The shared training entry reads the actual seed from `TASK.replay_training.seed`, resets Python/NumPy/TorchCPU/CUDA before model construction and records effective Torch seeds. Every model subsequently loads the identical official TimeRadar checkpoint. Thus the repeated randomness is primarily sampling, not independent pretraining. Per-window mask seed84551 and all evaluation randomness remain fixed. R retains its previous full-copy loss kernel; the mean variant retains the already accepted differentiable target mean/source copy loss and same-forward E/V diagnostics.
+
+All eight jobs retain2000 endpoint updates, batch64 split32+32, fresh AdamW and the original warmup/name-based weight decay. Only the original decoder updates. There is no validation selection, additional seed, domain, loss or architecture. Each seed writes a truthful four-model barrier; the outer queue waits for all eight before launching40 B1 native readout shards. Sixteen final CAL/QUERY banks carry seed/method identities. Checkpoints, optimizer, traces, mask bits, raw copies/order/current observations, exact footprints, runtime hashes and occupied GPU time remain in the workspace. Official frozen weights are not republished.
+
+Seed2025's two accepted seals and all historical noU/TT/SS/external results are referenced rather than recomputed. Labels stay outside the learner and remain closed until the final sixteen-bank seal.

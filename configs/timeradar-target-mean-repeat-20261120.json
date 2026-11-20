@@ -1,0 +1,22 @@
+{
+  "experiment": "timeradar_target_mean_repeat_20261120_v1",
+  "output": "results/timeradar_target_mean_repeat_20261120_v1",
+  "new_seeds": [2026,2027], "reuse_seed": 2025,
+  "domains": ["SWAT","PSM"], "arms": ["R","R_target_mean"],
+  "new_trainings": 8, "new_merged_banks": 16, "native_readout_jobs": 40,
+  "source_contract": "same officialPT528aea6e,source881e8912,SOURCE_FIT scaler/roles/U_FIT/CAL512/QUERY axes as fixed2025",
+  "seed_effect": "TASK.replay_training.seed resets real Python/NumPy/TorchCPU/CUDA before constructing each model; each model still loads identical officialPT, so not independent pretraining",
+  "sampling": "sampling_plan(source_count,target_count,seed_value=seed); T default_rng(seed), S/Tprime/Sprime SeedSequence(seed).spawn(3); same per-seed PLAN bytes shared by R and R_target_mean",
+  "seed2025_check": "reconstruct all original PLAN streams and compare arrays,without training or inference",
+  "training": "freshAdamW1e-4,beta(.9,.95),eps1e-8,wd.1 original literalname grouping,warmup200,logicalB64=T32+S32,2000endpoint,128000B1windows,noSELECT",
+  "R_loss": "full10copy MSE,unchanged default kernel",
+  "R_target_mean_loss": "target differentiable mean-copy MSE; source full10copy MSE; each window /64, no extra0.5",
+  "random_masks": "fixed per-window CPU/CUDA84551,copies10,maskc; unchanged across seeds and arms",
+  "model": "all eval; only original decoder parameters update; encoder/order/buffers unchanged",
+  "freeze": "four-model ALL_MODELS_FROZEN per seed; global ALL_EIGHT_MODELS_FROZEN before any CAL/QUERY reads",
+  "score": "nativeB1 norm0,L1,criterionNone,terminal99,correction1,meanC; canonicalV float64cast",
+  "labels": "evaluation only,after16 new merged banks seal",
+  "reuse_globals": ["6220f28d1b865b83629ad9426933d64c164d5968b26f4c180ae8c0f88686d51e","a54a115c3f007c761e38d93b6d95b68211d527b88a90a6bef789de0b51889d31"],
+  "resources": {"max_A40":4,"train_GiB":20,"readout_GiB":30,"train_timeout":"prior measured cost conservative margin","readout_timeout_seconds":7200},
+  "commands": ["python -m hybrid_tsad.native_v_replay prepare_repeats --workspace WORKSPACE","python -m hybrid_tsad.native_v_replay queue_repeats --workspace WORKSPACE"]
+}

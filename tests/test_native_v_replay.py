@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from hybrid_tsad.native_v_replay import sampling_plan,pool_starts,paired_starts,optimizer,input_windows,accumulate,reconstruction_components
+from hybrid_tsad.native_v_replay import sampling_plan,pool_starts,paired_starts,optimizer,input_windows,accumulate,reconstruction_components,training_seed
 
 
 def test_paired_streams_and_nonoverlap_role_pools():
@@ -65,3 +65,31 @@ def test_copy_mean_variance_loss_and_gradient_identity():
     torch.testing.assert_close(a[0]-b[0],c,rtol=1e-12,atol=1e-14)
     torch.testing.assert_close(a[1]-b[1],torch.zeros_like(S),rtol=0,atol=0)
     assert torch.count_nonzero(b[0])>0
+
+
+def test_seed2025_retains_original_stream_rule_and_new_seeds_pair():
+    for source_count,target_count in [(3960,900),(1059,175)]:
+        expected_T=np.random.default_rng(2025).integers(target_count,size=(2000,32))
+        legacy=[np.random.default_rng(s)for s in np.random.SeedSequence(2025).spawn(3)]
+        expected=dict(T=expected_T,S=legacy[0].integers(source_count,size=(2000,32)),T_prime=legacy[1].integers(target_count,size=(2000,32)),S_prime=legacy[2].integers(source_count,size=(2000,32)))
+        actual=sampling_plan(source_count,target_count)
+        assert all(np.array_equal(actual[k],expected[k])for k in expected)
+        p26=sampling_plan(source_count,target_count,seed_value=2026);p27=sampling_plan(source_count,target_count,seed_value=2027)
+        assert not np.array_equal(p26['T'],p27['T'])and not np.array_equal(p26['S'],p27['S'])
+
+
+def test_actual_seed_is_parameterized_not_a_filename(monkeypatch):
+    from hybrid_tsad.native_v_conditioning_runner import seed
+    import pytest
+    assert training_seed(dict(replay_training={}))==2025
+    monkeypatch.setattr(torch.cuda,'is_initialized',lambda:False)
+    state=np.random.get_state()
+    try:
+        with torch.random.fork_rng(devices=[]):
+            draws=[]
+            for value in [2026,2027]:
+                chosen=training_seed(dict(replay_training=dict(seed=value)));seed(chosen)
+                assert torch.initial_seed()==value;draws.append(torch.rand(4))
+            assert not torch.equal(*draws)
+    finally:np.random.set_state(state)
+    with pytest.raises(ValueError):training_seed(dict(replay_training=dict(seed=True)))

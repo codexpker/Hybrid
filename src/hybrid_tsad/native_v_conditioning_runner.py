@@ -101,7 +101,7 @@ def role_index(w,d,task,role):
     return np.load(path,allow_pickle=False)
 
 
-def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='ALL_SIX_MODELS_FROZEN.json'):
+def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='ALL_SIX_MODELS_FROZEN.json',metadata=None):
     # CAL/QUERY values are unavailable to this entry until all6 models freeze.
     if role in ['CAL','QUERY']:assert read(root/freeze_name)['status']=='COMPLETED'
     d=root/domain;task=read(d/'TASK.json');out=root/'cache'/domain/role/f'part{part}';out.mkdir(parents=True,exist_ok=False)
@@ -166,11 +166,11 @@ def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None,freeze_name='
         mask_version='torch.randCUDA84551 first5C20 +complement; reshape10,C,20; torch2.8.0cu128 A40',
         full_native_forward_count=full,reused_native_V_count=reused,partial_fixture_completion=fixtures,
         native_immutable=True,CPU_CUDA_RNG_restored=True,labels_read=False,B1_only=True,epoch_or_optimizer=False,
-        elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**checkpoint_binding))
+        elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**checkpoint_binding,**(metadata or {})))
     print(json.dumps(dict(event='CACHE_COMPLETED',domain=domain,role=role,part=part,count=n,reused=reused)),flush=True)
 
 
-def merge_cache(w,root,domain,role):
+def merge_cache(w,root,domain,role,metadata=None):
     d=root/domain;task=read(d/'TASK.json');folder=root/'cache'/domain/role
     paths=sorted(folder.glob('part*/RECEIPT.json'),key=lambda p:int(p.parent.name[4:]));receipts=[read(p)for p in paths]
     assert receipts and len(receipts)==receipts[0]['parts']
@@ -184,7 +184,7 @@ def merge_cache(w,root,domain,role):
     bank=folder/'BANK.npz';assert not bank.exists();np.savez_compressed(bank,**combined)
     dump(folder/'SEALED.json',dict(status='COMPLETED',domain=domain,entity=task['entity'],record_id=receipts[0]['record_id'],role=role,
         relative=str(bank.relative_to(w)),sha256=sha(bank),count=len(combined['V']),parts=[dict(relative=str(p.relative_to(w)),sha256=sha(p))for p in paths],
-        mask_bits_sha256=mask_hash,scaler_sha256=task['scaler_sha256'],labels_read=False))
+        mask_bits_sha256=mask_hash,scaler_sha256=task['scaler_sha256'],labels_read=False,**(metadata or {})))
     if role=='SOURCE_FIT':
         physical=np.quantile(combined['V'].astype(np.float64),[.05,.5,.95],method='linear');sV=max(float(physical[2]),1e-12)
         bias=(physical/sV).astype(np.float32)
