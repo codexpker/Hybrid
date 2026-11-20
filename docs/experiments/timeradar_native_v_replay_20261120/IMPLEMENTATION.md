@@ -17,7 +17,8 @@ in the same positions; the other streams are independently sampled, not copied.
 
 Reuse the old PSM head-probing optimization settings: AdamW1e-4, betas(.9,.95),
 eps1e-8, original LayerNorm/name-bias decay grouping (otherwise wd.1), linear
-warmup200,2000 updates. Each arm restores the official initial model and fresh
+warmup200,2000 updates. Here name-bias means the literal substring 'bias':
+the complex decoder's rb*/ib* parameters do not match and still decay at.1. Each arm restores the official initial model and fresh
 optimizer. Keep endpoint2000; no SELECT/CAL/QUERY checkpoint choice. Frozen dropout
 remains disabled; decoder has no training/eval-dependent layers. Each model has
 128000 actual B1 window exposures, which are repeated windows, not new events.

@@ -1,5 +1,11 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-20 原生TimeRadar头部适配：TT／SS／R固定比较完成
+
+SWaT31/PSM25、seed2025六次适配及12份新银行已完成，旧A/noU完整复用。保留官方权重、SOURCE_FIT scaler与原生末点V，仅更新原重构头；每个原生forward严格B=1，以64窗梯度累积实现匹配批量。PSM R−TT的AP/ROC为+5.426/+2.151pp，持续覆盖部分恢复但误报上升；SWaT未建立相同的有用增量。PSM R相对SS保留排序正项，但覆盖代价仍在；不解释为污染因果或Hybrid原创贡献。38个GPU作业全部成功并清理，实际8.080724358 GPU小时；一次关键独审通过。
+
+[完整方法表、学习方式对照与技术判断](docs/experiments/timeradar_native_v_replay_20261120/RESULTS.md)、[精确方法CSV](docs/experiments/timeradar_native_v_replay_20261120/methods.csv)、[配对CSV](docs/experiments/timeradar_native_v_replay_20261120/learning_pairs.csv)、[模型／缓存SHA与实际成本](docs/experiments/timeradar_native_v_replay_20261120/PROVENANCE.json)。SWaT CAL34攻击点、PSM全攻击CAL限制继续保留；旧38文字已按原CSV更正。停止的B/C及其R保持停止，本轮不自动增加种子、比例、损失、评分或其他后继任务。
+
 ## 2026-11-19 原生V条件动态：固定验证完成
 
 公开SWaT31/PSM25、seed2025的A原生V、B历史MLP分位数、C官方TimesFM3轻量模块分位数和D原值预测参照已完成。六次正常源训练、16评分银行及34实际GPU作业全成功，累计2.290003054 GPU小时；13项增量测试通过。B/C未建立超出A的检测增量，C不自动进入R；保留A在SWaT的具体能力、长宏/合并覆盖失衡，以及D在PSM的有限正项。PSM全攻击CAL、外部上下文和统计权限差异完整保留。[完整方法/配对/逐事件结果与曲线](docs/experiments/timeradar_native_v_conditioning_20261119/RESULTS.md)、[实现](docs/experiments/timeradar_native_v_conditioning_20261119/IMPLEMENTATION.md)、[六个项目模型与SHA](docs/experiments/timeradar_native_v_conditioning_20261119/models/MODEL_MANIFEST.json)、[实际运行及缓存身份](docs/experiments/timeradar_native_v_conditioning_20261119/ARTIFACT_MANIFEST.json)。官方TimeRadar权重仅绑定身份，不重新分发；TimesFM只复用官方代码，没有官方预训练权重。旧Energy及其他已停止分支保持停止，未开启适配或新候选。

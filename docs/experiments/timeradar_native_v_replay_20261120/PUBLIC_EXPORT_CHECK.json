@@ -1,0 +1,33 @@
+{
+  "status": "PUBLIC_EXPORT_CHECK_COMPLETED",
+  "scope": "Limited export-only continuation of the same bounded audit; no metric/model recomputation",
+  "checks": 33446,
+  "differences": [],
+  "ranking_rows": 8,
+  "operating_rows": 16,
+  "learning_pair_rows": 16,
+  "manuscript_ranking_rows": 8,
+  "event_rows": 856,
+  "audit_sha256": "0517d8147d9f13d1c9c8ac7a55022653f3503d51eb9f95e255b82b093c0294de",
+  "metrics_sha256": "2dfd4d51a434b90308db120905c9e709907f1b0d3abb49f30182e75c2f6f67df",
+  "CPU_wall_seconds": 0.14894980000099167,
+  "identities": {
+    "hybrid_ad\\docs\\experiments\\timeradar_native_v_replay_20261120\\RESULTS.md": "3c59140ee20eace6ba789d4b6df000395ce2c277c1ce66e5589e8b7d2a557745",
+    "hybrid_ad\\docs\\experiments\\timeradar_native_v_replay_20261120\\methods.csv": "0ef54c45eb56fd110e2df1ea9fcdc36fc12d1623be183af122920efeedccf1d8",
+    "hybrid_ad\\docs\\experiments\\timeradar_native_v_replay_20261120\\learning_pairs.csv": "47965ecddc6f471a3dab18c06a86145227f7e8c53864bcf975351d603e9da7f0",
+    "hybrid_ad\\docs\\experiments\\timeradar_native_v_replay_20261120\\events.csv": "dce7739207d2df81b63f51eacc3a8262da2d800f765f292bf7efc6d701cf0d8c",
+    "hybrid_ad\\docs\\experiments\\timeradar_native_v_replay_20261120\\PROVENANCE.json": "85ca89f2a1a9220abee4dc207676bb7436d3889d0f8d72103c48d57f4e2cb888",
+    "hybrid_ad\\manuscript\\next_generation_20261115\\draft.md": "9a531f751ef9c807ffa472377e9c096e0dee4c777703aa74e7430dd0bf6d9148"
+  },
+  "narrative_checked": [
+    "strict/C3 separate; no backfill",
+    "event rates expressed in percent; count/miss units preserved",
+    "PSM fullpoint Recall distinct from completeevent coverage",
+    "noU accepted nativeA; sixnew VUS shared official algorithm",
+    "CAL34/512 attack counts; no normal1%FPR certification",
+    "bounded PSM replay positive and SWAT non-repetition/costs retained",
+    "mature TimeRadar/replay attribution; no Hybrid originality or contamination causality",
+    "full endpoints not published; SHA only",
+    "user first-paragraph two spaces retained"
+  ]
+}

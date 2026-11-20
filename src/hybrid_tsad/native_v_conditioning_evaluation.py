@@ -478,7 +478,9 @@ def run_head_replay(workspace, root, output, workers=2):
                 surfaces[d + "_" + arm + "_" + k] = v
     for old in accepted["rows"]:
         if old["method"] == METHODS["A"]:
-            row = dict(old, method="noU", arm="noU", reused_from_METRICS_sha256=ACCEPTED_NATIVE_METRICS_SHA)
+            row = dict(old, method="noU", arm="noU", seed=None, reference_trial_seed=2025,
+                updates=0, logical_batch=None, trainable_parameters=0, model_parameters=NATIVE_PARAMETERS,
+                native_mask_seed=84551, reused_from_METRICS_sha256=ACCEPTED_NATIVE_METRICS_SHA)
             if sha(paths[row["domain"], "noU", "QUERY"]) != row["bank_QUERY_sha256"]:
                 raise ValueError("Frozen A/noU QUERY identity changed")
             if sha(paths[row["domain"], "noU", "CAL"]) != row["bank_CAL_sha256"]:
@@ -486,6 +488,14 @@ def run_head_replay(workspace, root, output, workers=2):
             rows.append(row)
     old_events = read(checked(workspace, dict(relative=ACCEPTED_NATIVE_EVENTS, sha256=ACCEPTED_NATIVE_EVENTS_SHA)))
     events.extend(dict(e, method="noU") for e in old_events if e["method"] == METHODS["A"])
+    for row in rows:
+        if row["method"] != "noU":
+            training = next(r for r in seal["trainings"] if r["domain"] == row["domain"] and r["arm"] == row["method"])
+            row.update(trainable_parameters=training["trainable_parameters"], model_parameters=NATIVE_PARAMETERS,
+                native_mask_seed=84551, training_roles=training["roles_read"])
+            baseline = next(r for r in rows if r["domain"] == row["domain"] and r["method"] == "noU" and r["stream"] == row["stream"])
+            if any(row[k] != baseline[k] for k in ("Ntrue", "long_event_count", "CAL_selected_attack_points")):
+                raise ValueError("Event qualification/CAL observation identity must match noU")
     pair = replay_pairs(rows)
     output.mkdir(parents=True)
     from .left_swat_replay_repeats import write_csv

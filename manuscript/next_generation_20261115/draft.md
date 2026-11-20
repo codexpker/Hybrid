@@ -1,12 +1,12 @@
 ---
 title: "Hybrid: Time–Frequency and Temporal Normality Modeling for Industrial Time-Series Anomaly Detection"
 author: []
-date: "Working draft, updated 19 November 2026"
+date: "Working draft, updated 20 November 2026"
 lang: en
 bibliography: references.bib
 ---
 
-> **Research status, 19 November 2026.** The fixed native-TimeRadar-V/history-conditioning experiment has completed six normal-source trainings and sixteen score banks on public SWaT31/PSM25, seed2025. Conditional quantile scoring did not improve detection over raw native V; the TimesFM-block arm lost ranking on both tasks. A bounded raw-forecast reference gain in PSM is retained, without claiming V synergy. Official TimeRadar weights and lightweight official TimesFM3 code blocks are used; no official TimesFM pretrained weights, private data or new mixed adaptation enter this experiment. One bounded role-independent result recomputation, including public export verification, is complete. No R or successor is automatically launched. Earlier conditional-energy, LEFT+R and external-backbone results remain attributed historical evidence.
+> **Research status, 20 November 2026.** The native-V conditional quantile B/C candidate remains stopped. A separate public SWaT/PSM head-only TimeRadar TT/SS/R comparison has completed six fixed2000-update trainings,12 new banks and one bounded independent result recomputation; frozen A/noU is reused. PSM replay recovers ranking and part of coverage relative to TT with higher false alarms; SWaT does not establish a corresponding useful increment. Official TimeRadar and mature replay retain their attribution. These natural-mixture development results identify neither contamination causality nor an original Hybrid contribution. No successor is automatically launched.
 
 # Introduction
 
@@ -14,7 +14,7 @@ Industrial monitoring requires more than recognizing abrupt, high-amplitude depa
 
 Time–frequency representations offer a useful way to describe both local variation and temporal organization. TimeRadar learns a fractional time–frequency representation and combines reconstruction with contextual deviation learning [@timeradar2026]. LEFT learns interacting temporal, spectral, and multiscale views, followed by joint representation learning and reconstruction [@left2026]. These methods motivate a richer representation than a single instantaneous vector. However, a representation with good reconstruction or prediction accuracy does not automatically provide a useful anomaly ranking. A flexible reconstruction model may reconstruct a sustained abnormal state, and a predictor may improve normal accuracy without increasing the separation between abnormal responses and difficult normal transitions. These are empirical risks, rather than universal properties of either modeling family.
 
-The central question is whether a strictly historical conditional model can add anomaly discrimination to the native masked-reconstruction disagreement of an adaptive time–frequency detector. The latest fixed study predicts conditional quantiles of official TimeRadar V, rather than generating raw observations and measuring a frozen response-space energy distance. A raw-variable forecasting reference and a simple history MLP test whether the structured temporal encoder provides useful additional evidence. The earlier conditional-energy study remains a separate stopped experiment, not a matching control for this formulation. Mature source replay and complete external models remain learning references rather than inventions or evidence inherited by the latest candidate.
+The latest question is whether head-only natural-mixture reconstruction updates preserve native masked-reconstruction disagreement, and whether historical source replay changes that trade-off. The preceding fixed study of conditional quantiles of official TimeRadar V did not establish a benefit and remains stopped; its raw-variable forecasting and simple history controls are retained as historical evidence. The earlier conditional-energy study remains a separate stopped experiment, not a matching control for this formulation. Mature source replay and complete external models remain learning references rather than inventions or evidence inherited by the latest candidate.
 
 Several boundaries matter. First, an exact density is not a semantic definition of normality: a high-likelihood input can still be undesirable, and a legitimate new operating state can have low likelihood. Second, a causal endpoint detector may use the current observation after it arrives, but it must not use later observations. This is different from predicting the current observation from strictly earlier inputs. Third, statistical cross-variable dependence is not evidence of physical causation or a verified directed lag mechanism. Finally, robustness to unlabeled training contamination requires a separate experiment after the detector has demonstrated useful baseline discrimination. Performance that remains unchanged near a detection floor does not establish robustness.
 
@@ -94,6 +94,42 @@ Retain two bounded findings. Native A in SWaT has AP.795725 and C3 FPR1.223%/rec
 **Decision:** the fixed upper-tail V-conditioning candidate does not establish an attributable detection increment and is not automatically advanced to R. Official TimeRadar's concrete baseline evidence and D's limited reference positive remain; TimesFM here means actual lightweight official code reuse without pretrained weights, not validated foundation-model or directed-lag capability. No new seed, threshold, score, loss or successor is opened. The mixed-unlabeled/two-stage research objective remains, pending the main research decision.
 
 Thirty-four owned GPU jobs all exit successfully with no repeated training or inference, totaling2.290003054 A40GPUh. One role-independent same-family review recomputes25,227 fields with maximum difference1.11e-16, sharing the pinned official VUS implementation and reusing old VUS. A corrected missing event-boundary export changes only a derived CSV, not scores or metrics. Raw V, ten-copy endpoints, orders/masks, predictions/quantiles, original footprints and runtime bytes remain archived; six project-trained selected checkpoints and their hashes are delivered separately from upstream weights. This does not confer a new Hybrid contribution or pollution-robustness claim.
+
+# Native TimeRadar head probing on natural mixed target data
+
+The conditional-V B/C recipe and its prospective R adaptation remain stopped. A separate fixed same-backbone experiment now tests native TimeRadar reconstruction-head probing with data replay. The official model's fractional-order network, embeddings, encoder and buffers are frozen; only the existing complex reconstruction decoder is updated. The native ten-copy terminal V criterion, SOURCE_FIT scaler, B=1 per-window order, norm0 and isolated84551 complementary masks are unchanged from A/noU. This is an established update scope [@timeradar2026] combined with mature replay, not a claimed original Hybrid mechanism or a restoration of former channel adapters.
+
+For each logical batch of64 actual windows, the unchanged reconstruction objective is
+
+$$\mathcal L_{\mathcal B}(\theta_{dec})=\frac1{64}\sum_{w\in\mathcal B}\frac1{10\cdot100\cdot C}\sum_{m,j,c}(\hat x^{(m)}_{w,j,c}-x_{w,j,c})^2.$$
+
+Every native forward has B=1; gradients of64 scaled per-window losses are accumulated before one AdamW update. Frozen modules remain in eval, including backbone dropout. No independent windows are put into a native batch to average their fractional order. TT=[T,Tprime], SS=[Sprime,S] and R=[T,S] have32 windows per half, paired T and S positions, independently sampled Tprime/Sprime, and the same official initial state/fresh optimizer. Role-local nonoverlapping complete100-window pools follow the prior head sampler, with3960/900 source/target windows in SWaT and1059/175 in PSM. Repeated draws do not create independent events.
+
+The fixed prior PSM probing configuration is logical batch64,2000 updates, AdamW1e-4/betas(.9,.95)/eps1e-8, weight decay.1 under the original name/LayerNorm grouping, and linear warmup200. Literal names containing 'bias' and LayerNorm parameters are exempt; complex rb*/ib* names are not. Use endpoint2000 without source SELECT, CAL or QUERY selection. Train only SOURCE_FIT and the existing natural U-FIT. This does not reproduce the LEFT256-batch training exposure or create a new normal-source initialization; noU remains the official pretrained TimeRadar plus fixed SOURCE_FIT normalization.
+
+The primary learning contrasts are R−TT, with R−noU, R−SS and TT−noU retained. All methods share the same QUERY points,512 CAL observations and V criterion. Each uses its own q99/higher/strict> threshold; SWaT's selected mixed CAL has34 attack-labeled points and PSM512, as already recorded in the previous metrics. They do not certify a normal false-alarm budget. All new endpoints and scores must freeze before new label evaluation. Natural-mixture gains or losses cannot, without a separate intervention, be attributed specifically to anomaly contamination. Mature TimeRadar/replay retain their named external attribution; no innovation claim follows from training alone. All six endpoints and twelve new score banks were frozen before evaluation. The complete fixed comparison is now available below.
+
+
+## Fixed native-V adaptation results
+
+| Task | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| SWAT | noU | 0.795725 | 0.857852 | 0.576600 | 0.708990 |
+| SWAT | TT | 0.767373 | 0.840286 | 0.635916 | 0.795740 |
+| SWAT | SS | 0.759642 | 0.840201 | 0.629941 | 0.793154 |
+| SWAT | R | 0.761478 | 0.838195 | 0.638054 | 0.789673 |
+| PSM | noU | 0.550952 | 0.735048 | 0.484578 | 0.648161 |
+| PSM | TT | 0.497243 | 0.712915 | 0.520744 | 0.714204 |
+| PSM | SS | 0.534776 | 0.731992 | 0.520077 | 0.697853 |
+| PSM | R | 0.551502 | 0.734425 | 0.552609 | 0.721470 |
+
+The original A/noU native-V banks and all original thresholds remain archived; each new model calibrates its own V on the same512 mixed-CAL points. Results use SWaT336321 and PSM64728 identical QUERY points. PSM's CAL is entirely attack-labeled, so low normal false-alarm rates are empirical outcomes rather than a1% certification.
+
+On PSM, R−TT improves AP5.426pp and ROC2.151pp; C3 long-event macro/pooled coverage improves24.441/22.016% to42.016/54.195%, while normal FPR rises2.160% to3.589%. Matched events increase10 to11 but any-hit remains11. R approximately restores noU AP (.551502 versus .550952), yet loses noU recall and long coverage; its C3 normal FPR falls29.096% to3.589%, long macro86.453% to42.016%, and longest miss increases694 to1228. Relative to source-only SS, R improves ranking and lowers FPR but loses coverage. Thus PSM supports a bounded replay ranking/coverage recovery against TT, not complete preservation or domination.
+
+On SWaT, R−TT AP/ROC are -0.590/-0.209pp; small coverage gains cost additional false alarms and leave10 of22 matched events unchanged. All three adapted point AP/ROC values fall below noU. Improved VUS values are retained as distinct range-based outcomes, without overriding point or operating evidence.
+
+The six trainings and30 readout jobs plus engineering checks consumed8.080724 A40 GPU hours, including startup/cleanup, with no failed or duplicate jobs. One role-separated same-family review matched16458 fields (maximum difference3.33e-16), including raw-score identity, paired exposure, calibration and complete-event accounting; shared official VUS code is disclosed. Full strict/C3 metrics, hit-only delays, censored misses, event macro/pooled coverage and cost/SHA records are in `docs/experiments/timeradar_native_v_replay_20261120/`. These are two exposed tasks, one seed, a mature backbone and replay policy; neither mixed-contamination robustness nor heterogeneous Stage1 training is established. No B/C R, further seed, loss or scoring variation follows automatically.
 
 # Historical stopped conditional-energy candidate and fixed geometry comparison
 
