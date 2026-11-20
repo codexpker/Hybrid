@@ -13,7 +13,7 @@ from .native_v_conditioning_runner import read,dump,merge_cache,freeze_trainings
 from .native_v_conditioning import sha
 
 
-def run_jobs(workspace,root,stage,tasks,worker_module='hybrid_tsad.native_v_conditioning_runner'):
+def run_jobs(workspace,root,stage,tasks,worker_module='hybrid_tsad.native_v_conditioning_runner',gpu_indices=None):
     sys.path.insert(0,str(workspace/'preparations/hybrid_left_joint_cycle_20261109_v2/resources'))
     import owned_session
     from gpu_idle_guard import gpu_guard
@@ -41,8 +41,10 @@ def run_jobs(workspace,root,stage,tasks,worker_module='hybrid_tsad.native_v_cond
             dump(life/'OS_WAIT.json',result);results.append(result)
             if error:raise RuntimeError(result)
         return results
-    lanes=[tasks[i::4]for i in range(4)]
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4)as pool:groups=list(pool.map(lambda pair:lane(*pair),enumerate(lanes)))
+    indices=list(range(4))if gpu_indices is None else list(gpu_indices)
+    assert indices and len(indices)<=4 and len(set(indices))==len(indices)and all(i in devices for i in indices)
+    lanes=[tasks[i::len(indices)]for i in range(len(indices))]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(indices))as pool:groups=list(pool.map(lambda pair:lane(*pair),zip(indices,lanes)))
     return [r for group in groups for r in group]
 
 
