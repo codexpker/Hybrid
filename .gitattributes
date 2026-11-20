@@ -51,3 +51,6 @@ docs/provenance/stage2_evaluation_cpu/** -text -whitespace
 docs/provenance/stage2_evaluation_resource_v3/** -text -whitespace
 docs/provenance/stage2_review_receipts/** -text whitespace=cr-at-eol
 docs/provenance/stage2_delivery/** -text -whitespace
+
+# Retain this fixed SMD publication's audited result bytes across clones.
+docs/experiments/timeradar_target_mean_smd_20261120/** -text whitespace=cr-at-eol
