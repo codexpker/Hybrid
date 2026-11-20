@@ -3,7 +3,7 @@ import pytest
 
 from hybrid_tsad.native_v_conditioning_evaluation import (
     exact_cal, quantile_score, raw_residual, step0_equivalence,
-    point_formula_gate, sealed_inputs, event_contrasts, METHODS)
+    point_formula_gate, sealed_inputs, event_contrasts, METHODS, replay_pairs, replay_sealed_inputs)
 
 
 def test_quantiles_keep_units_ties_and_negative_scores():
@@ -93,3 +93,23 @@ def test_event_pair_export_retains_half_open_boundaries():
     result = event_contrasts(events)
     assert len(result) == 1 and result[0]["end_exclusive"] == 30
     assert result[0]["end_exclusive"] - result[0]["start"] == result[0]["total_points"]
+
+
+def test_replay_comparisons_keep_noU_and_SS_distinct():
+    rows = [dict(domain=d, method=m, stream=s, AP=value, FP=int(100 * value))
+        for d in ("SWAT", "PSM") for s in ("strict", "confirmed3")
+        for m, value in (("noU", .3), ("TT", .2), ("SS", .6), ("R", .5))]
+    result = replay_pairs(rows)
+    assert len(result) == 16 and all(r["n"] == 1 and r["sample_SD"] is None for r in result)
+    lookup = {r["contrast"]: r for r in result if r["domain"] == "SWAT" and r["stream"] == "strict"}
+    assert lookup["R−TT"]["AP"] == .5 - .2
+    assert lookup["R−SS"]["AP"] == .5 - .6
+    assert lookup["R−noU"]["FP"] == 20
+
+
+def test_replay_label_guard_precedes_asset_loading(tmp_path):
+    import json
+    (tmp_path / "GLOBAL_RAW_BANK_SEAL.json").write_text(json.dumps(dict(
+        status="COMPLETED", labels_read=True, no_labels_decoded=False)))
+    with pytest.raises(ValueError, match="label-free"):
+        replay_sealed_inputs(tmp_path, tmp_path)

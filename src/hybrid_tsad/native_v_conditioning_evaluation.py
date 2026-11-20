@@ -27,6 +27,11 @@ EXTERNAL_NAMES = {"LEFT_noU", "LEFT_TT", "LEFT_R", "MLP_noU", "MLP_TT", "MLP_R",
                   "CANDI_A", "HistoryMean512", "TimeRadar_native"}
 NATIVE_PARAMETERS = 1636043
 BASE_PROTOCOL = "1be5e0001ae80b787302c2fc62f58860e101cd11"
+REPLAY_ARMS = ("noU", "TT", "SS", "R")
+ACCEPTED_NATIVE_METRICS = "results/native_v_conditioning_metrics_20261119_v1/METRICS.json"
+ACCEPTED_NATIVE_METRICS_SHA = "a3c31f2325174a02fb76bd76486013064c71e83e5909ed90368f9b46e3ce9ccb"
+ACCEPTED_NATIVE_EVENTS = "results/native_v_conditioning_metrics_20261119_v1/EVENTS.json"
+ACCEPTED_NATIVE_EVENTS_SHA = "6d54b9be99457c42f1c873fe345a30fafbfc09991e7d9983e8df8bf6d96b8789"
 
 
 def read(path):
@@ -359,6 +364,161 @@ def event_contrasts(events):
     return result
 
 
+def replay_pairs(rows):
+    """Same-backbone/criterion learning contrasts; one fixed seed, not a CI."""
+    lookup = {(r["domain"], r["method"], r["stream"]): r for r in rows}
+    fields = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC", "TP", "FP", "normal_FPR", "Recall", "F1",
+        "M", "auxiliary_any_hit_events", "one_to_one_eventPrecision", "one_to_one_eventRecall",
+        "one_to_one_eventF1", "event_macro_coverage", "event_point_coverage", "long_steady_macro_coverage",
+        "long_steady_point_coverage", "max_event_miss_points", "normal_alarm_fragments")
+    result = []
+    for d in AXES:
+        for stream in ("strict", "confirmed3"):
+            for a, b in (("R", "TT"), ("R", "noU"), ("R", "SS"), ("TT", "noU")):
+                x, y = lookup[d, a, stream], lookup[d, b, stream]
+                result.append(dict(domain=d, stream=stream, contrast=a + "−" + b, n=1, sample_SD=None,
+                    **{k: None if x.get(k) is None or y.get(k) is None else x[k] - y[k] for k in fields}))
+    return result
+
+
+def replay_sealed_inputs(workspace, root):
+    """Endpoint, role and score identities checked before label decoding."""
+    seal = read(root / "GLOBAL_RAW_BANK_SEAL.json")
+    if seal["status"] != "COMPLETED" or seal["labels_read"] or not seal["no_labels_decoded"]:
+        raise ValueError("Complete label-free head-replay seal required")
+    expected = {(d, a, r) for d in AXES for a in REPLAY_ARMS[1:] for r in ("CAL", "QUERY")}
+    records = {(b["domain"], b["method"], b["role"]): b for b in seal["banks"]}
+    if len(seal["banks"]) != 12 or set(records) != expected or len(seal["trainings"]) != 6:
+        raise ValueError("Exactly six matched endpoint models and12 new banks required")
+    trainings = {(r["domain"], r["arm"]): r for r in seal["trainings"]}
+    if set(trainings) != {(d, a) for d in AXES for a in REPLAY_ARMS[1:]}:
+        raise ValueError("Fixed domain/arm matrix changed")
+    tasks = {d: read(root / d / "TASK.json") for d in AXES}
+    for (d, a), r in trainings.items():
+        if "train_receipt_relative" in r:
+            checked(workspace, dict(relative=r["train_receipt_relative"], sha256=r["train_receipt_sha256"]))
+        allowed = {"SS": ["SOURCE_FIT"], "TT": ["U_FIT"], "R": ["SOURCE_FIT", "U_FIT"]}[a]
+        if (r["status"] != "COMPLETED" or r["seed"] != 2025 or r["updates"] != 2000 or r["logical_batch"] != 64
+                or r["B1_forward_count"] != 128000 or r["exposures"] != 128000 or r["roles_read"] != allowed
+                or r["labels_read"] or r["CAL_QUERY_opened"] or not r["all_modules_eval"]
+                or not r["frozen_parameters_buffers_unchanged"] or r["scaler_sha256"] != tasks[d]["scaler_sha256"]
+                or not r["trainable_names"] or not all(n.startswith("decoder.") for n in r["trainable_names"])):
+            raise ValueError("Head-only training budget, role or state changed")
+        p = checked(workspace, dict(relative=r["checkpoint_relative"], sha256=r["checkpoint_sha256"]))
+        if not p.is_relative_to(root):
+            raise ValueError("New endpoint must belong to this run")
+        before, after = r["initial_state_hashes"], r["final_state_hashes"]
+        if any(after[k] != v for k, v in before.items() if not k.startswith("decoder.")):
+            raise ValueError("Frozen native parameters/buffers changed")
+        if r["plan_sha256"] != sha(root / d / "PLAN.npz"):
+            raise ValueError("Paired sampling plan changed")
+    paths = {}
+    for (d, a, role), record in records.items():
+        p = checked(workspace, record)
+        if not p.is_relative_to(root):
+            raise ValueError("New score bank cannot be an old candidate")
+        receipt = read(checked(workspace, dict(relative=record["receipt_relative"], sha256=record["receipt_sha256"])))
+        if receipt["labels_read"] or receipt["scaler_sha256"] != tasks[d]["scaler_sha256"]:
+            raise ValueError("Readout label/scaler identity changed")
+        for part in receipt["parts"]:
+            r = read(checked(workspace, part))
+            if (r["actual_endpoint_sha256"] != trainings[d, a]["checkpoint_sha256"]
+                    or not r["B1_only"] or not r["native_immutable"] or not r["CPU_CUDA_RNG_restored"]
+                    or r["mask_seed"] != 84551 or r["labels_read"]):
+                raise ValueError("Native readout must bind this endpoint and fixed B1 masks")
+        paths[d, a, role] = p
+    expected_old = {(d, "noU", r) for d in AXES for r in ("CAL", "QUERY")}
+    if len(seal["noU_reused"]) != 4 or {(r["domain"], r["method"], r["role"]) for r in seal["noU_reused"]} != expected_old:
+        raise ValueError("Exactly four immutable A/noU bank references required")
+    for r in seal["noU_reused"]:
+        paths[r["domain"], "noU", r["role"]] = checked(workspace, r)
+    for d in AXES:
+        for role in ("CAL", "QUERY"):
+            with np.load(paths[d, "noU", role], allow_pickle=False) as old:
+                index = old["absolute_time_index"]
+                actual, normalized = old["actual_raw"], old["actual_normalized"]
+                for arm in REPLAY_ARMS[1:]:
+                    with np.load(paths[d, arm, role], allow_pickle=False) as new:
+                        np.testing.assert_array_equal(new["absolute_time_index"], index)
+                        np.testing.assert_array_equal(new["current_raw"], actual)
+                        np.testing.assert_array_equal(new["current_normalized"], normalized)
+                        np.testing.assert_array_equal(new["available_index"], index)
+    return seal, paths, tasks
+
+
+def run_head_replay(workspace, root, output, workers=2):
+    """Native-V head probing reuses the fixed evaluator, without old B/C models."""
+    started = time.perf_counter()
+    workspace, root, output = map(lambda p: Path(p).resolve(), (workspace, root, output))
+    if output.exists():
+        raise FileExistsError(output)
+    seal, paths, tasks = replay_sealed_inputs(workspace, root)
+    accepted = read(checked(workspace, dict(relative=ACCEPTED_NATIVE_METRICS, sha256=ACCEPTED_NATIVE_METRICS_SHA)))
+    manifest = read(checked(workspace, dict(relative=EXTERNAL_MANIFEST, sha256=EXTERNAL_MANIFEST_SHA)))
+    labels, items = {}, []
+    for d, task in tasks.items():
+        spec = manifest["labels"][d]
+        p = checked(workspace, dict(relative=spec["path"], sha256=spec["sha256"]))
+        if p.suffix == ".npz":
+            with np.load(p, allow_pickle=False) as z:
+                labels[d] = z[spec["key"]].copy()
+        else:
+            labels[d] = np.load(p, allow_pickle=False).reshape(-1)
+        cal_points = np.load(checked(workspace, task["indexes"]["CAL"]), allow_pickle=False)
+        for arm in REPLAY_ARMS[1:]:
+            items.append((d, arm, paths[d, arm, "CAL"], paths[d, arm, "QUERY"], cal_points,
+                labels[d], workspace / manifest["author_metric"]))
+    rows, events, surfaces, checks = [], [], {}, {}
+    # Only new six states run VUS; noU and compatible external metrics are reused.
+    with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
+        for item, (rr, ee, surface, gate) in zip(items, pool.map(evaluate_native_replay_item, items)):
+            d, arm = item[:2]
+            rows.extend(rr); events.extend(ee); checks[d + "_" + arm] = gate
+            for k, v in zip(("TPR", "FPR", "precision", "windows"), surface):
+                surfaces[d + "_" + arm + "_" + k] = v
+    for old in accepted["rows"]:
+        if old["method"] == METHODS["A"]:
+            row = dict(old, method="noU", arm="noU", reused_from_METRICS_sha256=ACCEPTED_NATIVE_METRICS_SHA)
+            if sha(paths[row["domain"], "noU", "QUERY"]) != row["bank_QUERY_sha256"]:
+                raise ValueError("Frozen A/noU QUERY identity changed")
+            if sha(paths[row["domain"], "noU", "CAL"]) != row["bank_CAL_sha256"]:
+                raise ValueError("Frozen A/noU CAL identity changed")
+            rows.append(row)
+    old_events = read(checked(workspace, dict(relative=ACCEPTED_NATIVE_EVENTS, sha256=ACCEPTED_NATIVE_EVENTS_SHA)))
+    events.extend(dict(e, method="noU") for e in old_events if e["method"] == METHODS["A"])
+    pair = replay_pairs(rows)
+    output.mkdir(parents=True)
+    from .left_swat_replay_repeats import write_csv
+    write_csv(output / "methods.csv", rows); write_csv(output / "learning_pairs.csv", pair)
+    (output / "EVENTS.json").write_text(json.dumps(events, indent=2, allow_nan=False), encoding="utf-8")
+    np.savez_compressed(output / "NEW_VUS_SURFACES.npz", **surfaces)
+    result = dict(status="COMPLETED", mode="native_head_replay", rows=rows, paired=pair, formula_checks=checks,
+        global_seal_sha256=sha(root / "GLOBAL_RAW_BANK_SEAL.json"), actual_GPU_hours=seal["actual_GPU_hours"],
+        prior_native_metrics_sha256=ACCEPTED_NATIVE_METRICS_SHA, old_VUS_recomputed=False,
+        cpu_wall_seconds=time.perf_counter() - started,
+        interpretation="Natural mixed adaptation, not a contamination-causal experiment or Hybrid originality claim")
+    (output / "METRICS.json").write_text(json.dumps(result, indent=2, allow_nan=False), encoding="utf-8")
+    return result
+
+
+def evaluate_native_replay_item(item):
+    d, arm, cal_path, query_path, points, labels, metric = item
+    cal, query = load_bank(cal_path), load_bank(query_path)
+    for bank in (cal, query):
+        index = bank["absolute_time_index"]
+        np.testing.assert_array_equal(bank["window_start"], index - 99)
+        np.testing.assert_array_equal(bank["window_end_exclusive"], index + 1)
+    rows, events, surface, checks = evaluate_one(d, "A", cal, query, points, labels, metric)
+    for row in rows:
+        row.update(method=arm, arm=arm, training="native reconstruction head only; paired normal-source/natural-U slots",
+            updates=2000, logical_batch=64, trainable_scope="decoder only; frozen backbone/order, all modules eval",
+            endpoint_selection="fixed2000, no SELECT or QUERY selection", original_protocol_commit="f1f593aa69b61ca66bd2dcb648b90e0f66e4dd12",
+            bank_CAL_sha256=sha(cal_path), bank_QUERY_sha256=sha(query_path))
+    for event in events:
+        event.update(method=arm)
+    return rows, events, surface, checks
+
+
 def run(workspace, root, output, workers=2):
     started = time.perf_counter()
     workspace, root, output = Path(workspace).resolve(), Path(root).resolve(), Path(output).resolve()
@@ -448,6 +608,8 @@ if __name__ == "__main__":
     for key in ("workspace", "root", "out"):
         parser.add_argument("--" + key, type=Path, required=True)
     parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument("--mode", choices=("conditioning", "head-replay"), default="conditioning")
     args = parser.parse_args()
-    result = run(args.workspace, args.root, args.out, args.workers)
+    fn = run_head_replay if args.mode == "head-replay" else run
+    result = fn(args.workspace, args.root, args.out, args.workers)
     print(f"Completed {len(result['rows'])} fixed method/stream rows")

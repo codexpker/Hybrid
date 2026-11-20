@@ -13,7 +13,7 @@ from .native_v_conditioning_runner import read,dump,merge_cache,freeze_trainings
 from .native_v_conditioning import sha
 
 
-def run_jobs(workspace,root,stage,tasks):
+def run_jobs(workspace,root,stage,tasks,worker_module='hybrid_tsad.native_v_conditioning_runner'):
     sys.path.insert(0,str(workspace/'preparations/hybrid_left_joint_cycle_20261109_v2/resources'))
     import owned_session
     from gpu_idle_guard import gpu_guard
@@ -26,7 +26,7 @@ def run_jobs(workspace,root,stage,tasks):
             try:
                 dump(life/'GPU_GUARD.json',gpu_guard(devices[gpu].removeprefix('GPU-'),gpu,cap))
                 env=os.environ.copy();env.update(CUDA_VISIBLE_DEVICES=devices[gpu],OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
-                argv=[sys.executable,'-B','-m','hybrid_tsad.native_v_conditioning_runner']+extra+['--workspace',str(workspace),'--output',str(root)]
+                argv=[sys.executable,'-B','-m',worker_module]+extra+['--workspace',str(workspace),'--output',str(root)]
                 with(life/'stdout.log').open('xb')as out,(life/'stderr.log').open('xb')as err:
                     child=subprocess.Popen(argv,stdout=out,stderr=err,env=env,start_new_session=True);owned_session.claim_group(child)
                     dump(life/'STARTED.json',dict(pid=child.pid,GPU=gpu,argv=argv,UTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),timeout_seconds=timeout,memory_cap_GiB=cap))

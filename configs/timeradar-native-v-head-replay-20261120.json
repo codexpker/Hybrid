@@ -1,0 +1,17 @@
+{
+  "registered_id": "TIMERADAR-NATIVE-V-HEAD-REPLAY-20261120",
+  "output": "results/timeradar_native_v_replay_20261120_v1",
+  "domains": ["SWAT", "PSM"],
+  "seed": 2025,
+  "arms": {"TT": ["T", "T_prime"], "SS": ["S_prime", "S"], "R": ["T", "S"]},
+  "initial": {"official_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317", "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c", "only_trainable": "native.decoder", "all_modules_eval": true},
+  "native": {"input_window": 100, "B_per_forward": 1, "copies": 10, "mask_mode": "c", "isolated_CPU_CUDA_seed": 84551, "norm": 0, "score": "cal_anomaly_score(criterion=None,L=1)[0,99]", "correction": 1, "channel_reduction": "native FP32 mean", "canonical_score": "V.astype(float64)"},
+  "actual_replay_training": {"batch": 64, "half": 32, "updates": 2000, "optimizer": "AdamW", "lr": 0.0001, "betas": [0.9, 0.95], "eps": 1e-8, "weight_decay": 0.1, "bias_LayerNorm_weight_decay": 0, "warmup": 200, "checkpoint": "endpoint2000; no SELECT selection", "loss": "mean10x100xC MSE per B1 window, divided64 and accumulated; one optimizer step per logical batch"},
+  "sampling": {"pool": "complete100 windows, non-overlap, anchored independently at role lo", "T": "default_rng(2025)", "S_Tprime_Sprime": "default_rng(SeedSequence(2025).spawn(3)[0,1,2])", "replacement": true, "T_shared_TT_R": true, "S_shared_R_SS": true},
+  "roles": {"SWAT": {"SOURCE_FIT": [0,396000], "U_FIT": [495000,585000], "CAL": [585544,607479], "QUERY": [608023,944919], "SOURCE_pool": 3960, "U_pool": 900, "QUERY_axis": [608535,944856]}, "PSM": {"SOURCE_FIT": [0,105984], "U_FIT": [0,17568], "CAL": [18112,21960], "QUERY": [22504,87841], "SOURCE_pool": 1059, "U_pool": 175, "QUERY_axis": [23016,87744]}},
+  "scaler": {"scope": "SOURCE_FIT only; same immutable previous nativeV A scaler", "SWAT_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33", "PSM_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0"},
+  "CAL": {"count": 512, "selection": "exact previous nativeV TASK points, not a newly chosen axis", "quantile": 0.99, "method": "higher", "comparison": ">"},
+  "noU": "reuse previous nativeV A four immutable CAL/QUERY banks",
+  "task_metadata": {"actual_config": "replay_training", "inherited_reference_not_executed": ["training", "source_permutation_sha256", "source_quantiles", "head_init_B_C", "D_head_init", "D_score_precision", "SOURCE_SELECT indexes"], "feature_footprint": "current native100 window only; no stopped512 conditioning predictor"},
+  "resource": {"max_parallel": 4, "train_cap_GiB": 20, "readout_cap_GiB": 30, "training_timeout_seconds": "max(3600,int(gate_update_seconds*2000*1.8+600))", "readout_shard_timeout_seconds": 7200}
+}

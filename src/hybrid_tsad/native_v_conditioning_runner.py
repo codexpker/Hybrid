@@ -101,12 +101,24 @@ def role_index(w,d,task,role):
     return np.load(path,allow_pickle=False)
 
 
-def cache(w,root,domain,role,part=0,parts=1):
+def cache(w,root,domain,role,part=0,parts=1,native_checkpoint=None):
     # CAL/QUERY values are unavailable to this entry until all6 models freeze.
     if role in ['CAL','QUERY']:assert read(root/'ALL_SIX_MODELS_FROZEN.json')['status']=='COMPLETED'
     d=root/domain;task=read(d/'TASK.json');out=root/'cache'/domain/role/f'part{part}';out.mkdir(parents=True,exist_ok=False)
     started=time.monotonic();device=setup(30 if role in ['CAL','QUERY'] else 20)
-    native=load_native(w,device);before=state_hashes(native);values,actual,lo,record=role_values(w,d,task,role)
+    native=load_native(w,device)
+    actual_checkpoint_sha=WEIGHT_SHA
+    checkpoint_binding={}
+    if native_checkpoint is not None:
+        official_state=state_hashes(native)
+        saved=torch.load(native_checkpoint,map_location=device,weights_only=True)
+        native.load_state_dict(saved['model'],strict=True);native.requires_grad_(False);native.eval()
+        actual_checkpoint_sha=sha(native_checkpoint)
+        loaded=state_hashes(native)
+        assert all(loaded[k]==value for k,value in official_state.items()if not k.startswith('decoder.'))
+        checkpoint_binding=dict(actual_endpoint_sha256=actual_checkpoint_sha,official_initial_checkpoint_sha256=WEIGHT_SHA,
+            frozen_except_decoder_verified=True,native_state_hashes=loaded)
+    before=state_hashes(native);values,actual,lo,record=role_values(w,d,task,role)
     rng_before=(torch.get_rng_state().clone(),torch.cuda.get_rng_state(device).clone())
     index=np.array_split(role_index(w,d,task,role),parts)[part];n=len(index);c=task['channels']
     V=np.empty(n,dtype=np.float32);reconstruction=np.empty((n,10,c),dtype=np.float32);orders=np.empty(n,dtype=np.float32)
@@ -120,7 +132,7 @@ def cache(w,root,domain,role,part=0,parts=1):
         for i,t in enumerate(index):
             relative=int(t)-lo;assert relative>=512 and relative<len(values)
             x=values[relative-99:relative+1];input=torch.from_numpy(x.copy()).to(device)[None];captured.clear()
-            reusable=role=='SOURCE_FIT'and int(t)in [512,1024,2048]
+            reusable=native_checkpoint is None and role=='SOURCE_FIT'and int(t)in [512,1024,2048]
             if reusable:
                 entry=next(v for v in gate['domains'][domain]['points']if v['t']==int(t));p=old/entry['fixture_relative']
                 assert sha(p)==entry['fixture_sha256']and gate['domains'][domain]['scaler_sha256']==task['scaler_sha256']
@@ -142,17 +154,19 @@ def cache(w,root,domain,role,part=0,parts=1):
     assert np.isfinite(V).all()and np.all(V>=0)and np.isfinite(reconstruction).all()
     reference=reconstruction.astype(np.float64).var(1,ddof=1).mean(-1)
     assert np.allclose(V,reference,rtol=1e-5,atol=1e-7)
+    canonical=dict(canonical_score=V.astype(np.float64),feature_start=index-99,feature_end_exclusive=index+1)if native_checkpoint is not None else{}
+    legacy_history=dict(history_start=index-512,history_end_exclusive=index)if native_checkpoint is None else{}
     path=out/'BANK.npz';np.savez_compressed(path,absolute_time_index=index,available_index=index,V=V,reconstruction_terminal=reconstruction,
         actual_order=orders,current_raw=raw_current,current_normalized=normalized_current,
-        history_start=index-512,history_end_exclusive=index,window_start=index-99,window_end_exclusive=index+1)
+        window_start=index-99,window_end_exclusive=index+1,**legacy_history,**canonical)
     dump(out/'RECEIPT.json',dict(status='COMPLETED',domain=domain,entity=task['entity'],record_id=record['record_id'],role=role,part=part,parts=parts,
         relative=str(path.relative_to(w)),sha256=sha(path),count=n,index_sha256=hashlib.sha256(index.tobytes()).hexdigest(),
-        scaler_sha256=task['scaler_sha256'],source_sha256=SOURCE_SHA,checkpoint_sha256=WEIGHT_SHA,channel_order=task['channel_order'],
+        scaler_sha256=task['scaler_sha256'],source_sha256=SOURCE_SHA,checkpoint_sha256=actual_checkpoint_sha,channel_order=task['channel_order'],
         mask_seed=84551,mask_shape=list(bits.shape),mask_bits_sha256=hashlib.sha256(bits.tobytes()).hexdigest(),mask_file_sha256=sha(out/'MASK_BITS.npz'),
         mask_version='torch.randCUDA84551 first5C20 +complement; reshape10,C,20; torch2.8.0cu128 A40',
         full_native_forward_count=full,reused_native_V_count=reused,partial_fixture_completion=fixtures,
         native_immutable=True,CPU_CUDA_RNG_restored=True,labels_read=False,B1_only=True,epoch_or_optimizer=False,
-        elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved()))
+        elapsed_GPU_seconds=time.monotonic()-started,peak_allocated_bytes=torch.cuda.max_memory_allocated(),peak_reserved_bytes=torch.cuda.max_memory_reserved(),**checkpoint_binding))
     print(json.dumps(dict(event='CACHE_COMPLETED',domain=domain,role=role,part=part,count=n,reused=reused)),flush=True)
 
 
