@@ -1,0 +1,441 @@
+domain,method,stream,metric,n,mean,sample_SD,ddof,scope
+SWAT,noU,strict,AP,1,0.795725473846651,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,ROC_AUC,1,0.857851696292976,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,VUS_PR,1,0.5766000783598579,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,VUS_ROC,1,0.7089895871222283,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,FP,1,3759.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,TP,1,33047.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,normal_FPR,1,0.01302747587889542,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,Recall,1,0.6916926554618331,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,F1,1,0.7814099759999055,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,one_to_one_eventPrecision,1,0.078125,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,one_to_one_eventF1,1,0.13333333333333333,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,normal_alarm_fragments,1,122.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,event_macro_coverage,1,0.17254608121901288,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,event_point_coverage,1,0.6916926554618331,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,long_steady_macro_coverage,1,0.11725088728263817,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,long_steady_point_coverage,1,0.8258660269803193,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,max_event_miss_points,1,3939.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,strict,delay_hit_only_median,1,135.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,AP,1,0.795725473846651,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,ROC_AUC,1,0.857851696292976,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,VUS_PR,1,0.5766000783598579,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,VUS_ROC,1,0.7089895871222283,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,FP,1,3529.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,TP,1,33025.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,normal_FPR,1,0.012230370411445049,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,Recall,1,0.6912321828494883,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,F1,1,0.7832232512362002,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,one_to_one_eventPrecision,1,0.08064516129032258,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,one_to_one_eventF1,1,0.136986301369863,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,normal_alarm_fragments,1,118.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,event_macro_coverage,1,0.17016354799971187,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,event_point_coverage,1,0.6912321828494883,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,long_steady_macro_coverage,1,0.11460402498516678,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,long_steady_point_coverage,1,0.8256596765456937,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,max_event_miss_points,1,3941.0,,1,one fixed reference; no fabricated SD
+SWAT,noU,confirmed3,delay_hit_only_median,1,137.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,AP,1,0.7673730360570973,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,ROC_AUC,1,0.8402859241831961,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,VUS_PR,1,0.6359163792755366,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,VUS_ROC,1,0.7957399985800246,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,FP,1,3945.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,TP,1,31888.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,normal_FPR,1,0.01367209160474659,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,Recall,1,0.6674341210205748,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,F1,1,0.7627795718215524,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,one_to_one_eventPrecision,1,0.09009009009009009,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,one_to_one_eventF1,1,0.15037593984962405,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,normal_alarm_fragments,1,108.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,event_macro_coverage,1,0.1653974165545399,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,event_point_coverage,1,0.6674341210205748,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,long_steady_macro_coverage,1,0.11454797797058894,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,long_steady_point_coverage,1,0.7968479971110939,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,max_event_miss_points,1,5067.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,strict,delay_hit_only_median,1,131.5,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,AP,1,0.7673730360570973,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,ROC_AUC,1,0.8402859241831961,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,VUS_PR,1,0.6359163792755366,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,VUS_ROC,1,0.7957399985800246,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,FP,1,3740.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,TP,1,31872.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,normal_FPR,1,0.012961628035932128,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,Recall,1,0.6670992318479603,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,F1,1,0.7644173691973761,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,one_to_one_eventPrecision,1,0.09090909090909091,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,one_to_one_eventF1,1,0.15151515151515152,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,normal_alarm_fragments,1,107.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,event_macro_coverage,1,0.1638198326944906,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,event_point_coverage,1,0.6670992318479603,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,long_steady_macro_coverage,1,0.11310231687431872,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,long_steady_point_coverage,1,0.7966932342851247,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,max_event_miss_points,1,5069.0,,1,one fixed reference; no fabricated SD
+SWAT,TT,confirmed3,delay_hit_only_median,1,133.5,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,AP,1,0.7596424259547054,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,ROC_AUC,1,0.8402010241173175,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,VUS_PR,1,0.629941234304263,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,VUS_ROC,1,0.7931540706379419,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,FP,1,3901.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,TP,1,31951.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,normal_FPR,1,0.013519601863147388,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,Recall,1,0.6687527471377441,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,F1,1,0.7641129273338196,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,one_to_one_eventPrecision,1,0.09174311926605505,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,one_to_one_eventF1,1,0.15267175572519084,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,normal_alarm_fragments,1,106.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,event_macro_coverage,1,0.1668163307102432,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,event_point_coverage,1,0.6687527471377441,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,long_steady_macro_coverage,1,0.11458273783755527,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,long_steady_point_coverage,1,0.7980860997188476,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,max_event_miss_points,1,5018.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,strict,delay_hit_only_median,1,126.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,AP,1,0.7596424259547054,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,ROC_AUC,1,0.8402010241173175,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,VUS_PR,1,0.629941234304263,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,VUS_ROC,1,0.7931540706379419,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,FP,1,3699.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,TP,1,31935.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,normal_FPR,1,0.012819535322169236,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,Recall,1,0.6684178579651296,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,F1,1,0.765726343048279,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,M,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,Ntrue,1,22.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,auxiliary_any_hit_events,1,10.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,one_to_one_eventPrecision,1,0.09174311926605505,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,one_to_one_eventRecall,1,0.45454545454545453,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,one_to_one_eventF1,1,0.15267175572519084,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,normal_alarm_fragments,1,106.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,event_macro_coverage,1,0.16523874685019393,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,event_point_coverage,1,0.6684178579651296,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,long_steady_macro_coverage,1,0.11313707674128505,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,long_steady_point_coverage,1,0.7979313368928783,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,max_event_miss_points,1,5020.0,,1,one fixed reference; no fabricated SD
+SWAT,SS,confirmed3,delay_hit_only_median,1,128.0,,1,one fixed reference; no fabricated SD
+SWAT,R,strict,AP,3,0.7636737239164603,0.002226689763394395,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,ROC_AUC,3,0.8383719240338271,0.0003473281771468883,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,VUS_PR,3,0.6387192555467905,0.001545726793035623,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,VUS_ROC,3,0.7921550077537513,0.002160567935764088,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,FP,3,4133.333333333333,88.00757543151234,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,TP,3,32357.666666666668,413.1153995354486,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,normal_FPR,3,0.014324793907803777,0.00030500573718917137,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,Recall,3,0.6772645136083609,0.00864674214654432,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,F1,3,0.7679497614423211,0.0052377846209159225,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,M,3,10.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,Ntrue,3,22.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,auxiliary_any_hit_events,3,10.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,one_to_one_eventPrecision,3,0.06567899817946433,0.017258209853621507,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,one_to_one_eventRecall,3,0.45454545454545453,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,one_to_one_eventF1,3,0.11420094693475989,0.025906086092507625,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,normal_alarm_fragments,3,148.66666666666666,30.43572462310259,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,event_macro_coverage,3,0.18856820829936538,0.02479365035508086,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,event_point_coverage,3,0.6772645136083609,0.00864674214654432,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,long_steady_macro_coverage,3,0.14414314289465893,0.05048271533419294,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,long_steady_point_coverage,3,0.8024280567807613,0.0033391106690278476,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,max_event_miss_points,3,4899.333333333333,49.50084174368485,1,three adaptation seeds at one pretrained state
+SWAT,R,strict,delay_hit_only_median,3,83.0,33.77499074759311,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,AP,3,0.7636737239164603,0.002226689763394395,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,ROC_AUC,3,0.8383719240338271,0.0003473281771468883,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,VUS_PR,3,0.6387192555467905,0.001545726793035623,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,VUS_ROC,3,0.7921550077537513,0.002160567935764088,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,FP,3,3882.6666666666665,67.2408605933426,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,TP,3,32331.333333333332,405.3940469880303,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,normal_FPR,3,0.013456064470814386,0.00023303503310878991,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,Recall,3,0.6767133418450998,0.008485129811164982,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,F1,3,0.7698562361838951,0.0053091325548273215,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,M,3,10.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,Ntrue,3,22.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,auxiliary_any_hit_events,3,10.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,one_to_one_eventPrecision,3,0.08851406235015315,0.001566865974799893,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,one_to_one_eventRecall,3,0.45454545454545453,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,one_to_one_eventF1,3,0.14816982981920873,0.0021953494959017637,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,normal_alarm_fragments,3,107.33333333333333,4.509249752822894,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,event_macro_coverage,3,0.18618934290051567,0.02424962559450099,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,event_point_coverage,3,0.6767133418450998,0.008485129811164982,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,long_steady_macro_coverage,3,0.14269748179838873,0.050482715334192955,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,long_steady_point_coverage,3,0.802273293954792,0.0033391106690279105,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,max_event_miss_points,3,4901.333333333333,49.50084174368485,1,three adaptation seeds at one pretrained state
+SWAT,R,confirmed3,delay_hit_only_median,3,87.5,31.83158808479401,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,AP,3,0.7594048998513222,0.0003399636316173699,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,ROC_AUC,3,0.8417544428584002,0.00013751681425033715,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,VUS_PR,3,0.6136170201838126,0.00405501159715463,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,VUS_ROC,3,0.7860090016428831,0.0018406009134868764,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,FP,3,3827.0,45.21061822182926,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,TP,3,31737.666666666668,32.083225108042576,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,normal_FPR,3,0.013263141843185096,0.00015668535204970237,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,Recall,3,0.6642875581695517,0.0006715202944522314,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,F1,3,0.7616278497652164,0.0005585030469147769,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,M,3,9.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,Ntrue,3,22.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,auxiliary_any_hit_events,3,9.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,one_to_one_eventPrecision,3,0.08721806423094114,0.0062627653093281135,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,one_to_one_eventRecall,3,0.4393939393939394,0.026243194054073875,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,one_to_one_eventF1,3,0.1455039076699382,0.009697498919113473,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,normal_alarm_fragments,3,107.66666666666667,5.686240703077327,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,event_macro_coverage,3,0.16218842039726444,0.0015746423755045606,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,event_point_coverage,3,0.6642875581695517,0.0006715202944522314,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,long_steady_macro_coverage,3,0.11407297020388385,8.476848926318206e-05,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,long_steady_point_coverage,3,0.7935807818961885,0.0005375600447897676,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,max_event_miss_points,3,5193.0,20.952326839756964,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,strict,delay_hit_only_median,3,113.66666666666667,37.82966208325596,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,AP,3,0.7594048998513222,0.0003399636316173699,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,ROC_AUC,3,0.8417544428584002,0.00013751681425033715,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,VUS_PR,3,0.6136170201838126,0.00405501159715463,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,VUS_ROC,3,0.7860090016428831,0.0018406009134868764,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,FP,3,3621.0,52.306787322488084,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,TP,3,31721.666666666668,30.088757590391353,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,normal_FPR,3,0.012549212598425197,0.0001812783746066049,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,Recall,3,0.6639526689969372,0.0006297749459026589,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,F1,3,0.7632771329562033,0.0006437896933001524,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,M,3,9.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,Ntrue,3,22.0,0.0,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,auxiliary_any_hit_events,3,9.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,one_to_one_eventPrecision,3,0.09122995580410498,0.006180549153556929,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,one_to_one_eventRecall,3,0.4393939393939394,0.026243194054073875,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,one_to_one_eventF1,3,0.15108839956052006,0.010024530658206752,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,normal_alarm_fragments,3,103.0,1.0,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,event_macro_coverage,3,0.16064461687402576,0.0013175669613916155,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,event_point_coverage,3,0.6639526689969372,0.0006297749459026589,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,long_steady_macro_coverage,3,0.11262730910761361,8.476848926316899e-05,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,long_steady_point_coverage,3,0.7934260190702194,0.000537560044789756,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,max_event_miss_points,3,5195.0,20.952326839756964,1,three adaptation seeds at one pretrained state
+SWAT,R_target_mean,confirmed3,delay_hit_only_median,3,115.66666666666667,37.82966208325596,1,three adaptation seeds at one pretrained state
+PSM,noU,strict,AP,1,0.5509523733731589,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,ROC_AUC,1,0.7350481167276486,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,VUS_PR,1,0.4845780475892369,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,VUS_ROC,1,0.6481605559604392,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,FP,1,14036.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,TP,1,8861.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,normal_FPR,1,0.2966877338349997,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,Recall,1,0.5086973993914691,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,F1,1,0.43957733902172835,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,M,1,18.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,auxiliary_any_hit_events,1,28.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,one_to_one_eventPrecision,1,0.08955223880597014,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,one_to_one_eventRecall,1,0.375,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,one_to_one_eventF1,1,0.14457831325301204,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,normal_alarm_fragments,1,185.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,event_macro_coverage,1,0.5046008650525596,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,event_point_coverage,1,0.7365927610384688,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,long_steady_macro_coverage,1,0.8695530726256984,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,long_steady_point_coverage,1,0.9240650406504065,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,max_event_miss_points,1,486.0,,1,one fixed reference; no fabricated SD
+PSM,noU,strict,delay_hit_only_median,1,0.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,AP,1,0.5509523733731589,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,ROC_AUC,1,0.7350481167276486,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,VUS_PR,1,0.4845780475892369,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,VUS_ROC,1,0.6481605559604392,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,FP,1,13765.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,TP,1,8514.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,normal_FPR,1,0.2909594368936143,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,Recall,1,0.4887766232275102,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,F1,1,0.4289384855660235,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,M,1,6.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,auxiliary_any_hit_events,1,17.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,one_to_one_eventPrecision,1,0.07058823529411765,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,one_to_one_eventRecall,1,0.125,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,one_to_one_eventF1,1,0.09022556390977443,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,normal_alarm_fragments,1,88.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,event_macro_coverage,1,0.3052923794313969,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,event_point_coverage,1,0.7319499715747584,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,long_steady_macro_coverage,1,0.8645251396648044,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,long_steady_point_coverage,1,0.9211382113821138,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,max_event_miss_points,1,694.0,,1,one fixed reference; no fabricated SD
+PSM,noU,confirmed3,delay_hit_only_median,1,0.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,AP,1,0.4972431286773491,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,ROC_AUC,1,0.7129149072803793,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,VUS_PR,1,0.5207441855860994,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,VUS_ROC,1,0.7142044750934599,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,FP,1,1509.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,TP,1,3193.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,normal_FPR,1,0.03189667927878417,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,Recall,1,0.18330558585452666,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,F1,1,0.28868495999276705,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,M,1,27.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,auxiliary_any_hit_events,1,30.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,one_to_one_eventPrecision,1,0.05037313432835821,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,one_to_one_eventRecall,1,0.5625,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,one_to_one_eventF1,1,0.09246575342465753,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,normal_alarm_fragments,1,350.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,event_macro_coverage,1,0.3888485343638754,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,event_point_coverage,1,0.21299981049838923,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,long_steady_macro_coverage,1,0.29341029425778464,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,long_steady_point_coverage,1,0.25073170731707317,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,max_event_miss_points,1,708.0,,1,one fixed reference; no fabricated SD
+PSM,TT,strict,delay_hit_only_median,1,1.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,AP,1,0.4972431286773491,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,ROC_AUC,1,0.7129149072803793,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,VUS_PR,1,0.5207441855860994,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,VUS_ROC,1,0.7142044750934599,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,FP,1,1022.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,TP,1,2482.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,normal_FPR,1,0.0216026548859625,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,Recall,1,0.1424880877203054,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,F1,1,0.23725087224585384,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,M,1,10.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,auxiliary_any_hit_events,1,11.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,one_to_one_eventPrecision,1,0.056179775280898875,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,one_to_one_eventRecall,1,0.20833333333333334,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,one_to_one_eventF1,1,0.08849557522123894,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,normal_alarm_fragments,1,102.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,event_macro_coverage,1,0.13753890760269125,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,event_point_coverage,1,0.18258480197081675,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,long_steady_macro_coverage,1,0.2444101364919684,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,long_steady_point_coverage,1,0.22016260162601625,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,max_event_miss_points,1,1228.0,,1,one fixed reference; no fabricated SD
+PSM,TT,confirmed3,delay_hit_only_median,1,7.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,AP,1,0.5347763035924731,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,ROC_AUC,1,0.7319923438177424,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,VUS_PR,1,0.5200767005938719,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,VUS_ROC,1,0.6978527302324321,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,FP,1,9089.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,TP,1,8264.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,normal_FPR,1,0.19211989262085438,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,Recall,1,0.47442447901716517,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,F1,1,0.4753249741171057,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,M,1,25.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,auxiliary_any_hit_events,1,31.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,one_to_one_eventPrecision,1,0.06720430107526881,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,one_to_one_eventRecall,1,0.5208333333333334,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,one_to_one_eventF1,1,0.11904761904761904,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,normal_alarm_fragments,1,336.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,event_macro_coverage,1,0.5032120604605667,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,event_point_coverage,1,0.6810687890847072,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,long_steady_macro_coverage,1,0.6898388974868565,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,long_steady_point_coverage,1,0.8554471544715447,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,max_event_miss_points,1,534.0,,1,one fixed reference; no fabricated SD
+PSM,SS,strict,delay_hit_only_median,1,0.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,AP,1,0.5347763035924731,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,ROC_AUC,1,0.7319923438177424,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,VUS_PR,1,0.5200767005938719,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,VUS_ROC,1,0.6978527302324321,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,FP,1,8604.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,TP,1,7746.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,normal_FPR,1,0.1818681434822127,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,Recall,1,0.44468683621333027,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,F1,1,0.4587639551067547,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,M,1,9.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,Ntrue,1,48.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,auxiliary_any_hit_events,1,16.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,one_to_one_eventPrecision,1,0.0625,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,one_to_one_eventRecall,1,0.1875,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,one_to_one_eventF1,1,0.09375,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,normal_alarm_fragments,1,128.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,event_macro_coverage,1,0.2600415403808763,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,event_point_coverage,1,0.6719727117680501,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,long_steady_macro_coverage,1,0.6671262370627786,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,long_steady_point_coverage,1,0.8492682926829268,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,max_event_miss_points,1,1228.0,,1,one fixed reference; no fabricated SD
+PSM,SS,confirmed3,delay_hit_only_median,1,0.0,,1,one fixed reference; no fabricated SD
+PSM,R,strict,AP,3,0.5523332840808567,0.005841050487624953,1,three adaptation seeds at one pretrained state
+PSM,R,strict,ROC_AUC,3,0.7359804176641163,0.002514139731402627,1,three adaptation seeds at one pretrained state
+PSM,R,strict,VUS_PR,3,0.555789826475385,0.007513395519679273,1,three adaptation seeds at one pretrained state
+PSM,R,strict,VUS_ROC,3,0.7244384937928406,0.004310728774609162,1,three adaptation seeds at one pretrained state
+PSM,R,strict,FP,3,2710.3333333333335,324.18564640238674,1,three adaptation seeds at one pretrained state
+PSM,R,strict,TP,3,5793.0,202.54629100529093,1,three adaptation seeds at one pretrained state
+PSM,R,strict,normal_FPR,3,0.057290015289550265,0.006852515301578703,1,three adaptation seeds at one pretrained state
+PSM,R,strict,Recall,3,0.3325678856421149,0.011627894311113779,1,three adaptation seeds at one pretrained state
+PSM,R,strict,F1,3,0.44689352100081786,0.010186219433164282,1,three adaptation seeds at one pretrained state
+PSM,R,strict,M,3,29.333333333333332,1.1547005383792515,1,three adaptation seeds at one pretrained state
+PSM,R,strict,Ntrue,3,48.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R,strict,auxiliary_any_hit_events,3,29.333333333333332,1.1547005383792515,1,three adaptation seeds at one pretrained state
+PSM,R,strict,one_to_one_eventPrecision,3,0.04260450908495602,0.0011708302135283503,1,three adaptation seeds at one pretrained state
+PSM,R,strict,one_to_one_eventRecall,3,0.6111111111111112,0.024056261216234387,1,three adaptation seeds at one pretrained state
+PSM,R,strict,one_to_one_eventF1,3,0.07964093853401172,0.0018288054072317498,1,three adaptation seeds at one pretrained state
+PSM,R,strict,normal_alarm_fragments,3,496.6666666666667,30.43572462310259,1,three adaptation seeds at one pretrained state
+PSM,R,strict,event_macro_coverage,3,0.42275683594286223,0.01723664103551654,1,three adaptation seeds at one pretrained state
+PSM,R,strict,event_point_coverage,3,0.45050849598888254,0.011275876644782282,1,three adaptation seeds at one pretrained state
+PSM,R,strict,long_steady_macro_coverage,3,0.4746055235107169,0.012603036364853017,1,three adaptation seeds at one pretrained state
+PSM,R,strict,long_steady_point_coverage,3,0.5849864498644987,0.01467954415773135,1,three adaptation seeds at one pretrained state
+PSM,R,strict,max_event_miss_points,3,534.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R,strict,delay_hit_only_median,3,0.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,AP,3,0.5523332840808567,0.005841050487624953,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,ROC_AUC,3,0.7359804176641163,0.002514139731402627,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,VUS_PR,3,0.555789826475385,0.007513395519679273,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,VUS_ROC,3,0.7244384937928406,0.004310728774609162,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,FP,3,1971.0,277.60943787991073,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,TP,3,5037.666666666667,149.53371972011306,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,normal_FPR,3,0.04166226299435625,0.005868004774565321,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,Recall,3,0.2892052739345925,0.008584518038929505,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,F1,3,0.4124261826844517,0.008624857516518262,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,M,3,11.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,Ntrue,3,48.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,auxiliary_any_hit_events,3,11.666666666666666,0.5773502691896257,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,one_to_one_eventPrecision,3,0.0462459812235597,0.0027717361937860023,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,one_to_one_eventRecall,3,0.24305555555555555,0.012028130608117209,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,one_to_one_eventF1,3,0.07762341462379398,0.0032640723425616473,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,normal_alarm_fragments,3,171.66666666666666,16.289055630494158,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,event_macro_coverage,3,0.17326076101944154,0.013099630071206195,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,event_point_coverage,3,0.418324805760849,0.008755610168002075,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,long_steady_macro_coverage,3,0.4320712145249426,0.011386971949904167,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,long_steady_point_coverage,3,0.5505149051490514,0.012125910193435202,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,max_event_miss_points,3,1228.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R,confirmed3,delay_hit_only_median,3,0.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,AP,3,0.5612412322696454,0.0012154753153516475,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,ROC_AUC,3,0.7435619916661734,0.0014974082717813723,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,VUS_PR,3,0.5504501820735666,0.003099844522137442,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,VUS_ROC,3,0.7161714950874289,0.0018451806572219206,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,FP,3,3786.6666666666665,1041.0534728501382,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,TP,3,6707.333333333333,351.50723084075145,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,normal_FPR,3,0.08004114791406851,0.022005400089837833,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,Recall,3,0.3850584610674168,0.020179529872022026,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,F1,3,0.48055151601481977,0.00283915083811587,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,M,3,29.0,1.0,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,Ntrue,3,48.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,auxiliary_any_hit_events,3,30.333333333333332,1.5275252316519465,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,one_to_one_eventPrecision,3,0.044412032644288085,0.0011492795553530429,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,one_to_one_eventRecall,3,0.6041666666666666,0.020833333333333315,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,one_to_one_eventF1,3,0.08273953476462463,0.0021309132326417838,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,normal_alarm_fragments,3,500.6666666666667,19.73153144926499,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,event_macro_coverage,3,0.4353323469202346,0.020801142513709427,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,event_point_coverage,3,0.5316783525993304,0.03355333700414464,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,long_steady_macro_coverage,3,0.5253707344221216,0.04208779693250085,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,long_steady_point_coverage,3,0.7057452574525745,0.029270701496780762,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,max_event_miss_points,3,512.6666666666666,97.57219549304676,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,strict,delay_hit_only_median,3,0.16666666666666666,0.2886751345948129,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,AP,3,0.5612412322696454,0.0012154753153516475,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,ROC_AUC,3,0.7435619916661734,0.0014974082717813723,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,VUS_PR,3,0.5504501820735666,0.003099844522137442,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,VUS_ROC,3,0.7161714950874289,0.0018451806572219206,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,FP,3,3038.3333333333335,1025.5390452505128,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,TP,3,5977.0,346.13725601269795,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,normal_FPR,3,0.06422315697506464,0.021677461904722417,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,Recall,3,0.34313106378092884,0.01987124725946941,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,F1,3,0.4521295837204246,0.004772221662623331,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,M,3,11.0,1.0,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,Ntrue,3,48.0,0.0,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,auxiliary_any_hit_events,3,12.333333333333334,1.5275252316519468,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,one_to_one_eventPrecision,3,0.04269255309153441,0.0035558139517495877,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,one_to_one_eventRecall,3,0.22916666666666666,0.02083333333333333,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,one_to_one_eventF1,3,0.07196800838266428,0.006000889247404394,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,normal_alarm_fragments,3,182.33333333333334,7.637626158259733,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,event_macro_coverage,3,0.18026033089747104,0.015592730193496848,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,event_point_coverage,3,0.5044848714547406,0.03264303907764794,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,long_steady_macro_coverage,3,0.48436711455348697,0.042810223393972724,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,long_steady_point_coverage,3,0.685420054200542,0.03346210831764627,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,max_event_miss_points,3,1111.6666666666667,201.49524394717938,1,three adaptation seeds at one pretrained state
+PSM,R_target_mean,confirmed3,delay_hit_only_median,3,0.0,0.0,1,three adaptation seeds at one pretrained state

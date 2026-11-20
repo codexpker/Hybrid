@@ -1,0 +1,250 @@
+{
+  "status": "AUDIT_COMPLETED",
+  "checks": 68365,
+  "max_absolute_difference": 1.1102230246251565e-16,
+  "absolute_tolerance": 1e-10,
+  "differences": [],
+  "new_method_stream_rows": 16,
+  "reused_method_stream_rows": 52,
+  "new_event_rows": 856,
+  "paired_rows": 24,
+  "paired_summary_rows": 168,
+  "metadata": {
+    "global_seal_sha256": "ef9160ea6066ccd9804345349a201f525279910d2df0f885e61e2d5d07d499cd",
+    "endpoint_audit_sha256": "53a8fb18dafa1474b95d97be0850fba4defe4594d714baf616f6bacc13d1a37e",
+    "preparation_sha256": "07d9ebfb3684886aaab585815c319b92eb6aaaee27d79439b6d0dc606e1a0c40",
+    "resource": {
+      "records": 53,
+      "successful": 52,
+      "guard_prestart_failed": 1,
+      "guard_GPU_seconds": 0,
+      "guard_CPU_wall_seconds": 2.233744947006926,
+      "controller_exact_OS_exit_code": null,
+      "controller_failure": "Original RuntimeError traceback, exact parent OS code not available; not success",
+      "recovery_difference_count": 10,
+      "unique_successful_readouts": 40,
+      "actual_GPU_hours": 10.828305763347371,
+      "recovery_plan_sha256": "729da8a766877f7d3c5f04cd3f302fcbadb6bd125d5cc94a7bb4b0d3312ca70a"
+    },
+    "banks": [
+      {
+        "domain": "SWAT",
+        "seed": 2026,
+        "arm": "R",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R/cache/SWAT/CAL/BANK.npz",
+        "sha256": "fee6933990088b142ba76a9fb4e80874058c15c1396fe15b4adb5459f43bd536",
+        "parts": 1,
+        "max_V_formula_abs_difference": 1.5173791001465986e-07,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2026,
+        "arm": "R",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R/cache/SWAT/QUERY/BANK.npz",
+        "sha256": "aa887218cb100463d8e1c193d520499fca342847dfef0ab8cc449e6c57014e12",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.0089747246588843e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2026,
+        "arm": "R_target_mean",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R_target_mean/cache/SWAT/CAL/BANK.npz",
+        "sha256": "df16235eb3a06551c72e0b27d1e0f2c02767c63975408da31d3807fa8b002617",
+        "parts": 1,
+        "max_V_formula_abs_difference": 1.5983760826010496e-07,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2026,
+        "arm": "R_target_mean",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R_target_mean/cache/SWAT/QUERY/BANK.npz",
+        "sha256": "a06b4a8bef1fdc1174467dd169691787a95812272ff14d64b4892bf61e0bbd2d",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.1338635950153275e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2027,
+        "arm": "R",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R/cache/SWAT/CAL/BANK.npz",
+        "sha256": "aaebad9e2b947798e0f103fee31e8791098d2b882361167899b1ac2d65bb713a",
+        "parts": 1,
+        "max_V_formula_abs_difference": 9.701194536582136e-08,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2027,
+        "arm": "R",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R/cache/SWAT/QUERY/BANK.npz",
+        "sha256": "b867d9e35a677eb3fae3ce65ecb0c43b0cb9cbfb4fd733ea9b901eb91c8fd1ff",
+        "parts": 4,
+        "max_V_formula_abs_difference": 7.046617165329394e-07,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2027,
+        "arm": "R_target_mean",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R_target_mean/cache/SWAT/CAL/BANK.npz",
+        "sha256": "81236da2ba683e65cc5993a2ec06e612e46412312921130579179f1aa9a9cd72",
+        "parts": 1,
+        "max_V_formula_abs_difference": 1.0604772371358706e-07,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "SWAT",
+        "seed": 2027,
+        "arm": "R_target_mean",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R_target_mean/cache/SWAT/QUERY/BANK.npz",
+        "sha256": "31a2fc0cf76b6ca27c4d3fecdfdb18049320553ecc21ba215784590d5c44025f",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.59564559254477e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2026,
+        "arm": "R",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R/cache/PSM/CAL/BANK.npz",
+        "sha256": "e73633819f724237023184534f53934665e1b9dfb386046d5456327c4fd7c589",
+        "parts": 1,
+        "max_V_formula_abs_difference": 7.850974433065705e-09,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2026,
+        "arm": "R",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R/cache/PSM/QUERY/BANK.npz",
+        "sha256": "3297856a2d8a4ad0de025d35e5568ffa97969aa4f5a66fe18d446f38b7c327a6",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.1332325122737075e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2026,
+        "arm": "R_target_mean",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R_target_mean/cache/PSM/CAL/BANK.npz",
+        "sha256": "2625259dd456627363ac8dfcd7ae59e36ae1d342f9b1c8c4ddb6f56de575cdca",
+        "parts": 1,
+        "max_V_formula_abs_difference": 1.2403724852783071e-08,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2026,
+        "arm": "R_target_mean",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2026/readout/R_target_mean/cache/PSM/QUERY/BANK.npz",
+        "sha256": "48bde53e69d3e7d23b94a3c6f92c25bb3d552e1206c2da6595d64beab2a7d8c4",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.7359818293982698e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2027,
+        "arm": "R",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R/cache/PSM/CAL/BANK.npz",
+        "sha256": "fc4772fadfcd91a9bd04c3b060b96a81daeef208b71661e3c874a6dd9a934923",
+        "parts": 1,
+        "max_V_formula_abs_difference": 7.791316945782167e-09,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2027,
+        "arm": "R",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R/cache/PSM/QUERY/BANK.npz",
+        "sha256": "56874e43c776744e1d959aeb03257ce6064d62476878075acaeeac32dc3f1472",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.2872566905741678e-06,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2027,
+        "arm": "R_target_mean",
+        "role": "CAL",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R_target_mean/cache/PSM/CAL/BANK.npz",
+        "sha256": "8cf68903c8608fa5d910e1e8cfa8c0dcf7671a8f8572fb5012cc514cc57b7ff6",
+        "parts": 1,
+        "max_V_formula_abs_difference": 1.419443070027615e-08,
+        "canonical_savedV_exact": true
+      },
+      {
+        "domain": "PSM",
+        "seed": 2027,
+        "arm": "R_target_mean",
+        "role": "QUERY",
+        "relative": "results/timeradar_target_mean_repeat_20261120_v1/seed2027/readout/R_target_mean/cache/PSM/QUERY/BANK.npz",
+        "sha256": "105b2c036b3c807dbdf62a6704c1d415edc3031a43999b403d98311826bca49c",
+        "parts": 4,
+        "max_V_formula_abs_difference": 1.0079399670459566e-06,
+        "canonical_savedV_exact": true
+      }
+    ],
+    "metadata_NumPy_low_wall_seconds": 20.463985999987926
+  },
+  "scope": "One bounded same-model-family role-separated review, not external double blind; no GPU/model forward/train or scientific source edits.",
+  "independent": "NumPy AP/ROC, CALhigherq99/>/strictC3, original-event/censor/greedy1to1/anyhit/longmacro-pooled-miss-delay,24paired deltas and mean/sampleSD ddof1; noU single fixed reference.",
+  "VUS_disclosure": "Only8 new VUS states evaluated using shared fixed official LEFT window100/thre250; not independent mathematical rewrite; old VUS reused.",
+  "old_low_FPR2025_check_sha256": "414a6823a8d0dfdf563b9a0a048c62eb33509528db74637ba5755dcec17facc6",
+  "new_low_FPR_status": "NEW_LOW_FPR_VERIFIED:16new/36combined rows and ddof1 summary checked",
+  "provenance_note": "Old row reused_from_METRICS_sha256 correctly names immediate accepted report daa93070;36 initial flags concerned that metadata rebind only. All scientific numeric/event/VUS expectations unchanged.",
+  "identities": {
+    "results\\timeradar_target_mean_repeat_20261120_v1\\GLOBAL_RAW_BANK_SEAL.json": "ef9160ea6066ccd9804345349a201f525279910d2df0f885e61e2d5d07d499cd",
+    "results\\timeradar_target_mean_repeat_metrics_20261120_v1\\METRICS.json": "6cd060d46c02a359be8d40043301c6d763a8c9531278df31a1f00a1f4f4484fa",
+    "results\\timeradar_target_mean_repeat_metrics_20261120_v1\\EVENTS.json": "d01cbc46d820b62892400df7b66d731b8c693f03eb55bacc4a47fbbfc5f68458",
+    "results\\timeradar_target_mean_repeat_metrics_20261120_v1\\methods.csv": "a0a75ebde3b20965fcb184624087865cdcbdfb1c460c66e5d5d53bfa8c5b5ac4",
+    "results\\timeradar_target_mean_repeat_metrics_20261120_v1\\paired_seeds.csv": "46a93140c2714843c2ac6c10a13895861ca5ef06fd568b3f1232f075a72f29b3",
+    "results\\timeradar_target_mean_repeat_metrics_20261120_v1\\paired_summary.csv": "2e0359b4a590755bb5df3a69b99083541b0756871184d716c28c087d9f9a0d19"
+  },
+  "audit_artifacts": {
+    "check_low_fpr_2025.py": "2e16d261e5d0eaa3ba3aed8563b2fa9071a50c324937449c1737296b3e8ca08b",
+    "compare.py": "59f063d57faffb6bb9a77a6a74d989cc96823591e89937c5149a1aa2c7707ac2",
+    "EIGHT_ENDPOINTS_READ_ONLY.json": "53a8fb18dafa1474b95d97be0850fba4defe4594d714baf616f6bacc13d1a37e",
+    "INDEPENDENT_NEW_LOW.json": "f6df5b983f91399ce2793035a23c14b77035a341932675639fef8a56de02b88c",
+    "INDEPENDENT_RECOMPUTE.json": "246a309fd66748dc61e387b9a910400345a44c44f624b0041957b1ad631c859a",
+    "LOW_FPR_2025_CHECK.json": "414a6823a8d0dfdf563b9a0a048c62eb33509528db74637ba5755dcec17facc6",
+    "NEW_SHARED_VUS.json": "7f713a5ac7baebc9400b45e883d8506cf151b92d62eeb8a4d74dbca34cd980ad",
+    "PREPARATION_READ_ONLY.json": "07d9ebfb3684886aaab585815c319b92eb6aaaee27d79439b6d0dc606e1a0c40",
+    "recompute.py": "270a1f3227a52fca96feb7f33ac661ad0619796825c2838033884b622c576746"
+  },
+  "measured_wall_seconds": {
+    "metadata_NumPy_and_new_low": 20.463985999987926,
+    "metadata_plus8sharedVUS": 80.52657640003599,
+    "note": "Wall clock not CPU process time; VUS total includes metadata/NumPy/newlow; other short operations not fully instrumented."
+  },
+  "limitations": [
+    "Three adaptation sampling seeds at one shared officialPT; not three pretrains, independent datasets or domains.",
+    "Two historically exposed public development tasks; no contamination-causal or general robustness claim.",
+    "CAL34/512 attack composition, no certified normal1%FPR; noU remains one frozen reference.",
+    "52 successful GPU jobs plus1prestart guard failure with0GPU and2.233745sCPU preserved; controller exact OS exit is NA, not allsuccess.",
+    "Ten recovery jobs only previously unstarted difference; no completed scientific work repeated.",
+    "Canonical savedFP32 nativeV retained; CPU terminalcopy variance only tolerance check.",
+    "LowFPR caps are posthoc QUERY descriptions, not new deployment thresholds or event-selected operating points."
+  ],
+  "new_low_FPR_check_sha256": "47a91a4994f02ef3cf8a7677b803a2488440bcb24c053c734b7c07061e2cd928",
+  "new_low_FPR_manifest_sha256": "a2fb1a0efe1ac3af303cd0f9160f1ef8909294a46ede6e91a90ff83f9e75465a"
+}

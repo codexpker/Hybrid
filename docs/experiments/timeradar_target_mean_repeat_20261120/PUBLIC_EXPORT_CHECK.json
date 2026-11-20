@@ -1,0 +1,42 @@
+{
+  "status": "PUBLIC_EXPORT_CHECK_COMPLETED",
+  "scope": "Last limited export/rounding/attribution continuation; no score/metric/model recalculation",
+  "checks": 80124,
+  "differences": [],
+  "ranking_rows": 18,
+  "operating_rows": 36,
+  "paired_summary_rows": 168,
+  "method_summary_rows": 440,
+  "event_rows": 1926,
+  "low_rows": 36,
+  "resource_records": 53,
+  "FINAL_AUDIT_sha256": "2e50efc47a56689dd0882291670541e33ea246be536f9a14b43676a6d6b39637",
+  "LOW_FPR_REPEAT_CHECK_sha256": "47a91a4994f02ef3cf8a7677b803a2488440bcb24c053c734b7c07061e2cd928",
+  "CPU_wall_seconds": 0.2890409000101499,
+  "identities": {
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\RESULTS.md": "a76fad5bd1958852f8082c65ff1ff0ab87365dba4a58ee610b98a18c38669d88",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\methods.csv": "a0a75ebde3b20965fcb184624087865cdcbdfb1c460c66e5d5d53bfa8c5b5ac4",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\events.csv": "ef28156fb16e2028214a8cf20f8ab75048b18ac9f4ed5fbf04a5be8b79a9cfad",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\paired_seeds.csv": "46a93140c2714843c2ac6c10a13895861ca5ef06fd568b3f1232f075a72f29b3",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\paired_summary.csv": "2e0359b4a590755bb5df3a69b99083541b0756871184d716c28c087d9f9a0d19",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\method_summary.csv": "fc9d7f5c590d7b3e39fd673bf20d0abc30a3db5363956891775e1c3261e1dee5",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\COMPUTE.csv": "76ba57941f776a468409bd6ff291f5255056f8bb0f421cc5bbf31d6d1e15c1d4",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\MODEL_AND_CACHE_IDENTITIES.json": "4644962a55c65f515f018de80d3213826514e6f6668887f3ec806a965f6bca2e",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\PROVENANCE.json": "161111be3cb0d7da5c4fb956ba638ba01986b92ca3a63f53f6d9475743e3b8b1",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\LOW_FPR_SUPPLEMENT.csv": "f6df95b69c3f02895cf62adfd2f5b142fc6d49ee287a6bd7fada0138fab35ddc",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\LOW_FPR_SUPPLEMENT.md": "363a6bbd9a56f634309f122db824b78e24d0964a4cbe7689d8e55ef74a247728",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\LOW_FPR_METHOD_MEAN_SD.csv": "aef0bfef95fd1c4a49d74a07b8bd6a68b7c696fc42393d3ed471a08c1868ee52",
+    "hybrid_ad\\docs\\experiments\\timeradar_target_mean_repeat_20261120\\LOW_FPR_PAIRED_MEAN_SD.csv": "c80da8f024d3805bc0dbc97c6c9eed3ebcd80ba526a389bc780b03293a63e728",
+    "hybrid_ad\\manuscript\\next_generation_20261115\\draft.md": "da9ffbd0c2c189d947857aa6170114636bff4ee7fbc9e3721674e4cb980df26e"
+  },
+  "narrative_checked": [
+    "adaptation sampling at sharedPT, not3pretrains/domains",
+    "noU one reference with no SD; TT/SS single2025controls",
+    "PSM rank positive plus CAL FP costs/lowFPR1percent counterexample and event caveats",
+    "SWAT AP/all lowpAUC negatives retained",
+    "strict/C3/fullpoint/eventcoverage/1to1/anyhit/macro/pooled separated",
+    "53records/52success+1zeroGPUguard/controller exactOSNA/10unstarted recovery preserved",
+    "caps/querydescriptive only; originalCAL34/512 unchanged",
+    "samefamily role-separated not external doubleblind; user2spaces retained"
+  ]
+}

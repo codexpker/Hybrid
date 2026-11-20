@@ -1,0 +1,15 @@
+{
+  "status": "NEW_LOW_FPR_VERIFIED",
+  "checks": 5262,
+  "max_absolute_difference": 1.1368683772161603e-13,
+  "differences": [],
+  "new_rows": 16,
+  "old20_reused_without_recompute": true,
+  "combined_rows": 36,
+  "method_summary_rows": 244,
+  "paired_summary_rows": 122,
+  "manifest_sha256": "a2fb1a0efe1ac3af303cd0f9160f1ef8909294a46ede6e91a90ff83f9e75465a",
+  "summary_sha256": "6de5cb7159603d9bbe1f53395a466a6f57c0cb0849183d922be85f3c4f35b398",
+  "CPU_wall_seconds": 0.3624638000037521,
+  "scope": "Same bounded audit; independent new8 case empirical low-FPR/cap/events and adaptation seed summaries; no model/GPU/threshold changes"
+}

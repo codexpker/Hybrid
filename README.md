@@ -1,10 +1,12 @@
 # Hybrid TSAD 独立研究工程
 
-## 2026-11-20 固定R／R-MeanT适配重复正在执行
+## 2026-11-20 R／R-MeanT三种子固定重复已完成
 
-复用seed2025全部资产，只追加SWaT/PSM seed2026和2027的配对R／R-MeanT，共8次训练；无TT/SS或外部模型新训练。每个seed真实生成自己的T/S抽样计划，两臂共享计划、官方初态及固定84551评分/掩码随机性；这是同一预训练初态下的适配重复，不是三个独立预训练模型。33项相关CPU测试通过，8个新增模型现已全部完成并冻结；原生读出正在执行。一个设备资源检查在作业启动前拒绝运行，其他队列继续，后续仅在空闲卡恢复10个未启动项，不重训或重复成功分片。
+八次新增适配及16份新银行已完成，seed2025、noU、TT/SS与兼容外部结果全部复用。PSM的R-MeanT−R AP三seed均正，均值+0.891±0.505pp；相对单个冻结noU为+1.029±0.122pp。SWaT AP为−0.427±0.241pp，未建立对应持续检出收益。PSM三连原CAL下召回+5.393±2.816pp伴随正常误报+2.256±2.678pp；两项VUS相对R的代价、事件匹配及noU覆盖差距完整保留。SD均为样本SD(ddof=1)，n=3，是共享官方初态下的适配随机性重复，不是三个预训练模型或独立域。
 
-[唯一低误报补表](docs/experiments/timeradar_target_mean_repeat_20261120/LOW_FPR_SUPPLEMENT.md)已用既存缓存完成seed2025的20行；strict和C3分别计算pAUC0–1%/0–5%及固定1/3/5%上限的离散可达召回，C3保留连续性和真实事件覆盖。QUERY曲线仅作描述，不更改CAL、模型选择或训练。补表不阻塞GPU计算；完成全部新作业后统一追加新seed16行与三种子配对汇总，不自动扩展配方。[固定配置](configs/timeradar-target-mean-repeat-20261120.json)。
+[完整方法与配对结果、技术决定](docs/experiments/timeradar_target_mean_repeat_20261120/RESULTS.md)、[逐方法均值/SD](docs/experiments/timeradar_target_mean_repeat_20261120/method_summary.csv)、[唯一低误报补表](docs/experiments/timeradar_target_mean_repeat_20261120/LOW_FPR_SUPPLEMENT.md)。strict与C3分别计算0–1%/0–5%经验ROC折线面积及固定1/3/5%下离散可达召回；PSM收益主要在较宽预算，1%与事件匹配反例保留。QUERY曲线只作描述，不更改CAL、选权或训练。SWaT CAL34攻击点、PSM512点全攻击，q99不是正常1%误报保证。
+
+本轮新增实际10.828306A40GPU小时。52实际作业成功并清理；另有1项启动前资源guard拒绝，GPU零消耗，原30读出成功及10项未启动差集恢复均保留。[实际成本](docs/experiments/timeradar_target_mean_repeat_20261120/COMPUTE.csv)、[模型/缓存身份](docs/experiments/timeradar_target_mean_repeat_20261120/MODEL_AND_CACHE_IDENTITIES.json)、[固定配置](configs/timeradar-target-mean-repeat-20261120.json)。候选保留为可重复的有限PSM正项，不扩写为通用保持或污染鲁棒贡献；本组计算完成，无新配方或后继GPU任务。
 
 ## 2026-11-20 已完成：目标均值重构／源逐副本重构单因素比较
 

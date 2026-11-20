@@ -1,0 +1,40 @@
+{
+  "status": "COMPLETED",
+  "raw_seal_sha256": "ef9160ea6066ccd9804345349a201f525279910d2df0f885e61e2d5d07d499cd",
+  "metrics_sha256": "6cd060d46c02a359be8d40043301c6d763a8c9531278df31a1f00a1f4f4484fa",
+  "actual_GPU_hours": 10.828305763347371,
+  "successful_GPU_jobs": 52,
+  "prestart_guard_failures": 1,
+  "failed_attempt_GPU_seconds": 0,
+  "original_successful_readouts": 30,
+  "recovered_previously_unstarted_readouts": 10,
+  "recovery_plan_sha256": "729da8a766877f7d3c5f04cd3f302fcbadb6bd125d5cc94a7bb4b0d3312ca70a",
+  "original_controller_exit": "uncaught guard exception, retained traceback; exact OS status unavailable to non-parent",
+  "old_results_recomputed": false,
+  "training_source": "public SWaT31/PSM25 only",
+  "fixed_pretrained_initial": true,
+  "adaptation_seeds": [
+    2025,
+    2026,
+    2027
+  ],
+  "noU": "one fixed reference, no sample SD",
+  "TT_SS": "seed2025 reference only",
+  "source_teacher_or_new_modules": false,
+  "new_trainings": 8,
+  "new_banks": 16,
+  "calibration": "same512 points, own q99/higher/strict >; SWaT34 attack / PSM512 attack; not a certified FPR budget",
+  "privacy": "raw checkpoints, numeric banks/scalers and detailed resource diagnostics retained outside publicGit",
+  "runtime_manifest_sha256": "218b0c32eba7460636bce67e38db296f4817d988e91b9d30616ba905c73b3d10",
+  "runtime_files": {
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/native_v_conditioning.py": "da0cba058a682c2929abd3e8885bc46bca6ac622f2654450de97fca4bbc0662a",
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/native_v_conditioning_queue.py": "1a55f3a78a27126e348b4c9807c76faaaacbd3460c4ec1de78e90e481000ffae",
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/native_v_conditioning_runner.py": "5837172a1f3f8a15ceb0a44901f3893730b1a6ebd29b0bc0af4fbc0eac1b9a40",
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/native_v_replay.py": "009f96f3c99ef19b2c91a3d814f91f8642fcbaa3632128c524630f83d78ab0f9",
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/hybrid_v1/temporal.py": "2bac5f28511d21952be9361f2d7d55d8dc9fec321647b5b1cf5dd0d1fd99abd1",
+    "preparations/timeradar_target_mean_repeat_20261120_v1/runtime/hybrid_tsad/hybrid_v1/provenance.py": "88b4a461690716c1972e27a660c36eb36e9f7b25cee7f9a8151d02ca19195478"
+  },
+  "gate_metadata_clarification_sha256": "43c28e3e80739bce76453ec894beac738b42a03f23e972f420253b28c28ec719",
+  "annotations_sha256": "59eed115e28db8c0d985d0e48e1888808e6da638a72a51c2648022486ba3fc24",
+  "runtime_note": "Future receipt wording and optional resource routing changed after launch; original executed bytes retained, no scientific worker changes."
+}
