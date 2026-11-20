@@ -899,9 +899,9 @@ def evaluate_smd_arrays(entity, arm, cal, query, points, labels, metric_path):
     return rows, events, surface
 
 
-def smd_learning_pairs(rows):
+def smd_learning_pairs(rows, fields=None):
     """Fixed within-entity contrasts; n1/SDNA, never pool the two machines."""
-    fields = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC", "FP", "TP", "normal_FPR", "Recall", "F1",
+    fields = fields or ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC", "FP", "TP", "normal_FPR", "Recall", "F1",
               "M", "auxiliary_any_hit_events", "one_to_one_eventF1", "normal_alarm_fragments",
               "event_macro_coverage", "event_point_coverage", "long_steady_macro_coverage",
               "long_steady_point_coverage", "max_event_miss_points", "delay_hit_only_median")
@@ -1008,13 +1008,19 @@ def run_target_mean_smd(workspace, root, output, workers=2):
             for key, value in arrays.items(): surfaces[f"{entity}_{arm}_LOW_{key}"] = value
             checks[entity+"_"+arm] = dict(CAL=point_formula_gate("A", cal), QUERY=point_formula_gate("A", query))
     paired = smd_learning_pairs(rows)
+    low_fields = ("pAUC_01", "pAUC_div_bound_01", "pAUC_05", "pAUC_div_bound_05") + tuple(
+        "cap"+cap+"_"+key for cap in ("01", "03", "05") for key in (
+            "FPR", "TPR", "TP", "FP", "M", "auxiliary_any_hit_events", "event_point_coverage",
+            "long_steady_macro_coverage", "long_steady_point_coverage", "max_event_miss_points"))
+    low_paired = smd_learning_pairs(low, fields=low_fields)
     output.mkdir(parents=True)
     from .left_swat_replay_repeats import write_csv
     write_csv(output/"methods.csv", rows); write_csv(output/"learning_pairs.csv", paired)
     write_csv(output/"LOW_FPR_SUPPLEMENT.csv", low)
+    write_csv(output/"LOW_FPR_PAIRS.csv", low_paired)
     np.savez_compressed(output/"VUS_AND_LOW_CURVES.npz", **surfaces)
     (output/"EVENTS.json").write_text(json.dumps(events,indent=2,allow_nan=False),encoding="utf-8")
-    result = dict(status="COMPLETED", rows=rows, paired=paired, low_fpr=low,
+    result = dict(status="COMPLETED", rows=rows, paired=paired, low_fpr=low, low_fpr_paired=low_paired,
         formula_checks=checks, global_seal_sha256=sha(root/"GLOBAL_RAW_BANK_SEAL.json"),
         actual_GPU_hours=seal["actual_GPU_hours"], cpu_wall_seconds=time.perf_counter()-start,
         interpretation="single-seed fixed historically exposed SMD subset, not fullSMD/blind/independent domains; normal train CAL not query labels",

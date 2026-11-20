@@ -55,6 +55,11 @@ def test_smd_pairs_are_per_entity_single_seed_and_keep_unqualified_as_NA():
     assert {r["entity"] for r in pairs} == set(ev.SMD_FIXED_ENTITIES)
     for r in pairs:
         assert r["AP"] == pytest.approx(.2 if r["contrast"].endswith("−R") else .1)
+    low = [dict(entity=r["entity"], method=r["method"], stream=r["stream"],
+                cap01_TPR=r["AP"], cap01_long_steady_macro_coverage=None) for r in rows]
+    low_pairs = ev.smd_learning_pairs(low, fields=("cap01_TPR", "cap01_long_steady_macro_coverage"))
+    assert len(low_pairs) == 8 and all(r["cap01_long_steady_macro_coverage"] is None for r in low_pairs)
+    assert all("curve_point" not in k for r in low_pairs for k in r)
 
 
 def test_quantiles_keep_units_ties_and_negative_scores():
