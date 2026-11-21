@@ -94,7 +94,8 @@ def summary_rows(pair_rows):
 def evaluate(root, execution, design, out):
     config = read(execution)
     plan = read(design)
-    dispatch = read(root / "DISPATCH.json")
+    reconciled = root / "DISPATCH_COMPLETE.json"
+    dispatch = read(reconciled if reconciled.is_file() else root / "DISPATCH.json")
     assert dispatch["succeeded"] == dispatch["total_expected"] == 16
     case_rows = csv_rows(root / "CASES.csv")
     metrics, phase, pairs, invalid, audits = [], [], [], [], []

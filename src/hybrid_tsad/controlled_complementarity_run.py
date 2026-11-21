@@ -240,18 +240,30 @@ def score(workspace, root, model, domain, block):
                                       visible_gpu=os.environ.get("CUDA_VISIBLE_DEVICES")))
 
 
-def dispatch(workspace, root, devices):
+def dispatch(workspace, root, devices, resume_unlaunched=False):
     """Run at most one owned process per assigned device and retain exit receipts."""
     assert len(set(devices)) == len(devices) <= 4 and len(devices) > 0
     jobs = read(root / "JOBS.json")
     assert len(jobs) == 16 and read(root / "CPU_GATE.json")["result"] == "PASS"
+    logs = root / "lifecycle"
+    prior = []
+    if resume_unlaunched:
+        assert (root / "DISPATCH.json").is_file()
+        prior = [read(path) for path in sorted(logs.glob("*.EXIT.json"))]
+        assert all(row["exit_code"] == 0 or row["pid"] is None for row in prior)
+        assert all(path.with_name(path.name.replace(".START.json", ".EXIT.json")).is_file()
+                   for path in logs.glob("*.START.json"))
+        complete = {(row["domain"], row["block"], row["model"]) for row in prior if row["exit_code"] == 0}
+        pending = [row for row in jobs if (row["domain"], row["block"], row["model"]) not in complete]
+        assert all(not (root / f"{row['domain']}_block{row['block']}_{row['model']}").exists() for row in pending)
+    else:
+        pending = jobs
+        logs.mkdir(exist_ok=False)
     per_point = {("TimeRadar", "SWAT"): .012985, ("TimeRadar", "PSM"): .012389,
                  ("TimesFM", "SWAT"): .049333, ("TimesFM", "PSM"): .040644}
     queue = Queue()
-    for job in sorted(jobs, key=lambda j: -j["forward_points"] * per_point[j["model"], j["domain"]]):
+    for job in sorted(pending, key=lambda j: -j["forward_points"] * per_point[j["model"], j["domain"]]):
         queue.put(job)
-    logs = root / "lifecycle"
-    logs.mkdir(exist_ok=False)
 
     def worker(gpu):
         receipts = []
@@ -261,21 +273,29 @@ def dispatch(workspace, root, devices):
             except Empty:
                 return receipts
             domain, block, model = job["domain"], job["block"], job["model"]
-            key = f"{domain}_block{block}_{model}"
+            key = f"{domain}_block{block}_{model}" + (".CONTINUED" if resume_unlaunched else "")
             elapsed = 0.0
             pid = None
             started = time.time()
             exit_code = None
             reason = None
-            usage = subprocess.check_output(["nvidia-smi", "-i", str(gpu), "--query-gpu=memory.used",
-                                             "--format=csv,noheader,nounits"], text=True)
-            if int(usage.strip()) > 128:
+            for attempt in range(10):
+                usage = subprocess.check_output(["nvidia-smi", "-i", str(gpu), "--query-gpu=memory.used",
+                                                 "--format=csv,noheader,nounits"], text=True)
+                applications = subprocess.check_output(["nvidia-smi", "-i", str(gpu), "--query-compute-apps=pid",
+                                                         "--format=csv,noheader,nounits"], text=True).strip()
+                device_ready = int(usage.strip()) <= 128 and not applications
+                if device_ready:
+                    break
+                time.sleep(3)
+            if not device_ready:
                 reason = "device occupied before launch"
             else:
                 env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(gpu), OMP_NUM_THREADS="1",
                            MKL_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1")
                 command = [sys.executable, "-m", __spec__.name, "score", str(workspace), str(root), model, domain, str(block)]
                 with (logs / f"{key}.log").open("x", encoding="utf-8") as log:
+                    started = time.time()
                     tic = time.monotonic()
                     proc = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, env=env)
                     pid = proc.pid
@@ -301,9 +321,15 @@ def dispatch(workspace, root, devices):
 
     with ThreadPoolExecutor(max_workers=len(devices)) as pool:
         receipts = [receipt for result in pool.map(worker, devices) for receipt in result]
+    receipts = prior + receipts
     succeeded = sum(row["exit_code"] == 0 for row in receipts)
-    dump(root / "DISPATCH.json", dict(succeeded=succeeded, total_expected=len(jobs), receipts=receipts,
-                                     occupied_gpu_hours=sum(row["occupied_wall_seconds"] for row in receipts) / 3600))
+    assert len({(row["domain"], row["block"], row["model"]) for row in receipts if row["exit_code"] == 0}) == succeeded
+    dispatch_name = "DISPATCH_COMPLETE.json" if resume_unlaunched else "DISPATCH.json"
+    # Readers use the final filename as a completion signal.
+    intermediate = root / (dispatch_name + ".tmp")
+    dump(intermediate, dict(succeeded=succeeded, total_expected=len(jobs), receipts=receipts,
+                            occupied_gpu_hours=sum(row["occupied_wall_seconds"] for row in receipts) / 3600))
+    intermediate.rename(root / dispatch_name)
     if succeeded != len(jobs):
         raise RuntimeError(f"{succeeded}/{len(jobs)} jobs completed; see lifecycle receipts")
 
@@ -324,6 +350,7 @@ def main():
     dispatch_cli.add_argument("workspace", type=Path)
     dispatch_cli.add_argument("root", type=Path)
     dispatch_cli.add_argument("devices", type=int, nargs="+")
+    dispatch_cli.add_argument("--resume-unlaunched", action="store_true")
     arguments = vars(parser.parse_args())
     {"prepare": prepare, "score": score, "dispatch": dispatch}[arguments.pop("action")](**arguments)
 
