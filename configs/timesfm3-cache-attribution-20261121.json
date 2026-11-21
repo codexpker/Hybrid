@@ -1,0 +1,29 @@
+{
+  "analysis": "timesfm3_v_cached_attribution_20261121_v1",
+  "baseline_commit": "c94357d91b837f5d92a259732dfad8c4a60e400c",
+  "baseline_metrics_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1",
+  "raw_seal_sha256": "49f22b0046b1f535ccec090af452958cdc4680c6f1706618a6bd8c93067ef963",
+  "domains": ["SWAT", "PSM"],
+  "streams": ["strict", "confirmed3"],
+  "event_group": "original any_hit: both, TimesFM_only, TimeRadar_only, neither; original independent one_to_one matching retained separately",
+  "phases": {
+    "pre_normal": "max(start-512, previous original event end) to start, legal scored normal points only",
+    "onset_32": "start to min(start+32,end)",
+    "history_transition_32_512": "start+32 to min(start+512,end)",
+    "steady_after512": "start+512 to end; same existing long-event definition",
+    "recovery_32": "end to min(end+32,next original event start), normal points only",
+    "recovery_32_512": "end+32 to min(end+512,next original event start), normal points only"
+  },
+  "point_subsets": ["all", "TimesFM_original_alarm"],
+  "quantiles": "all nine stored marginal levels .1 to .9; native q10-q90 width and inclusive coverage only; equality and zero widths explicit",
+  "concentration": "per-point squared-error shares; largest1/largest3; inverse Herfindahl effective channel count; minimum channels explaining50/80%; zero-total-error NA",
+  "statistics": "point mean/p10/median/p90; event-macro means separately from pooled event-phase exposures; no pooling domains or significance claims",
+  "normal_fragments": "consecutive original model alarm AND normal label; reset at index gaps/attack boundaries; no new OR alarm",
+  "normal_labels": "posthoc nominal normal annotation, not certified operating states",
+  "thresholds": "original each-model CAL q99/higher/strict>; unchanged",
+  "training": false,
+  "model_forward": false,
+  "new_detection_score": false,
+  "threshold_selection": false,
+  "GPU_hours": 0
+}

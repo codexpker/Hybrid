@@ -63,3 +63,6 @@ docs/experiments/timesfm3_frozen_20261121/** -text whitespace=cr-at-eol
 
 # Matplotlib SVG path layout uses intentional whitespace; retain reviewed bytes.
 docs/experiments/timesfm3_frozen_20261121/*.svg -text -whitespace
+
+# Preserve this read-only cached attribution table identity.
+docs/experiments/timesfm3_v_cached_attribution_20261121/** -text whitespace=cr-at-eol
