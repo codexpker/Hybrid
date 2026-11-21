@@ -1,0 +1,113 @@
+{
+  "status": "COMPLETED_READ_ONLY",
+  "config": {
+    "analysis": "timesfm3_v_cached_attribution_20261121_v1",
+    "baseline_commit": "c94357d91b837f5d92a259732dfad8c4a60e400c",
+    "baseline_metrics_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1",
+    "raw_seal_sha256": "49f22b0046b1f535ccec090af452958cdc4680c6f1706618a6bd8c93067ef963",
+    "domains": [
+      "SWAT",
+      "PSM"
+    ],
+    "streams": [
+      "strict",
+      "confirmed3"
+    ],
+    "event_group": "original any_hit: both, TimesFM_only, TimeRadar_only, neither; original independent one_to_one matching retained separately",
+    "phases": {
+      "pre_normal": "max(start-512, previous original event end) to start, legal scored normal points only",
+      "onset_32": "start to min(start+32,end)",
+      "history_transition_32_512": "start+32 to min(start+512,end)",
+      "steady_after512": "start+512 to end; same existing long-event definition",
+      "recovery_32": "end to min(end+32,next original event start), normal points only",
+      "recovery_32_512": "end+32 to min(end+512,next original event start), normal points only"
+    },
+    "point_subsets": [
+      "all",
+      "TimesFM_original_alarm"
+    ],
+    "quantiles": "all nine stored marginal levels .1 to .9; native q10-q90 width and inclusive coverage only; equality and zero widths explicit",
+    "concentration": "per-point squared-error shares; largest1/largest3; inverse Herfindahl effective channel count; minimum channels explaining50/80%; zero-total-error NA",
+    "statistics": "point mean/p10/median/p90; event-macro means separately from pooled event-phase exposures; no pooling domains or significance claims",
+    "normal_fragments": "consecutive original model alarm AND normal label; reset at index gaps/attack boundaries; no new OR alarm",
+    "normal_labels": "posthoc nominal normal annotation, not certified operating states",
+    "thresholds": "original each-model CAL q99/higher/strict>; unchanged",
+    "training": false,
+    "model_forward": false,
+    "new_detection_score": false,
+    "threshold_selection": false,
+    "GPU_hours": 0
+  },
+  "config_sha256": "acec397d64636beba274fef66eccfb0d5750000236a9b74fc64312dbb0643656",
+  "input_hashes": {
+    "results/timesfm3_frozen_20261121_v1/GLOBAL_RAW_BANK_SEAL.json": "49f22b0046b1f535ccec090af452958cdc4680c6f1706618a6bd8c93067ef963",
+    "results/timesfm3_frozen_metrics_20261121_v1/METRICS.json": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1",
+    "results/native_v_conditioning_metrics_20261119_v1/METRICS.json": "a3c31f2325174a02fb76bd76486013064c71e83e5909ed90368f9b46e3ce9ccb",
+    "results/native_v_conditioning_metrics_20261119_v1/EVENTS.json": "6d54b9be99457c42f1c873fe345a30fafbfc09991e7d9983e8df8bf6d96b8789",
+    "results/timesfm3_frozen_metrics_20261121_v1/EVENTS.json": "427e5337252b00e5bee5af7838992bc562f4cbb25a324c4621db3ac6fd598bec",
+    "hybrid_ad/docs/experiments/timesfm3_frozen_20261121/PUBLICATION_BINDING.json": "75da2dc12c1d8a288e50741e156d73a2c97f9aa1591cc2eaa83bcdcc6785c774",
+    "hybrid_ad/docs/experiments/timesfm3_frozen_20261121/events.csv": "cf228476d8d04f57d2ce0d0adac030de5ae6ecc9732a003b9c20ba43734b8de1",
+    "results/tf_conditional_energy_20261119_v1/EXTERNAL_CACHE_MANIFEST_V2.json": "420ae8fd09a1847ab523c0b4dfa15b6e6d80f087e7cd4efef27b9d74803189d8",
+    "results/timesfm3_frozen_20261121_v1/score/SWAT/QUERY/BANK.npz": "7dba6b365b92cd672ca581590c61b90dc769e71c014a9a10e84f25ff8b19d3b8",
+    "results/native_v_conditioning_20261119_v1/banks/SWAT/A/QUERY/BANK.npz": "4f6b345de071253569c7ed1054527f002064e42c1e8844f5ee65ae4acbd10ddb",
+    "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+    "results/timesfm3_frozen_20261121_v1/score/PSM/QUERY/BANK.npz": "dbbc301a2751c51aaae026a705fec837c14ee0149c75599b2eaa02aba95b04f3",
+    "results/native_v_conditioning_20261119_v1/banks/PSM/A/QUERY/BANK.npz": "26e54dd3f0e74093c091356fe242efa0bd0c6ad5f37877298032eeb8210e965e",
+    "data/common_psm_20261028_v1/test_label.npy": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69"
+  },
+  "validation": [
+    {
+      "domain": "SWAT",
+      "stream": "strict",
+      "threshold_TimesFM": 0.014081657580236986,
+      "threshold_TimeRadar": 0.23049013316631317,
+      "normal_FP_TimesFM": 3638,
+      "normal_FP_TimeRadar": 3759,
+      "all_original_counts_unchanged": true
+    },
+    {
+      "domain": "SWAT",
+      "stream": "confirmed3",
+      "threshold_TimesFM": 0.014081657580236986,
+      "threshold_TimeRadar": 0.23049013316631317,
+      "normal_FP_TimesFM": 90,
+      "normal_FP_TimeRadar": 3529,
+      "all_original_counts_unchanged": true
+    },
+    {
+      "domain": "PSM",
+      "stream": "strict",
+      "threshold_TimesFM": 0.14501685214861282,
+      "threshold_TimeRadar": 0.1491694450378418,
+      "normal_FP_TimesFM": 1058,
+      "normal_FP_TimeRadar": 14036,
+      "all_original_counts_unchanged": true
+    },
+    {
+      "domain": "PSM",
+      "stream": "confirmed3",
+      "threshold_TimesFM": 0.14501685214861282,
+      "threshold_TimeRadar": 0.1491694450378418,
+      "normal_FP_TimesFM": 34,
+      "normal_FP_TimeRadar": 13765,
+      "all_original_counts_unchanged": true
+    }
+  ],
+  "tables": {
+    "QUERY_DISTRIBUTIONS": 4,
+    "EVENT_PHASES": 1680,
+    "EVENT_GROUP_PHASES": 192,
+    "CHANNEL_CONTRIBUTIONS": 22920,
+    "NORMAL_SUMMARY": 24,
+    "NORMAL_FRAGMENTS": 4606
+  },
+  "CPU_wall_seconds": 18.826307800016366,
+  "GPU_hours": 0,
+  "model_forwards": 0,
+  "training_updates": 0,
+  "original_scores_changed": false,
+  "thresholds_changed": false,
+  "ranking_metrics_recomputed": false,
+  "quantiles_used_for_new_score": false,
+  "scope": "descriptive cached public-event analysis; no attention/history/channel ablation or causal/physical attribution"
+}

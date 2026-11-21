@@ -1,5 +1,12 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-21 已完成：冻结缓存事件／九分位数／逐变量误差归因
+
+仅用既有SWaT／PSM缓存，保持模型、原生V、中位数MSE、阈值、事件及负结果不变。发现部分持续段的低预测误差与较高V共存；额外预测触发多为短促偏离，且与正常误报存在相似统计形态。九分位数位置也没有建立正常／异常的清楚区分。它支持继续研究有边界的阶段互补假设，不能证明长历史或变量注意力贡献，更不是已成立的融合增量。完整TimesFM残差基准不等于对TimesFM架构思想的验证或否定。
+
+[完整归因与研究判断](docs/experiments/timesfm3_v_cached_attribution_20261121/RESULTS.md) · [所有事件阶段](docs/experiments/timesfm3_v_cached_attribution_20261121/EVENT_PHASES.csv) · [误差贡献](docs/experiments/timesfm3_v_cached_attribution_20261121/CHANNEL_ERROR_CONTRIBUTIONS.csv) · [原缓存身份与只读记录](docs/experiments/timesfm3_v_cached_attribution_20261121/ANALYSIS.json)。6项CPU单元测试通过、431项同次自洽核验无差异；主统计18.826308秒，表格后处理1.165681秒，模型前向／训练／GPU均为0。全部14个长事件、共有／独有／未命中组和正常误报片段均保留，无新融合或训练任务。
+
+
 ## 2026-11-21 完整官方预训练 TimesFM3 冻结基准完成
 
 使用指定官方源码918df02及HF权重43046b，完整330,710,976参数冻结。每个起点联合全部变量、严格过去512点独立预测一步，唯一评分为源FIT标准化空间的中位数预测MSE；不是官方异常头或Hybrid贡献。SWaT/PSM完整共同QUERY轴AP分别0.093973/0.344512、ROC0.288375/0.566754，均低于复用的原生TimeRadar V。低误报区间及长稳态覆盖也没有建立优势。

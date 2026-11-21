@@ -1,0 +1,5 @@
+domain,stream,QUERY_attack_points,complete_event_points,partial_or_ineligible_attack_points,complete_events,TimesFM_QUERY_TP,TimesFM_complete_event_alarm_points,TimeRadar_QUERY_TP,TimeRadar_complete_event_alarm_points,whole_attack_MSE_mean,complete_event_MSE_mean,ineligible_attack_MSE_mean
+SWAT,strict,47777,47777,0,22,210,210,33047,33047,0.0025435356803385,0.002543535680338451,
+SWAT,confirmed3,47777,47777,0,22,31,31,33025,33025,0.0025435356803385,0.002543535680338451,
+PSM,strict,17419,10554,6865,48,1117,499,8861,7774,0.1941324363751377,0.22844646819793438,0.14137929844974856
+PSM,confirmed3,17419,10554,6865,48,144,66,8514,7725,0.1941324363751377,0.22844646819793438,0.14137929844974856

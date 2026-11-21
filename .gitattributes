@@ -66,3 +66,8 @@ docs/experiments/timesfm3_frozen_20261121/*.svg -text -whitespace
 
 # Preserve this read-only cached attribution table identity.
 docs/experiments/timesfm3_v_cached_attribution_20261121/** -text whitespace=cr-at-eol
+
+# Preserve the executed NumPy-only cached attribution source/config/test bytes.
+src/hybrid_tsad/timesfm3_cached_attribution.py -text whitespace=cr-at-eol
+tests/test_timesfm3_cached_attribution.py -text whitespace=cr-at-eol
+configs/timesfm3-cache-attribution-20261121.json -text whitespace=cr-at-eol

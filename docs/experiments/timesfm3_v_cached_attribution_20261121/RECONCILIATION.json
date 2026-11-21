@@ -1,0 +1,25 @@
+{
+  "status": "CACHED_DESCRIPTIVE_RECONCILIATION_PASS",
+  "checks": 431,
+  "differences": 0,
+  "ANALYSIS_sha256": "217345895a07e4bba294aade64750df62ac7de23f6e35b31c0dd0fd26427d808",
+  "checks_scope": "140complete-event phase partitions and original model alarm counts, normal fragments, marginal-quantile partitions; not an independent external audit",
+  "postprocess_CPU_wall_seconds": 1.1656808000989258,
+  "GPU_hours": 0,
+  "model_forwards": 0,
+  "thresholds_changed": false,
+  "new_detection_score": false,
+  "raw_channel_actual_prediction_quantile_means_not_published": true,
+  "public_file_hashes": {
+    "ANALYSIS.json": "217345895a07e4bba294aade64750df62ac7de23f6e35b31c0dd0fd26427d808",
+    "CHANNEL_ERROR_CONTRIBUTIONS.csv": "55331dab3bfac295809804a05134278cd3f5cf3e2bc3763c2068578802f3a814",
+    "EVENT_GROUP_PHASES.csv": "3f47b71c4bbc96a2a1598abde27cb2ce96048cd30e366dfec9a869b99412140f",
+    "EVENT_PHASES.csv": "0d8871c83c09d1041dcb84e5a6ddb6cc309000b3b48e22d41e07a66d6e42dbfa",
+    "EVENT_TRIGGER_SUMMARY.csv": "b3b8ced0e5998c58473e05244ffadef543b8edca657e31228cff46d41d795899",
+    "LONG_EVENT_STAGE_PAIRS.csv": "d0ab88bdd94c9f6513c30d26a4e10b18a28ea0b1cbfe5399980338b3b6689f70",
+    "NORMAL_FRAGMENTS.csv": "6a2dd9b2f9fcca8a13f10007baf559e0d27939518147556f4a3ef0c001e7c93f",
+    "NORMAL_SUMMARY.csv": "7cfd2631dddb8f716cdc321b7855744c18371d030f29f0932409210f5706e463",
+    "POINT_SCOPE_ACCOUNTING.csv": "949686e15dc3a9db9ae4c0ccb131a7541b0752ddb9e882f7e2e9d68b69ced967",
+    "QUERY_DISTRIBUTIONS.csv": "a3220abb5cbbb28fdaaedbdcde6eb7d0e921ed32bea9af5ad96767413490b39e"
+  }
+}
