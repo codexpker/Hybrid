@@ -1,0 +1,82 @@
+{
+  "experiment": "timesfm3_frozen_20261121_v1",
+  "domains": [
+    "SWAT",
+    "PSM"
+  ],
+  "method": "TimesFM3_frozen",
+  "source_commit": "918df02c9d366b2145bc5876135fa2131d3ed2a6",
+  "weight_revision": "43046b85ec22d584a13f8098c2ed39c889e129c2",
+  "weight_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+  "predict_options": {
+    "horizon": 1,
+    "return_quantiles": true,
+    "use_symmetric_averaging": false,
+    "make_positive": false,
+    "sort_quantiles": true,
+    "use_znorm": false,
+    "padding_mode": "none"
+  },
+  "batch_tolerance": {
+    "rtol": 0.0001,
+    "atol": 0.0001
+  },
+  "official_per_core_batch_size": 4,
+  "host_outer_chunk": 64,
+  "training": false,
+  "adaptation": false,
+  "labels_read": false,
+  "score_precision": "savedFP32 median/actual promotedFP64 before square and meanC",
+  "roles": {
+    "SWAT": {
+      "SOURCE_FIT": [
+        0,
+        396000
+      ],
+      "SOURCE_SELECT": [
+        396000,
+        495000
+      ],
+      "CAL": [
+        585544,
+        607479
+      ],
+      "QUERY": [
+        608023,
+        944919
+      ]
+    },
+    "PSM": {
+      "SOURCE_FIT": [
+        0,
+        105984
+      ],
+      "SOURCE_SELECT": [
+        105984,
+        132481
+      ],
+      "CAL": [
+        18112,
+        21960
+      ],
+      "QUERY": [
+        22504,
+        87841
+      ]
+    }
+  },
+  "score_axis": {
+    "SWAT": [
+      608535,
+      944856
+    ],
+    "PSM": [
+      23016,
+      87744
+    ]
+  },
+  "cal_points_per_domain": 512,
+  "source_code_license": "Apache-2.0",
+  "weight_license": "timesfm-non-commercial-license-v1.0; academic offline use only; weights/outputs not redistributed",
+  "source_archive_sha256": "0bbb552f1a356e4be57805aae4bbe0b6b44dcf25153a9a5e71de54adc2e5fa45"
+}

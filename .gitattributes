@@ -54,3 +54,9 @@ docs/provenance/stage2_delivery/** -text -whitespace
 
 # Retain this fixed SMD publication's audited result bytes across clones.
 docs/experiments/timeradar_target_mean_smd_20261120/** -text whitespace=cr-at-eol
+
+# Preserve this frozen official TimesFM3 baseline implementation/evidence identity.
+src/hybrid_tsad/timesfm3_frozen*.py -text whitespace=cr-at-eol
+tests/test_timesfm3_frozen*.py -text whitespace=cr-at-eol
+configs/timesfm3-frozen-20261121.json -text whitespace=cr-at-eol
+docs/experiments/timesfm3_frozen_20261121/** -text whitespace=cr-at-eol
