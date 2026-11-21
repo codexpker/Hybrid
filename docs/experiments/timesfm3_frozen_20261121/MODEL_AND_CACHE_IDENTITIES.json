@@ -1,0 +1,49 @@
+{
+  "source_commit": "918df02c9d366b2145bc5876135fa2131d3ed2a6",
+  "HF_revision": "43046b85ec22d584a13f8098c2ed39c889e129c2",
+  "weight_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+  "weight_bytes": 1322898824,
+  "raw_seal_sha256": "49f22b0046b1f535ccec090af452958cdc4680c6f1706618a6bd8c93067ef963",
+  "METRICS_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1",
+  "banks": [
+    {
+      "domain": "SWAT",
+      "method": "TimesFM3_frozen",
+      "role": "CAL",
+      "relative": "results/timesfm3_frozen_20261121_v1/score/SWAT/CAL/BANK.npz",
+      "sha256": "e544200b582d3cbcd15c851153406992d346394ee70677e67614b6669d1b9b6e",
+      "receipt_relative": "results/timesfm3_frozen_20261121_v1/score/SWAT/CAL/SEALED.json",
+      "receipt_sha256": "fd04527f96f832a79a940c222826f36b77d578111b915ef52e72cbf145c66c7f"
+    },
+    {
+      "domain": "SWAT",
+      "method": "TimesFM3_frozen",
+      "role": "QUERY",
+      "relative": "results/timesfm3_frozen_20261121_v1/score/SWAT/QUERY/BANK.npz",
+      "sha256": "7dba6b365b92cd672ca581590c61b90dc769e71c014a9a10e84f25ff8b19d3b8",
+      "receipt_relative": "results/timesfm3_frozen_20261121_v1/score/SWAT/QUERY/SEALED.json",
+      "receipt_sha256": "e915a02a423d5b8ca0f2ca56f73711425fae425ba6057906658cfa2a6b592e5a"
+    },
+    {
+      "domain": "PSM",
+      "method": "TimesFM3_frozen",
+      "role": "CAL",
+      "relative": "results/timesfm3_frozen_20261121_v1/score/PSM/CAL/BANK.npz",
+      "sha256": "be08a6c58e22ca56ed01a17a08187ce01e62dbef97ee6dcb4531627ef42c4d1c",
+      "receipt_relative": "results/timesfm3_frozen_20261121_v1/score/PSM/CAL/SEALED.json",
+      "receipt_sha256": "4d1f8e4c90f694831e7ea198761cf2a206d682838933dc647c4a9efd94a3b310"
+    },
+    {
+      "domain": "PSM",
+      "method": "TimesFM3_frozen",
+      "role": "QUERY",
+      "relative": "results/timesfm3_frozen_20261121_v1/score/PSM/QUERY/BANK.npz",
+      "sha256": "dbbc301a2751c51aaae026a705fec837c14ee0149c75599b2eaa02aba95b04f3",
+      "receipt_relative": "results/timesfm3_frozen_20261121_v1/score/PSM/QUERY/SEALED.json",
+      "receipt_sha256": "e83485dce62bb3550965acd0300b43fec8236f7327a09108695c0307756d5dd1"
+    }
+  ],
+  "source_FIT_gate_sha256": "d40c4c2833c8b8839c6ec37a228d42409cdd5d8b5ba022cf1e926ab561007c8a",
+  "previously_accepted_metrics_sha256": "a3c31f2325174a02fb76bd76486013064c71e83e5909ed90368f9b46e3ce9ccb",
+  "public_scope": "summary tables/hashes/figures only; full predictions, quantiles, input arrays, scaler and weights stay outside Git"
+}

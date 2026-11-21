@@ -1,0 +1,14 @@
+{
+  "previous_curve_hashes": {
+    "results/native_v_conditioning_curves_20261119_v1/SWAT_FULL_CURVES.npz": "b2404dcd786d6bba60c5603d0bfe7e77b191f3ef167cd765df8ad3a718bbc9fa",
+    "results/timesfm3_frozen_metrics_20261121_v1/NEW_VUS_AND_LOW_CURVES.npz": "93fc2621846553123a66249cb0a9fbd1e0abeb920f559e05ef953bb40d31b785",
+    "results/timeradar_low_fpr_20261120_v1/SWAT_noU_seedNone_LOW_FPR.npz": "3bbb579a56c1f7fa3b93f4f829db60c7d90b074511d9251f1b8d6cdb2dd27da8",
+    "results/native_v_conditioning_curves_20261119_v1/PSM_FULL_CURVES.npz": "5cc7b6b5551ba0f2516c64c454ae0ee6f48e3abd274d3644b48aebe4de382313",
+    "results/timeradar_low_fpr_20261120_v1/PSM_noU_seedNone_LOW_FPR.npz": "76a6e479069e6404a2d997f7139bc935e8aeb38ae557077e749e27f6f1c0e8c5"
+  },
+  "labels_joined_after_seal": true,
+  "CAL_thresholds_changed": false,
+  "model_forwards": 0,
+  "GPU_hours": 0,
+  "export_and_curve_CPU_wall_seconds": 24.614233700092882
+}

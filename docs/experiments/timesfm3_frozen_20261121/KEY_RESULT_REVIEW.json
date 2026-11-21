@@ -1,0 +1,38 @@
+{
+  "status": "AUDIT_COMPLETED_PASS",
+  "checks": 7426,
+  "differences": [],
+  "max_absolute_difference": 1.3877787807814457e-17,
+  "metrics_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1",
+  "raw_seal_sha256": "49f22b0046b1f535ccec090af452958cdc4680c6f1706618a6bd8c93067ef963",
+  "independent_recompute_sha256": "7a5c80f83e36fdef563f335904f1769a43c137bc6554b1b2daccd2a73cdbba5e",
+  "shared_official_VUS_sha256": "e4a604afa43e8c479d09dc415495ec2f965664fe1ae98589bc7c3827db545259",
+  "preparation_sha256": "3e8ec5969bb698c834d5441db519e9f635ee882a17c17a29fbf01f3150339111",
+  "new_stream_rows": 4,
+  "reused_rows": 31,
+  "paired_rows": 8,
+  "new_event_rows": 214,
+  "low_rows": 4,
+  "overlap_rows": 4,
+  "resource": {
+    "actual_GPU_jobs": 23,
+    "all_OS0_cleanup": true,
+    "actual_GPU_hours": 5.487239025026405
+  },
+  "CPU_cost": {
+    "successful_preparation_seconds": 3.231521099980455,
+    "NumPy_plus_sharedVUS_seconds": 31.542811900028028,
+    "comparison_seconds": 0.04702629998791963,
+    "earlier_missing_safetensors_preparation_attempt_seconds": null
+  },
+  "scope": "One incremental same-family role-separated review, not external double blind. Independent NumPy AP/ROC, savedFP32 median-to-F64 meanC residual formula, q99higher/>512CAL, strict/C3, event1to1 vsany, longmacro/pooled/miss, lowFPR and nativeV overlap. Two new VUS reuse pinned official algorithm window100/thre250, not independent mathematical rewrite.31 old rows identity-only, oldVUS not recomputed.",
+  "limitations": [
+    "Project residual AD score, not official TimesFM anomaly head or Hybrid innovation",
+    "Full distinct pretrained architectures, not weight-only or matched-compute ablation",
+    "Any-hit/one-to-one and isolated triggers/sustained coverage distinct",
+    "Mixed CAL SWAT34/PSM512 attack, no normal1percent FPR guarantee",
+    "Overlap describes separate fixed CAL operations, no deployed OR/fusion or coordination claim",
+    "Weights and raw pretrained outputs remain external; no license reinterpretation or downloads",
+    "No training/neural forward/GPU/QUERY threshold selection"
+  ]
+}

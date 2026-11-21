@@ -1,5 +1,14 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-21 完整官方预训练 TimesFM3 冻结基准完成
+
+使用指定官方源码918df02及HF权重43046b，完整330,710,976参数冻结。每个起点联合全部变量、严格过去512点独立预测一步，唯一评分为源FIT标准化空间的中位数预测MSE；不是官方异常头或Hybrid贡献。SWaT/PSM完整共同QUERY轴AP分别0.093973/0.344512、ROC0.288375/0.566754，均低于复用的原生TimeRadar V。低误报区间及长稳态覆盖也没有建立优势。
+
+保留额外短事件证据：三连后相对V各有2/8个独有any-hit事件；SWaT其中长事件仅1/601点、稳态0，PSM八个均为短事件，不能宣称持续检出或协同创新。严格点与三连、any-hit与一对一匹配、各自CAL误报代价完整分列。CAL仍含SWaT34攻击点、PSM512全攻击，不是正常误报预算认证。
+
+[完整方法/操作点/事件互补与技术决定](docs/experiments/timesfm3_frozen_20261121/RESULTS.md) · [逐方法原精度表](docs/experiments/timesfm3_frozen_20261121/methods.csv) · [局部事件证据](docs/experiments/timesfm3_frozen_20261121/LOCALIZED_EVENT_EVIDENCE.csv) · [模型与缓存SHA](docs/experiments/timesfm3_frozen_20261121/MODEL_AND_CACHE_IDENTITIES.json) · [固定配置](configs/timesfm3-frozen-20261121.json)。402,073个CAL/QUERY点、23个实际GPU作业OS0且清理，实际5.487239 A40 GPU小时；无训练、适配或旧方法重推。完整输出/九分位数/逐通道误差留存，公开仅汇总和哈希。MeanT扩展正式结束，历史产物不改；本轮后无自动融合、适配或后继候选。
+
+
 ## 2026-11-20 固定SMD子集验证完成
 
 只在预定machine-3-2／3-3上新增seed2025的R和MeanT四次适配，noU仅补兼容当前norm0／独立B1协议的必要推理。两实体MeanT相对R的AP分别−0.214／−0.484pp，ROC和两项VUS亦较低；3-3虽优于noU，但R的排序收益更强。保留3-3原CAL下三连误报75→60、匹配事件9→10/16的有限正项，同时披露严格召回下降、低误报三连区间代价及最长漏检未改善。

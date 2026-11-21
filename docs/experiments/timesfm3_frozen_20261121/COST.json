@@ -1,0 +1,45 @@
+{
+  "parameters": 330710976,
+  "trainable_parameters": 0,
+  "training_updates": 0,
+  "adaptation_updates": 0,
+  "actual_GPU_hours": 5.487239025026405,
+  "GPU_jobs": 23,
+  "new_scored_points": 402073,
+  "metric_CPU_wall_seconds": 47.72655079991091,
+  "normal_gate": [
+    {
+      "domain": "SWAT",
+      "channels": 31,
+      "sample_batch_max_abs": 3.5837292671203613e-06,
+      "timed_samples": 64,
+      "timed_batch_seconds": [
+        3.1573037393391132
+      ],
+      "seconds_per_point": 0.049332870927173644,
+      "peak_allocated_bytes": 1473213952,
+      "peak_reserved_bytes": 1635778560
+    },
+    {
+      "domain": "PSM",
+      "channels": 25,
+      "sample_batch_max_abs": 5.960464477539062e-07,
+      "timed_samples": 64,
+      "timed_batch_seconds": [
+        2.6011999808251858
+      ],
+      "seconds_per_point": 0.04064374970039353,
+      "peak_allocated_bytes": 1473213952,
+      "peak_reserved_bytes": 1635778560
+    }
+  ],
+  "API_options": {
+    "horizon": 1,
+    "return_quantiles": true,
+    "use_symmetric_averaging": false,
+    "make_positive": false,
+    "sort_quantiles": true,
+    "use_znorm": false,
+    "padding_mode": "none"
+  }
+}

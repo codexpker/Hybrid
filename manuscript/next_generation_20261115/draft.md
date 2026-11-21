@@ -6,7 +6,7 @@ lang: en
 bibliography: references.bib
 ---
 
-> **Research status,21 November2026.** MeanT expansion is formally closed after the accepted PSM/SWaT three-seed and fixed SMD3-2/3-3 evaluations; all positives, false-alarm/coverage costs and negatives remain historical evidence. The current authorized task is a complete official pretrained TimesFM3 frozen forecast baseline on the same public SWaT/PSM axes, not a new Hybrid candidate. Official source918df02 and HF revision43046b are fixed; full-weight normal-data engineering checks passed and the complete four-bank readout is running. No training, adaptation or fusion is performed, and detection results are not yet claimed. All stopped branches remain stopped.
+> **Research status,21 November2026.** MeanT expansion is formally closed after its accepted PSM/SWaT repetition and fixed SMD subset evaluation. The complete official pretrained TimesFM3 frozen forecast baseline is now finished on the same public SWaT/PSM axes: AP0.093973/0.344512, ROC0.288375/0.566754, with localized extra short-event triggers but no ranking or sustained-coverage advantage over native TimeRadar V. It is an external project-residual baseline, not a Hybrid innovation. No training/adaptation/fusion or successor was launched; all historical stopped candidates and their results remain unchanged.
 
 # Introduction
 
@@ -53,6 +53,31 @@ $$X_t=[x_{t-H+1},\ldots,x_t]\in\mathbb R^{H\times C}.$$
 The endpoint permission permits the current observation $x_t$ after arrival and excludes $x_{t+1:}$. A predictor of $x_t$ has the stricter input permission $\mathcal F_{t-1}$; the two tasks must not be conflated. These definitions distinguish permissions: the completed conditional generator had causal inputs, the present frozen forecast consumes only strictly past observations, and the external native LEFT full-window readout is retrospective. Window normalization and every model statistic must respect the declared permission.
 
 Ground-truth anomaly events are maximal contiguous positive intervals in the fixed official label sequence, subject to the preregistered boundary and censoring rules. QUERY labels are used only for evaluation after model and calibration choices have been frozen. The historical controlled exposure experiment separately permits FIT labels for donor construction, while keeping learner updates label-free. A weak anomaly refers to a small change relative to an explicitly defined training scale, not an uncertain label or a short event. A sustained anomaly is assessed through its event-level discovery and within-event coverage, including a predefined steady portion when one exists. Public fault labels alone do not identify which variable, lag, or physical relationship is abnormal.
+
+# Completed complete-pretrained TimesFM3 frozen forecast benchmark
+
+The official TimesFM3Forecaster source is fixed at918df02c9d366b2145bc5876135fa2131d3ed2a6, with the full Google timesfm-3.0-pytorch checkpoint revision43046b85ec22d584a13f8098c2ed39c889e129c2. All330,710,976 parameters remain frozen. This is distinct from the earlier lightweight, randomly initialized official-module reuse. No training or adaptation is performed. For each origin, one sample is a joint C-by512 history; variables are not independent batch samples. Define source-FIT-standardized observations z, the official sorted median forecast m, and the sole project anomaly criterion by
+
+$$m_t=F_{\rm official}(z_{t-512:t-1};H=1),\qquad s_t=\frac1C\sum_{c=1}^C(m_{t,c}-z_{t,c})^2.$$
+
+The current target enters only after the forecast returns. Internal stitching, variate attention, detrending and CPM/RevIN are retained, with fixed API flags: no symmetric averaging, positivity, extra z-normalization or input padding; return sorted nine quantiles. Internal output-patch rounding to64 does not reuse later predictions at other origins. SavedFP32 median and arrived target values are promoted toFP64 before square/channel mean. The score is not an official anomaly head. Inputs, nine quantiles, per-channel errors, exact indices and strict-past footprints are retained privately with published content hashes.
+
+| Public task | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| SWaT | Full pretrained TimesFM3 residual | 0.093973 | 0.288375 | 0.096544 | 0.298381 |
+| SWaT | Official TimeRadar native V | 0.795725 | 0.857852 | 0.576600 | 0.708990 |
+| SWaT | Historical source-trained lightweight raw predictor D | 0.762338 | 0.838454 | 0.546680 | 0.696022 |
+| SWaT | Cached HistoryMean512, ranking only | 0.087661 | 0.227761 | 0.090893 | 0.232695 |
+| PSM | Full pretrained TimesFM3 residual | 0.344512 | 0.566754 | 0.376176 | 0.608554 |
+| PSM | Official TimeRadar native V | 0.550952 | 0.735048 | 0.484578 | 0.648161 |
+| PSM | Historical source-trained lightweight raw predictor D | 0.567902 | 0.743845 | 0.575549 | 0.764875 |
+| PSM | Cached HistoryMean512 | 0.303673 | 0.525589 | 0.332386 | 0.567946 |
+
+Every row uses the same336321/64728 QUERY points within its task. External LEFT, MLP and CANDI comparisons, complete strict/C3 operations, fixed low-FPR summaries and event-level records are in the accompanying full table. These complete methods differ in training, standardization and contextual permissions; the full model versus D is not an isolated weights-only ablation. Pretraining is official but is not independently certified free of benchmark exposure. CAL is the existing512-point mixed role, with34 SWaT attack points and512 PSM attack points; ownq99/higher/strict> thresholds are not a certified normal1%FPR budget.
+
+TimesFM discovers additional short-lived event evidence: after three-point confirmation it has two SWaT-only any-hit events and eight PSM-only events relative to native V at their independent original operations. The SWaT-only long event receives one confirmed point in601 and zero steady coverage; the other event receives six of469 points. All eight PSM-only C3 events are shorter than398 points. Long steady macro/pooled coverage is only0.148020%/0.043849% on SWaT and0.238479%/0.113821% on PSM. C3 normal FPR0.031191%/0.071868% accompanies anomaly recall0.064885%/0.826684%. In PSM, independent matching is14/48 versus V6/48, while any-hit is14/48 versus V17/48; matching and any-hit are distinct. No combined OR detector is fitted or evaluated as a new method.
+
+At descriptive1%normal-FPR caps, strict recall is0.374657%/3.840634%, below V68.861586%/16.619783%; therefore the weak discrimination is not solely a CAL-threshold artifact. No QUERY-derived curve cutoff changes a deployed threshold. The additional triggers do not establish persistent detection or synergy. This negative applies to the fixed512-history/horizon1 median-residual baseline; it does not isolate architecture versus pretraining causes or disprove all temporal forecasting. Actual new cost is5.487239 A40 GPU hours for one source gate and22 readout shards, all23 OS0/cleared, with no training, adaptation or repeated old model execution. The benchmark ends without automatic fusion, adaptation or a new Hybrid recipe.
 
 # Completed native-V and strictly historical conditioning study
 
