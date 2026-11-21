@@ -1,0 +1,26 @@
+{
+  "design_commit": "e1595237e877c80d97b7c9e0c2e9e8ed22cb6ce3",
+  "design_config_sha256": "27f1acf59611f67897807f33bdd6c1380e80754250cbdd54e439ac4ee6d0b794",
+  "original_cases_sha256": "c73d32df4a540abd61f59246230a283883b7387a787c7af67bd208ea1e0dce59",
+  "original_workload_sha256": "aefcaeb4194b155d0623004ec14794e60fade74698dc84998ac3c417f3de3658",
+  "eligible_original_streams": 174,
+  "ineligible_original_streams": 10,
+  "added_H1": 32,
+  "added_H2": 32,
+  "max_streams": 238,
+  "score_axis": [512, 2304],
+  "thresholds": {
+    "SWAT": {"TimeRadar": 0.23049013316631317, "TimesFM": 0.014081657580236986},
+    "PSM": {"TimeRadar": 0.1491694450378418, "TimesFM": 0.14501685214861282}
+  },
+  "calibration": "Read-only previously published strict q99/higher CAL operating points; SWAT 34/512 and PSM 512/512 attack points",
+  "H1_shape": "symmetric taper sin(pi*u)^2 times signed tilt (2*u-1), u=k/(D-1), endpoints exactly zero",
+  "H2_shape": "positive offset times the frozen 64-point cosine-raised envelope",
+  "scale": "sqrt(realized original float32 perturbation squared energy / unscaled shape squared energy); single amplitude for full interval",
+  "total_energy_relative_error_max": 0.00001,
+  "seed_changes": 0,
+  "timesfm_official_batch": 4,
+  "timeradar_batch": 1,
+  "gpu_hours_planned": 5.0,
+  "gpu_hours_conservative_wall_upper": 6.4
+}

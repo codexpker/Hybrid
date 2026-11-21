@@ -1,0 +1,10 @@
+{
+  "result": "PASS",
+  "original_inputs_bound": 184,
+  "inferred_streams": 238,
+  "original_ineligible": 10,
+  "added": 64,
+  "model_forwards": 0,
+  "cases_sha256": "e6b7ab6b519a612e20a443a14f5560792250ee922624e88fa897a661ea3ca2f2",
+  "jobs_sha256": "85ef4e106bf6396c1703878ba542f5402f451bc0084e86028f86e854ded9e34e"
+}

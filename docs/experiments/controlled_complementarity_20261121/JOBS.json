@@ -1,0 +1,146 @@
+[
+  {
+    "domain": "SWAT",
+    "block": 0,
+    "model": "TimeRadar",
+    "inputs": "SWAT_block0.npz",
+    "input_sha256": "597d25c789cd4cde63d14f5cb9f473e7dc26f085b1bd4ca7274278f1f62c321d",
+    "full_points": 55552,
+    "forward_points": 22023
+  },
+  {
+    "domain": "SWAT",
+    "block": 0,
+    "model": "TimesFM",
+    "inputs": "SWAT_block0.npz",
+    "input_sha256": "597d25c789cd4cde63d14f5cb9f473e7dc26f085b1bd4ca7274278f1f62c321d",
+    "full_points": 55552,
+    "forward_points": 35239
+  },
+  {
+    "domain": "SWAT",
+    "block": 1,
+    "model": "TimeRadar",
+    "inputs": "SWAT_block1.npz",
+    "input_sha256": "3951527258f1eefc28e91a22f8eabd4d7a97f9c031ba07b0716b9c945137af31",
+    "full_points": 55552,
+    "forward_points": 22020
+  },
+  {
+    "domain": "SWAT",
+    "block": 1,
+    "model": "TimesFM",
+    "inputs": "SWAT_block1.npz",
+    "input_sha256": "3951527258f1eefc28e91a22f8eabd4d7a97f9c031ba07b0716b9c945137af31",
+    "full_points": 55552,
+    "forward_points": 35236
+  },
+  {
+    "domain": "SWAT",
+    "block": 2,
+    "model": "TimeRadar",
+    "inputs": "SWAT_block2.npz",
+    "input_sha256": "affaf916367b3e78ed0c753073dbfc7452173fc717dfd6e76f8b44c5883cf008",
+    "full_points": 51968,
+    "forward_points": 19783
+  },
+  {
+    "domain": "SWAT",
+    "block": 2,
+    "model": "TimesFM",
+    "inputs": "SWAT_block2.npz",
+    "input_sha256": "affaf916367b3e78ed0c753073dbfc7452173fc717dfd6e76f8b44c5883cf008",
+    "full_points": 51968,
+    "forward_points": 32173
+  },
+  {
+    "domain": "SWAT",
+    "block": 3,
+    "model": "TimeRadar",
+    "inputs": "SWAT_block3.npz",
+    "input_sha256": "1a166915162cfbe2a16a0c1c0f63d806575eeecb245a32c89db3c51791274a3c",
+    "full_points": 48384,
+    "forward_points": 17548
+  },
+  {
+    "domain": "SWAT",
+    "block": 3,
+    "model": "TimesFM",
+    "inputs": "SWAT_block3.npz",
+    "input_sha256": "1a166915162cfbe2a16a0c1c0f63d806575eeecb245a32c89db3c51791274a3c",
+    "full_points": 48384,
+    "forward_points": 29112
+  },
+  {
+    "domain": "PSM",
+    "block": 0,
+    "model": "TimeRadar",
+    "inputs": "PSM_block0.npz",
+    "input_sha256": "e2d6c2ed24ca81227ddb70b106233b7b31365a4cdfd0c1d4f3a95b49f271d056",
+    "full_points": 55552,
+    "forward_points": 22032
+  },
+  {
+    "domain": "PSM",
+    "block": 0,
+    "model": "TimesFM",
+    "inputs": "PSM_block0.npz",
+    "input_sha256": "e2d6c2ed24ca81227ddb70b106233b7b31365a4cdfd0c1d4f3a95b49f271d056",
+    "full_points": 55552,
+    "forward_points": 35248
+  },
+  {
+    "domain": "PSM",
+    "block": 1,
+    "model": "TimeRadar",
+    "inputs": "PSM_block1.npz",
+    "input_sha256": "a3e4e7482f2de191ecaa8f96ca8ccffa26c9263c960ecd6db51ddb4eb701c7eb",
+    "full_points": 55552,
+    "forward_points": 22032
+  },
+  {
+    "domain": "PSM",
+    "block": 1,
+    "model": "TimesFM",
+    "inputs": "PSM_block1.npz",
+    "input_sha256": "a3e4e7482f2de191ecaa8f96ca8ccffa26c9263c960ecd6db51ddb4eb701c7eb",
+    "full_points": 55552,
+    "forward_points": 35248
+  },
+  {
+    "domain": "PSM",
+    "block": 2,
+    "model": "TimeRadar",
+    "inputs": "PSM_block2.npz",
+    "input_sha256": "9ba62dc5eb146a99da7b850c28d8d72ce46f961dc852f525758618346cee5c53",
+    "full_points": 51968,
+    "forward_points": 19790
+  },
+  {
+    "domain": "PSM",
+    "block": 2,
+    "model": "TimesFM",
+    "inputs": "PSM_block2.npz",
+    "input_sha256": "9ba62dc5eb146a99da7b850c28d8d72ce46f961dc852f525758618346cee5c53",
+    "full_points": 51968,
+    "forward_points": 32180
+  },
+  {
+    "domain": "PSM",
+    "block": 3,
+    "model": "TimeRadar",
+    "inputs": "PSM_block3.npz",
+    "input_sha256": "2682a678bafd7e657a7595ab627f61c5e992e190b8f9d9e5d15f9ab4a97c3b25",
+    "full_points": 51968,
+    "forward_points": 19790
+  },
+  {
+    "domain": "PSM",
+    "block": 3,
+    "model": "TimesFM",
+    "inputs": "PSM_block3.npz",
+    "input_sha256": "2682a678bafd7e657a7595ab627f61c5e992e190b8f9d9e5d15f9ab4a97c3b25",
+    "full_points": 51968,
+    "forward_points": 32180
+  }
+]
