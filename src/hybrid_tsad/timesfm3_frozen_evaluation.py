@@ -24,6 +24,27 @@ OPTIONS = dict(horizon=1, return_quantiles=True, use_symmetric_averaging=False,
                make_positive=False, sort_quantiles=True, use_znorm=False, padding_mode="none")
 BASELINES = {"TimeRadar_V_A", "TimesFM_RAW_D", "HistoryMean512", "LEFT_noU", "LEFT_R",
              "MLP_noU", "MLP_R", "CANDI_A"}
+PAIR_FIELDS = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC", "normal_FPR", "Recall", "F1",
+    "M", "auxiliary_any_hit_events", "one_to_one_eventF1", "event_point_coverage",
+    "event_macro_coverage", "long_steady_macro_coverage", "long_steady_point_coverage",
+    "max_event_miss_points", "normal_false_alarm_points", "normal_alarm_fragments")
+
+
+def paired_rows(rows):
+    """Same-axis descriptive differences; not a model/permission ablation."""
+    pairs = []
+    for domain in AXES:
+        for stream in ("strict", "confirmed3"):
+            new = next(r for r in rows if (r["domain"],r["method"],r["stream"]) == (domain,METHOD,stream))
+            for name in ("TimeRadar_V_A", "TimesFM_RAW_D"):
+                old = next(r for r in rows if (r["domain"],r["method"],r["stream"]) == (domain,name,stream))
+                if new["QUERY_axis"] != old["QUERY_axis"]:
+                    raise ValueError("Never subtract different QUERY axes")
+                row = dict(domain=domain, stream=stream, contrast=METHOD+" minus "+name,
+                    comparison="complete methods with distinct pretraining/architecture; not a weight-only ablation")
+                row.update({k:None if new.get(k) is None or old.get(k) is None else new[k]-old[k] for k in PAIR_FIELDS})
+                pairs.append(row)
+    return pairs
 
 
 def formula_gate(bank):
@@ -185,13 +206,15 @@ def run(workspace, root, output):
     rows.extend(dict(r,reused_from_METRICS_sha256=ACCEPTED_NATIVE_METRICS_SHA,
         comparison_scope="same QUERY axis; method-specific training/context/scaler/CAL permissions retained; not architecture-matched")
         for r in old["rows"] if r["method"] in BASELINES)
+    paired = paired_rows(rows)
     events.extend(dict(e,reused_from_EVENTS_sha256=ACCEPTED_NATIVE_EVENTS_SHA) for e in old_events if e["method"]=="TimeRadar_V_A")
     output.mkdir(parents=True)
     from .left_swat_replay_repeats import write_csv
     write_csv(output/"methods.csv",rows);write_csv(output/"LOW_FPR_SUPPLEMENT.csv",low);write_csv(output/"EVENT_OVERLAP.csv",overlap)
+    write_csv(output/"PAIRED_METHODS.csv",paired)
     np.savez_compressed(output/"NEW_VUS_AND_LOW_CURVES.npz",**surfaces)
     (output/"EVENTS.json").write_text(json.dumps(events,indent=2,allow_nan=False),encoding="utf-8")
-    result=dict(status="COMPLETED",rows=rows,low_fpr=low,event_overlap=overlap,formula_checks=checks,
+    result=dict(status="COMPLETED",rows=rows,paired=paired,low_fpr=low,event_overlap=overlap,formula_checks=checks,
         raw_seal_sha256=sha(root/"GLOBAL_RAW_BANK_SEAL.json"),bank_manifest=seal["banks"],old_metrics_sha256=ACCEPTED_NATIVE_METRICS_SHA,
         old_VUS_recomputed=False,actual_GPU_hours=seal["actual_GPU_hours"],cpu_wall_seconds=time.perf_counter()-start,
         interpretation="Frozen complete official pretrained multivariate forecasts; project median residual baseline, no Hybrid innovation/contamination/coordination claim")

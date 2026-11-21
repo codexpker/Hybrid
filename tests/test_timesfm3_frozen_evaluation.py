@@ -66,3 +66,20 @@ def test_common_and_unique_event_evidence_keeps_any_hit_and_matching_distinct():
     right[-1]["end_exclusive"] += 1
     with pytest.raises(ValueError, match="identity"):
         event_overlap(index,left_score,1.,right_score,1.,labels,left,right)
+
+
+def test_same_axis_pairs_keep_missing_values_and_reject_cross_axis():
+    from hybrid_tsad.timesfm3_frozen_evaluation import AXES, METHOD, paired_rows
+    rows=[]
+    for domain,axis in AXES.items():
+        for stream in ("strict","confirmed3"):
+            for name,value in ((METHOD,.7),("TimeRadar_V_A",.5),("TimesFM_RAW_D",.6)):
+                rows.append(dict(domain=domain,stream=stream,method=name,QUERY_axis=list(axis),AP=value,
+                                 long_steady_macro_coverage=None))
+    pairs=paired_rows(rows)
+    assert len(pairs)==8
+    assert pairs[0]["AP"]==pytest.approx(.2)
+    assert pairs[0]["long_steady_macro_coverage"] is None
+    rows[1]["QUERY_axis"]=[0,20]
+    with pytest.raises(ValueError,match="different QUERY axes"):
+        paired_rows(rows)
