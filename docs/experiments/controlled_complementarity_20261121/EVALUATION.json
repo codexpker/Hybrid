@@ -1,0 +1,9 @@
+{
+  "scored_streams_per_model": 238,
+  "scored_points_per_model": 426496,
+  "independently_checked_ap_roc": 1200,
+  "gpu_occupied_hours": 3.875627218650447,
+  "raw_banks_and_fixed_thresholds_verified": true,
+  "inference_repeated": false,
+  "no_automatic_successor": true
+}
