@@ -1,0 +1,29 @@
+{
+  "status": "CPU_PROTOCOL_ELIGIBILITY_CHECKED_NO_INFERENCE_RELEASE",
+  "registration_sha256": "80ff1509e22ce50ca3517d54d7c942e97da11644c11dab59fc7eebcfda0b62a6",
+  "config_sha256": "27f1acf59611f67897807f33bdd6c1380e80754250cbdd54e439ac4ee6d0b794",
+  "executed_source_sha256": "642ae560515547fe395a2974511490a4e87468d2d86b6cfb1b533dc38d5eb9fb",
+  "CPU_preparation_wall_seconds": 8.49498494528234,
+  "local_exact_array_hashes": 184,
+  "H3_valid_counts": {
+    "SWAT": {
+      "8": 3,
+      "32": 2
+    },
+    "PSM": {
+      "8": 4,
+      "32": 2
+    }
+  },
+  "GPU_hours": 0,
+  "training": 0,
+  "model_forwards": 0,
+  "CAL_QUERY_values_labels_read": false,
+  "inference_release": false,
+  "remote_wrapper_note": "CPU receipt/log completed; shell exit capture had quoting error, client reported1; exact original CPU subprocess OS exit not captured. No rerun. Original and correction retained outside Git.",
+  "estimated_GPU_hours_input_reuse": 2.944995963600598,
+  "estimated_with25percent_and_startup": 3.7812449545007474,
+  "original_calibration": "unchanged own old512mixedCAL q99/higher/>; SWAT34attack/PSM512allattack, not normal1percent budget",
+  "no_parameter_change_after_source_qualification": true,
+  "raw_blocks_or_injected_values_published": false
+}

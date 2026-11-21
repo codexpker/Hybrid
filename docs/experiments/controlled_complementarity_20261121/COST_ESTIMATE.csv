@@ -1,0 +1,3 @@
+domain,qualified_streams,unqualified_streams,full_scored_origins_per_model,TimesFM_new_input_upper_bound,TimeRadar_new_input_upper_bound,TimesFM_seconds_per_point_from_previous_source_gate,TimeRadar_seconds_per_point_from_previous_frozen_receipt,estimated_GPU_hours_input_reuse,estimated_GPU_hours_without_input_reuse,uncertainty
+SWAT,86,6,154112,98754,61584,0.049332870927173644,0.012984411661161571,1.5754028731341891,2.6677336261815325,"old real A40 profiles, not a measurement or authorization of new inference"
+PSM,88,4,157696,101848,63852,0.04064374970039353,0.012388813290004888,1.3695930904664089,2.323061959259408,"old real A40 profiles, not a measurement or authorization of new inference"

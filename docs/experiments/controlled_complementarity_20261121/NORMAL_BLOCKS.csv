@@ -1,0 +1,9 @@
+domain,block,role,source_start,source_stop,score_start,score_stop,intervention_start,H2_H3_end,H3_core_start,H3_core_stop,normality
+SWAT,0,SOURCE_SELECT,396000,398304,396512,398304,396640,397664,397282,397536,"existing published normal-train background, not independent per-point health certification"
+SWAT,1,SOURCE_SELECT,400096,402400,400608,402400,400736,401760,401378,401632,"existing published normal-train background, not independent per-point health certification"
+SWAT,2,SOURCE_SELECT,404192,406496,404704,406496,404832,405856,405474,405728,"existing published normal-train background, not independent per-point health certification"
+SWAT,3,SOURCE_SELECT,408288,410592,408800,410592,408928,409952,409570,409824,"existing published normal-train background, not independent per-point health certification"
+PSM,0,SOURCE_SELECT,105984,108288,106496,108288,106624,107648,107266,107520,"existing published normal-train background, not independent per-point health certification"
+PSM,1,SOURCE_SELECT,110080,112384,110592,112384,110720,111744,111362,111616,"existing published normal-train background, not independent per-point health certification"
+PSM,2,SOURCE_SELECT,114176,116480,114688,116480,114816,115840,115458,115712,"existing published normal-train background, not independent per-point health certification"
+PSM,3,SOURCE_SELECT,118272,120576,118784,120576,118912,119936,119554,119808,"existing published normal-train background, not independent per-point health certification"

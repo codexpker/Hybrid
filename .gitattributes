@@ -71,3 +71,9 @@ docs/experiments/timesfm3_v_cached_attribution_20261121/** -text whitespace=cr-a
 src/hybrid_tsad/timesfm3_cached_attribution.py -text whitespace=cr-at-eol
 tests/test_timesfm3_cached_attribution.py -text whitespace=cr-at-eol
 configs/timesfm3-cache-attribution-20261121.json -text whitespace=cr-at-eol
+
+# Preserve this CPU-only controlled-input protocol and geometry evidence.
+src/hybrid_tsad/controlled_complementarity_design.py -text whitespace=cr-at-eol
+tests/test_controlled_complementarity_design.py -text whitespace=cr-at-eol
+configs/controlled-complementarity-design-20261121.json -text whitespace=cr-at-eol
+docs/experiments/controlled_complementarity_20261121/** -text whitespace=cr-at-eol

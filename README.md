@@ -1,5 +1,12 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-21 受控互补性协议：CPU预检完成，未启动推理
+
+仅设计H1短脉冲、H2持续振荡、H3平滑相对延时及逐点能量匹配对照，不训练、不融合、不改旧CAL或模型。两个公开正常源前缀各固定4块，CPU构造184条记录并逐一重建SHA；H3仅11/16配对通过边际／自相关资格，5项保留NA、不换块。PSM名义正常训练背景不冒充逐点认证健康。所有模型前向和GPU使用均为0，等待主研究决策批准后才可推理。
+
+[简短执行协议与实际资格](docs/experiments/controlled_complementarity_20261121/PROTOCOL.md) · [全部CPU案例](docs/experiments/controlled_complementarity_20261121/ALL_CPU_CASES.csv) · [H3失败项](docs/experiments/controlled_complementarity_20261121/H3_QUALIFICATION.csv) · [成本估算](docs/experiments/controlled_complementarity_20261121/COST_ESTIMATE.csv)。合格子集174条流、每模型311808点；输入身份复用后预计两模型合计约2.95 GPU小时，加浮动与启动约3.8小时，并非已发生或已批准的计算。旧分数与所有负面结论保留。
+
+
 ## 2026-11-21 已完成：冻结缓存事件／九分位数／逐变量误差归因
 
 仅用既有SWaT／PSM缓存，保持模型、原生V、中位数MSE、阈值、事件及负结果不变。发现部分持续段的低预测误差与较高V共存；额外预测触发多为短促偏离，且与正常误报存在相似统计形态。九分位数位置也没有建立正常／异常的清楚区分。它支持继续研究有边界的阶段互补假设，不能证明长历史或变量注意力贡献，更不是已成立的融合增量。完整TimesFM残差基准不等于对TimesFM架构思想的验证或否定。

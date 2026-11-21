@@ -1,0 +1,8 @@
+{
+  "status": "PASS_CPU_ONLY",
+  "exact_case_array_hashes": 184,
+  "config_sha256": "27f1acf59611f67897807f33bdd6c1380e80754250cbdd54e439ac4ee6d0b794",
+  "model_forward": 0,
+  "GPU_hours": 0,
+  "workload_is_future_estimate_not_running": true
+}

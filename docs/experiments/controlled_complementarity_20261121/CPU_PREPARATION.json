@@ -1,0 +1,166 @@
+{
+  "status": "CPU_INPUT_GEOMETRY_CHECKED_NOT_MODEL_EFFECT",
+  "config": {
+    "id": "controlled_complementarity_design_20261121_v1",
+    "status": "CPU_DESIGN_ONLY_GPU_INFERENCE_REQUIRES_RESEARCH_APPROVAL",
+    "baseline_commit": "07bf8f124d40e1ba188da5172943d4f70b719ea6",
+    "domains": [
+      "SWAT",
+      "PSM"
+    ],
+    "allowed_value_roles": [
+      "SOURCE_FIT",
+      "SOURCE_SELECT"
+    ],
+    "background_role": "SOURCE_SELECT",
+    "normality": "existing public normal-train background; PSM has no independently certified pointwise normal labels",
+    "block_offsets": [
+      0,
+      4096,
+      8192,
+      12288
+    ],
+    "block_length": 2304,
+    "score_axis": [
+      512,
+      2304
+    ],
+    "intervention_start": 640,
+    "H1": {
+      "amplitudes_source_sigma": [
+        0.25,
+        0.5
+      ],
+      "durations": [
+        8,
+        32
+      ],
+      "shape": "positive sin-squared pulse, zero endpoints"
+    },
+    "H2": {
+      "amplitudes_source_sigma": [
+        0.25,
+        0.5
+      ],
+      "duration": 1024,
+      "periods": [
+        16,
+        64
+      ],
+      "ramp": 64,
+      "primary_core": [
+        1218,
+        1600
+      ],
+      "shape": "zero-phase sine times smooth flat-top envelope"
+    },
+    "H3": {
+      "delays": [
+        8,
+        32
+      ],
+      "duration": 1024,
+      "ramp": 128,
+      "shape": "monotone smooth delay-and-return on one continuous variable; no circular wrap",
+      "primary_core": [
+        1282,
+        1536
+      ],
+      "additional_negative_control": "all-variable synchronous warp; core input identical to original earlier origin"
+    },
+    "amplitude_control": "same variable/support; seeded Rademacher sign jitter of actual perturbation magnitude, pointwise energy matched before float32; full/core energy relative tolerance1e-5 after float32, no score-driven fitting",
+    "pair_qualification_SOURCE_FIT_only": {
+      "continuous_unique_values_min": 64,
+      "quarter_splits": 4,
+      "min_abs_level_correlation_all_quarters": 0.5,
+      "median_abs_difference_correlation": 0.1,
+      "consistent_level_sign": true,
+      "selection": "lexicographically first qualifying original column pair; same receiver for all interventions; no replacement using scores"
+    },
+    "H3_qualification_full_and_plateau": {
+      "KS_max": 0.1,
+      "mean_change_source_sigma_max": 0.1,
+      "std_ratio_min": 0.8,
+      "std_ratio_max": 1.25,
+      "max_ACF_change_lags_1_8_32": 0.1,
+      "min_background_std_source_sigma": 0.05,
+      "block_pair_min_abs_level_correlation": 0.5,
+      "edge_extra_displacement_source_sigma_max": 0.05
+    },
+    "invalid_policy": "retain every fixed block/case; mark H3 invalid/NA if qualification fails; no shifting boundaries, replacing blocks or changing parameters",
+    "random_seed": 2025,
+    "model_forward_this_round": false,
+    "training": false,
+    "fusion": false,
+    "CAL_or_QUERY_value_or_label_access": false,
+    "normal_alarm_regions": {
+      "clean_pre": [
+        512,
+        640
+      ],
+      "clean_post": [
+        2176,
+        2304
+      ],
+      "recovery": "first512 after each intervention end; separately report history carry-over"
+    },
+    "future_scoring": "unchanged official weights/native V and median residual; original per-domain512 mixed-CAL q99/higher/strict> thresholds, strict/C3 no backfill; no recalibration",
+    "future_summary": "within-model paired score change, AP/ROC on fixed synthetic interval mask, CAL operation/coverage/normal alarms; block-macro plus all four block rows; no cross-unit score addition"
+  },
+  "config_sha256": "27f1acf59611f67897807f33bdd6c1380e80754250cbdd54e439ac4ee6d0b794",
+  "source_sha256": "642ae560515547fe395a2974511490a4e87468d2d86b6cfb1b533dc38d5eb9fb",
+  "bindings": [
+    {
+      "domain": "SWAT",
+      "source_relative": "preparations/left_multievent_mixed_u_20261111_v1/data/ALL_VALUES.npy",
+      "source_sha256": "d2304906b800ea47365b864886bd83fa79de9202190f75dccb6ef7f22d00cafa",
+      "scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+      "SOURCE_FIT": [
+        0,
+        396000
+      ],
+      "SOURCE_SELECT": [
+        396000,
+        495000
+      ],
+      "value_access_stop": 410592,
+      "source_normality": "Existing public normal-train background; no new point-health certification",
+      "QUERY_or_CAL_values_labels_read": false
+    },
+    {
+      "domain": "PSM",
+      "source_relative": "data/common_psm_raw_20261029_v1/prefix.npy",
+      "source_sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+      "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+      "SOURCE_FIT": [
+        0,
+        105984
+      ],
+      "SOURCE_SELECT": [
+        105984,
+        132481
+      ],
+      "value_access_stop": 120576,
+      "source_normality": "Existing public normal-train background; no new point-health certification",
+      "QUERY_or_CAL_values_labels_read": false
+    }
+  ],
+  "cases": 184,
+  "blocks": 8,
+  "model_forwards": 0,
+  "training": 0,
+  "GPU_hours": 0,
+  "torch_imported": false,
+  "CPU_wall_seconds": 8.49498494528234,
+  "H3_valid_counts": {
+    "SWAT": {
+      "8": 3,
+      "32": 2
+    },
+    "PSM": {
+      "8": 4,
+      "32": 2
+    }
+  },
+  "inference_release": false
+}
