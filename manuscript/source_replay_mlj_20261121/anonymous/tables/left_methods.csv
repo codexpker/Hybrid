@@ -1,0 +1,1153 @@
+domain,method,condition,stream,metric,n,n_valid,mean,sample_sd,sample_sd_ddof,note
+SWAT,TT,B,strict,AP,3,3,0.5792745227248755,0.0019558253096987883,1,paired adaptation seeds
+SWAT,TT,B,strict,AUC_PR_trapezoidal,3,3,0.5792480214621433,0.0019557894146156585,1,paired adaptation seeds
+SWAT,TT,B,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,F1,3,3,0.2409489224468,0.06975126819720971,1,paired adaptation seeds
+SWAT,TT,B,strict,FN,3,3,40409.0,2437.612766622295,1,paired adaptation seeds
+SWAT,TT,B,strict,FP,3,3,5531.333333333333,61.27261487266015,1,paired adaptation seeds
+SWAT,TT,B,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,Npred,3,3,969.0,109.30233300346337,1,paired adaptation seeds
+SWAT,TT,B,strict,Precision,3,3,0.5612113691191501,0.077656575892535,1,paired adaptation seeds
+SWAT,TT,B,strict,ROC_AUC,3,3,0.8849943671821023,0.0008953946976366894,1,paired adaptation seeds
+SWAT,TT,B,strict,Recall,3,3,0.15421646398894864,0.0510206326605332,1,paired adaptation seeds
+SWAT,TT,B,strict,TN,3,3,283012.6666666667,61.27261487266015,1,paired adaptation seeds
+SWAT,TT,B,strict,TP,3,3,7368.0,2437.612766622295,1,paired adaptation seeds
+SWAT,TT,B,strict,VUS_PR,3,3,0.5831054781328465,0.0012072086409818444,1,paired adaptation seeds
+SWAT,TT,B,strict,VUS_ROC,3,3,0.8798293227138135,0.0018818203103260246,1,paired adaptation seeds
+SWAT,TT,B,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,event_macro_coverage,3,3,0.09437045973664789,0.003163625999057515,1,paired adaptation seeds
+SWAT,TT,B,strict,event_point_coverage,3,3,0.15421646398894864,0.0510206326605332,1,paired adaptation seeds
+SWAT,TT,B,strict,long_steady_macro_coverage,3,3,0.048503381276355374,0.006539421569323576,1,paired adaptation seeds
+SWAT,TT,B,strict,long_steady_point_coverage,3,3,0.17239719019491517,0.06281977827470019,1,paired adaptation seeds
+SWAT,TT,B,strict,max_event_miss_points,3,3,11369.0,3066.6168655376564,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_FPR,3,3,0.019169808879523863,0.00021235102747816704,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_alarm_fragments,3,3,449.6666666666667,5.507570547286102,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_alarm_fragments_per_1000_points,3,3,1.5583989501312336,0.019087454763523366,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,normal_false_alarm_points,3,3,5531.333333333333,61.27261487266015,1,paired adaptation seeds
+SWAT,TT,B,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,one_to_one_eventF1,3,3,0.030532364121169497,0.003537999541027516,1,paired adaptation seeds
+SWAT,TT,B,strict,one_to_one_eventPrecision,3,3,0.015619105602054296,0.0018532324814953655,1,paired adaptation seeds
+SWAT,TT,B,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,B,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,AP,3,3,0.5792745227248755,0.0019558253096987883,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,AUC_PR_trapezoidal,3,3,0.5792480214621433,0.0019557894146156585,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,F1,3,3,0.21980822719957518,0.07397336157720188,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,FN,3,3,41226.666666666664,2474.4361647319442,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,FP,3,3,4705.666666666667,56.358968526165675,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,Npred,3,3,607.6666666666666,32.95957119462165,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,Precision,3,3,0.5684102945844715,0.0909410564336132,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,ROC_AUC,3,3,0.8849943671821023,0.0008953946976366894,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,Recall,3,3,0.13710223189679832,0.05179136749339524,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,TN,3,3,283838.3333333333,56.358968526165675,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,TP,3,3,6550.333333333333,2474.4361647319442,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,VUS_PR,3,3,0.5831054781328465,0.0012072086409818444,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,VUS_ROC,3,3,0.8798293227138135,0.0018818203103260246,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.333333333333333,0.5773502691896258,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,event_macro_coverage,3,3,0.0887163618951113,0.003185503865685805,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,event_point_coverage,3,3,0.13710223189679832,0.05179136749339524,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,long_steady_macro_coverage,3,3,0.0406137479333483,0.006946347867270898,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,long_steady_point_coverage,3,3,0.15221783727548643,0.06378450740967889,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,max_event_miss_points,3,3,12275.0,3486.036574679044,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_FPR,3,3,0.01630831577390854,0.0001953219215307409,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_alarm_fragments,3,3,343.6666666666667,5.033222956847167,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.1910372999149754,0.01744351972956342,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,normal_false_alarm_points,3,3,4705.666666666667,56.358968526165675,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,one_to_one_eventF1,3,3,0.04773279410379647,0.002538035173950911,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,one_to_one_eventPrecision,3,3,0.02473387478040805,0.0013635886423909048,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,B,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,AP,3,3,0.591412854436548,0.007259177922935687,1,paired adaptation seeds
+SWAT,TT,C,strict,AUC_PR_trapezoidal,3,3,0.5913863157752427,0.007259260407977161,1,paired adaptation seeds
+SWAT,TT,C,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,F1,3,3,0.47345860100888687,0.1610324497038309,1,paired adaptation seeds
+SWAT,TT,C,strict,FN,3,3,30736.666666666668,7215.437916948169,1,paired adaptation seeds
+SWAT,TT,C,strict,FP,3,3,5519.666666666667,97.6541516441228,1,paired adaptation seeds
+SWAT,TT,C,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,Npred,3,3,827.0,67.7347768875044,1,paired adaptation seeds
+SWAT,TT,C,strict,Precision,3,3,0.7354576850958408,0.09323998577534137,1,paired adaptation seeds
+SWAT,TT,C,strict,ROC_AUC,3,3,0.8832413922686575,0.0023515506899553034,1,paired adaptation seeds
+SWAT,TT,C,strict,Recall,3,3,0.35666394569213916,0.15102325212860096,1,paired adaptation seeds
+SWAT,TT,C,strict,TN,3,3,283024.3333333333,97.6541516441228,1,paired adaptation seeds
+SWAT,TT,C,strict,TP,3,3,17040.333333333332,7215.437916948169,1,paired adaptation seeds
+SWAT,TT,C,strict,VUS_PR,3,3,0.5956660572441398,0.0072616372762244405,1,paired adaptation seeds
+SWAT,TT,C,strict,VUS_ROC,3,3,0.8787016858760678,0.0028501291279468518,1,paired adaptation seeds
+SWAT,TT,C,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.333333333333333,0.5773502691896258,1,paired adaptation seeds
+SWAT,TT,C,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,event_macro_coverage,3,3,0.10654879061287605,0.008826203527059784,1,paired adaptation seeds
+SWAT,TT,C,strict,event_point_coverage,3,3,0.35666394569213916,0.15102325212860096,1,paired adaptation seeds
+SWAT,TT,C,strict,long_steady_macro_coverage,3,3,0.07907273779236046,0.02099804621165092,1,paired adaptation seeds
+SWAT,TT,C,strict,long_steady_point_coverage,3,3,0.4218920615268213,0.1861327037138749,1,paired adaptation seeds
+SWAT,TT,C,strict,max_event_miss_points,3,3,7272.666666666667,1104.9725486786235,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_FPR,3,3,0.01912937599349377,0.0003384376443250348,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_alarm_fragments,3,3,442.6666666666667,11.590225767142472,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_alarm_fragments_per_1000_points,3,3,1.5341392185131788,0.0401679666433628,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,normal_false_alarm_points,3,3,5519.666666666667,97.6541516441228,1,paired adaptation seeds
+SWAT,TT,C,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,one_to_one_eventF1,3,3,0.035493405211436874,0.0029654038476104724,1,paired adaptation seeds
+SWAT,TT,C,strict,one_to_one_eventPrecision,3,3,0.018223296480970954,0.0015649939838066117,1,paired adaptation seeds
+SWAT,TT,C,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,C,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,AP,3,3,0.591412854436548,0.007259177922935687,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,AUC_PR_trapezoidal,3,3,0.5913863157752427,0.007259260407977161,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,F1,3,3,0.4640177831233434,0.1676355309821449,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,FN,3,3,31389.333333333332,7301.391260118398,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,FP,3,3,4703.333333333333,79.43131204590124,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,Npred,3,3,583.6666666666666,9.29157324317757,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,Precision,3,3,0.7552092027608185,0.09477037663791568,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,ROC_AUC,3,3,0.8832413922686575,0.0023515506899553034,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,Recall,3,3,0.34300325819257527,0.15282230487720866,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,TN,3,3,283840.6666666667,79.43131204590124,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,TP,3,3,16387.666666666668,7301.391260118398,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,VUS_PR,3,3,0.5956660572441398,0.0072616372762244405,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,VUS_ROC,3,3,0.8787016858760678,0.0028501291279468518,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.666666666666667,1.1547005383792517,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,event_macro_coverage,3,3,0.10092492234474193,0.009056829427712338,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,event_point_coverage,3,3,0.34300325819257527,0.15282230487720866,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,long_steady_macro_coverage,3,3,0.07150620363082265,0.021969096125223245,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,long_steady_point_coverage,3,3,0.40600307806064984,0.18833818204015088,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,max_event_miss_points,3,3,7832.333333333333,1751.2753448082724,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_FPR,3,3,0.016300229196702525,0.00027528318747193205,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_alarm_fragments,3,3,340.0,2.6457513110645907,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.1783298214483753,0.009169316676363426,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,normal_false_alarm_points,3,3,4703.333333333333,79.43131204590124,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,one_to_one_eventF1,3,3,0.0495399221875536,0.0007554647020865736,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,one_to_one_eventPrecision,3,3,0.025703915952409926,0.00040665904346075547,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,C,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,AP,3,3,0.6262912986785788,0.004467500955008492,1,paired adaptation seeds
+SWAT,R,B,strict,AUC_PR_trapezoidal,3,3,0.6262648368305083,0.004467349325283983,1,paired adaptation seeds
+SWAT,R,B,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,F1,3,3,0.6763332844150186,0.0046215966406434935,1,paired adaptation seeds
+SWAT,R,B,strict,FN,3,3,20636.666666666668,232.83971597073668,1,paired adaptation seeds
+SWAT,R,B,strict,FP,3,3,5339.333333333333,115.59555931493793,1,paired adaptation seeds
+SWAT,R,B,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,Npred,3,3,480.6666666666667,3.5118845842842465,1,paired adaptation seeds
+SWAT,R,B,strict,Precision,3,3,0.8356027768517381,0.003950182186854619,1,paired adaptation seeds
+SWAT,R,B,strict,ROC_AUC,3,3,0.8909940888906283,0.0035080660371680727,1,paired adaptation seeds
+SWAT,R,B,strict,Recall,3,3,0.5680627359050031,0.004873468739576304,1,paired adaptation seeds
+SWAT,R,B,strict,TN,3,3,283204.6666666667,115.59555931493793,1,paired adaptation seeds
+SWAT,R,B,strict,TP,3,3,27140.333333333332,232.83971597073668,1,paired adaptation seeds
+SWAT,R,B,strict,VUS_PR,3,3,0.6306130552457437,0.005161438866520196,1,paired adaptation seeds
+SWAT,R,B,strict,VUS_ROC,3,3,0.8862960720415515,0.0020165600758549713,1,paired adaptation seeds
+SWAT,R,B,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,event_macro_coverage,3,3,0.1195842518155526,0.00016069180020026613,1,paired adaptation seeds
+SWAT,R,B,strict,event_point_coverage,3,3,0.5680627359050031,0.004873468739576304,1,paired adaptation seeds
+SWAT,R,B,strict,long_steady_macro_coverage,3,3,0.10978053952423816,0.002001295656049227,1,paired adaptation seeds
+SWAT,R,B,strict,long_steady_point_coverage,3,3,0.6823407017634363,0.00610993830962636,1,paired adaptation seeds
+SWAT,R,B,strict,max_event_miss_points,3,3,5232.666666666667,304.26359186293274,1,paired adaptation seeds
+SWAT,R,B,strict,normal_FPR,3,3,0.01850439909800007,0.0004006167493170458,1,paired adaptation seeds
+SWAT,R,B,strict,normal_alarm_fragments,3,3,431.0,6.557438524302,1,paired adaptation seeds
+SWAT,R,B,strict,normal_alarm_fragments_per_1000_points,3,3,1.4937063324830877,0.022725956957351363,1,paired adaptation seeds
+SWAT,R,B,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,B,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,normal_false_alarm_points,3,3,5339.333333333333,115.59555931493793,1,paired adaptation seeds
+SWAT,R,B,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,one_to_one_eventF1,3,3,0.059683641715888414,0.0004174012372687239,1,paired adaptation seeds
+SWAT,R,B,strict,one_to_one_eventPrecision,3,3,0.031207769200908137,0.00022825367050946459,1,paired adaptation seeds
+SWAT,R,B,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,B,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,AP,3,3,0.6262912986785788,0.004467500955008492,1,paired adaptation seeds
+SWAT,R,B,confirmed3,AUC_PR_trapezoidal,3,3,0.6262648368305083,0.004467349325283983,1,paired adaptation seeds
+SWAT,R,B,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,F1,3,3,0.6815538804319407,0.004397019229144114,1,paired adaptation seeds
+SWAT,R,B,confirmed3,FN,3,3,20734.333333333332,222.49119832778402,1,paired adaptation seeds
+SWAT,R,B,confirmed3,FP,3,3,4535.666666666667,100.94718090830142,1,paired adaptation seeds
+SWAT,R,B,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,Npred,3,3,371.0,3.4641016151377544,1,paired adaptation seeds
+SWAT,R,B,confirmed3,Precision,3,3,0.8563606526675566,0.003580965122180903,1,paired adaptation seeds
+SWAT,R,B,confirmed3,ROC_AUC,3,3,0.8909940888906283,0.0035080660371680727,1,paired adaptation seeds
+SWAT,R,B,confirmed3,Recall,3,3,0.5660185165805025,0.004656868332624169,1,paired adaptation seeds
+SWAT,R,B,confirmed3,TN,3,3,284008.3333333333,100.94718090830142,1,paired adaptation seeds
+SWAT,R,B,confirmed3,TP,3,3,27042.666666666668,222.49119832778402,1,paired adaptation seeds
+SWAT,R,B,confirmed3,VUS_PR,3,3,0.6306130552457437,0.005161438866520196,1,paired adaptation seeds
+SWAT,R,B,confirmed3,VUS_ROC,3,3,0.8862960720415515,0.0020165600758549713,1,paired adaptation seeds
+SWAT,R,B,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,event_macro_coverage,3,3,0.11532464662098331,0.0001481349340453001,1,paired adaptation seeds
+SWAT,R,B,confirmed3,event_point_coverage,3,3,0.5660185165805025,0.004656868332624169,1,paired adaptation seeds
+SWAT,R,B,confirmed3,long_steady_macro_coverage,3,3,0.10473646112919364,0.0013147338488337355,1,paired adaptation seeds
+SWAT,R,B,confirmed3,long_steady_point_coverage,3,3,0.6806297127429991,0.00582907639555046,1,paired adaptation seeds
+SWAT,R,B,confirmed3,max_event_miss_points,3,3,5235.333333333333,303.687888025409,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_FPR,3,3,0.015719150863184355,0.00034985021663351594,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_alarm_fragments,3,3,332.0,4.58257569495584,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.150604413884884,0.015881722354149898,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,normal_false_alarm_points,3,3,4535.666666666667,100.94718090830142,1,paired adaptation seeds
+SWAT,R,B,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,one_to_one_eventF1,3,3,0.07633985226644106,0.0006763401676101157,1,paired adaptation seeds
+SWAT,R,B,confirmed3,one_to_one_eventPrecision,3,3,0.040433629676165705,0.00037958320289183643,1,paired adaptation seeds
+SWAT,R,B,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,B,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,AP,3,3,0.6264477572962185,0.007292329340558183,1,paired adaptation seeds
+SWAT,R,C,strict,AUC_PR_trapezoidal,3,3,0.6264214320065241,0.007292123188661188,1,paired adaptation seeds
+SWAT,R,C,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,F1,3,3,0.685118410973657,0.013771351694610318,1,paired adaptation seeds
+SWAT,R,C,strict,FN,3,3,20145.666666666668,788.1125131181038,1,paired adaptation seeds
+SWAT,R,C,strict,FP,3,3,5244.0,138.20636743652588,1,paired adaptation seeds
+SWAT,R,C,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,Npred,3,3,493.3333333333333,40.00416644967538,1,paired adaptation seeds
+SWAT,R,C,strict,Precision,3,3,0.8404034665838856,0.006884213583240589,1,paired adaptation seeds
+SWAT,R,C,strict,ROC_AUC,3,3,0.8880268646808732,0.006709410492103784,1,paired adaptation seeds
+SWAT,R,C,strict,Recall,3,3,0.5783396473896086,0.016495646715325437,1,paired adaptation seeds
+SWAT,R,C,strict,TN,3,3,283300.0,138.20636743652588,1,paired adaptation seeds
+SWAT,R,C,strict,TP,3,3,27631.333333333332,788.1125131181038,1,paired adaptation seeds
+SWAT,R,C,strict,VUS_PR,3,3,0.6311335603171061,0.007249693394657117,1,paired adaptation seeds
+SWAT,R,C,strict,VUS_ROC,3,3,0.8837981175508348,0.004768323861301127,1,paired adaptation seeds
+SWAT,R,C,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,event_macro_coverage,3,3,0.11910880054414526,0.0006799659812147602,1,paired adaptation seeds
+SWAT,R,C,strict,event_point_coverage,3,3,0.5783396473896086,0.016495646715325437,1,paired adaptation seeds
+SWAT,R,C,strict,long_steady_macro_coverage,3,3,0.11054649707215569,0.0024859758885077176,1,paired adaptation seeds
+SWAT,R,C,strict,long_steady_point_coverage,3,3,0.6951774183841041,0.020422591056839193,1,paired adaptation seeds
+SWAT,R,C,strict,max_event_miss_points,3,3,4556.333333333333,560.9138377089064,1,paired adaptation seeds
+SWAT,R,C,strict,normal_FPR,3,3,0.018174004657868472,0.0004789784831309123,1,paired adaptation seeds
+SWAT,R,C,strict,normal_alarm_fragments,3,3,421.3333333333333,4.041451884327381,1,paired adaptation seeds
+SWAT,R,C,strict,normal_alarm_fragments_per_1000_points,3,3,1.460204798343869,0.014006362580152035,1,paired adaptation seeds
+SWAT,R,C,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,C,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,normal_false_alarm_points,3,3,5244.0,138.20636743652588,1,paired adaptation seeds
+SWAT,R,C,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,one_to_one_eventF1,3,3,0.058450494558205696,0.0045598794648283696,1,paired adaptation seeds
+SWAT,R,C,strict,one_to_one_eventPrecision,3,3,0.030539848123097152,0.002489639136888052,1,paired adaptation seeds
+SWAT,R,C,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,C,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,AP,3,3,0.6264477572962185,0.007292329340558183,1,paired adaptation seeds
+SWAT,R,C,confirmed3,AUC_PR_trapezoidal,3,3,0.6264214320065241,0.007292123188661188,1,paired adaptation seeds
+SWAT,R,C,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,F1,3,3,0.6898807278607187,0.013693797692138751,1,paired adaptation seeds
+SWAT,R,C,confirmed3,FN,3,3,20266.333333333332,784.5280959489809,1,paired adaptation seeds
+SWAT,R,C,confirmed3,FP,3,3,4458.0,126.44366334458995,1,paired adaptation seeds
+SWAT,R,C,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,Npred,3,3,368.3333333333333,16.441816606851365,1,paired adaptation seeds
+SWAT,R,C,confirmed3,Precision,3,3,0.8604721001110528,0.006295999844800159,1,paired adaptation seeds
+SWAT,R,C,confirmed3,ROC_AUC,3,3,0.8880268646808732,0.006709410492103784,1,paired adaptation seeds
+SWAT,R,C,confirmed3,Recall,3,3,0.5758140248794748,0.016420622809070917,1,paired adaptation seeds
+SWAT,R,C,confirmed3,TN,3,3,284086.0,126.44366334458995,1,paired adaptation seeds
+SWAT,R,C,confirmed3,TP,3,3,27510.666666666668,784.5280959489809,1,paired adaptation seeds
+SWAT,R,C,confirmed3,VUS_PR,3,3,0.6311335603171061,0.007249693394657117,1,paired adaptation seeds
+SWAT,R,C,confirmed3,VUS_ROC,3,3,0.8837981175508348,0.004768323861301127,1,paired adaptation seeds
+SWAT,R,C,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,event_macro_coverage,3,3,0.11459103135423836,0.0007344622767047814,1,paired adaptation seeds
+SWAT,R,C,confirmed3,event_point_coverage,3,3,0.5758140248794748,0.016420622809070917,1,paired adaptation seeds
+SWAT,R,C,confirmed3,long_steady_macro_coverage,3,3,0.10583374355913121,0.002472681444795224,1,paired adaptation seeds
+SWAT,R,C,confirmed3,long_steady_point_coverage,3,3,0.6929161615379985,0.02031337560204602,1,paired adaptation seeds
+SWAT,R,C,confirmed3,max_event_miss_points,3,3,4747.666666666667,559.7788253706399,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_FPR,3,3,0.015449983364755462,0.00043821276250620336,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_alarm_fragments,3,3,325.3333333333333,4.041451884327381,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.127499907581975,0.014006362580152018,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,normal_false_alarm_points,3,3,4458.0,126.44366334458995,1,paired adaptation seeds
+SWAT,R,C,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,one_to_one_eventF1,3,3,0.07694657087230437,0.0031761485154336785,1,paired adaptation seeds
+SWAT,R,C,confirmed3,one_to_one_eventPrecision,3,3,0.04077699515718419,0.0017815918595842494,1,paired adaptation seeds
+SWAT,R,C,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,C,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,AP,3,3,0.579376543335313,0.0013958454876520565,1,paired adaptation seeds
+PSM,TT,B,strict,AUC_PR_trapezoidal,3,3,0.5793603798934323,0.0013960489849520492,1,paired adaptation seeds
+PSM,TT,B,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,F1,3,3,0.543552819092692,0.0041765993816285955,1,paired adaptation seeds
+PSM,TT,B,strict,FN,3,3,7039.666666666667,189.25467849787316,1,paired adaptation seeds
+PSM,TT,B,strict,FP,3,3,10995.0,207.04588863341382,1,paired adaptation seeds
+PSM,TT,B,strict,M,3,3,35.333333333333336,1.1547005383792517,1,paired adaptation seeds
+PSM,TT,B,strict,Npred,3,3,508.3333333333333,22.300971578236975,1,paired adaptation seeds
+PSM,TT,B,strict,Precision,3,3,0.49412214024025053,0.0007618995297101938,1,paired adaptation seeds
+PSM,TT,B,strict,ROC_AUC,3,3,0.7401758534615553,0.0003400780880759081,1,paired adaptation seeds
+PSM,TT,B,strict,Recall,3,3,0.6040459718394361,0.010644843832491915,1,paired adaptation seeds
+PSM,TT,B,strict,TN,3,3,36314.0,207.04588863341382,1,paired adaptation seeds
+PSM,TT,B,strict,TP,3,3,10739.333333333334,189.25467849787316,1,paired adaptation seeds
+PSM,TT,B,strict,VUS_PR,3,3,0.5684371450617856,0.001013712794585938,1,paired adaptation seeds
+PSM,TT,B,strict,VUS_ROC,3,3,0.7466696557699085,0.00013048010069604776,1,paired adaptation seeds
+PSM,TT,B,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,30.333333333333332,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,B,strict,auxiliary_any_hit_events,3,3,37.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,auxiliary_any_hit_recall,3,3,0.7708333333333334,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,delay_right_censored_events,3,3,11.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,event_macro_coverage,3,3,0.5646123899834815,0.0034428418624872746,1,paired adaptation seeds
+PSM,TT,B,strict,event_point_coverage,3,3,0.8039605836649611,0.005007470252690451,1,paired adaptation seeds
+PSM,TT,B,strict,long_steady_macro_coverage,3,3,0.9340217358121928,0.010183990480060983,1,paired adaptation seeds
+PSM,TT,B,strict,long_steady_point_coverage,3,3,0.9618970189701898,0.0057725485674013435,1,paired adaptation seeds
+PSM,TT,B,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,normal_FPR,3,3,0.23240820985436175,0.0043764587844472205,1,paired adaptation seeds
+PSM,TT,B,strict,normal_alarm_fragments,3,3,416.0,17.776388834631177,1,paired adaptation seeds
+PSM,TT,B,strict,normal_alarm_fragments_per_1000_points,3,3,8.793252869432878,0.37575067819296887,1,paired adaptation seeds
+PSM,TT,B,strict,normal_block_any_alarm_fraction,3,3,0.8367346938775512,1.3597399555105182e-16,1,paired adaptation seeds
+PSM,TT,B,strict,normal_blocks_with_alarm,3,3,41.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,normal_false_alarm_points,3,3,10995.0,207.04588863341382,1,paired adaptation seeds
+PSM,TT,B,strict,offline_availability_offset_median,3,3,82.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,B,strict,one_to_one_eventF1,3,3,0.12704944741128274,0.0012480708097205937,1,paired adaptation seeds
+PSM,TT,B,strict,one_to_one_eventPrecision,3,3,0.06953243282567982,0.0009150854141068322,1,paired adaptation seeds
+PSM,TT,B,strict,one_to_one_eventRecall,3,3,0.7361111111111112,0.024056261216234387,1,paired adaptation seeds
+PSM,TT,B,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,AP,3,3,0.579376543335313,0.0013958454876520565,1,paired adaptation seeds
+PSM,TT,B,confirmed3,AUC_PR_trapezoidal,3,3,0.5793603798934323,0.0013960489849520492,1,paired adaptation seeds
+PSM,TT,B,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,F1,3,3,0.5303777321630792,0.004845591201581458,1,paired adaptation seeds
+PSM,TT,B,confirmed3,FN,3,3,7627.666666666667,209.15385086900343,1,paired adaptation seeds
+PSM,TT,B,confirmed3,FP,3,3,10346.666666666666,235.1602290637882,1,paired adaptation seeds
+PSM,TT,B,confirmed3,M,3,3,21.0,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,Npred,3,3,262.3333333333333,11.676186592091328,1,paired adaptation seeds
+PSM,TT,B,confirmed3,Precision,3,3,0.4952431690010193,0.0011203169154304672,1,paired adaptation seeds
+PSM,TT,B,confirmed3,ROC_AUC,3,3,0.7401758534615553,0.0003400780880759081,1,paired adaptation seeds
+PSM,TT,B,confirmed3,Recall,3,3,0.5709732455893657,0.011764095329827523,1,paired adaptation seeds
+PSM,TT,B,confirmed3,TN,3,3,36962.333333333336,235.1602290637882,1,paired adaptation seeds
+PSM,TT,B,confirmed3,TP,3,3,10151.333333333334,209.15385086900346,1,paired adaptation seeds
+PSM,TT,B,confirmed3,VUS_PR,3,3,0.5684371450617856,0.001013712794585938,1,paired adaptation seeds
+PSM,TT,B,confirmed3,VUS_ROC,3,3,0.7466696557699085,0.00013048010069604776,1,paired adaptation seeds
+PSM,TT,B,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,16.0,1.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,auxiliary_any_hit_events,3,3,22.666666666666668,1.1547005383792515,1,paired adaptation seeds
+PSM,TT,B,confirmed3,auxiliary_any_hit_recall,3,3,0.47222222222222215,0.024056261216234418,1,paired adaptation seeds
+PSM,TT,B,confirmed3,delay_right_censored_events,3,3,25.333333333333332,1.1547005383792515,1,paired adaptation seeds
+PSM,TT,B,confirmed3,event_macro_coverage,3,3,0.2630934810935203,0.014393330121873608,1,paired adaptation seeds
+PSM,TT,B,confirmed3,event_point_coverage,3,3,0.7859263470406166,0.005353490378843473,1,paired adaptation seeds
+PSM,TT,B,confirmed3,long_steady_macro_coverage,3,3,0.9145487987300425,0.012007593880274529,1,paired adaptation seeds
+PSM,TT,B,confirmed3,long_steady_point_coverage,3,3,0.950840108401084,0.006589546667120844,1,paired adaptation seeds
+PSM,TT,B,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_FPR,3,3,0.2187039816243562,0.004970729228345313,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_alarm_fragments,3,3,216.66666666666666,9.018499505645789,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.579819202829623,0.19062967946153594,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_block_any_alarm_fraction,3,3,0.5714285714285715,0.03534797566467094,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_blocks_with_alarm,3,3,28.0,1.7320508075688772,1,paired adaptation seeds
+PSM,TT,B,confirmed3,normal_false_alarm_points,3,3,10346.666666666666,235.1602290637882,1,paired adaptation seeds
+PSM,TT,B,confirmed3,offline_availability_offset_median,3,3,91.33333333333333,4.618802153517006,1,paired adaptation seeds
+PSM,TT,B,confirmed3,offline_first_hit_offset_median,3,3,2.0,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,one_to_one_eventF1,3,3,0.13546486537198613,0.0050449264451060205,1,paired adaptation seeds
+PSM,TT,B,confirmed3,one_to_one_eventPrecision,3,3,0.08015540015540017,0.0035251609862823993,1,paired adaptation seeds
+PSM,TT,B,confirmed3,one_to_one_eventRecall,3,3,0.4375,0.0,1,paired adaptation seeds
+PSM,TT,B,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,C,strict,AP,3,3,0.5714955949194912,0.0007160272318893153,1,paired adaptation seeds
+PSM,TT,C,strict,AUC_PR_trapezoidal,3,3,0.571479252753633,0.00071606419604185,1,paired adaptation seeds
+PSM,TT,C,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,C,strict,F1,3,3,0.5518905640280437,0.002036200261345687,1,paired adaptation seeds
+PSM,TT,C,strict,FN,3,3,6414.0,121.50308638055249,1,paired adaptation seeds
+PSM,TT,C,strict,FP,3,3,12041.0,168.89049706836676,1,paired adaptation seeds
+PSM,TT,C,strict,M,3,3,34.0,1.7320508075688772,1,paired adaptation seeds
+PSM,TT,C,strict,Npred,3,3,474.0,13.228756555322953,1,paired adaptation seeds
+PSM,TT,C,strict,Precision,3,3,0.48556618235464916,0.0009035588826243427,1,paired adaptation seeds
+PSM,TT,C,strict,ROC_AUC,3,3,0.7316084924607543,0.00042542546258706766,1,paired adaptation seeds
+PSM,TT,C,strict,Recall,3,3,0.6392373024354575,0.00683407876599089,1,paired adaptation seeds
+PSM,TT,C,strict,TN,3,3,35268.0,168.89049706836676,1,paired adaptation seeds
+PSM,TT,C,strict,TP,3,3,11365.0,121.50308638055249,1,paired adaptation seeds
+PSM,TT,C,strict,VUS_PR,3,3,0.5621308063481202,0.0004919638772933399,1,paired adaptation seeds
+PSM,TT,C,strict,VUS_ROC,3,3,0.7395453944985247,0.0003604704292108532,1,paired adaptation seeds
+PSM,TT,C,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,31.0,1.0,1,paired adaptation seeds
+PSM,TT,C,strict,auxiliary_any_hit_events,3,3,40.0,1.7320508075688772,1,paired adaptation seeds
+PSM,TT,C,strict,auxiliary_any_hit_recall,3,3,0.8333333333333334,0.03608439182435161,1,paired adaptation seeds
+PSM,TT,C,strict,delay_right_censored_events,3,3,8.0,1.7320508075688772,1,paired adaptation seeds
+PSM,TT,C,strict,event_macro_coverage,3,3,0.6045532023136199,0.009029803201923559,1,paired adaptation seeds
+PSM,TT,C,strict,event_point_coverage,3,3,0.8274903670014528,0.0033167293519866343,1,paired adaptation seeds
+PSM,TT,C,strict,long_steady_macro_coverage,3,3,0.9691806331471136,0.004051081921379349,1,paired adaptation seeds
+PSM,TT,C,strict,long_steady_point_coverage,3,3,0.982059620596206,0.002358190776998079,1,paired adaptation seeds
+PSM,TT,C,strict,max_event_miss_points,3,3,387.0,20.784609690826528,1,paired adaptation seeds
+PSM,TT,C,strict,normal_FPR,3,3,0.25451816779048386,0.0035699443460729847,1,paired adaptation seeds
+PSM,TT,C,strict,normal_alarm_fragments,3,3,399.6666666666667,14.977761292440647,1,paired adaptation seeds
+PSM,TT,C,strict,normal_alarm_fragments_per_1000_points,3,3,8.448004960296489,0.3165943328423904,1,paired adaptation seeds
+PSM,TT,C,strict,normal_block_any_alarm_fraction,3,3,0.8639455782312925,0.011782658554890335,1,paired adaptation seeds
+PSM,TT,C,strict,normal_blocks_with_alarm,3,3,42.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,C,strict,normal_false_alarm_points,3,3,12041.0,168.89049706836676,1,paired adaptation seeds
+PSM,TT,C,strict,offline_availability_offset_median,3,3,91.33333333333333,2.3094010767585034,1,paired adaptation seeds
+PSM,TT,C,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,C,strict,one_to_one_eventF1,3,3,0.13028668535355994,0.006281831767352649,1,paired adaptation seeds
+PSM,TT,C,strict,one_to_one_eventPrecision,3,3,0.071744606406279,0.003489824064863108,1,paired adaptation seeds
+PSM,TT,C,strict,one_to_one_eventRecall,3,3,0.7083333333333334,0.03608439182435161,1,paired adaptation seeds
+PSM,TT,C,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,AP,3,3,0.5714955949194912,0.0007160272318893153,1,paired adaptation seeds
+PSM,TT,C,confirmed3,AUC_PR_trapezoidal,3,3,0.571479252753633,0.00071606419604185,1,paired adaptation seeds
+PSM,TT,C,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,F1,3,3,0.5426711720195817,0.0025687834895114824,1,paired adaptation seeds
+PSM,TT,C,confirmed3,FN,3,3,6906.333333333333,133.00501243687523,1,paired adaptation seeds
+PSM,TT,C,confirmed3,FP,3,3,11418.333333333334,174.64344629367955,1,paired adaptation seeds
+PSM,TT,C,confirmed3,M,3,3,21.0,1.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,Npred,3,3,249.33333333333334,6.6583281184793925,1,paired adaptation seeds
+PSM,TT,C,confirmed3,Precision,3,3,0.48776750742667874,0.0010551951041941662,1,paired adaptation seeds
+PSM,TT,C,confirmed3,ROC_AUC,3,3,0.7316084924607543,0.00042542546258706766,1,paired adaptation seeds
+PSM,TT,C,confirmed3,Recall,3,3,0.6115454562498828,0.00748101762961218,1,paired adaptation seeds
+PSM,TT,C,confirmed3,TN,3,3,35890.666666666664,174.64344629367955,1,paired adaptation seeds
+PSM,TT,C,confirmed3,TP,3,3,10872.666666666666,133.00501243687523,1,paired adaptation seeds
+PSM,TT,C,confirmed3,VUS_PR,3,3,0.5621308063481202,0.0004919638772933399,1,paired adaptation seeds
+PSM,TT,C,confirmed3,VUS_ROC,3,3,0.7395453944985247,0.0003604704292108532,1,paired adaptation seeds
+PSM,TT,C,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,19.333333333333332,1.5275252316519465,1,paired adaptation seeds
+PSM,TT,C,confirmed3,auxiliary_any_hit_events,3,3,27.0,1.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,auxiliary_any_hit_recall,3,3,0.5625,0.02083333333333337,1,paired adaptation seeds
+PSM,TT,C,confirmed3,delay_right_censored_events,3,3,21.0,1.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,event_macro_coverage,3,3,0.3346666221812364,0.01901528509281833,1,paired adaptation seeds
+PSM,TT,C,confirmed3,event_point_coverage,3,3,0.8114143136883332,0.0029499828005395976,1,paired adaptation seeds
+PSM,TT,C,confirmed3,long_steady_macro_coverage,3,3,0.9579143389199255,0.004792219453429295,1,paired adaptation seeds
+PSM,TT,C,confirmed3,long_steady_point_coverage,3,3,0.9755013550135502,0.002789617177768608,1,paired adaptation seeds
+PSM,TT,C,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_FPR,3,3,0.24135647198912116,0.0036915480414652555,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_alarm_fragments,3,3,206.0,7.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.354351180536473,0.1479633896298802,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_block_any_alarm_fraction,3,3,0.6326530612244898,0.03534797566467094,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_blocks_with_alarm,3,3,31.0,1.7320508075688772,1,paired adaptation seeds
+PSM,TT,C,confirmed3,normal_false_alarm_points,3,3,11418.333333333334,174.64344629367955,1,paired adaptation seeds
+PSM,TT,C,confirmed3,offline_availability_offset_median,3,3,87.33333333333333,2.3094010767585034,1,paired adaptation seeds
+PSM,TT,C,confirmed3,offline_first_hit_offset_median,3,3,2.0,0.0,1,paired adaptation seeds
+PSM,TT,C,confirmed3,one_to_one_eventF1,3,3,0.14121273642338936,0.0041253599127532015,1,paired adaptation seeds
+PSM,TT,C,confirmed3,one_to_one_eventPrecision,3,3,0.08420053985340932,0.002227017043706809,1,paired adaptation seeds
+PSM,TT,C,confirmed3,one_to_one_eventRecall,3,3,0.4375,0.020833333333333315,1,paired adaptation seeds
+PSM,TT,C,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,AP,3,3,0.5933546553944251,0.0002861947946834621,1,paired adaptation seeds
+PSM,R,B,strict,AUC_PR_trapezoidal,3,3,0.593337023341653,0.0002862418715005181,1,paired adaptation seeds
+PSM,R,B,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,F1,3,3,0.48757478943792715,0.004293583446755032,1,paired adaptation seeds
+PSM,R,B,strict,FN,3,3,10331.666666666666,197.18096595090847,1,paired adaptation seeds
+PSM,R,B,strict,FP,3,3,5319.0,348.7119154832539,1,paired adaptation seeds
+PSM,R,B,strict,M,3,3,34.0,1.0,1,paired adaptation seeds
+PSM,R,B,strict,Npred,3,3,612.0,14.730919862656235,1,paired adaptation seeds
+PSM,R,B,strict,Precision,3,3,0.5836346301575359,0.00980222281609606,1,paired adaptation seeds
+PSM,R,B,strict,ROC_AUC,3,3,0.7562744996336143,8.202736492309985e-05,1,paired adaptation seeds
+PSM,R,B,strict,Recall,3,3,0.418883701745505,0.011090666851392567,1,paired adaptation seeds
+PSM,R,B,strict,TN,3,3,41990.0,348.7119154832539,1,paired adaptation seeds
+PSM,R,B,strict,TP,3,3,7447.333333333333,197.1809659509085,1,paired adaptation seeds
+PSM,R,B,strict,VUS_PR,3,3,0.5883596962349894,0.0002612516878606728,1,paired adaptation seeds
+PSM,R,B,strict,VUS_ROC,3,3,0.7673393229139251,9.289637802489992e-05,1,paired adaptation seeds
+PSM,R,B,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,21.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,auxiliary_any_hit_events,3,3,34.0,1.0,1,paired adaptation seeds
+PSM,R,B,strict,auxiliary_any_hit_recall,3,3,0.7083333333333334,0.020833333333333315,1,paired adaptation seeds
+PSM,R,B,strict,delay_right_censored_events,3,3,14.0,1.0,1,paired adaptation seeds
+PSM,R,B,strict,event_macro_coverage,3,3,0.4637633955788196,0.01433202467031602,1,paired adaptation seeds
+PSM,R,B,strict,event_point_coverage,3,3,0.6425999620996778,0.010391532970138463,1,paired adaptation seeds
+PSM,R,B,strict,long_steady_macro_coverage,3,3,0.6421191174476465,0.017127616896577234,1,paired adaptation seeds
+PSM,R,B,strict,long_steady_point_coverage,3,3,0.8326829268292683,0.007037100815734113,1,paired adaptation seeds
+PSM,R,B,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,normal_FPR,3,3,0.11243103849161894,0.007370942431318646,1,paired adaptation seeds
+PSM,R,B,strict,normal_alarm_fragments,3,3,434.6666666666667,13.576941236277534,1,paired adaptation seeds
+PSM,R,B,strict,normal_alarm_fragments_per_1000_points,3,3,9.18782190844589,0.2869843208750454,1,paired adaptation seeds
+PSM,R,B,strict,normal_block_any_alarm_fraction,3,3,0.7959183673469387,1.3597399555105182e-16,1,paired adaptation seeds
+PSM,R,B,strict,normal_blocks_with_alarm,3,3,39.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,normal_false_alarm_points,3,3,5319.0,348.7119154832539,1,paired adaptation seeds
+PSM,R,B,strict,offline_availability_offset_median,3,3,80.0,2.0,1,paired adaptation seeds
+PSM,R,B,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,B,strict,one_to_one_eventF1,3,3,0.10302617374145463,0.001607553219679002,1,paired adaptation seeds
+PSM,R,B,strict,one_to_one_eventPrecision,3,3,0.05555473345122164,0.0008543729123250836,1,paired adaptation seeds
+PSM,R,B,strict,one_to_one_eventRecall,3,3,0.7083333333333334,0.020833333333333315,1,paired adaptation seeds
+PSM,R,B,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,AP,3,3,0.5933546553944251,0.0002861947946834621,1,paired adaptation seeds
+PSM,R,B,confirmed3,AUC_PR_trapezoidal,3,3,0.593337023341653,0.0002862418715005181,1,paired adaptation seeds
+PSM,R,B,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,F1,3,3,0.46803833973895,0.003908542000328407,1,paired adaptation seeds
+PSM,R,B,confirmed3,FN,3,3,10939.0,172.7049507107425,1,paired adaptation seeds
+PSM,R,B,confirmed3,FP,3,3,4606.666666666667,328.2945831617289,1,paired adaptation seeds
+PSM,R,B,confirmed3,M,3,3,18.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,Npred,3,3,330.0,8.717797887081348,1,paired adaptation seeds
+PSM,R,B,confirmed3,Precision,3,3,0.5978846662555651,0.011428769901908626,1,paired adaptation seeds
+PSM,R,B,confirmed3,ROC_AUC,3,3,0.7562744996336143,8.202736492309985e-05,1,paired adaptation seeds
+PSM,R,B,confirmed3,Recall,3,3,0.3847235502559199,0.009713985640966438,1,paired adaptation seeds
+PSM,R,B,confirmed3,TN,3,3,42702.333333333336,328.2945831617289,1,paired adaptation seeds
+PSM,R,B,confirmed3,TP,3,3,6840.0,172.7049507107425,1,paired adaptation seeds
+PSM,R,B,confirmed3,VUS_PR,3,3,0.5883596962349894,0.0002612516878606728,1,paired adaptation seeds
+PSM,R,B,confirmed3,VUS_ROC,3,3,0.7673393229139251,9.289637802489992e-05,1,paired adaptation seeds
+PSM,R,B,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,10.666666666666666,0.5773502691896257,1,paired adaptation seeds
+PSM,R,B,confirmed3,auxiliary_any_hit_events,3,3,18.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,auxiliary_any_hit_recall,3,3,0.375,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,delay_right_censored_events,3,3,30.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,event_macro_coverage,3,3,0.17234838161419685,0.003138098729273529,1,paired adaptation seeds
+PSM,R,B,confirmed3,event_point_coverage,3,3,0.6119322847577537,0.010081651920741059,1,paired adaptation seeds
+PSM,R,B,confirmed3,long_steady_macro_coverage,3,3,0.5981353725515491,0.015328675153224482,1,paired adaptation seeds
+PSM,R,B,confirmed3,long_steady_point_coverage,3,3,0.8147967479674797,0.006146685584206735,1,paired adaptation seeds
+PSM,R,B,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_FPR,3,3,0.09737400212785446,0.006939368474533999,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_alarm_fragments,3,3,227.66666666666666,8.736894948054104,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.812333100819436,0.1846772273363228,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_block_any_alarm_fraction,3,3,0.4761904761904761,0.023565317109780638,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_blocks_with_alarm,3,3,23.333333333333332,1.1547005383792515,1,paired adaptation seeds
+PSM,R,B,confirmed3,normal_false_alarm_points,3,3,4606.666666666667,328.2945831617289,1,paired adaptation seeds
+PSM,R,B,confirmed3,offline_availability_offset_median,3,3,80.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,offline_first_hit_offset_median,3,3,3.0,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,one_to_one_eventF1,3,3,0.09527146106500162,0.0021701145971576657,1,paired adaptation seeds
+PSM,R,B,confirmed3,one_to_one_eventPrecision,3,3,0.05457048531750805,0.0014212765525575734,1,paired adaptation seeds
+PSM,R,B,confirmed3,one_to_one_eventRecall,3,3,0.375,0.0,1,paired adaptation seeds
+PSM,R,B,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,AP,3,3,0.5879340851128155,0.0007276836133149693,1,paired adaptation seeds
+PSM,R,C,strict,AUC_PR_trapezoidal,3,3,0.5879155202745695,0.0007276118303644372,1,paired adaptation seeds
+PSM,R,C,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,F1,3,3,0.4891392101305425,0.005411473569682176,1,paired adaptation seeds
+PSM,R,C,strict,FN,3,3,10362.333333333334,182.93532554794697,1,paired adaptation seeds
+PSM,R,C,strict,FP,3,3,5126.666666666667,230.40471638691196,1,paired adaptation seeds
+PSM,R,C,strict,M,3,3,32.333333333333336,1.1547005383792517,1,paired adaptation seeds
+PSM,R,C,strict,Npred,3,3,614.6666666666666,4.725815626252608,1,paired adaptation seeds
+PSM,R,C,strict,Precision,3,3,0.5913919921773325,0.004938982665649052,1,paired adaptation seeds
+PSM,R,C,strict,ROC_AUC,3,3,0.7474267740882009,0.0005368686417209801,1,paired adaptation seeds
+PSM,R,C,strict,Recall,3,3,0.41715882033110224,0.010289404665501265,1,paired adaptation seeds
+PSM,R,C,strict,TN,3,3,42182.333333333336,230.40471638691193,1,paired adaptation seeds
+PSM,R,C,strict,TP,3,3,7416.666666666667,182.93532554794695,1,paired adaptation seeds
+PSM,R,C,strict,VUS_PR,3,3,0.5859852692070877,0.0009642365243408752,1,paired adaptation seeds
+PSM,R,C,strict,VUS_ROC,3,3,0.7611263516569218,0.0005098987419787577,1,paired adaptation seeds
+PSM,R,C,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,20.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,auxiliary_any_hit_events,3,3,32.333333333333336,1.1547005383792517,1,paired adaptation seeds
+PSM,R,C,strict,auxiliary_any_hit_recall,3,3,0.6736111111111112,0.024056261216234387,1,paired adaptation seeds
+PSM,R,C,strict,delay_right_censored_events,3,3,15.666666666666666,1.1547005383792517,1,paired adaptation seeds
+PSM,R,C,strict,event_macro_coverage,3,3,0.4521433568126168,0.009250329681319946,1,paired adaptation seeds
+PSM,R,C,strict,event_point_coverage,3,3,0.6433579685427326,0.009192293223903653,1,paired adaptation seeds
+PSM,R,C,strict,long_steady_macro_coverage,3,3,0.6362817959733088,0.018463590899875208,1,paired adaptation seeds
+PSM,R,C,strict,long_steady_point_coverage,3,3,0.8336043360433605,0.007434172896362201,1,paired adaptation seeds
+PSM,R,C,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,normal_FPR,3,3,0.10836556821464556,0.004870208974759817,1,paired adaptation seeds
+PSM,R,C,strict,normal_alarm_fragments,3,3,430.0,7.0,1,paired adaptation seeds
+PSM,R,C,strict,normal_alarm_fragments_per_1000_points,3,3,9.089179648692637,0.14796338962988007,1,paired adaptation seeds
+PSM,R,C,strict,normal_block_any_alarm_fraction,3,3,0.8027210884353742,0.011782658554890335,1,paired adaptation seeds
+PSM,R,C,strict,normal_blocks_with_alarm,3,3,39.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,R,C,strict,normal_false_alarm_points,3,3,5126.666666666667,230.40471638691196,1,paired adaptation seeds
+PSM,R,C,strict,offline_availability_offset_median,3,3,82.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,C,strict,one_to_one_eventF1,3,3,0.09758380571037291,0.0033479152990554964,1,paired adaptation seeds
+PSM,R,C,strict,one_to_one_eventPrecision,3,3,0.05260219629949606,0.0018022492672971945,1,paired adaptation seeds
+PSM,R,C,strict,one_to_one_eventRecall,3,3,0.6736111111111112,0.024056261216234387,1,paired adaptation seeds
+PSM,R,C,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,AP,3,3,0.5879340851128155,0.0007276836133149693,1,paired adaptation seeds
+PSM,R,C,confirmed3,AUC_PR_trapezoidal,3,3,0.5879155202745695,0.0007276118303644372,1,paired adaptation seeds
+PSM,R,C,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,F1,3,3,0.46978812943233583,0.0051028092973324606,1,paired adaptation seeds
+PSM,R,C,confirmed3,FN,3,3,10964.0,163.01840386901105,1,paired adaptation seeds
+PSM,R,C,confirmed3,FP,3,3,4416.333333333333,216.85325299227893,1,paired adaptation seeds
+PSM,R,C,confirmed3,M,3,3,17.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,Npred,3,3,325.3333333333333,0.5773502691896258,1,paired adaptation seeds
+PSM,R,C,confirmed3,Precision,3,3,0.6069211988056186,0.006083674862041719,1,paired adaptation seeds
+PSM,R,C,confirmed3,ROC_AUC,3,3,0.7474267740882009,0.0005368686417209801,1,paired adaptation seeds
+PSM,R,C,confirmed3,Recall,3,3,0.38331739692896116,0.009169154838236744,1,paired adaptation seeds
+PSM,R,C,confirmed3,TN,3,3,42892.666666666664,216.85325299227893,1,paired adaptation seeds
+PSM,R,C,confirmed3,TP,3,3,6815.0,163.01840386901105,1,paired adaptation seeds
+PSM,R,C,confirmed3,VUS_PR,3,3,0.5859852692070877,0.0009642365243408752,1,paired adaptation seeds
+PSM,R,C,confirmed3,VUS_ROC,3,3,0.7611263516569218,0.0005098987419787577,1,paired adaptation seeds
+PSM,R,C,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,10.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,auxiliary_any_hit_events,3,3,17.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,auxiliary_any_hit_recall,3,3,0.3541666666666667,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,delay_right_censored_events,3,3,31.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,event_macro_coverage,3,3,0.1753635440491471,0.0026004460770146518,1,paired adaptation seeds
+PSM,R,C,confirmed3,event_point_coverage,3,3,0.6114901143326384,0.009712920418597533,1,paired adaptation seeds
+PSM,R,C,confirmed3,long_steady_macro_coverage,3,3,0.5825588794036262,0.02275104842965574,1,paired adaptation seeds
+PSM,R,C,confirmed3,long_steady_point_coverage,3,3,0.8126287262872629,0.008455805695842889,1,paired adaptation seeds
+PSM,R,C,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_FPR,3,3,0.09335080710506105,0.004583763195000503,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_alarm_fragments,3,3,223.66666666666666,2.886751345948129,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.727782592459504,0.06101907345215809,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_block_any_alarm_fraction,3,3,0.4557823129251701,0.011782658554890335,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_blocks_with_alarm,3,3,22.333333333333332,0.5773502691896258,1,paired adaptation seeds
+PSM,R,C,confirmed3,normal_false_alarm_points,3,3,4416.333333333333,216.85325299227893,1,paired adaptation seeds
+PSM,R,C,confirmed3,offline_availability_offset_median,3,3,78.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,offline_first_hit_offset_median,3,3,3.0,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,one_to_one_eventF1,3,3,0.0910715736453002,0.00014071417723364175,1,paired adaptation seeds
+PSM,R,C,confirmed3,one_to_one_eventPrecision,3,3,0.05225420795972943,9.26376080813935e-05,1,paired adaptation seeds
+PSM,R,C,confirmed3,one_to_one_eventRecall,3,3,0.3541666666666667,0.0,1,paired adaptation seeds
+PSM,R,C,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,AP,3,3,0.6021214164846753,0.007345249271430394,1,paired adaptation seeds
+SWAT,TT,A,strict,AUC_PR_trapezoidal,3,3,0.6020949067283718,0.0073452565511165505,1,paired adaptation seeds
+SWAT,TT,A,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,F1,3,3,0.6056219430489006,0.0684243133666219,1,paired adaptation seeds
+SWAT,TT,A,strict,FN,3,3,24558.0,3681.167885332045,1,paired adaptation seeds
+SWAT,TT,A,strict,FP,3,3,5401.666666666667,114.91881192099635,1,paired adaptation seeds
+SWAT,TT,A,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,Npred,3,3,642.3333333333334,179.73684467391024,1,paired adaptation seeds
+SWAT,TT,A,strict,Precision,3,3,0.8091220654370394,0.024845073487968664,1,paired adaptation seeds
+SWAT,TT,A,strict,ROC_AUC,3,3,0.8834885550182611,0.001958638528734094,1,paired adaptation seeds
+SWAT,TT,A,strict,Recall,3,3,0.48598698118341455,0.07704895421085556,1,paired adaptation seeds
+SWAT,TT,A,strict,TN,3,3,283142.3333333333,114.91881192099636,1,paired adaptation seeds
+SWAT,TT,A,strict,TP,3,3,23219.0,3681.167885332045,1,paired adaptation seeds
+SWAT,TT,A,strict,VUS_PR,3,3,0.6080041184310463,0.00891807873426012,1,paired adaptation seeds
+SWAT,TT,A,strict,VUS_ROC,3,3,0.8798692732756219,0.0015396651005839196,1,paired adaptation seeds
+SWAT,TT,A,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,event_macro_coverage,3,3,0.11378388288236528,0.004793673013841943,1,paired adaptation seeds
+SWAT,TT,A,strict,event_point_coverage,3,3,0.48598698118341455,0.07704895421085556,1,paired adaptation seeds
+SWAT,TT,A,strict,long_steady_macro_coverage,3,3,0.09688972964574884,0.011216572050317803,1,paired adaptation seeds
+SWAT,TT,A,strict,long_steady_point_coverage,3,3,0.5813493598837559,0.09491220087462404,1,paired adaptation seeds
+SWAT,TT,A,strict,max_event_miss_points,3,3,6544.333333333333,577.0011554003452,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_FPR,3,3,0.018720426231932277,0.0003982713621527269,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_alarm_fragments,3,3,443.0,4.358898943540674,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_alarm_fragments_per_1000_points,3,3,1.535294443828324,0.015106531217216999,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,normal_false_alarm_points,3,3,5401.666666666667,114.91881192099635,1,paired adaptation seeds
+SWAT,TT,A,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,one_to_one_eventF1,3,3,0.04728811833305491,0.011914700254658246,1,paired adaptation seeds
+SWAT,TT,A,strict,one_to_one_eventPrecision,3,3,0.024531963944003587,0.006384063068523541,1,paired adaptation seeds
+SWAT,TT,A,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,A,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,AP,3,3,0.6021214164846753,0.007345249271430394,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,AUC_PR_trapezoidal,3,3,0.6020949067283718,0.0073452565511165505,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,F1,3,3,0.6048074730154652,0.07610220046088823,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,FN,3,3,24929.666666666668,4015.0697793853265,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,FP,3,3,4588.0,110.12265888544464,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,Npred,3,3,498.0,146.76852523616907,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,Precision,3,3,0.8302787220960693,0.02540024864097579,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,ROC_AUC,3,3,0.8834885550182611,0.001958638528734094,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,Recall,3,3,0.4782077847778918,0.08403771227547412,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,TN,3,3,283956.0,110.12265888544464,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,TP,3,3,22847.333333333332,4015.0697793853265,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,VUS_PR,3,3,0.6080041184310463,0.00891807873426012,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,VUS_ROC,3,3,0.8798692732756219,0.0015396651005839196,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,event_macro_coverage,3,3,0.10867856320543297,0.00519177417594898,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,event_point_coverage,3,3,0.4782077847778918,0.08403771227547412,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,long_steady_macro_coverage,3,3,0.09119915305136335,0.012603379446298475,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,long_steady_point_coverage,3,3,0.5726912395642567,0.10353827869200899,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,max_event_miss_points,3,3,6551.0,577.041592954962,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_FPR,3,3,0.015900521237662193,0.0003816494499467828,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_alarm_fragments,3,3,338.3333333333333,0.5773502691896258,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.172553694872648,0.0020009089400216825,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,normal_false_alarm_points,3,3,4588.0,110.12265888544464,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,one_to_one_eventF1,3,3,0.06058243789881801,0.015467482286349499,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,one_to_one_eventPrecision,3,3,0.03176634082634002,0.008441807211485868,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,TT,A,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,AP,3,3,0.6084292267478223,0.013990135079927305,1,paired adaptation seeds
+SWAT,SS,reference,strict,AUC_PR_trapezoidal,3,3,0.6084045688517303,0.013990513602768198,1,paired adaptation seeds
+SWAT,SS,reference,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,F1,3,3,0.704832366511141,0.007982192678838462,1,paired adaptation seeds
+SWAT,SS,reference,strict,FN,3,3,18915.333333333332,555.2660023208097,1,paired adaptation seeds
+SWAT,SS,reference,strict,FP,3,3,5253.0,102.3132444994293,1,paired adaptation seeds
+SWAT,SS,reference,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,Npred,3,3,499.0,8.18535277187245,1,paired adaptation seeds
+SWAT,SS,reference,strict,Precision,3,3,0.8460175965009132,0.0010638006952896149,1,paired adaptation seeds
+SWAT,SS,reference,strict,ROC_AUC,3,3,0.8506620599158463,0.024725429784378663,1,paired adaptation seeds
+SWAT,SS,reference,strict,Recall,3,3,0.6040912293921062,0.011622035756133913,1,paired adaptation seeds
+SWAT,SS,reference,strict,TN,3,3,283291.0,102.3132444994293,1,paired adaptation seeds
+SWAT,SS,reference,strict,TP,3,3,28861.666666666668,555.2660023208097,1,paired adaptation seeds
+SWAT,SS,reference,strict,VUS_PR,3,3,0.6081271573135086,0.018868458172436625,1,paired adaptation seeds
+SWAT,SS,reference,strict,VUS_ROC,3,3,0.8368933207978597,0.031178946502432615,1,paired adaptation seeds
+SWAT,SS,reference,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,event_macro_coverage,3,3,0.12097449286440819,0.0012589284624658595,1,paired adaptation seeds
+SWAT,SS,reference,strict,event_point_coverage,3,3,0.6040912293921062,0.011622035756133913,1,paired adaptation seeds
+SWAT,SS,reference,strict,long_steady_macro_coverage,3,3,0.11439065432989948,0.0017353002017745987,1,paired adaptation seeds
+SWAT,SS,reference,strict,long_steady_point_coverage,3,3,0.7267576328165974,0.01425569996294964,1,paired adaptation seeds
+SWAT,SS,reference,strict,max_event_miss_points,3,3,3264.0,384.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_FPR,3,3,0.018205195741377397,0.00035458455036122536,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_alarm_fragments,3,3,445.3333333333333,8.386497083606084,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_alarm_fragments_per_1000_points,3,3,1.5433810210343424,0.02906488120912609,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,normal_false_alarm_points,3,3,5253.0,102.3132444994293,1,paired adaptation seeds
+SWAT,SS,reference,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,one_to_one_eventF1,3,3,0.057591102830407324,0.0009098028207283695,1,paired adaptation seeds
+SWAT,SS,reference,strict,one_to_one_eventPrecision,3,3,0.030065544477713927,0.0004960271802717431,1,paired adaptation seeds
+SWAT,SS,reference,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,SS,reference,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,AP,3,3,0.6084292267478223,0.013990135079927305,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,AUC_PR_trapezoidal,3,3,0.6084045688517303,0.013990513602768198,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,F1,3,3,0.7103876504940535,0.008247418142123496,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,FN,3,3,19010.333333333332,563.0864350464618,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,FP,3,3,4440.0,89.4371287553441,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,Npred,3,3,369.0,5.291502622129181,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,Precision,3,3,0.8662908405922215,0.0009327568088278397,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,ROC_AUC,3,3,0.8506620599158463,0.024725429784378663,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,Recall,3,3,0.6021028249297081,0.01178572189644522,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,TN,3,3,284104.0,89.4371287553441,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,TP,3,3,28766.666666666668,563.0864350464618,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,VUS_PR,3,3,0.6081271573135086,0.018868458172436625,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,VUS_ROC,3,3,0.8368933207978597,0.031178946502432615,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,event_macro_coverage,3,3,0.11564149653160892,0.0010663499947689097,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,event_point_coverage,3,3,0.6021028249297081,0.01178572189644522,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,long_steady_macro_coverage,3,3,0.1097804674956822,0.0017642451745466794,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,long_steady_point_coverage,3,3,0.7253389735785465,0.01449348639716587,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,max_event_miss_points,3,3,3394.0,293.28484447717375,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_FPR,3,3,0.015387601197737607,0.0003099601057562937,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_alarm_fragments,3,3,337.3333333333333,5.507570547286102,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.1690880189272115,0.019087454763523446,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,normal_false_alarm_points,3,3,4440.0,89.4371287553441,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,one_to_one_eventF1,3,3,0.07673577429109364,0.0010453874273526637,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,one_to_one_eventPrecision,3,3,0.04065601936924807,0.0005871208454819558,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,SS,reference,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,AP,3,3,0.6282148425619561,0.009976262995863686,1,paired adaptation seeds
+SWAT,R,A,strict,AUC_PR_trapezoidal,3,3,0.6281885254280968,0.009975885980046008,1,paired adaptation seeds
+SWAT,R,A,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,F1,3,3,0.6837871342851587,0.016465110596868216,1,paired adaptation seeds
+SWAT,R,A,strict,FN,3,3,20222.666666666668,965.7377145650538,1,paired adaptation seeds
+SWAT,R,A,strict,FP,3,3,5247.666666666667,102.10452161061886,1,paired adaptation seeds
+SWAT,R,A,strict,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,Npred,3,3,489.6666666666667,44.37717130838032,1,paired adaptation seeds
+SWAT,R,A,strict,Precision,3,3,0.8399024927184215,0.0068940961695765504,1,paired adaptation seeds
+SWAT,R,A,strict,ROC_AUC,3,3,0.8890386727035257,0.004135949970322495,1,paired adaptation seeds
+SWAT,R,A,strict,Recall,3,3,0.5767279932464017,0.02021344401207809,1,paired adaptation seeds
+SWAT,R,A,strict,TN,3,3,283296.3333333333,102.10452161061886,1,paired adaptation seeds
+SWAT,R,A,strict,TP,3,3,27554.333333333332,965.7377145650538,1,paired adaptation seeds
+SWAT,R,A,strict,VUS_PR,3,3,0.633021397207596,0.012470878867891945,1,paired adaptation seeds
+SWAT,R,A,strict,VUS_ROC,3,3,0.8848756098094519,0.003477420545084249,1,paired adaptation seeds
+SWAT,R,A,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,event_macro_coverage,3,3,0.1191120105897037,0.001390398436364897,1,paired adaptation seeds
+SWAT,R,A,strict,event_point_coverage,3,3,0.5767279932464017,0.02021344401207809,1,paired adaptation seeds
+SWAT,R,A,strict,long_steady_macro_coverage,3,3,0.11030473275782442,0.0030284345718857063,1,paired adaptation seeds
+SWAT,R,A,strict,long_steady_point_coverage,3,3,0.6931912954508327,0.024878954413810567,1,paired adaptation seeds
+SWAT,R,A,strict,max_event_miss_points,3,3,4752.666666666667,726.1964839720263,1,paired adaptation seeds
+SWAT,R,A,strict,normal_FPR,3,3,0.018186712136335072,0.0003538611844662131,1,paired adaptation seeds
+SWAT,R,A,strict,normal_alarm_fragments,3,3,424.6666666666667,6.027713773341708,1,paired adaptation seeds
+SWAT,R,A,strict,normal_alarm_fragments_per_1000_points,3,3,1.4717570514953238,0.02089010263024602,1,paired adaptation seeds
+SWAT,R,A,strict,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,A,strict,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,normal_false_alarm_points,3,3,5247.666666666667,102.10452161061886,1,paired adaptation seeds
+SWAT,R,A,strict,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,offline_first_hit_offset_median,3,3,38.0,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,one_to_one_eventF1,3,3,0.05892249035985717,0.005030953998971609,1,paired adaptation seeds
+SWAT,R,A,strict,one_to_one_eventPrecision,3,3,0.030798811299348753,0.002746345558919585,1,paired adaptation seeds
+SWAT,R,A,strict,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,A,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,AP,3,3,0.6282148425619561,0.009976262995863686,1,paired adaptation seeds
+SWAT,R,A,confirmed3,AUC_PR_trapezoidal,3,3,0.6281885254280968,0.009975885980046008,1,paired adaptation seeds
+SWAT,R,A,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,F1,3,3,0.6886961390911276,0.01646538258990627,1,paired adaptation seeds
+SWAT,R,A,confirmed3,FN,3,3,20336.666666666668,966.2144344467915,1,paired adaptation seeds
+SWAT,R,A,confirmed3,FP,3,3,4456.0,90.26627277117406,1,paired adaptation seeds
+SWAT,R,A,confirmed3,M,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,Npred,3,3,372.6666666666667,14.29452109492771,1,paired adaptation seeds
+SWAT,R,A,confirmed3,Precision,3,3,0.8601895179529109,0.0061497964317556416,1,paired adaptation seeds
+SWAT,R,A,confirmed3,ROC_AUC,3,3,0.8890386727035257,0.004135949970322495,1,paired adaptation seeds
+SWAT,R,A,confirmed3,Recall,3,3,0.5743419078915238,0.020223422032500812,1,paired adaptation seeds
+SWAT,R,A,confirmed3,TN,3,3,284088.0,90.26627277117406,1,paired adaptation seeds
+SWAT,R,A,confirmed3,TP,3,3,27440.333333333332,966.2144344467915,1,paired adaptation seeds
+SWAT,R,A,confirmed3,VUS_PR,3,3,0.633021397207596,0.012470878867891945,1,paired adaptation seeds
+SWAT,R,A,confirmed3,VUS_ROC,3,3,0.8848756098094519,0.003477420545084249,1,paired adaptation seeds
+SWAT,R,A,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,4.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,auxiliary_any_hit_events,3,3,15.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,auxiliary_any_hit_recall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,delay_right_censored_events,3,3,7.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,event_macro_coverage,3,3,0.11459611227328147,0.0016486802556917046,1,paired adaptation seeds
+SWAT,R,A,confirmed3,event_point_coverage,3,3,0.5743419078915238,0.020223422032500812,1,paired adaptation seeds
+SWAT,R,A,confirmed3,long_steady_macro_coverage,3,3,0.10561395781883003,0.0030244247007528155,1,paired adaptation seeds
+SWAT,R,A,confirmed3,long_steady_point_coverage,3,3,0.6911105952350246,0.024846012839953795,1,paired adaptation seeds
+SWAT,R,A,confirmed3,max_event_miss_points,3,3,4754.666666666667,726.1964839720263,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_FPR,3,3,0.01544305201286459,0.0003128336502272585,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_alarm_fragments,3,3,329.0,7.211102550927978,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_alarm_fragments_per_1000_points,3,3,1.1402073860485749,0.02499134465082608,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_block_any_alarm_fraction,3,3,0.9565217391304349,1.3597399555105182e-16,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_blocks_with_alarm,3,3,22.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,normal_false_alarm_points,3,3,4456.0,90.26627277117406,1,paired adaptation seeds
+SWAT,R,A,confirmed3,offline_availability_offset_median,3,3,188.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,offline_first_hit_offset_median,3,3,40.0,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,one_to_one_eventF1,3,3,0.07608087698513442,0.0027902224950471055,1,paired adaptation seeds
+SWAT,R,A,confirmed3,one_to_one_eventPrecision,3,3,0.04029048756833488,0.0015660647581204293,1,paired adaptation seeds
+SWAT,R,A,confirmed3,one_to_one_eventRecall,3,3,0.6818181818181818,0.0,1,paired adaptation seeds
+SWAT,R,A,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+SWAT,noU,reference,strict,AP,1,1,0.6075600601504316,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,AUC_PR_trapezoidal,1,1,0.607534415659224,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,CAL_exceedances,1,1,5.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,F1,1,1,0.710582494663007,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,FN,1,1,18652.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,FP,1,1,5073.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,M,1,1,15.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,Npred,1,1,451.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,Precision,1,1,0.8516579916954208,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,ROC_AUC,1,1,0.8422672116674662,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,Recall,1,1,0.609602947024719,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,TN,1,1,283471.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,TP,1,1,29125.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,VUS_PR,1,1,0.6063450197207473,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,VUS_ROC,1,1,0.8296344988551193,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,anomaly_boundary_clipped_normal_alarm_fragments,1,1,5.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,auxiliary_any_hit_events,1,1,15.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,auxiliary_any_hit_recall,1,1,0.6818181818181818,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,delay_right_censored_events,1,1,7.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,event_macro_coverage,1,1,0.12327446510648024,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,event_point_coverage,1,1,0.609602947024719,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,long_steady_macro_coverage,1,1,0.11406239909376585,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,long_steady_point_coverage,1,1,0.7331630942247672,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,max_event_miss_points,1,1,2880.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_FPR,1,1,0.017581374071198846,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_alarm_fragments,1,1,409.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_alarm_fragments_per_1000_points,1,1,1.4174614616834869,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_block_any_alarm_fraction,1,1,0.9565217391304348,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_blocks_with_alarm,1,1,22.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,normal_false_alarm_points,1,1,5073.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,offline_availability_offset_median,1,1,188.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,offline_first_hit_offset_median,1,1,38.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,one_to_one_eventF1,1,1,0.06342494714587738,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,one_to_one_eventPrecision,1,1,0.03325942350332594,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,one_to_one_eventRecall,1,1,0.6818181818181818,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,strict,worst_event_coverage,1,1,0.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,AP,1,1,0.6075600601504316,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,AUC_PR_trapezoidal,1,1,0.607534415659224,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,CAL_exceedances,1,1,5.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,F1,1,1,0.7158385093167702,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,FN,1,1,18734.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,FP,1,1,4324.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,M,1,1,15.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,Npred,1,1,341.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,Precision,1,1,0.8704108850061438,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,ROC_AUC,1,1,0.8422672116674662,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,Recall,1,1,0.60788664001507,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,TN,1,1,284220.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,TP,1,1,29043.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,VUS_PR,1,1,0.6063450197207473,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,VUS_ROC,1,1,0.8296344988551193,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,1,1,4.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,auxiliary_any_hit_events,1,1,15.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,auxiliary_any_hit_recall,1,1,0.6818181818181818,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,delay_right_censored_events,1,1,7.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,event_macro_coverage,1,1,0.11825976258123143,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,event_point_coverage,1,1,0.60788664001507,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,long_steady_macro_coverage,1,1,0.10948675001873877,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,long_steady_point_coverage,1,1,0.7320281668343264,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,max_event_miss_points,1,1,3074.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_FPR,1,1,0.014985582788066984,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_alarm_fragments,1,1,310.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_alarm_fragments_per_1000_points,1,1,1.0743595430852833,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_block_any_alarm_fraction,1,1,0.9565217391304348,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_blocks_with_alarm,1,1,22.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,normal_false_alarm_points,1,1,4324.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,offline_availability_offset_median,1,1,188.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,offline_first_hit_offset_median,1,1,40.0,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,one_to_one_eventF1,1,1,0.08264462809917356,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,one_to_one_eventPrecision,1,1,0.04398826979472141,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,one_to_one_eventRecall,1,1,0.6818181818181818,,1,FIXED_REFERENCE_NO_SEED_SD
+SWAT,noU,reference,confirmed3,worst_event_coverage,1,1,0.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,TT,A,strict,AP,3,3,0.5716139849335237,0.0010493508836414184,1,paired adaptation seeds
+PSM,TT,A,strict,AUC_PR_trapezoidal,3,3,0.5715976168458963,0.001049340798428172,1,paired adaptation seeds
+PSM,TT,A,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,F1,3,3,0.5504500701235594,0.0022111583864001696,1,paired adaptation seeds
+PSM,TT,A,strict,FN,3,3,6483.666666666667,116.31996102704528,1,paired adaptation seeds
+PSM,TT,A,strict,FP,3,3,11965.333333333334,142.42307865417507,1,paired adaptation seeds
+PSM,TT,A,strict,M,3,3,33.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,strict,Npred,3,3,474.6666666666667,9.71253485622231,1,paired adaptation seeds
+PSM,TT,A,strict,Precision,3,3,0.4856009992466097,0.0004514514105830277,1,paired adaptation seeds
+PSM,TT,A,strict,ROC_AUC,3,3,0.7321220137072477,0.0010367103568672024,1,paired adaptation seeds
+PSM,TT,A,strict,Recall,3,3,0.6353188218309991,0.006542548007595775,1,paired adaptation seeds
+PSM,TT,A,strict,TN,3,3,35343.666666666664,142.42307865417507,1,paired adaptation seeds
+PSM,TT,A,strict,TP,3,3,11295.333333333334,116.31996102704528,1,paired adaptation seeds
+PSM,TT,A,strict,VUS_PR,3,3,0.5619033675274113,0.0006715149129719942,1,paired adaptation seeds
+PSM,TT,A,strict,VUS_ROC,3,3,0.7397595108993046,0.0006172712718375203,1,paired adaptation seeds
+PSM,TT,A,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,30.666666666666668,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,strict,auxiliary_any_hit_events,3,3,39.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,auxiliary_any_hit_recall,3,3,0.8125,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,delay_right_censored_events,3,3,9.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,event_macro_coverage,3,3,0.5990284721829625,0.006686263195076817,1,paired adaptation seeds
+PSM,TT,A,strict,event_point_coverage,3,3,0.8247741772471734,0.0031272550804084583,1,paired adaptation seeds
+PSM,TT,A,strict,long_steady_macro_coverage,3,3,0.9641527001862199,0.005272847350006626,1,paired adaptation seeds
+PSM,TT,A,strict,long_steady_point_coverage,3,3,0.9791327913279133,0.0030693973191908267,1,paired adaptation seeds
+PSM,TT,A,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,normal_FPR,3,3,0.2529187540073418,0.003010485925599257,1,paired adaptation seeds
+PSM,TT,A,strict,normal_alarm_fragments,3,3,398.3333333333333,8.962886439832502,1,paired adaptation seeds
+PSM,TT,A,strict,normal_alarm_fragments_per_1000_points,3,3,8.419821457509846,0.18945415121504283,1,paired adaptation seeds
+PSM,TT,A,strict,normal_block_any_alarm_fraction,3,3,0.8639455782312925,0.011782658554890335,1,paired adaptation seeds
+PSM,TT,A,strict,normal_blocks_with_alarm,3,3,42.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,strict,normal_false_alarm_points,3,3,11965.333333333334,142.42307865417507,1,paired adaptation seeds
+PSM,TT,A,strict,offline_availability_offset_median,3,3,90.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,A,strict,one_to_one_eventF1,3,3,0.12760685700834007,0.004563824554755142,1,paired adaptation seeds
+PSM,TT,A,strict,one_to_one_eventPrecision,3,3,0.07026041112417736,0.002646574025630749,1,paired adaptation seeds
+PSM,TT,A,strict,one_to_one_eventRecall,3,3,0.6944444444444445,0.012028130608117225,1,paired adaptation seeds
+PSM,TT,A,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,TT,A,confirmed3,AP,3,3,0.5716139849335237,0.0010493508836414184,1,paired adaptation seeds
+PSM,TT,A,confirmed3,AUC_PR_trapezoidal,3,3,0.5715976168458963,0.001049340798428172,1,paired adaptation seeds
+PSM,TT,A,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,TT,A,confirmed3,F1,3,3,0.5411308333304731,0.00303339385151618,1,paired adaptation seeds
+PSM,TT,A,confirmed3,FN,3,3,6977.666666666667,133.97885405291885,1,paired adaptation seeds
+PSM,TT,A,confirmed3,FP,3,3,11340.0,141.25508840392263,1,paired adaptation seeds
+PSM,TT,A,confirmed3,M,3,3,20.666666666666668,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,confirmed3,Npred,3,3,248.0,4.358898943540674,1,paired adaptation seeds
+PSM,TT,A,confirmed3,Precision,3,3,0.4878358671569079,0.0005493370567846397,1,paired adaptation seeds
+PSM,TT,A,confirmed3,ROC_AUC,3,3,0.7321220137072477,0.0010367103568672024,1,paired adaptation seeds
+PSM,TT,A,confirmed3,Recall,3,3,0.6075332320902939,0.007535792454745408,1,paired adaptation seeds
+PSM,TT,A,confirmed3,TN,3,3,35969.0,141.25508840392263,1,paired adaptation seeds
+PSM,TT,A,confirmed3,TP,3,3,10801.333333333334,133.97885405291888,1,paired adaptation seeds
+PSM,TT,A,confirmed3,VUS_PR,3,3,0.5619033675274113,0.0006715149129719942,1,paired adaptation seeds
+PSM,TT,A,confirmed3,VUS_ROC,3,3,0.7397595108993046,0.0006172712718375203,1,paired adaptation seeds
+PSM,TT,A,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,18.333333333333332,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,confirmed3,auxiliary_any_hit_events,3,3,26.333333333333332,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,confirmed3,auxiliary_any_hit_recall,3,3,0.548611111111111,0.012028130608117226,1,paired adaptation seeds
+PSM,TT,A,confirmed3,delay_right_censored_events,3,3,21.666666666666668,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,confirmed3,event_macro_coverage,3,3,0.32255746985194156,0.007060199032666789,1,paired adaptation seeds
+PSM,TT,A,confirmed3,event_point_coverage,3,3,0.8086349567304655,0.0028144870417173783,1,paired adaptation seeds
+PSM,TT,A,confirmed3,long_steady_macro_coverage,3,3,0.9524208566108009,0.00506914621557402,1,paired adaptation seeds
+PSM,TT,A,confirmed3,long_steady_point_coverage,3,3,0.9723035230352304,0.0029508200734560683,1,paired adaptation seeds
+PSM,TT,A,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_FPR,3,3,0.23970069120040582,0.0029857973832446726,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_alarm_fragments,3,3,203.66666666666666,2.3094010767585034,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.3050300506598465,0.04881525876172596,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_block_any_alarm_fraction,3,3,0.6258503401360545,0.011782658554890335,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_blocks_with_alarm,3,3,30.666666666666668,0.5773502691896258,1,paired adaptation seeds
+PSM,TT,A,confirmed3,normal_false_alarm_points,3,3,11340.0,141.25508840392263,1,paired adaptation seeds
+PSM,TT,A,confirmed3,offline_availability_offset_median,3,3,87.33333333333333,2.3094010767585034,1,paired adaptation seeds
+PSM,TT,A,confirmed3,offline_first_hit_offset_median,3,3,2.0,0.0,1,paired adaptation seeds
+PSM,TT,A,confirmed3,one_to_one_eventF1,3,3,0.1396216231379083,0.001889337804567622,1,paired adaptation seeds
+PSM,TT,A,confirmed3,one_to_one_eventPrecision,3,3,0.08332328846479652,0.0008980011864057387,1,paired adaptation seeds
+PSM,TT,A,confirmed3,one_to_one_eventRecall,3,3,0.4305555555555556,0.012028130608117193,1,paired adaptation seeds
+PSM,TT,A,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,AP,3,3,0.5756012954887798,0.0003414712010671505,1,paired adaptation seeds
+PSM,SS,reference,strict,AUC_PR_trapezoidal,3,3,0.5755802860684535,0.00034157415277949287,1,paired adaptation seeds
+PSM,SS,reference,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,F1,3,3,0.4761077889590411,0.0018897460242879437,1,paired adaptation seeds
+PSM,SS,reference,strict,FN,3,3,10019.333333333334,85.18998376178583,1,paired adaptation seeds
+PSM,SS,reference,strict,FP,3,3,7057.0,145.4922678357857,1,paired adaptation seeds
+PSM,SS,reference,strict,M,3,3,33.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,SS,reference,strict,Npred,3,3,596.0,9.539392014169456,1,paired adaptation seeds
+PSM,SS,reference,strict,Precision,3,3,0.5237368953402425,0.0024505424393681413,1,paired adaptation seeds
+PSM,SS,reference,strict,ROC_AUC,3,3,0.7635975030679946,0.0009644279172841873,1,paired adaptation seeds
+PSM,SS,reference,strict,Recall,3,3,0.4364512439769766,0.004791607163607945,1,paired adaptation seeds
+PSM,SS,reference,strict,TN,3,3,40252.0,145.4922678357857,1,paired adaptation seeds
+PSM,SS,reference,strict,TP,3,3,7759.666666666667,85.18998376178584,1,paired adaptation seeds
+PSM,SS,reference,strict,VUS_PR,3,3,0.5714207090686915,0.0004965191314524024,1,paired adaptation seeds
+PSM,SS,reference,strict,VUS_ROC,3,3,0.7713573020073494,0.0010007501061617729,1,paired adaptation seeds
+PSM,SS,reference,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,27.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,auxiliary_any_hit_events,3,3,36.333333333333336,0.5773502691896258,1,paired adaptation seeds
+PSM,SS,reference,strict,auxiliary_any_hit_recall,3,3,0.7569444444444445,0.012028130608117225,1,paired adaptation seeds
+PSM,SS,reference,strict,delay_right_censored_events,3,3,11.666666666666666,0.5773502691896257,1,paired adaptation seeds
+PSM,SS,reference,strict,event_macro_coverage,3,3,0.5440596606439586,0.0026000706999551124,1,paired adaptation seeds
+PSM,SS,reference,strict,event_point_coverage,3,3,0.6823005495546712,0.0051663088422269025,1,paired adaptation seeds
+PSM,SS,reference,strict,long_steady_macro_coverage,3,3,0.70107045822267,0.013245683932501948,1,paired adaptation seeds
+PSM,SS,reference,strict,long_steady_point_coverage,3,3,0.8571815718157181,0.005104068235010753,1,paired adaptation seeds
+PSM,SS,reference,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_FPR,3,3,0.1491682343740092,0.0030753613019887547,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_alarm_fragments,3,3,436.6666666666667,7.571877794400365,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_alarm_fragments_per_1000_points,3,3,9.230097162625858,0.16005152918895635,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_block_any_alarm_fraction,3,3,0.8163265306122449,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_blocks_with_alarm,3,3,40.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,normal_false_alarm_points,3,3,7057.0,145.4922678357857,1,paired adaptation seeds
+PSM,SS,reference,strict,offline_availability_offset_median,3,3,82.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,strict,one_to_one_eventF1,3,3,0.10354930076219106,0.003182699494850828,1,paired adaptation seeds
+PSM,SS,reference,strict,one_to_one_eventPrecision,3,3,0.0559464219509721,0.001783110273710131,1,paired adaptation seeds
+PSM,SS,reference,strict,one_to_one_eventRecall,3,3,0.6944444444444445,0.012028130608117225,1,paired adaptation seeds
+PSM,SS,reference,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,AP,3,3,0.5756012954887798,0.0003414712010671505,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,AUC_PR_trapezoidal,3,3,0.5755802860684535,0.00034157415277949287,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,F1,3,3,0.45726115915910137,0.0011312411512247494,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,FN,3,3,10626.666666666666,68.09062588442944,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,FP,3,3,6351.666666666667,152.39531926320223,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,M,3,3,17.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,Npred,3,3,322.6666666666667,4.163331998932266,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,Precision,3,3,0.529684623461947,0.0035916260065153426,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,ROC_AUC,3,3,0.7635975030679946,0.0009644279172841873,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,Recall,3,3,0.4022910924873915,0.0038298344048838255,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,TN,3,3,40957.333333333336,152.39531926320223,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,TP,3,3,7152.333333333333,68.09062588442946,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,VUS_PR,3,3,0.5714207090686915,0.0004965191314524024,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,VUS_ROC,3,3,0.7713573020073494,0.0010007501061617729,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,14.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,auxiliary_any_hit_events,3,3,20.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,auxiliary_any_hit_recall,3,3,0.4166666666666667,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,delay_right_censored_events,3,3,28.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,event_macro_coverage,3,3,0.24521764586782344,0.0026668847456112308,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,event_point_coverage,3,3,0.6538121407365296,0.005267269908983025,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,long_steady_macro_coverage,3,3,0.6543202979515829,0.013779330131231964,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,long_steady_point_coverage,3,3,0.838970189701897,0.0049675617289494205,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_FPR,3,3,0.1342591613998746,0.0032212754288444443,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_alarm_fragments,3,3,235.66666666666666,5.859465277082315,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.981434117539298,0.12385519197366947,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_block_any_alarm_fraction,3,3,0.48979591836734687,0.020408163265306117,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_blocks_with_alarm,3,3,24.0,1.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,normal_false_alarm_points,3,3,6351.666666666667,152.39531926320223,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,offline_availability_offset_median,3,3,86.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,offline_first_hit_offset_median,3,3,2.0,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,one_to_one_eventF1,3,3,0.09173437174494818,0.0010354038320202219,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,one_to_one_eventPrecision,3,3,0.052691831521042724,0.0006837049610549716,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,one_to_one_eventRecall,3,3,0.3541666666666667,0.0,1,paired adaptation seeds
+PSM,SS,reference,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,AP,3,3,0.5875300899104594,0.0005716207185824282,1,paired adaptation seeds
+PSM,R,A,strict,AUC_PR_trapezoidal,3,3,0.5875114254971335,0.0005714751274370802,1,paired adaptation seeds
+PSM,R,A,strict,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,F1,3,3,0.48818789595825035,0.004211399445715761,1,paired adaptation seeds
+PSM,R,A,strict,FN,3,3,10386.666666666666,140.33650036014626,1,paired adaptation seeds
+PSM,R,A,strict,FP,3,3,5111.666666666667,177.6973081769483,1,paired adaptation seeds
+PSM,R,A,strict,M,3,3,32.0,1.0,1,paired adaptation seeds
+PSM,R,A,strict,Npred,3,3,612.3333333333334,6.027713773341707,1,paired adaptation seeds
+PSM,R,A,strict,Precision,3,3,0.5912617716199935,0.0039132708955735675,1,paired adaptation seeds
+PSM,R,A,strict,ROC_AUC,3,3,0.7473814865329258,0.000754607728580845,1,paired adaptation seeds
+PSM,R,A,strict,Recall,3,3,0.4157901644261957,0.007893385475006832,1,paired adaptation seeds
+PSM,R,A,strict,TN,3,3,42197.333333333336,177.69730817694827,1,paired adaptation seeds
+PSM,R,A,strict,TP,3,3,7392.333333333333,140.3365003601463,1,paired adaptation seeds
+PSM,R,A,strict,VUS_PR,3,3,0.585520438210779,0.0005803746758873282,1,paired adaptation seeds
+PSM,R,A,strict,VUS_ROC,3,3,0.761011166879856,0.0006029041404053114,1,paired adaptation seeds
+PSM,R,A,strict,anomaly_boundary_clipped_normal_alarm_fragments,3,3,20.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,auxiliary_any_hit_events,3,3,32.0,1.0,1,paired adaptation seeds
+PSM,R,A,strict,auxiliary_any_hit_recall,3,3,0.6666666666666666,0.020833333333333315,1,paired adaptation seeds
+PSM,R,A,strict,delay_right_censored_events,3,3,16.0,1.0,1,paired adaptation seeds
+PSM,R,A,strict,event_macro_coverage,3,3,0.4507106006071034,0.00819671655380554,1,paired adaptation seeds
+PSM,R,A,strict,event_point_coverage,3,3,0.6420946244709747,0.007488511281583421,1,paired adaptation seeds
+PSM,R,A,strict,long_steady_macro_coverage,3,3,0.6351336626890228,0.014600435890912832,1,paired adaptation seeds
+PSM,R,A,strict,long_steady_point_coverage,3,3,0.8328455284552846,0.006120822837306915,1,paired adaptation seeds
+PSM,R,A,strict,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,normal_FPR,3,3,0.10804850380829582,0.003756099435138095,1,paired adaptation seeds
+PSM,R,A,strict,normal_alarm_fragments,3,3,432.3333333333333,3.214550253664318,1,paired adaptation seeds
+PSM,R,A,strict,normal_alarm_fragments_per_1000_points,3,3,9.138500778569265,0.06794796452396666,1,paired adaptation seeds
+PSM,R,A,strict,normal_block_any_alarm_fraction,3,3,0.7959183673469387,1.3597399555105182e-16,1,paired adaptation seeds
+PSM,R,A,strict,normal_blocks_with_alarm,3,3,39.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,normal_false_alarm_points,3,3,5111.666666666667,177.6973081769483,1,paired adaptation seeds
+PSM,R,A,strict,offline_availability_offset_median,3,3,82.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,offline_first_hit_offset_median,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,A,strict,one_to_one_eventF1,3,3,0.09691856772315904,0.0027732834512097623,1,paired adaptation seeds
+PSM,R,A,strict,one_to_one_eventPrecision,3,3,0.05225810042002949,0.0014908628978328778,1,paired adaptation seeds
+PSM,R,A,strict,one_to_one_eventRecall,3,3,0.6666666666666666,0.020833333333333315,1,paired adaptation seeds
+PSM,R,A,strict,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,AP,3,3,0.5875300899104594,0.0005716207185824282,1,paired adaptation seeds
+PSM,R,A,confirmed3,AUC_PR_trapezoidal,3,3,0.5875114254971335,0.0005714751274370802,1,paired adaptation seeds
+PSM,R,A,confirmed3,CAL_exceedances,3,3,5.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,F1,3,3,0.4693958449160409,0.0040989937677143,1,paired adaptation seeds
+PSM,R,A,confirmed3,FN,3,3,10978.0,128.16005617976296,1,paired adaptation seeds
+PSM,R,A,confirmed3,FP,3,3,4396.0,172.05812971202494,1,paired adaptation seeds
+PSM,R,A,confirmed3,M,3,3,17.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,Npred,3,3,329.0,8.888194417315589,1,paired adaptation seeds
+PSM,R,A,confirmed3,Precision,3,3,0.607480382182895,0.004989608364593929,1,paired adaptation seeds
+PSM,R,A,confirmed3,ROC_AUC,3,3,0.7473814865329258,0.000754607728580845,1,paired adaptation seeds
+PSM,R,A,confirmed3,Recall,3,3,0.3825299510658642,0.0072085075752158665,1,paired adaptation seeds
+PSM,R,A,confirmed3,TN,3,3,42913.0,172.05812971202494,1,paired adaptation seeds
+PSM,R,A,confirmed3,TP,3,3,6801.0,128.16005617976296,1,paired adaptation seeds
+PSM,R,A,confirmed3,VUS_PR,3,3,0.585520438210779,0.0005803746758873282,1,paired adaptation seeds
+PSM,R,A,confirmed3,VUS_ROC,3,3,0.761011166879856,0.0006029041404053114,1,paired adaptation seeds
+PSM,R,A,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,3,3,10.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,auxiliary_any_hit_events,3,3,17.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,auxiliary_any_hit_recall,3,3,0.3541666666666667,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,delay_right_censored_events,3,3,31.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,event_macro_coverage,3,3,0.1752240429186268,0.0021802486131289643,1,paired adaptation seeds
+PSM,R,A,confirmed3,event_point_coverage,3,3,0.6108268586949656,0.00796827421114148,1,paired adaptation seeds
+PSM,R,A,confirmed3,long_steady_macro_coverage,3,3,0.582078398804364,0.017246360053755426,1,paired adaptation seeds
+PSM,R,A,confirmed3,long_steady_point_coverage,3,3,0.8120867208672086,0.006565428684615002,1,paired adaptation seeds
+PSM,R,A,confirmed3,max_event_miss_points,3,3,399.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_FPR,3,3,0.09292100868756474,0.003636900583652692,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_alarm_fragments,3,3,226.33333333333334,6.8068592855540455,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_alarm_fragments_per_1000_points,3,3,4.7841495980327915,0.14388085323202912,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_block_any_alarm_fraction,3,3,0.46258503401360546,0.011782658554890335,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_blocks_with_alarm,3,3,22.666666666666668,0.5773502691896258,1,paired adaptation seeds
+PSM,R,A,confirmed3,normal_false_alarm_points,3,3,4396.0,172.05812971202494,1,paired adaptation seeds
+PSM,R,A,confirmed3,offline_availability_offset_median,3,3,78.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,offline_first_hit_offset_median,3,3,3.0,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,one_to_one_eventF1,3,3,0.09021946754943672,0.002149996403531723,1,paired adaptation seeds
+PSM,R,A,confirmed3,one_to_one_eventPrecision,3,3,0.051697197807501094,0.001413977767971739,1,paired adaptation seeds
+PSM,R,A,confirmed3,one_to_one_eventRecall,3,3,0.3541666666666667,0.0,1,paired adaptation seeds
+PSM,R,A,confirmed3,worst_event_coverage,3,3,0.0,0.0,1,paired adaptation seeds
+PSM,noU,reference,strict,AP,1,1,0.5836879453354266,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,AUC_PR_trapezoidal,1,1,0.5836691099034623,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,CAL_exceedances,1,1,5.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,F1,1,1,0.47116728443823297,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,FN,1,1,10025.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,FP,1,1,7381.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,M,1,1,32.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,Npred,1,1,558.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,Precision,1,1,0.5123224314502808,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,ROC_AUC,1,1,0.7713446813765822,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,Recall,1,1,0.4361325158895326,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,TN,1,1,39928.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,TP,1,1,7754.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,VUS_PR,1,1,0.5754467444126393,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,VUS_ROC,1,1,0.7756471300873007,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,anomaly_boundary_clipped_normal_alarm_fragments,1,1,28.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,auxiliary_any_hit_events,1,1,35.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,auxiliary_any_hit_recall,1,1,0.7291666666666666,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,delay_right_censored_events,1,1,13.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,event_macro_coverage,1,1,0.5491562318032107,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,event_point_coverage,1,1,0.6839113132461626,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,long_steady_macro_coverage,1,1,0.7000457917391703,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,long_steady_point_coverage,1,1,0.856260162601626,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,max_event_miss_points,1,1,399.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_FPR,1,1,0.1560168255511636,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_alarm_fragments,1,1,411.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_alarm_fragments_per_1000_points,1,1,8.687564733982963,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_block_any_alarm_fraction,1,1,0.8163265306122449,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_blocks_with_alarm,1,1,40.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,normal_false_alarm_points,1,1,7381.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,offline_availability_offset_median,1,1,82.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,offline_first_hit_offset_median,1,1,0.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,one_to_one_eventF1,1,1,0.10561056105610561,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,one_to_one_eventPrecision,1,1,0.05734767025089606,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,one_to_one_eventRecall,1,1,0.6666666666666666,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,strict,worst_event_coverage,1,1,0.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,AP,1,1,0.5836879453354266,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,AUC_PR_trapezoidal,1,1,0.5836691099034623,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,CAL_exceedances,1,1,5.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,F1,1,1,0.45250126326427487,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,FN,1,1,10615.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,FP,1,1,6721.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,M,1,1,18.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,Npred,1,1,298.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,Precision,1,1,0.5159524666906734,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,ROC_AUC,1,1,0.7713446813765822,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,Recall,1,1,0.4029472973733056,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,TN,1,1,40588.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,TP,1,1,7164.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,VUS_PR,1,1,0.5754467444126393,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,VUS_ROC,1,1,0.7756471300873007,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,anomaly_boundary_clipped_normal_alarm_fragments,1,1,16.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,auxiliary_any_hit_events,1,1,21.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,auxiliary_any_hit_recall,1,1,0.4375,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,delay_right_censored_events,1,1,27.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,event_macro_coverage,1,1,0.26822846483560897,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,event_point_coverage,1,1,0.6570968353231003,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,long_steady_macro_coverage,1,1,0.6535479439509112,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,long_steady_point_coverage,1,1,0.8390243902439024,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,max_event_miss_points,1,1,399.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_FPR,1,1,0.14206599167177492,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_alarm_fragments,1,1,218.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_alarm_fragments_per_1000_points,1,1,4.608002705616268,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_block_any_alarm_fraction,1,1,0.5306122448979592,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_blocks_with_alarm,1,1,26.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,normal_false_alarm_points,1,1,6721.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,offline_availability_offset_median,1,1,82.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,offline_first_hit_offset_median,1,1,2.0,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,one_to_one_eventF1,1,1,0.10404624277456648,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,one_to_one_eventPrecision,1,1,0.06040268456375839,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,one_to_one_eventRecall,1,1,0.375,,1,FIXED_REFERENCE_NO_SEED_SD
+PSM,noU,reference,confirmed3,worst_event_coverage,1,1,0.0,,1,FIXED_REFERENCE_NO_SEED_SD

@@ -1,0 +1,229 @@
+\documentclass[11pt]{article}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,longtable,booktabs,array,calc,hyperref}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+\title{Supplementary material: Source Replay for Mixed-Unlabeled Adaptation}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\section{Appendix A: Protocol and reproduction
+details}\label{appendix-a-protocol-and-reproduction-details}
+
+All intervals use half-open indexing. The SWaT timeline concatenates the
+495,000-point source prefix and the published 449,919-point test
+segment. In PSM, target positions are relative to the released
+87,841-point test record. The PSM source prefix contains 132,481 points.
+Source scaler statistics for the primary LEFT detector follow its native
+protocol over the entire released source prefix, including its
+validation interval. The source-only and replay draws are restricted to
+SOURCE\_FIT. The model's adaptation input is limited to legal complete
+windows from the prescribed fit intervals.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Task
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Grid anchor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Legal CAL score axis
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Raw query role
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Legal query score support
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Final scored crop
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+SWaT & 495000 & {[}585624, 607320) & {[}608023, 944919) &
+{[}608472, 944856) & {[}608535, 944856) \\
+PSM & 0 & {[}18240, 21888) & {[}22504, 87841) & {[}22656, 87744) &
+{[}22656, 87744) \\
+\end{longtable}
+
+The nonoverlapping readout windows have length and step 192. Each
+emitted score's availability index is the window's final observed index.
+SWaT additionally discards the first 63 legally scored points to retain
+the historical common-axis start at 608535, which is inside its first
+legal window. The last 63 SWaT and last 97 PSM test points have no
+full-window score. The first 152 positions in the PSM raw query role lie
+outside complete legal query windows. The final SWaT crop contains
+288,544 normal and 47,777 anomalous points, with 22 complete events,
+nine of them long. The PSM crop contains 47,309 normal and 17,779
+anomalous points, with 48 complete events, five of them long. Two
+boundary-truncated PSM events contribute 4,196 of 8,861 and 3,029 of
+3,120 points to pointwise metrics and are excluded from the
+complete-event analysis. Calibration selects 512 points via NumPy
+\texttt{linspace(first,\ last,\ 512,\ dtype=int64)} over legal CAL score
+support. Post hoc attack counts are 38 and 512 at the selected SWaT and
+PSM locations. The entire PSM CAL role, spanning 3,848 points, is also
+attack-labeled.
+
+Each task has one fixed LEFT initialization selected using the native
+source validation procedure. The endpoint adaptation budget is 2,000
+steps with a new Adam optimizer at learning rate 0.0001 and batch size
+256. Sampling is uniform with replacement over legal window starts in
+the respective fit interval. Matching draw positions cross arms but
+never cross tasks. The original checkpoints include the native
+prototypes and running state. In SWaT, noU is cropped from the native
+archived scores. In PSM, the source endpoint is restored with its actual
+runtime state for the frozen readout. The 2025 ordinary U128 and earlier
+restricted-window comparisons remain separate. The implementation and
+record give the exact source window roles and seeds.
+
+LEFT is pinned to upstream commit
+\href{https://github.com/DezhengWang/Left/tree/3fadb4811797075e233076b9faceb0d8ec59b697}{3fadb4811797075e233076b9faceb0d8ec59b697}.
+The replay sampler uses \texttt{default\_rng(seed)} for \(T\) and
+\texttt{SeedSequence(seed).spawn(3)} for \(S\), \(T'\), and \(S'\) in
+that order. In the replacement constructor,
+\texttt{SeedSequence({[}seed,\ 20261118,\ 10{]}).spawn(3)} supplies
+separate streams for slots, abnormal donors, and nominally normal
+donors. Slots are drawn without replacement and donors with replacement.
+Original numeric arrays, weights, optimizers, and complete score banks
+reside in the separate experiment archive. Public files contain code,
+fixed configurations, asset fingerprints, and derived tables. Recreating
+the numeric input tensors and restoring the archived artifacts require
+those assets.
+
+The range metrics use the archived LEFT metricor implementation.
+Its \texttt{RangeAUC\_volume\_opt} method uses \texttt{windowSize=100}
+and \texttt{thre=250}. For AP and ROC-AUC the
+full scored axis retains the original labels without point adjustment.
+Strict and three-point confirmed streams are evaluated independently.
+Any-hit measures episode overlap, whereas the chronological greedy
+one-to-one rule limits each alarm fragment and each event to one match.
+Normal-region fragments count contiguous alarm portions within normal
+labels and can include fragments clipped at anomaly boundaries. Long
+steady macro coverage averages the coverage within each eligible event
+after its first 512 samples. Pooled steady coverage weights events by
+their steady durations. All reported offsets are in sample positions.
+Full-window availability and hit-only medians limit their use as latency
+comparisons. See the supplied \texttt{tables/left\_per\_seed.csv}.
+
+\subsection{A.1 Benchmark
+representations}\label{a.1-benchmark-representations}
+
+SWaT is the study's fixed 31-channel projection of the DADA-format
+benchmark, ordered by original feature-block appearance. Zero-based
+retained indices in the frozen 51-column order are
+0, 1, 3, 5, 6, 7, 8, 12, 14, 16, 17, 18, 23, 24, 25, 26, 27, 28,
+34, 35, 36, 37, 38, 39, 40, 41, 44, 45, 46, 47, and 49.
+The exported row index is the original long-table date index minus one.
+The upstream raw iTrust normal-file revision was not independently bound
+to this export. PSM retains the public eBay names \texttt{feature\_0}
+through \texttt{feature\_24}, in that order, with no timestamp or label
+input. The frozen PSM arrays have 132,481 source rows and 87,841 target
+rows. Provider file names and schema do not certify equality to the
+frozen long export. Standardization is frozen and includes source
+validation in both tasks.
+
+The archived environment records Python 3.12.13, PyTorch 2.8.0+cu128,
+CUDA runtime 12.8, NumPy 1.26.4, SciPy 1.15.3, pandas 2.3.3,
+scikit-learn 1.7.2, and NVIDIA A40 devices. The full transitive
+dependency environment is not archived for every phase.
+
+\section{Appendix B: Frozen results and GPU
+costs}\label{appendix-b-frozen-results-and-gpu-costs}
+
+All derived tables below retain the archived values. The
+natural-condition comparison uses noU, TT-A, SS, and R-A. Three updating
+seeds are 2025, 2026 and 2027. The two tasks remain separate. C3 results
+pool coverage only over complete events unless a macro average is
+explicitly named. The sensitivity analysis uses the original fixed
+thresholds.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Table file in the accompanying \texttt{tables/} directory
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Contents
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{left\_methods.csv} and \texttt{left\_per\_seed.csv} & Primary
+absolute values, strict/C3, AP, ROC, VUS, event metrics, missed-span and
+offset details. \\
+\texttt{swat\_natural\_pairs.csv} and \texttt{psm\_natural\_pairs.csv} &
+Natural R--TT, R--SS, and R--noU paired comparisons. \\
+\texttt{exposure\_pairs.csv} and \texttt{exposure\_interactions.csv} &
+R-B versus TT-B, within-arm B--C, B--A, C--A, and interaction by
+seed. \\
+\texttt{exposure\_counts.csv} & Slot counts, donor repetitions, and
+observed exposure totals. \\
+\texttt{swat\_long\_event\_coverage.csv} & Per-event steady coverage
+records for all three SWaT seeds. \\
+\texttt{figure1\_operating\_points.csv} & The archived SWaT curve
+markers used in the main text. \\
+\texttt{mlp\_candi\_comparison.csv} and
+\texttt{timeradar\_native\_v.csv} & External results under their
+documented readout and fit permissions. \\
+\end{longtable}
+
+\subsubsection{Historical computing
+budget}\label{historical-computing-budget}
+
+The per-arm adaptation budget is fixed across TT, SS, and R. B and C
+retain the same update budget. The following A40 GPU-hour values are the
+archived occupancies for each phase. They include whatever scoring or
+setup is specified in that phase's receipt. They are not converted into
+comparable efficiency estimates and no study-wide total is reported for
+reused assets with incomplete cost coverage.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Phase
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Archived scope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+A40 GPU-hours
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+SWaT source initialization & Original native training and readout &
+1.081298 \\
+SWaT natural, initial & Three matched seed-2025 jobs & 0.228534 \\
+SWaT natural, repeats & Six additional matched jobs & 0.455570 \\
+PSM natural & Nine matched jobs plus one frozen noU readout. Source
+initialization reused. & 0.628679 \\
+Exposure, initial & Eight seed-2025 jobs in the two tasks, including
+setup, readout, and cleanup & 0.584922 \\
+Exposure, repeats & Sixteen successful jobs. One guard wall-time entry
+without CUDA adds only to the conservative ledger. & 1.190616 \\
+\end{longtable}
+
+\section{Appendix C: External
+references}\label{appendix-c-external-references}
+
+The MLP and CANDI results share evaluation indices with the LEFT tasks,
+while their 10-point endpoint reconstruction score, source scaler and
+adaptation permissions differ. CANDI updates in the U-FIT schedule and
+is frozen for CAL and QUERY. The PSM primary comparison's CAL points are
+all attack-labeled. TimeRadar uses a separate 100-point endpoint
+protocol and a 64,728-point PSM evaluation axis. Assess its contrasts
+within that separate protocol. The archived tables do not provide
+phase-matched efficiency or matched across-detector intervention
+effects.
+
+\end{document}

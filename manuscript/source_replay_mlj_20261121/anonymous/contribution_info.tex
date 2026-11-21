@@ -1,0 +1,23 @@
+\documentclass[11pt]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{parskip}
+\begin{document}
+\begin{center}
+{\large\bfseries Machine Learning Contribution Information Sheet}\par
+\vspace{0.7em}
+Source Replay for Mixed-Unlabeled Adaptation in Multivariate Time-Series
+Anomaly Detection: Benefits, Costs, and Task Dependence
+\end{center}
+
+\section*{1. Main claim and significance}
+For the two evaluated tasks and fixed detector initializations, replacing half of the target-fit windows in each adaptation batch with earlier nominally normal source windows improves average precision relative to target-only updating at the same update and window-presentation budgets. It also changes calibrated event coverage in opposite directions on SWaT and PSM. This matters for machine learning because it separates measurable effects of an established replay policy from the effects of additional training and the choice of detection endpoint. A ranking gain alone does not establish a suitable alarm operating point.
+
+\section*{2. Evidence}
+The study fixes the learner, task-specific initial state, and chronological roles across the main arms. It compares frozen initialization, target-only updating, source-only continuation, and replay. Mean paired average-precision differences for replay minus target-only updating are 2.609 and 1.592 percentage points on SWaT and PSM. Both are positive in all three seeds per task. At their own fixed empirical thresholds, replay has fewer false-positive points in both tasks. Confirmed point coverage of complete eligible events improves on SWaT and falls on PSM. The selected PSM calibration points are all attack-labeled, so no normal false-alarm budget is certified. In a separate intervention, window slots are matched across abnormal and nominally normal donors. Replay attenuates the average-precision and coverage losses under the fixed SWaT intervention. PSM does not exhibit the corresponding average-precision loss. These are conditional comparisons over update and intervention seeds on shared test records.
+
+\section*{3. Most closely related work}
+LEFT (Wang et al., 2026) supplies the detector and native scoring implementation. CANDI (Kim et al., 2026) and M2N2 (Kim et al., 2024) adapt using curated target data. TSAD-C (Ho \& Armanfard, 2025), RoCA (Mou et al., 2026), and PLDA (Zhang et al., 2026) address contamination or the distinction between anomalies and hard normal samples through their learning procedures. The present paper provides an equal-budget empirical comparison of source replay without changing the main detector, and adds a slot-matched exposure intervention. It makes no novelty claim for replay itself.
+
+\section*{4. Prior publication or dissemination}
+[The authors must verify the publication, submission, and public-draft history. Provide any related work, overlap and distinct contribution details in the editor-facing disclosure. Replace this placeholder before upload.]
+\end{document}
