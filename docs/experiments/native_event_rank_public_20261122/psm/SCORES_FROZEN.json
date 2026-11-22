@@ -1,0 +1,71 @@
+{
+  "frozen_native_V": {
+    "file": "frozen_native_V.npz",
+    "sha256": "83021c4f2175a1d10934073bb0b1b42874f0b807061f7d3b101c02d428a44c9a",
+    "weight_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+    "reused": {
+      "CAL": {
+        "count": 512,
+        "sha256": "67ad82292b11cd8fd09469a3f272930ea75ebc067afef2cf8c6e24ea5f53b450"
+      },
+      "QUERY": {
+        "count": 64728,
+        "sha256": "26e54dd3f0e74093c091356fe242efa0bd0c6ad5f37877298032eeb8210e965e"
+      }
+    },
+    "new_points": 22502,
+    "points": 87742,
+    "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+    "elapsed_device_seconds": 227.26182808401063,
+    "peak_reserved_bytes": 117440512,
+    "model_seal": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+    "previous_bank_seal": "e4b944d4458fd5b5132b5950ad3a21c537a27802580da04544395c26bbe73b0d",
+    "target_labels_read": false
+  },
+  "copy": {
+    "file": "copy.npz",
+    "sha256": "316830d354dc01392bbde204bbaa7fd7f5cf9515dbc82f80ddc07b3ce04b8b26",
+    "weight_sha256": "20bbbdf728dcc08cbd2e20c65ab79e72a847d9469c7f004f28cf65f773cfcc6e",
+    "reused": {
+      "CAL": {
+        "count": 512,
+        "sha256": "193c023326f455b7172be4734b846c82d17d0671ae9cef64207e0ab8ff33ac4c"
+      },
+      "QUERY": {
+        "count": 64728,
+        "sha256": "17190db3173bb6aaebd26a20d937d52a21acf902eec0713269f82be4c702a97b"
+      }
+    },
+    "new_points": 22502,
+    "points": 87742,
+    "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+    "elapsed_device_seconds": 226.58348424406722,
+    "peak_reserved_bytes": 121634816,
+    "model_seal": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+    "previous_bank_seal": "e4b944d4458fd5b5132b5950ad3a21c537a27802580da04544395c26bbe73b0d",
+    "target_labels_read": false
+  },
+  "point_weighted": {
+    "file": "point_weighted.npz",
+    "sha256": "cf092a69cc11cee01269f16758f6204a7a023231ceb618e2ef420bf1dd49f955",
+    "weight_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+    "reused": {
+      "CAL": {
+        "count": 512,
+        "sha256": "fae7ca80c6c05a1bb684e2f3930b50afe1939e7e9f43c1e03f2e38956d899bc4"
+      },
+      "QUERY": {
+        "count": 64728,
+        "sha256": "9404c19d3dabaffeeaefb30f5d36b083a6c33858f51c19ff220ce932ae98ebab"
+      }
+    },
+    "new_points": 22502,
+    "points": 87742,
+    "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+    "elapsed_device_seconds": 226.50526190176606,
+    "peak_reserved_bytes": 121634816,
+    "model_seal": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+    "previous_bank_seal": "e4b944d4458fd5b5132b5950ad3a21c537a27802580da04544395c26bbe73b0d",
+    "target_labels_read": false
+  }
+}

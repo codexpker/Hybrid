@@ -3,6 +3,7 @@ import argparse
 import ast
 import csv
 import json
+import os
 import time
 from pathlib import Path
 
@@ -139,7 +140,8 @@ def score(w, dataset, lane):
                 np.savez_compressed(bank, cal_index=ci, query_index=qi, cal=values[:len(ci)], query=values[len(ci):])
                 dump(bank.with_suffix(".json"),dict(dataset=dataset, entity=entity, **binding, arms=ARMS,
                      hash_identical_windows=len(first), cal_points=len(ci), query_points=len(qi), sha256=sha(bank),
-                     seconds=time.monotonic()-t0, masked_B1=True, label_read=False))
+                     seconds=time.monotonic()-t0, masked_B1=True, label_read=False,
+                     device_slot=os.environ.get("CUDA_VISIBLE_DEVICES"), device_name=torch.cuda.get_device_name()))
                 print(dataset, entity, len(first), round(time.monotonic()-t0,1), flush=True)
     print("Completed lane",lane,dataset,time.monotonic()-start,flush=True)
 
@@ -175,34 +177,44 @@ def operating_metrics(index, scores, truth, tau, ranking):
     return rows, details
 
 
+def entity_metrics(args):
+    w, root, dataset, entity, raw = args
+    metric = load_author_metric(w/"preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py")
+    rows,events = [], []
+    truth = np.zeros(int(raw["num_values"]), dtype=int)
+    for start,stop in ast.literal_eval(raw["anomaly_sequences"]):
+        truth[start:stop+1] = 1
+    bank = root / f"{entity}.npz"
+    info = read(bank.with_suffix(".json"))
+    assert len(truth)==info["query_size"] and info["sha256"]==sha(bank)
+    with np.load(bank) as z:
+        qi = z["query_index"]
+        np.testing.assert_array_equal(qi,np.arange(99,len(truth)))
+        for i,arm in enumerate(ARMS):
+            ranked = z["query"][:,i].astype(np.float64)
+            values,_ = continuous_metrics(truth[qi],ranked,metric)
+            tau = float(np.quantile(z["cal"][:,i],.99,method="higher"))
+            rr,ee=operating_metrics(qi,ranked,truth,tau,values)
+            for r in rr:
+                rows.append(dict(r,**values,entity=entity,dataset=dataset,method=arm,cal_points=info["cal_points"]))
+            for e in ee:
+                events.append(dict(e,entity=entity,dataset=dataset,method=arm))
+    return rows, events
+
+
 def metrics(w, dataset):
     root = w / OUT / dataset
     ids = entity_list(w,dataset)
     assert all((root/f"{k}.json").is_file() for k in ids)
     with (w/MSL/"labels.csv").open() as f:
         records = {row["chan_id"]:row for row in csv.DictReader(f) if row["spacecraft"]==dataset}
-    metric = load_author_metric(w/"preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py")
-    rows,events = [], []
-    for entity in ids:
-        raw = records[entity]
-        truth = np.zeros(int(raw["num_values"]), dtype=int)
-        for start,stop in ast.literal_eval(raw["anomaly_sequences"]):
-            truth[start:stop+1] = 1
-        bank = root / f"{entity}.npz"
-        info = read(bank.with_suffix(".json"))
-        assert len(truth)==info["query_size"] and info["sha256"]==sha(bank)
-        with np.load(bank) as z:
-            qi = z["query_index"]
-            np.testing.assert_array_equal(qi,np.arange(99,len(truth)))
-            for i,arm in enumerate(ARMS):
-                ranked = z["query"][:,i]
-                values,_ = continuous_metrics(truth[qi],ranked,metric)
-                tau = float(np.quantile(z["cal"][:,i],.99,method="higher"))
-                rr,ee=operating_metrics(qi,ranked,truth,tau,values)
-                for r in rr:
-                    rows.append(dict(r,**values,entity=entity,dataset=dataset,method=arm,cal_points=info["cal_points"]))
-                for e in ee:
-                    events.append(dict(e,entity=entity,dataset=dataset,method=arm))
+    from concurrent.futures import ProcessPoolExecutor
+    rows, events = [], []
+    args = [(w,root,dataset,entity, records[entity]) for entity in ids]
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        for result_rows, result_events in pool.map(entity_metrics,args):
+            rows.extend(result_rows)
+            events.extend(result_events)
     from .left_swat_replay_repeats import write_csv
     write_csv(root/"methods.csv",rows)
     write_csv(root/"events.csv",events)

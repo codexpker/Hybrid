@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "checked": {
+    "MSL": {
+      "entities": 27,
+      "scored_points": 71056,
+      "source_model_count": 3
+    },
+    "SMAP": {
+      "entities": 53,
+      "scored_points": 422370,
+      "source_model_count": 3
+    },
+    "PSM": {
+      "rank_rows_verified": 6
+    }
+  },
+  "values_checked": 3954,
+  "maximum_abs_error": 0.0,
+  "scope": "Independent causal axes, native NASA sensor identity via per-entity score SHA, AP/ROC, CAL max=q99/higher, strict and consecutive-three alarms, eligible event hits and long steady coverages. PSM full and matched external intersection axes, SHA and AP/ROC for the frozen arms. VUS uses separately pinned implementation.",
+  "additional_model_forward": 0
+}
