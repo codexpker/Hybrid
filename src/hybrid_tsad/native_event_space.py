@@ -177,7 +177,7 @@ def operating_metrics(index, scores, truth, tau, ranking):
     return rows, details
 
 
-def entity_metrics(args):
+def entity_metrics(args, method_columns=None):
     w, root, dataset, entity, raw = args
     metric = load_author_metric(w/"preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py")
     rows,events = [], []
@@ -190,7 +190,7 @@ def entity_metrics(args):
     with np.load(bank) as z:
         qi = z["query_index"]
         np.testing.assert_array_equal(qi,np.arange(99,len(truth)))
-        for i,arm in enumerate(ARMS):
+        for i,arm in (enumerate(ARMS) if method_columns is None else method_columns):
             ranked = z["query"][:,i].astype(np.float64)
             values,_ = continuous_metrics(truth[qi],ranked,metric)
             tau = float(np.quantile(z["cal"][:,i],.99,method="higher"))

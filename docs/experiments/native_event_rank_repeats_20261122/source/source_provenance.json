@@ -1,0 +1,578 @@
+{
+  "prior_run": "results/native_event_rank_psm_20261122_v1",
+  "new_run": "results/native_event_rank_seed_repeats_20261122_v1",
+  "source_manifest": {
+    "status": "COMPLETED",
+    "seeds": {
+      "2026": {
+        "relative": "seed2026/MODELS_FROZEN.json",
+        "sha256": "34e114be02774691b02a7fd577f792d9a04bbc7b6026a3f780096626c0ff033e"
+      },
+      "2027": {
+        "relative": "seed2027/MODELS_FROZEN.json",
+        "sha256": "daf5254b0137ac71b4cc4967d82e8c4a815494bc5e395648280d30fc252a4351"
+      }
+    },
+    "seed2025_plan_reconstructed": true,
+    "official_initialization_shared": true,
+    "source_select_panel_fixed": true,
+    "target_read": false
+  },
+  "seeds": [
+    {
+      "seed": 2026,
+      "plan": {
+        "status": "PREPARED_BEFORE_MODEL_LOAD",
+        "seed": 2026,
+        "plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+        "nominal_swat_fit": [
+          0,
+          396000
+        ],
+        "nominal_swat_select": [
+          396000,
+          495000
+        ],
+        "nominal_swat_scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+        "nominal_smd_binding_sha256": "501184abd4dbd09e9d18a60cc84c88de05eb77f088f706286bb111b28fb51c73",
+        "nominal_smd_entities": [
+          "machine-1-1",
+          "machine-1-2",
+          "machine-1-3",
+          "machine-1-4",
+          "machine-1-5",
+          "machine-1-6",
+          "machine-1-7",
+          "machine-1-8",
+          "machine-2-1",
+          "machine-2-2",
+          "machine-2-3",
+          "machine-2-4",
+          "machine-2-5",
+          "machine-2-6",
+          "machine-2-7",
+          "machine-2-8",
+          "machine-2-9",
+          "machine-3-1",
+          "machine-3-2",
+          "machine-3-3",
+          "machine-3-4",
+          "machine-3-5",
+          "machine-3-6",
+          "machine-3-7",
+          "machine-3-8",
+          "machine-3-9",
+          "machine-3-10",
+          "machine-3-11"
+        ],
+        "source_label_sha256": "2a9fb52f192067dd258f73be4691678b1c42e09c3dc87d259fea616640818039",
+        "event_fit_bounds": [
+          495000,
+          502578
+        ],
+        "event_select_bounds": [
+          502578,
+          585000
+        ],
+        "event_fit": [
+          [
+            496754,
+            497694
+          ],
+          [
+            498068,
+            498511
+          ],
+          [
+            499920,
+            500303
+          ],
+          [
+            501459,
+            501849
+          ],
+          [
+            502255,
+            502451
+          ]
+        ],
+        "event_select": [
+          [
+            502705,
+            503134
+          ],
+          [
+            506410,
+            507374
+          ],
+          [
+            510380,
+            511101
+          ],
+          [
+            568800,
+            569521
+          ]
+        ],
+        "fit_positive_counts": [
+          [
+            281,
+            280,
+            280
+          ],
+          [
+            115,
+            115,
+            114
+          ],
+          [
+            95,
+            95,
+            94
+          ],
+          [
+            97,
+            97,
+            97
+          ],
+          [
+            33,
+            32,
+            32
+          ]
+        ],
+        "fit_normal_pool": 4632,
+        "select_positive_counts": [
+          110,
+          110,
+          110,
+          289,
+          288,
+          288,
+          208,
+          207,
+          207,
+          208,
+          207,
+          207
+        ],
+        "select_paired_per_stratum": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "select_normal_pool": 79092,
+        "steps": 240,
+        "warmup": 24,
+        "select_steps": [
+          0,
+          40,
+          80,
+          120,
+          160,
+          200,
+          240
+        ],
+        "optics": {
+          "optimizer": "AdamW",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.95
+          ],
+          "eps": 1e-08,
+          "weight_decay": 0.1,
+          "norm_bias_weight_decay": 0,
+          "copy_batch": 32,
+          "pair_margin": 1,
+          "pair_weight": 1,
+          "nominal_window": 100,
+          "norm": 0,
+          "native_B": 1,
+          "native_masks": 84551,
+          "copies": 10,
+          "mode": "eval",
+          "trainable": "decoder only",
+          "selection": "earliest minimum event-balanced source risk"
+        },
+        "nominal_sampling": "SWaT and SMD 16 each. SMD machine uniformly, then a legal endpoint uniformly.",
+        "permissions": "Marked public SWaT source-event slice and nominal SWaT/SMD28 train roles only.",
+        "target_values_or_labels_read": false
+      },
+      "scale": {
+        "status": "COMPLETED",
+        "value": 0.02649214304983616,
+        "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+        "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+        "mask_ids": {
+          "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+          "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+        },
+        "count": 4632,
+        "bank_file": "FIT_NORMAL_V.npz",
+        "bank_sha256": "c896f3d518bbfee8fa9709f2354dc1d880e8f23880a5dc7cb2d0651cefcc1182",
+        "plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+        "elapsed_seconds": 46.189245286397636,
+        "peak_reserved_bytes": 757071872,
+        "target_read": false,
+        "reused_scale_sha256": "7e31a929d01a65bc52784b941c266324b5f883943bf6842bff2a3799b5069eb1"
+      },
+      "model_manifest_sha256": "34e114be02774691b02a7fd577f792d9a04bbc7b6026a3f780096626c0ff033e"
+    },
+    {
+      "seed": 2027,
+      "plan": {
+        "status": "PREPARED_BEFORE_MODEL_LOAD",
+        "seed": 2027,
+        "plan_sha256": "2d0db1255f6af518e681473e21e04687a50649b6c774715d03315c70d0136fe8",
+        "nominal_swat_fit": [
+          0,
+          396000
+        ],
+        "nominal_swat_select": [
+          396000,
+          495000
+        ],
+        "nominal_swat_scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+        "nominal_smd_binding_sha256": "501184abd4dbd09e9d18a60cc84c88de05eb77f088f706286bb111b28fb51c73",
+        "nominal_smd_entities": [
+          "machine-1-1",
+          "machine-1-2",
+          "machine-1-3",
+          "machine-1-4",
+          "machine-1-5",
+          "machine-1-6",
+          "machine-1-7",
+          "machine-1-8",
+          "machine-2-1",
+          "machine-2-2",
+          "machine-2-3",
+          "machine-2-4",
+          "machine-2-5",
+          "machine-2-6",
+          "machine-2-7",
+          "machine-2-8",
+          "machine-2-9",
+          "machine-3-1",
+          "machine-3-2",
+          "machine-3-3",
+          "machine-3-4",
+          "machine-3-5",
+          "machine-3-6",
+          "machine-3-7",
+          "machine-3-8",
+          "machine-3-9",
+          "machine-3-10",
+          "machine-3-11"
+        ],
+        "source_label_sha256": "2a9fb52f192067dd258f73be4691678b1c42e09c3dc87d259fea616640818039",
+        "event_fit_bounds": [
+          495000,
+          502578
+        ],
+        "event_select_bounds": [
+          502578,
+          585000
+        ],
+        "event_fit": [
+          [
+            496754,
+            497694
+          ],
+          [
+            498068,
+            498511
+          ],
+          [
+            499920,
+            500303
+          ],
+          [
+            501459,
+            501849
+          ],
+          [
+            502255,
+            502451
+          ]
+        ],
+        "event_select": [
+          [
+            502705,
+            503134
+          ],
+          [
+            506410,
+            507374
+          ],
+          [
+            510380,
+            511101
+          ],
+          [
+            568800,
+            569521
+          ]
+        ],
+        "fit_positive_counts": [
+          [
+            281,
+            280,
+            280
+          ],
+          [
+            115,
+            115,
+            114
+          ],
+          [
+            95,
+            95,
+            94
+          ],
+          [
+            97,
+            97,
+            97
+          ],
+          [
+            33,
+            32,
+            32
+          ]
+        ],
+        "fit_normal_pool": 4632,
+        "select_positive_counts": [
+          110,
+          110,
+          110,
+          289,
+          288,
+          288,
+          208,
+          207,
+          207,
+          208,
+          207,
+          207
+        ],
+        "select_paired_per_stratum": [
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16,
+          16
+        ],
+        "select_normal_pool": 79092,
+        "steps": 240,
+        "warmup": 24,
+        "select_steps": [
+          0,
+          40,
+          80,
+          120,
+          160,
+          200,
+          240
+        ],
+        "optics": {
+          "optimizer": "AdamW",
+          "lr": 0.0001,
+          "betas": [
+            0.9,
+            0.95
+          ],
+          "eps": 1e-08,
+          "weight_decay": 0.1,
+          "norm_bias_weight_decay": 0,
+          "copy_batch": 32,
+          "pair_margin": 1,
+          "pair_weight": 1,
+          "nominal_window": 100,
+          "norm": 0,
+          "native_B": 1,
+          "native_masks": 84551,
+          "copies": 10,
+          "mode": "eval",
+          "trainable": "decoder only",
+          "selection": "earliest minimum event-balanced source risk"
+        },
+        "nominal_sampling": "SWaT and SMD 16 each. SMD machine uniformly, then a legal endpoint uniformly.",
+        "permissions": "Marked public SWaT source-event slice and nominal SWaT/SMD28 train roles only.",
+        "target_values_or_labels_read": false
+      },
+      "scale": {
+        "status": "COMPLETED",
+        "value": 0.02649214304983616,
+        "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+        "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+        "mask_ids": {
+          "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+          "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+        },
+        "count": 4632,
+        "bank_file": "FIT_NORMAL_V.npz",
+        "bank_sha256": "c896f3d518bbfee8fa9709f2354dc1d880e8f23880a5dc7cb2d0651cefcc1182",
+        "plan_sha256": "2d0db1255f6af518e681473e21e04687a50649b6c774715d03315c70d0136fe8",
+        "elapsed_seconds": 46.189245286397636,
+        "peak_reserved_bytes": 757071872,
+        "target_read": false,
+        "reused_scale_sha256": "7e31a929d01a65bc52784b941c266324b5f883943bf6842bff2a3799b5069eb1"
+      },
+      "model_manifest_sha256": "daf5254b0137ac71b4cc4967d82e8c4a815494bc5e395648280d30fc252a4351"
+    }
+  ],
+  "training": [
+    {
+      "status": "COMPLETED",
+      "arm": "copy",
+      "seed": 2026,
+      "updates": 240,
+      "selected_step": 40,
+      "source_criterion": "earliest minimum event-balanced paired SWaT source SELECT risk",
+      "optimizer_objective": "copy MSE",
+      "event_labels_used_for_gradient": false,
+      "event_labels_used_for_selection": true,
+      "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+      "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "selected_checkpoint_sha256": "1ed96e59b4917a1e9294b243e08a6c076abb4606d89a47cc75550928c3953dd2",
+      "plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+      "scale_sha256": "ae5e8334e723a2ce22b183d59f60c8319dea81dcef9084e0cfc0680d22e6c816",
+      "scale_value": 0.02649214304983616,
+      "mask_ids": {
+        "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+        "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+      },
+      "training_trace_sha256": "60dc2c8869ecbcde615ade738d57a4a530833487ca9281986fde8f7fab3c066c",
+      "frozen_state_identical": true,
+      "fixed_B1": true,
+      "terminal": 99,
+      "variance_unbiased": true,
+      "CUDA_visible": "NVIDIA A40",
+      "elapsed_seconds": 196.95980397518724,
+      "peak_reserved_bytes": 413138944,
+      "target_read": false
+    },
+    {
+      "status": "COMPLETED",
+      "arm": "point_weighted",
+      "seed": 2026,
+      "updates": 240,
+      "selected_step": 240,
+      "source_criterion": "earliest minimum event-balanced paired SWaT source SELECT risk",
+      "optimizer_objective": "copy MSE + unit-margin pair objective",
+      "event_labels_used_for_gradient": true,
+      "event_labels_used_for_selection": true,
+      "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+      "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "selected_checkpoint_sha256": "31af806c812d76a841d6ae21b38a06935f6c62d064a6648ca0ca47cc5eeb759d",
+      "plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+      "scale_sha256": "ae5e8334e723a2ce22b183d59f60c8319dea81dcef9084e0cfc0680d22e6c816",
+      "scale_value": 0.02649214304983616,
+      "mask_ids": {
+        "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+        "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+      },
+      "training_trace_sha256": "adeaca22c1197cb70f5ea627e04ed609d11661ab5183a93812305f1560d7e0d4",
+      "frozen_state_identical": true,
+      "fixed_B1": true,
+      "terminal": 99,
+      "variance_unbiased": true,
+      "CUDA_visible": "NVIDIA A40",
+      "elapsed_seconds": 297.5291025741026,
+      "peak_reserved_bytes": 4680843264,
+      "target_read": false
+    },
+    {
+      "status": "COMPLETED",
+      "arm": "copy",
+      "seed": 2027,
+      "updates": 240,
+      "selected_step": 80,
+      "source_criterion": "earliest minimum event-balanced paired SWaT source SELECT risk",
+      "optimizer_objective": "copy MSE",
+      "event_labels_used_for_gradient": false,
+      "event_labels_used_for_selection": true,
+      "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+      "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "selected_checkpoint_sha256": "ae6b39cccb31f62710e7554a96b9d58f710aa86c6b3c8f4579e6492c471e77f4",
+      "plan_sha256": "2d0db1255f6af518e681473e21e04687a50649b6c774715d03315c70d0136fe8",
+      "scale_sha256": "61a885a219ee2bd1c28546250a991538bf1d9343123ea10a63dc40527959c8f6",
+      "scale_value": 0.02649214304983616,
+      "mask_ids": {
+        "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+        "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+      },
+      "training_trace_sha256": "634f62f957931b60d13c85f44fdf2fd7ca7c04221346f8149fbe0bc66edd8483",
+      "frozen_state_identical": true,
+      "fixed_B1": true,
+      "terminal": 99,
+      "variance_unbiased": true,
+      "CUDA_visible": "NVIDIA A40",
+      "elapsed_seconds": 195.57288949098438,
+      "peak_reserved_bytes": 413138944,
+      "target_read": false
+    },
+    {
+      "status": "COMPLETED",
+      "arm": "point_weighted",
+      "seed": 2027,
+      "updates": 240,
+      "selected_step": 240,
+      "source_criterion": "earliest minimum event-balanced paired SWaT source SELECT risk",
+      "optimizer_objective": "copy MSE + unit-margin pair objective",
+      "event_labels_used_for_gradient": true,
+      "event_labels_used_for_selection": true,
+      "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+      "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "selected_checkpoint_sha256": "02edb8db6755b0dd59b5c8e670c58dd8c940479964c696fddd71d8dd7390c2a8",
+      "plan_sha256": "2d0db1255f6af518e681473e21e04687a50649b6c774715d03315c70d0136fe8",
+      "scale_sha256": "61a885a219ee2bd1c28546250a991538bf1d9343123ea10a63dc40527959c8f6",
+      "scale_value": 0.02649214304983616,
+      "mask_ids": {
+        "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+        "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+      },
+      "training_trace_sha256": "717eb97f76b5b210c8614426ca9a85fecbab1e22a2f281875e015744cc39d8e3",
+      "frozen_state_identical": true,
+      "fixed_B1": true,
+      "terminal": 99,
+      "variance_unbiased": true,
+      "CUDA_visible": "NVIDIA A40",
+      "elapsed_seconds": 308.0454956367612,
+      "peak_reserved_bytes": 4680843264,
+      "target_read": false
+    }
+  ],
+  "nominal_sampling": "Within each seed the two arms use the same nominal SWaT/SMD windows. The point-weighted arm additionally uses 15 abnormal endpoints and 15 matched normal endpoints each update.",
+  "scale_identity_reused": true,
+  "select_baseline_risk_equals_2025": true,
+  "gpu_guard_retry": {
+    "seed": 2026,
+    "arm": "copy",
+    "guard_gpu": 0,
+    "guard_status": "busy; no child launched",
+    "failed_attempt_gpu_seconds": 0,
+    "retry_gpu": 2
+  },
+  "runtime_sha256": {
+    "native_event_rank_training.py": "e23f072498a319903c2d5d080f3a3d042888ee1c76cefd670f20ca083de4c994",
+    "native_event_rank_repeats.py": "6fb6b080e5778f5830bc4fad58fe7c2e499cd29348ef630dede18a8d963ea7f9"
+  }
+}

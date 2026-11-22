@@ -13,7 +13,7 @@ from .native_event_rank import WINDOW, event_pair_loss, native_endpoint_and_copy
 from .native_pair_rank_data import SMD_BINDING, SMD_ENTITIES, SMD_SHA, require, sample_positions, task_binding
 from .native_v_conditioning import SOURCE_SHA, WEIGHT_SHA, actual_mask_bits, sha, state_hashes
 from .native_v_conditioning_queue import run_jobs
-from .native_v_conditioning_runner import dump, read, role_values, setup
+from .native_v_conditioning_runner import dump, read, role_values, seed as seed_rng, setup
 from .native_v_replay import decoder_model, input_windows, optimizer
 
 
@@ -57,10 +57,10 @@ def smd_binding(record, role):
     return binding
 
 
-def prepare(workspace, output):
+def prepare(workspace, output, seed=SEED, select_plan=None):
     _, task, fit, select, smd = source_roles(workspace)
     output.mkdir(parents=True, exist_ok=True)
-    draws = [np.random.default_rng(s) for s in np.random.SeedSequence(SEED).spawn(6)]
+    draws = [np.random.default_rng(s) for s in np.random.SeedSequence(seed).spawn(6)]
     swat = eligible(task["roles"]["SOURCE_FIT"])
     swat_select = eligible(task["roles"]["SOURCE_SELECT"])
     smd_fit = [eligible(smd_binding(smd[entity], "FIT")["bounds_half_open"]) for entity in SMD_ENTITIES]
@@ -93,10 +93,15 @@ def prepare(workspace, output):
     require(len(fit.events) == 5 and len(select.events) == 4
             and sum(map(len, fit_strata)) == 1857 and sum(map(len, select_strata)) == 2439,
             "Unexpected event strata qualification")
+    if select_plan is not None:
+        # Keep the realized source selection panel fixed when varying FIT draws.
+        plan["normal_select"] = select_plan["normal_select"].copy()
+        for key in ("normal_select", "positive_select", "select_stratum_sizes", "swat_select", "smd_select"):
+            np.testing.assert_array_equal(plan[key], select_plan[key])
     path = output / "PLAN.npz"
     with path.open("xb") as stream:
         np.savez_compressed(stream, **plan)
-    dump(output / "PLAN.json", dict(status="PREPARED_BEFORE_MODEL_LOAD", seed=SEED, plan_sha256=sha(path),
+    dump(output / "PLAN.json", dict(status="PREPARED_BEFORE_MODEL_LOAD", seed=seed, plan_sha256=sha(path),
          nominal_swat_fit=task["roles"]["SOURCE_FIT"], nominal_swat_select=task["roles"]["SOURCE_SELECT"],
          nominal_swat_scaler_sha256=task["scaler_sha256"], nominal_smd_binding_sha256=SMD_SHA,
          nominal_smd_entities=SMD_ENTITIES, source_label_sha256=LABEL_SHA, event_fit_bounds=fit.bounds,
@@ -249,7 +254,7 @@ def train_step(model, opt, plan, fit_data, scale, arm, device, step):
     return dict(results, gradient_norm=grad_norm)
 
 
-def training(workspace, output, arm):
+def training(workspace, output, arm, seed=SEED):
     started = time.monotonic()
     plan = load_plan(output)
     scale_path = output / "SCALE.json"
@@ -265,7 +270,9 @@ def training(workspace, output, arm):
                    [load_smd(workspace, smd[entity], "SELECT") for entity in SMD_ENTITIES])
     arm_dir = output / "train" / arm
     arm_dir.mkdir(parents=True, exist_ok=False)
+    require(read(output / "PLAN.json")["seed"] == seed, "Training seed must match the draw plan")
     device = setup()
+    seed_rng(seed)
     require(mask_ids(device) == scale_record["mask_ids"], "Native mask identity mismatch")
     model = decoder_model(workspace, device)
     initial = state_hashes(model)
@@ -295,7 +302,7 @@ def training(workspace, output, arm):
         torch.save(dict(model=best_state, update=best["update"], arm=arm), stream)
     trace_path = arm_dir / "TRAIN_TRACE.json"
     dump(trace_path, training_trace)
-    dump(arm_dir / "SELECTION.json", dict(status="COMPLETED", arm=arm, seed=SEED, updates=STEPS, selected_step=best["update"],
+    dump(arm_dir / "SELECTION.json", dict(status="COMPLETED", arm=arm, seed=seed, updates=STEPS, selected_step=best["update"],
          source_criterion="earliest minimum event-balanced paired SWaT source SELECT risk",
          optimizer_objective="copy MSE" if arm == "copy" else "copy MSE + unit-margin pair objective",
          event_labels_used_for_gradient=arm != "copy", event_labels_used_for_selection=True,
