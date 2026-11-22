@@ -1,0 +1,2 @@
+method,mode,entities,total_scored,total_test,train_hours,score_hours,operating,AP,AP_median,ROC_AUC,ROC_AUC_median,VUS_PR,VUS_PR_median,VUS_ROC,VUS_ROC_median
+LEFT,offline complete nonoverlapping windows,28,705984,708420,1.645523244927689,0.003238137061578325,NA: published normal validation and scaler include project CAL,0.497514480409878,0.45977721891418105,0.8786820287139907,0.8776720228586163,0.5415166309296472,0.47019035983436436,0.9186164022669778,0.9339700276962948
