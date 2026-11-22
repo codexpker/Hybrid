@@ -1,0 +1,195 @@
+{
+  "computed_from_four_arm_columns": true,
+  "labels_read": false,
+  "query_access": false,
+  "domains": {
+    "SWAT": {
+      "source_probes_sha256": "ed2aa521cc0b44943dc25f75f92602dda0ccdb06b7d28c3b120ff4322612c4c1",
+      "preflight_sha256": "ad9a5b5423d519763f2e40bc8e6c89133e18e38c65ecc6e6d5bf23f83b18fca8",
+      "source_validation": [
+        396000,
+        495000
+      ],
+      "window_length": 192,
+      "total_windows": 515,
+      "unused_source_validation_tail_points": 120,
+      "block_stats": [
+        {
+          "block": 1,
+          "windows": 129,
+          "start": 396000,
+          "end": 420768,
+          "same_mean": 0.01037564328009833,
+          "opposite_mean": 0.010375642792778379,
+          "contrast_mean": -4.873199518336807e-10,
+          "contrast_p05": -2.5494955480098723e-09,
+          "contrast_median": 0.0,
+          "contrast_p95": 3.2130628824234002e-09,
+          "positive": 0,
+          "negative": 0,
+          "near_zero": 129,
+          "numerical_floor": 3.957993712020246e-08,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 2,
+          "windows": 129,
+          "start": 420768,
+          "end": 445536,
+          "same_mean": 0.014353159087928474,
+          "opposite_mean": 0.01435315887991505,
+          "contrast_mean": -2.0801342388456183e-10,
+          "contrast_p05": -4.633329808712005e-09,
+          "contrast_median": 0.0,
+          "contrast_p95": 3.725290298461914e-09,
+          "positive": 0,
+          "negative": 0,
+          "near_zero": 129,
+          "numerical_floor": 5.4752956329047246e-08,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 3,
+          "windows": 129,
+          "start": 445536,
+          "end": 470304,
+          "same_mean": 0.009821609821569448,
+          "opposite_mean": 0.00982161005823548,
+          "contrast_mean": 2.3666603216367175e-10,
+          "contrast_p05": -2.421438694000244e-09,
+          "contrast_median": 0.0,
+          "contrast_p95": 3.655441105365752e-09,
+          "positive": 0,
+          "negative": 0,
+          "near_zero": 129,
+          "numerical_floor": 3.7466468581781254e-08,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 4,
+          "windows": 128,
+          "start": 470304,
+          "end": 494880,
+          "same_mean": 0.01272659922051389,
+          "opposite_mean": 0.012726598432664105,
+          "contrast_mean": -7.878497854107991e-10,
+          "contrast_p05": -6.880145519971847e-09,
+          "contrast_median": -5.820766091346741e-11,
+          "contrast_p95": 3.026798367500305e-09,
+          "positive": 0,
+          "negative": 0,
+          "near_zero": 128,
+          "numerical_floor": 4.854812174449538e-08,
+          "supports_positive_orientation": false
+        }
+      ],
+      "classification_totals": {
+        "positive": 0,
+        "negative": 0,
+        "near_zero": 515
+      },
+      "max_absolute_saved_row_difference": {
+        "same": 0,
+        "opposite": 0,
+        "contrast": 0
+      },
+      "metadata_discrepancies": [],
+      "gate_recomputed": false,
+      "gate_reported": false
+    },
+    "PSM": {
+      "source_probes_sha256": "1eda708d72084992c67a4515ec100fd8a0fc271ca9b76882adc0311a008b363f",
+      "preflight_sha256": "6b067dfa07c6ac639c600aefb7e833d3197ee86926c8a44460a6b120db17ff94",
+      "source_validation": [
+        105984,
+        132481
+      ],
+      "window_length": 192,
+      "total_windows": 138,
+      "unused_source_validation_tail_points": 1,
+      "block_stats": [
+        {
+          "block": 1,
+          "windows": 35,
+          "start": 105984,
+          "end": 112704,
+          "same_mean": 0.4957289333854403,
+          "opposite_mean": 0.4957280308008194,
+          "contrast_mean": -9.025846208844866e-07,
+          "contrast_p05": -5.325675010681152e-06,
+          "contrast_median": -6.258487701416016e-07,
+          "contrast_p95": 3.433227539062497e-06,
+          "positive": 4,
+          "negative": 11,
+          "near_zero": 20,
+          "numerical_floor": 1.8910540851330943e-06,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 2,
+          "windows": 35,
+          "start": 112704,
+          "end": 119424,
+          "same_mean": 0.5612533279827663,
+          "opposite_mean": 0.5612527340650558,
+          "contrast_mean": -5.939177104404994e-07,
+          "contrast_p05": -9.164214134216309e-06,
+          "contrast_median": -5.066394805908203e-07,
+          "contrast_p95": 5.67436218261718e-06,
+          "positive": 8,
+          "negative": 10,
+          "near_zero": 17,
+          "numerical_floor": 2.141010402770657e-06,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 3,
+          "windows": 34,
+          "start": 119424,
+          "end": 125952,
+          "same_mean": 0.3140100499286371,
+          "opposite_mean": 0.31400978367994814,
+          "contrast_mean": -2.662486889783074e-07,
+          "contrast_p05": -2.3894011974334716e-06,
+          "contrast_median": -1.0803341865539551e-07,
+          "contrast_p95": 1.0684132575988764e-06,
+          "positive": 2,
+          "negative": 4,
+          "near_zero": 28,
+          "numerical_floor": 1.1978527710124688e-06,
+          "supports_positive_orientation": false
+        },
+        {
+          "block": 4,
+          "windows": 34,
+          "start": 125952,
+          "end": 132480,
+          "same_mean": 0.32087599047843146,
+          "opposite_mean": 0.32087596681188135,
+          "contrast_mean": -2.36665501314051e-08,
+          "contrast_p05": -1.064687967300415e-06,
+          "contrast_median": -1.1175870895385742e-07,
+          "contrast_p95": 9.849667549133291e-07,
+          "positive": 2,
+          "negative": 1,
+          "near_zero": 31,
+          "numerical_floor": 1.2240447183424241e-06,
+          "supports_positive_orientation": false
+        }
+      ],
+      "classification_totals": {
+        "positive": 16,
+        "negative": 26,
+        "near_zero": 96
+      },
+      "max_absolute_saved_row_difference": {
+        "same": 0,
+        "opposite": 0,
+        "contrast": 0
+      },
+      "metadata_discrepancies": [],
+      "gate_recomputed": false,
+      "gate_reported": false
+    }
+  }
+}

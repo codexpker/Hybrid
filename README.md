@@ -1,5 +1,9 @@
 # Hybrid TSAD 独立研究工程
 
+## 2026-11-22 原生 LEFT 局部跨通道评分保持，源端前检完成
+
+冻结轨迹的正常源验证中，SWaT 515 个窗口均为近零，PSM 四块均值为负。两域均未达到正向对比支持条件。原生评分、状态恢复和实际 Adam 位移检查通过，未启动目标适配或 QUERY。英文方法草稿固定提交 `cf90902b78b31d5e7225cef913c4df312662c96a`。[结果及独立复算](docs/experiments/left_score_contrast_20261122/RESULTS.md)
+
 ## 2026-11-21 受控互补性冻结推理完成
 
 SWaT／PSM共238条固定流完成TimeRadar和TimesFM冻结评分，GPU累计3.876小时。H1、H2、H3均未建立相对现有对照的附加检测优势。逐条件的三连命中与各自原背景及结构对照一致，关闭本轮直接互补路线。[结果及逐事件明细](docs/experiments/controlled_complementarity_20261121/RESULTS.md)

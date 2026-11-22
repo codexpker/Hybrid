@@ -1,0 +1,17 @@
+{
+  "domains": {
+    "SWAT": {"task": "configs/left-preservation-swat-20261118.json", "source_validation": [396000, 495000]},
+    "PSM": {"task": "configs/left-preservation-psm-20261118.json", "source_validation": [105984, 132481]}
+  },
+  "seeds": [2025, 2026, 2027],
+  "source_gate": {
+    "windows": "Complete nonoverlapping source-validation windows, grouped into four consecutive nearly equal counts",
+    "per_task_support": "All four signed mean contrasts exceed 32 float32 eps times the mean absolute probe score in their block",
+    "matrix_condition": "At least one fixed task supports the positive control orientation; run both tasks without selecting domains, otherwise stop before target adaptation",
+    "labels": "No anomalies labeled by probes; no target labels or query scores"
+  },
+  "arms": ["contrast", "step_length"],
+  "monitor_updates": [1, 500, 1000, 1500, 2000],
+  "gpu_timeout_seconds": 1800,
+  "method_draft_git": "cf90902b78b31d5e7225cef913c4df312662c96a"
+}
