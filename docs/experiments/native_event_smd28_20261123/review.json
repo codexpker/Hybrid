@@ -1,0 +1,219 @@
+{
+  "status": "passed",
+  "independent_CPU_only": true,
+  "frozen_checkpoints": 7,
+  "entities": 28,
+  "channels": 38,
+  "labels": "Verified test label hashes against original manifest; train/SELECT/scale roles and selected LEFT validation losses inspected.",
+  "timing": "Causal native V [99,N) and offline LEFT [0,192*floor(N/192)); equal-point common comparison [99,192*floor(N/192)).",
+  "ranking": "Manual tie-group AP for 28 x 7 native causal banks plus 28 x 8 common-axis banks. Entity equal weighting, paired across three project seeds, sample SD ddof=1.",
+  "maximum_absolute_AP_error": 3.3306690738754696e-16,
+  "causal_AP_paired": {
+    "copy": {
+      "delta_by_seed_2025_2026_2027": [
+        -0.00815779023191744,
+        -0.006292694011847919,
+        -0.013915368124889109
+      ],
+      "mean": -0.009455284122884822,
+      "sample_sd": 0.003973525884681051
+    },
+    "frozen_native_V": {
+      "delta_by_seed_2025_2026_2027": [
+        -0.0021720920041361433,
+        -0.004390954026141547,
+        -0.0072334371004749275
+      ],
+      "mean": -0.004598827710250873,
+      "sample_sd": 0.0025370676276889135
+    }
+  },
+  "common_axis_macro_AP": {
+    "LEFT": 0.4980679627785037,
+    "frozen_native_V": 0.44478523431130473,
+    "2025_copy": 0.4507899328133847,
+    "2025_point_weighted": 0.44265805989920765,
+    "2026_copy": 0.4466955202245491,
+    "2026_point_weighted": 0.4403997357802398,
+    "2027_copy": 0.4515150141255514,
+    "2027_point_weighted": 0.4375762843737501
+  },
+  "C3_subset": "All seven checkpoints for three pre-fixed entities. CAL q99/higher, strict >, consecutive confirmation without backfill, normal-region clipping, earliest unmatched overlap, any-hit separately.",
+  "matched_checks": {
+    "machine-1-1": {
+      "frozen_native_V": {
+        "normal_alarm_fragments": 64,
+        "FP": 6148,
+        "M": 7,
+        "Npred": 91,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 7
+      },
+      "2025_copy": {
+        "normal_alarm_fragments": 71,
+        "FP": 6027,
+        "M": 8,
+        "Npred": 124,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 8
+      },
+      "2025_point_weighted": {
+        "normal_alarm_fragments": 48,
+        "FP": 6301,
+        "M": 5,
+        "Npred": 69,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 5
+      },
+      "2026_copy": {
+        "normal_alarm_fragments": 59,
+        "FP": 6313,
+        "M": 7,
+        "Npred": 89,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 7
+      },
+      "2026_point_weighted": {
+        "normal_alarm_fragments": 64,
+        "FP": 6633,
+        "M": 7,
+        "Npred": 86,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 7
+      },
+      "2027_copy": {
+        "normal_alarm_fragments": 64,
+        "FP": 6330,
+        "M": 8,
+        "Npred": 95,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 8
+      },
+      "2027_point_weighted": {
+        "normal_alarm_fragments": 55,
+        "FP": 6561,
+        "M": 5,
+        "Npred": 76,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 5
+      }
+    },
+    "machine-2-6": {
+      "frozen_native_V": {
+        "normal_alarm_fragments": 29,
+        "FP": 1653,
+        "M": 5,
+        "Npred": 32,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2025_copy": {
+        "normal_alarm_fragments": 33,
+        "FP": 1661,
+        "M": 5,
+        "Npred": 36,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2025_point_weighted": {
+        "normal_alarm_fragments": 77,
+        "FP": 2438,
+        "M": 5,
+        "Npred": 79,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2026_copy": {
+        "normal_alarm_fragments": 35,
+        "FP": 1683,
+        "M": 5,
+        "Npred": 39,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2026_point_weighted": {
+        "normal_alarm_fragments": 70,
+        "FP": 2487,
+        "M": 5,
+        "Npred": 72,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2027_copy": {
+        "normal_alarm_fragments": 31,
+        "FP": 1651,
+        "M": 5,
+        "Npred": 34,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      },
+      "2027_point_weighted": {
+        "normal_alarm_fragments": 64,
+        "FP": 2422,
+        "M": 5,
+        "Npred": 65,
+        "Ntrue": 8,
+        "auxiliary_any_hit_events": 6
+      }
+    },
+    "machine-3-11": {
+      "frozen_native_V": {
+        "normal_alarm_fragments": 67,
+        "FP": 19544,
+        "M": 1,
+        "Npred": 64,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2025_copy": {
+        "normal_alarm_fragments": 74,
+        "FP": 20274,
+        "M": 1,
+        "Npred": 71,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2025_point_weighted": {
+        "normal_alarm_fragments": 117,
+        "FP": 12274,
+        "M": 1,
+        "Npred": 114,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2026_copy": {
+        "normal_alarm_fragments": 78,
+        "FP": 19712,
+        "M": 1,
+        "Npred": 75,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2026_point_weighted": {
+        "normal_alarm_fragments": 120,
+        "FP": 12524,
+        "M": 1,
+        "Npred": 117,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2027_copy": {
+        "normal_alarm_fragments": 63,
+        "FP": 20605,
+        "M": 1,
+        "Npred": 60,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      },
+      "2027_point_weighted": {
+        "normal_alarm_fragments": 52,
+        "FP": 9479,
+        "M": 1,
+        "Npred": 50,
+        "Ntrue": 3,
+        "auxiliary_any_hit_events": 3
+      }
+    }
+  },
+  "scope_limit": "ROC, VUS, delays, coverage and model forward values were not independently recomputed."
+}
