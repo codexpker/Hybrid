@@ -1,0 +1,475 @@
+{
+  "documents": [
+    {
+      "relative": "results/phase2_baseline_checks_20261028/phase2_baseline_checks_20261028_v2/data_integrity.json",
+      "sha256": "0bbcf33c25614c0de224dc3d75eb0970867a9c3ef24e1c5c9c63ccd0dcabd3cb"
+    },
+    {
+      "relative": "preparations/left_multievent_mixed_u_20261111_v1/OFFICIAL_31_CHANNEL_MAPPING.json",
+      "sha256": "bad08cdcfb34e0673f9d0ef44ced71552540dad26fbd550e5a546b209dc23bc7"
+    },
+    {
+      "relative": "results/left_swat_author_20261118_v1/SOURCE_BINDING.json",
+      "sha256": "aaea71c5b6c1ac4ca841465bd8e1318e99c09bfa2a14f9259b6a4b1f00340174"
+    },
+    {
+      "relative": "results/catch_common_repeats_20261029/raw_data_meta.json",
+      "sha256": "55756f74972f92b2fe319285792b8930fc0ebfe622ab4fe3331f9ceb792578f3"
+    },
+    {
+      "relative": "preparations/left_multievent_mixed_u_20261111_v1/SWAT_LABEL_METADATA.npz",
+      "sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc"
+    },
+    {
+      "relative": "data/common_psm_20261028_v1/test_label.npy",
+      "sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69"
+    },
+    {
+      "relative": "literature/novelty_review/left_source_20261031/ts_ad_evaluation/auc_vus/metrics.py",
+      "sha256": "808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc"
+    }
+  ],
+  "panels": [
+    {
+      "dataset": "PSM",
+      "track": "offline-readout",
+      "axis": [
+        0,
+        87744
+      ],
+      "n": 87744,
+      "n_positive": 24290,
+      "rows": [
+        {
+          "method": "LEFT native W192",
+          "group": "target training",
+          "permission": "target [0,105984) FIT; SELECT [105984,132481); scaler [0,132481); score reads full W192",
+          "path": "results/left_psm_R_score_seed2025_20261101_v1/raw_scores.npz",
+          "sha256": "e6457b6081688625babd57fced9c9492efdda42086cb68df65e51d63e7632702",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 132481,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 2025,
+          "AP": 0.5766438601681121,
+          "ROC_AUC": 0.7760962781841891,
+          "VUS_PR": 0.5726021716812577,
+          "VUS_ROC": 0.785067326285709,
+          "cpu_wall_seconds": 22.781000000075437
+        },
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed0/scores.npz",
+          "sha256": "ca4afcda291303fba08a0a3971791b628dc81d85e1f94081702bb680b86d4120",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 0,
+          "AP": 0.4459895321862464,
+          "ROC_AUC": 0.6534180428847209,
+          "VUS_PR": 0.5366710274718616,
+          "VUS_ROC": 0.7036566998683302,
+          "cpu_wall_seconds": 22.73499999998603
+        },
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed1/scores.npz",
+          "sha256": "fe96aba4cad4e87511fc23e891b022f5d30b798343aa528136e532589aaf8c1d",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 1,
+          "AP": 0.43026389280294763,
+          "ROC_AUC": 0.6413990585050262,
+          "VUS_PR": 0.5192734114277965,
+          "VUS_ROC": 0.6906908461257336,
+          "cpu_wall_seconds": 22.81299999996554
+        },
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed2/scores.npz",
+          "sha256": "ff42fac31c06b0b37e1a5aef94a53588b9fa3d9a3a36b3422171325a14bdbcd1",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 2,
+          "AP": 0.43304387230768676,
+          "ROC_AUC": 0.6472479773958782,
+          "VUS_PR": 0.5264474766825534,
+          "VUS_ROC": 0.6987333443694175,
+          "cpu_wall_seconds": 22.483999999938533
+        },
+        {
+          "method": "PCA residual",
+          "group": "target-fit statistical",
+          "permission": "target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t",
+          "path": "results/common_psm_baselines_20261028/data_protocol/statistics_scores.npz",
+          "sha256": "c987378b3dd1f114b5232259bcdde2603f95705a557861b330f6a13e189ab170",
+          "score_key": "pca_residual",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": null,
+          "AP": 0.5344044566628354,
+          "ROC_AUC": 0.7933207677743441,
+          "VUS_PR": 0.5289908883203089,
+          "VUS_ROC": 0.7666858309268084,
+          "cpu_wall_seconds": 22.375
+        },
+        {
+          "method": "TimeRadar official block0",
+          "group": "pretrained zero update",
+          "permission": "native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "path": "results/phase2_baseline_checks_20261028/psm_author_env/evaluator_inputs.npz",
+          "sha256": "cd4b56b591dbd7829910bdff018c0bd42282f701cd4c3bc4f4c144153286401d",
+          "score_key": "scores",
+          "index_key": null,
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87800
+          ],
+          "stored_scored_count": 87800,
+          "archived_seed": 2024,
+          "AP": 0.43326507714637724,
+          "ROC_AUC": 0.6706685336173157,
+          "VUS_PR": 0.4412588678534923,
+          "VUS_ROC": 0.6783651103218603,
+          "cpu_wall_seconds": 22.734000000054948
+        },
+        {
+          "method": "TimeRadar common FIT scaler",
+          "group": "pretrained zero update",
+          "permission": "FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order",
+          "path": "results/common_psm_baselines_20261028/timeradar_common_psm_20261028_v1/scores.npz",
+          "sha256": "6419137b53914606705737854ec1ae04c0ec0d5d390a5483dca1d7c299fb4be4",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 2024,
+          "AP": 0.4553705977017055,
+          "ROC_AUC": 0.683822930413065,
+          "VUS_PR": 0.45807148508238293,
+          "VUS_ROC": 0.689162677323765,
+          "cpu_wall_seconds": 23.875
+        }
+      ],
+      "CATCH_seed0_1_2_summary": {
+        "AP": {
+          "mean": 0.4364324324322936,
+          "population_SD": 0.006852526944709067
+        },
+        "ROC_AUC": {
+          "mean": 0.6473550262618751,
+          "population_SD": 0.004907313655801233
+        },
+        "VUS_PR": {
+          "mean": 0.5274639718607372,
+          "population_SD": 0.007138823798527356
+        },
+        "VUS_ROC": {
+          "mean": 0.6976936301211604,
+          "population_SD": 0.005344099244782244
+        }
+      }
+    },
+    {
+      "dataset": "SWAT",
+      "track": "offline-readout",
+      "axis": [
+        495000,
+        944856
+      ],
+      "n": 449856,
+      "n_positive": 54621,
+      "rows": [
+        {
+          "method": "LEFT native W192",
+          "group": "target training",
+          "permission": "target [0,396000) FIT; SELECT [396000,495000); scaler [0,495000); score uses full W192, at window end",
+          "path": "results/left_swat_author_20261118_v1/raw_scores.npz",
+          "sha256": "e8b6e6b8e7b978a6a3757576ef60ccdcea6bf86d7b4ecadbe734f4123dec22a1",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            495000,
+            944856
+          ],
+          "stored_scored_count": 449856,
+          "archived_seed": 2025,
+          "AP": 0.5432489975395056,
+          "ROC_AUC": 0.8215114774826152,
+          "VUS_PR": 0.5337069122860723,
+          "VUS_ROC": 0.8093476598647877,
+          "cpu_wall_seconds": 58.09399999992456
+        },
+        {
+          "method": "TimeRadar official block0",
+          "group": "pretrained zero update",
+          "permission": "native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "path": "results/phase2_baseline_checks_20261028/swat_author_env/evaluator_inputs.npz",
+          "sha256": "8ab9edbf1de02e36da11cd114845e7df5cb220b7ae359b2fc68e1a89796cdd5b",
+          "score_key": "scores",
+          "index_key": null,
+          "index_offset": 0,
+          "input_scored_axis": [
+            495000,
+            944900
+          ],
+          "stored_scored_count": 449900,
+          "archived_seed": null,
+          "AP": 0.6392988989070734,
+          "ROC_AUC": 0.821970433379716,
+          "VUS_PR": 0.5140609641876642,
+          "VUS_ROC": 0.7668314484019835,
+          "cpu_wall_seconds": 58.125
+        }
+      ]
+    },
+    {
+      "dataset": "PSM",
+      "track": "causal-endpoint",
+      "axis": [
+        23016,
+        87744
+      ],
+      "n": 64728,
+      "n_positive": 17419,
+      "rows": [
+        {
+          "method": "LEFT W192 endpoint",
+          "group": "target training",
+          "permission": "target-trained fixed R checkpoint; prefix scaler includes SELECT; W192 endpoint; starts TEST at t=512",
+          "path": "results/left_causal_endpoint_20261109_v1/EVALUATION/full_causal__LEFT_R_CAUSAL_ENDPOINT.npz",
+          "sha256": "76f61cb23917f40c1b9ebbcbf8396459cba730688969963a91458e4495bd8600",
+          "score_key": "score",
+          "index_key": "index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            512,
+            87841
+          ],
+          "stored_scored_count": 87329,
+          "archived_seed": 2025,
+          "AP": 0.5742608581356813,
+          "ROC_AUC": 0.7629016596466562,
+          "VUS_PR": 0.5795672889806831,
+          "VUS_ROC": 0.7789012498202688,
+          "cpu_wall_seconds": 16.405999999959022
+        },
+        {
+          "method": "TimeRadar terminal V",
+          "group": "pretrained zero update",
+          "permission": "official frozen weights, source FIT scaler, independent native W100 and fixed ten masks",
+          "path": "results/native_v_conditioning_20261119_v1/banks/PSM/A/QUERY/BANK.npz",
+          "sha256": "26e54dd3f0e74093c091356fe242efa0bd0c6ad5f37877298032eeb8210e965e",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            23016,
+            87744
+          ],
+          "stored_scored_count": 64728,
+          "archived_seed": null,
+          "AP": 0.5509523733731589,
+          "ROC_AUC": 0.7350481167276486,
+          "VUS_PR": 0.4845780475892369,
+          "VUS_ROC": 0.6481605559604392,
+          "cpu_wall_seconds": 16.42200000002049
+        },
+        {
+          "method": "TimesFM 3.0 official forecast",
+          "group": "pretrained zero update",
+          "permission": "full official frozen weight; strict past512 x multivariate, current median H1 MSE; same FIT scaler as V",
+          "path": "results/timesfm3_frozen_20261121_v1/score/PSM/QUERY/BANK.npz",
+          "sha256": "dbbc301a2751c51aaae026a705fec837c14ee0149c75599b2eaa02aba95b04f3",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            23016,
+            87744
+          ],
+          "stored_scored_count": 64728,
+          "archived_seed": null,
+          "AP": 0.3445115247864183,
+          "ROC_AUC": 0.566754295493404,
+          "VUS_PR": 0.3761764467802185,
+          "VUS_ROC": 0.608554326307771,
+          "cpu_wall_seconds": 16.390999999945052
+        },
+        {
+          "method": "HistoryMean512",
+          "group": "statistical",
+          "permission": "Strictly past 512 target observations, source CAL-fitted residual scales; target QUERY previous values only",
+          "path": "results/hybrid_v1_psm_Z1_fixed_evaluation_20261102_v1/history_mean512/calculation_inputs.npz",
+          "sha256": "f1c792db8c65d95783c6ac183f5bbca22de3621164384d70c0aac4e40c6a423a",
+          "score_key": "score",
+          "index_key": "index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            512,
+            87841
+          ],
+          "stored_scored_count": 87329,
+          "archived_seed": null,
+          "AP": 0.3036730419128286,
+          "ROC_AUC": 0.5255891228923619,
+          "VUS_PR": 0.332386200271708,
+          "VUS_ROC": 0.5679456753523761,
+          "existing_identical_axis_VUS": true,
+          "existing_metrics_path": "results/timesfm3_frozen_metrics_20261121_v1/METRICS.json",
+          "existing_metrics_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1"
+        }
+      ]
+    },
+    {
+      "dataset": "SWAT",
+      "track": "causal-endpoint",
+      "axis": [
+        608535,
+        944856
+      ],
+      "n": 336321,
+      "n_positive": 47777,
+      "rows": [
+        {
+          "method": "LEFT W192 endpoint",
+          "group": "target training",
+          "permission": "target-normal early FIT/SELECT; nominee noU restricted roles; distinct weights from full native SWaT; W192 endpoint",
+          "path": "results/left_multievent_mixed_u_20261111_v1/left_score/QUERY.npz",
+          "sha256": "74c04ad7abe04f9d6aedd8ed76b91050d0480a13b7b41dc83b84acd38e97e2f3",
+          "score_key": "score",
+          "index_key": "index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            608535,
+            944919
+          ],
+          "stored_scored_count": 336384,
+          "archived_seed": 2025,
+          "AP": 0.1513939035041874,
+          "ROC_AUC": 0.5466867295498509,
+          "VUS_PR": 0.15913673263470754,
+          "VUS_ROC": 0.5402139241847775,
+          "cpu_wall_seconds": 43.25
+        },
+        {
+          "method": "TimeRadar terminal V",
+          "group": "pretrained zero update",
+          "permission": "official frozen weights, source FIT scaler, independent native W100 and fixed ten masks",
+          "path": "results/native_v_conditioning_20261119_v1/banks/SWAT/A/QUERY/BANK.npz",
+          "sha256": "4f6b345de071253569c7ed1054527f002064e42c1e8844f5ee65ae4acbd10ddb",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            608535,
+            944856
+          ],
+          "stored_scored_count": 336321,
+          "archived_seed": null,
+          "AP": 0.795725473846651,
+          "ROC_AUC": 0.857851696292976,
+          "VUS_PR": 0.5766000783598579,
+          "VUS_ROC": 0.7089895871222283,
+          "cpu_wall_seconds": 46.078000000095926
+        },
+        {
+          "method": "TimesFM 3.0 official forecast",
+          "group": "pretrained zero update",
+          "permission": "full official frozen weight; strict past512 x multivariate, current median H1 MSE; same FIT scaler as V",
+          "path": "results/timesfm3_frozen_20261121_v1/score/SWAT/QUERY/BANK.npz",
+          "sha256": "7dba6b365b92cd672ca581590c61b90dc769e71c014a9a10e84f25ff8b19d3b8",
+          "score_key": "canonical_score",
+          "index_key": "absolute_time_index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            608535,
+            944856
+          ],
+          "stored_scored_count": 336321,
+          "archived_seed": null,
+          "AP": 0.09397303134734217,
+          "ROC_AUC": 0.28837473359102306,
+          "VUS_PR": 0.09654379387178967,
+          "VUS_ROC": 0.298381278318882,
+          "cpu_wall_seconds": 43.81299999996554
+        },
+        {
+          "method": "HistoryMean512",
+          "group": "statistical",
+          "permission": "Strictly past 512 target observations, predecessor normal-prefix residual scaling; no compatible current mixed CAL required for rank",
+          "path": "results/left_multievent_mixed_u_20261111_v1/HistoryMean512/QUERY.npz",
+          "sha256": "e835a29ff645b0b51ed8bbbd8072aee3645c064a9514c4d818ff2fe01be245b4",
+          "score_key": "score",
+          "index_key": "index",
+          "index_offset": 0,
+          "input_scored_axis": [
+            608535,
+            944919
+          ],
+          "stored_scored_count": 336384,
+          "archived_seed": null,
+          "AP": 0.08766105228988029,
+          "ROC_AUC": 0.22776076572753323,
+          "VUS_PR": 0.09089266192645236,
+          "VUS_ROC": 0.23269480613398938,
+          "existing_identical_axis_VUS": true,
+          "existing_metrics_path": "results/timesfm3_frozen_metrics_20261121_v1/METRICS.json",
+          "existing_metrics_sha256": "223dbb8d052cd72868d663feae6568449e2faeac1ae6c5a105a3f4c7519cb5e1"
+        }
+      ]
+    }
+  ],
+  "metric": {
+    "AP": "average_precision_score, no PA",
+    "ROC_AUC": "roc_auc_score",
+    "VUS": "metricor.RangeAUC_volume_opt, windowSize=100, thre=250"
+  },
+  "training_or_forward_calls": 0,
+  "limits": "Current-score panels are causal information contracts. Original offline and at-time settings are not same-budget, same-scaler or causal latency trials.",
+  "SWAT_legacy_available_index_note": "Original LEFT raw bank availability field misstated each position as immediately available. Footprint is fixed W192/stride192, so window-end availability is used for interpretation. No offline-to-causal reinterpretation.",
+  "scoring_footprint": "Official TimeRadar W100, stride100. Zero parameter update. Batch-shared order can access subsequent positions beyond the W100. CATCH and LEFT native windows W192 full-output retrospective. Causal full TimesFM3 uses only prior512 to predict one, then x_t to score. Causal TimeRadar B1 consumes x_t and prior99. Separate axis tracks.",
+  "caveats": [
+    "SWAT CATCH lacks compatible local score cache; legacy paper values kept in asset index.",
+    "PSM evaluation points are relative to the original test split; SWAT are public reconstructed combined timeline points.",
+    "This comparison matches indices and point metric definitions. Training / scale / context permissions are deliberately disclosed separately."
+  ]
+}

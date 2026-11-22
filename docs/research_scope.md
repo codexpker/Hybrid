@@ -4,7 +4,7 @@
 
 以多源预训练和目标 Z／U／F 为同一方法的两阶段结构，研究公开多变量混合无标签数据的时频—时序异常表示、检测与污染鲁棒性。第一篇数据与标签不进入实验。Hybrid 是待验证的所提方法，TimeRadar、LEFT、TimesFM 和主流检测器保留外部身份。此前实证稿、四旋转、MeanT 及其他已停止配方维持归档状态。
 
-[公开主比较](../manuscript/next_generation_20261115/README.md#公开-tsad-基准总表)按作者指标、原生本地、固定混合后缀及末点可用性展示。当前实验仅验证[时频分歧与因果短块的对称排序](../manuscript/next_generation_20261115/method_definition.md)，由 SWaT 与全 SMD28 预训练、PSM 开发折检验。Self/Cross-lag、长历史、微弱异常与污染鲁棒性仍为单独待证问题。
+[公开主比较](../manuscript/next_generation_20261115/README.md)按原生共同轴、末点可用性和训练权限展示，之前的跨协议总览作为资产索引保留。冻结 TimeRadar 特征上的小规模合成监督评分头试验已归档。下一项[原生末点方差的源事件阶段排序](../manuscript/next_generation_20261115/method_definition.md)修改原解码器源学习，首折以 SWaT 公开源事件和 SWaT／SMD28 正常源训练数据面向持出的 PSM。当前已实现目标与源权限封装，尚未做训练。Self/Cross-lag、长历史、微弱异常与污染鲁棒性仍为单独待证问题。
 
 ## 2026-11-18 混合无标签外部参照进度
 
