@@ -111,9 +111,9 @@ TimeRadar Table 6 另报 SMD、PSM、MSL 的 VUS-PR/ROC，为 .2410/.8616、.480
 - PSM 25 通道、测试相对轴 `[23016,87744)` 64,728 点。SWaT 31 通道、组合轴 `[608535,944856)` 336,321 点。TimesFM 3.0 官方代码固定提交 `918df02c9d366b2145bc5876135fa2131d3ed2a6`，权重修订 `43046b85ec22d584a13f8098c2ed39c889e129c2`，未更新权重。官方联合预测仅用过去 512 点，使用固定源 FIT 标准化下的中位数单步预测 MSE 作为项目异常分数。轻量模块没有加载官方权重，自己在任务正常源前缀训练。两种预测器无法单独辨识权重的作用。TimeRadar B1 用以 t 为右端的 100 点及固定十副本方差，不等同 A 中的整窗与共享批次原生输入。PSM CAL 仍是全攻击。本面板的 SWaT History Mean512 没有兼容 CAL，只有排序。[冻结 TimesFM 3.0 与报警细目](../../docs/experiments/timesfm3_frozen_20261121/RESULTS.md) · [因果 V 读出与轻量模型](../../docs/experiments/timeradar_native_v_conditioning_20261119/RESULTS.md)。
 - History Mean512 的 SMD 行对全部 28 个实体分别在 `[512, floor(testN/100)×100)` 计算 AP/ROC 后等权宏平均。SMAP 使用原生 53 条 sensor0 序列、保留时间边界，合计 400,481 个已评分点。表内是微 AP/ROC，另存实体宏 AP .318134。MSL/SMAP 的单通道裁法只能用于通用性，无法验证跨通道机制。[SMD28 共同轴归档](../../docs/experiments/timeradar_smd_full_left_matched_20261116/RESULTS.md) · [SMAP 原生实体归档](../../../results/hybrid_v1_public_native_zs_20261105_v1/PUBLIC_DOMAIN_PRIMARY_REPORT.md)。
 
-**必要缺项。** 当前待验证 Hybrid 的全域主表、贯通 Z/U/F 和同协议机制消融是主要缺口。完整同角色 LEFT SMD28 和 CATCH SMD28 未完成，CrossAD、ModernTCN 和经典深度检测器暂无兼容本地全域表。外部行均复用论文原表或已归档指标。本轮新候选及其有限开发验证见[方法章节](method_definition.md)。
+**必要缺项。** 当前待验证 Hybrid 的全域主表、贯通 Z/U/F 和同协议机制消融是主要缺口。完整同角色 LEFT SMD28 和 CATCH SMD28 未完成，CrossAD、ModernTCN 和经典深度检测器暂无兼容本地全域表。外部行均复用论文原表或已归档指标。下一方法与当前实现进度见[方法章节](method_definition.md)。
 
-**所提方法的独立开发折。** SWaT＋全 SMD28 预训练、PSM 单 seed 的对称排序 U 已完成。相同 64,728 点上 AP 为 .302144，普通 Logistic U 为 .294008，Z 为 .261274，原生 TimeRadar V 为 .550952。持续覆盖显著低于原生 V。该初步对照的差值和代价写在[现有方法章节](method_definition.md#first-development-fold-results-and-scope)，不回填全域主表。
+**已收口的独立开发折。** `native_pair_rank` 是冻结 TimeRadar 特征上的小规模合成监督评分头试验。SWaT＋全 SMD28 预训练、PSM 单 seed。在相同 64,728 点上，对称 U 的 AP 为 .302144，普通 Logistic U 为 .294008，Z 为 .261274，原生 TimeRadar V 为 .550952。相对 Logistic 的局部正项与相对原生 V 的排序和持续覆盖代价同时归档。该折保留为[历史开发试验](method_definition.md#first-development-fold-results-and-scope)，全域主表保留待验证。
 
 ## 2026-11-15 初稿和归档
 
