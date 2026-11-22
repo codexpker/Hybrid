@@ -1,0 +1,108 @@
+{
+  "description": "Independent, read-only CPU recomputation from sealed endpoint score banks. No additional model executions.",
+  "verified_source": "SHA-256 of the four selected checkpoints and two seed manifests, original source SELECT arrays and nonidentical source FIT draws across seeds, selected step matches the earliest minimum among the seven stored source SELECT risks.",
+  "scope": "All MSL entities for AP and confirmed-three normal fragments; all full-axis PSM cached scores for AP and ROC-AUC. VUS and SMAP results were not independently recomputed.",
+  "seed_order": [
+    2025,
+    2026,
+    2027
+  ],
+  "paired_sample_sd_ddof": 1,
+  "export_comparison": "All 12 checked paired means and sample standard deviations agree within 1e-13 absolute error. All seven checked MSL three-confirmation false-alarm fragment counts agree exactly.",
+  "MSL_CAL": "Per-entity q99/higher equals maximum; strict greater threshold. Confirmed-three without backfill; runs intersected with normal scored points.",
+  "PSM_axes": "Full ranking [99,87841); separate operating suffix [23016,87744), 512 attack-labeled calibration points.",
+  "selected_steps": {
+    "2026_copy": 40,
+    "2026_point_weighted": 240,
+    "2027_copy": 80,
+    "2027_point_weighted": 240
+  },
+  "MSL": {
+    "per_method_AP": {
+      "frozen": 0.3355934441280655,
+      "2025_copy": 0.3415196419856745,
+      "2025_point_weighted": 0.35411838399157886,
+      "2026_copy": 0.3399466225950711,
+      "2026_point_weighted": 0.35091233053575943,
+      "2027_copy": 0.3426919177980669,
+      "2027_point_weighted": 0.35296668774077244
+    },
+    "confirmed3_normal_fragments": {
+      "frozen": 162,
+      "2025_copy": 163,
+      "2025_point_weighted": 165,
+      "2026_copy": 163,
+      "2026_point_weighted": 140,
+      "2027_copy": 158,
+      "2027_point_weighted": 132
+    },
+    "copy": {
+      "seed_deltas": [
+        0.012598742005904329,
+        0.010965707940688352,
+        0.010274769942705542
+      ],
+      "mean": 0.011279739963099408,
+      "sample_sd": 0.0011933874563429892
+    },
+    "frozen": {
+      "seed_deltas": [
+        0.018524939863513334,
+        0.01531888640769391,
+        0.017373243612706923
+      ],
+      "mean": 0.01707235662797139,
+      "sample_sd": 0.0016240672472469695
+    }
+  },
+  "PSM": {
+    "copy": {
+      "AP_ROC_deltas": [
+        [
+          0.038139068010523025,
+          0.03427601883656484
+        ],
+        [
+          0.03146222221866435,
+          0.03032682514096352
+        ],
+        [
+          0.03340001797894809,
+          0.032771392909589636
+        ]
+      ],
+      "mean": [
+        0.03433376940271182,
+        0.03245807896237266
+      ],
+      "sample_sd": [
+        0.0034349652433613973,
+        0.0019931525113459844
+      ]
+    },
+    "frozen": {
+      "AP_ROC_deltas": [
+        [
+          0.04195938076559269,
+          0.03514770998432415
+        ],
+        [
+          0.03278104594320119,
+          0.03003287346921346
+        ],
+        [
+          0.038848460661531914,
+          0.03433720628993053
+        ]
+      ],
+      "mean": [
+        0.03786296245677526,
+        0.033172596581156046
+      ],
+      "sample_sd": [
+        0.004667854170993887,
+        0.002749113488818942
+      ]
+    }
+  }
+}
