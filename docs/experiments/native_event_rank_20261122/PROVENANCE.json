@@ -1,0 +1,504 @@
+{
+  "implementation_commit": "ebdb56cff970c1a610d75e08c9582583dc99a0cf",
+  "runtime_file_sha256": {
+    "training": "0cdd5296f67f0c9629c62bd2afe3796129cfaf83746e7f9cfcc3d13c535d02e5",
+    "readout": "1a9444eea523d66ce17448540c812cab6bc38ec19fd3f87d3f490cf595406000"
+  },
+  "server_run_relative": "results/native_event_rank_psm_20261122_v1",
+  "plan": {
+    "status": "PREPARED_BEFORE_MODEL_LOAD",
+    "seed": 2025,
+    "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+    "nominal_swat_fit": [
+      0,
+      396000
+    ],
+    "nominal_swat_select": [
+      396000,
+      495000
+    ],
+    "nominal_swat_scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+    "nominal_smd_binding_sha256": "501184abd4dbd09e9d18a60cc84c88de05eb77f088f706286bb111b28fb51c73",
+    "nominal_smd_entities": [
+      "machine-1-1",
+      "machine-1-2",
+      "machine-1-3",
+      "machine-1-4",
+      "machine-1-5",
+      "machine-1-6",
+      "machine-1-7",
+      "machine-1-8",
+      "machine-2-1",
+      "machine-2-2",
+      "machine-2-3",
+      "machine-2-4",
+      "machine-2-5",
+      "machine-2-6",
+      "machine-2-7",
+      "machine-2-8",
+      "machine-2-9",
+      "machine-3-1",
+      "machine-3-2",
+      "machine-3-3",
+      "machine-3-4",
+      "machine-3-5",
+      "machine-3-6",
+      "machine-3-7",
+      "machine-3-8",
+      "machine-3-9",
+      "machine-3-10",
+      "machine-3-11"
+    ],
+    "source_label_sha256": "2a9fb52f192067dd258f73be4691678b1c42e09c3dc87d259fea616640818039",
+    "event_fit_bounds": [
+      495000,
+      502578
+    ],
+    "event_select_bounds": [
+      502578,
+      585000
+    ],
+    "event_fit": [
+      [
+        496754,
+        497694
+      ],
+      [
+        498068,
+        498511
+      ],
+      [
+        499920,
+        500303
+      ],
+      [
+        501459,
+        501849
+      ],
+      [
+        502255,
+        502451
+      ]
+    ],
+    "event_select": [
+      [
+        502705,
+        503134
+      ],
+      [
+        506410,
+        507374
+      ],
+      [
+        510380,
+        511101
+      ],
+      [
+        568800,
+        569521
+      ]
+    ],
+    "fit_positive_counts": [
+      [
+        281,
+        280,
+        280
+      ],
+      [
+        115,
+        115,
+        114
+      ],
+      [
+        95,
+        95,
+        94
+      ],
+      [
+        97,
+        97,
+        97
+      ],
+      [
+        33,
+        32,
+        32
+      ]
+    ],
+    "fit_normal_pool": 4632,
+    "select_positive_counts": [
+      110,
+      110,
+      110,
+      289,
+      288,
+      288,
+      208,
+      207,
+      207,
+      208,
+      207,
+      207
+    ],
+    "select_paired_per_stratum": [
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+    ],
+    "select_normal_pool": 79092,
+    "steps": 240,
+    "warmup": 24,
+    "select_steps": [
+      0,
+      40,
+      80,
+      120,
+      160,
+      200,
+      240
+    ],
+    "optics": {
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eps": 1e-08,
+      "weight_decay": 0.1,
+      "norm_bias_weight_decay": 0,
+      "copy_batch": 32,
+      "pair_margin": 1,
+      "pair_weight": 1,
+      "nominal_window": 100,
+      "norm": 0,
+      "native_B": 1,
+      "native_masks": 84551,
+      "copies": 10,
+      "mode": "eval",
+      "trainable": "decoder only",
+      "selection": "earliest minimum event-balanced source risk"
+    },
+    "nominal_sampling": "SWaT and SMD 16 each. SMD machine uniformly, then a legal endpoint uniformly.",
+    "permissions": "Marked public SWaT source-event slice and nominal SWaT/SMD28 train roles only.",
+    "target_values_or_labels_read": false
+  },
+  "scale": {
+    "status": "COMPLETED",
+    "value": 0.02649214304983616,
+    "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+    "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+    "mask_ids": {
+      "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+      "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+    },
+    "count": 4632,
+    "bank_file": "FIT_NORMAL_V.npz",
+    "bank_sha256": "c896f3d518bbfee8fa9709f2354dc1d880e8f23880a5dc7cb2d0651cefcc1182",
+    "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+    "elapsed_seconds": 46.189245286397636,
+    "peak_reserved_bytes": 757071872,
+    "target_read": false
+  },
+  "frozen_model_manifest": {
+    "copy": {
+      "checkpoint_relative": "train/copy/selected.pt",
+      "checkpoint_sha256": "20bbbdf728dcc08cbd2e20c65ab79e72a847d9469c7f004f28cf65f773cfcc6e",
+      "selection_relative": "train/copy/SELECTION.json",
+      "selection_sha256": "4e4dd2464684fad7534fb162b90c6b3ec5ba2e35bbc5e7570fbca81968362fb5",
+      "selected_step": 80
+    },
+    "point_weighted": {
+      "checkpoint_relative": "train/point_weighted/selected.pt",
+      "checkpoint_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+      "selection_relative": "train/point_weighted/SELECTION.json",
+      "selection_sha256": "d6e5ee52a9aa2f2f3409ea5719cf4d69afb88831d8d867fba0646da75b503fa3",
+      "selected_step": 240
+    },
+    "event_balanced": {
+      "checkpoint_relative": "train/event_balanced/selected.pt",
+      "checkpoint_sha256": "ded10bc0e0b1f1d30c584517bd3fe8ae259c23523e54f9bd3fd4b8e19f512018",
+      "selection_relative": "train/event_balanced/SELECTION.json",
+      "selection_sha256": "8e21407c0305fbe0906255056b06fc3e72e00d2cb1cbf0792397f0b7f2580c21",
+      "selected_step": 240
+    }
+  },
+  "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+  "readout_freeze_sha256": "e4b944d4458fd5b5132b5950ad3a21c537a27802580da04544395c26bbe73b0d",
+  "readout": {
+    "copy": {
+      "CAL": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "CAL",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/CAL/BANK.npz",
+        "sha256": "193c023326f455b7172be4734b846c82d17d0671ae9cef64207e0ab8ff33ac4c",
+        "count": 512,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/CAL/part0/RECEIPT.json",
+            "sha256": "f8fa485a33b87aa9196ade97e0f1788700509bd61de9fc010390e452a4c78e9f"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "20bbbdf728dcc08cbd2e20c65ab79e72a847d9469c7f004f28cf65f773cfcc6e",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "283bbce8b9836e17852d8c60a2c7d2ee6c243079f733dc9d2c767519b8f7d7ad",
+        "shard_devices": {
+          "0": 0
+        }
+      },
+      "QUERY": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "QUERY",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/QUERY/BANK.npz",
+        "sha256": "17190db3173bb6aaebd26a20d937d52a21acf902eec0713269f82be4c702a97b",
+        "count": 64728,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/QUERY/part0/RECEIPT.json",
+            "sha256": "5b7d48815461fba19ece7e12662dd6d6c878876659f71033a44879241c9b8926"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/QUERY/part1/RECEIPT.json",
+            "sha256": "ed8de7609271b6c6316940344ed620cc31cb62cb7a243bc4237f28159ab507b2"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/QUERY/part2/RECEIPT.json",
+            "sha256": "9a9dbc3fbef850bdf7e1cddd1a7b8ec2460720d93bdc90a856b0cf93f081c21b"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/copy/cache/PSM/QUERY/part3/RECEIPT.json",
+            "sha256": "e7f3a46095e5c964d7a8ca6188ed149686a2c512b5d77e71473ff1b5d48ce0d8"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "20bbbdf728dcc08cbd2e20c65ab79e72a847d9469c7f004f28cf65f773cfcc6e",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "28fbaac2e719c039955b2966caa7f422c1c3df8733de093773285cd2e953e1dd",
+        "shard_devices": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      }
+    },
+    "point_weighted": {
+      "CAL": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "CAL",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/CAL/BANK.npz",
+        "sha256": "fae7ca80c6c05a1bb684e2f3930b50afe1939e7e9f43c1e03f2e38956d899bc4",
+        "count": 512,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/CAL/part0/RECEIPT.json",
+            "sha256": "4288b1bd017b73605c910255d9b680d5222dab604f36a657fc3554254585c5d6"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "757fcac364e613f4058168e3f4a5540c1a5e88f9e7b325839d37bd14a93fceb8",
+        "shard_devices": {
+          "0": 2
+        }
+      },
+      "QUERY": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "QUERY",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/QUERY/BANK.npz",
+        "sha256": "9404c19d3dabaffeeaefb30f5d36b083a6c33858f51c19ff220ce932ae98ebab",
+        "count": 64728,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/QUERY/part0/RECEIPT.json",
+            "sha256": "e261b8cee05f54007da2a34b2b8de395bf09b4e0ab9a5e91eb299e2dad1bc068"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/QUERY/part1/RECEIPT.json",
+            "sha256": "6caf8cd54b93b58c9371824cd9a1605016558842a4a480d347d80b270dd3f0be"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/QUERY/part2/RECEIPT.json",
+            "sha256": "851e92bf575e1508f218d6c5965148fb411d80d987afe2dd836b3f18c2459320"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/point_weighted/cache/PSM/QUERY/part3/RECEIPT.json",
+            "sha256": "3a1387b580f4c48f881a7ea84ed71c0941d484b311bb74062783e4e666f010bc"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "9292fa8a6d79fc5c080fa76151cdd506197deed4d6799e1aed5f869668578693",
+        "shard_devices": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      }
+    },
+    "event_balanced": {
+      "CAL": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "CAL",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/CAL/BANK.npz",
+        "sha256": "3dd3a09716460f2690607c98d2d7a4e442bec1dc46784c965d75708736086e8d",
+        "count": 512,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/CAL/part0/RECEIPT.json",
+            "sha256": "e8f872d472cda7866998572708106b553ea231263dffe5694f5370ed811d92b6"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "ded10bc0e0b1f1d30c584517bd3fe8ae259c23523e54f9bd3fd4b8e19f512018",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "2013359586d3adba97ff3ee11524f1e7fe6326c45e13872b67ef1ae047c06a09",
+        "shard_devices": {
+          "0": 1
+        }
+      },
+      "QUERY": {
+        "status": "COMPLETED",
+        "domain": "PSM",
+        "entity": "PSM_25_channel_benchmark",
+        "record_id": "PSM_test",
+        "role": "QUERY",
+        "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/QUERY/BANK.npz",
+        "sha256": "7826b5aa0de23b7d50a57a775a2a5d0797458eccaec4582d82898e6f8817a7f5",
+        "count": 64728,
+        "parts": [
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/QUERY/part0/RECEIPT.json",
+            "sha256": "450745180ff6385cf50675bc6f8aa8354ef22c05cb15685f8b8a284ad18c17be"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/QUERY/part1/RECEIPT.json",
+            "sha256": "a395cf458aca0ce09cfa8f561b1cc8ac88dc5719dc642081f0bd17d3e2c45b25"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/QUERY/part2/RECEIPT.json",
+            "sha256": "4e6f1b4739e697fc0e5982d2fa1527e4ddc7ff87fc4672c85be385178f609126"
+          },
+          {
+            "relative": "results/native_event_rank_psm_20261122_v1/readout/event_balanced/cache/PSM/QUERY/part3/RECEIPT.json",
+            "sha256": "a765ba3f4f7a535f6adfdb0117b9a666fbde8f3254884241833e1df8bd6f22ea"
+          }
+        ],
+        "mask_bits_sha256": "632140cff7afea7e954ac12d9061e8e208d6feb1f18fe830bc6f4a4ed180570b",
+        "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+        "labels_read": false,
+        "checkpoint_sha256": "ded10bc0e0b1f1d30c584517bd3fe8ae259c23523e54f9bd3fd4b8e19f512018",
+        "source_freeze_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+        "sealed_receipt_sha256": "9d391880ea6001c706b488b0ffa5d1496f5923b5ff78c38b268d0938738b3435",
+        "shard_devices": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      }
+    }
+  },
+  "query_axis": [
+    23016,
+    87744
+  ],
+  "cal_points": 512,
+  "target_channels": 25,
+  "target_query_raw_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+  "target_evaluation_label_sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+  "pinned_VUS": {
+    "windowSize": 100,
+    "thre": 250,
+    "source_sha256": "808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc"
+  },
+  "metrics_sha256": "7b8974bbfda0886ef0ba6d047dfb50ad451d84101858c77f3c2b6815948fb1ce",
+  "training_trace_sha256": {
+    "copy": "976ce9cd83e1485118b9ea3106ec1b33e37744c7eea0cd9b2b64864efa93d020",
+    "point_weighted": "94c6e5a56d089adf757723fc826d2af42bd85a3e24e9956e4f76a4434b835d0d",
+    "event_balanced": "046befab5630f3556a913e7fc2d0d6466cc3f135220c65f067ec4e17e226d739"
+  },
+  "stage_GPU_hours": {
+    "source_scale_and_training": 0.23318338152422155,
+    "target_readout": 0.5902687627912706
+  },
+  "CPU_metric_wall_seconds": 15.198908176273108,
+  "training_updates": 240,
+  "trainable_parameters": 793610,
+  "total_parameters": 1636043,
+  "key_result_review": {
+    "status": "PASS_INDEPENDENT_CPU_AUDIT",
+    "source_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+    "models_sha256": "12a86647125d392b75149e2e60e5277ac162409e0b6ea145709a36a4add0598d",
+    "readout_sha256": "e4b944d4458fd5b5132b5950ad3a21c537a27802580da04544395c26bbe73b0d",
+    "psm_labels_sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+    "source_plan_rebuilt_from_seed": true,
+    "source_roles_verified": true,
+    "source_fit_select_events": [
+      5,
+      4
+    ],
+    "selected_steps": {
+      "copy": 80,
+      "point_weighted": 240,
+      "event_balanced": 240
+    },
+    "official_step0_reusers": [],
+    "non_decoder_state_unchanged": true,
+    "cal_points": 512,
+    "cal_attack_points": 512,
+    "query_points": 64728,
+    "complete_query_events": 48,
+    "long_query_events": 5,
+    "score_banks_verified": 8,
+    "readout_shards_verified": 15,
+    "native_variance_max_abs_fp32_vs_fp64": 2.6523751941454066e-06,
+    "native_variance_tolerance": {
+      "rtol": 1e-05,
+      "atol": 1e-07
+    },
+    "native_score_order_preserved": true,
+    "row_checks": 182,
+    "paired_checks": 30,
+    "max_abs_discrepancy": 1.1102230246251565e-16,
+    "training_or_forward": false
+  }
+}
