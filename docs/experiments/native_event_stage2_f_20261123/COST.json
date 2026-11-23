@@ -1,0 +1,11 @@
+{
+  "training_seconds": 1517.090563974809,
+  "readout_seconds": 1901.8069787546992,
+  "GPU_hours": 0.9496937618693078,
+  "training_runs": 6,
+  "readout_banks": 4,
+  "PSM_Z_reused": true,
+  "SMD_Z_recomputed_reason": "full-SMD history bank scaler differs from frozen U/F task scaler; recomputed compatible endpoints only",
+  "failed_GPU_jobs": 0,
+  "CPU_metrics_first_failure": "overlapping AP keyword while merging metric dictionaries; corrected dictionary merge then reran CPU evaluation only"
+}

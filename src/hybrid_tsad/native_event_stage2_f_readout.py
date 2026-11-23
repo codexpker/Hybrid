@@ -92,7 +92,7 @@ def evaluate(w):
             causal_timing(rows,details)
             for row in rows:
                 e=[{k:'' if v is None else str(v) for k,v in r.items()} for r in details if r['stream']==row['stream']]
-                row.update(group_operating([row],e));methods.append(dict(domain=domain,initialization=arm,phase=phase,**row,**rank))
+                row.update(group_operating([row],e));methods.append(dict(domain=domain,initialization=arm,phase=phase,**{**row,**rank}))
             events.extend(dict(domain=domain,initialization=arm,phase=phase,**r) for r in details)
     write_csv(root/'methods.csv',methods);write_csv(root/'events.csv',events)
 
