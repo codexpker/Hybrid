@@ -1,0 +1,28 @@
+{
+  "jobs": [
+    {
+      "gpu": 0,
+      "lane": 0,
+      "exit_code": 0,
+      "seconds": 444.87641252810135
+    },
+    {
+      "gpu": 1,
+      "lane": 1,
+      "exit_code": 0,
+      "seconds": 495.64791567018256
+    },
+    {
+      "gpu": 2,
+      "lane": 2,
+      "exit_code": 0,
+      "seconds": 494.64654527185485
+    },
+    {
+      "gpu": 3,
+      "lane": 3,
+      "exit_code": 0,
+      "seconds": 481.122063560877
+    }
+  ]
+}

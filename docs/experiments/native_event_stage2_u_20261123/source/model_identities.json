@@ -1,0 +1,53 @@
+{
+  "status": "COMPLETED",
+  "initial_checkpoint": "results/native_event_rank_psm_20261122_v1/train/point_weighted/selected.pt",
+  "initial_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+  "source_plan_and_roles": "training_config.json",
+  "global_seal_sha256": "09fea560680f339ddd572b7a902c0280caf20454a0c7c4ce78892560202e7c22",
+  "checkpoints": [
+    {
+      "domain": "SHARED",
+      "arm": "source_pair",
+      "checkpoint_relative": "train/SHARED/source_pair/endpoint.pt",
+      "sha256": "b1acb1adcf3f9f793730825f56fc730558e0a714431476bb4fda9c9643c16cca"
+    },
+    {
+      "domain": "PSM",
+      "arm": "replay_copy",
+      "checkpoint_relative": "train/PSM/replay_copy/endpoint.pt",
+      "sha256": "c02b7a9a1f950ef1aea0ad49e22af21884a82687798aeb7f96e3bdfca8154090"
+    },
+    {
+      "domain": "PSM",
+      "arm": "replay_pair",
+      "checkpoint_relative": "train/PSM/replay_pair/endpoint.pt",
+      "sha256": "4701cdd5472e64262047daceaf98e5f90a0faeba81e4a6620c48c6f29ab5a840"
+    },
+    {
+      "domain": "machine-3-2",
+      "arm": "replay_copy",
+      "checkpoint_relative": "train/machine-3-2/replay_copy/endpoint.pt",
+      "sha256": "f63cf25f402404fe9e01e0092c6b9c3c671ef2ceba76fef560b2f6739ad51748"
+    },
+    {
+      "domain": "machine-3-2",
+      "arm": "replay_pair",
+      "checkpoint_relative": "train/machine-3-2/replay_pair/endpoint.pt",
+      "sha256": "f26fd1764288fa8fdc0cbe8004ec9cb1baf0f88afd435118fc38dfc527de3030"
+    },
+    {
+      "domain": "machine-3-3",
+      "arm": "replay_copy",
+      "checkpoint_relative": "train/machine-3-3/replay_copy/endpoint.pt",
+      "sha256": "fcb8ae463e03ee9113f795969de746f755bd288b9b7d4c59c757f393a8bef466"
+    },
+    {
+      "domain": "machine-3-3",
+      "arm": "replay_pair",
+      "checkpoint_relative": "train/machine-3-3/replay_pair/endpoint.pt",
+      "sha256": "63b8a480c20eb8506754f0a0a1f2e794407d3be10851d2b47bd15e872816c32d"
+    }
+  ],
+  "gpu_hours": 5.882074344867142,
+  "checkpoint_access": "Server research workspace. Only identities and aggregate results in public Git."
+}

@@ -1,0 +1,148 @@
+[
+  {
+    "entity": "PSM",
+    "target_scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+    "roles": {
+      "U_FIT": {
+        "record": "PSM_test",
+        "bounds": [
+          0,
+          17568
+        ],
+        "array_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5"
+      },
+      "CAL": {
+        "record": "PSM_test",
+        "bounds": [
+          18112,
+          21960
+        ],
+        "array_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+        "index_sha256": "9eee65e8d8164ce5e3ce149ca92be053680877a34dd5f8df6b2cd9158e43278f",
+        "first": 18624,
+        "last": 21887,
+        "points": 512
+      },
+      "QUERY": {
+        "record": "PSM_test",
+        "bounds": [
+          22504,
+          87841
+        ],
+        "array_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+        "index_sha256": "dcfaa00da08b05885522bc74ef31cedb50aa8f8a53c407dd79abb8426020b94a",
+        "first": 23016,
+        "last": 87743,
+        "points": 64728
+      }
+    },
+    "noU_source": "sealed seed2025 point_weighted readout at PSM CAL and QUERY",
+    "CAL_label_status": "512 of 512 CAL points previously reported anomalous"
+  },
+  {
+    "entity": "machine-3-2",
+    "target_scaler_sha256": "9650da8fcd9ca064e94f37900244e80de0031b11794eb0e4087b1254a64f3665",
+    "roles": {
+      "U_FIT": {
+        "record": "machine-3-2_test",
+        "bounds": [
+          0,
+          7901
+        ],
+        "array_sha256": "4cee43b01cd658f5b64c38eabdb9d220080f6f5184321bb87025d7474430172d"
+      },
+      "CAL": {
+        "record": "machine-3-2_train",
+        "bounds": [
+          19505,
+          23702
+        ],
+        "array_sha256": "89e4044d3de7705b6d336364cb86b7f74d4fa72372ae2c5b69a1b934b40805e2",
+        "index_sha256": "77e56f8392dd88758a4f56ced3f1e4bcf4356d0cfe9f03ff45e82a88c23ce6c9",
+        "first": 20017,
+        "last": 23701,
+        "points": 512
+      },
+      "QUERY": {
+        "record": "machine-3-2_test",
+        "bounds": [
+          8445,
+          23703
+        ],
+        "array_sha256": "5c5ec6cf5a38bfccec03bb5dbdc4c64a7f084edaec27d6cd67f6e3643fe572df",
+        "index_sha256": "38db40c85a3fbe3f74898a2a41260938a7ac90c7fcd5582836bd73e10f70f598",
+        "first": 8957,
+        "last": 23702,
+        "points": 14746
+      }
+    },
+    "stage1_smd_source": {
+      "FIT": [
+        0,
+        14221
+      ],
+      "SELECT": [
+        14321,
+        18961
+      ]
+    },
+    "max_abs_scaler_mean_change": 8.10570638387631e-10,
+    "max_abs_scaler_scale_change": 9.036429243769462e-10,
+    "stage1_smd28_scaler_sha256": "ae2f5a0dd5b6cc1268a57a771d0c69d30c6229a5e29976d8d0011f55d4ca096b",
+    "noU_source": "new scores under original U target scaler and original CAL points",
+    "CAL_label_status": "nominal public train; no point labels"
+  },
+  {
+    "entity": "machine-3-3",
+    "target_scaler_sha256": "0af1238fdd555fdd621e631303b2e5f5dbf45342cc8abbfb9d0a2fbe3494eb76",
+    "roles": {
+      "U_FIT": {
+        "record": "machine-3-3_test",
+        "bounds": [
+          0,
+          7901
+        ],
+        "array_sha256": "bb68ac9af3fa50a2de452d1ba4435dea7f7cef7fa98aa8c26124977f147321c0"
+      },
+      "CAL": {
+        "record": "machine-3-3_train",
+        "bounds": [
+          19506,
+          23703
+        ],
+        "array_sha256": "d90830c6dbab7978be2261be4ed307311ab1f41ca891ddd6a0a92a914790f7f9",
+        "index_sha256": "8264ec6969d66ab3e2b2f50c1debaec992c1f677d6800065ebfd5cfe3a5c9a3e",
+        "first": 20018,
+        "last": 23702,
+        "points": 512
+      },
+      "QUERY": {
+        "record": "machine-3-3_test",
+        "bounds": [
+          8445,
+          23703
+        ],
+        "array_sha256": "61c0477f7da4e2d89747f90a494d24bbb04eace857a278871eea505640d76d07",
+        "index_sha256": "38db40c85a3fbe3f74898a2a41260938a7ac90c7fcd5582836bd73e10f70f598",
+        "first": 8957,
+        "last": 23702,
+        "points": 14746
+      }
+    },
+    "stage1_smd_source": {
+      "FIT": [
+        0,
+        14221
+      ],
+      "SELECT": [
+        14321,
+        18962
+      ]
+    },
+    "max_abs_scaler_mean_change": 2.4943396237375737e-09,
+    "max_abs_scaler_scale_change": 1.922434024470565e-09,
+    "stage1_smd28_scaler_sha256": "57d89edcb652cd160c71b42b990701e08ec790f41e36ada013704d5bf05df249",
+    "noU_source": "new scores under original U target scaler and original CAL points",
+    "CAL_label_status": "nominal public train; no point labels"
+  }
+]

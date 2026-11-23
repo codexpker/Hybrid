@@ -1,0 +1,75 @@
+{
+  "scope": "Single CPU recomputation from the six sealed score banks. Checks AP with ties, three paired differences, CAL thresholds, strict and confirmed point/fragment/greedy event counts and long coverage. ROC, VUS and full training gradients were not recomputed.",
+  "selected_stage1_checkpoint_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1",
+  "shared_source_endpoint_sha256": "b1acb1adcf3f9f793730825f56fc730558e0a714431476bb4fda9c9643c16cca",
+  "trained_endpoint_count": 7,
+  "checks": {
+    "PSM": {
+      "query_points": 64728,
+      "cal_points": 512,
+      "max_absolute_AP_difference": 1.1102230246251565e-16,
+      "AP": {
+        "noU": 0.6134150351253649,
+        "replay_copy": 0.5248280248880635,
+        "replay_pair": 0.569858989765449,
+        "source_pair": 0.5788578460936782
+      },
+      "replay_pair_minus_reference_AP": {
+        "replay_copy": 0.04503096487738556,
+        "noU": -0.04355604535991586,
+        "source_pair": -0.008998856328229166
+      },
+      "confirmed_normal_false_alarm_fragments": {
+        "noU": 93,
+        "replay_copy": 89,
+        "replay_pair": 13,
+        "source_pair": 10
+      }
+    },
+    "machine-3-2": {
+      "query_points": 14746,
+      "cal_points": 512,
+      "max_absolute_AP_difference": 1.3877787807814457e-17,
+      "AP": {
+        "noU": 0.03173834999658443,
+        "replay_copy": 0.0392416412083268,
+        "replay_pair": 0.03348574742858048,
+        "source_pair": 0.031966527862167415
+      },
+      "replay_pair_minus_reference_AP": {
+        "replay_copy": -0.005755893779746321,
+        "noU": 0.0017473974319960478,
+        "source_pair": 0.0015192195664130645
+      },
+      "confirmed_normal_false_alarm_fragments": {
+        "noU": 1,
+        "replay_copy": 1,
+        "replay_pair": 0,
+        "source_pair": 0
+      }
+    },
+    "machine-3-3": {
+      "query_points": 14746,
+      "cal_points": 512,
+      "max_absolute_AP_difference": 1.3877787807814457e-17,
+      "AP": {
+        "noU": 0.051259168678227635,
+        "replay_copy": 0.08262754849180903,
+        "replay_pair": 0.043065371047820135,
+        "source_pair": 0.04222587951469561
+      },
+      "replay_pair_minus_reference_AP": {
+        "replay_copy": -0.0395621774439889,
+        "noU": -0.0081937976304075,
+        "source_pair": 0.0008394915331245215
+      },
+      "confirmed_normal_false_alarm_fragments": {
+        "noU": 22,
+        "replay_copy": 23,
+        "replay_pair": 19,
+        "source_pair": 17
+      }
+    }
+  },
+  "source_plan_sha256": "f22efd574351cd5ec2a0166a0083733854ba1fa95df1e8640be10d38da2d6cde"
+}

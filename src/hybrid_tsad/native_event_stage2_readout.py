@@ -29,6 +29,7 @@ TASK_SHA = dict(zip(DOMAINS, (
     "85f41928b8c2d8bfd6eb979e52ea521015ea4ef73f05b87de6cc56863782e463")))
 ARMS = ("noU", "replay_copy", "replay_pair", "source_pair")
 PART = 2048
+ELIGIBLE_EVENTS = {"PSM": (48,5), "machine-3-2": (8,0), "machine-3-3": (16,0)}
 
 
 def target_task(w, entity):
@@ -216,7 +217,7 @@ def evaluate(w):
             tau = exact_cal(ci,cal[:,j],ci)
             rank, _ = continuous_metrics(truth[qi],query[:,j],metric)
             rows, details, _, _ = evaluate_score(qi,query[:,j],truth,tau,qi,query_start=start,query_stop=stop,
-                original_length=len(truth),expected_events=None)
+                original_length=len(truth),expected_events=ELIGIBLE_EVENTS[entity],ranking=rank)
             causal_timing(rows,details)
             for row in rows:
                 ss = [{k: "" if v is None else str(v) for k,v in e.items()} for e in details if e["stream"]==row["stream"]]
