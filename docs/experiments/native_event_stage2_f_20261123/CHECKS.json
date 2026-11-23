@@ -1,0 +1,29 @@
+{
+  "status": "PASSED",
+  "checks": [
+    {
+      "domain": "PSM",
+      "positive_endpoints": 92,
+      "normal_endpoints": 413,
+      "positive_group_counts": [
+        31,
+        31,
+        30
+      ],
+      "full_window_support_isolation": true,
+      "pair_weight_arithmetic": true
+    },
+    {
+      "domain": "machine-3-2",
+      "positive_endpoints": 738,
+      "normal_endpoints": 413,
+      "positive_group_counts": [
+        246,
+        246,
+        246
+      ],
+      "full_window_support_isolation": true,
+      "pair_weight_arithmetic": true
+    }
+  ]
+}

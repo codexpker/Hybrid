@@ -7,6 +7,7 @@ import numpy as np
 import torch
 from torch_frft.frft_module import ifrft
 from .native_event_stage2_f import *
+from .native_v_conditioning import WEIGHT_SHA
 
 @torch.inference_mode()
 def score(w,domain):
@@ -16,7 +17,7 @@ def score(w,domain):
     for arm in ARMS:
         m=initial(w,arm,device).requires_grad_(False)
         models.append(m)
-        if arm=='official': weights.append('official')
+        if arm=='official': weights.append(WEIGHT_SHA)
         else: weights.append(read(w/BASE/'MODELS_FROZEN.json')['arms'][arm]['checkpoint_sha256'])
     for arm in ARMS:
         d=root/arm;r=read(d/'ENDPOINT.json');ck=asset(d,'endpoint.pt',r['checkpoint_sha256'])

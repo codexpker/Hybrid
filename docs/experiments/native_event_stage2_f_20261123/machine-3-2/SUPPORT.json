@@ -1,0 +1,35 @@
+{
+  "domain": "machine-3-2",
+  "event": [
+    3080,
+    3917
+  ],
+  "normal": [
+    161,
+    673
+  ],
+  "positive_ends": 738,
+  "negative_ends": 413,
+  "source_record": {
+    "relative": "data/mechanism_validation_smd3_group_20261105_v1/machine-3-2/DONOR.npz",
+    "sha256": "4cee43b01cd658f5b64c38eabdb9d220080f6f5184321bb87025d7474430172d",
+    "key": "values",
+    "shape": [
+      7901,
+      38
+    ],
+    "record_id": "machine-3-2_test",
+    "parent_split": "test",
+    "parent_sha256": "5f83ded5fbfb9b682030bdd7dd82eb53a77f9caa3773ddcc7e38db73c25db46e",
+    "storage_origin": 0
+  },
+  "scaler_sha256": "9650da8fcd9ca064e94f37900244e80de0031b11794eb0e4087b1254a64f3665",
+  "u_fit": [
+    0,
+    7901
+  ],
+  "plan_sha256": "1bcd3d36e00438d61d4ce309b341d11fc943cb62f62eba3e6a76acf1cbebfc15",
+  "support_sha256": "4c55de9c08ebbc4c9f9d439aa77dec519f1d900fabccc97a313efbb4f401fbbf",
+  "label_budget": "one complete public abnormal event plus 512 normal points; construction uses public truth",
+  "learning_has_only_support_arrays": true
+}

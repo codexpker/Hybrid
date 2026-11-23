@@ -1,0 +1,17 @@
+{
+  "domain": "machine-3-2",
+  "arm": "copy",
+  "checkpoint_sha256": "b3f45d920af1f7dbbcf4c015fc896736f3fe942cc56eb88ec9c68f7853223432",
+  "scale": 0.023917226120829582,
+  "scale_count": 413,
+  "plan_sha256": "1bcd3d36e00438d61d4ce309b341d11fc943cb62f62eba3e6a76acf1cbebfc15",
+  "support_sha256": "4c55de9c08ebbc4c9f9d439aa77dec519f1d900fabccc97a313efbb4f401fbbf",
+  "seconds": 267.8679455500096,
+  "gpu": "0",
+  "peak_reserved": 5454692352,
+  "copy_exposures": 7680,
+  "positive_exposures": 3600,
+  "negative_pair_exposures": 3600,
+  "frozen_state_verified": true,
+  "step": 240
+}

@@ -1,0 +1,31 @@
+{
+  "domain": "PSM",
+  "event": [
+    3248,
+    3439
+  ],
+  "normal": [
+    92,
+    604
+  ],
+  "positive_ends": 92,
+  "negative_ends": 413,
+  "source_record": {
+    "relative": "data/common_psm_raw_20261029_v1/test.npy",
+    "sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+    "shape": [
+      87841,
+      25
+    ],
+    "record_id": "PSM_test"
+  },
+  "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+  "u_fit": [
+    0,
+    17568
+  ],
+  "plan_sha256": "65ca43b65aea6206b659fadaa027561980844d3a229c34e1444bfa1b6fec63f6",
+  "support_sha256": "829cdd812f0700ae9e3e7ee8c52c9898798e9356142d4a472304ba9bbee53f7c",
+  "label_budget": "one complete public abnormal event plus 512 normal points; construction uses public truth",
+  "learning_has_only_support_arrays": true
+}

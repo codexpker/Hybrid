@@ -1,0 +1,17 @@
+{
+  "domain": "PSM",
+  "arm": "copy",
+  "checkpoint_sha256": "4b8e2e3a533c747d73ba36e59e840d039e7085e648d33ab770f8ffb6af4886d3",
+  "scale": 0.09179473668336868,
+  "scale_count": 413,
+  "plan_sha256": "65ca43b65aea6206b659fadaa027561980844d3a229c34e1444bfa1b6fec63f6",
+  "support_sha256": "829cdd812f0700ae9e3e7ee8c52c9898798e9356142d4a472304ba9bbee53f7c",
+  "seconds": 238.35443561105058,
+  "gpu": "1",
+  "peak_reserved": 3254779904,
+  "copy_exposures": 7680,
+  "positive_exposures": 3600,
+  "negative_pair_exposures": 3600,
+  "frozen_state_verified": true,
+  "step": 240
+}

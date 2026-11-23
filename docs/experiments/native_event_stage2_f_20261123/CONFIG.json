@@ -1,0 +1,15 @@
+{
+  "seed": 2025,
+  "steps": 240,
+  "warmup": 24,
+  "optimizer": "fresh source AdamW configuration",
+  "copy_batch": 32,
+  "positive_per_step": 15,
+  "negative_pair_per_step": 15,
+  "pair_margin": 1,
+  "pair_coefficient": 1,
+  "selection": "fixed endpoint; step0 reference only",
+  "updates": "decoder only",
+  "score": "native endpoint V B1 ten fixed complementary masks norm0 correction1",
+  "source_pair_replay": false
+}
