@@ -30,7 +30,16 @@ def load_models(w):
     # This interface is filled once source selection is sealed, before target inference.
     from .native_supervised_mlp import load_heads
     from .native_v_conditioning import load_native
-    heads,seal=load_heads(w,'cuda')
+    import json
+    for attempt in range(60):
+        try:
+            heads,seal=load_heads(w,'cuda')
+            break
+        except json.JSONDecodeError:
+            time.sleep(1)
+    else:
+        raise RuntimeError('Incomplete source selection seal')
+    assert seal['status']=='COMPLETED_BEFORE_ANY_QUERY'
     return load_native(w,'cuda'),heads,seal
 
 
@@ -62,6 +71,7 @@ def input_bank(w,domain,entity):
 def score(w,lane,lanes):
     setup(12)
     encoder,heads,identity=load_models(w)
+    same_head=all(torch.equal(v,heads[1].state_dict()[key]) for key,v in heads[0].state_dict().items())
     from .native_supervised_mlp import encode
     root=w/OUT;root.mkdir(parents=True,exist_ok=True)
     alljobs=jobs(w)
@@ -95,7 +105,8 @@ def score(w,lane,lanes):
                 for j,x in enumerate(windows[lo:lo+1024]):
                     xx=torch.from_numpy(x).cuda()[None]
                     f=encode(encoder,xx)
-                    for k,head in enumerate(heads):out[j,k]=head(f).mean()
+                    out[j,0]=heads[0](f)
+                    out[j,1]=out[j,0] if same_head else heads[1](f)
                 ar=out.cpu().numpy();assert np.isfinite(ar).all()
                 np.savez_compressed(path,scores=ar)
                 dump(meta,dict(sha256=sha(path),weights=identity))
@@ -103,7 +114,7 @@ def score(w,lane,lanes):
                 print(domain,entity,lo+len(ar),len(windows),round(time.monotonic()-start,1),flush=True)
             values=np.concatenate(vals)[inverse]
             np.savez_compressed(bank,keys=METHODS,cal_index=ci,query_index=qi,cal=values[:len(ci)],query=values[len(ci):],cal_window_start=ci-99,query_window_start=qi-99,cal_available_index=ci,query_available_index=qi)
-            dump(receipt,dict(dataset=domain,entity=entity,sha256=sha(bank),weights=identity,cal_points=len(ci),query_points=len(qi),unique_inputs=len(windows),**binding,seconds=time.monotonic()-start,gpu=os.environ.get('CUDA_VISIBLE_DEVICES'),labels_read=False))
+            dump(receipt,dict(dataset=domain,entity=entity,sha256=sha(bank),weights=identity,cal_points=len(ci),query_points=len(qi),unique_inputs=len(windows),same_head=same_head,**binding,seconds=time.monotonic()-start,gpu=os.environ.get('CUDA_VISIBLE_DEVICES'),labels_read=False))
 
 
 def truth(w,domain,entity):
@@ -147,12 +158,57 @@ def evaluate_one(arg):
     return rankrows,ops,events,common
 
 
+
+def cached_metrics(arg):
+    w,domain,entity=arg
+    root=w/OUT/domain/'metric_parts'/entity
+    root.mkdir(parents=True,exist_ok=True)
+    with (root/'work.lock').open('a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX)
+        source=read(w/OUT/domain/f'{entity}.json')['sha256']
+        seal=root/'SOURCE.json'
+        if seal.exists():
+            r=read(seal);assert r['source_sha256']==source
+            for file,digest in r['files'].items():assert sha(root/file)==digest
+        else:
+            groups=evaluate_one(arg)
+            digests={}
+            for key,rows in zip(('ranking','operating','events','common'),groups):
+                if rows:
+                    path=root/(key+'.csv');write_csv(path,rows);digests[path.name]=sha(path)
+            dump(seal,dict(source_sha256=source,files=digests))
+        output=[]
+        for key in ('ranking','operating','events','common'):
+            path=root/(key+'.csv')
+            rows=read_csv(path) if path.exists() else []
+            # Restore exact numeric scalars while leaving event status strings intact.
+            if key in ('ranking','common'):
+                for row in rows:
+                    for metric in RANKS:row[metric]=float(row[metric])
+                    if 'points' in row:row['points']=int(row['points'])
+            if key=='operating':
+                for row in rows:
+                    for name in ('TP','TN','FP','FN','M','Npred','Ntrue','normal_alarm_fragments','auxiliary_any_hit_events'):
+                        row[name]=int(row[name])
+            output.append(rows)
+        return output
+
+
+def stage_metrics(w):
+    pending={(d,e):(w,d,e) for d,e,_ in jobs(w)}
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        while pending:
+            ready=[key for key in pending if (w/OUT/key[0]/f'{key[1]}.json').exists()]
+            for _ in pool.map(cached_metrics,[pending[key] for key in ready]):pass
+            for key in ready:pending.pop(key)
+            if pending:time.sleep(10)
+
 def evaluate(w):
     result=[[],[],[],[]]
     js=[(w,d,e) for d,e,_ in jobs(w)]
     assert len(js)==109 and all((w/OUT/d/f'{e}.json').exists() for _,d,e in js)
     with ProcessPoolExecutor(max_workers=6) as pool:
-        for group in pool.map(evaluate_one,js):
+        for group in pool.map(cached_metrics,js):
             for acc,part in zip(result,group):acc.extend(part)
     root=w/OUT
     for name,rows in zip(('entity_ranking','entity_operating','events','common_entity'),result):write_csv(root/f'{name}.csv',rows)
@@ -206,7 +262,8 @@ def external_psm(w):
     write_csv(root/'PSM/external_compatible.csv',rows)
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['score','evaluate','external']);p.add_argument('--lane',type=int,default=0);p.add_argument('--lanes',type=int,default=4);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['score','evaluate','external','stage-metrics']);p.add_argument('--lane',type=int,default=0);p.add_argument('--lanes',type=int,default=4);a=p.parse_args()
     if a.action=='score':score(Path.cwd(),a.lane,a.lanes)
     elif a.action=='external':external_psm(Path.cwd())
+    elif a.action=='stage-metrics':stage_metrics(Path.cwd())
     else:evaluate(Path.cwd())

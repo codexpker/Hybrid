@@ -1,0 +1,23 @@
+{
+  "model": "TimeRadar plus supervised MLP readout",
+  "origin": "Project standard supervised baseline",
+  "source_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "architecture": "complex H [10,1,C,20,256] -> cat real/imag last dimension -> flatten patch+feature -> Linear(10240,64) -> GELU -> Linear(64,1) -> mean over copies/channels -> one window logit",
+  "loss": "0.5 * point-weighted mean softplus(-positive logit) + 0.25 * point-weighted mean softplus(paired-normal logit) + 0.25 * mean softplus(nominal-normal logit)",
+  "SELECT": "same 0.5/0.25/0.25 coefficients, positives and paired normals equal event/stratum mean; nominal normal uses original fixed panel mean",
+  "selection": "global minimum SOURCE SELECT across two learning rates and steps 0,40,...2400; tie earlier step then smaller lr; aligned240 restricts to steps<=240",
+  "optimizer": "fresh AdamW per trajectory, betas 0.9/0.95 eps1e-8 weight decay0.1 with bias exempt;24step warmup",
+  "seed": 2025,
+  "max_updates": 2400,
+  "plan_repetition": 10,
+  "learning_rates": [
+    0.0001,
+    0.001
+  ],
+  "head_parameters": 655489,
+  "official_parameters_and_buffers": "frozen, eval, exact before/after hashes",
+  "numeric": "float32 parameters and source features, complex64 H; no AMP, probability clipping or source-scale correction",
+  "extraction": "official forward decoder pre-hook stops after encoder; exact representation compared with full native forward",
+  "source_feature_cache": "SELECT held on GPU;FIT streamed one window at a time and shared between both heads",
+  "data_permissions": "public SWaT/SMD source roles only; no target read until both trajectories finish and global selection sealed"
+}

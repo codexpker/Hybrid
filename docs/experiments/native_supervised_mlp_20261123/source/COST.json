@@ -1,0 +1,17 @@
+{
+  "successful_shared_source_GPU_seconds": 1233.2333650579676,
+  "successful_shared_source_GPU_hours": 0.34256482362721324,
+  "failed_attempt": {
+    "kind": "exclusive-create curve-writer error at first step40 refresh",
+    "estimated_GPU_seconds": 29,
+    "precision": "approximately; first process log birth to last step40 checkpoint mtime at one-second resolution",
+    "preserved": "failed_attempt_01 contains original log,step0 curves and checkpoint artifacts on remote",
+    "repair": "append separate per-step curve files; write combined curves once after step2400",
+    "scientific_configuration_changed": false
+  },
+  "source_device": "A40 physical0",
+  "source_trajectories": 2,
+  "actual_encoder_sharing": "one source window feature used by both independently optimized heads; cost is not multiplied by two",
+  "source_selection_cache_bytes": "full float32/complex64 SELECT features; peak_reserved=9363783680",
+  "total_including_failure_estimate_GPU_hours": 0.3506203791827688
+}

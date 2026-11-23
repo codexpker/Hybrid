@@ -1,0 +1,64 @@
+{
+  "per_track_training_budget": {
+    "SWaT nominal": {
+      "exposures": 38400,
+      "distinct_endpoint_windows": 3832
+    },
+    "SWaT positive": {
+      "exposures": 36000,
+      "distinct_endpoint_windows": 1427
+    },
+    "SWaT paired normal": {
+      "exposures": 36000,
+      "distinct_endpoint_windows": 2481
+    },
+    "SMD nominal": {
+      "exposures": 38400,
+      "distinct_endpoint_windows": 3820
+    }
+  },
+  "per_selected_head": {
+    "SWaT nominal": {
+      "exposures": 640,
+      "distinct_endpoint_windows": 640
+    },
+    "SWaT positive": {
+      "exposures": 600,
+      "distinct_endpoint_windows": 478
+    },
+    "SWaT paired normal": {
+      "exposures": 600,
+      "distinct_endpoint_windows": 568
+    },
+    "SMD nominal": {
+      "exposures": 640,
+      "distinct_endpoint_windows": 640
+    }
+  },
+  "selected_step": 40,
+  "source_FIT_events": 5,
+  "source_SELECT_events": 4,
+  "positive_endpoint_pool": 1857,
+  "normal_pair_endpoint_pool": 4632,
+  "window_overlap": "Distinct endpoint windows can overlap in raw observations; they are not independent events.",
+  "SELECT": {
+    "positive_windows": 192,
+    "paired_normal_windows": 192,
+    "nominal_SWaT_windows": 112,
+    "nominal_SMD_windows": 112,
+    "per_group_counts": [
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16
+    ]
+  }
+}

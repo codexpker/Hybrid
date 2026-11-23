@@ -1,0 +1,17 @@
+{
+  "native_H_exact": true,
+  "RNG_isolated": true,
+  "official_parameters_frozen": true,
+  "source_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "head_parameters": 655489,
+  "head_initial_hashes": {
+    "layers.0.weight": "b18bb94d39801bcecbdc9e7ce2f6b55bce71672a96d73b64c0b0df426d6425b7",
+    "layers.0.bias": "81a60600adef30e15db3bda25b94e7bf26be785c3c3bcb94c29059e2b773c474",
+    "layers.2.weight": "622596b7d39940d43c1d8b612ba01773dbc9aaf3e132a2f9dfeea598c32ca535",
+    "layers.2.bias": "9803defb3b89fda1b0cbe1a2361edacbbdf01ce4b49dc8f4f02a8d1c700ad023"
+  },
+  "encoder_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "official_weight_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "labels": "public SOURCE event labels only; no target reads",
+  "feature_cache": "SELECT GPU float32 complex64; FIT streaming shared across both trajectories"
+}
