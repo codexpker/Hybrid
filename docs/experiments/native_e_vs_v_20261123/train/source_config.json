@@ -1,0 +1,20 @@
+{
+  "seed": 2025,
+  "new_source_training_runs": 1,
+  "arm": "point_weighted_e",
+  "source_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "source_plan_reused_from": "native_event_rank_psm_20261122_v1",
+  "source_role_and_schedule_definition": "src/hybrid_tsad/native_event_rank_training.py",
+  "optimizer": "AdamW, lr 1e-4 with 24 steps linear warmup, betas 0.9/0.95, eps 1e-8, decay 0.1 except LayerNorm and bias",
+  "updated_parameters": "decoder only; eval modes, unchanged frozen parameters, buffers and external RNG",
+  "updates": 240,
+  "normal_reconstruction_exposures": {"nominal_SWaT_FIT": 3840, "nominal_SMD28_FIT": 3840},
+  "pair_exposures": {"labeled_SWaT_positive_FIT": 3600, "labeled_SWaT_normal_FIT": 3600},
+  "source_event_split": {"FIT_events": 5, "SELECT_events": 4, "FIT": [495000, 502578], "SELECT": [502578, 585000]},
+  "selector": "earliest minimum source-SELECT risk over steps 0, 40, 80, 120, 160, 200, 240, computed with each arm's own evidence and fixed own scale",
+  "objective": "original ten-copy full-window MSE + point-count-weighted mean of softplus(1-log1p(E_pos/a_E)+log1p(E_norm/a_E))",
+  "E": "mean over channels of (mean of 10 native reconstructions at position 99 minus observed endpoint)^2",
+  "fixed_official_V_plus_E": {"coefficients": [1, 1], "attribution": "TimeRadar paper Eq. 20 in the project causal ten-copy endpoint convention", "url": "https://arxiv.org/html/2602.19068v1#S3.SS5", "official_code_L1": "V only in the frozen implementation"},
+  "same_label_E_training_asset_scan": "Earlier source-event preparation, source seed repetitions and Stage2-U artifacts train native V or reconstruction. Historical E-only exports and MeanT use different objectives or weights. No matched E source-supervised arm was found.",
+  "command": "CUDA_VISIBLE_DEVICES=0 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 PYTHONPATH=preparations/native_e_vs_v_20261123_v1/runtime envs/timeradar_author_core_20261028_r2/bin/python -u -m hybrid_tsad.native_event_error_training /home/a312/tsad_research"
+}

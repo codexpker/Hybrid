@@ -155,8 +155,8 @@ def windows(role_data, endpoints, device):
     return input_windows(values, lo, np.asarray(endpoints) - WINDOW + 1, device)
 
 
-def native_values(model, role_data, endpoints, device):
-    return [native_endpoint_and_copy_loss(model, x) for x in windows(role_data, endpoints, device)]
+def native_values(model, role_data, endpoints, device, evidence="V"):
+    return [native_endpoint_and_copy_loss(model, x, evidence) for x in windows(role_data, endpoints, device)]
 
 
 def mask_ids(device):
@@ -193,19 +193,19 @@ def scalar_pairs(pairs):
     return np.asarray([(float(point), float(loss)) for point, loss in pairs], dtype=np.float64)
 
 
-def variance_metrics(name, values, scale):
+def evidence_metrics(name, values, scale, evidence):
     values = np.asarray(values, dtype=np.float64)
-    return {f"{name}_mean_V": mean_scalar(values), f"{name}_mean_V_over_a": mean_scalar(values / scale),
-            f"{name}_mean_log1p_V_over_a": mean_scalar(np.log1p(values / scale))}
+    return {f"{name}_mean_{evidence}": mean_scalar(values), f"{name}_mean_{evidence}_over_a": mean_scalar(values / scale),
+            f"{name}_mean_log1p_{evidence}_over_a": mean_scalar(np.log1p(values / scale))}
 
 
-def validate(model, plan, select_data, scale, device, update):
+def validate(model, plan, select_data, scale, device, update, evidence="V"):
     event, swat, smd = select_data
     with torch.inference_mode():
-        positive = scalar_pairs(native_values(model, event, plan["positive_select"], device))[:, 0]
-        normal = scalar_pairs(native_values(model, event, plan["normal_select"], device))[:, 0]
-        nominal_swat = scalar_pairs(native_values(model, swat, plan["swat_select"], device))
-        nominal_smd = np.concatenate([scalar_pairs(native_values(model, role, endpoint, device))
+        positive = scalar_pairs(native_values(model, event, plan["positive_select"], device, evidence))[:, 0]
+        normal = scalar_pairs(native_values(model, event, plan["normal_select"], device, evidence))[:, 0]
+        nominal_swat = scalar_pairs(native_values(model, swat, plan["swat_select"], device, evidence))
+        nominal_smd = np.concatenate([scalar_pairs(native_values(model, role, endpoint, device, evidence))
                                       for role, endpoint in zip(smd, plan["smd_select"])])
     losses = np.logaddexp(0, 1 - np.log1p(positive / scale) + np.log1p(normal / scale))
     split = np.cumsum(plan["select_stratum_sizes"])[:-1]
@@ -214,11 +214,11 @@ def validate(model, plan, select_data, scale, device, update):
                 nominal_swat_mean_copy_MSE=mean_scalar(nominal_swat[:, 1]),
                 nominal_smd_mean_copy_MSE=mean_scalar(nominal_smd[:, 1]),
                 nominal_mean_copy_MSE=mean_scalar(np.concatenate((nominal_swat[:, 1], nominal_smd[:, 1]))),
-                **variance_metrics("labeled_positive", positive, scale), **variance_metrics("labeled_normal", normal, scale),
-                **variance_metrics("nominal", np.concatenate((nominal_swat[:, 0], nominal_smd[:, 0])), scale))
+                **evidence_metrics("labeled_positive", positive, scale, evidence), **evidence_metrics("labeled_normal", normal, scale, evidence),
+                **evidence_metrics("nominal", np.concatenate((nominal_swat[:, 0], nominal_smd[:, 0])), scale, evidence))
 
 
-def train_step(model, opt, plan, fit_data, scale, arm, device, step):
+def train_step(model, opt, plan, fit_data, scale, arm, device, step, evidence="V"):
     event, swat, smd = fit_data
     row = step - 1
     opt.zero_grad(set_to_none=True)
@@ -230,22 +230,22 @@ def train_step(model, opt, plan, fit_data, scale, arm, device, step):
         (smd[entity], [end]) for entity, end in zip(plan["smd_entity"][row], plan["smd_fit"][row])
     ]:
         for x in windows(role, ends, device):
-            point, loss = native_endpoint_and_copy_loss(model, x)
+            point, loss = native_endpoint_and_copy_loss(model, x, evidence)
             (loss / 32).backward()
             recon.append((point.detach(), loss.detach()))
     metric = scalar_pairs(recon)
     results = dict(update=step, lr=lr, copy_MSE=mean_scalar(metric[:, 1]),
-                   **variance_metrics("nominal_swat", metric[:16, 0], scale),
-                   **variance_metrics("nominal_smd", metric[16:, 0], scale))
+                   **evidence_metrics("nominal_swat", metric[:16, 0], scale, evidence),
+                   **evidence_metrics("nominal_smd", metric[16:, 0], scale, evidence))
     if arm != "copy":
-        positive = torch.stack([point for point, _ in native_values(model, event, plan["positive_fit"][row], device)]).reshape(-1, 3)
-        normal = torch.stack([point for point, _ in native_values(model, event, plan["normal_fit"][row], device)]).reshape(-1, 3)
+        positive = torch.stack([point for point, _ in native_values(model, event, plan["positive_fit"][row], device, evidence)]).reshape(-1, 3)
+        normal = torch.stack([point for point, _ in native_values(model, event, plan["normal_fit"][row], device, evidence)]).reshape(-1, 3)
         pair_loss = event_pair_loss(positive, normal, scale,
-                                    phase_sizes=plan["stratum_sizes"] if arm == "point_weighted" else None)
+                                    phase_sizes=plan["stratum_sizes"] if arm in ("point_weighted", "point_weighted_e") else None)
         pair_loss.backward()
         results.update(pair_loss=float(pair_loss.detach()),
-                       **variance_metrics("labeled_positive", positive.detach().cpu().numpy(), scale),
-                       **variance_metrics("labeled_normal", normal.detach().cpu().numpy(), scale))
+                       **evidence_metrics("labeled_positive", positive.detach().cpu().numpy(), scale, evidence),
+                       **evidence_metrics("labeled_normal", normal.detach().cpu().numpy(), scale, evidence))
     gradients = [p.grad for p in model.parameters() if p.requires_grad and p.grad is not None]
     grad_norm = float(torch.linalg.vector_norm(torch.stack([g.detach().norm() for g in gradients])))
     require(np.isfinite(grad_norm) and grad_norm > 0 and all(p.grad is None for p in model.parameters() if not p.requires_grad),
@@ -255,6 +255,7 @@ def train_step(model, opt, plan, fit_data, scale, arm, device, step):
 
 
 def training(workspace, output, arm, seed=SEED):
+    evidence = "E" if arm == "point_weighted_e" else "V"
     started = time.monotonic()
     plan = load_plan(output)
     scale_path = output / "SCALE.json"
@@ -283,9 +284,9 @@ def training(workspace, output, arm, seed=SEED):
     best, best_state = None, None
     for step in range(STEPS + 1):
         if step:
-            training_trace.append(train_step(model, opt, plan, fit_data, scale, arm, device, step))
+            training_trace.append(train_step(model, opt, plan, fit_data, scale, arm, device, step, evidence))
         if step in SELECT_STEPS:
-            metrics = validate(model, plan, select_data, scale, device, step)
+            metrics = validate(model, plan, select_data, scale, device, step, evidence)
             selection.append(metrics)
             if best is None or metrics["risk"] < best["risk"]:
                 best = metrics
@@ -309,7 +310,7 @@ def training(workspace, output, arm, seed=SEED):
          native_source_sha256=SOURCE_SHA, initial_checkpoint_sha256=WEIGHT_SHA, selected_checkpoint_sha256=sha(endpoint),
          plan_sha256=sha(output / "PLAN.npz"), scale_sha256=sha(scale_path), scale_value=scale, mask_ids=scale_record["mask_ids"],
          training_trace_sha256=sha(trace_path), selection=selection, frozen_state_identical=True,
-         fixed_B1=True, terminal=99, variance_unbiased=True, CUDA_visible=torch.cuda.get_device_name(device),
+         fixed_B1=True, terminal=99, score_evidence=evidence, variance_unbiased=True, CUDA_visible=torch.cuda.get_device_name(device),
          elapsed_seconds=time.monotonic() - started, peak_reserved_bytes=torch.cuda.max_memory_reserved(device),
          target_read=False))
 

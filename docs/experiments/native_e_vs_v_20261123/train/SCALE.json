@@ -1,0 +1,25 @@
+{
+  "status": "COMPLETED",
+  "evidence": "E",
+  "value": 0.30042700469493866,
+  "count": 4632,
+  "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "mask_ids": {
+    "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+    "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+  },
+  "bank_file": "FIT_NORMAL_E.npz",
+  "bank_sha256": "6962c142ed9d6edd0e4f5d5696e8024a14e335b158a56dd016ff4e5ffbaf3800",
+  "first_endpoint": 495099,
+  "first_E": 0.17478598654270172,
+  "first_E_fp64": 0.1747860120136078,
+  "first_V": 0.025667523965239525,
+  "first_V_fp64": 0.025667525260967668,
+  "max_abs_archived_V": 0.0,
+  "E_decoder_grad_norm": 0.5252367854118347,
+  "elapsed_seconds": 45.25432120729238,
+  "peak_reserved_bytes": 266338304,
+  "target_read": false
+}

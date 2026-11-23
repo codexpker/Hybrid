@@ -57,8 +57,8 @@ def source_event_roles(labels, origin, *, fit_event_count=5):
             _role(points, origin, (cut, origin + len(points)), after))
 
 
-def native_endpoint_and_copy_loss(model, window):
-    """One native B1 pass. Returned variance retains the decoder gradient."""
+def native_endpoint_and_copy_loss(model, window, evidence='V'):
+    """One native B1 pass. The selected endpoint score retains the decoder gradient."""
     if window.ndim != 3 or window.shape[:2] != (1, WINDOW) or window.shape[2] == 0:
         raise ValueError("Native criterion requires one observed 100-point window")
     if any(module.training for module in model.modules()):
@@ -68,8 +68,21 @@ def native_endpoint_and_copy_loss(model, window):
     if copies.shape != (10, *window.shape):
         raise ValueError("Native ten-copy shape changed")
     copy_loss = F.mse_loss(copies, window.unsqueeze(0).expand_as(copies))
-    score = model.cal_anomaly_score(window, copies, anomaly_criterion=None, L=1)[0, WINDOW - 1]
+    if evidence == "E":
+        score = terminal_mean_error(copies, window)
+    elif evidence == "V":
+        score = model.cal_anomaly_score(window, copies, anomaly_criterion=None, L=1)[0, WINDOW - 1]
+    else:
+        raise ValueError(f"Unsupported endpoint evidence {evidence!r}")
     return score, copy_loss
+
+
+def terminal_mean_error(copies, window):
+    """Mean over channels of squared error after averaging terminal replica outputs."""
+    if window.shape[:2] != (1, WINDOW) or copies.shape != (10, *window.shape):
+        raise ValueError("Expected ten native B=1 endpoint reconstructions")
+    residual = copies[:, 0, WINDOW - 1, :].mean(dim=0) - window[0, WINDOW - 1, :]
+    return residual.square().mean()
 
 
 def event_pair_loss(positive, normal, reference_scale, *, phase_sizes=None):
@@ -81,7 +94,7 @@ def event_pair_loss(positive, normal, reference_scale, *, phase_sizes=None):
     if positive.ndim != 2 or positive.shape != normal.shape or positive.shape[1] != PHASE_COUNT or not positive.shape[0]:
         raise ValueError("Require paired positive and normal native scores for each event x 3 phases")
     if not math.isfinite(reference_scale) or reference_scale <= 0:
-        raise ValueError("Require a positive, fixed nominal-source variance scale")
+        raise ValueError("Require a positive, fixed nominal-source score scale")
     gaps = torch.log1p(positive / reference_scale) - torch.log1p(normal / reference_scale)
     margin = F.softplus(1 - gaps)
     if phase_sizes is None:

@@ -1,0 +1,299 @@
+{
+  "status": "COMPLETED",
+  "arm": "point_weighted_e",
+  "seed": 2025,
+  "updates": 240,
+  "selected_step": 200,
+  "source_criterion": "earliest minimum event-balanced paired SWaT source SELECT risk",
+  "optimizer_objective": "copy MSE + unit-margin pair objective",
+  "event_labels_used_for_gradient": true,
+  "event_labels_used_for_selection": true,
+  "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "initial_checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "selected_checkpoint_sha256": "20d91a48a746808f592e014a4f4f62579ac34949a48397c8731405824e5263e3",
+  "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "scale_sha256": "7fdeacf2780983eb2ec04ef9f2ceb909f12dd9b344a98867767814bade1da8f7",
+  "scale_value": 0.30042700469493866,
+  "mask_ids": {
+    "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+    "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+  },
+  "training_trace_sha256": "c437a6bbb49d6a840dbf42fa2d787a8b7db6f939665a72452933878c9b65d419",
+  "selection": [
+    {
+      "update": 0,
+      "risk": 0.9618344865730274,
+      "risks_event_by_stratum": [
+        [
+          1.284910275274363,
+          1.229022675087196,
+          1.3761266370469172
+        ],
+        [
+          1.1674529072152025,
+          0.9148124564695671,
+          0.8765201102952727
+        ],
+        [
+          0.1836876482768147,
+          0.08308951690370303,
+          0.0833981913504376
+        ],
+        [
+          1.4732150390707541,
+          1.426046450197556,
+          1.443731931688546
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.49136031113032785,
+      "nominal_smd_mean_copy_MSE": 0.9467175305554909,
+      "nominal_mean_copy_MSE": 0.7190389208429094,
+      "labeled_positive_mean_E": 7.051495299829791,
+      "labeled_positive_mean_E_over_a": 23.471576088807534,
+      "labeled_positive_mean_log1p_E_over_a": 1.8770433278165477,
+      "labeled_normal_mean_E": 0.5121440708947679,
+      "labeled_normal_mean_E_over_a": 1.7047204908054525,
+      "labeled_normal_mean_log1p_E_over_a": 0.9143422437511642,
+      "nominal_mean_E": 0.5471106727990056,
+      "nominal_mean_E_over_a": 1.8211101673584766,
+      "nominal_mean_log1p_E_over_a": 0.8755270994511183
+    },
+    {
+      "update": 40,
+      "risk": 0.9011799288330217,
+      "risks_event_by_stratum": [
+        [
+          1.1456000729911708,
+          1.1350859272473255,
+          1.2098982566035423
+        ],
+        [
+          0.9354308120188846,
+          0.7725280054673214,
+          0.7935904320599505
+        ],
+        [
+          0.17971355495364727,
+          0.08654712273630645,
+          0.07789002489285668
+        ],
+        [
+          1.525017055180076,
+          1.4786853740761887,
+          1.4741725077689911
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.47301936109683346,
+      "nominal_smd_mean_copy_MSE": 0.8931754150294832,
+      "nominal_mean_copy_MSE": 0.6830973880631583,
+      "labeled_positive_mean_E": 8.701444724264244,
+      "labeled_positive_mean_E_over_a": 28.963590450531953,
+      "labeled_positive_mean_log1p_E_over_a": 2.1610113150496466,
+      "labeled_normal_mean_E": 0.680360651264588,
+      "labeled_normal_mean_E_over_a": 2.264645456740628,
+      "labeled_normal_mean_log1p_E_over_a": 1.1068609909520486,
+      "nominal_mean_E": 0.7522549878007599,
+      "nominal_mean_E_over_a": 2.5039526275762696,
+      "nominal_mean_log1p_E_over_a": 1.0502448266255653
+    },
+    {
+      "update": 80,
+      "risk": 0.8785088244455506,
+      "risks_event_by_stratum": [
+        [
+          1.100847863908316,
+          1.087180422571061,
+          1.1732403137056415
+        ],
+        [
+          0.8894810349733474,
+          0.7243880718669049,
+          0.7590900122981309
+        ],
+        [
+          0.16295722538838434,
+          0.0771245740130087,
+          0.06649703129836568
+        ],
+        [
+          1.5323437311532229,
+          1.4836746085725754,
+          1.485281003597647
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.45826190231101854,
+      "nominal_smd_mean_copy_MSE": 0.850228908139148,
+      "nominal_mean_copy_MSE": 0.6542454052250832,
+      "labeled_positive_mean_E": 9.748168589236835,
+      "labeled_positive_mean_E_over_a": 32.44771088116855,
+      "labeled_positive_mean_log1p_E_over_a": 2.197490558005389,
+      "labeled_normal_mean_E": 0.6575526515953243,
+      "labeled_normal_mean_E_over_a": 2.188726849848336,
+      "labeled_normal_mean_log1p_E_over_a": 1.0701186865017978,
+      "nominal_mean_E": 0.7616099788075579,
+      "nominal_mean_E_over_a": 2.5350916092942986,
+      "nominal_mean_log1p_E_over_a": 1.0245038722143704
+    },
+    {
+      "update": 120,
+      "risk": 0.8659619097839016,
+      "risks_event_by_stratum": [
+        [
+          1.084165813388267,
+          1.0690384487028746,
+          1.162527997142309
+        ],
+        [
+          0.8760395758920647,
+          0.707571433605923,
+          0.7458233277226495
+        ],
+        [
+          0.13221348217555337,
+          0.05922511922249098,
+          0.052252729212901285
+        ],
+        [
+          1.5325880053422802,
+          1.481494265071242,
+          1.4886027199282663
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.44678333601249115,
+      "nominal_smd_mean_copy_MSE": 0.8184995381826801,
+      "nominal_mean_copy_MSE": 0.6326414370975856,
+      "labeled_positive_mean_E": 12.396065398429831,
+      "labeled_positive_mean_E_over_a": 41.26148849707142,
+      "labeled_positive_mean_log1p_E_over_a": 2.251480131283809,
+      "labeled_normal_mean_E": 0.6349057629704475,
+      "labeled_normal_mean_E_over_a": 2.113344516466312,
+      "labeled_normal_mean_log1p_E_over_a": 1.040081300524094,
+      "nominal_mean_E": 0.7439906804855647,
+      "nominal_mean_E_over_a": 2.476444090773504,
+      "nominal_mean_log1p_E_over_a": 1.0005568755486534
+    },
+    {
+      "update": 160,
+      "risk": 0.8643650723168653,
+      "risks_event_by_stratum": [
+        [
+          1.0750784768732418,
+          1.059174467882095,
+          1.1575139869910644
+        ],
+        [
+          0.8761128552811417,
+          0.7027349270173525,
+          0.7433773511481239
+        ],
+        [
+          0.13854189562463334,
+          0.06317160055351898,
+          0.0543172128352186
+        ],
+        [
+          1.5321316693432676,
+          1.4798117171538523,
+          1.4904147070988756
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.43819483422807287,
+      "nominal_smd_mean_copy_MSE": 0.7983265385430839,
+      "nominal_mean_copy_MSE": 0.6182606863855783,
+      "labeled_positive_mean_E": 11.49986270085598,
+      "labeled_positive_mean_E_over_a": 38.278392158964664,
+      "labeled_positive_mean_log1p_E_over_a": 2.2198248523333293,
+      "labeled_normal_mean_E": 0.6169786537842205,
+      "labeled_normal_mean_E_over_a": 2.053672420063291,
+      "labeled_normal_mean_log1p_E_over_a": 1.0167930909333645,
+      "nominal_mean_E": 0.7261926066296708,
+      "nominal_mean_E_over_a": 2.41720150080072,
+      "nominal_mean_log1p_E_over_a": 0.9815547883201899
+    },
+    {
+      "update": 200,
+      "risk": 0.8600697771974227,
+      "risks_event_by_stratum": [
+        [
+          1.0694721872723398,
+          1.0516383654034986,
+          1.1557226109107335
+        ],
+        [
+          0.8718424336892696,
+          0.6967289864043473,
+          0.7392144923074586
+        ],
+        [
+          0.1325988132630157,
+          0.059664856347836366,
+          0.05097694356429918
+        ],
+        [
+          1.5286606670829048,
+          1.4749215710132713,
+          1.4893953991100992
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.43258959826614174,
+      "nominal_smd_mean_copy_MSE": 0.7831464397188809,
+      "nominal_mean_copy_MSE": 0.6078680189925113,
+      "labeled_positive_mean_E": 11.987950669912001,
+      "labeled_positive_mean_E_over_a": 39.903039615512846,
+      "labeled_positive_mean_log1p_E_over_a": 2.2215289980797333,
+      "labeled_normal_mean_E": 0.6009655223072817,
+      "labeled_normal_mean_E_over_a": 2.0003711814040073,
+      "labeled_normal_mean_log1p_E_over_a": 0.9963198196130932,
+      "nominal_mean_E": 0.7101443987506043,
+      "nominal_mean_E_over_a": 2.3637835069843445,
+      "nominal_mean_log1p_E_over_a": 0.9646679763226821
+    },
+    {
+      "update": 240,
+      "risk": 0.864491589192372,
+      "risks_event_by_stratum": [
+        [
+          1.0729980295101529,
+          1.0553409828850513,
+          1.1601822606628498
+        ],
+        [
+          0.8837398143847541,
+          0.7049056628755568,
+          0.7458927839319525
+        ],
+        [
+          0.14264971281528335,
+          0.0652571157637037,
+          0.055364434925577286
+        ],
+        [
+          1.526557696199099,
+          1.4727960885582274,
+          1.4882144877962569
+        ]
+      ],
+      "nominal_swat_mean_copy_MSE": 0.42797060470495907,
+      "nominal_smd_mean_copy_MSE": 0.772109532329653,
+      "nominal_mean_copy_MSE": 0.6000400685173061,
+      "labeled_positive_mean_E": 10.876700710039586,
+      "labeled_positive_mean_E_over_a": 36.204137910585196,
+      "labeled_positive_mean_log1p_E_over_a": 2.18520927860644,
+      "labeled_normal_mean_E": 0.5927038403072705,
+      "labeled_normal_mean_E_over_a": 1.97287138321376,
+      "labeled_normal_mean_log1p_E_over_a": 0.9878539095022734,
+      "nominal_mean_E": 0.694108847877942,
+      "nominal_mean_E_over_a": 2.3104076432235447,
+      "nominal_mean_log1p_E_over_a": 0.9564153139661412
+    }
+  ],
+  "frozen_state_identical": true,
+  "fixed_B1": true,
+  "terminal": 99,
+  "score_evidence": "E",
+  "variance_unbiased": true,
+  "CUDA_visible": "NVIDIA A40",
+  "elapsed_seconds": 295.7178507326171,
+  "peak_reserved_bytes": 4693426176,
+  "target_read": false
+}

@@ -3,7 +3,7 @@ import pytest
 import torch
 from torch.nn import functional as F
 
-from hybrid_tsad.native_event_rank import event_pair_loss, source_event_roles
+from hybrid_tsad.native_event_rank import event_pair_loss, source_event_roles, terminal_mean_error
 
 
 def test_source_roles_keep_complete_events_and_normal_footprints():
@@ -38,3 +38,16 @@ def test_event_weighting_and_point_control_share_pairs_with_native_score_gradien
     assert (grad_pos < 0).all() and (grad_normal > 0).all()
     with pytest.raises(ValueError, match="positive, fixed"):
         event_pair_loss(pos, normal, 0)
+
+
+def test_terminal_error_averages_replicas_before_squaring_and_only_uses_current_point():
+    window = torch.zeros(1, 100, 2)
+    copies = torch.full((10, 1, 100, 2), 60.0)
+    copies[:5, :, -1] = torch.tensor([1.0, 6.0])
+    copies[5:, :, -1] = torch.tensor([-1.0, 2.0])
+    copies.requires_grad_()
+    loss = terminal_mean_error(copies, window)
+    torch.testing.assert_close(loss, torch.tensor(8.0))
+    loss.backward()
+    assert (copies.grad[:, :, :-1] == 0).all()
+    torch.testing.assert_close(copies.grad[:, 0, -1], torch.tensor([[0.0, 0.4]]).expand(10, -1))

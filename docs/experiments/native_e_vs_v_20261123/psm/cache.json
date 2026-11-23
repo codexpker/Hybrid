@@ -1,0 +1,17 @@
+{
+  "sha256": "c7ac1ad72015e86a7c989d09fb4575f2d5801fd59e58f0196062475a31ecb75c",
+  "input_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+  "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+  "reconstruction_sources": {
+    "frozen_native_V_QUERY": "c573865adbf440b5b51ada06116c2247c6b21f849a2afec81e9a86b20dbb71a4",
+    "frozen_native_V_CAL": "7b0ae234090e10deecde40d8fda26de319e148482c078f2cf1817730075face0",
+    "point_weighted_QUERY": "9404c19d3dabaffeeaefb30f5d36b083a6c33858f51c19ff220ce932ae98ebab",
+    "point_weighted_CAL": "fae7ca80c6c05a1bb684e2f3930b50afe1939e7e9f43c1e03f2e38956d899bc4"
+  },
+  "full_V_sources": {
+    "frozen_native_V": "83021c4f2175a1d10934073bb0b1b42874f0b807061f7d3b101c02d428a44c9a",
+    "copy": "316830d354dc01392bbde204bbaa7fd7f5cf9515dbc82f80ddc07b3ce04b8b26",
+    "point_weighted": "cf092a69cc11cee01269f16758f6204a7a023231ceb618e2ef420bf1dd49f955"
+  },
+  "labels_read": false
+}
