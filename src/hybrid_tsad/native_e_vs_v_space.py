@@ -1,5 +1,6 @@
 """Read the sensor-zero NASA folds with three frozen decoders; retain both endpoint evidences."""
 import argparse
+import ast
 import csv
 import fcntl
 import os
@@ -155,13 +156,60 @@ def evaluate(w):
         write_csv(root/f"{name}.csv",rows)
 
 
+def common_entity(args):
+    workspace, entity, raw = args
+    bank = workspace / OUT / "SMAP" / f"{entity}.npz"
+    assert sha(bank) == read(bank.with_suffix(".json"))["sha256"]
+    truth = np.zeros(int(raw["num_values"]), dtype=int)
+    for start, stop in ast.literal_eval(raw["anomaly_sequences"]):
+        truth[start:stop+1] = 1
+    metric = nasa.load_author_metric(workspace / "preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py")
+    rows = []
+    with np.load(bank) as scores:
+        query = scores["query_index"]
+        keep = query >= 512
+        np.testing.assert_array_equal(query[keep], np.arange(512, len(truth)))
+        for col, method in enumerate(METHODS):
+            if method in OLD.values():
+                continue
+            values, _ = nasa.continuous_metrics(truth[query[keep]], scores["query"][keep, col].astype(np.float64), metric)
+            rows.append(dict(entity=entity, method=method, points=int(keep.sum()), **{k: values[k] for k in RANKS}))
+    return rows
+
+
+def common(workspace):
+    ref = workspace / "preparations/native_e_vs_v_space_20261123_v1/SMAP_COMMON_MACRO.csv"
+    assert sha(ref) == "539c649ad45946a059d9defbd682558a4bd1c038bd4f87c2dcfda85b036bbf39"
+    old = read_csv(ref)
+    by_method = {r["method"]: r for r in old}
+    for r in old:
+        r["method"] = OLD.get(r["method"], r["method"])
+    ids = nasa.entity_list(workspace, "SMAP")
+    with (workspace / nasa.MSL / "labels.csv").open() as f:
+        records = {r["chan_id"]: r for r in csv.DictReader(f) if r["spacecraft"] == "SMAP"}
+    assert len(ids) == 53
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        rows = [row for group in pool.map(common_entity, [(workspace, e, records[e]) for e in ids]) for row in group]
+    parent_method = {"official_E": "frozen_native_V", "official_V_plus_E": "frozen_native_V",
+                     "Vtrain_E": "point_weighted", "Etrain_V": "point_weighted", "Etrain_E": "point_weighted"}
+    table = old.copy()
+    for method, parent in parent_method.items():
+        matched = [r for r in rows if r["method"] == method]
+        assert len(matched) == 53 and sum(r["points"] for r in matched) == 400481
+        table.append(dict(by_method[parent], method=method, **{k: np.mean([r[k] for r in matched]) for k in RANKS}))
+    write_csv(workspace / OUT / "SMAP"/"common_methods.csv",rows)
+    write_csv(workspace / OUT / "SMAP"/"common_macro.csv",table)
+
+
 if __name__=="__main__":
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action",choices=["score","evaluate"])
+    parser.add_argument("action",choices=["score","evaluate","common"])
     parser.add_argument("--lane",type=int,default=0)
     parser.add_argument("--lanes",type=int,default=2)
     args=parser.parse_args()
     if args.action=="score":
         score(Path.cwd(),args.lane,args.lanes)
+    elif args.action=="common":
+        common(Path.cwd())
     else:
         evaluate(Path.cwd())
