@@ -81,8 +81,10 @@ def main(w):
                     if step<=240 and (aligned[k] is None or risk<aligned[k]['risk']):
                         aligned[k]=record.copy();save_head(root,f'aligned_{k}.pt',head,record)
                     print('SOURCE_SELECT',step,LRS[k],risk,flush=True)
-            dump(root/'SELECT_CURVE.json',rows);dump(root/'FIT_CURVE.json',curves)
+            curve_dir=root/'curves';curve_dir.mkdir(exist_ok=True)
+            dump(curve_dir/f'step_{step:04d}.json',dict(selection=rows[-2:],fit=curves[-80:] if step else []))
     assert identity==state_hashes(native) and all(not m.training for m in native.modules()) and all(p.grad is None for p in native.parameters())
+    dump(root/'SELECT_CURVE.json',rows);dump(root/'FIT_CURVE.json',curves)
     selected={}
     for kind,records_ in [('formal',best),('aligned240',aligned)]:
         k=min(range(2),key=lambda i:(records_[i]['risk'],records_[i]['step'],LRS[i]))
