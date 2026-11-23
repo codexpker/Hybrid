@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "GPU_used": false,
+  "training_or_forward_used": false,
+  "scope": {
+    "source": "configuration, complete normal arrays, scaler, entity/role window counts, validation selection and checkpoint identities",
+    "metrics": "two predetermined entities in each domain independently recomputed AP/ROC; complete CSV macro and three-seed statistics aggregation; VUS not independently recomputed"
+  },
+  "domains": {
+    "MSL": {
+      "entities": 27,
+      "selected_epoch": 9,
+      "epochs": 12,
+      "updates": 4140,
+      "train_windows": 44078,
+      "validation_windows": 108,
+      "raw_scaler_exact": true,
+      "sampled_metrics": [
+        {
+          "domain": "MSL",
+          "entity": "C-1",
+          "axis": "full",
+          "AP": 0.28432234662104006,
+          "ROC_AUC": 0.729075599319008
+        },
+        {
+          "domain": "MSL",
+          "entity": "C-1",
+          "axis": "common",
+          "AP": 0.28439843392340414,
+          "ROC_AUC": 0.7147267170082705
+        },
+        {
+          "domain": "MSL",
+          "entity": "C-2",
+          "axis": "full",
+          "AP": 0.2581291908944083,
+          "ROC_AUC": 0.8732475342141145
+        },
+        {
+          "domain": "MSL",
+          "entity": "C-2",
+          "axis": "common",
+          "AP": 0.2581291908944083,
+          "ROC_AUC": 0.8661978184204051
+        }
+      ]
+    },
+    "SMAP": {
+      "entities": 53,
+      "selected_epoch": 13,
+      "epochs": 16,
+      "updates": 12256,
+      "train_windows": 98009,
+      "validation_windows": 114,
+      "raw_scaler_exact": true,
+      "sampled_metrics": [
+        {
+          "domain": "SMAP",
+          "entity": "A-1",
+          "axis": "full",
+          "AP": 0.3272483101660466,
+          "ROC_AUC": 0.988579090315261
+        },
+        {
+          "domain": "SMAP",
+          "entity": "A-1",
+          "axis": "common",
+          "AP": 0.32893202632434004,
+          "ROC_AUC": 0.9885538983805443
+        },
+        {
+          "domain": "SMAP",
+          "entity": "A-2",
+          "axis": "full",
+          "AP": 0.010786883353665734,
+          "ROC_AUC": 0.38865614745011734
+        },
+        {
+          "domain": "SMAP",
+          "entity": "A-2",
+          "axis": "common",
+          "AP": 0.011017642965971712,
+          "ROC_AUC": 0.39220935892823133
+        }
+      ]
+    }
+  },
+  "source_manifest": {
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863",
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f"
+  },
+  "sample_AP_ROC_max_abs_difference": 1.1102230246251565e-16,
+  "complete_CSV_macro_max_abs_difference": 1.1102230246251565e-16,
+  "paired_distributions_max_abs_difference": 1.942890293094024e-16,
+  "repeated_source_statistics_max_abs_difference": 1.1644331332494318e-16,
+  "n_training_repeats": 3,
+  "SD_ddof": 1,
+  "VUS": "only aggregated from archived per-entity values; not independently recomputed",
+  "LEFT_operating_metrics": "NA; scaler/validation uses official normal arrays that may overlap project CAL"
+}

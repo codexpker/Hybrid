@@ -1,16 +1,272 @@
 ---
-title: "Hybrid: Time–Frequency and Temporal Normality Modeling for Industrial Time-Series Anomaly Detection"
+title: "Source-Supervised Learning of Native Reconstruction Disagreement for Public Time-Series Anomaly Detection"
 author: []
-date: "Working draft, updated 23 November 2026"
+date: "Working method and experiment draft, 23 November 2026"
 lang: en
 bibliography: references.bib
 ---
 
-> **Research status, 23 November 2026.** The current internal candidate is point-weighted source supervision of native TimeRadar endpoint variance, with task-dependent Z ranking gains. The three-seed public results, same-label V/E comparison and complete public benchmark panels remain archived. The fixed mixed U recipe has not established stable net benefit, and the completed single-event F comparison has not established a more useful source-supervised initialization. These U/F recipes are closed; controlled contamination has not been conducted for this candidate. All local ROC/VUS, event-F1 and coverage gains remain accompanied by their false-alarm, missed-event and ranking costs. This remains public TSAD method research with an incomplete mixed-unlabeled method. Mixed-unlabeled effectiveness, contamination robustness, weak-anomaly, lag and independent FRFT contributions are excluded from the current contribution claims. SOURCE labels supervise source learning and selection; predefined SUPPORT labels enable F; CAL scores fix empirical thresholds, with label composition disclosed retrospectively; QUERY labels are evaluation-only. First-paper laboratory data and labels are excluded. TimeRadar, LEFT and other complete external methods retain their own names and attribution.
+> The current project candidate has task-dependent source-supervised ranking benefits. The fixed target U and single-event F extensions are completed without an established net advantage. This is a public TSAD method-research draft. It does not establish mixed-unlabeled robustness, independent FRFT novelty, weak-anomaly sensitivity or directed lag detection.
 
 # Introduction
 
-Industrial monitoring requires more than recognizing abrupt, high-amplitude departures from a nominal range. A weak deviation can be significant when it violates a normal response relationship, whereas a large change can be acceptable when several variables respond coherently to an operating transition. An anomaly may also persist after its initial transition: an effective monitor should discover the event and retain useful evidence during its abnormal steady state. These requirements are particularly demanding for multivariate streams in which responses are delayed, operating conditions change, and target-domain training records are unlabeled rather than independently certified as healthy.
+  Industrial monitoring requires more than recognizing abrupt, high-amplitude departures from a nominal range. A weak deviation can be significant when it violates a normal response relationship, whereas a large change can be acceptable when several variables respond coherently to an operating transition. An anomaly may also persist after its initial transition: an effective monitor should discover the event and retain useful evidence during its abnormal steady state. These requirements are particularly demanding for multivariate streams in which responses are delayed, operating conditions change, and target-domain training records are unlabeled rather than independently certified as healthy.
+
+TimeRadar supplies an adaptive fractional time–frequency reconstruction detector with a native score based on disagreement among masked reconstructions [@timeradar2026]. LEFT learns interacting temporal, spectral and multiscale representations [@left2026]. Both motivate learning informative anomaly representations, but they also raise a training question. Reconstruction quality on nominal windows and the discrimination of real anomalous events are different objectives. A model can reduce average reconstruction error without improving the ordering of anomalous and normal observations. A separately supervised classification head can also learn source labels without transferring as well as the original detection criterion.
+
+We study source supervision that acts directly on the original reconstruction-disagreement score. The current Hybrid candidate, termed source-supervised native disagreement here, retains TimeRadar's complete pretrained representation, mask construction and inference score, while updating its reconstruction decoder with nominal reconstruction and a real-public-source-event pair loss. The pair loss compares native endpoint variance at abnormal and normal windows. Sampling strata cover each source event's legal endpoint range, and their weights reflect the numbers of available positive endpoints. They are temporal sampling groups, rather than physical fault phases. The construction aims to connect source supervision to the criterion actually deployed. Whether that connection transfers is tested on public target records.
+
+Three comparisons frame the analysis. First, does supervised learning of native disagreement improve on the frozen official detector and reconstruction-only continuation? Second, how does it compare with supervision of mean reconstruction error or a standard MLP on the frozen representation under the same source-label pool? Third, how competitive is the complete detector against target-normal-trained external methods when evaluated on legal common points? The comparisons distinguish detector-level performance from attribution to an individual formula. Their permissions differ and are reported explicitly.
+
+The existing three-seed evidence supports average AP improvements on PSM, MSL and SMAP, alongside NASA absolute-score limitations and SMD ranking losses. Matched source supervision of reconstruction error and a standard classifier provides further information about the learning objective and readout. Fixed U and F extensions test separate uses of the same detector; neither has demonstrated a reliable net advantage. The present method study therefore concerns source-supervised detection and its transfer boundaries. Mixed-unlabeled target learning remains part of the research objective, with its negative extension results retained. All data are public. First-paper laboratory runs, weak labels and enterprise records are excluded.
+
+# Related Work
+
+## Time–frequency representations and reconstruction disagreement
+
+TimeRadar's adaptive fractional transform, reconstruction chain, pretraining and native scoring are reused components [@timeradar2026]. LEFT's full tri-view model and analysis–synthesis scoring remain a named external comparator [@left2026]. CATCH uses frequency patching and channel-aware modeling [@catch2025]. Our source decoder objective changes learning within an existing complete detector. It does not introduce FRFT or establish that the transform itself explains the measured gain. The E-supervised and MLP controls retain the same TimeRadar chain or representation, limiting causal attribution of their performance differences.
+
+## Supervision, target adaptation and information permissions
+
+Real source events can provide discrimination signals that nominal reconstruction alone lacks. In this study source labels define whole abnormal intervals and label-normal comparison windows, not per-sensor fault identities or exact physical causes. The target QUERY labels never enter source training or source checkpoint selection. Comparison with reconstruction continuation includes additional paired-window exposure and a new objective; its gain cannot all be assigned to point weighting.
+
+TSAD-C addresses contaminated multivariate anomaly learning through its complete released framework [@tsadc2025]. CANDI selects adaptation windows and updates input/output adapters around a pretrained reconstruction backbone [@candi2026]. These methods address different learning permissions from our fixed source-supervised detector. Source replay is a mature reference strategy in the archived mixed-adaptation studies. No target-adaptation or contamination guarantee follows from the present source pair loss. An offline complete-window method can be evaluated on the same timestamps as an endpoint-causal method while still using different observations. Our tables retain that distinction.
+
+# Problem Formulation and Data Permissions
+
+A multivariate record is $x_0,\ldots,x_{N-1}$, with $x_t\in\mathbb R^C$. A causal endpoint detector consumes $X_t=x_{t-99:t+1}$ after observation $x_t$ arrives and produces a scalar $s_t$. Its available index is $t$. Each input remains inside one admitted record and role. No missing initial score is backfilled.
+
+SOURCE FIT contains nominal reconstruction windows from SWaT and the 28 SMD normal training records, together with five labeled SWaT FIT events and their normal comparisons. SOURCE SELECT uses disjoint nominal validation blocks and four different labeled SWaT events. The labeled SWaT source interval is [495000,585000), split at 502578. Every positive window's full 100-point footprint lies in one abnormal event; every paired normal footprint lies in its own continuous label-normal source interval. Windows are never formed by concatenating an abnormal block and a normal block.
+
+PSM, MSL and SMAP are excluded from this project's source gradient updates. PSM is an exposed development task; NASA is a fixed transfer evaluation on admitted entity lists. SMD's nominal training records participated in source reconstruction, so its test is a seen-normal-source held-out comparison. The official checkpoint has its authors' upstream pretraining permissions, disclosed separately from project source learning. Target FIT statistics and empirical CAL scores are additional target information, even in the absence of target gradient updates.
+
+The Z setting makes no target parameter updates. SOURCE SELECT chooses its checkpoint. U and F are separate completed extensions. U consumes isolated mixed-unlabeled target windows and source replay. F uses one fixed public support event and 512 labeled-normal points from the target's U-FIT role. Those SUPPORT labels are distinct from QUERY. CAL scores determine the frozen empirical threshold; retrospective CAL label composition explains its limitations. QUERY labels are used only to calculate the fixed test outcomes.
+
+# Method
+
+## Native endpoint evidence and updated parameters
+
+Let $\phi$ denote the frozen official TimeRadar representation, fractional-order network and non-decoder components, and $\theta$ its original reconstruction decoder. For fixed complementary masks $m=1,\ldots,M$, $M=10$, the complete chain returns $\hat X_t^{(m)}\in\mathbb R^{100\times C}$. Every native forward has batch one, uses the fixed isolated mask RNG and runs in evaluation mode. Fractional order is computed independently for each input window with the official within-window variable-sharing rule. Project training updates only $\theta$; official non-decoder parameters and buffers stay fixed.
+
+The mean reconstruction at the endpoint and native disagreement score are
+
+$$\bar x_{t,c}=\frac1M\sum_m\hat X^{(m)}_{t,99,c},\qquad
+V_\theta(X_t)=\frac1C\sum_c\frac1{M-1}\sum_m(\hat X^{(m)}_{t,99,c}-\bar x_{t,c})^2.$$
+
+The $M-1$ denominator preserves the original sample-variance convention. The deployed score is $s_t=V_\theta(X_t)$, without a learned post-hoc head, error mixture or temporal accumulation.
+
+## Nominal reconstruction and source-event discrimination
+
+The nominal term retains the original per-copy full-window squared loss,
+
+$$L_{copy}=\frac1{|\mathcal B_N|}\sum_{X\in\mathcal B_N}\frac1{M\,100\,C_X}\sum_{m,j,c}(\hat X^{(m)}_{j,c}-X_{j,c})^2.$$
+
+The batch contains 16 SWaT and 16 SMD windows. SMD entities are sampled uniformly, then a legal nominal window is sampled within that entity. Each window uses its own channel normalization in the loss, allowing records with different channel counts to contribute to the same decoder update.
+
+Split the legal positive endpoints of each FIT event $e$ into three consecutive, nearly equal groups. Let $c_{e,k}$ be the number of legal endpoints in group $k$. Sample $p_{e,k}$ and an independent legal label-normal comparison $n_{e,k}$ from the same source release and role. The scale
+
+$$a=\max(10^{-8},\operatorname{median}_{n\in\mathcal N_{FIT}}V_{\theta_0}(X_n)),\quad
+z_\theta(X)=\log(1+V_\theta(X)/a)$$
+
+is fixed at official initialization on the existing 4,632 nominal source endpoints. It is not estimated from a target record. The source pair loss and complete training objective are
+
+$$L_{pair}=\sum_{e,k}\frac{c_{e,k}}{\sum_{i,j}c_{i,j}}\operatorname{softplus}\{1-z_\theta(X_{p_{e,k}})+z_\theta(X_{n_{e,k}})\},\qquad
+L=L_{copy}+L_{pair}.$$
+
+Both margin and pair coefficient equal one. Each update uses five FIT events and 15 positive/15 normal pair windows. Point weighting describes the sampling-group masses. It does not claim equal event influence or give point-accurate physical fault onset. Gradients act through the native reconstructions into the decoder. They encourage larger endpoint disagreement on the sampled source positives relative to normal comparisons. Such a source ordering is a learning objective, not a transfer guarantee.
+
+## Training, selection and inference
+
+All source models share the official initialization, seed-specific normal sampling plans and masks. AdamW uses lr1e-4, betas (0.9,0.95), eps1e-8, weight decay0.1 except LayerNorm/bias, and a 24-update warmup. The cap is 240 updates. Checkpoints at steps 0,40,…,240 are evaluated on the source-event SELECT panel. Selection minimizes the mean pair risk with events and their three strata weighted equally, preferring the earliest minimum. The reconstruction-gradient control uses the same labeled SELECT criterion and is disclosed accordingly. It is not a completely unlabeled training-and-selection pipeline.
+
+At deployment, the selected decoder returns ten native reconstructions of the received 100-point window. The score is the unnormalized endpoint $V$. Each task retains its own admitted input scaler and legal scoring axis. Empirical binary decisions use that detector's CAL scores, q99 with the higher quantile convention, and strict exceedance. Three-confirmation begins on the third consecutive crossing without backfill. Ranking and operating outcomes answer separate questions.
+
+```text
+Start with official frozen representation and native decoder.
+For each source update:
+    draw 16 SWaT and 16 SMD nominal windows;
+    draw one abnormal and one normal comparison per event/time stratum;
+    evaluate every window independently using the fixed ten native masks;
+    accumulate the nominal full-window reconstruction gradient;
+    add the point-count-weighted native-V pair gradient;
+    advance the decoder optimizer once.
+Select the earliest minimum source-event validation checkpoint.
+For each target endpoint, return its native channel-mean sample variance.
+```
+
+# Experimental Setup
+
+## Public records, axes and aggregation
+
+PSM uses the admitted 25-variable release and complete causal axis [99,87841), 87,742 endpoints. NASA uses all 27 MSL and 53 admitted SMAP entities, with sensor zero only and per-entity [99,N) axes. They contribute 71,056 and 422,370 scored points respectively. The existing SMAP admission rule excluded P-2 before these comparisons. SMD includes all 28 machines and 38 variables, totaling 705,648 scored causal endpoints. Metrics are calculated separately per entity and then averaged equally. Concatenated-point metrics are not substituted for entity macro averages.
+
+The complete-window LEFT comparison intersects each entity's causal axis with its actual scored windows. Its available index is each full window's endpoint. LEFT therefore remains an offline comparator even on common scored timestamps. Full-axis and common-axis tables are separate. No tail scores are padded and no absent scores are assigned zero.
+
+## Complete detectors and direct controls
+
+The full detector comparison includes official TimeRadar V, E and fixed unit-coefficient V+E, source reconstruction continuation, source-supervised V/V, same-label E/E, the standard supervised MLP, and complete LEFT. The fixed V+E row follows the paper formula under the project's ten-copy causal endpoint reduction; the official implementation's frozen L=1 row uses V. CATCH, PCA and historical means enter only compatible common-axis panels. Training labels, target updates, window size and offline context are disclosed alongside the scores.
+
+LEFT uses official revision 3fadb4811797075e233076b9faceb0d8ec59b697. Its NASA models train once per spacecraft domain, seed2025, on entity-local normal windows. Each entity's normal training record is split chronologically 80/20. Domain-level scaler statistics use all official normal training arrays, including the validation part, and no test values. MSL uses window96 and SMAP window192. Training stride is one; validation and test use non-overlapping complete windows. Shared models train for at most 20 epochs, batch128, Adam1e-4, official scheduler and patience3. Entity boundaries and role boundaries are preserved. The MSL configuration's alpha_casd fields are mapped explicitly to the alpha_ms fields consumed by the model using the original values. This is a project compatibility implementation. When normal training, validation or standardization overlaps project CAL information, LEFT's independent-CAL operating row remains NA.
+
+The standard MLP freezes all official components and maps each complex copy/channel representation through 10240→64→1 with GELU, then averages logits. The same source labels and nominal panels train its window-level BCE. Rates1e-4 and1e-3 repeat the sealed source plan at most ten times. Full-range and ≤240-step source selection both chose lr1e-3 step40. Neither choice reads target metrics. The complete search and the selected checkpoint have distinct exposure and compute costs.
+
+## Metrics, repeated training and operation
+
+AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VUS metrics retain the archived implementations. VUS uses the pinned LEFT evaluator with windowSize100 and thre250 across all methods. The three source-training seeds share one official initial checkpoint; their paired means and sample SD use n=3 and ddof=1. Entity variation is reported separately from training-seed variation. LEFT, E/E and MLP have one project seed and no invented SD.
+
+Strict and three-confirmation operation includes normal false-alarm point rate and fragments, abnormal recall, one-to-one event matches, any-hit, hit-only delay, complete-event coverage, and long steady coverage after the first 512 event points. Long-event macro and pooled coverages are both reported. MSL and SMAP have only four and ten eligible long events. PSM operation uses its original 64,728-point suffix, with all 512 CAL points labeled abnormal. NASA CAL is small and q99/higher equals its maximum. These thresholds do not certify normal 1% FPR. The SMD nominal-normal CAL and its actual normal test behavior are disclosed separately.
+
+# Results
+
+## Complete public detection comparison
+
+
+All entries are local measurements. PSM uses [512,87744), 87,232 points; SMD uses [99,192 floor(N/192)) within each machine; NASA uses [99,W floor(N/W)) within each entity, W96 for MSL and W192 for SMAP. Entity means are unweighted within NASA and SMD. These common points align outcomes while preserving distinct source supervision, target-normal training and offline context permissions. Each row below uses seed2025; separate repetition estimates follow.
+
+## AP
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.53627 | 0.44479 | 0.34078 | 0.36502 |
+| Official TimeRadar E | 0.38751 | 0.42912 | 0.38602 | 0.42477 |
+| Official fixed V+E | 0.41957 | 0.43882 | 0.39507 | 0.41422 |
+| Reconstruction continuation / V | 0.54007 | 0.45079 | 0.34792 | 0.36788 |
+| Source-supervised native V (candidate) | 0.57763 | 0.44266 | 0.36355 | 0.38185 |
+| Source-supervised E / E | 0.52266 | 0.42896 | 0.37895 | 0.39566 |
+| Supervised MLP | 0.50667 | 0.37710 | 0.29162 | 0.28740 |
+| LEFT | 0.57733 | 0.49807 | 0.50800 | 0.49312 |
+
+## ROC_AUC
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.73120 | 0.81320 | 0.63182 | 0.64252 |
+| Official TimeRadar E | 0.56764 | 0.80530 | 0.69213 | 0.68028 |
+| Official fixed V+E | 0.60120 | 0.81205 | 0.70234 | 0.70776 |
+| Reconstruction continuation / V | 0.73203 | 0.82049 | 0.63514 | 0.63963 |
+| Source-supervised native V (candidate) | 0.76547 | 0.82731 | 0.66980 | 0.62720 |
+| Source-supervised E / E | 0.67362 | 0.81391 | 0.68451 | 0.70006 |
+| Supervised MLP | 0.72365 | 0.75929 | 0.55546 | 0.53829 |
+| LEFT | 0.77558 | 0.87853 | 0.76252 | 0.76284 |
+
+## VUS_PR
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.48507 | 0.46718 | 0.40974 | 0.40221 |
+| Official TimeRadar E | 0.39864 | 0.43357 | 0.46363 | 0.46807 |
+| Official fixed V+E | 0.42372 | 0.44273 | 0.47360 | 0.45518 |
+| Reconstruction continuation / V | 0.49301 | 0.47729 | 0.41830 | 0.39790 |
+| Source-supervised native V (candidate) | 0.51410 | 0.43472 | 0.42916 | 0.42903 |
+| Source-supervised E / E | 0.50163 | 0.44245 | 0.44674 | 0.43497 |
+| Supervised MLP | 0.45480 | 0.31949 | 0.32752 | 0.31115 |
+| LEFT | 0.57451 | 0.54180 | 0.55285 | 0.52170 |
+
+## VUS_ROC
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.66546 | 0.86997 | 0.70357 | 0.69006 |
+| Official TimeRadar E | 0.57913 | 0.84872 | 0.76590 | 0.73844 |
+| Official fixed V+E | 0.60494 | 0.85519 | 0.77255 | 0.75922 |
+| Reconstruction continuation / V | 0.66751 | 0.87535 | 0.70670 | 0.68044 |
+| Source-supervised native V (candidate) | 0.67959 | 0.86130 | 0.73865 | 0.67737 |
+| Source-supervised E / E | 0.66896 | 0.86086 | 0.75027 | 0.75341 |
+| Supervised MLP | 0.60747 | 0.76793 | 0.63193 | 0.58941 |
+| LEFT | 0.78509 | 0.91851 | 0.79337 | 0.78490 |
+
+The official, reconstruction-continuation and source-supervised candidates use W100 endpoint observations. The project-trained heads and decoders use real SWaT source labels for selection; the supervised arms also use them in training. Official scores have no project updates. The MLP freezes the representation; the V/E arms update its native decoder. LEFT uses domain/entity normal target training and full-window offline scoring. The project candidate has no target-gradient updates in this panel. NASA has sensor zero only. LEFT independent-CAL operation is NA.
+
+
+On the NASA LEFT common axes, the source-supervised candidate has seed-2025 AP 0.36355 on MSL and 0.38185 on SMAP, compared with LEFT 0.50800 and 0.49312. LEFT also has higher ROC-AUC and both VUS metrics. Candidate-minus-LEFT AP has a median of −0.06491 across MSL entities and −0.07516 across SMAP entities, with 8/27 and 16/53 wins. Equal-entity average gains over frozen V therefore coexist with a substantial gap to this target-normal-trained offline comparator. PSM AP is nearly tied at 0.57763 versus native LEFT 0.57733; this 0.00030 difference alone is not a substantive superiority claim, and LEFT has higher ROC and VUS. On SMD, candidate AP 0.44266 is below LEFT 0.49807 and below reconstruction continuation 0.45079 on the same points. Training, standardization and context differences prevent attributing these detector-level gaps solely to architecture.
+
+NASA common-axis candidate AP across the three project-training seeds is 0.36176±0.00174 on MSL and 0.38202±0.00219 on SMAP. Reconstruction continuation gives 0.34757±0.00183 and 0.36578±0.00215. These figures were recomputed after intersecting each original score bank with LEFT's scored points. LEFT is a single-seed result without an estimated training SD. The complete [same-axis uncertainty and original-axis repetition tables](../../docs/experiments/left_nasa_author_20261123/REPEATS.md) retain all four ranking metrics and the original SMD repeats.
+
+The shared LEFT models ran 12 epochs on MSL (selected epoch9, 4,140 updates) and 16 on SMAP (selected epoch13, 12,256 updates). MSL's T-9 and SMAP's A-5, A-6, A-8, A-9 and D-12 have no complete entity-local validation window, but remain in test evaluation. The official entry restores the selected state_dict while preserving the final Python running step. Selected/final steps are 3,105/4,140 on MSL and 9,958/12,256 on SMAP; both selected and final states are beyond the original warmup/ramp durations. This runtime behavior follows the pinned entry, with no test-selected alternative. Total new training and native scoring consumed 626.93 occupied A40-seconds, 0.17415 GPU-hours. Its independent-CAL operation remains NA because domain-level normal training and standardization include the historical project CAL regions.
+
+## Training objective and deployed criterion
+
+
+V/V and E/E change the supervised decoder objective and deployed evidence; cross-readouts are predetermined descriptive controls. The MLP changes objective, updated component and inference together. Source labels and original FIT/SELECT windows are fixed, but the selected exposure and two-rate development budget differ. All rows retain their original full causal axes. This panel is separate from the LEFT intersections.
+
+## AP
+
+| Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| copy_V | 0.53903 | 0.45021 | 0.34152 | 0.36830 |
+| Vtrain_V | 0.57717 | 0.44206 | 0.35412 | 0.38272 |
+| Etrain_E | 0.52350 | 0.42858 | 0.36975 | 0.39527 |
+| Vtrain_E | 0.55301 | 0.39016 | 0.37085 | 0.42851 |
+| Etrain_V | 0.45800 | 0.44134 | 0.32687 | 0.35378 |
+| MLP_full | 0.50494 | 0.37652 | 0.28168 | 0.28896 |
+
+## ROC_AUC
+
+| Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| copy_V | 0.73152 | 0.82025 | 0.63225 | 0.63893 |
+| Vtrain_V | 0.76580 | 0.82705 | 0.66573 | 0.62680 |
+| Etrain_E | 0.67552 | 0.81369 | 0.68323 | 0.69797 |
+| Vtrain_E | 0.68619 | 0.81022 | 0.67817 | 0.70164 |
+| Etrain_V | 0.63872 | 0.83302 | 0.61482 | 0.60904 |
+| MLP_full | 0.72168 | 0.75892 | 0.55090 | 0.53892 |
+
+## VUS_PR
+
+| Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| copy_V | 0.49180 | 0.47609 | 0.41388 | 0.39807 |
+| Vtrain_V | 0.51378 | 0.43352 | 0.42298 | 0.42949 |
+| Etrain_E | 0.50290 | 0.44149 | 0.44146 | 0.43453 |
+| Vtrain_E | 0.51334 | 0.39734 | 0.43768 | 0.46907 |
+| Etrain_V | 0.44784 | 0.49259 | 0.39115 | 0.39606 |
+| MLP_full | 0.45263 | 0.31839 | 0.31698 | 0.31272 |
+
+## VUS_ROC
+
+| Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| copy_V | 0.66665 | 0.87510 | 0.70468 | 0.67898 |
+| Vtrain_V | 0.67986 | 0.86098 | 0.73565 | 0.67618 |
+| Etrain_E | 0.67104 | 0.86057 | 0.74956 | 0.75068 |
+| Vtrain_E | 0.66157 | 0.85187 | 0.74420 | 0.75565 |
+| Etrain_V | 0.62058 | 0.88260 | 0.68144 | 0.65864 |
+| MLP_full | 0.60520 | 0.76763 | 0.62785 | 0.59110 |
+
+
+Source-supervised V improves AP relative to official V and reconstruction continuation in three fixed project-training seeds on PSM, MSL and SMAP. The paired AP differences against official V are +0.03786±0.00467, +0.01707±0.00162 and +0.01727±0.00213 respectively. These are the original full causal axes. SMD instead has −0.00460±0.00254. Its ROC rises while AP, VUS and event discovery show costs. Common-axis LEFT results are reported separately from these full-axis repeat statistics.
+
+The E control uses its own fixed normal-FIT median scale and source-event validation risk, with the same labels, exposures and decoder update range. Cross-readouts ask how each training objective changes the other evidence without selecting a better score on QUERY. V/V exceeds E/E on PSM and SMD macro AP, while E/E has higher absolute AP on MSL and SMAP. Official E itself exceeds E/E on both spacecraft. The MLP learned source discrimination but gives lower AP, ROC and both VUS scores than V/V on all four tasks. These findings support a task-dependent benefit for the complete variance-supervised detector. They do not establish universal variance superiority or identify an independent FRFT effect.
+
+## Detection costs and adaptation extensions
+
+PSM's V-supervised checkpoint has lower false-alarm point rate than its frozen reference but lower persistent coverage. MLP reduces PSM false alarms further at lower recall and fewer matched events. On SMAP the MLP has higher long coverage but more false fragments and fewer matched events. On SMD it has fewer false fragments and higher event F1, with lower recall and long coverage. These metric tradeoffs prevent treating one favorable ranking or event column as complete operational superiority.
+
+The completed U study starts from the selected source-V checkpoint and compares replay reconstruction, pair-preserving mixed adaptation and source-only continuation. Pair preservation recovers PSM AP against replay reconstruction but remains below both its frozen initialization and source-only continuation. Neither SMD subset gives a consistent net advantage. The fixed one-event F comparison gives lower post-F AP for the candidate than both matched initialization controls on PSM and SMD machine-3-2. PSM F coverage and recall increase with large false-alarm cost; SMD F improves ROC/VUS but discovers no query events at its fixed CAL. These studies remain separate extensions, with no established U/F benefit or contamination-robustness claim for the recipe.
+
+# Discussion and Limitations
+
+The central tested intervention learns through the native deployed disagreement rather than installing a free scoring head. Its evidence concerns complete supervised source learning, which includes additional labeled pairs and their exposure. The point-count formula alone is not isolated by comparison with reconstruction-only continuation. Event-balanced training remains an archived direct ablation with mixed outcomes and is not substituted for the selected point-weighted method.
+
+Training labels are real public SWaT source events; this method is not purely self-supervised. PSM influenced recipe selection. NASA results use one sensor per entity and cannot support a multivariate interaction claim. SMD contributed nominal source training windows and is not an unseen-domain transfer test. Upstream pretraining exposure remains an author disclosure. LEFT and the candidate use different training, scaler and context permissions, even after scored-point alignment. Domain-mean gains can coexist with weak or negative entity medians and greater false-alarm fragmentation.
+
+Native sample variance, the fractional representation, replay and mature classification losses retain their established attribution. Explicit weak-anomaly, long-lag, Self/Cross-lag and contamination-specific claims require additional evidence beyond these average public scores. Closed historical candidates and negative results remain available in the supplement and existing experiment records. The current complete detector has measurable source-supervised ranking gains and unresolved adaptation limitations; it is not yet a demonstrated complete solution to mixed-unlabeled learning.
+
+# Conclusion
+
+Direct source-event supervision of native reconstruction disagreement produced reproducible task-dependent ranking gains within a fixed pretrained detector. Matched decoder, E and standard MLP comparisons help delimit this effect, while complete LEFT benchmarks place its absolute detection performance in context. The results retain negative SMD transfer and false-alarm/coverage costs. Current mixed-U and single-event-F recipes do not establish reliable target adaptation. The supported contribution is therefore a bounded source-supervised detection candidate and its evaluated behavior, with broader mixed-unlabeled method claims unresolved.
+
+# Appendix A. Reproducible assets and extended comparisons
+
+The formal method is specified in [method_definition.md](method_definition.md). Source draws, source selection, masks, scalers, trained checkpoint SHA, public score axes and complete events are linked in the existing experiment records. The [source repetitions](../../docs/experiments/native_event_rank_repeats_20261122/RESULTS.md), [SMD28 repeats](../../docs/experiments/native_event_smd28_20261123/RESULTS.md), [V/E controls](../../docs/experiments/native_e_vs_v_20261123/RESULTS.md), [standard classifier](../../docs/experiments/native_supervised_mlp_20261123/RESULTS.md), [U extension](../../docs/experiments/native_event_stage2_u_20261123/RESULTS.md) and [F extension](../../docs/experiments/native_event_stage2_f_20261123/RESULTS.md) retain their exact axes and permissions. The new NASA LEFT comparison is reported in its dedicated result record. Historical mixtures and replacement experiments do not contribute extra evidence to the present source-supervised detector.
+
+# Appendix B. Retained historical research text
+
+The following text is retained from earlier research snapshots, including user edits. It records historical hypotheses and completed explorations. It does not define the current method, contributions or active experiment schedule. The formal sections above and the current method definition take precedence for this draft.
+
+
+
+  Industrial monitoring requires more than recognizing abrupt, high-amplitude departures from a nominal range. A weak deviation can be significant when it violates a normal response relationship, whereas a large change can be acceptable when several variables respond coherently to an operating transition. An anomaly may also persist after its initial transition: an effective monitor should discover the event and retain useful evidence during its abnormal steady state. These requirements are particularly demanding for multivariate streams in which responses are delayed, operating conditions change, and target-domain training records are unlabeled rather than independently certified as healthy.
 
 Time–frequency representations offer a useful way to describe both local variation and temporal organization. TimeRadar learns a fractional time–frequency representation and combines reconstruction with contextual deviation learning [@timeradar2026]. LEFT learns interacting temporal, spectral, and multiscale views, followed by joint representation learning and reconstruction [@left2026]. These methods motivate a richer representation than a single instantaneous vector. However, a representation with good reconstruction or prediction accuracy does not automatically provide a useful anomaly ranking. A flexible reconstruction model may reconstruct a sustained abnormal state, and a predictor may improve normal accuracy without increasing the separation between abnormal responses and difficult normal transitions. These are empirical risks, rather than universal properties of either modeling family.
 
@@ -22,19 +278,19 @@ The fixed native-V study uses PSM for multivariate development comparison and SW
 
 A defensible contribution must go beyond applying mature source replay: it requires an attributable detection increment with useful ranking, coverage and false-alarm trade-offs under matched permissions. The locked LEFT paired experiment separates abnormal replacement from normal replacement of the same target slots. Neither the stopped conditional-geometry study nor the subsequent normal-source V-conditioning comparison repeats that exposure experiment or inherits its protection effects. None establishes a new robust learning mechanism. No stopped architecture or isolated favorable metric is promoted to an original contribution.
 
-# Related Work
+### Related Work
 
-## Time–frequency and multiview anomaly representations
+#### Time–frequency and multiview anomaly representations
 
 TimeRadar uses a learnable fractional time–frequency representation within its foundation-model anomaly-detection framework [@timeradar2026]. Its fractional transform spans different domain rotations; it should not be described as a frequency-only encoder. LEFT combines temporal, spectral, and multiscale tokens, selective cross-view interaction, and an analysis–synthesis reconstruction chain [@left2026]. CATCH instead examines frequency patching with channel-aware modeling [@catch2025]. These works show different ways of exploiting temporal and spectral structure. Our locked adaptation studies retain LEFT's complete native learning and scoring chain as an external reference. A stopped Hybrid study tested frozen official TimeRadar response geometry inside a conditional energy criterion; a subsequent stopped study conditioned native V on strictly historical inputs. The current full pretrained forecasting baseline does not change either stopped study. Neither study claims the transform, multiview fusion, causal attention or replay itself as an invention.
 
-## Temporal dependencies and relationship anomalies
+#### Temporal dependencies and relationship anomalies
 
 Forecasting and conditional-response models can expose departures that are not apparent from individual variables. Long-context forecasting also motivates temporal encoders, but a forecasting foundation model is not automatically an anomaly detector. The original TimesFM is a forecasting model [@timesfm2024]; the historical lightweight modules came from the pinned TimesFM3 release [@timesfm3release2026], without its pretrained weights. The new external baseline instead loads all330,710,976 parameters of the official TimesFM3Forecaster from its separately pinned complete checkpoint. These are distinct evidence sources. Historical public TEP experiments retain conditional Ridge as a strong relationship-modeling control. Self-lag denotes dependence on earlier values of the same variable, whereas cross-lag denotes dependence on earlier values of another variable. Neither a nonzero routing weight nor an active gradient proves that a detector identifies changes in those relationships. Mechanism claims require known relation-preserving and relation-breaking cases, including marginally similar controls and normal synchronous changes; the present two-arm geometry comparison makes no directed-lag claim.
 
 CAROTS uses causality-aware augmentations and contrastive learning to improve multivariate anomaly detection [@carots2025]. Its published method includes a complete augmentation, representation-learning, and detection procedure, rather than an arbitrary pairwise binary classifier. Accordingly, relationship-preserving augmentation and contrastive discrimination cannot be presented as novel merely by attaching them to a new backbone. The present conditional-geometry study does not resume stopped relation-routing or isolated contrastive-loss variants.
 
-## Mixed-unlabeled adaptation and evaluation permissions
+#### Mixed-unlabeled adaptation and evaluation permissions
 
 Mixed-unlabeled adaptation raises a different question from normal-reference learning. A target adaptation pool can contain unusual but legitimate states, anomalous episodes, and distributional changes relative to the source data. TSAD-C studies contaminated multivariate anomaly detection using a complete graph-conditional diffusion framework [@tsadc2025]. Such work motivates complete mixed-unlabeled method comparisons with matched data permissions. Contamination-specific harm need not be established before such comparisons, and method effectiveness must be judged using absolute detection performance as well as differential responses. We separate original-background adaptation, anomalous replacement, and matched normal replacement, and distinguish adaptation effects from calibration effects. A full contamination-robustness claim requires both detectable anomalies and a reproducible benefit under matched training exposure.
 
@@ -42,9 +298,9 @@ CANDI curates adaptation windows using reconstruction scores and similarity to n
 
 Information permissions also limit comparisons. A pretrained source detector, a target-trained detector, and an offline window detector answer different questions. Restricting an offline score to a common set of timestamps does not remove the future observations used to construct that score. We therefore report native offline and causal endpoint results separately, disclose target-training and standardization permissions, and use a shared evaluator only where the raw axes and labels are compatible. Published scores under different permissions are background references rather than interchangeable rows of a matched experiment.
 
-# Problem Formulation
+### Problem Formulation
 
-## Observations, causal windows, and anomaly events
+#### Observations, causal windows, and anomaly events
 
 Let $x_t\in\mathbb R^C$ denote the multivariate observation received at time $t$, and let $\mathcal F_t=\sigma(x_1,\ldots,x_t)$ denote the available observation history. An endpoint detector produces $s_t$ measurable with respect to $\mathcal F_t$. For a context length $H$, its input is
 
@@ -54,7 +310,7 @@ The endpoint permission permits the current observation $x_t$ after arrival and 
 
 Ground-truth anomaly events are maximal contiguous positive intervals in the fixed official label sequence, subject to the preregistered boundary and censoring rules. QUERY labels are used only for evaluation after model and calibration choices have been frozen. The historical controlled exposure experiment separately permits FIT labels for donor construction, while keeping learner updates label-free. A weak anomaly refers to a small change relative to an explicitly defined training scale, not an uncertain label or a short event. A sustained anomaly is assessed through its event-level discovery and within-event coverage, including a predefined steady portion when one exists. Public fault labels alone do not identify which variable, lag, or physical relationship is abnormal.
 
-# Completed complete-pretrained TimesFM3 frozen forecast benchmark
+### Completed complete-pretrained TimesFM3 frozen forecast benchmark
 
 The official TimesFM3Forecaster source is fixed at918df02c9d366b2145bc5876135fa2131d3ed2a6, with the full Google timesfm-3.0-pytorch checkpoint revision43046b85ec22d584a13f8098c2ed39c889e129c2. All330,710,976 parameters remain frozen. This is distinct from the earlier lightweight, randomly initialized official-module reuse. No training or adaptation is performed. For each origin, one sample is a joint C-by512 history; variables are not independent batch samples. Define source-FIT-standardized observations z, the official sorted median forecast m, and the sole project anomaly criterion by
 
@@ -79,7 +335,7 @@ TimesFM discovers additional short-lived event evidence: after three-point confi
 
 At descriptive1%normal-FPR caps, strict recall is0.374657%/3.840634%, below V68.861586%/16.619783%; therefore the weak discrimination is not solely a CAL-threshold artifact. No QUERY-derived curve cutoff changes a deployed threshold. The additional triggers do not establish persistent detection or synergy. This negative applies to the fixed512-history/horizon1 median-residual baseline; it does not isolate architecture versus pretraining causes or disprove all temporal forecasting. Actual new cost is5.487239 A40 GPU hours for one source gate and22 readout shards, all23 OS0/cleared, with no training, adaptation or repeated old model execution. The benchmark ends without automatic fusion, adaptation or a new Hybrid recipe.
 
-# Cached event and quantile attribution: evidence and architectural limits
+### Cached event and quantile attribution: evidence and architectural limits
 
 This read-only analysis uses all prior public SWaT/PSM predictions, all nine native marginal quantiles, per-variate squared errors and native TimeRadar V. It does not run a model, fit a score, recalibrate a threshold or create an ensemble. Events retain the original strict/C3 any-hit grouping and independently matched metrics. All complete events and shared misses are retained; descriptive phases are fixed by the existing32-point patch and512-history definitions, not selected using favorable outcomes. Context phases stop at adjacent original events, with normal labels used only for posthoc description. PSM has6,865 positive QUERY points outside the48 complete-event interiors; whole-axis statistics and complete-event summaries use different declared denominators.
 
@@ -95,7 +351,7 @@ The resulting decision is to retain a falsifiable time-frequency/temporal comple
 
 The next controlled-complementarity protocol has only CPU input-geometry checks, with no model execution or measured detection effect. It fixes four non-overlapping public-normal background blocks per task, local pulses, tapered oscillations, smooth relative delays and pointwise-energy-matched amplitude controls. Eleven of sixteen relative-delay cases satisfy the preset marginal/autocorrelation gates; the others remainNA without replacement. The source data's nominal-normal status and reused CAL constants do not establish historical online deployability. No controlled mechanism, joint gain or architectural contribution is claimed before the separately approved frozen-inference stage.
 
-# Completed native-V and strictly historical conditioning study
+### Completed native-V and strictly historical conditioning study
 
 Let $h_t=x_{t-512:t-1}$ and $X_t=x_{t-99:t}$, with source-FIT-only normalization. For each actual observed window, frozen official TimeRadar produces ten complementary-mask reconstructions $r_{m,t,c}$. Every call has B=1, internal norm=0, native within-window order sharing, fixed isolated mask seed84551, and the unmodified criterion=None/L=1 variance:
 
@@ -109,13 +365,13 @@ The source global-quantile initialization uses zero final weights and FP32 biase
 
 D shares C's actual encoder initial tensors, predicts current source-normalized raw variables, minimizes their MSE and scores the mean per-channel squared residual. D uses neither V nor the quantile criterion, so it is a task reference rather than an equal-head or same-weight ablation. New trainable parameter counts are SWaT B509091/C587011/D698143 and PSM B410787/C584707/D655129, in addition to the separately frozen1,636,043-parameter TimeRadar needed by A/B/C.
 
-## Source permissions, fixed selection and evaluation
+#### Source permissions, fixed selection and evaluation
 
 The source/target roles and mixed CAL are unchanged from the preceding public task. B/C/D share complete20-epoch no-replacement FIT permutations, batch128 including the final partial batch, Adam1e-4 and FP32. SWaT completes3880 updates and494360 window exposures per model; PSM1040 and131840. Full normal SELECT is evaluated at0 and every epoch; the earliest strictly minimum own-task loss selects SWaT epochs B14/C20/D20 and PSM B16/C7/D19. All six selected models freeze before CAL/QUERY value readout, and all16 score banks seal before label evaluation. No R, pollution, additional seed, heterogeneous source pretraining or private data is used.
 
 The fixed QUERY axes contain336321 SWaT and64728 PSM points; each model uses its own score at the same512 mixed CAL points for q99/higher/strict>. PSM CAL remains all attack-labeled. These empirical thresholds do not certify normal1%FPR. The temporal information footprint is causal endpoint, but the evaluation is retrospective, not a deployed trial. Native LEFT192-point whole-window scores, MLP/CANDI10-point scores and historical TimeRadar retain their differing source statistics, pretraining, target adaptation and input availability. Ranking-only caches receive no invented CAL threshold. [Complete same-axis tables, curves, artifacts and permissions](../../docs/experiments/timeradar_native_v_conditioning_20261119/RESULTS.md) remain the authoritative exports.
 
-## Fixed results and scientific scope
+#### Fixed results and scientific scope
 
 | Domain | Arm | AP | ROC | VUS-PR | VUS-ROC | Strict normal FPR% | Strict recall% | C3 normal FPR% | C3 matched | C3 any-hit | C3 complete-event cover% | C3 long macro% | C3 long pooled% | Longest event miss |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -136,7 +392,7 @@ Retain two bounded findings. Native A in SWaT has AP.795725 and C3 FPR1.223%/rec
 
 Thirty-four owned GPU jobs all exit successfully with no repeated training or inference, totaling2.290003054 A40GPUh. One role-independent same-family review recomputes25,227 fields with maximum difference1.11e-16, sharing the pinned official VUS implementation and reusing old VUS. A corrected missing event-boundary export changes only a derived CSV, not scores or metrics. Raw V, ten-copy endpoints, orders/masks, predictions/quantiles, original footprints and runtime bytes remain archived; six project-trained selected checkpoints and their hashes are delivered separately from upstream weights. This does not confer a new Hybrid contribution or pollution-robustness claim.
 
-# Native TimeRadar head probing on natural mixed target data
+### Native TimeRadar head probing on natural mixed target data
 
 The conditional-V B/C recipe and its prospective R adaptation remain stopped. A separate fixed same-backbone experiment now tests native TimeRadar reconstruction-head probing with data replay. The official model's fractional-order network, embeddings, encoder and buffers are frozen; only the existing complex reconstruction decoder is updated. The native ten-copy terminal V criterion, SOURCE_FIT scaler, B=1 per-window order, norm0 and isolated84551 complementary masks are unchanged from A/noU. This is an established update scope [@timeradar2026] combined with mature replay, not a claimed original Hybrid mechanism or a restoration of former channel adapters.
 
@@ -151,7 +407,7 @@ The fixed prior PSM probing configuration is logical batch64,2000 updates, AdamW
 The primary learning contrasts are R−TT, with R−noU, R−SS and TT−noU retained. All methods share the same QUERY points,512 CAL observations and V criterion. Each uses its own q99/higher/strict> threshold; SWaT's selected mixed CAL has34 attack-labeled points and PSM512, as already recorded in the previous metrics. They do not certify a normal false-alarm budget. All new endpoints and scores must freeze before new label evaluation. Natural-mixture gains or losses cannot, without a separate intervention, be attributed specifically to anomaly contamination. Mature TimeRadar/replay retain their named external attribution; no innovation claim follows from training alone. All six endpoints and twelve new score banks were frozen before evaluation. The complete fixed comparison is now available below.
 
 
-## Fixed native-V adaptation results
+#### Fixed native-V adaptation results
 
 | Task | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
 | --- | --- | --- | --- | --- | --- |
@@ -173,7 +429,7 @@ On SWaT, R−TT AP/ROC are -0.590/-0.209pp; small coverage gains cost additional
 The six trainings and30 readout jobs plus engineering checks consumed8.080724 A40 GPU hours, including startup/cleanup, with no failed or duplicate jobs. One role-separated same-family review matched16458 fields (maximum difference3.33e-16), including raw-score identity, paired exposure, calibration and complete-event accounting; shared official VUS code is disclosed. Full strict/C3 metrics, hit-only delays, censored misses, event macro/pooled coverage and cost/SHA records are in `docs/experiments/timeradar_native_v_replay_20261120/`. These are two exposed tasks, one seed, a mature backbone and replay policy; neither mixed-contamination robustness nor heterogeneous Stage1 training is established. No B/C R, further seed, loss or scoring variation follows automatically.
 
 
-# Fixed target-mean / source-copy reconstruction comparison
+### Fixed target-mean / source-copy reconstruction comparison
 
 This completed single-factor experiment retains the preceding native TimeRadar head-only R initialization, paired T/S plan, effective batch64,2000 endpoint updates, optimizer and V inference. It changes only the target-window reconstruction constraint. No conditional-V B/C, old channel adapter, new backbone, score fusion or supervised target-label training is restored. Both public tasks, SWaT31 and PSM25, and seed2025 are fixed before new results.
 
@@ -195,7 +451,7 @@ The inference criterion remains the unchanged channel-mean, correction1 copy var
 The primary contrast is new minus R; noU, TT and SS are retained unchanged. Common QUERY axes,512 mixed-CAL observations and each model's q99/higher/strict> threshold remain fixed. SWaT has34 attack-labeled selected CAL points and PSM512; no normal1% false-alarm guarantee follows. Point AP/ROC, fixed VUS, strict/C3 operating outcomes, one-to-one versus any-hit events, long-event macro/pooled coverage and longest misses will all be reported. QUERY curves are descriptive only. The fixed results are reported below; a bounded ranking increment is distinguished from operating cost and does not establish contamination robustness.
 
 
-## Fixed target-mean results and decision
+#### Fixed target-mean results and decision
 
 | Task | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
 | --- | --- | --- | --- | --- | --- |
@@ -219,7 +475,7 @@ All actual training functions, source roles, scalers, plans, masks, budget and n
 Two trainings and10 native readouts plus gates consumed2.747930A40GPUh with14 successful cleaned jobs. One bounded independent same-family review checked45048 fields (max2.22e-16); the two new VUS states share pinned official metric code and oldVUS is reused. Complete method/operating tables, all events, single-factor contrasts, source-component traces and fullPR/low-FPRROC curves are in `docs/experiments/timeradar_target_mean_20261120/`. Exact mixed-CAL34/512 attack composition is unchanged. Mature TimeRadar, replay and error–disagreement decomposition retain their attribution. The candidate is recorded with its limited PSM positives and substantial costs; no coefficient, TT-mean, teacher, backbone, seed or data extension is automatically launched.
 
 
-## Fixed adaptation repetition and low-false-alarm description
+#### Fixed adaptation repetition and low-false-alarm description
 
 The fixed repetition is complete: eight new adaptations and sixteen native score banks add seeds2026/2027 to both public tasks, with all2025 states and scores reused. Each job restores the same official pretrained tensors, SOURCE_FIT scaler and fresh optimizer. Within each seed, R and target-mean/source-copy share the same T/S plan, effective batch64,2000-step endpoint and fixed84551 masks/evaluation randomness. The actual CPU/CUDA seeds and all per-window order hashes were checked. These are adaptation-sampling repetitions at one pretrained state, not independent pretrained models or datasets. noU is a single frozen reference and TT/SS remain2025 historical controls; no QUERY-based checkpoint selection is used.
 
@@ -237,7 +493,7 @@ The cached2025 low-FPR supplement remains immutable as a source: PSM C3 area/a i
 
 The new computation consumed10.828306A40GPUh including startup and cleanup:52 successful jobs (four engineering gates, eight adaptations, forty readout parts). One additional guard rejection occurred before process launch and used zero GPU seconds; only the ten unstarted readout items were recovered after the original thirty successful items closed. Original error/cleanup records are retained. Native weights, scalers, optimizer states and numerical banks remain archived outside publicGit; code, configurations, complete metrics and content hashes are published. This resource interruption did not change the fixed experiment matrix or any score.
 
-## Fixed SMD subset scope check
+#### Fixed SMD subset scope check
 
 The preassigned, historically exposed SMD machine-3-2 and machine-3-3 extend the frozen target-mean hypothesis at seed2025. They are two entities of one dataset, not two independent domains, blind confirmation or the full28-machine benchmark. Only four adaptations are new: R and R-MeanT per entity, each from identical official pretrained weights and a fresh optimizer. SOURCE_FIT is each native train record's[0,14221), and natural U-FIT is the previously isolated test value prefix[0,7901); no donor/target labels enter learning. Separate train CAL roles preserve the one-point entity boundary difference. They have no independent point labels, so calibration attack counts are NA and no normal1%FPR certification is claimed. The fixed scored QUERY remains[8957,23703),14746 points per entity; the oldnorm1/batch32 caches were incompatible with the current source-FIT standardized norm0/B1 nativeV and were not substituted.
 
@@ -256,7 +512,7 @@ Low-FPR results do not rescue a broad claim. On3-3 the strict normalized area th
 
 Across the entire accepted evidence, PSM retains repeatable AP/ROC and some wider-budget positives; the2025 longest-miss improvement1228->879 did not repeat in2026/2027 (both arms1228), and event-discovery gains did not repeat. SWaT AP negatives repeated. The additional SMD evidence therefore supports retaining a PSM-local learning result plus the disclosed3-3 operating tradeoff, rather than promoting the current constraint into a broadly established Hybrid method contribution. TimeRadar, replay and the classical error/disagreement identity retain their provenance. No further entity, seed, threshold or recipe is selected from these outcomes. The target-mean branch is now formally closed after its three-seed PSM/SWaT repetition and fixed SMD subset evaluation. It is retained as historical evidence, not an unfinished core method.
 
-# Historical stopped conditional-energy candidate and fixed geometry comparison
+### Historical stopped conditional-energy candidate and fixed geometry comparison
 
 Given strictly past observations $h_t=x_{t-512:t-1}$, a lightweight conditional generator produces $v_k=G_\theta(h_t,\epsilon_k)$, $k=1,\ldots,4$. It uses the official TimesFM3 residual and mixing blocks at width128, two layers, four heads and patch16, including variate attention. Shared8 and per-variate8 independent Gaussian noise allow joint current-value draws. No current target value enters this predictor. The generator has612626 trainable parameters; the separate official TimeRadar response operator retains1,636,043 frozen parameters. This is not the official330M TimesFM3 model, an official quantile forecast, or a restoration of the old Hybrid V1.
 
@@ -272,7 +528,7 @@ This is the conventional energy score, equal to half the authors' implementation
 
 We retain normal-source selected noU states and fixed2000-step R adaptations for both arms. Source training also has a2000-update cap, normal SELECT every100 including step0, logical batch16 and Adam1e-4. A/B share initial generator tensors, actual source/target draws and noise plans; R uses eight target and eight normal-source examples per optimizer update. It is a shared mature learning strategy, not an originality claim. These experiments are same-domain normal initialization followed by natural mixed adaptation, without a new heterogeneous multi-source pretraining stage or a new contamination-dose matrix.
 
-## Historical conditional-energy evaluation setup
+#### Historical conditional-energy evaluation setup
 
 Only public SWaT31 and PSM25 enter the experiment. No first-paper laboratory, weak-label, experimental-run or enterprise records are used. The original roles are unchanged. Because512 past points plus the observed target require513 legal points, the shared QUERY axes are SWaT `[608535,944856)` and PSM `[23016,87744)`, containing336321 and64728 points. PSM's additional360-point crop is a footprint requirement, not a score-dependent choice. Candidate scores are available at t; cached LEFT whole-window scores retain their later window-end availability and are marked retrospective.
 
@@ -280,7 +536,7 @@ Each model receives its own q99/higher/strict-greater-than threshold using512 fi
 
 The primary contrasts are A−B separately before and after R, and each arm's R−noU. AP, ROC-AUC, fixed-implementation VUS-PR/VUS-ROC, strict point false alarms/recall, one-to-one events, any-hit, three-point coverage and long-event macro/pooled coverage remain separate outcomes. Normal SELECT improvement does not replace anomaly evaluation. Native LEFT+R, MLP, CANDI, complete TimeRadar and simple controls retain their actual training, statistics, context and compute differences. A single seed on two exposed development tasks does not establish replication, unseen-domain generalization or a directed-lag contribution.
 
-# Historical fixed-geometry results and technical decision
+### Historical fixed-geometry results and technical decision
 
 The entire eight-model training set and16 CAL/QUERY score banks were frozen before QUERY-label evaluation. Table1 reports each geometry arm before and after source replay; all rates below are percentages except AP/ROC/VUS. Full external methods, strict/C3 event precision/recall/F1, false-alarm fragments, availability offsets, and all paired deltas are in the [complete result tables](../../docs/experiments/tf_conditional_energy_20261119/RESULTS.md) and machine-readable CSVs. SWaT contains22 complete eligible events including9 long events; PSM contains48 including5 long events on the new common axis.
 
@@ -307,7 +563,7 @@ Eight training jobs completed successfully; one unstarted readout guard rejectio
 
 **Decision:** retain all arrays, matched states and the limited noU operating trade-off, but do not promote or expand this response-geometry candidate as the paper method. The public-data/two-stage research objective is unchanged. No extra seed, new loss, weight, score, threshold, architecture or successor candidate is automatically opened. The locked LEFT/replay and external-method evidence below remains attributed to its original methods.
 
-# Locked external LEFT basis and paired additional-exposure experiment
+### Locked external LEFT basis and paired additional-exposure experiment
 
 This completed external comparison uses complete native LEFT with source replay R, its original objective, state updates, inference and per-model calibration. TT is the matched target-only control. Here A denotes each arm's unchanged natural target-FIT draw plan: $R_A=[T,S]$ and $TT_A=[T,T']$; these historical A/B/C exposure conditions differ from the current candidate's A/B geometry arms. Each plan has 2,000 updates with halves of 128 windows, giving 256,000 shared T slots and 512,000 total window exposures. Source replay is an established control, not the claimed invention of Hybrid.
 
@@ -321,7 +577,7 @@ $$I_M=(M_{R,B}-M_{R,C})-(M_{TT,B}-M_{TT,C}).$$
 
 We report the absolute outcomes and within-arm B−C, B−A and C−A alongside $I_M$. B−C contrasts abnormal with normal replacement under the same slot plan; C−A reveals effects of replacement and normal-donor composition relative to the natural draw. A positive interaction is favorable for a higher-is-better metric only in the context of the absolute outcomes; false-positive counts and delays have the opposite direction. No rule forces B to degrade, and a favorable interaction alone does not establish good detection, difficult-normal protection or general robustness. Native readout, CAL locations and threshold rules remain fixed; the existing all-attack PSM CAL limitation applies.
 
-## Completed three-seed controlled-exposure evidence
+#### Completed three-seed controlled-exposure evidence
 
 The learning rule in that locked LEFT experiment is unchanged native LEFT evaluated on one complete replay batch, rather than separate target/source forwards or an additional preservation loss. For arm $a$ and exposure condition $k$,
 
@@ -361,7 +617,7 @@ The accepted natural-mixture R-A versus TT-A ranking gains, controlled extra-exp
 
 New successful job-wall GPU accounting is1.190615706 hours, plus a preserved0.193526-second prelaunch guard attempt with no CUDA process, for a conservative1.190669464-hour ledger. Only two never-started cases were recovered; none of the14 successful original jobs was rerun. Main CPU evaluation took126.313 seconds. A bounded same-family role-independent review checked new raw scores, event matching, offsets and paired summaries;8,192 comparisons differ by at most2.84e-14 and16,248 CSV comparisons match exactly. This is not external blind peer review.
 
-# Native source replay: completed evidence (18 November 2026)
+### Native source replay: completed evidence (18 November 2026)
 
 We next examine an established learning control using the complete native LEFT model, rather than resuming the stopped shallow TimeRadar adapter. Each domain retains its own named normally trained initial checkpoint, scaler, prototypes and running training step. With seeds 2025, 2026 and 2027, R uses batches $[T,S]$, TT uses $[T,T']$, and SS uses $[S',S]$, where each half contains 128 windows of length 192. T is drawn from the fixed natural mixed target FIT segment; S comes only from actual source training FIT. Independent draw streams produce the primed halves. R and TT share T at each corresponding position; R and SS share S. All arms use a fresh Adam optimizer, learning rate $10^{-4}$, 2,000 complete native single-forward updates and the fixed endpoint. No QUERY labels choose training or checkpoints. noU is one fixed unadapted reference, not three independent repeats. These native whole-window scores are offline retrospective; three-point confirmation does not change their information permission.
 
@@ -379,7 +635,7 @@ R−TT AP is positive and actual normal false-positive counts are lower in all t
 
 PSM's fixed CAL role contains 3,848/3,848 attack-labeled points, and all 512 selected calibration points are attack-labeled. This composition was checked after training and score freezing; calibration was not relocated. Each model uses its own strict-greater-than `q99/higher` threshold on the same CAL locations. This mixed-CAL operating point cannot certify a normal 1% false-alarm budget. QUERY normal false positives remain measurable using evaluation labels, but their reduction can accompany the large recall and coverage reductions reported above. Ranking metrics and thresholded operational behavior must therefore remain separate. The repetitions share one initial model per domain, both tasks have development exposure, and natural target/source contrasts do not isolate a causal anomaly-contamination effect. These results do not establish an original Hybrid contribution.
 
-# Complete external adaptation references and matched plain-MLP replay
+### Complete external adaptation references and matched plain-MLP replay
 
 We evaluated the complete released CANDI MLP, FPM and input/output SANA chain [@candi2026], pinned to commit `28c9679e503832f59e351208cde63657fcb51cad`. Each domain uses seed2025, one native normal-source training and one chronological pass over its existing natural mixed U-FIT, then freezes for CAL and QUERY. LEFT noU, TT-A and R-A are the accepted seed2025 cached results, not selected three-seed winners. A subsequent fixed comparison adds only four plain-MLP TT/R adaptations from the same accepted source models, without SANA or FPM. It reuses the identical192-point exposure endpoints as LEFT but presents each actual10-point suffix to the MLP. Both arms use fresh Adam1e-4 with defaults, batch256,2000 updates and fixed endpoints. This comparison does not change the locked LEFT+R learning rule or constitute a new Hybrid method.
 
@@ -412,7 +668,7 @@ Actual CANDI acceptance is4005 hard and54513 moderate windows on SWaT, with1720 
 
 A same-family role-independent bounded review checks1368 numerical/identity/contrast entries (maximum difference4.44e-16),1580 exact CSV entries, official source identities, scalers rebuilt from source FIT, calibration, events and recovery provenance. VUS shares the pinned official dependency; old LEFT VUS is reused. This is not external blind review. [The complete method table and implementation record](../../docs/experiments/candi_native_a_20261118/RESULTS.md) retains strict/C3 precision and recall, matching versus any-hit, long macro/pooled coverage, misses, offsets, costs and all limitations. CANDI remains an external reference; this result neither overturns the locked replay evidence nor supplies a Hybrid original contribution. No additional CANDI seed, B/C matrix or successor loss is started.
 
-## What the matched backbone comparison establishes
+#### What the matched backbone comparison establishes
 
 | Domain | Backbone | R−TT AP (percentage points) | R−noU AP (percentage points) | R−TT C3 normal FP | R−TT C3 complete-event coverage (percentage points) |
 |:--|:--|--:|--:|--:|--:|
@@ -433,7 +689,7 @@ The full cached PR/ROC and0--5% FPR curves retain every original CAL point, incl
 
 The fixed decision is to retain LEFT+R as the current sustained-coverage-oriented working basis and MLP noU/TT/R as mandatory low-cost strong controls. No universal winner or original Hybrid mechanism is established by this comparison. The baseline-backbone and ordinary-replay comparison now closes without added seeds, contamination ratios, losses, thresholds or an automatically generated successor. The methods-paper objective and the locked two-task three-seed replay evidence remain unchanged.
 
-# Historical stopped P/V source-output preservation experiment
+### Historical stopped P/V source-output preservation experiment
 
 The completed four-run experiment added functional preservation to native R while leaving native inference unchanged. It is stopped; neither P nor V is included in the current baseline or replacement experiment. A frozen copy of each domain's native initial model reads source FIT windows S only. In the same input-coordinate units, let its three $B\times192\times C$ reconstructions be $g_v(\theta_0;S)$ for `X_hat`, `X_hat_from_S` and `X_hat_ms`, and let the student return $g_v(\theta;S)$. They are outputs of shared, interacting pathways, not independent views. Writing $D=B\cdot192\cdot C$, $\Delta_v=g_v(\theta;S)-\operatorname{stopgrad}g_v(\theta_0;S)$ and $\overline\Delta=\frac13\sum_v\Delta_v$, we compare
 
@@ -466,17 +722,17 @@ V does not establish the hypothesized incremental benefit over R or P. Its AP ch
 
 These are single-seed developmental results with mixed CAL; the all-attack PSM CAL limitation remains in force. No threshold, coefficient or readout was selected from QUERY. Actual measured GPU occupancy is0.473455 hours, plus a separate diagnostic wall-time upper bound of3.847 seconds. A role-separated same-family reviewer reproduced648 main numerical entries and640 CSV entries exactly, excluding an independent event-matching-F1/delay recompute. [The full report](../../docs/experiments/left_source_preservation_20261118/RESULTS.md) retains TT/SS controls, strict and C3 metrics, long steady-state macro/pooled coverage, longest misses, PR/ROC curves and complete score-table definitions. No further candidate or parameter search follows automatically. The paper remains a methods paper, but this fixed response-preservation experiment does not yet supply its original core contribution.
 
-# Appendix A: stopped density candidate and original evaluation setup
+### Appendix A: stopped density candidate and original evaluation setup
 
 This appendix retains the earlier mathematical definitions and experimental setup for historical traceability. They do not define the current LEFT-plus-replay baseline or its paired exposure experiment. References to the candidate in this appendix refer only to that stopped design.
 
-## Normality learning, invertible models, and anomaly criteria
+#### Normality learning, invertible models, and anomaly criteria
 
 Reconstruction, prediction, prototype distance, and likelihood make different assumptions about normality. Their training losses can emphasize different features from those that control event detection. Real NVP introduced tractable density estimation through invertible affine transformations with exact log-determinants [@realnvp2017]. Wavelet Flow already combines wavelets with normalizing flows and models signal scales explicitly [@waveletflow2020]. Hybrid reuses these established principles; a Haar transform inside a flow is not its novelty. GANF also uses joint density estimation for time-series anomaly detection through a graph-factorized flow [@ganf2022], and MTGFlow studies multivariate detection with dynamic graphs and entity-aware normalizing flows [@mtgflow2023]. Thus neither window likelihood nor graph/dependency modeling is unprecedented.
 
 The stopped candidate tested a particular alternating-coordinate joint normality model and its sustained-anomaly behavior under fixed information permissions. An invertible representation does not discard dimensions through an encoder bottleneck, but this property alone does not guarantee that the learned density orders anomalies correctly. The identity-transform Student-t control and the time-only and local-context ablations test whether learned dependencies and multiscale organization are useful, rather than attributing improvement to a generic heavy-tailed score or a change in score units. A publication-level distinction from existing flow methods would require such empirical evidence and an appropriate direct comparison; architectural resemblance alone is not treated as a contribution.
 
-## Historical formulation: stopped joint-density candidate
+#### Historical formulation: stopped joint-density candidate
 
 Channelwise location and scale $(\mu_c,\sigma_c)$ are estimated using legal FIT data only. With a fixed positive numerical floor on scale, the model receives $\widetilde X_{t,c}=(X_{t,c}-\mu_c)/\sigma_c$. This operation preserves within-window level relative to FIT; it does not subtract each window's own mean. Let $f_\theta:\mathbb R^{H\times C}\rightarrow\mathbb R^{H\times C}$ be invertible, and write $z_t=f_\theta(\widetilde X_t)$. With a factorized Student-t prior of fixed degrees of freedom $\nu=5$,
 
@@ -500,15 +756,15 @@ whose log-determinant is the sum of the log-scales $a_\theta$. Alternating check
 
 This construction differs from a fixed normal center because normality is learned as a transformed distribution rather than distance to a single reference. It differs from nearest-neighbor retrieval because no QUERY-dependent memory search defines the criterion. It differs from the stopped shared prediction–reconstruction design because the training and detection quantities are the same likelihood. Nevertheless, whole-window averaging may dilute a weak local departure or delay a warning, and maximum likelihood may allocate probability poorly under a new legitimate operating state. These are explicit falsifiable limitations, not effects removed by the architecture definition.
 
-## Training regimes and future adaptation questions
+#### Training regimes and future adaptation questions
 
 We distinguish source training (Stage 1), source-calibrated zero-shot detection (Z-S), target-calibrated detection without parameter updates (Z-T), unlabeled target adaptation (U), and few-event supervision (F). Target CAL may define statistics and thresholds only within its authorized role; it never supplies gradients. Target FIT supplies U updates without anomaly labels. F supervision is counted in complete independent support events, with support, validation, and query events separated. A change from Z-S to target-trained learning changes the scientific question and is reported as such.
 
 This first evaluation establishes only the candidate's basic detection capability under its stated training permissions. It does not establish multisource transfer, a contamination-robust U mechanism, or the value of few-event labels. Those questions remain in the research framework and require separate matched tests once the basic criterion is supported.
 
-## Historical experimental setup
+#### Historical experimental setup
 
-## Historical joint-density candidate: fixed public-data settings
+#### Historical joint-density candidate: fixed public-data settings
 
 The data roles are inherited from the existing frozen assets; they are not reselected using candidate scores. Every input window must be contained in a legal role or its explicitly authorized causal context. No physical record is split into overlapping training and query windows, and no discontinuous records are concatenated. Existing guards are retained where they exceed the candidate's actual footprint. The candidate uses $H=192$ for PSM and SWaT and $H=100$ for TEP. These settings are fixed before candidate QUERY results are opened.
 
@@ -522,7 +778,7 @@ TEP's fixed response task uses XMEAS9 as target and the established XMV10/XMEAS2
 
 SWaT attack labels identify system-level attack intervals; they are not precise per-channel abnormality labels. Long-event analyses retain the nine predefined events and separately describe onset, sustained state, and recovery where the fixed boundaries permit. A low score during an event does not by itself prove that a sustained observable deviation exists in the retained channels. PSM, SWaT, and these TEP assets have historical development exposure. No result from this evaluation is described as a blind confirmation, and no favorable entity or fault is substituted after evaluation.
 
-## Comparisons, information permissions, and ablations
+#### Comparisons, information permissions, and ablations
 
 Hybrid is the proposed method. LEFT, TimeRadar, and task-appropriate statistical models are external comparators; old Hybrid versions are internal historical controls. Native LEFT preserves its published learning and scoring chain. Its causal endpoint readout is named explicitly when used. Native retrospective LEFT and TimeRadar scores remain in an offline comparison track if their construction uses future observations relative to an earlier scored point. Reusing those scores on a shared axis does not change their information permission.
 
@@ -540,7 +796,7 @@ The candidate's fixed internal comparisons are the full alternating-domain model
 
 Before opening the new QUERY results, we also fix the zero-parameter untrained full-model score as a control. All affine couplings and the input affine start at identity, leaving one net orthogonal Haar analysis followed by the same Student-t prior. This control is computed directly from observed windows without fitting or additional training; it separates learning from the change in an independent non-Gaussian prior under coordinate rotation. It is not an alternative score chosen from QUERY performance.
 
-## Calibration, events, and sustained detection
+#### Calibration, events, and sustained detection
 
 Each method obtains a threshold from its own score units using the same authorized CAL locations and the frozen quantile rule. The existing rule is the 0.99 higher empirical quantile with a strict score-greater-than-threshold decision. A score-definition change therefore requires its own CAL evaluation; a historical numerical threshold is not transferable across units. CAL is not a QUERY-derived false-alarm guarantee, and its finite size and domain shift are disclosed. No QUERY labels choose a threshold, checkpoint, seed, horizon, aggregation weight, or entity.
 
@@ -550,7 +806,7 @@ Pointwise Average Precision (AP) and ROC-AUC are computed on the exact common ob
 
 Event evaluation uses the original event boundaries and a fixed one-to-one matching rule between predicted alarm fragments and true events. Precision, recall, and F1 under that matching are distinct from any-hit recall, which is reported separately. We report the first detection delay, undetected-event censoring, normal false-positive points, and false-alarm fragments per 1,000 observed normal points. Within-event coverage, predefined long-event steady-state macro and pooled coverage, and the longest consecutive miss quantify persistence rather than onset alone. Physical-time delay is supplied only when the sample interval is reliable. Unscored points are unknown, not automatically normal or missed. Discontinuous query segments are evaluated with their boundaries intact.
 
-## Reproducibility, uncertainty, and decision criteria
+#### Reproducibility, uncertainty, and decision criteria
 
 The initial complete candidate and matched controls use the fixed first seed 2025. Configurations record source and data versions, role manifests, actual training updates, selection decisions, parameter counts, runtime, peak memory, and failure costs. Complete continuous scores, original timestamps or indices, labels for evaluation, and calibration inputs are retained. Numerical checks verify inverse reconstruction, the analytic log-determinant on a minimal input, finite gradients, causal endpoint visibility, and equality between the implemented training criterion and evaluation score. These are validity checks, not evidence of detection improvement.
 
@@ -562,9 +818,9 @@ The candidate is supported only if an improvement relevant to weak or sustained 
 
 
 
-# Appendix B: closed shallow TimeRadar adaptation branch
+### Appendix B: closed shallow TimeRadar adaptation branch
 
-## Completed adaptation-branch evidence (17 November 2026)
+#### Completed adaptation-branch evidence (17 November 2026)
 
 This section records the evaluated implementation, not the final Hybrid method. Official TimeRadar weights, its complete forward/scoring chain and historical native configuration were retained. The native L=1 score is copy variance; no post-hoc reconstruction readout is substituted. Target FIT, normal SELECT, separate CAL, masks and checkpoints were fixed without QUERY labels. All TimeRadar/LEFT results here are offline retrospective; cropping or three-point confirmation does not make them strict online detections.
 
@@ -587,7 +843,7 @@ The branch status is **evaluated; no broad, stable independent increment establi
 
 Numerical sources and full permissions/ROC/event/false-alarm/coverage tables: [three-seed results](../../docs/experiments/timeradar_cross_variable_repeat_20261116/RESULTS.md), [SMD28 and matched LEFT](../../docs/experiments/timeradar_smd_full_left_matched_20261116/RESULTS.md), [selective aggregation](../../docs/experiments/timeradar_selective_context_20261116/RESULTS.md), [fixed error decomposition](../../docs/experiments/timeradar_error_decomposition_20261117/RESULTS.md), [decoder-freeze paired comparison](../../docs/experiments/timeradar_adapter_only_20261117/RESULTS.md). Auxiliary results do not replace the formal V comparisons. No new model or GPU job was run for this editorial update.
 
-# Appendix E: initial seed2025 controlled-exposure result, retained
+### Appendix E: initial seed2025 controlled-exposure result, retained
 
 **Completed fixed exposure results.** All eight seed2025 jobs finished2000 updates and their original native CAL/QUERY readouts. NoU, SS and both A runs were reused. CAL roles and the all-attack PSM limitation were retained.
 
@@ -615,7 +871,7 @@ B-C adds exactly4,915,200 event-labeled time-position exposures in each arm(5% o
 This single-seed, exposed-task stress experiment supports a limited SWaT retention effect relative to TT, not a cross-task robustness claim or a new Hybrid mechanism. Eight jobs consumed0.584922 GPU hours and the main CPU evaluation47.672 seconds. Bounded same-family role-separated review independently reproduced1624 main numerical entries and1592 CSV entries, including event matching and offline offsets, with maximum difference0. All four donor banks were independently reconstructed exactly. This does not provide external peer review or B/C seed replication. No dose, seed, loss or follow-up variant is automatically added. LEFT and replay retain their original attribution. The earlier three-seed A results remain learning controls and do not supply replication for B/C.
 
 
-# Completed control: standard supervised TimeRadar readout
+### Completed control: standard supervised TimeRadar readout
 
 The source-supervised detector was compared with a conventional MLP readout on the frozen official TimeRadar representation. For each of ten copies and each variable, the real and imaginary 20-patch features were concatenated and flattened to 10,240 coordinates. A shared 64-unit GELU MLP produced a logit before copy/channel averaging. The loss operated on the resulting window score, with positive, paired-normal and nominal-normal softplus terms weighted 0.5, 0.25 and 0.25. The source event labels supplied no per-variable fault annotation. The head reused the seed-2025 source sampling plan, with five FIT and four SELECT events, and looped that plan at most ten times. Learning rates 1e-4 and 1e-3 used identical initialization. Source-only balanced BCE selection across all 2,400 updates chose lr1e-3, step40; a selection restricted through step240 chose identical weights. The complete search and selected-window exposures are disclosed separately. The baseline changes the learning objective, trainable component and inference criterion together.
 
