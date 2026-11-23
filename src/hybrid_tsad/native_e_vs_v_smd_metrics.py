@@ -1,5 +1,8 @@
 """Evaluate new SMD readouts on existing SMD28 full causal axes; reuse archived V metrics."""
+import argparse
 import csv
+import fcntl
+import time
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
@@ -44,6 +47,43 @@ def evaluate(args):
     return rows,events
 
 
+def prepared(args):
+    w, rec = args
+    root = w / OUT
+    entity = rec["id"]
+    cache = root / "entry_metrics" / entity
+    cache.mkdir(parents=True, exist_ok=True)
+    seal = read(root / f"{entity}.json")["sha256"]
+    with (cache/"work.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        marker = cache/"bank.sha256"
+        if not marker.exists():
+            per_method, per_event = evaluate(args)
+            for filename, rows in (("methods.csv",per_method),("events.csv",per_event)):
+                tmp = cache / (filename+".tmp")
+                tmp.unlink(missing_ok=True)
+                write_csv(tmp, rows)
+                tmp.replace(cache/filename)
+            marker.write_text(seal)
+        assert marker.read_text() == seal
+        with (cache/"methods.csv").open() as mf, (cache/"events.csv").open() as ef:
+            return list(csv.DictReader(mf)), list(csv.DictReader(ef))
+
+
+def stage(w):
+    assert sha(w/LABELS)==LABELS_SHA
+    remaining = {r["id"]:r for r in read(w/LABELS)["records"]}
+    with ProcessPoolExecutor(max_workers=4) as pool:
+        while remaining:
+            ready = [key for key in remaining if (w/OUT/f"{key}.json").exists()]
+            for _ in pool.map(prepared, [(w,remaining[key]) for key in ready]):
+                pass
+            for key in ready:
+                remaining.pop(key)
+            if remaining:
+                time.sleep(20)
+
+
 def archive(w,name,digest):
     names = {"frozen_native_V":"official_V","2025_copy":"copy_V","2025_point_weighted":"Vtrain_V"}
     path = w/old.OUT/name
@@ -64,7 +104,7 @@ def run(w):
     methods = list(archive(w,"entity_methods.csv","8489e3a2b15b7e555736e1e6e82f866b63260ccf31dec6a6ba67f41c30cfecc0"))
     events = list(archive(w,"events.csv","147fa5fc3b3fc0469a901d1126b7a2d673f4f4e7ccc9f569689f47854e5fb08e"))
     with ProcessPoolExecutor(max_workers=6) as pool:
-        for mr,er in pool.map(evaluate,[(w,r) for r in records]):
+        for mr,er in pool.map(prepared,[(w,r) for r in records]):
             methods.extend(mr)
             events.extend(er)
     write_csv(root/"entity_methods.csv",methods)
@@ -99,4 +139,6 @@ def run(w):
 
 
 if __name__=="__main__":
-    run(Path.cwd())
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--stage",action="store_true",help="Compute entity metrics on each sealed bank as it becomes available.")
+    (stage if parser.parse_args().stage else run)(Path.cwd())
