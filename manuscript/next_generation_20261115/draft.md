@@ -1,12 +1,12 @@
 ---
 title: "Hybrid: Time–Frequency and Temporal Normality Modeling for Industrial Time-Series Anomaly Detection"
 author: []
-date: "Working draft, updated 21 November 2026"
+date: "Working draft, updated 23 November 2026"
 lang: en
 bibliography: references.bib
 ---
 
-> **Research status,21 November2026.** MeanT extensions remain closed. The complete official frozen TimesFM3 median-residual benchmark and its cached-only event/quantile attribution are finished, without new training, inference, fusion or calibration. Localized extra short-event triggers and distinct steady-state V evidence support a bounded complementarity research question, alongside weak forecast-residual ranking, normal false-alarm confounds and poor sustained coverage. This does not validate or refute TimesFM3 patch/causal/multivariate architectural ideas. Both complete pretrained methods remain external references; no new Hybrid mechanism or successor is claimed or launched.
+> **Research status, 23 November 2026.** The current internal candidate is point-weighted source supervision of native TimeRadar endpoint variance, with task-dependent Z ranking gains. The three-seed public results, same-label V/E comparison and complete public benchmark panels remain archived. The fixed mixed U recipe has not established stable net benefit, and the completed single-event F comparison has not established a more useful source-supervised initialization. These U/F recipes are closed; controlled contamination has not been conducted for this candidate. All local ROC/VUS, event-F1 and coverage gains remain accompanied by their false-alarm, missed-event and ranking costs. This remains public TSAD method research with an incomplete mixed-unlabeled method. Mixed-unlabeled effectiveness, contamination robustness, weak-anomaly, lag and independent FRFT contributions are excluded from the current contribution claims. SOURCE labels supervise source learning and selection; predefined SUPPORT labels enable F; CAL scores fix empirical thresholds, with label composition disclosed retrospectively; QUERY labels are evaluation-only. First-paper laboratory data and labels are excluded. TimeRadar, LEFT and other complete external methods retain their own names and attribution.
 
 # Introduction
 
