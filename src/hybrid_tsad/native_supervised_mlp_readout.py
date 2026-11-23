@@ -90,7 +90,7 @@ def score(w,lane,lanes):
             # NASA can contain exact repeated windows; only identical full inputs are reused.
             if domain in ('MSL','SMAP'):
                 flat=np.ascontiguousarray(windows)
-                _,first,inverse=np.unique(flat.view('V400').ravel(),return_index=True,return_inverse=True)
+                _,first,inverse=np.unique(flat.reshape(len(flat),-1).view('V400').ravel(),return_index=True,return_inverse=True)
                 windows=flat[first]
             else:inverse=np.arange(n)
             parts=dest/'parts'/entity;parts.mkdir(parents=True,exist_ok=True)
@@ -235,6 +235,7 @@ def external_psm(w):
     y=truth(w,'PSM','PSM')
     metric=load_author_metric(asset(w,'preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py',METRIC_SHA))
     rows=[]
+    missing=[]
     def add(name,score,permission,identity):
         assert score.shape==axis.shape and np.isfinite(score).all()
         m,_=continuous_metrics(y[axis],score,metric)
@@ -252,6 +253,9 @@ def external_psm(w):
         for j,name in enumerate(z['keys']):add(str(name),z['query'][ix,j].astype(float),'native causal W100; archived source permissions',rec['sha256'])
     for r in panel['rows']:
         if r['method'] not in ('LEFT native W192','CATCH W192','PCA residual'):continue
+        if not (w/r['path']).exists():
+            missing.append(dict(method=r['method'],seed=r['archived_seed'],relative=r['path'],reason='Archived bank unavailable on execution host; no replacement inference'))
+            continue
         bank=asset(w,r['path'],r['sha256'])
         with np.load(bank) as z:
             ix=z[r['index_key']].reshape(-1)-r['index_offset']
@@ -260,6 +264,7 @@ def external_psm(w):
             name=r['method']+((' seed'+str(r['archived_seed'])) if r['method']=='CATCH W192' else '')
             add(name,score[where].astype(float),r['permission'],r['sha256'])
     write_csv(root/'PSM/external_compatible.csv',rows)
+    dump(root/'PSM/EXTERNAL_MISSING.json',missing)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('action',choices=['score','evaluate','external','stage-metrics']);p.add_argument('--lane',type=int,default=0);p.add_argument('--lanes',type=int,default=4);a=p.parse_args()
