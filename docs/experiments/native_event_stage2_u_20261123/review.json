@@ -71,5 +71,6 @@
       }
     }
   },
-  "source_plan_sha256": "f22efd574351cd5ec2a0166a0083733854ba1fa95df1e8640be10d38da2d6cde"
+  "source_plan_sha256": "f22efd574351cd5ec2a0166a0083733854ba1fa95df1e8640be10d38da2d6cde",
+  "max_absolute_paired_AP_table_difference": 1.6458188978329957e-16
 }
