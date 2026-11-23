@@ -1,0 +1,10 @@
+{
+  "sha256": "0d436203d029e03438b9ab05e57ac3d1c3733bf305bdc9acb3dc04a6bf20e8fe",
+  "scaler_sha256": "aabe7e305dd2a0bfb40142e27029c8f6e971dd5062fb44c1ce68c6bef32c3ae0",
+  "weight": "20d91a48a746808f592e014a4f4f62579ac34949a48397c8731405824e5263e3",
+  "step": 200,
+  "reused_official": false,
+  "seconds": 868.237189295236,
+  "gpu": "0",
+  "labels_read": false
+}

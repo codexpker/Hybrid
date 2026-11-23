@@ -1,0 +1,148 @@
+{
+  "status": "passed",
+  "compute": "CPU only, sealed arrays; no model or project evaluation imports",
+  "scope": "One source checkpoint and all 8 PSM scores. Full-axis ranking, original suffix CAL operations. Other entities and VUS not independently recomputed.",
+  "source": {
+    "step": 200,
+    "risk": 0.8600697771974227,
+    "checkpoint_sha256": "20d91a48a746808f592e014a4f4f62579ac34949a48397c8731405824e5263e3",
+    "shared_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+    "source_fit_count": 4632,
+    "median_E": 0.30042700469493866,
+    "source_FIT_V_max_delta": 0
+  },
+  "psm_score_bank_sha256": "0d436203d029e03438b9ab05e57ac3d1c3733bf305bdc9acb3dc04a6bf20e8fe",
+  "psm_labels_sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+  "full_points": 87742,
+  "suffix_points": 64728,
+  "cal_count": 512,
+  "cal_attack_count": 512,
+  "max_absolute_differences": {
+    "AP": 1.1102230246251565e-16,
+    "ROC_AUC": 1.1102230246251565e-16,
+    "CAL_threshold": 0,
+    "M": 0,
+    "Ntrue": 0,
+    "Npred": 0,
+    "auxiliary_any_hit_events": 0,
+    "TP": 0,
+    "FP": 0,
+    "normal_alarm_fragments": 0,
+    "long_steady_macro_coverage": 0,
+    "long_steady_pooled_coverage": 0
+  },
+  "per_method": {
+    "official_V": {
+      "AP": 0.5352093220478782,
+      "ROC_AUC": 0.7306479882049832,
+      "strict": {
+        "matches": 18,
+        "any_hit": 28,
+        "normal_fragments": 185
+      },
+      "confirmed3": {
+        "matches": 6,
+        "any_hit": 17,
+        "normal_fragments": 88
+      }
+    },
+    "official_E": {
+      "AP": 0.3898346907431293,
+      "ROC_AUC": 0.5711002898377655,
+      "strict": {
+        "matches": 27,
+        "any_hit": 42,
+        "normal_fragments": 1057
+      },
+      "confirmed3": {
+        "matches": 15,
+        "any_hit": 30,
+        "normal_fragments": 432
+      }
+    },
+    "copy_V": {
+      "AP": 0.5390296348029477,
+      "ROC_AUC": 0.7315196793527425,
+      "strict": {
+        "matches": 18,
+        "any_hit": 28,
+        "normal_fragments": 176
+      },
+      "confirmed3": {
+        "matches": 6,
+        "any_hit": 17,
+        "normal_fragments": 77
+      }
+    },
+    "Vtrain_V": {
+      "AP": 0.5771687028134707,
+      "ROC_AUC": 0.7657956981893075,
+      "strict": {
+        "matches": 19,
+        "any_hit": 20,
+        "normal_fragments": 251
+      },
+      "confirmed3": {
+        "matches": 10,
+        "any_hit": 11,
+        "normal_fragments": 93
+      }
+    },
+    "Etrain_E": {
+      "AP": 0.5234989175765999,
+      "ROC_AUC": 0.6755238718846395,
+      "strict": {
+        "matches": 29,
+        "any_hit": 36,
+        "normal_fragments": 510
+      },
+      "confirmed3": {
+        "matches": 12,
+        "any_hit": 20,
+        "normal_fragments": 175
+      }
+    },
+    "official_V_plus_E": {
+      "AP": 0.4216689719247535,
+      "ROC_AUC": 0.604696386724132,
+      "strict": {
+        "matches": 30,
+        "any_hit": 43,
+        "normal_fragments": 934
+      },
+      "confirmed3": {
+        "matches": 17,
+        "any_hit": 30,
+        "normal_fragments": 354
+      }
+    },
+    "Vtrain_E": {
+      "AP": 0.5530054545304953,
+      "ROC_AUC": 0.6861896042860167,
+      "strict": {
+        "matches": 31,
+        "any_hit": 43,
+        "normal_fragments": 1000
+      },
+      "confirmed3": {
+        "matches": 18,
+        "any_hit": 30,
+        "normal_fragments": 373
+      }
+    },
+    "Etrain_V": {
+      "AP": 0.45799666635032193,
+      "ROC_AUC": 0.6387238980294729,
+      "strict": {
+        "matches": 23,
+        "any_hit": 32,
+        "normal_fragments": 499
+      },
+      "confirmed3": {
+        "matches": 11,
+        "any_hit": 19,
+        "normal_fragments": 181
+      }
+    }
+  }
+}
