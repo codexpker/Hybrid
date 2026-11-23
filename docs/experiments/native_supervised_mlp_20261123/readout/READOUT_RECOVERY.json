@@ -1,0 +1,35 @@
+{
+  "failures": [
+    {
+      "lane": 1,
+      "domain": "SMAP",
+      "entity": "D-3",
+      "log": "results/native_supervised_mlp_20261123_v1/readout/logs/lane1.log",
+      "failure_seconds_after_entity_lock": 0.010999679565429688,
+      "valid_model_forwards_on_failed_entity": 0,
+      "reason": "NASA [N,100,1] byte-view reshape needed; key now [N,100] before V400",
+      "successful_banks_reused": true
+    },
+    {
+      "lane": 2,
+      "domain": "SMAP",
+      "entity": "E-13",
+      "log": "results/native_supervised_mlp_20261123_v1/readout/logs/lane2.log",
+      "failure_seconds_after_entity_lock": 0.010999679565429688,
+      "valid_model_forwards_on_failed_entity": 0,
+      "reason": "NASA [N,100,1] byte-view reshape needed; key now [N,100] before V400",
+      "successful_banks_reused": true
+    },
+    {
+      "lane": 3,
+      "domain": "SMAP",
+      "entity": "G-6",
+      "log": "results/native_supervised_mlp_20261123_v1/readout/logs/lane3.log",
+      "failure_seconds_after_entity_lock": 0.00899958610534668,
+      "valid_model_forwards_on_failed_entity": 0,
+      "reason": "NASA [N,100,1] byte-view reshape needed; key now [N,100] before V400",
+      "successful_banks_reused": true
+    }
+  ],
+  "scope": "Exact timestamp difference after failed-entity filelock; module/model startup overhead not isolated. Successful earlier SMD work counted only through original bank receipts."
+}
