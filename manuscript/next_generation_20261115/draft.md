@@ -110,6 +110,18 @@ To test the effect of the trainable parameter range, we repeat target-normal tra
 
 The normal inputs, scaler, role boundaries, ordered batches, warmup schedule, 20 epochs and normal-validation selection rule are shared with the decoder-only comparison. Both scopes minimize the same per-copy reconstruction MSE and use the same full-window variance score. Comparing scopes within one initialization estimates the effect of changing the trainable range under this fixed training program. Comparing initializations within full-parameter training tests the added value of the archived source-supervised state under that scope.
 
+## Direct prototype conditioning of LEFT's multiscale decoder
+
+LEFT associates its fused time and frequency tokens with separate prototype banks and already uses the resulting reads in cycle reconstruction [@left2026]. We test whether sending those reads directly to the multiscale decoder makes its reconstruction more informative for anomaly ranking. Memory-based reconstruction has precedent in MemAE [@gong2019memae], and the affine modulation follows the FiLM family [@perez2018film]. In this comparison, the intervention is the connection between two existing LEFT components.
+
+For each window, pool the post-fusion time and frequency tokens to obtain $z_t,z_f$. Read $m_t,m_f$ once using the native averaged assignments and the normalized prototype matrices before the current forward's EMA. The two conditioning arms use $c_{\mathrm{obs}}=\phi([z_t;z_f])$ or $c_{\mathrm{mem}}=\phi([m_t;m_f])$, respectively, with the existing shared fusion network $\phi=\texttt{z\_fuse}$. The registered decoder projection maps the context to $[\tilde{\gamma},\beta]=W\operatorname{LN}(c)+b$. For an upsampled multiscale token $U$, the common modulation is
+
+$$ U'=U+\lambda_k\bigl[\tanh(\tilde{\gamma})\odot U+\beta\bigr]. $$
+
+The context is computed once per window and broadcast to that window's channel and scale tokens. The original decoder FFN, residual, and output projection process $U'$. The last projection in `to_gb` starts at zero so that the two arms initially agree with unconditioned decoding. The memory curriculum sets the training modulation strength and supplies its native maximum at evaluation. Each added path activates the same 33,280 already registered parameters at $D=128$. A differentiable prototype snapshot in all three arms protects the pre-EMA values used by autograd. The original EMA rule, one `step` increment per training forward, normal training objective and native anomaly score are shared. At inference the model reads the fitted prototypes and leaves them unchanged.
+
+The two comparisons answer different questions. The difference from native LEFT measures the complete effect of direct conditioning. The difference from observation conditioning tests the source of the decoder context under matched active capacity. The decoder still sees the fused multiscale tokens, so this intervention does not impose a memory bottleneck. The scores use complete windows and are evaluated retrospectively.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation

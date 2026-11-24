@@ -76,10 +76,17 @@ def external(w, domain):
         path = w/row['path']
         assert sha(path)==row['sha256']
         with np.load(path,allow_pickle=False) as z:
-            idx = z[row['index_key']].reshape(-1)-row['index_offset']
+            score = z[row['score_key']].reshape(-1)
+            if row['index_key'] is None:
+                # Archived native block-0 arrays record their contiguous
+                # score axis in the manifest rather than in the bank.
+                idx = np.arange(*row['input_scored_axis'])
+            else:
+                idx = z[row['index_key']].reshape(-1)-row['index_offset']
+            assert len(score) == len(idx) == row['stored_scored_count']
             indices = np.searchsorted(idx,axis)
             np.testing.assert_array_equal(idx[indices],axis)
-            assert np.isfinite(z[row['score_key']].reshape(-1)[indices]).all()
+            assert np.isfinite(score[indices]).all()
         seed = row.get('archived_seed')
         name = row['method'] + (f' seed{seed}' if seed is not None else '')
         yield dict(method=name, **{k:row[k] for k in METRICS}, permission=row['permission'],
