@@ -1,0 +1,22 @@
+{
+  "copy": {
+    "checkpoints": [
+      "results/native_event_rank_psm_20261122_v1/train/copy/selected.pt"
+    ],
+    "complete_seven_checkpoint_trajectory": false,
+    "action": "rebuild fixed seeded trajectory; preserve historical files"
+  },
+  "point_weighted": {
+    "checkpoints": [
+      "results/native_event_rank_psm_20261122_v1/train/point_weighted/selected.pt"
+    ],
+    "complete_seven_checkpoint_trajectory": false,
+    "action": "rebuild fixed seeded trajectory; preserve historical files"
+  },
+  "lifecycle": {
+    "recursive_weight_search": "find results/native_event_rank_psm_20261122_v1 -type f (*.pt or *.pth)",
+    "found": "only train/copy/selected.pt, train/point_weighted/selected.pt, train/event_balanced/selected.pt",
+    "lifecycle_contents": "stdout/stderr, process guards and launch/wait receipts; no intermediate checkpoints",
+    "reuse_decision": "rebuild copy and terminal trajectories under unchanged source plan; all old artifacts preserved"
+  }
+}
