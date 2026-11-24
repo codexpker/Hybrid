@@ -169,6 +169,27 @@ On SWaT, adding observation context decreased AP from 0.543866 to 0.490931. Prot
 
 Training and score export used 3.848479 measured A40 GPU-hours. The matched comparison uses one seed, full-window offline scores and the same normal data permissions in each task. [Complete benchmark, equal-capacity ablation, and independent review](../../docs/experiments/left_decoder_context_20261124/RESULTS.md).
 
+## Fixed comparison of conditioned training with unmodulated detection
+
+| Dataset | Method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 0.576639 | 0.776095 | 0.572611 | 0.785067 |
+| PSM | Observation-conditioned training, detection off | 0.576335 | 0.755716 | 0.572616 | 0.762379 |
+| PSM | Prototype-conditioned training, detection off | 0.579869 | 0.754757 | 0.568705 | 0.751577 |
+| PSM | Pointwise level deviation | 0.438271 | 0.654233 | 0.446020 | 0.654290 |
+| SWaT | Native LEFT | 0.543866 | 0.820853 | 0.534601 | 0.809255 |
+| SWaT | Observation-conditioned training, detection off | 0.713724 | 0.838712 | 0.544820 | 0.707896 |
+| SWaT | Prototype-conditioned training, detection off | 0.720355 | 0.838264 | 0.509151 | 0.691949 |
+| SWaT | Pointwise level deviation | 0.744800 | 0.831823 | 0.464536 | 0.644277 |
+
+On PSM, switching off modulation yielded a small trade-off. Prototype-conditioned training with detection off gained 0.003230 AP over native LEFT, with −0.021338 ROC-AUC, −0.003906 VUS-PR and −0.033490 VUS-ROC. Observation-conditioned training with detection off was essentially tied with native LEFT on AP and VUS-PR and lower on ROC-AUC and VUS-ROC. Both off variants exceeded the level baseline on all four metrics.
+
+The SWaT figures reuse the discovery scores. Both off variants exceed native LEFT on AP and ROC-AUC, and both have lower VUS-ROC. Observation conditioning slightly improves VUS-PR over native LEFT, while prototype conditioning is lower. The simple level baseline achieves the highest AP (0.744800), ahead of observation off (0.713724) and prototype off (0.720355). Both trained off variants exceed level deviation on ROC-AUC and both VUS metrics. The PR curves show why an AP improvement relative to native LEFT alone would overstate the evidence for learning a more useful anomaly ranking.
+
+Prototype-conditioned training leads observation-conditioned training only on AP in both datasets (+0.003535 and +0.006631). ROC-AUC and both VUS measures favor observation conditioning. The data do not establish an independent prototype benefit across metrics. The PSM check did not reproduce the broad SWaT improvement, and the SWaT AP gain over native LEFT is smaller than the gain from a static level score under the same scaler. These results do not justify repeating the complete two-domain recipe with new seeds at this stage. They also leave open other static explanations for the observed ranking differences.
+
+[Full comparison, paired contrasts, and costs](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#fixed-conditioned-training-comparison-with-unmodulated-detection). [PSM PR and ROC](../../docs/experiments/left_decoder_context_20261124/figures/psm_pr_roc.svg) and [SWaT PR and ROC](../../docs/experiments/left_decoder_context_20261124/figures/swat_pr_roc.svg).
+
 ## Target-normal training scope
 
 We evaluated six additional full-parameter trajectories with the archived target-normal procedure. Each selects epoch20 by the same normal validation rule as the matched decoder-only controls. The full-budget evaluation holds the original initializations and target-data permissions fixed.

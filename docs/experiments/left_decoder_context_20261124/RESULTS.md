@@ -74,3 +74,62 @@ The existing channel-mean readout gives channel $i$ a contribution of its raw sc
 The independent arithmetic check used tie-group AP and trapezoidal ROC from sorted points, rank covariance for Spearman, and the sum of channel contributions for each group mean. Maximum absolute difference across the checks was 1.35e-09, from the float32 channel mean. The two full off forwards took 0.559389 and 0.520555 A40-seconds (observation and prototype). The fixed-batch on replays took 0.638058 additional A40-seconds. Recorded forward cost totals 0.000477 A40 GPU-hours. CPU analysis took 5.150 seconds. Loading, startup, compression and a checkpoint-load preflight retry were outside the forward timings. That retry adjusted handling of archived profiling counters before any model forward.
 
 The two score banks and exact replay source are retained outside Git in `results/left_decoder_context_20261124_v1_swat_modulation_off` on the research server. Score SHA-256 values are `301fd8f2f85c9d034933d3ffa116f9913f6b9df973f8cb05ee8aab58bd7fba6d` (observation off) and `009faceb214df0c488ce6edc1ec61407ce39518c754b9ddbd7e8c69438f9e426` (prototype off). Replay source SHA-256 is `6261b9431ba083ccdc6af38799276b20502c27f6bb434a7cdade13d6f9696adc`.
+
+## Fixed conditioned-training comparison with unmodulated detection
+
+The new method rule was recorded in commit `52bbc48ec26e946aab86218a52f57f9f4b67c4bc` after the SWaT intervention above and before the PSM off readouts. Normal training and checkpoint selection use the original conditioned paths. Detection removes only the direct multiscale modulation on both datasets. The cycle path uses its original memory mixing at $\lambda=0.3$. Scoring uses the original weights, scalers and native score. The two SWaT off banks and both domains' on and native banks come from the archived runs. This gives a fixed test of the rule on PSM and a reuse of the discovery evidence on SWaT.
+
+The shared evaluation axes are PSM test-relative [0, 87744) and SWaT absolute [495000, 944856). LEFT's W192 scores are available at the end of their containing window and are assessed retrospectively. The level baseline uses beta-one SmoothL1 from each standardized observation to zero, averaged over channels. Its scaler is the same LEFT normal-prefix scaler including normal SELECT. Pointwise availability is recorded separately even though evaluation uses the common offline axis. Operation metrics are NA on these axes because independent compatible CAL is unavailable.
+
+### Complete methods
+
+| Dataset | Method | AP | ROC-AUC | VUS-PR | VUS-ROC | Training, scaling and context permissions |
+| --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 0.576639 | 0.776095 | 0.572611 | 0.785067 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| PSM | Observation-conditioned training, detection off | 0.576335 | 0.755716 | 0.572616 | 0.762379 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| PSM | Prototype-conditioned training, detection off | 0.579869 | 0.754757 | 0.568705 | 0.751577 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| PSM | Pointwise level deviation | 0.438271 | 0.654233 | 0.446020 | 0.654290 | Zero training; same normal-prefix statistics; current point only |
+| PSM | CATCH W192 seed0 | 0.445990 | 0.653418 | 0.536671 | 0.703657 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | CATCH W192 seed1 | 0.430264 | 0.641399 | 0.519273 | 0.690691 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | CATCH W192 seed2 | 0.433044 | 0.647248 | 0.526447 | 0.698733 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | PCA residual | 0.534404 | 0.793321 | 0.528991 | 0.766686 | target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t |
+| PSM | TimeRadar official block0 seed2024 | 0.433265 | 0.670669 | 0.441259 | 0.678365 | Frozen pretrained model; native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| PSM | TimeRadar common FIT scaler seed2024 | 0.455371 | 0.683823 | 0.458071 | 0.689163 | Frozen pretrained model; FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order |
+| SWaT | Native LEFT | 0.543866 | 0.820853 | 0.534601 | 0.809255 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| SWaT | Observation-conditioned training, detection off | 0.713724 | 0.838712 | 0.544820 | 0.707896 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| SWaT | Prototype-conditioned training, detection off | 0.720355 | 0.838264 | 0.509151 | 0.691949 | Normal FIT and SELECT; normal-prefix statistics; W192 and window-end availability |
+| SWaT | Pointwise level deviation | 0.744800 | 0.831823 | 0.464536 | 0.644277 | Zero training; same normal-prefix statistics; current point only |
+| SWaT | TimeRadar official block0 | 0.639299 | 0.821970 | 0.514061 | 0.766831 | Frozen pretrained model; native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| SWaT | CATCH W192 | NA | NA | NA | NA | Compatible full-axis cache unavailable |
+| SWaT | PCA residual | NA | NA | NA | NA | Compatible full-axis cache unavailable |
+
+### Training and detection ablation
+
+| Dataset | Comparison | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| PSM | Observation-conditioned training, detection off − Observation-conditioned training, detection on | -0.000314 | -0.020311 | -0.000458 | -0.022620 |
+| PSM | Prototype-conditioned training, detection off − Prototype-conditioned training, detection on | +0.001930 | -0.022233 | -0.006287 | -0.034739 |
+| PSM | Observation-conditioned training, detection off − Native LEFT | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | Prototype-conditioned training, detection off − Native LEFT | +0.003230 | -0.021338 | -0.003906 | -0.033490 |
+| PSM | Prototype-conditioned training, detection off − Observation-conditioned training, detection off | +0.003535 | -0.000959 | -0.003912 | -0.010802 |
+| PSM | Observation-conditioned training, detection off − Pointwise level deviation | +0.138064 | +0.101484 | +0.126596 | +0.108088 |
+| PSM | Prototype-conditioned training, detection off − Pointwise level deviation | +0.141599 | +0.100524 | +0.122684 | +0.097286 |
+| SWaT | Observation-conditioned training, detection off − Observation-conditioned training, detection on | +0.222793 | +0.047273 | +0.087738 | -0.022111 |
+| SWaT | Prototype-conditioned training, detection off − Prototype-conditioned training, detection on | +0.580124 | +0.308578 | +0.366469 | +0.190015 |
+| SWaT | Observation-conditioned training, detection off − Native LEFT | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | Prototype-conditioned training, detection off − Native LEFT | +0.176489 | +0.017412 | -0.025450 | -0.117306 |
+| SWaT | Prototype-conditioned training, detection off − Observation-conditioned training, detection off | +0.006631 | -0.000448 | -0.035669 | -0.015947 |
+| SWaT | Observation-conditioned training, detection off − Pointwise level deviation | -0.031077 | +0.006889 | +0.080284 | +0.063620 |
+| SWaT | Prototype-conditioned training, detection off − Pointwise level deviation | -0.024446 | +0.006441 | +0.044615 | +0.047673 |
+
+[PSM PR and ROC curves](figures/psm_pr_roc.svg) · [SWaT PR and ROC curves](figures/swat_pr_roc.svg) · [Full precision metrics and data bindings](unmodulated_metrics.json)
+
+On PSM, switching off modulation yielded a small trade-off. Prototype-conditioned training with detection off gained 0.003230 AP over native LEFT, with −0.021338 ROC-AUC, −0.003906 VUS-PR and −0.033490 VUS-ROC. Observation-conditioned training with detection off was essentially tied with native LEFT on AP and VUS-PR and lower on ROC-AUC and VUS-ROC. Both off variants exceeded the level baseline on all four metrics.
+
+The SWaT figures reuse the discovery scores. Both off variants exceed native LEFT on AP and ROC-AUC, and both have lower VUS-ROC. Observation conditioning slightly improves VUS-PR over native LEFT, while prototype conditioning is lower. The simple level baseline achieves the highest AP (0.744800), ahead of observation off (0.713724) and prototype off (0.720355). Both trained off variants exceed level deviation on ROC-AUC and both VUS metrics. The PR curves show why an AP improvement relative to native LEFT alone would overstate the evidence for learning a more useful anomaly ranking.
+
+Prototype-conditioned training leads observation-conditioned training only on AP in both datasets (+0.003535 and +0.006631). ROC-AUC and both VUS measures favor observation conditioning. The data do not establish an independent prototype benefit across metrics. The PSM check did not reproduce the broad SWaT improvement, and the SWaT AP gain over native LEFT is smaller than the gain from a static level score under the same scaler. These results do not justify repeating the complete two-domain recipe with new seeds at this stage. They also leave open other static explanations for the observed ranking differences.
+
+The two new PSM score banks (87,744 points, 25 channel scores each) passed checkpoint, scaler, score and availability checks. Measured A40 readout time was 0.690942 s for the first execution and 0.092070 s for the second, totaling 0.783013 A40-seconds (0.000218 GPU-hours). This includes the cold first forward and excludes loading and compression. CPU evaluation and plotting took 71.346 wall-seconds on the successful run. The initial CPU preflight was retried after differences in float32 channel summation order. The independent SmoothL1 check then matched all elementwise values on the first 4,096 points per task. The level scores retained their original NumPy channel mean. Independent tie-group AP and ROC-AUC recomputation on all 19 plotted rows gave maximum error 6.66e-16. VUS uses the existing LEFT implementation with `windowSize=100` and `thre=250`. The VUS contrasts are differences of these same-axis metrics.
+
+The scored PSM outputs and both level baselines are stored outside Git in `results/left_context_unmodulated_20261124_v1`. PSM observation-off score SHA-256 is `4279535a196ae5677342a38e7f98ffd074a0981f00706631e5e6841c8a048cf2` and prototype-off is `f2787ea3e81cfbb3dc5ce44327118a827ba85d008622f7feb611ffa4be0fe5a6`.
