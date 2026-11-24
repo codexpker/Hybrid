@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "dataset": "PSM",
+      "entities": 1,
+      "input_points": 87841,
+      "scored_points": 87800,
+      "windows": 878,
+      "omitted_tail": 41,
+      "occupied_A40_seconds": 29.045809174887836
+    },
+    {
+      "dataset": "SMD",
+      "entities": 28,
+      "input_points": 708420,
+      "scored_points": 707000,
+      "windows": 7070,
+      "omitted_tail": 1420,
+      "occupied_A40_seconds": 345.36524654366076
+    },
+    {
+      "dataset": "MSL",
+      "entities": 27,
+      "input_points": 73729,
+      "scored_points": 72600,
+      "windows": 726,
+      "omitted_tail": 1129,
+      "occupied_A40_seconds": 14.776517663616687
+    },
+    {
+      "dataset": "SMAP",
+      "entities": 53,
+      "input_points": 427617,
+      "scored_points": 425400,
+      "windows": 4254,
+      "omitted_tail": 2217,
+      "occupied_A40_seconds": 80.05220040213317
+    }
+  ],
+  "total_A40_seconds": 469.23977378429845,
+  "total_A40_hours": 0.13034438160674958,
+  "models": 8,
+  "new_training": 0,
+  "readout": "all positions V/E, W100 stride100 B1 masks84551",
+  "check_or_process_startup_timing": "not independently isolated; total includes per-entity loading, data binding, model-freeze hashes, GPU scoring and bank writes",
+  "failed_GPU_jobs": 0
+}
