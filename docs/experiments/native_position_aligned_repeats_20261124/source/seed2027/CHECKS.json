@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "terminal_value_bit_exact": true,
+  "terminal_copy_bit_exact": true,
+  "terminal_decoder_gradient_bit_exact": true,
+  "position_mean_arithmetic": true,
+  "mean_before_softplus_rejected": true,
+  "correct_loss": 1.8381377458572388,
+  "incorrect_meanV_loss": 1.8012388944625854,
+  "decoder_only": true,
+  "frozen_state_unchanged": true,
+  "official_initial_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "source_plan_sha256": "2d0db1255f6af518e681473e21e04687a50649b6c774715d03315c70d0136fe8",
+  "source_only": true
+}

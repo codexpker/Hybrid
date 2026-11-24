@@ -1,0 +1,14 @@
+{
+  "implementation_commit": "85e15fc901137a3107054a7e8f4ea03cd0f7afa0",
+  "files": {
+    "src/hybrid_tsad/native_position_aligned_repeat_readout.py": "478e4941cca82b25a8a17d3f13c8465526861b02a79d29c0cf7a61ad46c1e383",
+    "src/hybrid_tsad/native_position_aligned_repeat_metrics.py": "7e6ad51a93750fa8ad09adb74e298f55a875585c66802f8f2aa9ac74f678fe23"
+  },
+  "score_axis": "same fixed prior common axes; native_full separately retained",
+  "selected_source_weights": "six source-selected models, after global source seal",
+  "seed2025": "all prior readout and metrics reused unchanged",
+  "new_gpu_inference": "six models shared frozen encoder; decoder outputs distinct",
+  "no_new_CAL": true,
+  "no_new_causal_bank": true,
+  "post_commit_display_only_fix": "Replace U+5364 mojibake with U+00B1 in table mean/sample-SD display; no numerical or method change"
+}

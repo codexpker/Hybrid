@@ -1,0 +1,15 @@
+{
+  "successful_GPU_lane_seconds": [
+    84.96102661918849,
+    85.07063134992495,
+    85.09444437315688,
+    85.08375210920349
+  ],
+  "successful_GPU_total_seconds": 340.2098544514738,
+  "successful_GPU_hours": 0.09450273734763161,
+  "new_metric_worker_wall_seconds_sum": 1512.141654023435,
+  "metric_driver_elapsed_includes_wait_for_source_and_readout": 420.6957063660957,
+  "readout_bootstrap": "See READOUT_BOOTSTRAP.json: failed import load not separately metered; conservative one-GPU <=60s bound distinct from actual successful timings",
+  "successful_plus_bootstrap_upper_bound_GPU_hours": 0.11116940401429828,
+  "banks_bytes": 28137365
+}

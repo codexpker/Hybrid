@@ -1,0 +1,156 @@
+{
+  "status": "PASS",
+  "GPU_used": false,
+  "model_forward_calls": 0,
+  "source": {
+    "status": "PASS",
+    "checkpoints": 42,
+    "position_select_banks": 42,
+    "source_plan_different_across_seeds": true,
+    "source_select_and_scale_identical_to_2025": true,
+    "all_seven_risks_recomputed": true,
+    "max_risk_error": 0.0,
+    "initial_score_banks_identical": true,
+    "selection": "earliest minimum full-position risk",
+    "arms": [
+      {
+        "seed": 2026,
+        "arm": "copy",
+        "selected_step": 200,
+        "risk": 0.9048368085090294,
+        "selected_sha256": "9fc0e7781019298427bb39bf7f77cc169bbe9ae81ba2efb9e59bdbb4a91490ca"
+      },
+      {
+        "seed": 2026,
+        "arm": "terminal",
+        "selected_step": 240,
+        "risk": 0.9016794054904992,
+        "selected_sha256": "21a339a2a15f612398eb8a98e1460ffba68a1472cf03aef73f5141e7bf24415e"
+      },
+      {
+        "seed": 2026,
+        "arm": "all_positions",
+        "selected_step": 240,
+        "risk": 0.7988731662103374,
+        "selected_sha256": "a3d21ce4be7fb99bd2d012daae6378d702bad308bbdf044905077e4ef477c6dd"
+      },
+      {
+        "seed": 2027,
+        "arm": "copy",
+        "selected_step": 160,
+        "risk": 0.8766333714187718,
+        "selected_sha256": "913d1d2842b7c315267728557ea58c4a3638305fda2643570c6fe0f104b38c26"
+      },
+      {
+        "seed": 2027,
+        "arm": "terminal",
+        "selected_step": 240,
+        "risk": 0.8707996020583745,
+        "selected_sha256": "66cb8e4a1e79139ae07a8c946ff104c67de070c18e5def6c57ab52d4d21a09bb"
+      },
+      {
+        "seed": 2027,
+        "arm": "all_positions",
+        "selected_step": 200,
+        "risk": 0.7586270046403042,
+        "selected_sha256": "28bb599ee236f5b9b5a23e758103202d43eec186e0d12070680f04b0eab46106"
+      }
+    ],
+    "training_entry_sha256": "9ba88d81e748a20aa7c5c8f2294166f8338262f8ee5209459e19d1b9478fb17e",
+    "randomness_scope": "Explicit Python/NumPy/PyTorch seed plus seed-specific archived training draws. eval forwards use isolated fixed native mask RNG; no claim of newly randomized masks.",
+    "training_seed_call_checked": true,
+    "seed2025_plan_regenerated_equal": true
+  },
+  "target": {
+    "status": "PASS",
+    "all_entities": 109,
+    "baseline_and_seed2025_rows_identical": 1526,
+    "reused_readout_columns_bit_exact": 218,
+    "seeds": [
+      2025,
+      2026,
+      2027
+    ],
+    "paired_ddof": 1,
+    "fixed_raw_score_checks": [
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "seed": 2026,
+        "arms": [
+          "copy",
+          "terminal",
+          "all_positions"
+        ],
+        "axes": [
+          "common",
+          "native_full"
+        ],
+        "bank_sha256": "280b5845c48d132a8149b580beb3cae40f71984ef1c55a6da280df64b344289b"
+      },
+      {
+        "domain": "SMD",
+        "entity": "machine-1-1",
+        "seed": 2026,
+        "arms": [
+          "copy",
+          "terminal",
+          "all_positions"
+        ],
+        "axes": [
+          "common",
+          "native_full"
+        ],
+        "bank_sha256": "64f95cb6a4913f51259aa585dba81499e85fa4b38c83402469b5afb4ecdd403e"
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "seed": 2026,
+        "arms": [
+          "copy",
+          "terminal",
+          "all_positions"
+        ],
+        "axes": [
+          "common",
+          "native_full"
+        ],
+        "bank_sha256": "bf63ecc8fd6ed24625a5a536fd223f4eb9a43a7b3b6dc3f03f38660f0488f4b2"
+      },
+      {
+        "domain": "SMAP",
+        "entity": "A-1",
+        "seed": 2026,
+        "arms": [
+          "copy",
+          "terminal",
+          "all_positions"
+        ],
+        "axes": [
+          "common",
+          "native_full"
+        ],
+        "bank_sha256": "d6b82a211233ead2f5a2c5bfdfd87c34a6a4b0a2763c12ffb8af0cbcada54c6a"
+      }
+    ],
+    "raw_AP_ROC_recomputations": 24,
+    "max_errors": {
+      "macro": 3.3306690738754696e-16,
+      "paired_seed": 1.4224732503009818e-16,
+      "distribution_macro": 1.4224732503009818e-16,
+      "distribution_median": 2.983724378680108e-16,
+      "paired_entity": 3.200564813177209e-16,
+      "paired_mean": 1.249000902703301e-16,
+      "paired_sample_sd": 1.0451708942760263e-16,
+      "method_mean": 1.1102230246251565e-16,
+      "method_sd": 1.205632815803881e-16,
+      "raw_AP": 8.326672684688674e-17,
+      "raw_ROC": 0.0
+    },
+    "VUS_scope": "Independent entity-first aggregation, paired differences, sample SD and distributions from archived per-entity VUS values; VUS score-level integral implementation NOT independently rerun.",
+    "metric_csv_sha256": "82f3889fce32da5ed76aa2e3ecf287b920c2da90b73a2648b0f1e66bcacbcb5c"
+  },
+  "wall_seconds": 307.3474111459218,
+  "scope": "One independent CPU-only key-result review; no model training, forward, new calibration, or QUERY-based decisions."
+}

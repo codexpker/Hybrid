@@ -1,0 +1,1207 @@
+{
+  "entities": [
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "metric_seconds": 22.943732095882297,
+      "sha256": "58d206556de2574de7fbc86516e3d1f8e2eda244f9d6c6686e8f8d79343a3650",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "e7bce1d03d7919bba21da72a94ac3e5833ab158337c285f3a5f4e1b9e2ea2cb6"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "metric_seconds": 15.032626267988235,
+      "sha256": "10819a4c0d2240c601bf3bcf24f3dcea74850adc6d9bb1a974b6b3441ff9ee8c",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "45734b7f4005379556f96150fce011536acac365c9d28b58c92f454f58c7909c"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "metric_seconds": 17.062065487727523,
+      "sha256": "6de3ee473c3bededd73e835d850e564c286d5399ce5fd17628f5a337e12d48c0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "45df76cdbae404fc66584f9937aaad6924247c5763aba12354496a6b81373fa9"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "metric_seconds": 29.930652495939285,
+      "sha256": "c343cabeacd28a9456e04be570226535f35fc97a6ca2eea6f2a59b271343575d",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "23b7bb062d7e2b6f8c6a16cabaed9c8faabdfd6d80737e36441a7a64fe9d36b2"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "metric_seconds": 32.00191283086315,
+      "sha256": "d828067a45a2fe4dce4989042d507fd5dd639885e4ad3d35c8ebe8d6a7303cf0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "c68d535beaac82d9b093f0d58dda85ec2e30733ef177a7cc94ff91ee09ab31ad"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "metric_seconds": 21.00991526665166,
+      "sha256": "dbf02a9d19678066701973f31f4254999a09caf496417c393e313ced4be75e29",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "10bd8da879551ac07576389c7124b83a7d6bf3d397776c8ae4507a761ad621bc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "metric_seconds": 26.759542939718813,
+      "sha256": "64f95cb6a4913f51259aa585dba81499e85fa4b38c83402469b5afb4ecdd403e",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "8745158f04e5a861f5a4a2d785210979cbe505fd226a627a87a8d1efa54c4c21"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-1",
+      "metric_seconds": 4.716101421974599,
+      "sha256": "d6b82a211233ead2f5a2c5bfdfd87c34a6a4b0a2763c12ffb8af0cbcada54c6a",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "12f1554fa60edc5340eb42b1b1035785f8686fca0cb6c7c681b253ea6f9a25bd"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-7",
+      "metric_seconds": 6.283715263009071,
+      "sha256": "6a6a417b4d3007f7e8caca40f2c4d3603a199a929f045f78430e6e8036f38917",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "5ef4436fbea8ac9c9cdd0d6967dd33e5bb82deb4dfdf585a27540651e62ab562"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "metric_seconds": 33.184247392229736,
+      "sha256": "4778ed107899329be602eda5b7d3ad4c08db2e86f38ea1c6cb50ed4874f6d8f9",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "354be5da015c58de88979b0b73ea9953a76d856221c5bdfa25de40ce43560a28"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-9",
+      "metric_seconds": 7.207092018797994,
+      "sha256": "cdc1b0a45ef40e39e8cc2d74d741ee535cc962c3debf152b695fecf5b7693783",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2c50b9ef505286766dffe3713d49d8ecd50e41154d021b814479e7031b2b8b18"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-4",
+      "metric_seconds": 4.691127998754382,
+      "sha256": "4e4178c6276e962c4a709bc35131e11d83111aeeedc362c03afcbdb8dc53c74d",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "16bf47f31fec678eeda3486be01f7916ee29ecfa6eb3eef50f9b97e2e6105a7c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-2",
+      "metric_seconds": 4.645199883263558,
+      "sha256": "5759485aa115a5ec30aa02af220ee2b0c5b1c52a27ac849b3f470d3c143f8b61",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "13cb4a84ca168613b4d122ef00fd10ecd35fbdea9a4c9118fd6403bfe91e5442"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "metric_seconds": 4.059030805248767,
+      "sha256": "a8e1c0007839ed7d46cb7e919699c79583bb5f73ed1fd22aeb2fc56fcd3caf8a",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "72c8b4e4963a95b765459abb9dfb9469df7afd24a1ad7c5eb4ddfe8dd7e35f6d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "metric_seconds": 35.18313884316012,
+      "sha256": "0c540a88473f1cb7f2cfe2e918c00c7a94a043e4b43e1c2d9ffa6d3e2fe3969c",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ac9362727b07c1cb51fcf54632c5fa5e9c3bd786421d69d718f80ede50eda418"
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "metric_seconds": 6.347825288772583,
+      "sha256": "4381d795ed52fb9de917bbf6071dcff4fd7d102cd09dd32f36c1a9629ee149e0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "996b4a4d8f0309e2f8306df3bb778e9121cfe83fe3930ac04ce2eafde7de7f6b"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "metric_seconds": 9.434061408042908,
+      "sha256": "827b457ca9bd874deef57898483aec56d783c62e8744f15f3ad7f28ad1061f73",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "175ab01e847285f3eca0a130c0e72a67741348eb4af56f299d21d3a4c3d80636"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "metric_seconds": 6.503339746966958,
+      "sha256": "9901514749a5e27ab38144ecc5dfb3da9827b83a9ae66d8260c3aafae78e9040",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2a73af8cef51187985f4bffe06d49d2b64d269983bbe8470713c0f1600bba556"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "metric_seconds": 4.4241088959388435,
+      "sha256": "8ba3c32e8a5332525c7da0c00f44e5fae040bbf7b0aa9ff9bcc30849f4f9e62f",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "8df2757b7db0ebaa63de9e005eae0d954e1359d5eb2a45e06ad93250b5f1da70"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "metric_seconds": 4.233319337014109,
+      "sha256": "9261820e73b2f7928db9699a9d8edbe0182c99d2801a8f23d67e72b218e45712",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "90466d15ee6d2e9f5357b0e24531c06b8399fb29011cb36de608c1918a7bae82"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "metric_seconds": 4.215102076064795,
+      "sha256": "b6b4b508f793a19ab9149cdf38f8e9f76125c70330651f595a8a51408e80fd88",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "f9e09448a2b941067dfbe05a2e7d436c46a695e8657125bdb4f8442f2c3f47ae"
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "metric_seconds": 6.439261181745678,
+      "sha256": "bf63ecc8fd6ed24625a5a536fd223f4eb9a43a7b3b6dc3f03f38660f0488f4b2",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "6e012325812ee08aaf117059eee23d4e52fb961c797489ff3bd017d78a2add4e"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "metric_seconds": 4.101138669066131,
+      "sha256": "d2da33af3440b9024cfe71770b49d2bc44eceed9f6f9b897742f7994e8233ae9",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "6caced52f07d9d9ba40d0946a13b5bc4c481c371645ba7a1a15b3c2a1dfde163"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "metric_seconds": 4.721879101824015,
+      "sha256": "8be1abac4472f8931a413d7a355af86ba2b226181cf6e2ee3f90dce4f44d42ec",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "00d90c399f865915ee395785ae4de3840307b3d5d8c62e416fff070c3b4cf20a"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "metric_seconds": 4.606286411173642,
+      "sha256": "ad01a12b5250fce44e310ab7772d1988865e9f2fb1b6f4d8a8095fded6dd599d",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "630a728e333ab83153c10da66209bb4817ef2110c322cf9cc5451f29d4885b0f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "metric_seconds": 4.060553587973118,
+      "sha256": "8fd59fde204098ca222148133dc4f72558e365262a8a490eb3692d889ccdb22c",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "05fd71a0a89f38ec8e496ee2ae9b2eccb71326ef532d650181cc33d8b0b77099"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "metric_seconds": 4.243517469149083,
+      "sha256": "813fb93719f6290b494a66b82c8f9426be34f672fbf8a833e6d66c6f582bbde1",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "76e049872a478a5a5ecb96f3b6ab47c71478b7e67e62fe4c1d68a4a9ddb2e256"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "metric_seconds": 50.874438190832734,
+      "sha256": "d866d572b376d4bb38a1c33eefd95ae5652a3af83e733d77c4891ad472cf0cf8",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "cad7e09d382f50b06c08c2ab4f70335f93445ee89cf435ceeea7580a3d2f24f8"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "metric_seconds": 4.24894840689376,
+      "sha256": "5d0821caf0b24f3bbf6dba1a4489401631dd237c7cbcef07f78cf75148795f13",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ce72316713c513bb290c48c5fe1678e3300e38c2ca282fa42894ba95cc24901f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "metric_seconds": 4.036753511056304,
+      "sha256": "3c013d43896eace3481f962f19d2642c341ff0b7ecb0fb4a2293dcb6df1de054",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "a590ab7b2ed177e5cf12cfe22459f5f61b95c6ad8fb57acd6d98ba5ae3b3051f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "metric_seconds": 3.960648499894887,
+      "sha256": "069e5fea1e97aae170b7c61e7e46b63746a1d117eabd2036226571e4f3aad23e",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "401e990e1c97e69d90177836f2b1c7cfd166747ac0926a3e2d2205733f2878f8"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "metric_seconds": 4.423327513970435,
+      "sha256": "574c3827dcb6a1ed4037c2a1292e0f8aa6f57713bc86a45fcf81cc63b7d7d965",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2d9ac417770fb98b58e3bf73c3c5481890759d502c92d06f42ad8e9b81636750"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "metric_seconds": 6.63189909234643,
+      "sha256": "af3e266734f55e488b25b8a244a5a4859250be19a6ba6b8aeac4470755ea5607",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "813a796d1968bdb881756e8231432dc7f7a9684e5f6c90c38121a1803fd0ce0e"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "metric_seconds": 4.0534312590025365,
+      "sha256": "1be78add07daed62fe575766736c0733fb688595181c3cbc0d291b8fb2e2f0d8",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "eddda57d2bf675ae768b8bfe0407ab18611efdd7e169797043d311d5498e61fb"
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "metric_seconds": 3.7862064028158784,
+      "sha256": "99cfb3836eecc7991fe36900ebaf391dba4ea8ac38a1f88b2ea684216d59f1f9",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ff72d6ac98982cb42c3b2c7f02e90755e898d7ddc2504afac7f12a38fb0fd7dc"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "metric_seconds": 4.605567272752523,
+      "sha256": "3c708268f24d1848cb2e3c68e799a38767767a08da7a5e5556ea2e56de3db078",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "41543e1f62f3bed74501e3aef3e349a64923fb0f31efeffdffc2ad251ba32c0e"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "metric_seconds": 4.044507837854326,
+      "sha256": "8649850449e72c7b9d898e0828f1afe782618973f4a7c7486e0bd65d09a7d857",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "5aaaffda0e8f3649c994cdf635206f009d8e055f9e6ca5d65e7f9d29e7e16185"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "metric_seconds": 3.909160611219704,
+      "sha256": "3c6b50589c83f65cdc485f96d50f49f77fe6af162a019f1ecd2a48c5a413e93e",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "c0e36fc9e07b4c4e95328ec6fb38f32aaa319154f67cfa316dc76fe7b1d7987d"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "metric_seconds": 4.065645447932184,
+      "sha256": "c349c715c5e025ce2b7a4fa285ac7f32699c9bcb41381c41a63a1778e929a52d",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ffcb4569f169a732f95445c967ac3444fa0ef3c3e626edc87cc0a7768a8bb3d2"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "metric_seconds": 4.853915692772716,
+      "sha256": "55d8e07e89f0a8e8e311aff8f714a0783af56b0e7d982366ff950b0866458f09",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "16e12fda327aea7a4ed570a8934e10bb537f834fc084952f6215ef03d3488a0f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "metric_seconds": 6.516830604989082,
+      "sha256": "09764e8dd985e3eb79dd039be607081f7c6a72b9f00b7f11093ffd4a7bc4e45f",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "749ef872a7723c3cdde8b89a4e0b58bf91687195c5449a2e6e3a016a8db97e94"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "metric_seconds": 6.387327013071626,
+      "sha256": "371805bf05bcf8ac4c4051e76c9790c415282b77b096ced2ec13a51272fdbb32",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "b35e033c7c16dbd2d05ad86c3dad0f594de7d712da8d29e8c3e6bc46ddb26d7e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-5",
+      "metric_seconds": 4.329881240613759,
+      "sha256": "0a9e3c1921a65d2822d9bcacc881d4532c4b25fa151bb41e6eb0a338d3de719f",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "d366bc0d8097bfc8b19c90377d3e2a4f2fd1bd6b95d89da3dabad72f11b8e2a6"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-3",
+      "metric_seconds": 4.745509570930153,
+      "sha256": "aea858b7d014b85ec7aeaa7c75e2f65d44062ebb8f5f3262f7044282b2ba733e",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2174b164fe4f005bae1009187bdcaaacc861ae04d3d103b0cafc14a0f1118c09"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-6",
+      "metric_seconds": 4.162034746259451,
+      "sha256": "c851fa98247d2e696f78519158a2ac0fc49f20dc828bd736157ee2bf6bd6884f",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "b77d2d2104a70d9c951d629bdb183343b69d065962e3b4256a378f170fe8a2b8"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "B-1",
+      "metric_seconds": 4.7171028619632125,
+      "sha256": "b7c68ad20e397b3b9c8544ab9b8d421aa1e928e7e556080a144cd2e1addca917",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "1981775deb85c80c61cb3312686afd22f973060f4a838df1ccf0e977d07444d2"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-11",
+      "metric_seconds": 4.586108079180121,
+      "sha256": "580d854d36f80afb68aadc5033a91b95065cd08a78cc117eecac8c0532e0fe07",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "42dc80502d7da822068082bc84808ff9fd85255bf1a8b48f54fa84a2b37cd8ce"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-8",
+      "metric_seconds": 7.230833865236491,
+      "sha256": "6f79d283dd648e8409d2bfc3647b06e773c1fa86e6c205343d89979dbe3b253c",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "9348f3f141425923fb5e58d1958c29f7a091a1871cb1c66a82dcdcebcd54f963"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-1",
+      "metric_seconds": 6.8447653371840715,
+      "sha256": "59631def367103593c9884a110664c022c6e0260f97b8475e1c7eb687c4bab00",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "f74cc04324d5bf0267b5038498afb6b7a56bcd6a81131f18850b35df5ced3e5c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-13",
+      "metric_seconds": 4.622087087016553,
+      "sha256": "5dc5c3ecbf88f3790fde9aff1339ae71e6a254740b4f717b59d724632ee61bfe",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "3eb4c8634d1cf8a88d1df644603ce4232936aac2a2a16919f239d6f10c0905a5"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-12",
+      "metric_seconds": 6.437971365638077,
+      "sha256": "a113107412e432518026450df41b153623c00e5951467db3d228be5f92ec75a0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "a9034c574e7863e39ff518721ee64d32d408f06e035c9449d0e0a60f9e412294"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-2",
+      "metric_seconds": 7.420843998901546,
+      "sha256": "3a7a6758e1c6855ac2d0e7981bf6908fd3667172fe935d6ac06d0a0f31577c97",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "8fd57b088bbccb7a4d9d294a99251431d2173b9069f72fb3d473727d0c7fd106"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-5",
+      "metric_seconds": 4.548481311183423,
+      "sha256": "39babb69e337b382dc7c69d1505b203ae222a276490a15343edf32fed7ffceb0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "702cdc51bddb5c5e329cd31b1a96873e8de26c46f505aa298d733c1ebf97e8c5"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-3",
+      "metric_seconds": 7.245297186076641,
+      "sha256": "60c5033bd6183287ce044d04efb35f791dd6f0e2b7d89f6227b149b1032dbdad",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "5f9bc211596fba880688f48b22b8a301b3a6cfcbae8d6d3de77e2fb61e56b749"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-6",
+      "metric_seconds": 4.580053206998855,
+      "sha256": "b7b6e3422c8ddcff90cb29b60fd0fd8b86d7c0f8726983a0a412d1d1b4db234b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "4e78fea84b0495e13416493d9e6a7b480c6adeef07a95659ee112f6127b95b6e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-4",
+      "metric_seconds": 6.9066260498948395,
+      "sha256": "87b3eb9764375215c189a3de4c5b64c5ecf3b61455fe2e3197baad9a2f47afce",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "24c1c071b991903011ae29536169387956653d8d5c53d83bfb4aeea10a570082"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-8",
+      "metric_seconds": 4.449040878098458,
+      "sha256": "a5cfab8632d908792da762ce704b33ce36bd9a49d8ee2eed4aba40f6c88586c1",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ba0301dc00aed85b81a6ad7ffd92ed2258587b27354520c08e7eb3281804d869"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-9",
+      "metric_seconds": 5.2121800421737134,
+      "sha256": "29b92117e91c3a75af1edc2f1a6a0b04bb207a674240901688e8433e77839822",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2318e6a618c4fec55f122fee6dd56d311ecc9feddd3641997fa88f1be4790ba0"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-7",
+      "metric_seconds": 6.273236555978656,
+      "sha256": "463351bfc2d9b122b8aaee1633ec5402dac96b36c4c279702f2f87c3abcd8b40",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "17ad6446e305ec504a727b9f0578fe07b23291f4a0ad297471db2490a15fd6bb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-1",
+      "metric_seconds": 7.4100396749563515,
+      "sha256": "4c2bf196df088e453528445e81f010584e63a4599a7cd99b032d69c95493a22b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "0f9a8561a05f6f69f60517e710e35ff9e539241d52afd3b85c2cc19d8fe405e4"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-10",
+      "metric_seconds": 7.278154555242509,
+      "sha256": "7775f183b9bb583ffd25153ac4b4e2843bd2ecc75e62ee4e70d6e4b665c74820",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "d9ebe6c4a310c01b21ea1ba680f0e3d16bb93ec143b4d8a52ab76810ae74c4fb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-11",
+      "metric_seconds": 7.1638223472982645,
+      "sha256": "ac640f4147b9c898017b3d1c41cbfbaa826a0921294e01b328b74e70f0f09694",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "e8753aa697760c55553ddaec5f33641c61be90551fb16a5ad6a1e09d4b41b67a"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-12",
+      "metric_seconds": 7.642061332706362,
+      "sha256": "b114f00e8b86828732a6baaa7859ceaf4b997e3b0a201836232ba14f0178db68",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "d7a7e31bd69905331883c1413a695484d37faad45868138376cf41862f3b7899"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-2",
+      "metric_seconds": 5.621911135036498,
+      "sha256": "8d59a1eeba926468b05784c9602f74c04cba3f2423b6b3ac9d58ea29d2a9b240",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "3f33e51c520ab3598c87a386409c5ccf31f4e7b268b51c13326a04af1b835261"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-3",
+      "metric_seconds": 6.829983385279775,
+      "sha256": "7c5214df4d8c81c34688116bcb2fe80ee1be9f165761ec8a670582354d1c3424",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "c0ddc0d79f8106d4f6417f765c1e822537820b4746d76ab06eae1389fe6dc43a"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-13",
+      "metric_seconds": 9.632367133162916,
+      "sha256": "76d845f8a49ac11bb566995400edb50d435eaff537bbc4a839d95cc6bf87517b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "af77af7fd680b68b3a24a56ddd88dd63c96c88eab55a02f822bd33540be07774"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-6",
+      "metric_seconds": 4.634215651545674,
+      "sha256": "987b63194d795d4329400bf781c7949d110de2d96f5de70cac213dcd1776b03b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "fb065a576bd18608bc50140b474dc7654a04805d0868effdf92dcbcbc3b2801c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-5",
+      "metric_seconds": 5.003367918077856,
+      "sha256": "eab08e68752565bf43c698712a6b34439deb3d9bd0cfb136503b42325897dc7c",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "40224f9f82bdfd4d6c35921b569b4cac70673a00791b90e87ed0f0ae9399e479"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-4",
+      "metric_seconds": 6.495980461593717,
+      "sha256": "c32b47d09d0cbcdeade04f5297826fc07925f3419a19c686ef05f645db88c5e3",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "878ec0fb665392cd52b212a341f15b61c07c94efbcce4808efe7c10bc43d8305"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-7",
+      "metric_seconds": 4.8417284628376365,
+      "sha256": "e8ebe3028a8ea3b87fab37defe1370300638c3172b8fd87ccf93542e132a06b8",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "feb2f4b1647955435d5ea4e7db2c6a16a1c26c3cb141c91a1b5df021dc5dbe00"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-8",
+      "metric_seconds": 5.123439775779843,
+      "sha256": "c3670132c21ad09af50792e5de9b63e81c317d9ef70566b329b1a2e2b3a9bb79",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "34e1644a90500cdabf431ba210567d84374b3c02ce0bcfa5de3d83fbe528596d"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-9",
+      "metric_seconds": 4.834899598732591,
+      "sha256": "cdbe2eea28f30952e7e2946d267ce03bcdb2ab2b3b75f27ab4cf23b763ed0dad",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "b8c97cac41ee3f7c11d1d0a7c5e63c6e00e27b03247c4954073f91fc73044447"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-1",
+      "metric_seconds": 4.826668634079397,
+      "sha256": "90fa44ac1f051bce88e7f346225c1e369ea1e54092383231668fad6d700d2751",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "8c08067404cfbb7395b56ff105315bcaa7812dc318b998bca1c99469c9c217eb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-2",
+      "metric_seconds": 6.653962566982955,
+      "sha256": "6127235625d6923c8e63f5ef4082fa34331bcdfa01643ece7d6ae2c5d23d3234",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "d7e807e5c26203c8b2727b47967271e3fb92626ea4e8228c12e8951fe0a24ead"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-3",
+      "metric_seconds": 4.6129336268641055,
+      "sha256": "510792d1657babf660faa653dd49dab1a1b138240349aafb0ea595a04ff32f21",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "560ea3ac86d377f6958a31156ccaa8a26f8d5c0b28b68e7648ac8bd6c6a1d639"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-1",
+      "metric_seconds": 4.766602182295173,
+      "sha256": "4a746e5529ba3f90f5aaad2083d6e61a613aa34fa21e148e992cd4d01258e46b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "d8fb88daed1d9cb769394c42b09033a5497313b711da384dca1f86e0f39d58ee"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-2",
+      "metric_seconds": 4.479370302986354,
+      "sha256": "dc69f776db6f670002b50cb9f7b06ace0893985a94876ecc227a57ba791c555f",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "a153dc1509e06f9340d9a39b6055cb8d31eb764af249e7b1cf39d24ffce66993"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-3",
+      "metric_seconds": 4.768169610761106,
+      "sha256": "729169998a8562fe65267496966934bb5be4e011f2f5a3c530071fc17cdf2606",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "dec6e11572cefa06d489c263091bd84dc03bdb16e00cf85a71ef0a8e8a88d0b1"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-4",
+      "metric_seconds": 4.491311580874026,
+      "sha256": "db50dc2d51bb87741009b88de5e81405bdfaa1af9b0909e35cff43662930f6b6",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "c15a7ec411ebe059ce986d16d8ef9891e9a7300f994158bf69ef945d7eec1376"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-6",
+      "metric_seconds": 4.7197695900686085,
+      "sha256": "fc17018f73ab506f72f5ae61236de9a9bd6f7b8e2c413360f80bfe2d652993e9",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "6bf08730e42c0497c90d5674d929bbec8580d4f76241df8131d8dad371f29dc3"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-3",
+      "metric_seconds": 5.646548307966441,
+      "sha256": "7ad792b99b91a4c1084cd854f3945b0ba354fb0284f8026607347ef2ac63e464",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "16ada655535d6133a24cd1ce28f018451fe26319dd8e0dac9c2369082790629b"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-7",
+      "metric_seconds": 9.578013851772994,
+      "sha256": "66ddb300bc5197efcfbf4a8d98322fb37b0946b28291b0da4d610d311c7cabf4",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "abd69c9f640939e26f03ea10db179b47d327f7c87fafccf0b10150014e5ab254"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-7",
+      "metric_seconds": 5.777643010951579,
+      "sha256": "fe76ebc1606c58030b4143310256a63df227441b90f20d04d9f7819bb0c128f5",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "1baec8c5c434298c877f77331b087950019997d621a90e2f1556a6eab3e31cb0"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-1",
+      "metric_seconds": 9.988841955084354,
+      "sha256": "d54cf167af864f5f8dd35ca9fd07b279759e2d09ecfa53f16eabba24d27d4221",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "78e4ea45e5a3dd80e5a220b6f54cbb9fe20bdd503441da50a0bd8c74c003c263"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "R-1",
+      "metric_seconds": 4.539221212733537,
+      "sha256": "522036fab6786932cc394eab078f2a83f55a8aa944a82823762822cd095bb12b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "79fd385a91691a1448c4c80f43981ac6d97336f0ab9f7125684d79d224fd6b63"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-4",
+      "metric_seconds": 9.618689569178969,
+      "sha256": "4241db5ced5b300767a19f8a8b5ba13d9ddb243d42527c9208f6ef3e55255de4",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2099f3ef2e7332756d3bf535deb2a649c95741a5bfb7921c1aa3501038b9c995"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "S-1",
+      "metric_seconds": 4.838084605988115,
+      "sha256": "15cd2d25466ed999ddc2f5f5bddd0aca7ae4f762fe1b371e771adf50db5311d3",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "43b8f200eba42b4d0ab755be4ae585be7a0381ebfe16aa8db788e2c75d0efd0b"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-2",
+      "metric_seconds": 5.737267391756177,
+      "sha256": "e5c27895c1e0bc208d3d5759bf4303aeb0a4e2e4a0d7e225154d89b185aeda46",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "26dc1b9ca3a9374fb801d8e3dc65bb91391f6818c13b0c65c9c2bf2b61e9cec8"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-1",
+      "metric_seconds": 8.18973140977323,
+      "sha256": "ed04a297f391205a0b22c17b29dfb29f8c736ed096088c2bfc7b64bac3bd36aa",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "cbba79817d5d4c0cc68685674220fbdf832957700e7daabfc43e1c8ecd42832e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-3",
+      "metric_seconds": 7.417710845824331,
+      "sha256": "f6976560227881584b2fe72c6e4d99f16bee56b45a221ea31c3253d41c683c79",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "6fe68bf4b75d43b746feb60c9720d0e727973d6787ba7d04a89c0f44bc3d28a6"
+    },
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "metric_seconds": 158.41349201882258,
+      "sha256": "280b5845c48d132a8149b580beb3cae40f71984ef1c55a6da280df64b344289b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "e6f3d29928288eb316dd0cc38dd1b47b68cbcfba001f3f2909426d71436d0181"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "metric_seconds": 28.665344486013055,
+      "sha256": "d919791d9d15b553f62c0fd19e6a73c975a41a377685e15d2258ad190b0d0cc3",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "bf10a6f4c4e8c3b9d9f3ee96175475006075063a01050340238d5bcc21195616"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "metric_seconds": 33.153705896344036,
+      "sha256": "032e32e5f055cc18ceab590fce300075284f82de6186b4bc7fa76c83411a3fbb",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "5506a5c3416dd50405caa26c29e54f68a893ff5cb369e2f101e06f30a2ee920b"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "metric_seconds": 35.21868846099824,
+      "sha256": "6acb7f7da48c39077d9cfebc890c98c70248785d22d2aa587810ef19b4d5911b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "fc0b3f4fd90ab10551da62e283cfb5d0b81ab4a2dbb78d48b181fa7f89fde76a"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "metric_seconds": 49.264444092754275,
+      "sha256": "816031bdf90c2225f626addaa06fce096fb4be8886cd939e3a0c1ba1ab43dfc1",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "21b0ae68f41a9c847f4aa603fb3c6417e8a63be12bca064eb93f560e15af1856"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "metric_seconds": 33.00022237934172,
+      "sha256": "31ef75d42b0e8c90838a26b4f120a57dac4ef8989afc591a38770411dfcebdd2",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "2b020980f8aa65b074b89d82903cba1e3c37418a302939ea47e497d6c411ab4b"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "metric_seconds": 28.22134180413559,
+      "sha256": "6694504062b2ab834b3ad7b72f332be513983f04e43338a9453433804c797e43",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "590535cb29d504b12020a6292969291ab00c722a2b53c50d8c53244de657e211"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "metric_seconds": 6.587966667953879,
+      "sha256": "3d266a3050081ae368b4f2801c75f914e90357ebd682262a8115539f89836946",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "665af1da2e1d322fa5c02a2d4fed2e3a71cba44692ab222e168b4153b4e39756"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "metric_seconds": 11.151767695788294,
+      "sha256": "899a9c7b49d3e2e47fd53c497ee583be2c92eaefa4fe4dd3829d4b179b9caa5a",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "ee573f2d8f2cdb5bf881df661bda53dc74d6b460b1eab8cbbce1776c9b2c4e2a"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "metric_seconds": 75.80842671589926,
+      "sha256": "7a8be5c71d3d7a249ed93672fda84adad9e621a828a2fb15f251ddbb3461a1c8",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "3b914864ef4feabbdefd2220a5e02b80368385419b6332c97d478945331cfbfc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "metric_seconds": 25.376894054934382,
+      "sha256": "f6da81c7bcce4acb0e04e01a24cbb6d1b13543807cd7844932ff3d88362e2028",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "4dece04c49e2cf953a1c56fdc3556fd66dfead20f4f01528b69afd738db26d1d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "metric_seconds": 52.59420426795259,
+      "sha256": "82479a60c14eb586fa1398bcc4686a422e99cff9e9f1e0459186574c4dd57c95",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "30429e9d9e4865513758b0786ad5d48a227b7f40c828b70c519be5ea2d7b8129"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "metric_seconds": 36.62093956628814,
+      "sha256": "afe1911ea9d8fb657df21bec745f6943e10b6f22679a0bb5601897607d334d3b",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "a4b12a6f856603e3b2a972c650f063bad378d59b7bdfd3b9ea0565c4bff3cc69"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "metric_seconds": 51.43759489292279,
+      "sha256": "842bac7c63e4421cdb333196ca902db9e74eb59591e42c9777eb6751c622e3a0",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "60dcbf788226dbc0f0a0c8f47caeb6ef1f3f6f65fe5936499466ff129f79f73d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "metric_seconds": 23.59994486812502,
+      "sha256": "ad9e3f3f43147f1c060386cbc454d7d264b4e357eb7f4dee4e9628867aa40e13",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "fd1b2f27608a596272c3bcbf3aab735b19734eddd4fe59823db98b4355f874c6"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "metric_seconds": 15.203198175877333,
+      "sha256": "8b1caa47b6a12bebe98a425cf0b52315f62871678d17c25e0a07ba63c5b1cf49",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "c1e75a4d4168ac5e75d0bd5462555c0dd9db9c5a8eda53ed5794e18c2e40bffc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "metric_seconds": 21.011992026120424,
+      "sha256": "6996f3b7d4cedd9466c483522fab218ab6311ee05ee949ea55dab6d397a8eb63",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "9243906ab48bc1947d4681862ce60954a59eab69e23e8c7ef1e6b0401c65b6e1"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "metric_seconds": 30.076375419273973,
+      "sha256": "33ebd9fc215fa9c5c12ce90ccbb9fd30c51f7a1b18c856c0fb944cc0694dd582",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "b8db5363dfd6f321ff37d39b8a52fcaba7896735b5257251c282b1f4c55ef01d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "metric_seconds": 64.82144392002374,
+      "sha256": "21c1b3146aa839cde231b08b26e11b7b31b31370df0f18fa32d8a4141ad1d421",
+      "reused_metric_columns": {
+        "2026_terminal": "2026_point_weighted",
+        "2027_terminal": "2027_point_weighted"
+      },
+      "axis_binding_sha256": "1e434c19d3706910c5d94fafc2ebedb5175e08a7573b149af528fde13a71c15c"
+    }
+  ],
+  "metrics": "pinned LEFT AP/ROC/VUS windowSize100 thre250",
+  "aggregation": "per entity then equal domain mean then paired project-seed mean/sample SD",
+  "seed2025_reused": "results/native_position_aligned_20261124_v1",
+  "calibration": "not performed"
+}

@@ -87,11 +87,11 @@ def summarize(w,results):
     for d in ['PSM','SMD','MSL','SMAP']:
         for arm in ('copy','terminal','all_positions'):
             r=next(x for x in repeats if x['domain']==d and x['axis']=='common' and x['method']==arm)
-            rows.append([d,NAMES[arm],*[f"{r[k+'_mean']:.5f} 卤 {r[k+'_sd']:.5f}" for k in METRICS]])
+            rows.append([d,NAMES[arm],*[f"{r[k+'_mean']:.5f} ± {r[k+'_sd']:.5f}" for k in METRICS]])
         for arm in ('official_V','official_E','official_V_plus_E','LEFT'):
             r=view.loc[(d,arm)];rows.append([d,NAMES[arm],*[number(r[k]) for k in METRICS]])
     text=['# Repeated complete-window source supervision','',table(['Domain','Method',*METRICS],rows),'', 'Common axes are unchanged intersections of archived causal coverage, W100 full-window scores and native LEFT scored positions. SMD and NASA are entity-first equal macro averages. Three project seeds share a single official pretrained initialization; n=3, sample SD ddof=1. The reconstruction control uses source labels only for validation checkpoint selection. LEFT has target-normal training and native offline W96 (MSL) / W192 context. No binary calibration or causal bank was added.','', '## All-position candidate minus references, paired across project seeds','']
-    text.append(table(['Domain','Reference',*METRICS],[[r['domain'],NAMES[r['reference']],*[f"{r[k+'_mean']:.5f} 卤 {r[k+'_sd']:.5f}" for k in METRICS]] for r in paired]))
+    text.append(table(['Domain','Reference',*METRICS],[[r['domain'],NAMES[r['reference']],*[f"{r[k+'_mean']:.5f} ± {r[k+'_sd']:.5f}" for k in METRICS]] for r in paired]))
     text.extend(['','## Per-seed common-axis model values','',table(['Domain','Method',*METRICS],[[r.domain,r.method,*[number(getattr(r,k)) for k in METRICS]] for r in macro[macro.axis=='common'].itertuples() if r.method[0].isdigit()]),'', '## Per-seed paired differences','',table(['Domain','Seed','Reference',*METRICS],[[r['domain'],r['seed'],r['reference'],*[number(r[k]) for k in METRICS]] for r in seed_effect]),'', 'Per-entity differences and wins/ties/losses/median differences are in paired_entity.csv and paired_distribution.csv. Entities are not independent training repeats. Full native axes remain separately available.'])
     (root/'TABLES.md').write_text('\n'.join(text)+'\n',encoding='utf8')
     dump(root/'METRIC_BINDINGS.json',dict(entities=[{k:v for k,v in r.items() if k!='rows'} for r in results],metrics='pinned LEFT AP/ROC/VUS windowSize100 thre250',aggregation='per entity then equal domain mean then paired project-seed mean/sample SD',seed2025_reused=str(PREVIOUS),calibration='not performed'))

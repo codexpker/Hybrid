@@ -1,0 +1,187 @@
+{
+  "status": "PREPARED_BEFORE_MODEL_LOAD",
+  "seed": 2026,
+  "plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+  "nominal_swat_fit": [
+    0,
+    396000
+  ],
+  "nominal_swat_select": [
+    396000,
+    495000
+  ],
+  "nominal_swat_scaler_sha256": "9443727d66106943f7a7e1a7e039c1938102237e23860970c0d263348c9f1f33",
+  "nominal_smd_binding_sha256": "501184abd4dbd09e9d18a60cc84c88de05eb77f088f706286bb111b28fb51c73",
+  "nominal_smd_entities": [
+    "machine-1-1",
+    "machine-1-2",
+    "machine-1-3",
+    "machine-1-4",
+    "machine-1-5",
+    "machine-1-6",
+    "machine-1-7",
+    "machine-1-8",
+    "machine-2-1",
+    "machine-2-2",
+    "machine-2-3",
+    "machine-2-4",
+    "machine-2-5",
+    "machine-2-6",
+    "machine-2-7",
+    "machine-2-8",
+    "machine-2-9",
+    "machine-3-1",
+    "machine-3-2",
+    "machine-3-3",
+    "machine-3-4",
+    "machine-3-5",
+    "machine-3-6",
+    "machine-3-7",
+    "machine-3-8",
+    "machine-3-9",
+    "machine-3-10",
+    "machine-3-11"
+  ],
+  "source_label_sha256": "2a9fb52f192067dd258f73be4691678b1c42e09c3dc87d259fea616640818039",
+  "event_fit_bounds": [
+    495000,
+    502578
+  ],
+  "event_select_bounds": [
+    502578,
+    585000
+  ],
+  "event_fit": [
+    [
+      496754,
+      497694
+    ],
+    [
+      498068,
+      498511
+    ],
+    [
+      499920,
+      500303
+    ],
+    [
+      501459,
+      501849
+    ],
+    [
+      502255,
+      502451
+    ]
+  ],
+  "event_select": [
+    [
+      502705,
+      503134
+    ],
+    [
+      506410,
+      507374
+    ],
+    [
+      510380,
+      511101
+    ],
+    [
+      568800,
+      569521
+    ]
+  ],
+  "fit_positive_counts": [
+    [
+      281,
+      280,
+      280
+    ],
+    [
+      115,
+      115,
+      114
+    ],
+    [
+      95,
+      95,
+      94
+    ],
+    [
+      97,
+      97,
+      97
+    ],
+    [
+      33,
+      32,
+      32
+    ]
+  ],
+  "fit_normal_pool": 4632,
+  "select_positive_counts": [
+    110,
+    110,
+    110,
+    289,
+    288,
+    288,
+    208,
+    207,
+    207,
+    208,
+    207,
+    207
+  ],
+  "select_paired_per_stratum": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+  ],
+  "select_normal_pool": 79092,
+  "steps": 240,
+  "warmup": 24,
+  "select_steps": [
+    0,
+    40,
+    80,
+    120,
+    160,
+    200,
+    240
+  ],
+  "optics": {
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.1,
+    "norm_bias_weight_decay": 0,
+    "copy_batch": 32,
+    "pair_margin": 1,
+    "pair_weight": 1,
+    "nominal_window": 100,
+    "norm": 0,
+    "native_B": 1,
+    "native_masks": 84551,
+    "copies": 10,
+    "mode": "eval",
+    "trainable": "decoder only",
+    "selection": "earliest minimum event-balanced source risk"
+  },
+  "nominal_sampling": "SWaT and SMD 16 each. SMD machine uniformly, then a legal endpoint uniformly.",
+  "permissions": "Marked public SWaT source-event slice and nominal SWaT/SMD28 train roles only.",
+  "target_values_or_labels_read": false
+}

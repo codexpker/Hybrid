@@ -1,0 +1,9 @@
+{
+  "status": "corrected_before_any_entity_output",
+  "failed_attempt": "GPU3 model-cache reuse import failed because previous native_position_aligned_readout.py was absent from the deployment runtime",
+  "repair": "copied the unchanged archived module from repository; restarted readout; no scientific settings changed",
+  "raw_failure_log": "readout_lane3.log (retained)",
+  "separate_launcher_failure": "shell parameter expansion omitted lane argument in an early 0/1/2 launcher; argparse exited before model work; explicit lane commands replaced launcher",
+  "extra_gpu_startup_seconds": null,
+  "extra_cost_note": "bootstrap loading failed before entity scoring; not separately metered, so not represented as zero cost. Successful lane wall times reported separately. A conservative one-GPU <=60-second bootstrap allowance is also reported; it is a bound, not a measurement."
+}

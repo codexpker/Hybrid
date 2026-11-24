@@ -6,7 +6,7 @@ lang: en
 bibliography: references.bib
 ---
 
-> The current offline training version is a single-seed comparison of reconstruction-only, endpoint-supervised and all-position-supervised native variance, selected by one common full-position SOURCE SELECT rule. Earlier three-seed causal endpoint results and fixed-weight offline results remain separate. Current U/F recipes are closed; no new adaptation, calibration or contamination condition is evaluated. Public source-event labels are explicit. This draft does not claim broad external-method superiority, independent FRFT novelty, weak/lag detection or established mixed-unlabeled robustness.
+> The current offline training version compares reconstruction-only, endpoint-supervised and all-position-supervised native variance at three project-training seeds, selected by one common full-position SOURCE SELECT rule. Earlier causal endpoint results and fixed-weight offline results remain separate. Current U/F recipes are closed; no new adaptation, calibration or contamination condition is evaluated. Public source-event labels are explicit. This draft does not claim broad external-method superiority, independent FRFT novelty, weak/lag detection or established mixed-unlabeled robustness.
 
 # Introduction
 
@@ -14,11 +14,11 @@ bibliography: references.bib
 
 TimeRadar supplies an adaptive fractional time–frequency reconstruction detector with a native score based on disagreement among masked reconstructions [@timeradar2026]. LEFT learns interacting temporal, spectral and multiscale representations [@left2026]. Both motivate learning informative anomaly representations, but they also raise a training question. Reconstruction quality on nominal windows and the discrimination of real anomalous events are different objectives. A model can reduce average reconstruction error without improving the ordering of anomalous and normal observations. A separately supervised classification head can also learn source labels without transferring as well as the original detection criterion.
 
-We study source supervision that acts directly on the original reconstruction-disagreement score. The current Hybrid candidate, termed source-supervised native disagreement here, retains TimeRadar's complete pretrained representation, mask construction and inference score, while updating its reconstruction decoder with nominal reconstruction and a real-public-source-event pair loss. The pair loss compares native endpoint variance at abnormal and normal windows. Sampling strata cover each source event's legal endpoint range, and their weights reflect the numbers of available positive endpoints. They are temporal sampling groups, rather than physical fault phases. The construction aims to connect source supervision to the criterion actually deployed. Whether that connection transfers is tested on public target records.
+We study source supervision that acts directly on the original reconstruction-disagreement score. The current Hybrid candidate, termed source-supervised native disagreement here, retains TimeRadar's complete pretrained representation, mask construction and inference score, while updating its reconstruction decoder with nominal reconstruction and a real-public-source-event pair loss. For the complete-window offline detector, the pair loss is evaluated separately at each output position before its 100-position average. A matched endpoint-supervised arm and a reconstruction-gradient arm distinguish supervision range from adding source discrimination. Sampling strata cover each source event's legal endpoint range, and their weights reflect the numbers of available positive endpoints. They are temporal sampling groups, rather than physical fault phases. The construction aims to connect source supervision to the criterion actually deployed. Whether that connection transfers is tested on public target records.
 
 Three comparisons frame the analysis. First, does supervised learning of native disagreement improve on the frozen official detector and reconstruction-only continuation? Second, how does it compare with supervision of mean reconstruction error or a standard MLP on the frozen representation under the same source-label pool? Third, how competitive is the complete detector against target-normal-trained external methods when evaluated on legal common points? The comparisons distinguish detector-level performance from attribution to an individual formula. Their permissions differ and are reported explicitly.
 
-The existing three-seed evidence supports average AP improvements on PSM, MSL and SMAP, alongside NASA absolute-score limitations and SMD ranking losses. Matched source supervision of reconstruction error and a standard classifier provides further information about the learning objective and readout. Fixed U and F extensions test separate uses of the same detector; neither has demonstrated a reliable net advantage. The present method study therefore concerns source-supervised detection and its transfer boundaries. Mixed-unlabeled target learning remains part of the research objective, with its negative extension results retained. All data are public. First-paper laboratory runs, weak labels and enterprise records are excluded.
+Earlier three-seed causal-endpoint results supported average AP improvements on PSM, MSL and SMAP, alongside NASA absolute-score limitations and SMD ranking losses. They do not establish performance at all output positions of a complete-window detector. The present comparison therefore evaluates the fixed complete-window objective and matched controls at three project seeds across all four tasks. Matched source supervision of reconstruction error and a standard classifier provides historical evidence about the learning objective and readout. Fixed U and F extensions test separate uses of the earlier endpoint detector; neither demonstrated a reliable net advantage. The present method study concerns source-supervised detection and its transfer boundaries. Mixed-unlabeled target learning remains part of the research objective, with its negative extension results retained. All data are public. First-paper laboratory runs, weak labels and enterprise records are excluded.
 
 # Related Work
 
@@ -56,7 +56,7 @@ The full-window offline detector assigns $V_\theta(X^{[b]})_j$ to timestamp $100
 
 ## Three fixed source objectives
 
-All three decoder arms use the same official initialization, seed2025, nominal source windows and240-update cap. Their normal objective retains the native per-copy full-window MSE,
+All three decoder arms use the same official initialization and a 240-update cap. Within each project seed (2025, 2026 or 2027), all arms share the nominal source-window plan, and the supervised arms share their labeled pair plan. Their normal objective retains the native per-copy full-window MSE,
 
 $$L_{copy}=\frac1{|\mathcal B_N|}\sum_{X\in\mathcal B_N}\frac1{10\cdot100\cdot C_X}\sum_{m,j,c}(\hat X^{(m)}_{j,c}-X_{j,c})^2,$$
 
@@ -76,7 +76,7 @@ The all-position version computes softplus before averaging its100 position loss
 
 Fresh AdamW uses the existing lr1e-4, betas(0.9,0.95), eps1e-8 and decay0.1 except LayerNorm/bias, with24-step warmup. Only the original decoder receives gradients. All three trajectories complete240 updates. At0,40,80,120,160,200,240, the same source validation pairs supply full-position scores. For each original event/time group, the risk averages the100 position losses and its validation pairs, then averages the12 groups equally. Nominal validation reconstruction MSE is recorded separately. The earliest minimum of this common risk selects each checkpoint. The reconstruction-only control therefore uses source-event labels for selection despite having only nominal reconstruction gradients.
 
-Old selected-only artifacts could not support the new selection rule. The control trajectories were rebuilt, with all seven complete model states and per-position SOURCE SELECT banks retained. Rebuilt copy step80 and endpoint-supervised step240 matched their historical selected parameter tensors exactly. New selection instead chose120 for reconstruction and200 for both supervised arms. The historical checkpoints were not replaced.
+Old selected-only artifacts could not support the new selection rule. The control trajectories were rebuilt, with all seven complete model states and per-position SOURCE SELECT banks retained. In seed2025, rebuilt copy step80 and endpoint-supervised step240 matched their historical selected parameter tensors exactly; the common full-position rule instead chose120 for reconstruction and200 for both supervised arms. Seed2026 selects200/240/240 and seed2027 selects160/240/200 for reconstruction/endpoint/all-position respectively. The historical checkpoints were not replaced. All seeds use exactly the same SOURCE SELECT windows and original scale. Their FIT plans differ and their actual process seeds are set explicitly. Because each native eval forward restores the fixed-mask RNG, the repeated stochastic component is principally the source-window sampling plan, rather than new masks or new official pretraining.
 
 ```text
 Start each arm at the same official model and original source plan.
@@ -112,89 +112,101 @@ The standard MLP freezes all official components and maps each complex copy/chan
 
 ## Metrics, repeated training and operation
 
-AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VUS metrics retain the archived implementations. VUS uses the pinned LEFT evaluator with windowSize100 and thre250 across all methods. The current position-supervision comparison has one project-training seed and no estimated training SD. In the historical endpoint comparison, the three source-training seeds share one official initial checkpoint; their paired means and sample SD use n=3 and ddof=1. Entity variation is reported separately from training-seed variation. LEFT, E/E and MLP have one project seed and no invented SD.
+AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VUS metrics retain the archived implementations. VUS uses the pinned LEFT evaluator with windowSize100 and thre250 across all methods. The current position-supervision comparison uses three source-training seeds sharing one official initial checkpoint. Within each seed, metrics are first calculated per entity and equally macro-averaged within a domain; paired method differences are then summarized over seeds with n=3 and sample SD, ddof=1. We do not pool time points, entities or events to increase the training-repeat count. Entity wins, ties, losses and median differences are reported separately for every seed. The official detector and reused LEFT model are fixed references without an invented training SD. Earlier E/E and MLP controls retain their own single-seed and causal-axis scope.
 
 Strict and three-confirmation operation includes normal false-alarm point rate and fragments, abnormal recall, one-to-one event matches, any-hit, hit-only delay, complete-event coverage, and long steady coverage after the first 512 event points. Long-event macro and pooled coverages are both reported. MSL and SMAP have only four and ten eligible long events. PSM operation uses its original 64,728-point suffix, with all 512 CAL points labeled abnormal. NASA CAL is small and q99/higher equals its maximum. These thresholds do not certify normal 1% FPR. The SMD nominal-normal CAL and its actual normal test behavior are disclosed separately.
 
 # Results
 
-## Completed source training and selection
+## Completed matched source training and selection
 
-All arms ran240 updates. Their shared step0 full-position validation risk was0.954938557. The earliest-minimum rule selected reconstruction step120 (risk0.893636504, nominal SELECT MSE0.613082), endpoint supervision step200 (risk0.888699353, MSE0.628327) and all-position supervision step200 (risk0.770134859, MSE0.603891). Source losses are reported as learning and selection diagnostics. They are not substituted for target detection metrics. Every arm retains seven complete model states and seven position-specific validation banks. Both supervised selected states have the same6,400 nominal and3,000/3,000 abnormal/normal pair exposures; reconstruction's selected state has3,840 nominal exposures. All trajectories had the same240-update cap. [Source curves, exposure and identities](../../docs/experiments/native_position_aligned_20261124/RESULTS.md).
+| Seed | Arm | Executed updates | Selected step | SELECT risk | Normal SELECT MSE | Selected nominal exposures | Selected positive / pair-normal exposures (each) |
+|---|---|---|---|---|---|---|---|
+| 2025 | copy | 240 | 120 | 0.893636504 | 0.613082 | 3840 | 0 |
+| 2025 | terminal | 240 | 200 | 0.888699353 | 0.628327 | 6400 | 3000 |
+| 2025 | all_positions | 240 | 200 | 0.770134859 | 0.603891 | 6400 | 3000 |
+| 2026 | copy | 240 | 200 | 0.904836809 | 0.595774 | 6400 | 0 |
+| 2026 | terminal | 240 | 240 | 0.901679405 | 0.623752 | 7680 | 3600 |
+| 2026 | all_positions | 240 | 240 | 0.798873166 | 0.600369 | 7680 | 3600 |
+| 2027 | copy | 240 | 160 | 0.876633371 | 0.589141 | 5120 | 0 |
+| 2027 | terminal | 240 | 240 | 0.870799602 | 0.620054 | 7680 | 3600 |
+| 2027 | all_positions | 240 | 200 | 0.758627005 | 0.602987 | 6400 | 3000 |
 
-## Complete-window source-training comparison
+All nine trajectories executed240 updates. The42 new states and42 new position-specific validation banks complement the21 seed2025 states/banks. The shared step0 source risk is0.954938557. The complete supervised trajectory exposes7,680 nominal and3,600/3,600 paired abnormal/normal windows; selected-state exposures are shown above. Different selected steps affect comparison. Source risks and normal reconstruction MSE are diagnostics, not target detection evidence. The four fixed SELECT events, original scale and seven eligibility times are shared across all seeds.
 
-This panel compares one seed2025 observation per method. All source arms use the same full-position source SELECT criterion. They do not reuse the earlier endpoint-selected weights or three-seed scores. The official model and LEFT retain their distinct pretraining, target-normal training and offline-context permissions. The legal common axes contain87,645 PSM points,702,996 SMD points,69,495 MSL points and417,265 SMAP points, with all109 entities retained.
+## Repeated complete-window method and paired results
 
-
-All three decoder arms use the same official initialization, normal-window plan, 240-update cap and seven full-position SOURCE SELECT checkpoints. The reconstruction arm uses source-event labels for selection but not its training gradient. The supervised arms share the exact positive/normal windows and weights. Point-count weights represent window-sampling strata, not uniform abnormal time-point supervision.
 
 | Domain | Method | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|---|
-| PSM | Normal reconstruction control | 0.45528 | 0.69075 | 0.44872 | 0.67387 |
-| PSM | Endpoint-supervised control | 0.44899 | 0.69144 | 0.45661 | 0.68777 |
-| PSM | All-position supervised candidate | 0.46225 | 0.71037 | 0.45351 | 0.67682 |
+| PSM | Normal reconstruction control | 0.45620 ± 0.00129 | 0.69217 ± 0.00127 | 0.44822 ± 0.00069 | 0.67093 ± 0.00260 |
+| PSM | Endpoint-supervised control | 0.44911 ± 0.00151 | 0.69214 ± 0.00097 | 0.45660 ± 0.00067 | 0.68739 ± 0.00056 |
+| PSM | All-position supervised candidate | 0.46376 ± 0.00159 | 0.71062 ± 0.00030 | 0.45373 ± 0.00048 | 0.67598 ± 0.00091 |
 | PSM | Official TimeRadar V | 0.44824 | 0.67842 | 0.45090 | 0.68182 |
 | PSM | Official E | 0.43590 | 0.60779 | 0.43846 | 0.61526 |
 | PSM | Official fixed V+E | 0.44836 | 0.61891 | 0.44821 | 0.62409 |
 | PSM | Complete LEFT | 0.57690 | 0.77618 | 0.57413 | 0.78579 |
-| SMD | Normal reconstruction control | 0.45069 | 0.84241 | 0.47706 | 0.88994 |
-| SMD | Endpoint-supervised control | 0.43390 | 0.84721 | 0.46462 | 0.89466 |
-| SMD | All-position supervised candidate | 0.45628 | 0.84825 | 0.47608 | 0.88921 |
+| SMD | Normal reconstruction control | 0.45364 ± 0.00290 | 0.84469 ± 0.00203 | 0.48029 ± 0.00322 | 0.89108 ± 0.00104 |
+| SMD | Endpoint-supervised control | 0.43535 ± 0.00187 | 0.84781 ± 0.00074 | 0.46581 ± 0.00104 | 0.89471 ± 0.00020 |
+| SMD | All-position supervised candidate | 0.45637 ± 0.00020 | 0.84738 ± 0.00076 | 0.47604 ± 0.00031 | 0.88843 ± 0.00074 |
 | SMD | Official TimeRadar V | 0.42716 | 0.82717 | 0.45194 | 0.88232 |
 | SMD | Official E | 0.42720 | 0.81995 | 0.45557 | 0.86840 |
 | SMD | Official fixed V+E | 0.43725 | 0.82679 | 0.46495 | 0.87375 |
 | SMD | Complete LEFT | 0.49809 | 0.87855 | 0.54184 | 0.91853 |
-| MSL | Normal reconstruction control | 0.37066 | 0.67779 | 0.40455 | 0.72458 |
-| MSL | Endpoint-supervised control | 0.35521 | 0.68378 | 0.39270 | 0.73002 |
-| MSL | All-position supervised candidate | 0.36696 | 0.67751 | 0.41192 | 0.72658 |
+| MSL | Normal reconstruction control | 0.36796 ± 0.00282 | 0.67966 ± 0.00202 | 0.40338 ± 0.00115 | 0.72586 ± 0.00126 |
+| MSL | Endpoint-supervised control | 0.35530 ± 0.00153 | 0.68530 ± 0.00151 | 0.39288 ± 0.00063 | 0.73091 ± 0.00079 |
+| MSL | All-position supervised candidate | 0.36780 ± 0.00079 | 0.67710 ± 0.00114 | 0.41239 ± 0.00142 | 0.72611 ± 0.00062 |
 | MSL | Official TimeRadar V | 0.34850 | 0.66935 | 0.38184 | 0.71798 |
 | MSL | Official E | 0.39988 | 0.71093 | 0.43881 | 0.76245 |
 | MSL | Official fixed V+E | 0.40407 | 0.71697 | 0.44381 | 0.76558 |
 | MSL | Complete LEFT | 0.50834 | 0.76334 | 0.55308 | 0.79416 |
-| SMAP | Normal reconstruction control | 0.33734 | 0.67429 | 0.33244 | 0.71321 |
-| SMAP | Endpoint-supervised control | 0.33698 | 0.67140 | 0.33367 | 0.71295 |
-| SMAP | All-position supervised candidate | 0.33681 | 0.66996 | 0.34702 | 0.71341 |
+| SMAP | Normal reconstruction control | 0.33696 ± 0.00403 | 0.67129 ± 0.00299 | 0.33645 ± 0.00495 | 0.71018 ± 0.00283 |
+| SMAP | Endpoint-supervised control | 0.33553 ± 0.00199 | 0.67119 ± 0.00019 | 0.33378 ± 0.00280 | 0.71234 ± 0.00060 |
+| SMAP | All-position supervised candidate | 0.33759 ± 0.00068 | 0.66927 ± 0.00066 | 0.34671 ± 0.00043 | 0.71283 ± 0.00074 |
 | SMAP | Official TimeRadar V | 0.30165 | 0.66240 | 0.29931 | 0.70426 |
 | SMAP | Official E | 0.38124 | 0.71881 | 0.38102 | 0.76553 |
 | SMAP | Official fixed V+E | 0.38662 | 0.72699 | 0.38210 | 0.77097 |
 | SMAP | Complete LEFT | 0.49315 | 0.76287 | 0.52172 | 0.78494 |
 
-All entries use the latest legal per-entity intersection of W100/stride100 outputs, archived causal coverage and LEFT scored positions. Every new method is an offline complete-window detector. No causal bank or binary threshold was generated. NASA uses sensor0 and entity-first macro averaging; SMD normal records participated in source training. LEFT is target-normal trained, with W96 MSL/W192 other datasets and native offline context. Each new arm has one project seed; no training SD is estimated.
+Common axes are unchanged intersections of archived causal coverage, W100 full-window scores and native LEFT scored positions. SMD and NASA are entity-first equal macro averages. Three project seeds share a single official pretrained initialization; n=3, sample SD ddof=1. The reconstruction control uses source labels only for validation checkpoint selection. LEFT has target-normal training and native offline W96 (MSL) / W192 context. No binary calibration or causal bank was added.
 
-## Candidate minus controls
+## All-position candidate minus references, paired across project seeds
 
 | Domain | Reference | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|---|
-| PSM | Endpoint-supervised control | 0.01326 | 0.01894 | -0.00310 | -0.01094 |
-| PSM | Normal reconstruction control | 0.00697 | 0.01962 | 0.00478 | 0.00295 |
-| PSM | Official TimeRadar V | 0.01402 | 0.03195 | 0.00260 | -0.00500 |
-| PSM | Complete LEFT | -0.11464 | -0.06581 | -0.12062 | -0.10896 |
-| SMD | Endpoint-supervised control | 0.02238 | 0.00104 | 0.01146 | -0.00545 |
-| SMD | Normal reconstruction control | 0.00559 | 0.00584 | -0.00098 | -0.00073 |
-| SMD | Official TimeRadar V | 0.02912 | 0.02108 | 0.02414 | 0.00689 |
-| SMD | Complete LEFT | -0.04180 | -0.03030 | -0.06576 | -0.02932 |
-| MSL | Endpoint-supervised control | 0.01176 | -0.00627 | 0.01923 | -0.00344 |
-| MSL | Normal reconstruction control | -0.00370 | -0.00028 | 0.00737 | 0.00199 |
-| MSL | Official TimeRadar V | 0.01846 | 0.00816 | 0.03009 | 0.00860 |
-| MSL | Complete LEFT | -0.14138 | -0.08583 | -0.14116 | -0.06758 |
-| SMAP | Endpoint-supervised control | -0.00018 | -0.00144 | 0.01335 | 0.00046 |
-| SMAP | Normal reconstruction control | -0.00053 | -0.00433 | 0.01458 | 0.00021 |
-| SMAP | Official TimeRadar V | 0.03516 | 0.00756 | 0.04771 | 0.00915 |
-| SMAP | Complete LEFT | -0.15635 | -0.09292 | -0.17470 | -0.07153 |
-
-[Full entity metrics](entity_metrics.csv) · [entity differences](paired_entity.csv) · [wins/ties/losses and median differences](paired_distribution.csv).
+| PSM | Endpoint-supervised control | 0.01465 ± 0.00134 | 0.01848 ± 0.00068 | -0.00287 ± 0.00031 | -0.01141 ± 0.00041 |
+| PSM | Normal reconstruction control | 0.00756 ± 0.00052 | 0.01845 ± 0.00102 | 0.00551 ± 0.00064 | 0.00505 ± 0.00182 |
+| PSM | Official TimeRadar V | 0.01552 ± 0.00159 | 0.03220 ± 0.00030 | 0.00283 ± 0.00048 | -0.00584 ± 0.00091 |
+| PSM | Complete LEFT | -0.11313 ± 0.00159 | -0.06556 ± 0.00030 | -0.12040 ± 0.00048 | -0.10980 ± 0.00091 |
+| SMD | Endpoint-supervised control | 0.02101 ± 0.00169 | -0.00043 ± 0.00134 | 0.01023 ± 0.00110 | -0.00628 ± 0.00072 |
+| SMD | Normal reconstruction control | 0.00273 ± 0.00293 | 0.00269 ± 0.00275 | -0.00425 ± 0.00311 | -0.00264 ± 0.00166 |
+| SMD | Official TimeRadar V | 0.02920 ± 0.00020 | 0.02021 ± 0.00076 | 0.02411 ± 0.00031 | 0.00611 ± 0.00074 |
+| SMD | Complete LEFT | -0.04172 ± 0.00020 | -0.03116 ± 0.00076 | -0.06579 ± 0.00031 | -0.03009 ± 0.00074 |
+| MSL | Endpoint-supervised control | 0.01250 ± 0.00137 | -0.00820 ± 0.00171 | 0.01951 ± 0.00079 | -0.00480 ± 0.00134 |
+| MSL | Normal reconstruction control | -0.00016 ± 0.00331 | -0.00257 ± 0.00198 | 0.00901 ± 0.00238 | 0.00025 ± 0.00152 |
+| MSL | Official TimeRadar V | 0.01930 ± 0.00079 | 0.00774 ± 0.00114 | 0.03055 ± 0.00142 | 0.00813 ± 0.00062 |
+| MSL | Complete LEFT | -0.14054 ± 0.00079 | -0.08625 ± 0.00114 | -0.14070 ± 0.00142 | -0.06805 ± 0.00062 |
+| SMAP | Endpoint-supervised control | 0.00205 ± 0.00241 | -0.00191 ± 0.00048 | 0.01293 ± 0.00249 | 0.00049 ± 0.00083 |
+| SMAP | Normal reconstruction control | 0.00063 ± 0.00405 | -0.00202 ± 0.00233 | 0.01026 ± 0.00491 | 0.00265 ± 0.00266 |
+| SMAP | Official TimeRadar V | 0.03594 ± 0.00068 | 0.00688 ± 0.00066 | 0.04741 ± 0.00043 | 0.00857 ± 0.00074 |
+| SMAP | Complete LEFT | -0.15557 ± 0.00068 | -0.09360 ± 0.00066 | -0.17500 ± 0.00043 | -0.07211 ± 0.00074 |
 
 
-## Supervision range and the net source-learning effect
+## Supervision range, net effect and external gap
 
-All-position minus endpoint-supervised AP is +0.01326 on PSM,+0.02238 on SMD,+0.01176 on MSL and−0.00018 on SMAP. The new source criterion lowers validation risk but is not itself evidence of target improvement. PSM improves AP/ROC while losing both VUS metrics against the endpoint control. SMD improves AP,ROC and VUS-PR but loses VUS-ROC. MSL has AP/VUS-PR gains with ROC/VUS-ROC costs. SMAP has higher VUS scores with essentially unchanged AP and lower ROC.
+The supervision-range AP increment is repeatable against endpoint supervision on PSM (+0.01465 +/- 0.00134), SMD (+0.02101 +/- 0.00169) and MSL (+0.01250 +/- 0.00137); all three seeds are positive in each task. SMAP has a small mean increment (+0.00205 +/- 0.00241) with seed2025 negative. These are paired mean and sample SD, n=3, ddof=1, not confidence intervals or independent pretraining repetitions.
 
-Against reconstruction continuation, the all-position candidate improves AP by0.00697 on PSM and0.00559 on SMD, while changing it by−0.00370 on MSL and−0.00053 on SMAP. On SMD it wins17/28 machines against reconstruction (AP median+0.00249) and21/28 against endpoint supervision (median+0.01402). On MSL its AP advantage over endpoint supervision is partly recovery from that control's loss: reconstruction remains higher. On SMAP,31/53 entity AP wins over endpoint supervision coexist with a slightly negative macro AP difference. Entity wins and macro means therefore provide different summaries.
+Net benefit over nominal reconstruction is narrower. PSM improves AP (+0.00756 +/- 0.00052), ROC and both VUS metrics in all three seeds. SMD has a small positive mean AP (+0.00273 +/- 0.00293) but seed2026 is negative (-0.000264), and both VUS metrics are lower than reconstruction at every seed. MSL AP is essentially unchanged on average (-0.00016 +/- 0.00331), with a negative seed2025 and two small positive seeds; its VUS-PR improves at every seed, while ROC decreases. SMAP AP is variable (+0.00063 +/- 0.00405), with two negative seeds; VUS-PR improves at every seed, while ROC is lower on average. Positive VUS-PR does not replace AP, ROC or event evidence.
 
-LEFT has higher AP,ROC and both VUS metrics in all four tasks. On both NASA domains, official E and fixed V+E also retain higher AP than the all-position candidate. Its target-normal training and context differ from the source-trained shared decoder. The all-position candidate's source-alignment change yields limited detector gains under matched controls; it does not establish overall advantage over the mature external method. All comparisons are single-seed and use offline full-window availability. No causal sustained-detection, mixed-U/F or contamination benefit is inferred.
+Relative to endpoint supervision, PSM loses both VUS metrics in all three repeats despite its AP/ROC gains. SMD loses VUS-ROC in every repeat and has no stable positive ROC increment. MSL has ROC/VUS-ROC costs despite its AP/VUS-PR gains. SMAP retains ROC costs and varying VUS-ROC differences. Full per-seed values and all negative entities remain in the tables.
 
-The earlier fixed-weight readout study and its same-checkpoint endpoint/full-window contrasts remain in Appendix D. Those results used different selected checkpoints and are not substituted for these controls. The existing V/E and MLP analyses below retain their own original causal evaluation scope.
+All-position supervision exceeds official V in domain-average AP at every seed, but complete LEFT has higher AP, ROC and both VUS metrics in every domain and seed. On both NASA tasks, official E and the fixed V+E also remain higher in AP. LEFT uses target-normal training and a different native window/context; the aligned timestamps do not isolate architecture or label efficiency. NASA sensor0 results cannot establish multivariate interaction benefits. SMD is a seen-normal-source held-out test. PSM remains an exposed development task.
+
+The supported result is a bounded, source-supervised supervision-range effect with the clearest net matched-control improvement on PSM. It is not a broadly superior complete detector or an established mixed-unlabeled method. Different selected steps, labeled-pair exposure and reconstruction gradients are components of the compared training procedures; their entire effect cannot be attributed solely to the position-average formula. No new U/F, calibration, contamination, causal-coverage or delay claim is inferred.
+
+Full individual seed effects, all per-entity distributions and native-full axes are available in the [complete repeat tables](../../docs/experiments/native_position_aligned_repeats_20261124/TABLES.md) and [raw CSV bindings](../../docs/experiments/native_position_aligned_repeats_20261124/RESULTS.md). The original seed2025-only account is retained in Appendix F. Historical causal and fixed-checkpoint readout results are not substituted for these new uniformly selected controls. No new operating-point, calibration or causal banks were generated.
+
+The six new source trains and successful readout consumed0.528275 recorded A40 GPU-hours, with separately disclosed unmetered startup/check overhead. The independent CPU review recomputed all source selections and all-table aggregation; raw AP/ROC checks cover24 fixed entity/seed/arm/axis rows. VUS review covers aggregation only, not independent integration.
 
 ## Training objective and deployed criterion
 
@@ -272,7 +284,7 @@ Native sample variance, the fractional representation, replay and mature classif
 
 # Conclusion
 
-The earlier endpoint-supervised variant produced reproducible task-dependent ranking gains within a fixed pretrained detector. The current offline version tests supervision over the complete output window with matched source selection. Matched decoder, E and standard MLP comparisons help delimit this effect, while complete LEFT benchmarks place its absolute detection performance in context. The results retain negative SMD transfer and false-alarm/coverage costs. In the earlier fixed-weight study, offline readout reduced mean candidate AP in all four tasks and did not close its gap to complete LEFT; source learning and readout effects are therefore reported separately. Current mixed-U and single-event-F recipes do not establish reliable target adaptation. The current all-position version has limited single-seed AP gains over both matched controls on PSM and SMD, with NASA and VUS tradeoffs and a remaining gap to LEFT. Its full-position validation rule and supervised position range are explicitly defined. Broader repeatability, mixed-unlabeled method value and robust target adaptation remain unresolved.
+The three-seed complete-window comparison supports a reproducible supervision-range AP improvement over endpoint training on PSM, SMD and MSL, but not a uniform net benefit over reconstruction continuation. PSM improves on both matched controls at every seed. SMD's AP improvement over reconstruction is small and changes sign at one seed; both VUS differences against that control remain negative. NASA has VUS-PR benefits but no stable AP advantage over reconstruction, and retains ROC and absolute-performance limitations. Every domain remains below complete LEFT on all four macro metrics, under explicitly different source-supervised and target-normal training permissions. These results support a bounded effect of supervision range within the fixed native detector, not a complete mixed-unlabeled solution or an established advantage over mature external methods. Historical causal-endpoint, E/MLP, fixed-weight readout, U and F results remain separate; the earlier U/F recipes did not establish a reliable net benefit. No new adaptation or robustness claim follows from this repetition.
 
 # Appendix A. Reproducible assets and extended comparisons
 
@@ -1182,3 +1194,87 @@ Every arm is selected with a common full-position SOURCE SELECT criterion on the
 The independent offline evaluation keeps the selected checkpoint and all input/scoring constants. Entity block $X^{[b]}=x_{100b:100b+100}$ supplies ten reconstructions. For every position $j$, $V^{[b]}_j$ is the channel mean of sample variance across copies, and $E^{[b]}_j$ is the channel mean squared discrepancy of the copy-mean reconstruction. Their actual timestamp is $100b+j$ and available index is $100b+99$. The final incomplete block has no scores. All blocks use one-window native order computation, fixed complementary masks, frozen parameters/buffers and isolated RNG.
 
 For the same input block, position99 is identical to the existing endpoint function. Earlier positions have later observations inside their input block and are offline retrospective outputs. Source pair learning still supervised endpoint99 only. Comparing the new score with rolling causal endpoint scores therefore tests the effect of input context and output position at fixed weights. It does not provide another source-learning gain or causal delay advantage. One reconstruction supplies both V and E without an extra model pass. The MLP supplies only a window-level logit and remains in its existing causal comparison. No window logit is broadcast over its input.
+
+
+# Appendix F. Original seed2025 full-position comparison
+
+This original observation is preserved for traceability. The current three-seed comparison above supersedes its repetition scope without changing its scores or conclusions at seed2025.
+
+
+## Completed source training and selection
+
+All arms ran240 updates. Their shared step0 full-position validation risk was0.954938557. The earliest-minimum rule selected reconstruction step120 (risk0.893636504, nominal SELECT MSE0.613082), endpoint supervision step200 (risk0.888699353, MSE0.628327) and all-position supervision step200 (risk0.770134859, MSE0.603891). Source losses are reported as learning and selection diagnostics. They are not substituted for target detection metrics. Every arm retains seven complete model states and seven position-specific validation banks. Both supervised selected states have the same6,400 nominal and3,000/3,000 abnormal/normal pair exposures; reconstruction's selected state has3,840 nominal exposures. All trajectories had the same240-update cap. [Source curves, exposure and identities](../../docs/experiments/native_position_aligned_20261124/RESULTS.md).
+
+## Complete-window source-training comparison
+
+This panel compares one seed2025 observation per method. All source arms use the same full-position source SELECT criterion. They do not reuse the earlier endpoint-selected weights or three-seed scores. The official model and LEFT retain their distinct pretraining, target-normal training and offline-context permissions. The legal common axes contain87,645 PSM points,702,996 SMD points,69,495 MSL points and417,265 SMAP points, with all109 entities retained.
+
+
+All three decoder arms use the same official initialization, normal-window plan, 240-update cap and seven full-position SOURCE SELECT checkpoints. The reconstruction arm uses source-event labels for selection but not its training gradient. The supervised arms share the exact positive/normal windows and weights. Point-count weights represent window-sampling strata, not uniform abnormal time-point supervision.
+
+| Domain | Method | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | Normal reconstruction control | 0.45528 | 0.69075 | 0.44872 | 0.67387 |
+| PSM | Endpoint-supervised control | 0.44899 | 0.69144 | 0.45661 | 0.68777 |
+| PSM | All-position supervised candidate | 0.46225 | 0.71037 | 0.45351 | 0.67682 |
+| PSM | Official TimeRadar V | 0.44824 | 0.67842 | 0.45090 | 0.68182 |
+| PSM | Official E | 0.43590 | 0.60779 | 0.43846 | 0.61526 |
+| PSM | Official fixed V+E | 0.44836 | 0.61891 | 0.44821 | 0.62409 |
+| PSM | Complete LEFT | 0.57690 | 0.77618 | 0.57413 | 0.78579 |
+| SMD | Normal reconstruction control | 0.45069 | 0.84241 | 0.47706 | 0.88994 |
+| SMD | Endpoint-supervised control | 0.43390 | 0.84721 | 0.46462 | 0.89466 |
+| SMD | All-position supervised candidate | 0.45628 | 0.84825 | 0.47608 | 0.88921 |
+| SMD | Official TimeRadar V | 0.42716 | 0.82717 | 0.45194 | 0.88232 |
+| SMD | Official E | 0.42720 | 0.81995 | 0.45557 | 0.86840 |
+| SMD | Official fixed V+E | 0.43725 | 0.82679 | 0.46495 | 0.87375 |
+| SMD | Complete LEFT | 0.49809 | 0.87855 | 0.54184 | 0.91853 |
+| MSL | Normal reconstruction control | 0.37066 | 0.67779 | 0.40455 | 0.72458 |
+| MSL | Endpoint-supervised control | 0.35521 | 0.68378 | 0.39270 | 0.73002 |
+| MSL | All-position supervised candidate | 0.36696 | 0.67751 | 0.41192 | 0.72658 |
+| MSL | Official TimeRadar V | 0.34850 | 0.66935 | 0.38184 | 0.71798 |
+| MSL | Official E | 0.39988 | 0.71093 | 0.43881 | 0.76245 |
+| MSL | Official fixed V+E | 0.40407 | 0.71697 | 0.44381 | 0.76558 |
+| MSL | Complete LEFT | 0.50834 | 0.76334 | 0.55308 | 0.79416 |
+| SMAP | Normal reconstruction control | 0.33734 | 0.67429 | 0.33244 | 0.71321 |
+| SMAP | Endpoint-supervised control | 0.33698 | 0.67140 | 0.33367 | 0.71295 |
+| SMAP | All-position supervised candidate | 0.33681 | 0.66996 | 0.34702 | 0.71341 |
+| SMAP | Official TimeRadar V | 0.30165 | 0.66240 | 0.29931 | 0.70426 |
+| SMAP | Official E | 0.38124 | 0.71881 | 0.38102 | 0.76553 |
+| SMAP | Official fixed V+E | 0.38662 | 0.72699 | 0.38210 | 0.77097 |
+| SMAP | Complete LEFT | 0.49315 | 0.76287 | 0.52172 | 0.78494 |
+
+All entries use the latest legal per-entity intersection of W100/stride100 outputs, archived causal coverage and LEFT scored positions. Every new method is an offline complete-window detector. No causal bank or binary threshold was generated. NASA uses sensor0 and entity-first macro averaging; SMD normal records participated in source training. LEFT is target-normal trained, with W96 MSL/W192 other datasets and native offline context. Each new arm has one project seed; no training SD is estimated.
+
+## Candidate minus controls
+
+| Domain | Reference | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | Endpoint-supervised control | 0.01326 | 0.01894 | -0.00310 | -0.01094 |
+| PSM | Normal reconstruction control | 0.00697 | 0.01962 | 0.00478 | 0.00295 |
+| PSM | Official TimeRadar V | 0.01402 | 0.03195 | 0.00260 | -0.00500 |
+| PSM | Complete LEFT | -0.11464 | -0.06581 | -0.12062 | -0.10896 |
+| SMD | Endpoint-supervised control | 0.02238 | 0.00104 | 0.01146 | -0.00545 |
+| SMD | Normal reconstruction control | 0.00559 | 0.00584 | -0.00098 | -0.00073 |
+| SMD | Official TimeRadar V | 0.02912 | 0.02108 | 0.02414 | 0.00689 |
+| SMD | Complete LEFT | -0.04180 | -0.03030 | -0.06576 | -0.02932 |
+| MSL | Endpoint-supervised control | 0.01176 | -0.00627 | 0.01923 | -0.00344 |
+| MSL | Normal reconstruction control | -0.00370 | -0.00028 | 0.00737 | 0.00199 |
+| MSL | Official TimeRadar V | 0.01846 | 0.00816 | 0.03009 | 0.00860 |
+| MSL | Complete LEFT | -0.14138 | -0.08583 | -0.14116 | -0.06758 |
+| SMAP | Endpoint-supervised control | -0.00018 | -0.00144 | 0.01335 | 0.00046 |
+| SMAP | Normal reconstruction control | -0.00053 | -0.00433 | 0.01458 | 0.00021 |
+| SMAP | Official TimeRadar V | 0.03516 | 0.00756 | 0.04771 | 0.00915 |
+| SMAP | Complete LEFT | -0.15635 | -0.09292 | -0.17470 | -0.07153 |
+
+[Full entity metrics](entity_metrics.csv) · [entity differences](paired_entity.csv) · [wins/ties/losses and median differences](paired_distribution.csv).
+
+
+## Supervision range and the net source-learning effect
+
+All-position minus endpoint-supervised AP is +0.01326 on PSM,+0.02238 on SMD,+0.01176 on MSL and−0.00018 on SMAP. The new source criterion lowers validation risk but is not itself evidence of target improvement. PSM improves AP/ROC while losing both VUS metrics against the endpoint control. SMD improves AP,ROC and VUS-PR but loses VUS-ROC. MSL has AP/VUS-PR gains with ROC/VUS-ROC costs. SMAP has higher VUS scores with essentially unchanged AP and lower ROC.
+
+Against reconstruction continuation, the all-position candidate improves AP by0.00697 on PSM and0.00559 on SMD, while changing it by−0.00370 on MSL and−0.00053 on SMAP. On SMD it wins17/28 machines against reconstruction (AP median+0.00249) and21/28 against endpoint supervision (median+0.01402). On MSL its AP advantage over endpoint supervision is partly recovery from that control's loss: reconstruction remains higher. On SMAP,31/53 entity AP wins over endpoint supervision coexist with a slightly negative macro AP difference. Entity wins and macro means therefore provide different summaries.
+
+LEFT has higher AP,ROC and both VUS metrics in all four tasks. On both NASA domains, official E and fixed V+E also retain higher AP than the all-position candidate. Its target-normal training and context differ from the source-trained shared decoder. The all-position candidate's source-alignment change yields limited detector gains under matched controls; it does not establish overall advantage over the mature external method. All comparisons are single-seed and use offline full-window availability. No causal sustained-detection, mixed-U/F or contamination benefit is inferred.
+
+The earlier fixed-weight readout study and its same-checkpoint endpoint/full-window contrasts remain in Appendix D. Those results used different selected checkpoints and are not substituted for these controls. The existing V/E and MLP analyses below retain their own original causal evaluation scope.

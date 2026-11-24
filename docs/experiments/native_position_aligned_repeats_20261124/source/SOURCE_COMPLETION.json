@@ -1,0 +1,26 @@
+{
+  "status": "COMPLETE",
+  "source_training_count": 6,
+  "checkpoints": 42,
+  "source_position_banks": 42,
+  "total_seconds": 1561.581186468713,
+  "total_gpu_hours": 0.4337725517968647,
+  "local_source_assets_sha_verified": true,
+  "source_labels_used_for_all_selection": true,
+  "source_labels_used_for_gradients": "terminal/all_positions only; copy uses reconstruction gradients",
+  "training_randomness": "seed-specific archived FIT draws and explicit Python/NumPy/Torch seeds; fixed masks identical across all seeds",
+  "local_asset_root": "D:\\code\\bst\\seal_detection_project\\research_workspace\\hybrid_ad\\results\\native_position_aligned_repeats_20261124_v1",
+  "remote_asset_root": "/home/a312/tsad_research/results/native_position_aligned_repeats_20261124_v1",
+  "selected_steps": {
+    "2026": {
+      "copy": 200,
+      "terminal": 240,
+      "all_positions": 240
+    },
+    "2027": {
+      "copy": 160,
+      "terminal": 240,
+      "all_positions": 200
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "seeds": [
+    2026,
+    2027
+  ],
+  "arms": [
+    "copy",
+    "terminal",
+    "all_positions"
+  ],
+  "source_only_until_all_sealed": true,
+  "source_2025_reused": "results/native_position_aligned_20261124_v1",
+  "target_read": false
+}

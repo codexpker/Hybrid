@@ -1,0 +1,40 @@
+{
+  "arms": [
+    "copy",
+    "terminal",
+    "all_positions"
+  ],
+  "updates": 240,
+  "warmup": 24,
+  "source_scale": 0.02649214304983616,
+  "source_event_fit": 5,
+  "source_event_select": 4,
+  "normal_windows_per_update": 32,
+  "positive_pair_windows_per_update": 15,
+  "normal_pair_windows_per_update": 15,
+  "training": "copy: native copy MSE; terminal: copy+endpoint99 pair; all_positions: copy+mean100 per-position pair",
+  "training_pair_weights": "original positive-window sampling-stratum counts, normalized; overlapping positions are not uniform independent timepoints",
+  "selection": "all arms: mean per-position pair risk, then equal original source event/stratum means; earliest minimum steps0,40,...240",
+  "optimizer": "fresh original decoder AdamW lr1e-4 betas(.9,.95) eps1e-8 decay.1 except bias/LayerNorm; warmup24",
+  "checkpoints": "all seven validation checkpoints and position-specific SOURCE SELECT arrays saved",
+  "target_read": false,
+  "seed": 2026,
+  "source_plan_sha256": "c1c9097fe054c8319dd505d44be422a5d72f78476fd9ff5b0e860788d10fdc43",
+  "fixed_select_keys": [
+    "normal_select",
+    "positive_select",
+    "select_stratum_sizes",
+    "swat_select",
+    "smd_select"
+  ],
+  "select_panel_identical_to_2025": true,
+  "source_scale_origin": "results/native_position_aligned_20261124_v1/SCALE.json",
+  "source_scale_sha256": "7e31a929d01a65bc52784b941c266324b5f883943bf6842bff2a3799b5069eb1",
+  "training_rng_seed": 2026,
+  "compatibility": "same numerical training code and original frozen source scale; only seed/archived FIT draws vary",
+  "existing_checkpoints": [
+    "results/native_event_rank_seed_repeats_20261122_v1/seed2026/train/copy/selected.pt",
+    "results/native_event_rank_seed_repeats_20261122_v1/seed2026/train/point_weighted/selected.pt"
+  ],
+  "action": "rebuild seven-checkpoint trajectory under common full-position selection"
+}

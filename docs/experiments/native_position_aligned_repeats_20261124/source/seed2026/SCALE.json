@@ -1,0 +1,17 @@
+{
+  "status": "COMPLETED",
+  "value": 0.02649214304983616,
+  "native_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "mask_ids": {
+    "31": "c64c25be82f091df810cb702d53eae7e6d96acf472dcc7281b85196ba00aa6a6",
+    "38": "6c6ea8fe7ca60971ab2fc8a49eb697a591c3ddd101af7b7511efe2e3d5117ddb"
+  },
+  "count": 4632,
+  "bank_file": "FIT_NORMAL_V.npz",
+  "bank_sha256": "c896f3d518bbfee8fa9709f2354dc1d880e8f23880a5dc7cb2d0651cefcc1182",
+  "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "elapsed_seconds": 46.189245286397636,
+  "peak_reserved_bytes": 757071872,
+  "target_read": false
+}
