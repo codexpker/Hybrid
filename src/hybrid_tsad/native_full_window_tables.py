@@ -47,6 +47,10 @@ def build(root):
         rows.append([r.domain,r.readout,r.reference,*[uncertainty(r,k) for k in METRICS]])
     report.append(table(['Domain','Candidate readout','Reference',*METRICS],rows))
     report.extend(['','The LEFT comparison always retains LEFT’s native offline readout. Seed-wise and per-entity differences, counts of wins/ties/losses and medians are in [paired_distribution.csv](paired_distribution.csv). The underlying differences are in [paired_entity.csv](paired_entity.csv).'])
+    report.extend(['','## Entity distribution of the full-window candidate-minus-LEFT AP','', 'Counts compare each fixed training seed with LEFT on the exact per-entity joint axis; entities are not extra training repetitions.'])
+    chosen=delta[(delta.readout=='full_window')&(delta.reference=='LEFT')&(delta.metric=='AP')]
+    rows=[[r.domain,r.method,number(r.macro_delta),number(r.median_delta),f'{int(r.wins)}/{int(r.ties)}/{int(r.losses)}'] for _,r in chosen.iterrows()]
+    report.append(table(['Domain','Candidate seed','Macro AP delta','Median AP delta','Wins/ties/losses'],rows))
     (root/'TABLE_READOUT.md').write_text('\n'.join(report)+'\n',encoding='utf8')
     native=macro[macro.axis=='native_full'].copy();native.to_csv(root/'native_axis_macro.csv',index=False)
     rows=[[r.domain,r.method,*[number(r[k]) for k in METRICS]] for _,r in native.iterrows()]

@@ -1,7 +1,7 @@
 ---
 title: "Source-Supervised Learning of Native Reconstruction Disagreement for Public Time-Series Anomaly Detection"
 author: []
-date: "Working method and experiment draft, 23 November 2026"
+date: "Working method and experiment draft, 24 November 2026"
 lang: en
 bibliography: references.bib
 ---
@@ -94,6 +94,12 @@ Select the earliest minimum source-event validation checkpoint.
 For each target endpoint, return its native channel-mean sample variance.
 ```
 
+## Fixed-weight complete-window offline readout
+
+The independent offline evaluation keeps the selected checkpoint and all input/scoring constants. Entity block $X^{[b]}=x_{100b:100b+100}$ supplies ten reconstructions. For every position $j$, $V^{[b]}_j$ is the channel mean of sample variance across copies, and $E^{[b]}_j$ is the channel mean squared discrepancy of the copy-mean reconstruction. Their actual timestamp is $100b+j$ and available index is $100b+99$. The final incomplete block has no scores. All blocks use one-window native order computation, fixed complementary masks, frozen parameters/buffers and isolated RNG.
+
+For the same input block, position99 is identical to the existing endpoint function. Earlier positions have later observations inside their input block and are offline retrospective outputs. Source pair learning still supervised endpoint99 only. Comparing the new score with rolling causal endpoint scores therefore tests the effect of input context and output position at fixed weights. It does not provide another source-learning gain or causal delay advantage. One reconstruction supplies both V and E without an extra model pass. The MLP supplies only a window-level logit and remains in its existing causal comparison. No window logit is broadcast over its input.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
@@ -118,71 +124,141 @@ Strict and three-confirmation operation includes normal false-alarm point rate a
 
 # Results
 
-## Complete public detection comparison
+## Fixed-weight complete-window offline comparison
+
+The following panel uses the eight previously selected checkpoints with W100 non-overlapping input blocks. Every position retains native V; original E and the pre-specified unit-coefficient combination share the same reconstruction. Neither weights nor thresholds are selected from this comparison. The MLP remains a window-level causal control and is not broadcast.
 
 
-All entries are local measurements. PSM uses [512,87744), 87,232 points; SMD uses [99,192 floor(N/192)) within each machine; NASA uses [99,W floor(N/W)) within each entity, W96 for MSL and W192 for SMAP. Entity means are unweighted within NASA and SMD. These common points align outcomes while preserving distinct source supervision, target-normal training and offline context permissions. Each row below uses seed2025; separate repetition estimates follow.
+All methods in this table use identical scored points within each entity: the intersection of W100 complete-window outputs, archived causal endpoints and native LEFT coverage. PSM begins at99; SMD and NASA also begin at99 in each independent record. The last point is min(100 floor(N/100), W_LEFT floor(N/W_LEFT))−1. LEFT W192 applies to PSM, SMD and SMAP; MSL uses W96. Every TimeRadar full-window score is available at the containing W100 endpoint. Complete-window output is a project readout of fixed checkpoints. The three-seed mean and sample SD concern project source training at a common official initialization (n=3, ddof=1). Single frozen/E/LEFT models have no invented SD.
 
-## AP
+| Domain | Method | Project seeds | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|---|
+| PSM | Official TimeRadar V | 1 | 0.44824 | 0.67842 | 0.45090 | 0.68182 |
+| PSM | Official E | 1 | 0.43590 | 0.60779 | 0.43846 | 0.61526 |
+| PSM | Official fixed V+E | 1 | 0.44836 | 0.61891 | 0.44821 | 0.62409 |
+| PSM | Reconstruction continuation / V | 3 | 0.45283 ± 0.00291 | 0.68729 ± 0.00337 | 0.44955 ± 0.00120 | 0.67675 ± 0.00157 |
+| PSM | Source-supervised native V | 3 | 0.44922 ± 0.00150 | 0.69227 ± 0.00085 | 0.45659 ± 0.00067 | 0.68701 ± 0.00057 |
+| PSM | Source-supervised E / E | 1 | 0.38952 | 0.57682 | 0.40739 | 0.60085 |
+| PSM | LEFT | 1 | 0.57690 | 0.77618 | 0.57413 | 0.78579 |
+| SMD | Official TimeRadar V | 1 | 0.42716 | 0.82717 | 0.45194 | 0.88232 |
+| SMD | Official E | 1 | 0.42720 | 0.81995 | 0.45557 | 0.86840 |
+| SMD | Official fixed V+E | 1 | 0.43725 | 0.82679 | 0.46495 | 0.87375 |
+| SMD | Reconstruction continuation / V | 3 | 0.44041 ± 0.00487 | 0.83733 ± 0.00368 | 0.46505 ± 0.00622 | 0.88696 ± 0.00200 |
+| SMD | Source-supervised native V | 3 | 0.43614 ± 0.00139 | 0.84836 ± 0.00068 | 0.46682 ± 0.00071 | 0.89499 ± 0.00049 |
+| SMD | Source-supervised E / E | 1 | 0.42158 | 0.83382 | 0.47466 | 0.88102 |
+| SMD | LEFT | 1 | 0.49809 | 0.87855 | 0.54184 | 0.91853 |
+| MSL | Official TimeRadar V | 1 | 0.34850 | 0.66935 | 0.38184 | 0.71798 |
+| MSL | Official E | 1 | 0.39988 | 0.71093 | 0.43881 | 0.76245 |
+| MSL | Official fixed V+E | 1 | 0.40407 | 0.71697 | 0.44381 | 0.76558 |
+| MSL | Reconstruction continuation / V | 3 | 0.36811 ± 0.00294 | 0.67549 ± 0.00174 | 0.40369 ± 0.00295 | 0.72209 ± 0.00163 |
+| MSL | Source-supervised native V | 3 | 0.35562 ± 0.00159 | 0.68606 ± 0.00074 | 0.39242 ± 0.00114 | 0.73144 ± 0.00022 |
+| MSL | Source-supervised E / E | 1 | 0.39125 | 0.72008 | 0.43678 | 0.77492 |
+| MSL | LEFT | 1 | 0.50834 | 0.76334 | 0.55308 | 0.79416 |
+| SMAP | Official TimeRadar V | 1 | 0.30165 | 0.66240 | 0.29931 | 0.70426 |
+| SMAP | Official E | 1 | 0.38124 | 0.71881 | 0.38102 | 0.76553 |
+| SMAP | Official fixed V+E | 1 | 0.38662 | 0.72699 | 0.38210 | 0.77097 |
+| SMAP | Reconstruction continuation / V | 3 | 0.32903 ± 0.01050 | 0.67517 ± 0.00245 | 0.32412 ± 0.00975 | 0.71470 ± 0.00187 |
+| SMAP | Source-supervised native V | 3 | 0.33422 ± 0.00185 | 0.67061 ± 0.00081 | 0.33332 ± 0.00294 | 0.71166 ± 0.00071 |
+| SMAP | Source-supervised E / E | 1 | 0.38984 | 0.71764 | 0.39124 | 0.76577 |
+| SMAP | LEFT | 1 | 0.49315 | 0.76287 | 0.52172 | 0.78494 |
 
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
+Official TimeRadar uses no project parameter updates. Reconstruction continuation is selected by real source-event validation but receives only nominal reconstruction gradients. The native-V/E supervised decoders use nominal source reconstruction plus real SWaT source pairs. LEFT uses the full target-normal records with its archived scaler/validation permissions and offline context. Current TimeRadar input scalers and mask identities remain fixed. NASA uses sensor zero only. SMD normal training records were among the project sources. MLP remains in its prior causal panel; no window logit was broadcast. No CAL, thresholds or online latency are evaluated in this readout experiment.
+
+[Seed-specific macro values](macro.csv) · [complete per-entity rankings](entity_metrics.csv) · [same-axis repetitions](repeats_common.csv).
+
+
+## Matched-weight endpoint and complete-window comparison
+
+
+Every difference uses the identical per-entity common axis defined in Table1. Full-window minus endpoint measures a readout/context change at fixed parameters. It is separate from differences between training objectives. No result is selected by target performance.
+
+## Same weights, different readout
+
+| Domain | Weights / score | Endpoint AP | Complete-window AP | Δ AP | Δ ROC_AUC | Δ VUS_PR | Δ VUS_ROC |
+|---|---|---|---|---|---|---|---|
+| PSM | Reconstruction continuation | 0.53884 ± 0.00209 | 0.45283 ± 0.00291 | -0.08601 ± 0.00171 | -0.04444 ± 0.00245 | -0.04059 ± 0.00536 | 0.01032 ± 0.00324 |
+| PSM | Source-supervised native V | 0.57306 ± 0.00469 | 0.44922 ± 0.00150 | -0.12384 ± 0.00380 | -0.07172 ± 0.00253 | -0.05177 ± 0.00460 | 0.01130 ± 0.00406 |
+| PSM | Official V | 0.53528 | 0.44824 | -0.08704 | -0.05257 | -0.03269 | 0.01705 |
+| PSM | Official E | 0.38734 | 0.43590 | 0.04856 | 0.03812 | 0.03999 | 0.03391 |
+| PSM | Official V+E | 0.41947 | 0.44836 | 0.02889 | 0.01549 | 0.02454 | 0.01673 |
+| PSM | E-supervised E | 0.52232 | 0.38952 | -0.13281 | -0.09783 | -0.09392 | -0.06940 |
+| SMD | Reconstruction continuation | 0.44968 ± 0.00260 | 0.44041 ± 0.00487 | -0.00927 ± 0.00236 | 0.01859 ± 0.00043 | -0.00983 ± 0.00215 | 0.01287 ± 0.00077 |
+| SMD | Source-supervised native V | 0.44023 ± 0.00255 | 0.43614 ± 0.00139 | -0.00409 ± 0.00344 | 0.02228 ± 0.00077 | 0.03680 ± 0.00485 | 0.03516 ± 0.00124 |
+| SMD | Official V | 0.44480 | 0.42716 | -0.01764 | 0.01396 | -0.01526 | 0.01236 |
+| SMD | Official E | 0.42914 | 0.42720 | -0.00194 | 0.01463 | 0.02194 | 0.01966 |
+| SMD | Official V+E | 0.43885 | 0.43725 | -0.00159 | 0.01473 | 0.02219 | 0.01853 |
+| SMD | E-supervised E | 0.42899 | 0.42158 | -0.00741 | 0.01989 | 0.03219 | 0.02015 |
+| MSL | Reconstruction continuation | 0.34945 ± 0.00189 | 0.36811 ± 0.00294 | 0.01866 ± 0.00180 | 0.03923 ± 0.00149 | -0.01920 ± 0.00167 | 0.01454 ± 0.00086 |
+| MSL | Source-supervised native V | 0.36592 ± 0.00188 | 0.35562 ± 0.00159 | -0.01030 ± 0.00260 | 0.01827 ± 0.00298 | -0.04205 ± 0.00390 | -0.00418 ± 0.00496 |
+| MSL | Official V | 0.34256 | 0.34850 | 0.00594 | 0.03664 | -0.03285 | 0.01317 |
+| MSL | Official E | 0.39044 | 0.39988 | 0.00943 | 0.01777 | -0.03125 | -0.00465 |
+| MSL | Official V+E | 0.39986 | 0.40407 | 0.00421 | 0.01322 | -0.03671 | -0.00828 |
+| MSL | E-supervised E | 0.38119 | 0.39125 | 0.01005 | 0.03478 | -0.01586 | 0.02332 |
+| SMAP | Reconstruction continuation | 0.36633 ± 0.00216 | 0.32903 ± 0.01050 | -0.03730 ± 0.00878 | 0.03928 ± 0.00178 | -0.07356 ± 0.01182 | 0.03569 ± 0.00021 |
+| SMAP | Source-supervised native V | 0.38265 ± 0.00218 | 0.33422 ± 0.00185 | -0.04843 ± 0.00109 | 0.03891 ± 0.00409 | -0.09670 ± 0.00138 | 0.02978 ± 0.00391 |
+| SMAP | Official V | 0.36555 | 0.30165 | -0.06390 | 0.01971 | -0.10338 | 0.01401 |
+| SMAP | Official E | 0.42536 | 0.38124 | -0.04412 | 0.03832 | -0.08762 | 0.02690 |
+| SMAP | Official V+E | 0.41481 | 0.38662 | -0.02820 | 0.01900 | -0.07365 | 0.01155 |
+| SMAP | E-supervised E | 0.39631 | 0.38984 | -0.00647 | 0.01737 | -0.04439 | 0.01217 |
+
+## Source supervision within each fixed readout
+
+Differences are candidate minus official V or same-seed reconstruction continuation. Each value is the mean ± sample SD of three paired project-seed differences. Entity macro averaging precedes seed aggregation.
+| Domain | Candidate readout | Reference | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|---|
+| PSM | full_window | official_V | 0.00098 ± 0.00150 | 0.01386 ± 0.00085 | 0.00569 ± 0.00067 | 0.00519 ± 0.00057 |
+| PSM | full_window | copy | -0.00361 ± 0.00182 | 0.00499 ± 0.00265 | 0.00704 ± 0.00122 | 0.01026 ± 0.00158 |
+| PSM | full_window | LEFT | -0.12768 ± 0.00150 | -0.08391 ± 0.00085 | -0.11754 ± 0.00067 | -0.09877 ± 0.00057 |
+| PSM | causal_endpoint | official_V | 0.03779 ± 0.00469 | 0.03301 ± 0.00277 | 0.02477 ± 0.00488 | 0.01093 ± 0.00388 |
+| PSM | causal_endpoint | copy | 0.03422 ± 0.00345 | 0.03227 ± 0.00201 | 0.01822 ± 0.00407 | 0.00928 ± 0.00332 |
+| PSM | causal_endpoint | LEFT | -0.00383 ± 0.00469 | -0.01219 ± 0.00277 | -0.06576 ± 0.00488 | -0.11008 ± 0.00388 |
+| SMD | full_window | official_V | 0.00898 ± 0.00139 | 0.02119 ± 0.00068 | 0.01488 ± 0.00071 | 0.01267 ± 0.00049 |
+| SMD | full_window | copy | -0.00426 ± 0.00349 | 0.01102 ± 0.00306 | 0.00177 ± 0.00613 | 0.00803 ± 0.00173 |
+| SMD | full_window | LEFT | -0.06194 ± 0.00139 | -0.03019 ± 0.00068 | -0.07502 ± 0.00071 | -0.02354 ± 0.00049 |
+| SMD | causal_endpoint | official_V | -0.00457 ± 0.00255 | 0.01287 ± 0.00109 | -0.03718 ± 0.00539 | -0.01014 ± 0.00147 |
+| SMD | causal_endpoint | copy | -0.00945 ± 0.00399 | 0.00734 ± 0.00323 | -0.04486 ± 0.00777 | -0.01426 ± 0.00323 |
+| SMD | causal_endpoint | LEFT | -0.05785 ± 0.00255 | -0.05246 ± 0.00109 | -0.11182 ± 0.00539 | -0.05870 ± 0.00147 |
+| MSL | full_window | official_V | 0.00712 ± 0.00159 | 0.01671 ± 0.00074 | 0.01058 ± 0.00114 | 0.01346 ± 0.00022 |
+| MSL | full_window | copy | -0.01249 ± 0.00393 | 0.01057 ± 0.00232 | -0.01128 ± 0.00408 | 0.00935 ± 0.00141 |
+| MSL | full_window | LEFT | -0.15272 ± 0.00159 | -0.07728 ± 0.00074 | -0.16067 ± 0.00114 | -0.06272 ± 0.00022 |
+| MSL | causal_endpoint | official_V | 0.02336 ± 0.00188 | 0.03507 ± 0.00299 | 0.01979 ± 0.00284 | 0.03082 ± 0.00502 |
+| MSL | causal_endpoint | copy | 0.01647 ± 0.00178 | 0.03152 ± 0.00373 | 0.01158 ± 0.00273 | 0.02807 ± 0.00562 |
+| MSL | causal_endpoint | LEFT | -0.14242 ± 0.00188 | -0.09556 ± 0.00299 | -0.11861 ± 0.00284 | -0.05854 ± 0.00502 |
+| SMAP | full_window | official_V | 0.03257 ± 0.00185 | 0.00822 ± 0.00081 | 0.03402 ± 0.00294 | 0.00741 ± 0.00071 |
+| SMAP | full_window | copy | 0.00518 ± 0.00965 | -0.00456 ± 0.00307 | 0.00920 ± 0.00783 | -0.00304 ± 0.00231 |
+| SMAP | full_window | LEFT | -0.15894 ± 0.00185 | -0.09226 ± 0.00081 | -0.18839 ± 0.00294 | -0.07328 ± 0.00071 |
+| SMAP | causal_endpoint | official_V | 0.01709 ± 0.00218 | -0.01099 ± 0.00473 | 0.02734 ± 0.00331 | -0.00836 ± 0.00456 |
+| SMAP | causal_endpoint | copy | 0.01632 ± 0.00221 | -0.00418 ± 0.00715 | 0.03234 ± 0.00568 | 0.00286 ± 0.00509 |
+| SMAP | causal_endpoint | LEFT | -0.11051 ± 0.00218 | -0.13117 ± 0.00473 | -0.09170 ± 0.00331 | -0.10306 ± 0.00456 |
+
+The LEFT comparison always retains LEFT’s native offline readout. Seed-wise and per-entity differences, counts of wins/ties/losses and medians are in [paired_distribution.csv](paired_distribution.csv). The underlying differences are in [paired_entity.csv](paired_entity.csv).
+
+## Entity distribution of the full-window candidate-minus-LEFT AP
+
+Counts compare each fixed training seed with LEFT on the exact per-entity joint axis; entities are not extra training repetitions.
+| Domain | Candidate seed | Macro AP delta | Median AP delta | Wins/ties/losses |
 |---|---|---|---|---|
-| Official TimeRadar V | 0.53627 | 0.44479 | 0.34078 | 0.36502 |
-| Official TimeRadar E | 0.38751 | 0.42912 | 0.38602 | 0.42477 |
-| Official fixed V+E | 0.41957 | 0.43882 | 0.39507 | 0.41422 |
-| Reconstruction continuation / V | 0.54007 | 0.45079 | 0.34792 | 0.36788 |
-| Source-supervised native V (candidate) | 0.57763 | 0.44266 | 0.36355 | 0.38185 |
-| Source-supervised E / E | 0.52266 | 0.42896 | 0.37895 | 0.39566 |
-| Supervised MLP | 0.50667 | 0.37710 | 0.29162 | 0.28740 |
-| LEFT | 0.57733 | 0.49807 | 0.50800 | 0.49312 |
-
-## ROC_AUC
-
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
-|---|---|---|---|---|
-| Official TimeRadar V | 0.73120 | 0.81320 | 0.63182 | 0.64252 |
-| Official TimeRadar E | 0.56764 | 0.80530 | 0.69213 | 0.68028 |
-| Official fixed V+E | 0.60120 | 0.81205 | 0.70234 | 0.70776 |
-| Reconstruction continuation / V | 0.73203 | 0.82049 | 0.63514 | 0.63963 |
-| Source-supervised native V (candidate) | 0.76547 | 0.82731 | 0.66980 | 0.62720 |
-| Source-supervised E / E | 0.67362 | 0.81391 | 0.68451 | 0.70006 |
-| Supervised MLP | 0.72365 | 0.75929 | 0.55546 | 0.53829 |
-| LEFT | 0.77558 | 0.87853 | 0.76252 | 0.76284 |
-
-## VUS_PR
-
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
-|---|---|---|---|---|
-| Official TimeRadar V | 0.48507 | 0.46718 | 0.40974 | 0.40221 |
-| Official TimeRadar E | 0.39864 | 0.43357 | 0.46363 | 0.46807 |
-| Official fixed V+E | 0.42372 | 0.44273 | 0.47360 | 0.45518 |
-| Reconstruction continuation / V | 0.49301 | 0.47729 | 0.41830 | 0.39790 |
-| Source-supervised native V (candidate) | 0.51410 | 0.43472 | 0.42916 | 0.42903 |
-| Source-supervised E / E | 0.50163 | 0.44245 | 0.44674 | 0.43497 |
-| Supervised MLP | 0.45480 | 0.31949 | 0.32752 | 0.31115 |
-| LEFT | 0.57451 | 0.54180 | 0.55285 | 0.52170 |
-
-## VUS_ROC
-
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
-|---|---|---|---|---|
-| Official TimeRadar V | 0.66546 | 0.86997 | 0.70357 | 0.69006 |
-| Official TimeRadar E | 0.57913 | 0.84872 | 0.76590 | 0.73844 |
-| Official fixed V+E | 0.60494 | 0.85519 | 0.77255 | 0.75922 |
-| Reconstruction continuation / V | 0.66751 | 0.87535 | 0.70670 | 0.68044 |
-| Source-supervised native V (candidate) | 0.67959 | 0.86130 | 0.73865 | 0.67737 |
-| Source-supervised E / E | 0.66896 | 0.86086 | 0.75027 | 0.75341 |
-| Supervised MLP | 0.60747 | 0.76793 | 0.63193 | 0.58941 |
-| LEFT | 0.78509 | 0.91851 | 0.79337 | 0.78490 |
-
-The official, reconstruction-continuation and source-supervised candidates use W100 endpoint observations. The project-trained heads and decoders use real SWaT source labels for selection; the supervised arms also use them in training. Official scores have no project updates. The MLP freezes the representation; the V/E arms update its native decoder. LEFT uses domain/entity normal target training and full-window offline scoring. The project candidate has no target-gradient updates in this panel. NASA has sensor zero only. LEFT independent-CAL operation is NA.
+| PSM | 2025_point_weighted | -0.12757 | -0.12757 | 0/0/1 |
+| PSM | 2026_point_weighted | -0.12923 | -0.12923 | 0/0/1 |
+| PSM | 2027_point_weighted | -0.12623 | -0.12623 | 0/0/1 |
+| SMD | 2025_point_weighted | -0.06182 | -0.04550 | 7/0/21 |
+| SMD | 2026_point_weighted | -0.06339 | -0.04796 | 6/0/22 |
+| SMD | 2027_point_weighted | -0.06062 | -0.04471 | 6/0/22 |
+| MSL | 2025_point_weighted | -0.15218 | -0.07096 | 6/0/21 |
+| MSL | 2026_point_weighted | -0.15147 | -0.07325 | 6/0/21 |
+| MSL | 2027_point_weighted | -0.15451 | -0.07181 | 6/0/21 |
+| SMAP | 2025_point_weighted | -0.16012 | -0.02454 | 19/0/34 |
+| SMAP | 2026_point_weighted | -0.15989 | -0.02665 | 19/0/34 |
+| SMAP | 2027_point_weighted | -0.15680 | -0.01103 | 20/0/33 |
 
 
-On the NASA LEFT common axes, the source-supervised candidate has seed-2025 AP 0.36355 on MSL and 0.38185 on SMAP, compared with LEFT 0.50800 and 0.49312. LEFT also has higher ROC-AUC and both VUS metrics. Candidate-minus-LEFT AP has a median of −0.06491 across MSL entities and −0.07516 across SMAP entities, with 8/27 and 16/53 wins. Equal-entity average gains over frozen V therefore coexist with a substantial gap to this target-normal-trained offline comparator. PSM AP is nearly tied at 0.57763 versus native LEFT 0.57733; this 0.00030 difference alone is not a substantive superiority claim, and LEFT has higher ROC and VUS. On SMD, candidate AP 0.44266 is below LEFT 0.49807 and below reconstruction continuation 0.45079 on the same points. Training, standardization and context differences prevent attributing these detector-level gaps solely to architecture.
+The candidate's full-minus-endpoint AP differences are −0.12384±0.00380 on PSM, −0.00409±0.00344 on SMD, −0.01030±0.00260 on MSL and −0.04843±0.00109 on SMAP. All are paired training-seed means and sample SD on the new identical common axes. The SMD readout change increases ROC and both VUS metrics; PSM increases VUS-ROC despite lower AP, ROC and VUS-PR. MSL and SMAP have additional ROC increases with other metric costs. Added future context therefore gives no general ranking improvement under the fixed native variance readout.
 
-NASA common-axis candidate AP across the three project-training seeds is 0.36176±0.00174 on MSL and 0.38202±0.00219 on SMAP. Reconstruction continuation gives 0.34757±0.00183 and 0.36578±0.00215. These figures were recomputed after intersecting each original score bank with LEFT's scored points. LEFT is a single-seed result without an estimated training SD. The complete [same-axis uncertainty and original-axis repetition tables](../../docs/experiments/left_nasa_author_20261123/REPEATS.md) retain all four ranking metrics and the original SMD repeats.
+Under full-window readout, candidate AP exceeds the frozen official V mean in each domain, but falls below reconstruction continuation on PSM, SMD and MSL. SMAP's candidate-minus-continuation AP is +0.00518±0.00965, with a substantial training-seed spread. The corresponding paired source-learning effects remain distinct from the same-weight readout effects. LEFT has higher values for all four domain-level metrics than the full-window candidate. These comparisons retain the official TimeRadar representation, source labels and fixed masks, and concern project fixed-weight offline readout rather than an exact reproduction of the author's original evaluation.
 
-The shared LEFT models ran 12 epochs on MSL (selected epoch9, 4,140 updates) and 16 on SMAP (selected epoch13, 12,256 updates). MSL's T-9 and SMAP's A-5, A-6, A-8, A-9 and D-12 have no complete entity-local validation window, but remain in test evaluation. The official entry restores the selected state_dict while preserving the final Python running step. Selected/final steps are 3,105/4,140 on MSL and 9,958/12,256 on SMAP; both selected and final states are beyond the original warmup/ramp durations. This runtime behavior follows the pinned entry, with no test-selected alternative. Total new training and native scoring consumed 626.93 occupied A40-seconds, 0.17415 GPU-hours. Its independent-CAL operation remains NA because domain-level normal training and standardization include the historical project CAL regions.
+Only endpoint99 was directly supervised by the source pair term. At identical input windows, that score agrees with the existing native endpoint function. Earlier block positions use both different output positions and a different input context from their rolling causal counterparts. The comparison cannot separate these effects. It provides no justification for a new threshold, score mixture or automatically selected readout. Existing causal results remain archived separately.
+
+Compatible CATCH, PCA, HistoryMean and TimeRCD caches enter [separate common-axis external panels](../../docs/experiments/native_full_window_20261124/TABLE_EXTERNAL.md). TimeRCD retains W5000 offline context and its A whole-input-statistics versus B FIT-only permissions. NASA lacks corresponding TimeRCD scores. The [native complete-axis panel](../../docs/experiments/native_full_window_20261124/TABLE_NATIVE_AXES.md) retains all complete positions and unscored tails; those axes are not used for cross-axis differences.
 
 ## Training objective and deployed criterion
 
@@ -193,56 +269,60 @@ V/V and E/E change the supervised decoder objective and deployed evidence; cross
 
 | Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
 |---|---|---|---|---|
-| copy_V | 0.53903 | 0.45021 | 0.34152 | 0.36830 |
-| Vtrain_V | 0.57717 | 0.44206 | 0.35412 | 0.38272 |
-| Etrain_E | 0.52350 | 0.42858 | 0.36975 | 0.39527 |
-| Vtrain_E | 0.55301 | 0.39016 | 0.37085 | 0.42851 |
-| Etrain_V | 0.45800 | 0.44134 | 0.32687 | 0.35378 |
-| MLP_full | 0.50494 | 0.37652 | 0.28168 | 0.28896 |
+| Reconstruction continuation / V | 0.53903 | 0.45021 | 0.34152 | 0.36830 |
+| Source-supervised V / V | 0.57717 | 0.44206 | 0.35412 | 0.38272 |
+| Source-supervised E / E | 0.52350 | 0.42858 | 0.36975 | 0.39527 |
+| V-trained / E (cross-readout) | 0.55301 | 0.39016 | 0.37085 | 0.42851 |
+| E-trained / V (cross-readout) | 0.45800 | 0.44134 | 0.32687 | 0.35378 |
+| Supervised MLP | 0.50494 | 0.37652 | 0.28168 | 0.28896 |
 
 ## ROC_AUC
 
 | Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
 |---|---|---|---|---|
-| copy_V | 0.73152 | 0.82025 | 0.63225 | 0.63893 |
-| Vtrain_V | 0.76580 | 0.82705 | 0.66573 | 0.62680 |
-| Etrain_E | 0.67552 | 0.81369 | 0.68323 | 0.69797 |
-| Vtrain_E | 0.68619 | 0.81022 | 0.67817 | 0.70164 |
-| Etrain_V | 0.63872 | 0.83302 | 0.61482 | 0.60904 |
-| MLP_full | 0.72168 | 0.75892 | 0.55090 | 0.53892 |
+| Reconstruction continuation / V | 0.73152 | 0.82025 | 0.63225 | 0.63893 |
+| Source-supervised V / V | 0.76580 | 0.82705 | 0.66573 | 0.62680 |
+| Source-supervised E / E | 0.67552 | 0.81369 | 0.68323 | 0.69797 |
+| V-trained / E (cross-readout) | 0.68619 | 0.81022 | 0.67817 | 0.70164 |
+| E-trained / V (cross-readout) | 0.63872 | 0.83302 | 0.61482 | 0.60904 |
+| Supervised MLP | 0.72168 | 0.75892 | 0.55090 | 0.53892 |
 
 ## VUS_PR
 
 | Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
 |---|---|---|---|---|
-| copy_V | 0.49180 | 0.47609 | 0.41388 | 0.39807 |
-| Vtrain_V | 0.51378 | 0.43352 | 0.42298 | 0.42949 |
-| Etrain_E | 0.50290 | 0.44149 | 0.44146 | 0.43453 |
-| Vtrain_E | 0.51334 | 0.39734 | 0.43768 | 0.46907 |
-| Etrain_V | 0.44784 | 0.49259 | 0.39115 | 0.39606 |
-| MLP_full | 0.45263 | 0.31839 | 0.31698 | 0.31272 |
+| Reconstruction continuation / V | 0.49180 | 0.47609 | 0.41388 | 0.39807 |
+| Source-supervised V / V | 0.51378 | 0.43352 | 0.42298 | 0.42949 |
+| Source-supervised E / E | 0.50290 | 0.44149 | 0.44146 | 0.43453 |
+| V-trained / E (cross-readout) | 0.51334 | 0.39734 | 0.43768 | 0.46907 |
+| E-trained / V (cross-readout) | 0.44784 | 0.49259 | 0.39115 | 0.39606 |
+| Supervised MLP | 0.45263 | 0.31839 | 0.31698 | 0.31272 |
 
 ## VUS_ROC
 
 | Training / readout | PSM | SMD28 | MSL27 | SMAP53 |
 |---|---|---|---|---|
-| copy_V | 0.66665 | 0.87510 | 0.70468 | 0.67898 |
-| Vtrain_V | 0.67986 | 0.86098 | 0.73565 | 0.67618 |
-| Etrain_E | 0.67104 | 0.86057 | 0.74956 | 0.75068 |
-| Vtrain_E | 0.66157 | 0.85187 | 0.74420 | 0.75565 |
-| Etrain_V | 0.62058 | 0.88260 | 0.68144 | 0.65864 |
-| MLP_full | 0.60520 | 0.76763 | 0.62785 | 0.59110 |
+| Reconstruction continuation / V | 0.66665 | 0.87510 | 0.70468 | 0.67898 |
+| Source-supervised V / V | 0.67986 | 0.86098 | 0.73565 | 0.67618 |
+| Source-supervised E / E | 0.67104 | 0.86057 | 0.74956 | 0.75068 |
+| V-trained / E (cross-readout) | 0.66157 | 0.85187 | 0.74420 | 0.75565 |
+| E-trained / V (cross-readout) | 0.62058 | 0.88260 | 0.68144 | 0.65864 |
+| Supervised MLP | 0.60520 | 0.76763 | 0.62785 | 0.59110 |
 
 
 Source-supervised V improves AP relative to official V and reconstruction continuation in three fixed project-training seeds on PSM, MSL and SMAP. The paired AP differences against official V are +0.03786±0.00467, +0.01707±0.00162 and +0.01727±0.00213 respectively. These are the original full causal axes. SMD instead has −0.00460±0.00254. Its ROC rises while AP, VUS and event discovery show costs. Common-axis LEFT results are reported separately from these full-axis repeat statistics.
 
 The E control uses its own fixed normal-FIT median scale and source-event validation risk, with the same labels, exposures and decoder update range. Cross-readouts ask how each training objective changes the other evidence without selecting a better score on QUERY. V/V exceeds E/E on PSM and SMD macro AP, while E/E has higher absolute AP on MSL and SMAP. Official E itself exceeds E/E on both spacecraft. The MLP learned source discrimination but gives lower AP, ROC and both VUS scores than V/V on all four tasks. These findings support a task-dependent benefit for the complete variance-supervised detector. They do not establish universal variance superiority or identify an independent FRFT effect.
 
-## Detection costs and adaptation extensions
+## Causal operating costs
 
 PSM's V-supervised checkpoint has lower false-alarm point rate than its frozen reference but lower persistent coverage. MLP reduces PSM false alarms further at lower recall and fewer matched events. On SMAP the MLP has higher long coverage but more false fragments and fewer matched events. On SMD it has fewer false fragments and higher event F1, with lower recall and long coverage. These metric tradeoffs prevent treating one favorable ranking or event column as complete operational superiority.
 
+# Z/U/F Extensions
+
 The completed U study starts from the selected source-V checkpoint and compares replay reconstruction, pair-preserving mixed adaptation and source-only continuation. Pair preservation recovers PSM AP against replay reconstruction but remains below both its frozen initialization and source-only continuation. Neither SMD subset gives a consistent net advantage. The fixed one-event F comparison gives lower post-F AP for the candidate than both matched initialization controls on PSM and SMD machine-3-2. PSM F coverage and recall increase with large false-alarm cost; SMD F improves ROC/VUS but discovers no query events at its fixed CAL. These studies remain separate extensions, with no established U/F benefit or contamination-robustness claim for the recipe.
+
+The fixed-weight offline study recorded 469.24 occupied A40-seconds (0.130344 GPU-hours) for scoring 109 entities across eight selected checkpoints. Process startup and the minimum normal-input engineering check were not separately timed. Main CPU metrics took about 1,089 seconds and the parallel external-cache queue about 557 seconds; these overlap and are not GPU hours. An independent CPU review checked four fixed entities, full/common AP and ROC, index/footprint/availability, and all-table macro, three-seed and paired-distribution aggregation. It did not rerun VUS scoring. The same-window native V endpoint check is exact. Archived PSM E recovery from NumPy terminal copies differs from current CUDA reduction by up to 3.81e-6 (4.50e-6 for V+E); both original and new scores remain unchanged. [Complete record and review](../../docs/experiments/native_full_window_20261124/RESULTS.md).
 
 # Discussion and Limitations
 
@@ -254,7 +334,7 @@ Native sample variance, the fractional representation, replay and mature classif
 
 # Conclusion
 
-Direct source-event supervision of native reconstruction disagreement produced reproducible task-dependent ranking gains within a fixed pretrained detector. Matched decoder, E and standard MLP comparisons help delimit this effect, while complete LEFT benchmarks place its absolute detection performance in context. The results retain negative SMD transfer and false-alarm/coverage costs. Current mixed-U and single-event-F recipes do not establish reliable target adaptation. The supported contribution is therefore a bounded source-supervised detection candidate and its evaluated behavior, with broader mixed-unlabeled method claims unresolved.
+Direct source-event supervision of native reconstruction disagreement produced reproducible task-dependent ranking gains within a fixed pretrained detector. Matched decoder, E and standard MLP comparisons help delimit this effect, while complete LEFT benchmarks place its absolute detection performance in context. The results retain negative SMD transfer and false-alarm/coverage costs. The fixed offline readout reduces mean candidate AP in all four tasks, and does not close its gap to complete LEFT; source learning and readout effects are therefore reported separately. Current mixed-U and single-event-F recipes do not establish reliable target adaptation. The supported contribution is therefore a bounded source-supervised detection candidate and its evaluated behavior, with broader mixed-unlabeled method claims unresolved.
 
 # Appendix A. Reproducible assets and extended comparisons
 
@@ -878,3 +958,74 @@ The source-supervised detector was compared with a conventional MLP readout on t
 The selected head learned the source task: SELECT loss improved from 0.697998 to 0.458485 before later overfitting. Its full-axis AP was 0.50494 on PSM, 0.28168 on MSL27, 0.28896 on SMAP53 and 0.37652 on SMD28. Existing supervised-V AP on those same axes was 0.57717, 0.35412, 0.38272 and 0.44206. The four ROC and VUS comparisons also favored the existing V candidate. These single-seed results show that this standard supervised head did not reproduce the candidate's cross-task ranking. They do not isolate variance learning from the choice of updated parameters or establish a general limitation of discriminative readouts.
 
 Operation points still showed costs and benefits. PSM MLP three-confirmation normal FPR was 2.42%, compared with 5.92% for the candidate, while recall fell from 37.33% to 24.27% and one-to-one events from ten to seven of 48. PSM's attack-only CAL cannot certify a normal false-alarm budget. SMD MLP had fewer false fragments and higher event F1, but lower recall and steady coverage. SMAP MLP had greater steady coverage with more false fragments and fewer matched events. NASA used sensor zero and per-entity small CAL; SMD normal training was part of the source pool. Entity-level and complete-event results, fixed-score controls, external common-axis comparisons, source curves and compute costs are retained in the [completed supervised-readout study](../../docs/experiments/native_supervised_mlp_20261123/RESULTS.md). The current candidate remains source-supervised with task-dependent ranking benefits. The closed U/F results and the earlier NASA absolute-performance and SMD limits remain part of its evidence boundary.
+
+
+# Appendix C. Prior causal common-axis panel
+
+This panel retains the previous causal comparison and its exact axes. It is distinct from the new intersection of rolling endpoints, W100 complete-window output and external coverage. Its values are not substituted into new paired differences.
+
+#### Complete public detection comparison
+
+
+All entries are local measurements. PSM uses [512,87744), 87,232 points; SMD uses [99,192 floor(N/192)) within each machine; NASA uses [99,W floor(N/W)) within each entity, W96 for MSL and W192 for SMAP. Entity means are unweighted within NASA and SMD. These common points align outcomes while preserving distinct source supervision, target-normal training and offline context permissions. Each row below uses seed2025; separate repetition estimates follow.
+
+#### AP
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.53627 | 0.44479 | 0.34078 | 0.36502 |
+| Official TimeRadar E | 0.38751 | 0.42912 | 0.38602 | 0.42477 |
+| Official fixed V+E | 0.41957 | 0.43882 | 0.39507 | 0.41422 |
+| Reconstruction continuation / V | 0.54007 | 0.45079 | 0.34792 | 0.36788 |
+| Source-supervised native V (candidate) | 0.57763 | 0.44266 | 0.36355 | 0.38185 |
+| Source-supervised E / E | 0.52266 | 0.42896 | 0.37895 | 0.39566 |
+| Supervised MLP | 0.50667 | 0.37710 | 0.29162 | 0.28740 |
+| LEFT | 0.57733 | 0.49807 | 0.50800 | 0.49312 |
+
+#### ROC_AUC
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.73120 | 0.81320 | 0.63182 | 0.64252 |
+| Official TimeRadar E | 0.56764 | 0.80530 | 0.69213 | 0.68028 |
+| Official fixed V+E | 0.60120 | 0.81205 | 0.70234 | 0.70776 |
+| Reconstruction continuation / V | 0.73203 | 0.82049 | 0.63514 | 0.63963 |
+| Source-supervised native V (candidate) | 0.76547 | 0.82731 | 0.66980 | 0.62720 |
+| Source-supervised E / E | 0.67362 | 0.81391 | 0.68451 | 0.70006 |
+| Supervised MLP | 0.72365 | 0.75929 | 0.55546 | 0.53829 |
+| LEFT | 0.77558 | 0.87853 | 0.76252 | 0.76284 |
+
+#### VUS_PR
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.48507 | 0.46718 | 0.40974 | 0.40221 |
+| Official TimeRadar E | 0.39864 | 0.43357 | 0.46363 | 0.46807 |
+| Official fixed V+E | 0.42372 | 0.44273 | 0.47360 | 0.45518 |
+| Reconstruction continuation / V | 0.49301 | 0.47729 | 0.41830 | 0.39790 |
+| Source-supervised native V (candidate) | 0.51410 | 0.43472 | 0.42916 | 0.42903 |
+| Source-supervised E / E | 0.50163 | 0.44245 | 0.44674 | 0.43497 |
+| Supervised MLP | 0.45480 | 0.31949 | 0.32752 | 0.31115 |
+| LEFT | 0.57451 | 0.54180 | 0.55285 | 0.52170 |
+
+#### VUS_ROC
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+|---|---|---|---|---|
+| Official TimeRadar V | 0.66546 | 0.86997 | 0.70357 | 0.69006 |
+| Official TimeRadar E | 0.57913 | 0.84872 | 0.76590 | 0.73844 |
+| Official fixed V+E | 0.60494 | 0.85519 | 0.77255 | 0.75922 |
+| Reconstruction continuation / V | 0.66751 | 0.87535 | 0.70670 | 0.68044 |
+| Source-supervised native V (candidate) | 0.67959 | 0.86130 | 0.73865 | 0.67737 |
+| Source-supervised E / E | 0.66896 | 0.86086 | 0.75027 | 0.75341 |
+| Supervised MLP | 0.60747 | 0.76793 | 0.63193 | 0.58941 |
+| LEFT | 0.78509 | 0.91851 | 0.79337 | 0.78490 |
+
+The official, reconstruction-continuation and source-supervised candidates use W100 endpoint observations. The project-trained heads and decoders use real SWaT source labels for selection; the supervised arms also use them in training. Official scores have no project updates. The MLP freezes the representation; the V/E arms update its native decoder. LEFT uses domain/entity normal target training and full-window offline scoring. The project candidate has no target-gradient updates in this panel. NASA has sensor zero only. LEFT independent-CAL operation is NA.
+
+
+On the NASA LEFT common axes, the source-supervised candidate has seed-2025 AP 0.36355 on MSL and 0.38185 on SMAP, compared with LEFT 0.50800 and 0.49312. LEFT also has higher ROC-AUC and both VUS metrics. Candidate-minus-LEFT AP has a median of −0.06491 across MSL entities and −0.07516 across SMAP entities, with 8/27 and 16/53 wins. Equal-entity average gains over frozen V therefore coexist with a substantial gap to this target-normal-trained offline comparator. PSM AP is nearly tied at 0.57763 versus native LEFT 0.57733; this 0.00030 difference alone is not a substantive superiority claim, and LEFT has higher ROC and VUS. On SMD, candidate AP 0.44266 is below LEFT 0.49807 and below reconstruction continuation 0.45079 on the same points. Training, standardization and context differences prevent attributing these detector-level gaps solely to architecture.
+
+NASA common-axis candidate AP across the three project-training seeds is 0.36176±0.00174 on MSL and 0.38202±0.00219 on SMAP. Reconstruction continuation gives 0.34757±0.00183 and 0.36578±0.00215. These figures were recomputed after intersecting each original score bank with LEFT's scored points. LEFT is a single-seed result without an estimated training SD. The complete [same-axis uncertainty and original-axis repetition tables](../../docs/experiments/left_nasa_author_20261123/REPEATS.md) retain all four ranking metrics and the original SMD repeats.
+
+The shared LEFT models ran 12 epochs on MSL (selected epoch9, 4,140 updates) and 16 on SMAP (selected epoch13, 12,256 updates). MSL's T-9 and SMAP's A-5, A-6, A-8, A-9 and D-12 have no complete entity-local validation window, but remain in test evaluation. The official entry restores the selected state_dict while preserving the final Python running step. Selected/final steps are 3,105/4,140 on MSL and 9,958/12,256 on SMAP; both selected and final states are beyond the original warmup/ramp durations. This runtime behavior follows the pinned entry, with no test-selected alternative. Total new training and native scoring consumed 626.93 occupied A40-seconds, 0.17415 GPU-hours. Its independent-CAL operation remains NA because domain-level normal training and standardization include the historical project CAL regions.

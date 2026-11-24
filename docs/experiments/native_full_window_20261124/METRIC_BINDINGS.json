@@ -1,0 +1,2515 @@
+{
+  "entities": [
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "full_bank_sha256": "94afcfaa0507b31c021138ccb42915093cf3a334576dd5874879ef653b34ad93",
+      "input_points": 23706,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-5.npz",
+          "sha256": "c57c2966089625a0bd7033771398e64bcaa90accd80dd4ec1044d6b284abbe73"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-5.npz",
+          "sha256": "cfafdc02e065a06fd5ed11b867840922121a558f8c4de3fc759d400f40a7adfd"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-5/scores.npz",
+        "sha256": "fc5363384b0e05e3309647890f53725172d0480b1eb351fc8bc8eec58a9f5ee2"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "full_bank_sha256": "1cbedc3db9de0cd75d68827edfc8722313b7d25df7b3c70b7d8edec76a6a00a9",
+      "input_points": 28743,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-6.npz",
+          "sha256": "64f02fb70d047bd12398c03f8250f64959b5d0b65f1b4c77f1ab058251338a6e"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-6.npz",
+          "sha256": "f80c3ff9b0a2e6d4be4bf38d44b5dd7efa2408f8f05e9e8fcff54258d2a15850"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-6/scores.npz",
+        "sha256": "2165247db0b04fd652376182077abbbd96cd0101266fadb35b8bbd8bbc0b9014"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "full_bank_sha256": "0216378651577e6d3f1e17b181aec59dcade22c3c59d7d1b14d2c7e196f8a25c",
+      "input_points": 28479,
+      "full_points": 28400,
+      "common_points": 28301,
+      "left_points": 28416,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-1.npz",
+          "sha256": "7c8dece499603d87a46b3356bccd679d57adf9d06e75ea8baa5d84230ba103f7"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-1.npz",
+          "sha256": "3c5c04beb750995d5b5052ca9b5fc785b4d44d05fa7b64caeb18075e10ce67cb"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-1/scores.npz",
+        "sha256": "a2f53db6bce2f5b6c4ad96645b03b39c83a7dfe68e962c4da4a92c0a787a97a1"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "full_bank_sha256": "8af429ebddf93f21d75fa7103c10b0b3536913965ba7bd10a79d185cc1c9c329",
+      "input_points": 2264,
+      "full_points": 2200,
+      "common_points": 2101,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/C-1.npz",
+          "sha256": "72ec1df44bd675bb3e067aa0fc6672407728c7392aa689c1cacfc7fb5c075f7d"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/C-1.npz",
+          "sha256": "95ab2a94a760eb8f47c2c6566dea0c615589af54cf1942aea401d44ea0ed43da"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/C-1.npz",
+        "sha256": "951f3c9ef6214b012ce64b925f92bc8a99aa855202aa52024234766f71f2e320"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "full_bank_sha256": "9f0e70b5747b2943f6c6ff71ebb0077e8bf45a4f61f58d686367ddaca2d51362",
+      "input_points": 2051,
+      "full_points": 2000,
+      "common_points": 1901,
+      "left_points": 2016,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/C-2.npz",
+          "sha256": "373b97c7df2f7a964e3ec0ddfeb1c3baba53eeec3a8c4615078ca3c99ccaf23a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/C-2.npz",
+          "sha256": "d87ba2e401d34c4a74af9552836105f7dc3ebad7ce8825279193afc419250032"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/C-2.npz",
+        "sha256": "73aadce0ecf57d9379177624c90c91c8eaada231a3c83d17ef1eff5e83f90919"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "full_bank_sha256": "9320a041c1137583fb372b06bd2da53489d6089cba3751ffa37a31fb5ef2e432",
+      "input_points": 28722,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-9.npz",
+          "sha256": "a037547a0a714b0deaece1de8bbdb0836e56df1677d5918f195bbfabaf6f6c4b"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-9.npz",
+          "sha256": "7b567acf1abc09b22428cda9ab827b26f271ebfc4dce3cb933e5142181a6fded"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-9/scores.npz",
+        "sha256": "b616af28e33c1dc99a156434aef268f8ea8124b386c42f9643680403324416c9"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "full_bank_sha256": "0f3bba4cee4c69265c8b6d77472c1c1ce30a0fd999f271e2c0f19814bec9fd62",
+      "input_points": 2158,
+      "full_points": 2100,
+      "common_points": 2001,
+      "left_points": 2112,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/D-15.npz",
+          "sha256": "88aff63b06cca151976aa12f333b423c156d8b239ba89ec4c947d3ce479c2032"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/D-15.npz",
+          "sha256": "4f0cb12aad0780694db294ff4e6c5778969b6340f5d9ffe17734cc2dbdaf072f"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/D-15.npz",
+        "sha256": "e649bc7d6e9d38c1ec583286c2d73b02b280637f04944b9ba0580a9896cf565b"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "full_bank_sha256": "0ccbd8dc88e1a97b3524ac3857c4b9a97b53154f1b3c6ea18353a4a384aa3b01",
+      "input_points": 2625,
+      "full_points": 2600,
+      "common_points": 2493,
+      "left_points": 2592,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/D-14.npz",
+          "sha256": "ba2ea5c6398198005c6e93372c6926339044e2cbd098208013571b6f31a98203"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/D-14.npz",
+          "sha256": "ea6a9144950485da38591284d50278a85547edb0c097e9ca4d3d618a58f7a0da"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/D-14.npz",
+        "sha256": "954b26d31945e9a680e15ab87350d330862da1dc1ab7455a95fc59631eb39df9"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "full_bank_sha256": "da1fc1e60d737a783f45e677de7867cb462b07a8da910aeec6a9f1e68048db15",
+      "input_points": 23707,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-4.npz",
+          "sha256": "8b42d0ab475b6add22a4d54769091e4ba949bfb7e957f540bda59305292ee2c7"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-4.npz",
+          "sha256": "4e3442be789fe9d5aad461673da308c49d3a21e143f67d0f1ecc63adc4255d6d"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-4/scores.npz",
+        "sha256": "fe7a6a8d19152568207c6576191837f04ed02c75117670d95625b53131cb36c2"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "full_bank_sha256": "e7eb0c9fccdf453911657cf190a7e5ca9505a1ef54833bd95acb6ffabc80aeae",
+      "input_points": 2191,
+      "full_points": 2100,
+      "common_points": 2001,
+      "left_points": 2112,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/D-16.npz",
+          "sha256": "f96dd42a51e045e6618f87aa88a24a0304bb364c6b053c3df54dbd3042f1a3fa"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/D-16.npz",
+          "sha256": "c2a70a8c0858bdad62e4f022a3cd285e0c7c8fa13dc7c70e08ad6414e66ea907"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/D-16.npz",
+        "sha256": "3ba5c9bf0f14dd841b6fea59b4b2471e51cf3da91e539bc9531f68b686c00912"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "full_bank_sha256": "5f3273aed22e32f226c231af04f063f819f556d7e18bb5de2d9239cdc5df259a",
+      "input_points": 3422,
+      "full_points": 3400,
+      "common_points": 3261,
+      "left_points": 3360,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/F-4.npz",
+          "sha256": "25d728b4e80cb8613f4eeb51688c3082f44190f03d12c845dc6306bf9089c33e"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/F-4.npz",
+          "sha256": "c676700abe48843e4425944661ab28a91fef90c77c6417e2c65df63827af3560"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/F-4.npz",
+        "sha256": "9f3d25d407a13106447e00e64f5c0ee29ff504847d4de63ce21c8c33fdc64018"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "full_bank_sha256": "d79df8aa3f95a841be46a2d36460cfc4c5f28961cbdc4074f6801d4900f297c3",
+      "input_points": 3922,
+      "full_points": 3900,
+      "common_points": 3741,
+      "left_points": 3840,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/F-5.npz",
+          "sha256": "c24e196476fca640c053214e4c835c1f5cbaf7f63b199b20ad35b82f2064858a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/F-5.npz",
+          "sha256": "4d34817699c0d2922c72fd2c9282104e3f44ea32b7cbb7ad1115b833d9ff4e32"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/F-5.npz",
+        "sha256": "76b58783c25439ae7f8279e05950bfcaece280e7ccc88e1d485bed025c5b317c"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "full_bank_sha256": "daa6c25d9def3266e52ad5e7f5dc790e92191556a169ae510fd1590f4b44f983",
+      "input_points": 2487,
+      "full_points": 2400,
+      "common_points": 2301,
+      "left_points": 2400,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/F-8.npz",
+          "sha256": "f1ac94348127cb07adad70038542eb30c3493c66035526a3aa3b01df438df354"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/F-8.npz",
+          "sha256": "9c6686432fee94fd25ba1cb8183bc7383c3d89cf599a1cf9e42f7be8e61edfa2"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/F-8.npz",
+        "sha256": "58d51014527f2fd39f5ac9641b94d6e01a860adbc6ca1f407535d5888e443cfe"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "full_bank_sha256": "f3e8dd6a080f28d2d09bd5e6acc73a6acf03681d5e560515c6f5ece0762a7cc7",
+      "input_points": 2277,
+      "full_points": 2200,
+      "common_points": 2101,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-1.npz",
+          "sha256": "c520ed039c4b351f7e04ca5b455a8e22a4325da7cb8e64d81b994cd17854ca83"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-1.npz",
+          "sha256": "5c14d97d5d344709335a20920e0ff19a8e0e4f5aa3239ccd21126009683ebefd"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-1.npz",
+        "sha256": "9ebd54d96d928266249421378a2555012797e5c64ee24dbf9b4443ade64afb8a"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "full_bank_sha256": "d8d2237b48635ca8ca075b9adafc1b91986391cc6e63e91aa5b03b6e715f40b6",
+      "input_points": 2277,
+      "full_points": 2200,
+      "common_points": 2101,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-2.npz",
+          "sha256": "e11e1ae0df6a819a3ed4b23a29e261190f9bbec5a1bc8bd2a4cfaef83afe383f"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-2.npz",
+          "sha256": "3098a1958a8e54fc402365eba11030e2614e1024d4bb3b65c6842a598035fe9a"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-2.npz",
+        "sha256": "ace32dec747bd0eccc09cb0fd6701250df7e14d2553a5294648dd16a552a4d9a"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "full_bank_sha256": "a8698cb97c04e674cca87162b33baa895d9b9035944b22aa2e59f86280d607af",
+      "input_points": 2127,
+      "full_points": 2100,
+      "common_points": 2001,
+      "left_points": 2112,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-3.npz",
+          "sha256": "220feb4b860985386dc67b81ae65ffc8c5980ad4cd76ebc90e905180420359c6"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-3.npz",
+          "sha256": "09cd36e2c8ab06e1c3ab8e672b23dccd18937919f50e272c30fa89e3f1dc754e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-3.npz",
+        "sha256": "c4cc38a4a65e92c081e8155230ef37d3492f52261a03fd5a07142f71ce33a0f8"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "full_bank_sha256": "a281d2d20a19840a68e95816b414ec5cae33b34dacee8bbc9f8f2abb34031ab4",
+      "input_points": 2038,
+      "full_points": 2000,
+      "common_points": 1901,
+      "left_points": 2016,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-4.npz",
+          "sha256": "1ecd4b0d1bf5877e8de1bf9fa0914502ad9265f0f31c2b3bf32f625d81771188"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-4.npz",
+          "sha256": "6ae93ccdccb1357d589f1a87b9dce13172efd9fb6c9d330bdf9091392942a412"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-4.npz",
+        "sha256": "663a031a0b4421e8f3a9be1516c43e3abd627798397242fbf0573ab9254be4f4"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "full_bank_sha256": "18e364effa021fc80ed42b6ecb5f4c21233be9d64977698b328a12cc1653f652",
+      "input_points": 2303,
+      "full_points": 2300,
+      "common_points": 2109,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-5.npz",
+          "sha256": "c96e4b68907fbe7051a37ba39a67bb3039aef0f4fb5464bb6c8f17949e141b36"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-5.npz",
+          "sha256": "c2e1b086bf70f58d08668d269fd2f5d761c4234dbfa0c51aa141ecfff8c8c137"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-5.npz",
+        "sha256": "d62d8ebc54d4d25a67e6feeb96f2968628aa4e0aecfd6d5d3639ba840528efe9"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "full_bank_sha256": "1f23260c9f246256a60b4343eff50c9a2aac871a5cc91afef50bd219848e9aa7",
+      "input_points": 5054,
+      "full_points": 5000,
+      "common_points": 4893,
+      "left_points": 4992,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/F-7.npz",
+          "sha256": "346db25484869df69c902c1bb8edd60927a17b4828397210068e9762bf75d54e"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/F-7.npz",
+          "sha256": "88de9fb686e30b59b20dd26e6e64b48f8cecfb9c5800561d5f46f65e055e1680"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/F-7.npz",
+        "sha256": "88da6dc653940786d3e526815112f9b6f65047b5221841659d777268698a0e70"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "full_bank_sha256": "39b00bd5c73cb50c3e735a49ee53059a2f9c3903b2ec4c46cf627d7103d8a43d",
+      "input_points": 2049,
+      "full_points": 2000,
+      "common_points": 1901,
+      "left_points": 2016,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-6.npz",
+          "sha256": "4dee58ea048f33e9ffa742b9eeb3321b19a64252d25f313300bcdfcfc2345181"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-6.npz",
+          "sha256": "04d83ecc690e825c0b826e7b5c4beeb4f40e434891d32e2be4dfb5e0b040bbc6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-6.npz",
+        "sha256": "e325be3d01b7d15207ad4d79f2432fb618fa88102de89e4259e96fbbc3552e3e"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "full_bank_sha256": "02b96e3ab11e0f3da8f1a05a3ff4e70c0ce1df279d8ce7c2cfb78374b5d5a696",
+      "input_points": 2156,
+      "full_points": 2100,
+      "common_points": 2001,
+      "left_points": 2112,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/M-7.npz",
+          "sha256": "5493812a0a7fe563a9178ac67800ead1f4b6bff84f28f7759a8cd0601e69f7a6"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/M-7.npz",
+          "sha256": "66b69f62ae5684fbad7f2bca7537baef7fa980abaf6c8e434997d3a8c4ae851c"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/M-7.npz",
+        "sha256": "7268daae9fc3365c1841690181f9c6e32905311c3056ffa97ac991cb88fc58e9"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "full_bank_sha256": "e195d469d49ac5b1c0219f1d2d8d806c615073aad9a783138faa0cefaee9b450",
+      "input_points": 6100,
+      "full_points": 6100,
+      "common_points": 5949,
+      "left_points": 6048,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/P-10.npz",
+          "sha256": "753610580cd8df5138e0f2d0d729225d5ffeffe3871e12249c5cb88bc548744a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/P-10.npz",
+          "sha256": "0361a75c402977946b68f26a07a3d26eac3589a8b404cf90652e6c7e85e91fec"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/P-10.npz",
+        "sha256": "608f217bd9e1e46a2ee2a78228fb0bb44ac77e7083c0c1554352bb57f482f320"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "full_bank_sha256": "cef9b5079c591300162d2d1097d08c8bfd3598dfdca9b29d3527108319ab90f4",
+      "input_points": 6100,
+      "full_points": 6100,
+      "common_points": 5949,
+      "left_points": 6048,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/P-14.npz",
+          "sha256": "b728a38bae939813482e6ae9b39d4f69db737ab9604cd92e487f5b84c0c3cab5"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/P-14.npz",
+          "sha256": "60793d8ee6d50ef76cc3d8376ac1e091a035ccead667c02d7a62446ff666ab83"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/P-14.npz",
+        "sha256": "608f217bd9e1e46a2ee2a78228fb0bb44ac77e7083c0c1554352bb57f482f320"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "full_bank_sha256": "7f07c127baceb23e2d59e0c97527ac432e5d8b1a3cc11456f7dddd75d3bf0d03",
+      "input_points": 2856,
+      "full_points": 2800,
+      "common_points": 2685,
+      "left_points": 2784,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/P-15.npz",
+          "sha256": "4c5588896bdee0c136fefc1a36a77a1909d4c5f65632c3912b9860007a081c52"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/P-15.npz",
+          "sha256": "faf6ee95f46d90258047294052325ed9ff2f7b5ceaa39c5cfe663ed538223883"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/P-15.npz",
+        "sha256": "55e10429a0873af44fa0b41544beb98a3cda08f96fb018f9824b800c0dbc2f35"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "full_bank_sha256": "acc8024a446d69c29f11a9ea0b651ad6dafbdc990aa3a34b30c19f9ff0cad255",
+      "input_points": 1827,
+      "full_points": 1800,
+      "common_points": 1701,
+      "left_points": 1824,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/S-2.npz",
+          "sha256": "a919519b5bb1690a6bf4f110d7b768da383ef2c14e086f719c4bc0370e09ca6a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/S-2.npz",
+          "sha256": "f1753722a8bb4673570a0a099403e13b57bd57b5a301bf54af95fbdd3dfcaea4"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/S-2.npz",
+        "sha256": "6360b282d8434f248f41adeee9a988a08e2ec54e5957a76303c2183809bfae03"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "full_bank_sha256": "7ff80fd0f8c8557c79947cc8d9ef46f78c605f481e06e009fb763b42655c2be5",
+      "input_points": 3535,
+      "full_points": 3500,
+      "common_points": 3357,
+      "left_points": 3456,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/P-11.npz",
+          "sha256": "a9360a7581f904cc23260c8a36259e00281ae8150f4c56b20d2b9c729d53d967"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/P-11.npz",
+          "sha256": "e9ef41e336bbccd392b3d12b9180637d93c48abebd46427e3277066105b3761a"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/P-11.npz",
+        "sha256": "5e7324a62919106bf17c21af279f60620b73ed5a9323c6edbceb019ebbcd3c01"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "full_bank_sha256": "919ff72b03f527c5d1df1461e0c52d274904703a7e857a98c4bdc37934c4176c",
+      "input_points": 2430,
+      "full_points": 2400,
+      "common_points": 2301,
+      "left_points": 2400,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-12.npz",
+          "sha256": "821f25344f1ec96deafa6f719c968e5dc2b83f5fb417d0c98e71cf4f527e7cd3"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-12.npz",
+          "sha256": "923f2841b5c86fab92ddcfa55d469b2b68f180471f627c8485039bfa34585626"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-12.npz",
+        "sha256": "e2c12993ca86793d18c2e7bd9014b65fae61946a9118690114227fddb179a405"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "full_bank_sha256": "4874634316513811deb6c3bffe3a2a5a1505a8216ec50fabade49b4062293290",
+      "input_points": 2217,
+      "full_points": 2200,
+      "common_points": 2101,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-4.npz",
+          "sha256": "c293f2b55f8308ae0f85ab1326073c1e65ddd47e66464ffc3678bf88917c7456"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-4.npz",
+          "sha256": "3585d2e8688fce04b78d80f7704ab81a964b52f77d3c2e66861aae6f85e3bb1e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-4.npz",
+        "sha256": "710175727bb09a3e6bce87493ea9e1bb8ee8bbcfa4eb93516e72063d36655d0b"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "full_bank_sha256": "2c6cbb5298b8c40b42c63b2023d524cd032d6c71badecc1490c3dd565accfc5a",
+      "input_points": 2218,
+      "full_points": 2200,
+      "common_points": 2101,
+      "left_points": 2208,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-5.npz",
+          "sha256": "ef9163773c78ab9c48d8ed3bfd227869967d02fb128b1e61d4ea8af23a50f814"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-5.npz",
+          "sha256": "851903ccc47d01ef27d7d625daa67bc0e4688064d3b8671f0f9171aa521aa987"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-5.npz",
+        "sha256": "7631123a75b9cb2374b5325ff720a1d51a62a062a528c47bc9c799d760914846"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "full_bank_sha256": "e5be6eceea24e563d81d0e0a4b5d653a2a315db78f2af188217c45cf340a91be",
+      "input_points": 2430,
+      "full_points": 2400,
+      "common_points": 2301,
+      "left_points": 2400,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-13.npz",
+          "sha256": "77a19bd7dc8161dd3ac82dde47a216f6ce0677d8c948e580be2d8537bd857cd7"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-13.npz",
+          "sha256": "4849a016b9cc960ce5ea703c115ffba0f1c343839b0f20c69128657072801281"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-13.npz",
+        "sha256": "24d5b5e6c977a9fbe6c20e2d3fb7c0663eeb7adaf891e150fd99fb51f973e1f2"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "full_bank_sha256": "d2bb2d519eb5b393f751dd1f236e89fe6529e58b7228e6a8111403aca13312a9",
+      "input_points": 1096,
+      "full_points": 1000,
+      "common_points": 901,
+      "left_points": 1056,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-9.npz",
+          "sha256": "29f4c983e0763b04512bbe95610148fc88e70a1580f16473476191bba42f6579"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-9.npz",
+          "sha256": "64a4675120ac482d088ad6da51e56aa1b4badd60ff7fd766fbb47824045decd5"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-9.npz",
+        "sha256": "929855646547f0da9f53604ae1fa5726f152fd8fbef8740a8eeb007eb91b5ba1"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "full_bank_sha256": "f3c6ac572ef781c7b042f7c762d47a5f2c2be1bda25eec8c0975e3a1d91c3bec",
+      "input_points": 1519,
+      "full_points": 1500,
+      "common_points": 1341,
+      "left_points": 1440,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/MSL/T-8.npz",
+          "sha256": "c3317a13ed93707571ba2b7def55971081dc2a8858d3c598446fd5489e5048e2"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/MSL/T-8.npz",
+          "sha256": "816b500e4072d70de376dacdcf5d25f475de7f2b548ff734a2920beadd77a8b8"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/MSL/T-8.npz",
+        "sha256": "7d5273a1627f19a70b5f97e5f6dc1e16eb7827bac4246898a42f743823221f48"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-2",
+      "full_bank_sha256": "1ee2575fa7682bda44909cb173b384ddb85d6ba1744b86b3f3849b2c0856a87c",
+      "input_points": 7914,
+      "full_points": 7900,
+      "common_points": 7773,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-2.npz",
+          "sha256": "23a4b87db93bfba89d44567bfa6245448d03c33cf651f8b9d0326b644494bfe7"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-2.npz",
+          "sha256": "1c0830c410b1d80f17aa273526664d01c55b17bd8822a389fcba4b0037cfe48d"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-2.npz",
+        "sha256": "d88dc47e6853bf9416e7ab0191dda2520820e44a6dee466f110f8727092b67ad"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-1",
+      "full_bank_sha256": "40bbd2e717b989a8178749b4bb5091aba507d48f133dd08e71444a227ea1d3d2",
+      "input_points": 8640,
+      "full_points": 8600,
+      "common_points": 8501,
+      "left_points": 8640,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-1.npz",
+          "sha256": "fb86e2b7ea045ece0bf32df63dcda6bf36b94f2e9f28f6c6ab2c73423e67c28d"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-1.npz",
+          "sha256": "7356d227a99d8e54de10ccf9972e76d67e228b20bc1f584ab06b4bb65712d244"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-1.npz",
+        "sha256": "e5f8bc51a65e76d50ed49785e4f42882aeeeb9788ff8b7d5054c122746bb9c5c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-3",
+      "full_bank_sha256": "be0f9caced6601f7ad6b8afafd22b407e81e5ec4efab93fda6844f498a2f02dd",
+      "input_points": 8205,
+      "full_points": 8200,
+      "common_points": 7965,
+      "left_points": 8064,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-3.npz",
+          "sha256": "f6d3161bd06f313ae7ccbed35f1b281c9277c571685e5a4926f11e45504ef85b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-3.npz",
+          "sha256": "58f40dc9425f82d78679f86a5bd612e41e4f35c4ac16f510b4a76afcb3107e8c"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-3.npz",
+        "sha256": "7393ffb04b001e90211d2ec4d23e5e1fb11153855dcccf3c1bb9ecc09d18aa37"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-5",
+      "full_bank_sha256": "4592d0a3ec9c1e9aed25dd2fe667a0d3d9c83466bccef3a6fff73ae1f5e2ef36",
+      "input_points": 4693,
+      "full_points": 4600,
+      "common_points": 4501,
+      "left_points": 4608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-5.npz",
+          "sha256": "995e4de1912f2d626cdf0de2ceee4a82e0f728f027e0077cbb7ecb42885807a8"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-5.npz",
+          "sha256": "263772ff28d9d31d085dfcead0d715888cbc687b3fabdc1079d8636696b21269"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-5.npz",
+        "sha256": "4b459ff1380da82123e7fe3410150cedb1750562b4419db57a11b7e077604737"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-4",
+      "full_bank_sha256": "3b62f9f168acd8af9f937908c149290e04c236d74d1c48d6e0fd60c0d4b6ce41",
+      "input_points": 8080,
+      "full_points": 8000,
+      "common_points": 7901,
+      "left_points": 8064,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-4.npz",
+          "sha256": "af3f478c60277b3e11b17cf48c19ec38b3c89302638d362848adf76c9beeef49"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-4.npz",
+          "sha256": "f699f368fa67b4d81e1bb251da32df8531b4fbb4bb92977325def649be139e48"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-4.npz",
+        "sha256": "8fc6c0cae8f66fda7b12fbc871e5979ff2e06f83aebbddb3753770e2f203ad0c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-6",
+      "full_bank_sha256": "fc6b0a89e5711e84f1d6bb7ca52716c7852bb2306563a5e377a75996ca289628",
+      "input_points": 4453,
+      "full_points": 4400,
+      "common_points": 4301,
+      "left_points": 4416,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-6.npz",
+          "sha256": "37e1f000738dee9afcd6dee742c016f537f2a65d3677d6a684f149fba7850ba2"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-6.npz",
+          "sha256": "8ed86106f81aae452aeed715624c8061d152c035dfc0314dac8636221d1e47d6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-6.npz",
+        "sha256": "94b5740b9e5372ad9b3bad358338265edd80f9852091eed38371b0dd3d1f8082"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-7",
+      "full_bank_sha256": "ed910bfff437b754a3ad8dabbce16e07b1e8ab980f4377cf38e71202b58e189b",
+      "input_points": 8631,
+      "full_points": 8600,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-7.npz",
+          "sha256": "1d230a790176f74f68c95c29e30f805acd27048041cc4cace55f7021bfa2d34a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-7.npz",
+          "sha256": "15e683d071277fe0ef04c3d5119facd45c3766db733ddd93a01e276835c63e28"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-7.npz",
+        "sha256": "bf62bd8d917e3f583a9036ea00aa1f0ef95dc602465beb8410ff74cb71514bcc"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "B-1",
+      "full_bank_sha256": "fbe215baa626140ae86026a7be62f2c072430adef1c8271ed1cf65d36da4f911",
+      "input_points": 8044,
+      "full_points": 8000,
+      "common_points": 7773,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/B-1.npz",
+          "sha256": "36152008fc9ba35aaa4f5fe570a5b00ea395a10f47f3b31a17fa7d17b66752e7"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/B-1.npz",
+          "sha256": "44a0e2c707a513f60436ef7bbb1887b8cc84b6806c92af08db83f45b874a414b"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/B-1.npz",
+        "sha256": "564f6b0d8526dfb1559af7e8fdb02fcda5fa49a07f22e6833aa5c3cc2d304647"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-8",
+      "full_bank_sha256": "117c74c26eae07f2cb7e426c489055168cf2ab41d73078006ff79b3f5dc35721",
+      "input_points": 8375,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-8.npz",
+          "sha256": "caec224ce8e9930c11ff3f0793c9dd60bddefc0634373c94c10ede7478af4af5"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-8.npz",
+          "sha256": "2ec924b355dfb7cc297f5deb9a2668cec23490d4425317c11d6e11f9656e2a91"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-8.npz",
+        "sha256": "429d3b5b1d76f3ada23083354ccf41cf18e1f432e5e19a985849a5da36de544b"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-9",
+      "full_bank_sha256": "7df180553eac8e4f682a3c2b187291676b7b9dfc669b62a307c5d4a59b2e342a",
+      "input_points": 8434,
+      "full_points": 8400,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/A-9.npz",
+          "sha256": "8c3f3448fa58af7201f9b18f4ce2850628a3d646e7ac85e815e28462b5ec0b8b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/A-9.npz",
+          "sha256": "40a8c8be7a7a8b3cdf25a78d2651ffce5940e71c0d33d9c8801cfb2e5e3220be"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/A-9.npz",
+        "sha256": "c2452d54816fa05feac4a4f8469176f8e5e88f996eb66df62c553ad2f42e951a"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-11",
+      "full_bank_sha256": "5277f5bea73dd644ec2917ddc2210f41bca85063f2732188a7e61da6f555a8af",
+      "input_points": 7431,
+      "full_points": 7400,
+      "common_points": 7197,
+      "left_points": 7296,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-11.npz",
+          "sha256": "943283531c85a5e84477a8fbccb132245c67425fdf6dc5d7c2184aca072942b0"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-11.npz",
+          "sha256": "b9d8f26f0b7c117dca48ed70554d5f7df41bd557a4538850d636430476af6864"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-11.npz",
+        "sha256": "0e081c1cf8511e270ddab29e2cfb15ad54230ae2c90f2f6140be6d2a5d959b15"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-1",
+      "full_bank_sha256": "f74f167e83e97941f1b98236614c88927182ab4c34c43ce5f3c8e28fd009fa6c",
+      "input_points": 8509,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-1.npz",
+          "sha256": "db5f0b77460eaf7a7b4e2f91eb77b0c467e1a5d109d184cd035bfadf96bbb266"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-1.npz",
+          "sha256": "d6d6cc15f58465ce7a4996bf0a5c1a184db1fa4e03c5b9845a048e0820cb0ba9"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-1.npz",
+        "sha256": "412766018d987d31feb3c83ffacf5cceefaf794003a7fe239cd422dd24253ac0"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-13",
+      "full_bank_sha256": "d0933a074fd9a25ff855a35fb1886034854cd26d5487f16bf8f34b6c7eab7375",
+      "input_points": 7663,
+      "full_points": 7600,
+      "common_points": 7389,
+      "left_points": 7488,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-13.npz",
+          "sha256": "6213436ad304757cddd9cd2b28232d5c86a01c7fe576175e68208367de45dad7"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-13.npz",
+          "sha256": "6067e006bffda2e964ddb2715016a28dd40a48b94da77cee6f7bf8eef779e8e8"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-13.npz",
+        "sha256": "ef84a5f715537db11091f35b9fb115cfd092e092f35370b79afd05b5021a283c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-12",
+      "full_bank_sha256": "debf5e07c6146b99f0694c5eb712778d61dff12a03d850e9dc96e879ae8a0335",
+      "input_points": 7918,
+      "full_points": 7900,
+      "common_points": 7773,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-12.npz",
+          "sha256": "934c4f6f0b0dd75d9c27bf0384e6f74a2ed9e861ccafd98f5dedb746afe3678a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-12.npz",
+          "sha256": "191dbb4c7021c42c525d7f731820396304a4fe79d504653c49291512f8614e0b"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-12.npz",
+        "sha256": "435a7d71f8ee7ac96218e9927b52b84e251be10a4835c4515724a5a765a9f5d8"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-2",
+      "full_bank_sha256": "ff025715d5ede21c0e3df50bf83e02695dca84654e239615396c51d0aa1b006d",
+      "input_points": 8595,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-2.npz",
+          "sha256": "e5c5ef033bb6c80b8bc1896c2fb10ea0788b35404046824dc00c5372514fdb52"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-2.npz",
+          "sha256": "7c2fe8ab860d188be732f4a150486f978fcde9cc482799803f3489e5212a9c6d"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-2.npz",
+        "sha256": "b4f7247252eb21c64bc7f79e8cc45a2c77c2d77f7fcd775b503c7d92ec067853"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-5",
+      "full_bank_sha256": "0d154c54fe07b0aa74580095d5dd800032182cc3f0116a431c5305f91b4f13d6",
+      "input_points": 7628,
+      "full_points": 7600,
+      "common_points": 7389,
+      "left_points": 7488,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-5.npz",
+          "sha256": "cdd6a205a6ebb1a0d2534e74e11a559ea36bb528e820445758e64ddf9d64ef53"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-5.npz",
+          "sha256": "9c750f632f3f083177d0e79f7801f93082cb0f5e9c80915d01576eea6e01db24"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-5.npz",
+        "sha256": "0833fcce4cb7177dd0d78a5334e97dcd189989c98c10b1fbd10961ea7c4589d7"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-6",
+      "full_bank_sha256": "9e64623f3ca1901a9786e5b3a20940a5f30e0451459f0aee7be2a4d6cadbf256",
+      "input_points": 7884,
+      "full_points": 7800,
+      "common_points": 7701,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-6.npz",
+          "sha256": "b158a61eb1d5a33ebec06294dc31fc7d8225abeae4c81475fc105ac96a96afa8"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-6.npz",
+          "sha256": "08064b8b2687718bc500136ed013cde9050b7fd093a92d66d25d72e317e076ea"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-6.npz",
+        "sha256": "c677d857a5939da958faa64010d6c0da64f4034e10104b6fb39693e41b094967"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-3",
+      "full_bank_sha256": "8b81bde9c5b37a17864a37dcf4fb332c1c88e371950ea559d06f3dc7ccb4da34",
+      "input_points": 8640,
+      "full_points": 8600,
+      "common_points": 8501,
+      "left_points": 8640,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-3.npz",
+          "sha256": "aee489319c9fc5a26db45b6f1707a2c1b5bbb8db7c9f0f6e6e84708e89794b16"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-3.npz",
+          "sha256": "08290852a9b06fef14d49ce4675b37876d7bb874cdd8e966aa8d7fd607224d52"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-3.npz",
+        "sha256": "c404fd6d6cafd66db949915a84cedc0d69dc760747fb5ca505ee7ce5b6b4d12d"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-4",
+      "full_bank_sha256": "faee0418d97aa4ca2f6c4456b38eb4ef6f34eadbb2dc5804f800c2e6870e14d4",
+      "input_points": 8473,
+      "full_points": 8400,
+      "common_points": 8301,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-4.npz",
+          "sha256": "9458fc0b3574a2e1c3de49062d4c127927478682d9d32b040d8c38eaad08a901"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-4.npz",
+          "sha256": "2f7208de576b4795c6d293d1721f2482b351cd72984875ea41debf685346419f"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-4.npz",
+        "sha256": "e3a732bb534c330d8de89f9d922c07f3de168ad5ff97839c116c98e8166092ab"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-8",
+      "full_bank_sha256": "4a592c3f70c5cd6eb0856f48e5990247a95711b0cb23f11bf2d84cee4432ed1d",
+      "input_points": 7874,
+      "full_points": 7800,
+      "common_points": 7701,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-8.npz",
+          "sha256": "909b5a6e9683e7a2d74c5e72222c7371174ef6f03746fe983b62885fecab8dbe"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-8.npz",
+          "sha256": "a2d8a3a61f1fd820ae9fed939d7af4d6d428a033e8d1b7a4f99a7c2deca543de"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-8.npz",
+        "sha256": "c80706bef33fd7d5620aa2fda636775e7aa39e865e67b77079a4e824658c94e7"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-9",
+      "full_bank_sha256": "e60e2586d46a5dc4c440945e93a8d59dade13b7ab6cf4e36b8a146f718617660",
+      "input_points": 7406,
+      "full_points": 7400,
+      "common_points": 7197,
+      "left_points": 7296,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-9.npz",
+          "sha256": "0f88efd1e8e9143540938542890ceeac52497c6a47e7032f3cbd1c000e61aa7f"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-9.npz",
+          "sha256": "35e7360bfecb0a0de6f83530f6325765c6f8851d2bec0a91a77b3c1378b28a9d"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-9.npz",
+        "sha256": "a664c8ff2be08887800bcf89162ac376d4864a8018febc4b49aabbda652191e3"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-7",
+      "full_bank_sha256": "477466022b3307697d1155e1ce0bc167e7c2c0f3f9393a5a46104c40ee904fea",
+      "input_points": 7642,
+      "full_points": 7600,
+      "common_points": 7389,
+      "left_points": 7488,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/D-7.npz",
+          "sha256": "f4665dc6adf5812e9307f255b00bdec0fb2532c760eac3fb99b40f9f2d8c1cb2"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/D-7.npz",
+          "sha256": "91e91d8268a74e9eed83ad7f743334f00df61377ad9115a8dc6c6b31fc18ed48"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/D-7.npz",
+        "sha256": "5b6f7f1ea84870cdc7a6557585a60603fa1b6c40e55da2dc5c4287488b48f22a"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-1",
+      "full_bank_sha256": "bd76785706d874387768f96a5194f86952ad4ec148452f52e962f99ffe38bc29",
+      "input_points": 8516,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-1.npz",
+          "sha256": "fe200355676ab38db1f47d264314f970ba1ebf4a7b7c2738018166eef68d830b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-1.npz",
+          "sha256": "be127ae1586356e11ec8ac3e72b2e4dd642aeecd65712ee07e43bc3d1f0e0fc8"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-1.npz",
+        "sha256": "e0393d4986e1c42a6e6d4c5c4b9aa76390813ffa8b5cd6a87f230ed3643e1e09"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-10",
+      "full_bank_sha256": "152218aac9e55e7d9b8a442e868bd3465ea866773092448d7e864799b54c470a",
+      "input_points": 8505,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-10.npz",
+          "sha256": "f78f827a75761928084f90ee01cdab140b6fd07707b5511e1eef35ec9df42c78"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-10.npz",
+          "sha256": "8d78ce08e2cdee4d53a17da90e3bcf756f43547b85927009feddc6d644b6862e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-10.npz",
+        "sha256": "d49267fb679316c415ea84bcaebb34d529a4cd17387345b7a0b02858f1dd8e9e"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-11",
+      "full_bank_sha256": "9e10ac992424033f78eb4bd35765268795d01abc70f938753704a53be15c8328",
+      "input_points": 8514,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-11.npz",
+          "sha256": "7c521d021369ef674f0301b2b1bee2f5b8f04b547832a219b3c1549590e758d9"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-11.npz",
+          "sha256": "29dfda96abb245308fb5b405b0ff73afa609c16ccac4a26a5f0c96de2377a0c3"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-11.npz",
+        "sha256": "c1bbffb8cada7b929f1ec03070886622ff21c77514cdfdf411b248ab7606ceb6"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-12",
+      "full_bank_sha256": "77dac2855b07e5c283d8aa1dd0988f6713158dacd4044e39b7d6e4e9c4b314ad",
+      "input_points": 8512,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-12.npz",
+          "sha256": "e928a90db38cae16f2c7e9c10839e8fce78982ea6abd275f8b5087ad8ae88c50"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-12.npz",
+          "sha256": "fd51104708871f71520c79daa92a27dc57da61c8df7ff600a7c7a30b8fd9d9a5"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-12.npz",
+        "sha256": "e6b38d8cbb463834be04d0932c342c3cabbd78a1498e4f18cd1503e5865a0be3"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-2",
+      "full_bank_sha256": "c1c067e97e3870bb5c28bb57c3b0b6f362335763bfe671d7ea54ad0459b29aa4",
+      "input_points": 8532,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-2.npz",
+          "sha256": "1a92b0c788563e924b623fd5e83ce9a63c9883cc543cc4ee0ab7cb0520160e18"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-2.npz",
+          "sha256": "7e443038ffe5d1d42c3a6d97ce756ee9de4ad5c56cb0d74d437c385b1e136076"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-2.npz",
+        "sha256": "f24687c593d06c7b00da0b7d80bf888e5e57e251d848176f034b0aefb9985f27"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-3",
+      "full_bank_sha256": "45a55a3aa58f37361b09b0dea2c5a0ab55f0c78c7f55c64e3354f0c27038111e",
+      "input_points": 8307,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-3.npz",
+          "sha256": "3900b3ab03c65dc123f0eef71099ebb67ba61418bd7b6b47d5bd03a571c9482b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-3.npz",
+          "sha256": "f1201200ed4fcb301e3383ab86dbafb186a40bf1f5169ff68b7267bc5e07d875"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-3.npz",
+        "sha256": "416106a9f31d1b0bc1cf7ea4da248810f93af04e495a7a2d5021c1c17c794f40"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-13",
+      "full_bank_sha256": "60203a5ff4169bd560dcb0ad32c3bc0d0fa7021448249f37027edf8a8a755e03",
+      "input_points": 8640,
+      "full_points": 8600,
+      "common_points": 8501,
+      "left_points": 8640,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-13.npz",
+          "sha256": "04a9d5661a711a12bc254ce21c9ee775a13b2573aebd533aee66f9b679e31253"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-13.npz",
+          "sha256": "199bfaec4bca7f0b44ce2bceaad793f1c716eadc8c6b901c345053664ce4145f"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-13.npz",
+        "sha256": "11eb791db238230a400d26716a6160219339dbc10e8ffe7ea3104c39d51934f9"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-6",
+      "full_bank_sha256": "f2d8ea5b4cc53a9da0b2c279ea11174feff3b743fd53992cd9537b006bf71922",
+      "input_points": 8300,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-6.npz",
+          "sha256": "2bbf46442a7638e6136e00fb2cad02da02ee3aefc6e803bce4f002ba317f658b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-6.npz",
+          "sha256": "17aa3a6ed20ecc934b6e36b12204bf203467a295ba2ee9bee72077f8590ea7be"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-6.npz",
+        "sha256": "2b3578620d6fa476cecc599c4826923516391f4f2f085549db28b468949a9f2c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-5",
+      "full_bank_sha256": "7dd95b252c918e95beced4e8c1d4b4407bffc0eeee356b194ad379e4c086970f",
+      "input_points": 8294,
+      "full_points": 8200,
+      "common_points": 8101,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-5.npz",
+          "sha256": "7f71a43e441595b27487babab594b723b93957a42d5f61c50a309820acd17497"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-5.npz",
+          "sha256": "629daf1fc3ef09ccccaac095c3b42d50ade0b6f8583eaea469ea767a0e822780"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-5.npz",
+        "sha256": "ae49e509a24efaeca3959215ff017f8ea744d451ed237589acb0a64e8fd15d9d"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-4",
+      "full_bank_sha256": "ebcb5c7f092499cb6d4a3ccedfff11fcfd012b5d3f4485d053cca63c01a06ac2",
+      "input_points": 8354,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-4.npz",
+          "sha256": "304c2f80dc34855ac1e6fc4ac017db1b6039dcca66e624cb2263e5e942da028d"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-4.npz",
+          "sha256": "99f7cb37526f8068e70d80c20009714534404a391f4387a99584513a87c31a7e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-4.npz",
+        "sha256": "917dadb3f0b8abcfc27bc4b748a9fd78ab782092a28e93d6edabb21eca9035f6"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-7",
+      "full_bank_sha256": "4653bb8982d929a9fee0831a83ab6da19ccd2791bdb0d482b64a4b771852df4c",
+      "input_points": 8310,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-7.npz",
+          "sha256": "bdeadccfd62cf17daf96e63be2e6ea85dcc01e0d6051742355523a2d78e4ed2f"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-7.npz",
+          "sha256": "d7dbcb52edf770dba8d38f3fb2c4a18a355101db3fcfc47f5a557a8f3997c111"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-7.npz",
+        "sha256": "76a65640d3df6f048dad35c010014b21541f6b573562febfe7ef32451d36f97f"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-8",
+      "full_bank_sha256": "36c3eb827e0ee7c82248ddf678c4ac3f7a22133d40f5b15f47aa0d7af5816eca",
+      "input_points": 8532,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-8.npz",
+          "sha256": "8c71ba7347d1e7bedb0c4005f73fb6e8f552788af031a69a2d41224458e39776"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-8.npz",
+          "sha256": "17f7a387649441e9088a7566b7a8e7e7705be793b6128671930a8ba4602adffd"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-8.npz",
+        "sha256": "1c3b4267138ee67d1e0432e89e73d65937192543015e96c2ffc31bb254528578"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-9",
+      "full_bank_sha256": "25f8a0ac8042b8b857cf59d1a751b77c8941a6ad96aa031820942ce801644cb1",
+      "input_points": 8302,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/E-9.npz",
+          "sha256": "ecbc5cb9756dfc227bb568873c080e2031ba03ab8ce55640b48d2e0cc37ed6c2"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/E-9.npz",
+          "sha256": "c0dfc14a353b77669118506d4acb63811607d5c64c84016c900095d82b50186e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/E-9.npz",
+        "sha256": "0d2cf5676dad946cf84d0de91df732bb40d911db0020d6d691c9a85aa99a03d5"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-1",
+      "full_bank_sha256": "e55a568cab1707fc98f8a00017c4ef94c0782483459cd23410011f5cc8efac34",
+      "input_points": 8584,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/F-1.npz",
+          "sha256": "2e242bb5e245b0e7f3d812f13b4331433471438d692a2f5bcd6973d06187c445"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/F-1.npz",
+          "sha256": "8ddb9df9e0f72f05344072996ed5658c76fe90a5caecfa334022eddd64e6d093"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/F-1.npz",
+        "sha256": "103115748bff751f31271900e5f7e990251ed5df46c5fd422117c44c0062e51a"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-3",
+      "full_bank_sha256": "c920ed98fc120a34c59fda908d1ae61c68dd14c99bbd404186888c1f143a6f21",
+      "input_points": 8376,
+      "full_points": 8300,
+      "common_points": 8157,
+      "left_points": 8256,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/F-3.npz",
+          "sha256": "af8a393f96db742328f5bd2ef88ad684d78f7dc4df14fd84289cc10de617a32a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/F-3.npz",
+          "sha256": "61f134d6bd2a6a8369089df3f7eeb4c0d284e2729154c95845f65c53385d45a6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/F-3.npz",
+        "sha256": "3628f47983e40e58a7136250493a9db2bc26900df87b5b749b8b11ab8e5a4e48"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-2",
+      "full_bank_sha256": "a41c217816655009823b9ded14a1c7ec54211a97942aa2e2807c67ec6af4a114",
+      "input_points": 8626,
+      "full_points": 8600,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/F-2.npz",
+          "sha256": "2f6165a3f6dd6425a80caeb958d9813a84d2be6463219b5fd6de1610c8cd42d6"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/F-2.npz",
+          "sha256": "80614bf74d6768e266d9cf54a9781d8e24a0087778b1211a28826e8223909d06"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/F-2.npz",
+        "sha256": "389b44a2d84ebe0bc684bff990a688fbbd7eb5f7614f44c045518ca03dda3b8f"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-1",
+      "full_bank_sha256": "39425de623c26b20b54d71928ae1c2193307a30f72d56b260ac0945b70ee56f1",
+      "input_points": 8469,
+      "full_points": 8400,
+      "common_points": 8301,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-1.npz",
+          "sha256": "1783a37c1bf569026fbc2dcf009d8ffff650eae10598e1a59b0fc0c53ba1e2cb"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-1.npz",
+          "sha256": "95f0e67bad7762760beb3d590e02946d057c430a8088e7df2027e9f3f520537a"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-1.npz",
+        "sha256": "a18ddabf6f3c6131fe3597638de223445ef514c8f0c741ab4d20acc09cdf797c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-2",
+      "full_bank_sha256": "22f3222a616c9a0ad06bcc43eb3dcdeb79528c54e40b8444ad0526edc308fd12",
+      "input_points": 7361,
+      "full_points": 7300,
+      "common_points": 7197,
+      "left_points": 7296,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-2.npz",
+          "sha256": "e4b9310da7d0095e339f21348db0a5181606f628834d7996339d5d45e6a2b86d"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-2.npz",
+          "sha256": "c9ba2ccefd020441b35afe96b2128858bcc2b636e82df38113bdfa4a0db7c552"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-2.npz",
+        "sha256": "a77c7b9cdc446301c3b022fa1fcfc12fc58e77b42cb1c2305305470a1ce90f5c"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-3",
+      "full_bank_sha256": "0a1d4dfea43092400a7c98567d299e44260aa08d3d6bf53e9ebac356ecdb5a55",
+      "input_points": 7907,
+      "full_points": 7900,
+      "common_points": 7773,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-3.npz",
+          "sha256": "e4b8ba59b99ec187cfc40e49872c18b3c70f438665af7f6f3fef6e51a9aa731c"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-3.npz",
+          "sha256": "63f7b0e91c998fc967a56414b700cbb8d6559adb6b3b178e4b555eaa2217b1c6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-3.npz",
+        "sha256": "a1c020db52293f46a6deca740734d90057e1a4639002453b3b13dd0948f73cf3"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-4",
+      "full_bank_sha256": "6d892adde4ce3e6b35b2af15d4820b9512d580a7e0e3a4319c8704997044ecd6",
+      "input_points": 7632,
+      "full_points": 7600,
+      "common_points": 7389,
+      "left_points": 7488,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-4.npz",
+          "sha256": "11a2c205fcbc5e40eff54334b6951bc8b8859f8daaa2c463fbc4628975ed1a00"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-4.npz",
+          "sha256": "cececf8059eda30acfa88cb80a11c8c58a2dd340ed7de31b132662a594848fb1"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-4.npz",
+        "sha256": "444d491c4e7e6bffe7503aebb7f89dcb69884b07180077027ba0196afd91f851"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-6",
+      "full_bank_sha256": "a12e0f049f2aa08e0929fc114ff01d42f6cb02413b10c10f4494bdf1324b46dd",
+      "input_points": 8640,
+      "full_points": 8600,
+      "common_points": 8501,
+      "left_points": 8640,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-6.npz",
+          "sha256": "b271f0f27fcdc054efc2f2b2c599681d4a34f9671550600dbe87cc45a594e485"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-6.npz",
+          "sha256": "3b86cbceffa0d4c7890112d5516adf2738efead2a1dcdef4c386249d01f0f350"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-6.npz",
+        "sha256": "fd35fb49fc741a28f11dd6918283f84c9fa268832e9b99045a1bb3731449a08e"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-3",
+      "full_bank_sha256": "172201427a678754c961c6cfc2167c530bb21c3bd3cad9290f205d3137c22d7a",
+      "input_points": 8493,
+      "full_points": 8400,
+      "common_points": 8301,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/P-3.npz",
+          "sha256": "8498ee00510a5a593ca1f9d9e7516084a5b81164fd4c20055ca0e548e8b68177"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/P-3.npz",
+          "sha256": "567d63b446768f25aaa6caebd53f00eb7bd499e2cf4fb8110df9cdef9387623b"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/P-3.npz",
+        "sha256": "9c7135253a61bda301d3d69b08019d63b459f1ffffe862e35c0c88c1e522094b"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-7",
+      "full_bank_sha256": "e80bb217a05de0c67876ae474f92ba0b9dc4fe46ba6a3cf7e11267cb19a2a081",
+      "input_points": 8029,
+      "full_points": 8000,
+      "common_points": 7773,
+      "left_points": 7872,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/G-7.npz",
+          "sha256": "9189d9cf007ff71efd79372a4c20d9583c847fd7b12d7b6cfb7ffc929f3f4577"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/G-7.npz",
+          "sha256": "1d4339a9a9073282caa313ea7c4bbdc2a0e14bb1b44a4c03c121dd41d1e32b2a"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/G-7.npz",
+        "sha256": "08fdc3c58232c42418291fcc0246d03b6b001f9d3113229be9b6e927205f8e74"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-7",
+      "full_bank_sha256": "7a0ae5246437ffbbd21f18b5e964da640a453ed8b3e384641cbd9eb4e1f19284",
+      "input_points": 8071,
+      "full_points": 8000,
+      "common_points": 7901,
+      "left_points": 8064,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/P-7.npz",
+          "sha256": "2a1a187c6aba7f0c819f15f543b7020dae60d645bbd63545032e3101bbd4bc7c"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/P-7.npz",
+          "sha256": "abec9b113aba71442aa6868ad4f7bf4e1babec5d087488f7125d416735b05f43"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/P-7.npz",
+        "sha256": "8b0de1ba1d562d8efa5414ed6cbd52e33a61753b42bddd2b921e9b4ac0aff6e5"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-1",
+      "full_bank_sha256": "54fe731387f67bbb4e7908bcc07ddb205316bea3292ac9cce3221e1f8d8f82f1",
+      "input_points": 8505,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/P-1.npz",
+          "sha256": "c0da3cce9313dc1b776ef176a205549570712f5400b1899b9ae17f928c3b7be2"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/P-1.npz",
+          "sha256": "1ea48ebb484219b5b61a341982f356691bfba8dd56a84b68f4b9c7f3c827b19e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/P-1.npz",
+        "sha256": "5e21da34cf78952955091146819b4918b722585c106ffafb919dbbd9388356f2"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "R-1",
+      "full_bank_sha256": "c4aa4dff5cfc86e6da8d9c35cfe7549b2b54737df70c5b97abc509d77eb8171f",
+      "input_points": 7244,
+      "full_points": 7200,
+      "common_points": 7005,
+      "left_points": 7104,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/R-1.npz",
+          "sha256": "9e3b3ca8c0990a546302ac8c0e75a5425bbb9268a1582a08d8c4c90d8ac9ab73"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/R-1.npz",
+          "sha256": "c6477a115379c4c208596a651db464387a3ecc4b9bfc7f18886992bb03953da9"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/R-1.npz",
+        "sha256": "75114113d941004d1746c6b7fb51a70f57c655af8cbdabc328126595d114fd07"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-4",
+      "full_bank_sha256": "66100d0c31892de03ca952631b051201122c7a5cc48d86782a90e4740071b399",
+      "input_points": 7783,
+      "full_points": 7700,
+      "common_points": 7581,
+      "left_points": 7680,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/P-4.npz",
+          "sha256": "f624c1bc827a4be8adbafaa0c4ae75d814b034c535770d34dba39c5f7708611b"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/P-4.npz",
+          "sha256": "2c24be14efda787b485b92362b868f1149756a55a47c5590f877c79813dce2e3"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/P-4.npz",
+        "sha256": "10b3348471f364ee62b1df958273a92e6d856f964eabefeed6cb4565255a7a75"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "S-1",
+      "full_bank_sha256": "cc9117e5aa23036142b772bbac85dcc5ad11839017dd71ac11e4e942f0e2610b",
+      "input_points": 7331,
+      "full_points": 7300,
+      "common_points": 7197,
+      "left_points": 7296,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/S-1.npz",
+          "sha256": "787dd9f724b4f4c5a5ea6dbfe4c9d984ddae6dd8e57b3f177f450ab396ffb936"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/S-1.npz",
+          "sha256": "a00116de19059f293a1a99f6993f542d69e0ecc77f426a7ad3541de9f1af825c"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/S-1.npz",
+        "sha256": "41c8df20f87e53dd88931afe62260739583f2f94d757e3e6f2ce2606989868b4"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-2",
+      "full_bank_sha256": "fe6e53859b87ce0ef5ca09984a4d5a8eeddd67edb3d36d524c12e24e27113aa6",
+      "input_points": 8625,
+      "full_points": 8600,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/T-2.npz",
+          "sha256": "d30ad3b6f979f1cc04fdca67c4fdca4808f8e275069e9ef69c57d2ded5fa412a"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/T-2.npz",
+          "sha256": "77dbee9f614a2ea9a6e728a875e621d5169e825e455d668d85e34712aeba5498"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/T-2.npz",
+        "sha256": "39882197fe1c76eac4d0065001d8265b043f8b11632c044a62075a275e511be9"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-1",
+      "full_bank_sha256": "356ef9bb5d5f5f8d75141db7948cb434aa2993c7481eec7375025b34a724fc35",
+      "input_points": 8612,
+      "full_points": 8600,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/T-1.npz",
+          "sha256": "17e06b9688c85801cc994a04c19cd77f916a8d078ed6a7d16a52cb2d0da17a4d"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/T-1.npz",
+          "sha256": "dab1820fbe33dc8f4d7bc0a48556a401832c9fce5500ebd04db91348005d9465"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/T-1.npz",
+        "sha256": "45dcbd333c81167a6d324f7a11b63a84d1cf236279a8c49cad69347054506a40"
+      }
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-3",
+      "full_bank_sha256": "59a982445ddddfc6317961d3a039e20e6adf5ea2ef99532db39d63495f6b91ee",
+      "input_points": 8579,
+      "full_points": 8500,
+      "common_points": 8349,
+      "left_points": 8448,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_20261123_v1/space/SMAP/T-3.npz",
+          "sha256": "7c284cbd75b21ef0f2d10ee69307d7c33089cc2b0b33e8784d05414dfb651078"
+        },
+        {
+          "path": "results/native_event_space_repeat_20261122_v1/SMAP/T-3.npz",
+          "sha256": "c3356b7de83dbf9137bd198ce103a697cc43a03143d7384163965d0cc1ebc4e2"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_nasa_author_20261123_v1/SMAP/T-3.npz",
+        "sha256": "3f922d63625f7c8abab5e2f6ed39c6cdce5e580c23ef491ef9aef26f2bc0c5d0"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "full_bank_sha256": "66cdfed123efbf8aec2919d216551875992a1d663deacc398a82201d17b8a1e7",
+      "input_points": 23694,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-2.npz",
+          "sha256": "24771504c3af8586f6338aad61a32031912d65296c2b53c6010214b17a70075e"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-2.npz",
+          "sha256": "8c31cc63ee8f0563621e85b83686e0b1c7fe2e35a0a0f6ad160fe2fe7e24687e"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-2/scores.npz",
+        "sha256": "a06b44f2aa0c3544a8882e0bcc2ff6f225acaf96e961d537d375dda3c760b750"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "full_bank_sha256": "f8dc277e31b39ed819b47493196de7a697b7a1796deff4d36959b652445a11c8",
+      "input_points": 23703,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-3.npz",
+          "sha256": "db3ba1968a6b9b39b855841434edd9a8cd5eca6dabb2649bb62c79fdfbb051ee"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-3.npz",
+          "sha256": "64eb2ad948d7eb46a11f44d9b29344188fc3ebeeadf548546749a6e08be7ecf6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-3/scores.npz",
+        "sha256": "37e5692192db0c0be9f6c0ea5a75d02c2fe4e992c93ad781bd1cca3b1bc37966"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "full_bank_sha256": "a39e64f5ebb4e878c5a9a8747ae2a329799df4e16d75ecce068117d2ab59fbd2",
+      "input_points": 23697,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-7.npz",
+          "sha256": "2dda94a49aaa7f2e87db4f2cb56582f0fb1481f025b3204555a079d49131b3a7"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-7.npz",
+          "sha256": "aedaa96414ef90c2b1c059455cbed4f6a8f432dbb9d489e4d3677e4328f98dd9"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-7/scores.npz",
+        "sha256": "5d439896370567cab775390c305ffc75af0a5ed20eaada219dbd5d8c93a4f1b1"
+      }
+    },
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "full_bank_sha256": "0375ef7055cfd3649311802202e51b9288575382f966863e47a21e2da4b30b38",
+      "input_points": 87841,
+      "full_points": 87800,
+      "common_points": 87645,
+      "left_points": 87744,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_psm_20261123_v1/banks.npz",
+          "sha256": "0d436203d029e03438b9ab05e57ac3d1c3733bf305bdc9acb3dc04a6bf20e8fe"
+        },
+        {
+          "path": "results/native_event_rank_seed_repeats_20261122_v1/PSM/banks.npz",
+          "sha256": "143cb600145cd149b506444b2acdc6f7133c4ae62d91ed17985677ae5b6f3a67"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_psm_R_score_seed2025_20261101_v1/raw_scores.npz",
+        "sha256": "e6457b6081688625babd57fced9c9492efdda42086cb68df65e51d63e7632702"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "full_bank_sha256": "34fc67cddc02853d6564ad02715b20cd3a3d08699f5dde0b2cd036bc92903a78",
+      "input_points": 23699,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-8.npz",
+          "sha256": "d4a293b659aa388a44f3d54f021ae63617bf33c8d368063d664401e7289aa781"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-8.npz",
+          "sha256": "6cba1088443fcd38b1c6954821c3723ded0a916bb9e5c71b32f86fa4dd541dff"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-8/scores.npz",
+        "sha256": "19e39c0c7e6b40938b527b68a0df0b2471dbc3e1cbcc8d0d412fd8a9e78c4270"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "full_bank_sha256": "7d82fb7cb9a4fefd7c0d0f1ec1c26b30ee16dd03544ce101d95b0adb891a588b",
+      "input_points": 23694,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-1.npz",
+          "sha256": "897ca5bd663eb87401caea69f8fa25112c2882b655570eefe997910d41b7cc70"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-1.npz",
+          "sha256": "784521859244fe9f7e780bb3314b6ec30d3ae9b19f1501f99b37077d4456f866"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-1/scores.npz",
+        "sha256": "c4f2dab4ccc54b69d6892402d1103445979b49fc8eebc6015e99f18116f9d23a"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "full_bank_sha256": "38ce38706275a33c6f0eec3e490c893228a648ad72b5387c8fb814ce173f84e2",
+      "input_points": 23700,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-2.npz",
+          "sha256": "46fd2bc8aa7177802b6c8142e778627250e8438d14c845797be45460fc894289"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-2.npz",
+          "sha256": "f597d57b9e27548654523a14c7e9cf391fe3dc2e7d9bfaf434ac1ae4cf67e445"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-2/scores.npz",
+        "sha256": "b3a4dcb8b6973ee633f47866f51d8c91870d854ad831e47d0a96d26932812e50"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "full_bank_sha256": "353639280b7be000adafa002bbda4047055c3b072ff279e56ebd2d04a108ca28",
+      "input_points": 23689,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-3.npz",
+          "sha256": "7352c0653fa29beb0c033cc77d1c1aeb07b092a3d5530767a45e5180d8c96e7b"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-3.npz",
+          "sha256": "4a3576d0ef12de891c8121cdfd6c5c3cbf8983d4d8af8b88281491a9d1e6f67b"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-3/scores.npz",
+        "sha256": "12a683fae97874c0f024af777e08adb01c4593d5a1034de85944d73364fbc0ca"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "full_bank_sha256": "93d10bb4424d94d5352164a3d74961f42352c39bb0b41d8e79b4224c12630f56",
+      "input_points": 23703,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-8.npz",
+          "sha256": "1f93f8fc8a6553de6dae14cb1f1ed164374c6c5f624f9be3ede6cbb850ff678b"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-8.npz",
+          "sha256": "2bce714df685558ff29c5979973b874ce8e9901540cf2e23ba32753ae243a53f"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-8/scores.npz",
+        "sha256": "629e7515f2cf64bb0c53096e7a63aea7434a252c0ea452b3c1cb1d8b20a6289c"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "full_bank_sha256": "c03697ebff9c64c4d437252f1657ce73837c23a453fc656c0334bd378de45572",
+      "input_points": 23689,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-1-6.npz",
+          "sha256": "bbe913de749f239a60b893bcb4dd9c858ca52d7756fb432e06293d9a0d84307f"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-1-6.npz",
+          "sha256": "1504479c231c97aec83e715e957742e1da532325996da2661fd4eded4bd24193"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-1-6/scores.npz",
+        "sha256": "5e38de1eb99dfc0de70dc0b3574274a86b113bf6e6d9ffc6cc4aff1b5cac12bb"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "full_bank_sha256": "b013a8dd76442aedb920c84abf9c7595f6f44ff09368443dd27e60881111edf1",
+      "input_points": 28700,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-1.npz",
+          "sha256": "587cd078fece3370dd5dbd8389682604baca620d12f01bce1adfaa64af990504"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-1.npz",
+          "sha256": "ea9d71e715c13ef80f36548b57b60094439c4b020495e3b4e6caae5df648bbb1"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-1/scores.npz",
+        "sha256": "6edf07a6113c2d775481b7cb0eaee5c41f231138e5b60afae1b40738b959e0c7"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "full_bank_sha256": "5c6b4c9730ca4e99949f1acd5843a68667c287bd0c6c6624a75c13ebe5ba7ee2",
+      "input_points": 28696,
+      "full_points": 28600,
+      "common_points": 28501,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-11.npz",
+          "sha256": "f7eabeee5294b8ac4cd52ada28248c06833be6bc50a9cfc01016c8cd2432fbf8"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-11.npz",
+          "sha256": "79771597db878dc46e0c97a8abd7ed9ae84aea6df8c990f35eebf269d061b3c2"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-11/scores.npz",
+        "sha256": "8243fd2d188c5f84c39e7b706e37377cde8d6133a8f2bf35969ad20d59cfb4b9"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "full_bank_sha256": "eefb431cafb17d8218d02cb11a6e05dd8851d7df6e2a5f1371116d40a9f9048c",
+      "input_points": 23689,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-4.npz",
+          "sha256": "8c15723b9813dd56be73e503abf9199c3da7287de0102665b68fc1028244c94a"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-4.npz",
+          "sha256": "cb7106089bb47f5d202541d9edc83b7bf461bae1a7da36aea07b8d4fc24cde27"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-4/scores.npz",
+        "sha256": "2d1a8e57965932af5aa30070998f420ae27d71346904cc45c4122ad3c98afae0"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "full_bank_sha256": "821e7149799f7d0394fc08b6f03f08bb0f98572d8316036cd5b3f5170638027a",
+      "input_points": 23689,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-5.npz",
+          "sha256": "398857f422413e9b23760be21e19c7cd3927a321d2382fda5e1d0cdd92a8d9bb"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-5.npz",
+          "sha256": "5ccd2ab4b42e8e64c852f2dcf3f89c8c0118b9a1d9bacb6a1a4b2568b5db87b6"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-5/scores.npz",
+        "sha256": "88985ce9de0d8119947dcabe40f7c4c1041ed3130a86f3a2d9435567ea69c364"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "full_bank_sha256": "bacf934295e431df30a9e683e3f92aa52b28d2cdab8700b74f2849b48257841a",
+      "input_points": 23703,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-2.npz",
+          "sha256": "3e5942b8dc64ad0627a5177b39b80facb3f6269f8f7982f6e74eef53f38c6a39"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-2.npz",
+          "sha256": "55cb5f56a2d3a0b2d4b98adc20d06da5046d9fcde7e4a68d0ad194a7e1462ca2"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-2/scores.npz",
+        "sha256": "86e9c823892e4553f323329a0a0398870cceebab66dabdc44a221c76982a9e03"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "full_bank_sha256": "aa6935b204f4d81e7f906a14d6b15c73276c5b1f944a997b44639e065a55af25",
+      "input_points": 23693,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-10.npz",
+          "sha256": "1f55fc79c7665e3f7050aa0ae1c98bc2a5edd1cfda02cd57273535d81aa8b15e"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-10.npz",
+          "sha256": "9b4e8bf59bd13dbf56613b52c31b67e1e9db5892c85cc9f84ff7f158a1a223bf"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-10/scores.npz",
+        "sha256": "7732b45144302451fcf9c5279d280fe63abd226f18f500bb389f6850d078f838"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "full_bank_sha256": "12a2192122f3dbd42efeccd04730719d419a512855bb315eca75b13b5fb89c40",
+      "input_points": 23696,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-2-7.npz",
+          "sha256": "2d2e5fd7216bbdc5987f861706f97193b168d294e325198cf91335cf732aa80b"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-2-7.npz",
+          "sha256": "d87f9408706c14bee3192030ced998070f44d42e8d56ad8aa624da97fff4ba4a"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-2-7/scores.npz",
+        "sha256": "90f88ba9c7314367e6164275c441f6a481bbd1ee651a349a8acf79e5ac0d7f7a"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "full_bank_sha256": "094daff8f8d40547b0608fb6479f9e5d67a9aaa2cfdb9ee8cab95babf00f4036",
+      "input_points": 23687,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-4.npz",
+          "sha256": "2fd152e17559f98df9e341c5dd4fd5703de745e9c298eb5b4dfd4c20c06fbdf6"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-4.npz",
+          "sha256": "7c8142e53eaac5ef30016e848d6e12de440b2197a8e46e3b9b2468bcf907da06"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-4/scores.npz",
+        "sha256": "8619150482088ea9441156d99d0dfed5b4250b9b5a7cc6388da5b3946d227d4b"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "full_bank_sha256": "22d48ec14ae664ca020dc3c7112b07ba7740aab3d660cc639ca155136461d2fc",
+      "input_points": 28705,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-7.npz",
+          "sha256": "63d2ed3e9ecbfb24aa3264799e6256adaffd2643eb48bd0e79f72e13c7db93e2"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-7.npz",
+          "sha256": "ecea3fe7ca8b3e8cfd04651cc8977b1042686cbf9dda10e31454580eb8a325e1"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-7/scores.npz",
+        "sha256": "60e0baf242606f3055b3b6bac5980fd32386b88559415575bd8133ff0fea68c7"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "full_bank_sha256": "b23a2d5675b9c2a218fb68a05e8026fa2054bcbb1611223cacecf850017ca865",
+      "input_points": 28704,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-8.npz",
+          "sha256": "90b2c9747bd00aa3fd8f246fbba45baa1fa4f926f734fa3e19bb315a199037e1"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-8.npz",
+          "sha256": "70e4cf117d830442cefc6f4526fb4c6b072c7647c674c7f1a90baca3b07b6bf1"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-8/scores.npz",
+        "sha256": "fe821649e3928764da2194f2dc34c335a3de26b16962b90a87c10b9f0e08f9ab"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "full_bank_sha256": "d7d5e9017a1fc8b66100c78f548ad6e46edf7116716c80d5b44f10977261e33e",
+      "input_points": 28713,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-9.npz",
+          "sha256": "999e483ce73039912447490b0b833ae4f87e0d211bd7c2b8f1798306b457c020"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-9.npz",
+          "sha256": "c0edafb0dd1a7772cbf4b7e78d0b926739355c545633132a2e04d7fe74298e6f"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-9/scores.npz",
+        "sha256": "1394438cf1d1a3e28d1c00aad3022f3df1b79aedcc91cffd6602720941bf817c"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "full_bank_sha256": "dee703d91d5b72d4f22ac6b1d059f2910f0ea84bf6e920c81949522131d93328",
+      "input_points": 23691,
+      "full_points": 23600,
+      "common_points": 23501,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-5.npz",
+          "sha256": "3b60a756e85db0f816d1a89ebb3f048bfac3b8b17dd1c59573ab2771a7b1834f"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-5.npz",
+          "sha256": "8c0047031281ea66e4ecfe8c7e8190f3966a9ab37f35e8d41ce2b9d8e4ae7b9b"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-5/scores.npz",
+        "sha256": "1bea9a1a99d700f8afe97669189563d4fac135773a4308037533dc56f78cb60f"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "full_bank_sha256": "b5aa08423426086682f05cad52799481c903c25720a7810c0837f3ab8a1a2e8c",
+      "input_points": 28726,
+      "full_points": 28700,
+      "common_points": 28509,
+      "left_points": 28608,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-6.npz",
+          "sha256": "4a7f79fe952abc4a47f9f65d77e87ead7ff3d1884a41cb3a0f953045aab05d0f"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-6.npz",
+          "sha256": "10b512acfe25470b66c5c75b27c35afc19cde8333303170b765d776925effd50"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-6/scores.npz",
+        "sha256": "b4e5f2e6728d16fa27528fbf98cb8ac0fadb2c8daa17c041f0dfb64e698cbe0b"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "full_bank_sha256": "0127b9b24421f513885ca6f52ea6f7c344bfdcc475a5662e6ba2bb3cc9cbc42a",
+      "input_points": 23703,
+      "full_points": 23700,
+      "common_points": 23517,
+      "left_points": 23616,
+      "causal_bindings": [
+        {
+          "path": "results/native_e_vs_v_smd28_20261123_v1/machine-3-3.npz",
+          "sha256": "13cb151c8b70642e62088aca480b34ae78761208c55842c4398b0280d2c77d78"
+        },
+        {
+          "path": "results/native_event_smd28_20261123_v1/machine-3-3.npz",
+          "sha256": "71311b0911daa7befe4ca97fa4b9689d908b4385e5d869b7c183ef8da0fc00f5"
+        }
+      ],
+      "left_binding": {
+        "path": "results/left_smd28_author_20261123_v1/machine-3-3/scores.npz",
+        "sha256": "803029ec8d76921045145e1f0dbbd501a06e21ddb8a814c706eb3925e5a1dd2d"
+      }
+    }
+  ],
+  "axes": "common=intersection of causal, fullW100 and native LEFT scored points; entity-first equal macro",
+  "metrics": "pinned LEFT author continuous_metrics: AP,ROC,RangeAUC_volume_opt(windowSize100,thre250)",
+  "calibration": "No new threshold or operation metrics",
+  "MLP": "Retained only in prior causal panels; no window-logit broadcast"
+}

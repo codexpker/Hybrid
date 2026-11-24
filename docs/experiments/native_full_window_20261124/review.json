@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "review_mode": "one independent CPU review; no model forward, no GPU, no score/weight/threshold changes",
+  "engineering_receipt": {
+    "B": 1,
+    "copies": 10,
+    "mask_seed": 84551,
+    "correction": 1,
+    "same_window_endpoint99_error": 0,
+    "all_eight_weight_identities": true,
+    "grouped_inverse_native_exact": true,
+    "frozen_state": true,
+    "RNG_restored": true
+  },
+  "score_checks": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "bank_sha256": "0375ef7055cfd3649311802202e51b9288575382f966863e47a21e2da4b30b38",
+      "original": 87841,
+      "full_scored": 87800,
+      "tail": 41,
+      "common_points": 87645,
+      "methods": 10,
+      "readouts": 2,
+      "AP_ROC_max_abs_difference": 5.551115123125783e-17
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "bank_sha256": "0216378651577e6d3f1e17b181aec59dcade22c3c59d7d1b14d2c7e196f8a25c",
+      "original": 28479,
+      "full_scored": 28400,
+      "tail": 79,
+      "common_points": 28301,
+      "methods": 10,
+      "readouts": 2,
+      "AP_ROC_max_abs_difference": 5.551115123125783e-17
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "bank_sha256": "8af429ebddf93f21d75fa7103c10b0b3536913965ba7bd10a79d185cc1c9c329",
+      "original": 2264,
+      "full_scored": 2200,
+      "tail": 64,
+      "common_points": 2101,
+      "methods": 10,
+      "readouts": 2,
+      "AP_ROC_max_abs_difference": 8.326672684688674e-17
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-1",
+      "bank_sha256": "40bbd2e717b989a8178749b4bb5091aba507d48f133dd08e71444a227ea1d3d2",
+      "original": 8640,
+      "full_scored": 8600,
+      "tail": 40,
+      "common_points": 8501,
+      "methods": 10,
+      "readouts": 2,
+      "AP_ROC_max_abs_difference": 8.326672684688674e-17
+    }
+  ],
+  "AP_ROC_max_abs_difference": 8.326672684688674e-17,
+  "macro_aggregation_max_abs_difference": 2.220446049250313e-16,
+  "repeat_mean_sampleSD_max_abs_difference": 1.1362438767648086e-16,
+  "paired_distribution_max_abs_difference": 3.0964814046186007e-16,
+  "full_window_99_vs_archive_max_abs_difference": 4.500150680541992e-06,
+  "scope": "Independent AP/ROC recomputation on deterministic first NASA entity in each domain, PSM and SMD machine-1-1 across ten methods and both readouts. Complete per-entity CSV macro, three-training-seed SD, pair wins/ties/losses and medians checked. VUS formula not re-evaluated; its published per-entity values independently aggregated. Engineering checks inspect producer receipt/code; no independent native forward.",
+  "no_calibration_or_operating_statistics": true,
+  "PSM_identical_terminal_archive_abs_errors": {
+    "official_V": 0.0,
+    "official_E": 3.814697265625e-06,
+    "official_V_plus_E": 4.500150680541992e-06,
+    "copy_V": 0.0,
+    "Vtrain_V": 0.0,
+    "Etrain_E": 0.0
+  },
+  "archive_numeric_note": "PSM legacy official E was recovered from stored terminal reconstructions with NumPy float32 mean/square; new full-window E uses the same arithmetic definition on CUDA. Official V and the checked trained V columns are exactly equal at W100 endpoints. The maximum 4.50e-6 archival difference occurs in V+E; original cached scores remain unchanged. Current-native full-vector position99 versus current-native endpoint function has engineering-check error zero."
+}

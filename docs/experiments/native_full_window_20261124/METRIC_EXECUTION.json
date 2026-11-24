@@ -1,0 +1,23 @@
+{
+  "CPU_main": {
+    "pid": 274453,
+    "started_UTC": "2026-11-24 01:55:09",
+    "started_unix_seconds": 1795485309,
+    "sealed_receipt_unix_seconds": 1795486398,
+    "process_wall_seconds": 1089,
+    "workers": 6
+  },
+  "CPU_external": {
+    "pid": 280272,
+    "started_UTC": "2026-11-24 01:59:18",
+    "started_unix_seconds": 1795485558,
+    "final_table_unix_seconds": 1795486115,
+    "process_wall_seconds": 557,
+    "workers": 2
+  },
+  "timing_method": "OS ps lstart at 1-second resolution and final output mtime; queue/process wall includes cache I/O and possible wait for score-bank seals. No CPU-core-second profiler was run. The two CPU runs overlap and their wall times must not be added to infer wall or GPU time.",
+  "GPU_hours": 0,
+  "retraining_or_model_forward": false,
+  "core_seconds": null,
+  "failures": 0
+}
