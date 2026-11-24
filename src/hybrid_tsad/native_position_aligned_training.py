@@ -68,8 +68,8 @@ def datasets(w):
     return data('FIT'),data('SELECT')
 
 
-def check(w):
-    device=setup();seed(2025);root=w/OUT;plan=old.load_plan(root)
+def check(w, *, output=None, training_seed=2025):
+    device=setup();seed(training_seed);root=w/(OUT if output is None else output);plan=old.load_plan(root)
     fit,_=datasets(w);model=decoder_model(w,device);initial=state_hashes(model)
     x=next(old.windows(fit[1],plan['swat_fit'][0,:1],device))
     v,copy=values(model,x);legacy,legacy_copy=native_endpoint_and_copy_loss(model,x)
@@ -94,7 +94,7 @@ def check(w):
     dump(root/'CHECKS.json',dict(passed=True,terminal_value_bit_exact=True,terminal_copy_bit_exact=True,
         terminal_decoder_gradient_bit_exact=True,position_mean_arithmetic=True,mean_before_softplus_rejected=True,
         correct_loss=float(loss),incorrect_meanV_loss=float(wrong),decoder_only=True,frozen_state_unchanged=True,
-        official_initial_sha256=WEIGHT_SHA,source_plan_sha256=PLAN_SHA,source_only=True))
+        official_initial_sha256=WEIGHT_SHA,source_plan_sha256=sha(root/'PLAN.npz'),source_only=True))
 
 
 def validate(model,plan,data,scale,device,path):
@@ -119,8 +119,9 @@ def validate(model,plan,data,scale,device,path):
                 bank_sha256=sha(path),bank_file=path.name)
 
 
-def train(w,arm):
-    tic=time.monotonic();device=setup();seed(2025);root=w/OUT;assert read(root/'CHECKS.json')['passed']
+def train(w,arm, *, output=None, training_seed=2025):
+    tic=time.monotonic();device=setup();seed(training_seed);root=w/(OUT if output is None else output);assert read(root/'CHECKS.json')['passed']
+    assert read(root/'PLAN.json')['seed']==training_seed
     plan=old.load_plan(root);fit,select=datasets(w);scale=read(root/'SCALE.json')['value']
     model=decoder_model(w,device);before=state_hashes(model);cpu=torch.get_rng_state();gpu=torch.cuda.get_rng_state(device)
     opt=optimizer(model);d=root/'train'/arm;d.mkdir(parents=True,exist_ok=False)
@@ -157,17 +158,17 @@ def train(w,arm):
     selected=d/'selected.pt';shutil.copyfile(d/best['checkpoint'],selected)
     dump(d/'TRACE.json',trace)
     dump(d/'SELECTION.json',dict(status='COMPLETED',arm=arm,updates=240,selected_step=best['step'],checkpoint_relative=str(selected.relative_to(root)),checkpoint_sha256=sha(selected),
-         selections=selections,plan_sha256=PLAN_SHA,scale=scale,source_labels_for_selection=True,source_labels_for_gradients=arm!='copy',
+         selections=selections,plan_sha256=sha(root/'PLAN.npz'),seed=training_seed,scale=scale,source_labels_for_selection=True,source_labels_for_gradients=arm!='copy',
          native_frozen_unchanged=True,eval=True,RNG_restored=True,seconds=time.monotonic()-tic,gpu=os.environ['CUDA_VISIBLE_DEVICES'],peak_reserved=torch.cuda.max_memory_reserved()))
 
 
-def seal(w):
-    root=w/OUT;arms={}
+def seal(w, *, output=None):
+    root=w/(OUT if output is None else output);arms={}
     for a in ARMS:
         p=root/'train'/a/'SELECTION.json';r=read(p);assert r['status']=='COMPLETED'
         assert sha(root/r['checkpoint_relative'])==r['checkpoint_sha256']
         arms[a]=dict(checkpoint_relative=r['checkpoint_relative'],checkpoint_sha256=r['checkpoint_sha256'],selected_step=r['selected_step'],selection_relative=str(p.relative_to(root)),selection_sha256=sha(p))
-    dump(root/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED_BEFORE_TARGET',arms=arms,source_plan_sha256=PLAN_SHA,query_read=False))
+    dump(root/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED_BEFORE_TARGET',arms=arms,source_plan_sha256=sha(root/'PLAN.npz'),query_read=False))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('action',choices=['prepare','check','train','seal']);p.add_argument('--arm',choices=ARMS);a=p.parse_args()
