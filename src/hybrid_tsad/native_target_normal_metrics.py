@@ -51,7 +51,9 @@ def psm_external(w, axis):
             take = np.searchsorted(ix, axis)
             np.testing.assert_array_equal(ix[take], axis)
             score = z[row['score_key']].reshape(-1)[take]
-        yield row['method'], score, row
+        name = (f"CATCH W192 seed{row['archived_seed']}"
+                if row['method'] == 'CATCH W192' else row['method'])
+        yield name, score, row
 
 
 def entity(args):

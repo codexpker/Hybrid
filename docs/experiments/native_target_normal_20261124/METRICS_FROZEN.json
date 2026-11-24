@@ -1,0 +1,19 @@
+{
+  "status": "COMPLETED",
+  "objects": 28,
+  "project_training_seed": 2025,
+  "derived_file_sha256": {
+    "TABLES.md": "464af1a7009fcaa865ed37f017615bed4d866ff668b67332c2af1aa7489812c3",
+    "entity_metrics.csv": "efad4ee5b91ea5fc2ff257a808a08913250c3c2db0b5056026f74b878dca4e4d",
+    "macro.csv": "57e0eede8485692a5ded2f70ac22b66bcfb59d2b0f7b1fe60dcd2506a56e59d1",
+    "paired_macro.csv": "9834721de0ddbc10388964ad44de12857e775a05b8f6067cc3751651b79028a8",
+    "paired_entity.csv": "6846c18499056c5ce062a24d78cd934eb389c390b55613b88a48faf6d529ba05",
+    "paired_distribution.csv": "71bf0e45e5979a1d0c0426493d19800a08b1873720ced1c31922e71e40847ba3",
+    "METRIC_BINDINGS.json": "26759fa5b14c76f1dfb185687c079b1cb738ff05aa2b37f1d6b7c997bb0078f1",
+    "METRIC_COST.json": "0c9bb1f7b9b3122ee2c47f5b7343f208cf99a1818caea252113a3f0a0c0501cf",
+    "EXTERNAL_LABEL_FIX.json": "013d3d03c4f22543eb9c802dd41d647c72f9f9f3a5097eb1f3222eb3dd36964b",
+    "TOTAL_COST.json": "c5a923660368dd82c7a2d9405f194b7d7d21c89633641488fb1db9d9efbc3a21"
+  },
+  "raw_score_seal": "SCORES_FROZEN.json",
+  "source_selection": "source/ALL_MODELS_FROZEN.json"
+}

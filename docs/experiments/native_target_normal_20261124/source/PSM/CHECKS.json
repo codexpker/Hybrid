@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "window_roles": true,
+  "decoder_gradient": true,
+  "frozen_state_unchanged": true,
+  "eval": true,
+  "RNG_restored": true,
+  "per_window_B": 1,
+  "logical_batch_windows": 32,
+  "logical_batch_forward_backward_seconds": 0.5588936395943165,
+  "estimated_training_forward_backward_seconds": 369.9177277064882,
+  "normal_only": true,
+  "seconds": 1.610599403269589
+}

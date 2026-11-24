@@ -1,0 +1,15 @@
+{
+  "domains": [
+    "PSM",
+    "MSL"
+  ],
+  "arms": [
+    "official",
+    "copy",
+    "all_positions"
+  ],
+  "seed": 2025,
+  "target_training": "normal only; no source replay or pair gradient",
+  "source_checkpoint_roles": "official / selected copy120 / selected all_positions200",
+  "global_seal_before_target_test": true
+}

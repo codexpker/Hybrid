@@ -1,0 +1,317 @@
+{
+  "objects": 28,
+  "entities": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "bank_sha256": "bb247956eb664c95245a32bea33e9a881adcd6123013b9a1f35480110fecd20f",
+      "previous_axis_and_LEFT_sha256": "e6f3d29928288eb316dd0cc38dd1b47b68cbcfba001f3f2909426d71436d0181",
+      "external_bindings": [
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed0/scores.npz",
+          "sha256": "ca4afcda291303fba08a0a3971791b628dc81d85e1f94081702bb680b86d4120",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 0,
+          "AP": 0.4459895321862464,
+          "ROC_AUC": 0.6534180428847209,
+          "VUS_PR": 0.5366710274718616,
+          "VUS_ROC": 0.7036566998683302,
+          "cpu_wall_seconds": 22.73499999998603
+        },
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed1/scores.npz",
+          "sha256": "fe96aba4cad4e87511fc23e891b022f5d30b798343aa528136e532589aaf8c1d",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 1,
+          "AP": 0.43026389280294763,
+          "ROC_AUC": 0.6413990585050262,
+          "VUS_PR": 0.5192734114277965,
+          "VUS_ROC": 0.6906908461257336,
+          "cpu_wall_seconds": 22.81299999996554
+        },
+        {
+          "method": "CATCH W192",
+          "group": "target training",
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "path": "results/catch_common_repeats_20261029/catch_common_psm_20261029_v1_seed2/scores.npz",
+          "sha256": "ff42fac31c06b0b37e1a5aef94a53588b9fa3d9a3a36b3422171325a14bdbcd1",
+          "score_key": "scores",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": 2,
+          "AP": 0.43304387230768676,
+          "ROC_AUC": 0.6472479773958782,
+          "VUS_PR": 0.5264474766825534,
+          "VUS_ROC": 0.6987333443694175,
+          "cpu_wall_seconds": 22.483999999938533
+        },
+        {
+          "method": "PCA residual",
+          "group": "target-fit statistical",
+          "permission": "target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t",
+          "path": "results/common_psm_baselines_20261028/data_protocol/statistics_scores.npz",
+          "sha256": "c987378b3dd1f114b5232259bcdde2603f95705a557861b330f6a13e189ab170",
+          "score_key": "pca_residual",
+          "index_key": "indices",
+          "index_offset": 0,
+          "input_scored_axis": [
+            0,
+            87744
+          ],
+          "stored_scored_count": 87744,
+          "archived_seed": null,
+          "AP": 0.5344044566628354,
+          "ROC_AUC": 0.7933207677743441,
+          "VUS_PR": 0.5289908883203089,
+          "VUS_ROC": 0.7666858309268084,
+          "cpu_wall_seconds": 22.375
+        }
+      ],
+      "worker_wall_seconds": 326.81850870186463
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "bank_sha256": "cb0a1f25d1aa6a9313da9bab6571e5dbdf1dda45d028fe365e6861b3ddfd14af",
+      "previous_axis_and_LEFT_sha256": "6e012325812ee08aaf117059eee23d4e52fb961c797489ff3bd017d78a2add4e",
+      "external_bindings": [],
+      "worker_wall_seconds": 10.199340155813843
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "bank_sha256": "bfa39898fe369e8030b3f21f3327d3d9c9f8e6a4e90fe3acefcb0b74d27d4cfd",
+      "previous_axis_and_LEFT_sha256": "996b4a4d8f0309e2f8306df3bb778e9121cfe83fe3930ac04ce2eafde7de7f6b",
+      "external_bindings": [],
+      "worker_wall_seconds": 10.008126643951982
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "bank_sha256": "f13589ff0c19c9cc5f13c009825e34e50e8ee4159206b28a63e0450ba698eebe",
+      "previous_axis_and_LEFT_sha256": "2a73af8cef51187985f4bffe06d49d2b64d269983bbe8470713c0f1600bba556",
+      "external_bindings": [],
+      "worker_wall_seconds": 10.204042412340641
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "bank_sha256": "2c4d27b04c1add0b85fa5bdab4912727b37f07a109a48067823569e8f33d6e0f",
+      "previous_axis_and_LEFT_sha256": "90466d15ee6d2e9f5357b0e24531c06b8399fb29011cb36de608c1918a7bae82",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.589785265270621
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "bank_sha256": "d9dca7ca1540d5a6908d0acb4499c8b7441a5a77683b28ff92fd65b897a727e6",
+      "previous_axis_and_LEFT_sha256": "8df2757b7db0ebaa63de9e005eae0d954e1359d5eb2a45e06ad93250b5f1da70",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.124830964021385
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "bank_sha256": "dfce349f8470126818a802efdc13dc9bf8f960ddd8a4632f9bd189c5e89666c0",
+      "previous_axis_and_LEFT_sha256": "72c8b4e4963a95b765459abb9dfb9469df7afd24a1ad7c5eb4ddfe8dd7e35f6d",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.603641094174236
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "bank_sha256": "5d421ac165581f194d4d4e4e03b468097fdb60c205efe364ce12ef244e99c00b",
+      "previous_axis_and_LEFT_sha256": "f9e09448a2b941067dfbe05a2e7d436c46a695e8657125bdb4f8442f2c3f47ae",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.3513435260392725
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "bank_sha256": "57c96b3621f342133b2ae31d067ed8a990fc5c0eff0c131c40323fa4b3d53a95",
+      "previous_axis_and_LEFT_sha256": "175ab01e847285f3eca0a130c0e72a67741348eb4af56f299d21d3a4c3d80636",
+      "external_bindings": [],
+      "worker_wall_seconds": 16.311034886166453
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "bank_sha256": "e896ae8a3fc47a3f2478ebca6a98ba32fab095166520a67f92f84cff86111657",
+      "previous_axis_and_LEFT_sha256": "6caced52f07d9d9ba40d0946a13b5bc4c481c371645ba7a1a15b3c2a1dfde163",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.261362841818482
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "bank_sha256": "0b70798d7f697b4eefcb18446e38ab386f3af4f12d4fbc72e64bd39a521c2ff7",
+      "previous_axis_and_LEFT_sha256": "00d90c399f865915ee395785ae4de3840307b3d5d8c62e416fff070c3b4cf20a",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.976364661939442
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "bank_sha256": "77e633150433cdf57b52a7f89c521a4fe5fda43d2294be16b3a25869c6ab2b71",
+      "previous_axis_and_LEFT_sha256": "630a728e333ab83153c10da66209bb4817ef2110c322cf9cc5451f29d4885b0f",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.927386010996997
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "bank_sha256": "7ead6a5134534e203a62a4db04c4699f6a76af891d16784691d8979bfdfc9172",
+      "previous_axis_and_LEFT_sha256": "76e049872a478a5a5ecb96f3b6ab47c71478b7e67e62fe4c1d68a4a9ddb2e256",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.867327909916639
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "bank_sha256": "8f3465c2b5e23d2c437597d5ad02f2bf4d9a015e33d9d6668ae9fd684d58540a",
+      "previous_axis_and_LEFT_sha256": "05fd71a0a89f38ec8e496ee2ae9b2eccb71326ef532d650181cc33d8b0b77099",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.239235534332693
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "bank_sha256": "5ee9924fee80f3e480093fdec9e374bd7e69ac326407b7ff5873a7c1dddace47",
+      "previous_axis_and_LEFT_sha256": "ce72316713c513bb290c48c5fe1678e3300e38c2ca282fa42894ba95cc24901f",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.578316594939679
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "bank_sha256": "9ca10e582231a260dfd61957412ec2f3dc06b7fbfc9881867b035f898758da2a",
+      "previous_axis_and_LEFT_sha256": "a590ab7b2ed177e5cf12cfe22459f5f61b95c6ad8fb57acd6d98ba5ae3b3051f",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.100772688630968
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "bank_sha256": "ad3a5dc46ecee4383e8bdb6d39569b588e76f35bc86a77f82e58159a9d5560df",
+      "previous_axis_and_LEFT_sha256": "401e990e1c97e69d90177836f2b1c7cfd166747ac0926a3e2d2205733f2878f8",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.098918959964067
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "bank_sha256": "5b1e972e3b247a5d4d16aa20e36ae13542fa87d15a1942079953d8cac6609e72",
+      "previous_axis_and_LEFT_sha256": "2d9ac417770fb98b58e3bf73c3c5481890759d502c92d06f42ad8e9b81636750",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.880820121150464
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "bank_sha256": "f8bed7f2967e42d157efe8ce6b193a1ebe27c747bb3d21e31d04028f647b706e",
+      "previous_axis_and_LEFT_sha256": "813a796d1968bdb881756e8231432dc7f7a9684e5f6c90c38121a1803fd0ce0e",
+      "external_bindings": [],
+      "worker_wall_seconds": 10.49447906203568
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "bank_sha256": "5b1e972e3b247a5d4d16aa20e36ae13542fa87d15a1942079953d8cac6609e72",
+      "previous_axis_and_LEFT_sha256": "41543e1f62f3bed74501e3aef3e349a64923fb0f31efeffdffc2ad251ba32c0e",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.455481777898967
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "bank_sha256": "6efe22adc009e3391879910ffd98dbcf07a9faa0f13b99f929403f63efcb8114",
+      "previous_axis_and_LEFT_sha256": "eddda57d2bf675ae768b8bfe0407ab18611efdd7e169797043d311d5498e61fb",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.805548425763845
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "bank_sha256": "11eb930f7e7494e0594ac775d8e5bf1f251eba950ef2b7153ffd6090b9680f14",
+      "previous_axis_and_LEFT_sha256": "ff72d6ac98982cb42c3b2c7f02e90755e898d7ddc2504afac7f12a38fb0fd7dc",
+      "external_bindings": [],
+      "worker_wall_seconds": 5.812573739793152
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "bank_sha256": "57e300908526cf0ae83b02cec91627dfd3de1d9ac9d620abed1b5b7ab3a364dd",
+      "previous_axis_and_LEFT_sha256": "5aaaffda0e8f3649c994cdf635206f009d8e055f9e6ca5d65e7f9d29e7e16185",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.37156978296116
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "bank_sha256": "27730c3127c0db758590efefe20aee46646b4fe8d95edb4dae4cb6005ef39358",
+      "previous_axis_and_LEFT_sha256": "749ef872a7723c3cdde8b89a4e0b58bf91687195c5449a2e6e3a016a8db97e94",
+      "external_bindings": [],
+      "worker_wall_seconds": 11.082775255199522
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "bank_sha256": "e33ba57611fe35d25000cfce5e4c5f02356e4d0b814fd7991bf9e02fb1aec81e",
+      "previous_axis_and_LEFT_sha256": "ffcb4569f169a732f95445c967ac3444fa0ef3c3e626edc87cc0a7768a8bb3d2",
+      "external_bindings": [],
+      "worker_wall_seconds": 6.481581577565521
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "bank_sha256": "eb0967bd69ea298bc2b7b8ba16668e66972e0daf29d1721da4166eb35937529b",
+      "previous_axis_and_LEFT_sha256": "c0e36fc9e07b4c4e95328ec6fb38f32aaa319154f67cfa316dc76fe7b1d7987d",
+      "external_bindings": [],
+      "worker_wall_seconds": 5.868900570087135
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "bank_sha256": "80f5cac8be60f6318ffd41510a711985287d4e2249647a49dab65795749fc983",
+      "previous_axis_and_LEFT_sha256": "b35e033c7c16dbd2d05ad86c3dad0f594de7d712da8d29e8c3e6bc46ddb26d7e",
+      "external_bindings": [],
+      "worker_wall_seconds": 10.262597020249814
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "bank_sha256": "98b596b02ceea7777fc18cb77d50b7bc795bc8c28a3bfc46091d8214fa8d5093",
+      "previous_axis_and_LEFT_sha256": "16e12fda327aea7a4ed570a8934e10bb537f834fc084952f6215ef03d3488a0f",
+      "external_bindings": [],
+      "worker_wall_seconds": 7.349417505320162
+    }
+  ],
+  "aggregation": "entity first; equal domain macro; single seed2025",
+  "VUS": "pinned LEFT evaluator windowSize100 thre250",
+  "operations": "NA: no newly certified independent CAL"
+}

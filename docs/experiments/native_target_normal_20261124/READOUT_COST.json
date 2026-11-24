@@ -1,0 +1,37 @@
+{
+  "successful_GPU_lane_seconds": [
+    28.522245969623327,
+    5.701195586007088,
+    5.909598929807544,
+    5.9530124287121
+  ],
+  "successful_GPU_total_seconds": 46.08605291415006,
+  "successful_GPU_hours": 0.012801681365041683,
+  "scored_objects": 28,
+  "total_scored_points": 160400,
+  "score_bank_bytes": 3604440,
+  "initial_legacy_scaled_input_compatible_entities": {
+    "MSL": 0,
+    "PSM": 0
+  },
+  "duplicate_model_aliases": {
+    "MSL": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "PSM": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  },
+  "bootstrap": "One Windows text-pipe CRLF shell launch failed before cd/Python/model execution; corrected by binary LF shell input. It used zero model forwards/GPU. Successful process imports/setup before score timer not separately metered.",
+  "per_entity_seconds_sum": 46.045801046770066
+}

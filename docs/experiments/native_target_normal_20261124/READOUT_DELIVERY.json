@@ -1,0 +1,10 @@
+{
+  "status": "LOCAL_SHA_VERIFIED",
+  "local_asset_root": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\native_target_normal_20261124_v1",
+  "remote_asset_root": "/home/a312/tsad_research/results/native_target_normal_20261124_v1",
+  "bank_count": 28,
+  "bank_bytes": 3604440,
+  "all_banks_SHA_verified": true,
+  "shape_and_footprints_verified": true,
+  "normal_native_check": true
+}

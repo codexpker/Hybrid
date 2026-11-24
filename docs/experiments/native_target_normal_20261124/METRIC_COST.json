@@ -1,0 +1,6 @@
+{
+  "driver_elapsed_seconds": 987.9091782262549,
+  "worker_wall_seconds": 540.1260836902075,
+  "workers": 6,
+  "GPU_used": false
+}

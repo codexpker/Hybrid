@@ -1,0 +1,10 @@
+{
+  "status": "VERIFIED",
+  "selected_models": 6,
+  "normal_validation_banks": 126,
+  "scalers": 2,
+  "plans": 2,
+  "all_epoch_states": "126 full model states remain server-side with CSV identities",
+  "local_root": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\native_target_normal_20261124_v1",
+  "SHA_verified": true
+}

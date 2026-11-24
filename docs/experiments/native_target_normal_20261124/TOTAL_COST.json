@@ -1,0 +1,14 @@
+{
+  "target_training_job_seconds": 1930.743508736603,
+  "target_training_GPU_hours": 0.536317641315723,
+  "successful_readout_job_seconds": 46.08605291415006,
+  "successful_readout_GPU_hours": 0.012801681365041683,
+  "recorded_total_GPU_hours": 0.5491193226807647,
+  "unmetered": "normal engineering checks and successful readout process import/setup; shell CRLF startup failed before Python/GPU",
+  "CPU_metric": {
+    "driver_elapsed_seconds": 987.9091782262549,
+    "worker_wall_seconds": 540.1260836902075,
+    "workers": 6,
+    "GPU_used": false
+  }
+}

@@ -1,0 +1,65 @@
+domain,method,reference,contrast,metric,macro_delta,median_delta,wins,ties,losses,entities
+PSM,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,AP,0.0015683190555705329,0.0015683190555705329,1,0,0,1
+PSM,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,ROC_AUC,0.002914742782799129,0.002914742782799129,1,0,0,1
+PSM,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,VUS_PR,0.0014923871957128187,0.0014923871957128187,1,0,0,1
+PSM,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,VUS_ROC,0.0017509146655056984,0.0017509146655056984,1,0,0,1
+PSM,target_source_all,target_official,source-supervised minus official initialization after target training,AP,-0.0021331600410925966,-0.0021331600410925966,0,0,1,1
+PSM,target_source_all,target_official,source-supervised minus official initialization after target training,ROC_AUC,0.0004399195280790913,0.0004399195280790913,1,0,0,1
+PSM,target_source_all,target_official,source-supervised minus official initialization after target training,VUS_PR,0.0007817097808339724,0.0007817097808339724,1,0,0,1
+PSM,target_source_all,target_official,source-supervised minus official initialization after target training,VUS_ROC,0.003227547605518355,0.003227547605518355,1,0,0,1
+PSM,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,AP,0.00457572237139936,0.00457572237139936,1,0,0,1
+PSM,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,ROC_AUC,0.018419823404209,0.018419823404209,1,0,0,1
+PSM,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,VUS_PR,0.003881715569770905,0.003881715569770905,1,0,0,1
+PSM,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,VUS_ROC,0.00299680917418077,0.00299680917418077,1,0,0,1
+PSM,init_source_all,init_official,source-supervised minus official initialization before target training,AP,0.012746503075104665,0.012746503075104665,1,0,0,1
+PSM,init_source_all,init_official,source-supervised minus official initialization before target training,ROC_AUC,0.03513013779981944,0.03513013779981944,1,0,0,1
+PSM,init_source_all,init_official,source-supervised minus official initialization before target training,VUS_PR,0.006127445893835959,0.006127445893835959,1,0,0,1
+PSM,init_source_all,init_official,source-supervised minus official initialization before target training,VUS_ROC,0.0026419321570442245,0.0026419321570442245,1,0,0,1
+PSM,target_official,init_official,"target training effect, official initialization",AP,-0.002460154184484864,-0.002460154184484864,0,0,1,1
+PSM,target_official,init_official,"target training effect, official initialization",ROC_AUC,0.004787298291612174,0.004787298291612174,1,0,0,1
+PSM,target_official,init_official,"target training effect, official initialization",VUS_PR,-0.005829892871586917,-0.005829892871586917,0,0,1,1
+PSM,target_official,init_official,"target training effect, official initialization",VUS_ROC,-0.019045012651793147,-0.019045012651793147,0,0,1,1
+PSM,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",AP,-0.014332413984853298,-0.014332413984853298,0,0,1,1
+PSM,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",ROC_AUC,-0.0143978393587183,-0.0143978393587183,0,0,1,1
+PSM,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",VUS_PR,-0.008786300610530817,-0.008786300610530817,0,0,1,1
+PSM,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",VUS_ROC,-0.017213502694643945,-0.017213502694643945,0,0,1,1
+PSM,target_source_all,init_source_all,"target training effect, source-supervised initialization",AP,-0.017339817300682125,-0.017339817300682125,0,0,1,1
+PSM,target_source_all,init_source_all,"target training effect, source-supervised initialization",ROC_AUC,-0.029902919980128173,-0.029902919980128173,0,0,1,1
+PSM,target_source_all,init_source_all,"target training effect, source-supervised initialization",VUS_PR,-0.011175628984588903,-0.011175628984588903,0,0,1,1
+PSM,target_source_all,init_source_all,"target training effect, source-supervised initialization",VUS_ROC,-0.018459397203319017,-0.018459397203319017,0,0,1,1
+PSM,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,AP,-0.15535484409598266,-0.15535484409598266,0,0,1,1
+PSM,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,ROC_AUC,-0.10755101023018077,-0.10755101023018077,0,0,1,1
+PSM,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,VUS_PR,-0.14471900198755894,-0.14471900198755894,0,0,1,1
+PSM,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,VUS_ROC,-0.13142916732286114,-0.13142916732286114,0,0,1,1
+MSL,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,AP,0.004057000676042561,-0.00103173782619842,13,0,14,27
+MSL,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,ROC_AUC,0.004250443998263306,0.0021609384647046648,19,0,8,27
+MSL,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,VUS_PR,0.004581758346489876,0.0007957024081045594,15,0,12,27
+MSL,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,VUS_ROC,0.0029347106223689516,0.0007313773020189984,18,0,9,27
+MSL,target_source_all,target_official,source-supervised minus official initialization after target training,AP,0.010081309296155883,0.0032626987229764093,18,0,9,27
+MSL,target_source_all,target_official,source-supervised minus official initialization after target training,ROC_AUC,0.009275459687749895,0.002991707631958107,18,0,9,27
+MSL,target_source_all,target_official,source-supervised minus official initialization after target training,VUS_PR,0.012747639940992032,0.006664274555220229,20,0,7,27
+MSL,target_source_all,target_official,source-supervised minus official initialization after target training,VUS_ROC,0.004768055192938095,2.6704294660673256e-05,14,0,13,27
+MSL,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,AP,-0.02429589385650732,-0.0013567739611366897,9,0,18,27
+MSL,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,ROC_AUC,-0.0009779915758394656,-0.004689383471025876,10,0,17,27
+MSL,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,VUS_PR,-0.015549563957415637,-0.0014655123738798598,9,0,18,27
+MSL,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,VUS_ROC,-0.0004577611193741864,-0.0008959277921806175,11,0,16,27
+MSL,init_source_all,init_official,source-supervised minus official initialization before target training,AP,0.026968139722289175,0.0013520655671555581,14,0,13,27
+MSL,init_source_all,init_official,source-supervised minus official initialization before target training,ROC_AUC,0.02653929792109349,0.030221900449827976,17,0,10,27
+MSL,init_source_all,init_official,source-supervised minus official initialization before target training,VUS_PR,0.049744891792644685,0.00955799306489108,15,0,12,27
+MSL,init_source_all,init_official,source-supervised minus official initialization before target training,VUS_ROC,0.017953229079209643,0.022457608081400404,16,0,11,27
+MSL,target_official,init_official,"target training effect, official initialization",AP,0.10591957180041091,0.055049322995292665,21,0,6,27
+MSL,target_official,init_official,"target training effect, official initialization",ROC_AUC,0.10279878239651291,0.10700097097069838,22,0,5,27
+MSL,target_official,init_official,"target training effect, official initialization",VUS_PR,0.10808582252539593,0.0420814782410802,20,0,7,27
+MSL,target_official,init_official,"target training effect, official initialization",VUS_ROC,0.07256710474701504,0.0803970844425746,22,0,5,27
+MSL,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",AP,0.06067984684172774,0.024246047771761037,22,0,5,27
+MSL,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",ROC_AUC,0.08030650858906652,0.04972458915235167,21,0,6,27
+MSL,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",VUS_PR,0.05095724836983773,0.02692700636929657,22,0,5,27
+MSL,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",VUS_ROC,0.05598945911900036,0.040718912506935934,22,0,5,27
+MSL,target_source_all,init_source_all,"target training effect, source-supervised initialization",AP,0.08903274137427761,0.031647264542198295,24,0,3,27
+MSL,target_source_all,init_source_all,"target training effect, source-supervised initialization",ROC_AUC,0.0855349441631693,0.08555486801952594,22,0,5,27
+MSL,target_source_all,init_source_all,"target training effect, source-supervised initialization",VUS_PR,0.07108857067374325,0.037963028351105044,24,0,3,27
+MSL,target_source_all,init_source_all,"target training effect, source-supervised initialization",VUS_ROC,0.0593819308607435,0.061569265988797195,21,0,6,27
+MSL,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,AP,-0.13636561952841464,-0.05065550391167625,6,0,21,27
+MSL,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,ROC_AUC,-0.07459291096063696,-0.009315796269992127,10,0,17,27
+MSL,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,VUS_PR,-0.1451541096730049,-0.038612727032062644,6,0,21,27
+MSL,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,VUS_ROC,-0.0637120967009354,-0.0020067624860290456,10,0,17,27

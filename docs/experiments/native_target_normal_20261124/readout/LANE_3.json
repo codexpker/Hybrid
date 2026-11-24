@@ -1,0 +1,17 @@
+{
+  "lane": 3,
+  "seconds": 5.9530124287121,
+  "device": "3",
+  "processed": [
+    "MSL/D-14",
+    "MSL/F-5",
+    "MSL/M-2",
+    "MSL/M-6",
+    "MSL/P-14",
+    "MSL/T-13",
+    "MSL/T-9",
+    "MSL/M-3",
+    "MSL/P-15"
+  ],
+  "frozen_verified": true
+}

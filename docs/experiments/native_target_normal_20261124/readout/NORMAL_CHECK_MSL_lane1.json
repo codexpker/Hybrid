@@ -1,0 +1,14 @@
+{
+  "domain": "MSL",
+  "entity": "C-1",
+  "role": "TARGET_NORMAL_TRAIN",
+  "window": [
+    0,
+    100
+  ],
+  "six_models_native_output_bit_exact": true,
+  "native_V_bit_exact": true,
+  "frozen_verified": true,
+  "RNG_restored": true,
+  "seconds": 0.589773619081825
+}

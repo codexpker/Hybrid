@@ -1,0 +1,48 @@
+{
+  "domain": "PSM",
+  "seed": 2025,
+  "inputs": [
+    {
+      "entity": "PSM",
+      "path": "data/common_psm_raw_20261029_v1/prefix.npy",
+      "sha256": "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+      "length": 132481,
+      "cut": 105984,
+      "channels": 25
+    }
+  ],
+  "entities": [
+    "PSM"
+  ],
+  "epochs": 20,
+  "window": 100,
+  "stride": 100,
+  "batch": 32,
+  "B": 1,
+  "copies": 10,
+  "mask_seed": 84551,
+  "norm": 0,
+  "correction": 1,
+  "scaler_fit": "all official normal train arrays including normal validation; exclude test",
+  "scaler_sha256": "e1228904dde4004349342a25cbfa5266f0cf2a30de8bdef391e9759ec2196900",
+  "plan_sha256": "1a304a65b942b9f188f80d1cc23e26c8a11ef0a9cfd065bc0cab554072eb5e28",
+  "train_windows": 1059,
+  "validation_windows": 264,
+  "updates": 680,
+  "warmup_updates": 68,
+  "selection": "earliest minimum complete normal-validation per-copy MSE, including epoch0",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "decay": 0.1,
+    "bias_LayerNorm_decay": 0
+  },
+  "source_initials": "results/native_position_aligned_20261124_v1",
+  "test_values_read": false,
+  "test_labels_read": false
+}

@@ -69,11 +69,15 @@ def models(w, domain):
 def raw_test(w, domain, entity):
     if domain == 'PSM':
         path = w / 'data/common_psm_raw_20261029_v1/test.npy'
+        assert sha(path) == '6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5'
         value = np.load(path, allow_pickle=False).astype(np.float64)
         assert value.shape == (87841, 25)
     else:
         assert domain == 'MSL' and entity in nasa.entity_list(w, domain)
         path = w / nasa.MSL / 'test' / (entity + '.npy')
+        admitted = read(w / 'results/left_nasa_author_20261123_v1/MSL/SCORES.json')
+        prior = next(r for r in admitted['banks'] if r['entity'] == entity)
+        assert sha(path) == prior['input_sha256']
         value = np.load(path, allow_pickle=False)[:, :1].astype(np.float64)
     assert value.ndim == 2 and np.isfinite(value).all()
     return value, path
@@ -135,17 +139,32 @@ def normal_check(w, domain, nets, order):
 
 def archived_initials(w, domain, entity, current, bindings):
     """Reuse only exact scaled inputs, grid and selected weight identities."""
-    from . import native_full_window_readout as prior
-    old, old_binding = prior.windows(w, domain, entity)
+    old_root = w / 'results/native_full_window_20261124_v1'
+    path = old_root / domain / (entity + '.npz')
+    rec = read(path.with_suffix('.json'))
+    assert sha(path) == rec['sha256']
+    old_binding = rec['input_binding']
+    value, raw_path = raw_test(w, domain, entity)
+    if domain == 'PSM':
+        folder = w / 'results/native_v_conditioning_20261119_v1/PSM'
+        task = read(folder / 'TASK.json')
+        scaler_path = folder / 'SCALER.npz'
+        assert sha(scaler_path) == task['scaler_sha256'] == old_binding['scaler_sha256']
+        with np.load(scaler_path) as s:
+            old = ((value - s['mean']) / s['std']).astype(np.float32)
+    else:
+        assert sha(raw_path) == old_binding['input_sha256']
+        old = ((value.astype(np.float32).astype(np.float64) - old_binding['mean']) /
+               old_binding['scale']).astype(np.float32)
+    old = old[:len(old) // 100 * 100].reshape(-1, 100, old.shape[-1])
     same = current.shape == old.shape and np.array_equal(current, old)
     result = {}
     receipt = dict(scaled_input_bit_exact_to_legacy=same,
                    reason='complete normal-train statistics must not be assumed equal to source-transfer statistics')
     if not same:
         return result, receipt
-    path = w / prior.OUT / domain / (entity + '.npz')
-    rec = read(path.with_suffix('.json'))
-    assert sha(path) == rec['sha256'] and rec['input_binding'] == old_binding
+    assert rec['weights_sha256'][0] == bindings[0]['checkpoint_sha256']
+    assert rec['window'] == rec['stride'] == 100 and rec['native_B'] == 1 and rec['copies'] == 10
     with np.load(path, allow_pickle=False) as z:
         np.testing.assert_array_equal(z['index'], np.arange(len(current) * 100))
         result[0] = z['V'][:, 0].copy()

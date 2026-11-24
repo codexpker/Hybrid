@@ -1,0 +1,935 @@
+{
+  "status": "COMPLETE",
+  "objects": [
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "path": "readout\\MSL\\C-1.npz",
+      "sha256": "cb0a1f25d1aa6a9313da9bab6571e5dbdf1dda45d028fe365e6861b3ddfd14af",
+      "receipt_sha256": "86224bc3e2d81453c20a4bd63b2a8943d1c1b37185fe2fbe2efdf9523385b875",
+      "points": 2200,
+      "omitted_tail": 64,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/C-1.npy",
+        "raw_input_sha256": "ea8bf028555a09a45b5fd5003958c8500da46b12178c963186293db14e3c8aab",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2264,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "path": "readout\\MSL\\C-2.npz",
+      "sha256": "bfa39898fe369e8030b3f21f3327d3d9c9f8e6a4e90fe3acefcb0b74d27d4cfd",
+      "receipt_sha256": "10d97300ed2c305931862fdf46356f6a310e9a055f301244253c1fefa2a73087",
+      "points": 2000,
+      "omitted_tail": 51,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/C-2.npy",
+        "raw_input_sha256": "dca3a5cc07ec3899c2b9c6bc28a889d9872a670d08677065d39da1326c14c2b4",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2051,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "path": "readout\\MSL\\D-14.npz",
+      "sha256": "f13589ff0c19c9cc5f13c009825e34e50e8ee4159206b28a63e0450ba698eebe",
+      "receipt_sha256": "da7c434f614439faef7fd24e41e367edcedb9d4f8278c32cc236a5bde03656c0",
+      "points": 2600,
+      "omitted_tail": 25,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/D-14.npy",
+        "raw_input_sha256": "65400342172e5a01f36c389bd85b8bedce410965e155a10cc600c3c3834d8bc7",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2625,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "path": "readout\\MSL\\D-15.npz",
+      "sha256": "2c4d27b04c1add0b85fa5bdab4912727b37f07a109a48067823569e8f33d6e0f",
+      "receipt_sha256": "70df2557ab48bf08d99c4293d730eff52686555e6731e69b93049e36b3065f0f",
+      "points": 2100,
+      "omitted_tail": 58,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/D-15.npy",
+        "raw_input_sha256": "0c5691a3fc17b87d06eb23548931ffa589a5f4bed608b6db40ac976cd5695acd",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2158,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "path": "readout\\MSL\\D-16.npz",
+      "sha256": "d9dca7ca1540d5a6908d0acb4499c8b7441a5a77683b28ff92fd65b897a727e6",
+      "receipt_sha256": "bd77dc43eabb5cfade978b8b425fbe746e92a56e329c297be7dec87f11dbe757",
+      "points": 2100,
+      "omitted_tail": 91,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/D-16.npy",
+        "raw_input_sha256": "85d98f5b6223a10d5ac1c881872cd7c6b93f288236632c282093a41dbba31490",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2191,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "path": "readout\\MSL\\F-4.npz",
+      "sha256": "dfce349f8470126818a802efdc13dc9bf8f960ddd8a4632f9bd189c5e89666c0",
+      "receipt_sha256": "a22180e521ebaa1663ec7a0ec86e3deecf6f1af9850da1310bae816582e4adad",
+      "points": 3400,
+      "omitted_tail": 22,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/F-4.npy",
+        "raw_input_sha256": "6b9610c11604ecc64ee537533d7392b4337a0d50ef4bf9ae84783e7262fa9612",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 3422,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "path": "readout\\MSL\\F-5.npz",
+      "sha256": "5d421ac165581f194d4d4e4e03b468097fdb60c205efe364ce12ef244e99c00b",
+      "receipt_sha256": "7b8081d0d7b76af0cf6df8b51f43a1b48ff2068a3a6b9bfbd00f7a369505bc13",
+      "points": 3900,
+      "omitted_tail": 22,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/F-5.npy",
+        "raw_input_sha256": "4ab308e3835547b8144acf8df136c9895ce759b30de0851fb23eca999877036e",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 3922,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "path": "readout\\MSL\\F-7.npz",
+      "sha256": "57c96b3621f342133b2ae31d067ed8a990fc5c0eff0c131c40323fa4b3d53a95",
+      "receipt_sha256": "74a05c4beb6e6d96552da6a40eaea51d13ecfca80970d1fa403450f10a17e975",
+      "points": 5000,
+      "omitted_tail": 54,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/F-7.npy",
+        "raw_input_sha256": "8474d57429c8541ad5efd4635c8751e3d90fb1feeba3a4b94958cada77f90665",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 5054,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "path": "readout\\MSL\\F-8.npz",
+      "sha256": "e896ae8a3fc47a3f2478ebca6a98ba32fab095166520a67f92f84cff86111657",
+      "receipt_sha256": "c3a52ccc59e7a534fe95b4b912db64c11b53dadc71dcc14728d37459570cb541",
+      "points": 2400,
+      "omitted_tail": 87,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/F-8.npy",
+        "raw_input_sha256": "ebb950663e30ec91e52b6b422528bc4025563506af7fea6303eeabe5b2cd674e",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2487,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "path": "readout\\MSL\\M-1.npz",
+      "sha256": "0b70798d7f697b4eefcb18446e38ab386f3af4f12d4fbc72e64bd39a521c2ff7",
+      "receipt_sha256": "d4511b5e8bb09fc1c1348b7be152a113c8598cb1abec30349eaa0d2ee5bb8ee3",
+      "points": 2200,
+      "omitted_tail": 77,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-1.npy",
+        "raw_input_sha256": "58e16675dc0bada099130d02bd29279ea20c764bf3415bb5adefd626ef94dd56",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2277,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "path": "readout\\MSL\\M-2.npz",
+      "sha256": "77e633150433cdf57b52a7f89c521a4fe5fda43d2294be16b3a25869c6ab2b71",
+      "receipt_sha256": "c170d2d711cde4c127c0db6c0b9e14f042e86bd450bc98fe5e31bf78a1af88b5",
+      "points": 2200,
+      "omitted_tail": 77,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-2.npy",
+        "raw_input_sha256": "1bee2419bc4b5d9a7a71e830c1af5c98837ab31640da553f8f0d3eff9e86af49",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2277,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "path": "readout\\MSL\\M-3.npz",
+      "sha256": "7ead6a5134534e203a62a4db04c4699f6a76af891d16784691d8979bfdfc9172",
+      "receipt_sha256": "f16c546a2260bc70cc512aa44c3aacbbea2809ab363225621b281306ba3d989d",
+      "points": 2100,
+      "omitted_tail": 27,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-3.npy",
+        "raw_input_sha256": "3c43c068fddbf661c6e7cbd933f8b10adcef9cd446818a160ef7c62994fb3d3a",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2127,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "path": "readout\\MSL\\M-4.npz",
+      "sha256": "8f3465c2b5e23d2c437597d5ad02f2bf4d9a015e33d9d6668ae9fd684d58540a",
+      "receipt_sha256": "a9dcc62924b2c30200aa30338050bd9e321beaaf84f47411d91b5a5a22cb1807",
+      "points": 2000,
+      "omitted_tail": 38,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-4.npy",
+        "raw_input_sha256": "bac52a304556631942d5e548a4ecc1cbf3aae3409aeb5c8eaaf3126b1ae83ac2",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2038,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "path": "readout\\MSL\\M-5.npz",
+      "sha256": "5ee9924fee80f3e480093fdec9e374bd7e69ac326407b7ff5873a7c1dddace47",
+      "receipt_sha256": "46aa88eb896717ce7129684f188b5cb7487779879b49bf08845ca6cb3ecceec5",
+      "points": 2300,
+      "omitted_tail": 3,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-5.npy",
+        "raw_input_sha256": "e4d8cf724bf78d94daae0dc66d5f1a3023545229e15ab9aa3877c267a41b57b5",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2303,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "path": "readout\\MSL\\M-6.npz",
+      "sha256": "9ca10e582231a260dfd61957412ec2f3dc06b7fbfc9881867b035f898758da2a",
+      "receipt_sha256": "827966c91ba45ccd8506deb3aceb56a7d9d4f8ed0534f3550e9c086162cc2c43",
+      "points": 2000,
+      "omitted_tail": 49,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-6.npy",
+        "raw_input_sha256": "4138b2b33f919eb0791b0d2f5337f605bcfc533b07ed91015bfbbcda1c08a612",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2049,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "path": "readout\\MSL\\M-7.npz",
+      "sha256": "ad3a5dc46ecee4383e8bdb6d39569b588e76f35bc86a77f82e58159a9d5560df",
+      "receipt_sha256": "53df79b5a41e70a73ba8d9e51e6e033cdb401daa28218923964b17a7bd0e72a5",
+      "points": 2100,
+      "omitted_tail": 56,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/M-7.npy",
+        "raw_input_sha256": "28f065fa569a5073eca60f99dd2d3dc93b449ed61e53e543d36e43392fd27bf1",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2156,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "path": "readout\\MSL\\P-10.npz",
+      "sha256": "5b1e972e3b247a5d4d16aa20e36ae13542fa87d15a1942079953d8cac6609e72",
+      "receipt_sha256": "c6ccf051a971fa744683116ce550e2e30d9b678082578ff49a56a5756d039cc4",
+      "points": 6100,
+      "omitted_tail": 0,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/P-10.npy",
+        "raw_input_sha256": "2a34698f41fd1a16324f26d86a9443f3c633e7554f524e53d4773b40ca83a52a",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 6100,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "path": "readout\\MSL\\P-11.npz",
+      "sha256": "f8bed7f2967e42d157efe8ce6b193a1ebe27c747bb3d21e31d04028f647b706e",
+      "receipt_sha256": "b37b5170141b4ae6e1480fa87418064619d1226b14d21483870eca143048a0be",
+      "points": 3500,
+      "omitted_tail": 35,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/P-11.npy",
+        "raw_input_sha256": "dad84034fd7ad1b2dd4bcbdaefc345719c2fb1b1d3a7713257c612fc995ecc44",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 3535,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "path": "readout\\MSL\\P-14.npz",
+      "sha256": "5b1e972e3b247a5d4d16aa20e36ae13542fa87d15a1942079953d8cac6609e72",
+      "receipt_sha256": "12946a2c1d458fd5296bbe5cfc7e138b9088ca30da7d7073549d06a391075a6b",
+      "points": 6100,
+      "omitted_tail": 0,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/P-14.npy",
+        "raw_input_sha256": "2a34698f41fd1a16324f26d86a9443f3c633e7554f524e53d4773b40ca83a52a",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 6100,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "path": "readout\\MSL\\P-15.npz",
+      "sha256": "6efe22adc009e3391879910ffd98dbcf07a9faa0f13b99f929403f63efcb8114",
+      "receipt_sha256": "f44b8ec516caa71ae2a875c64f7b99596ac4dd53d4be3dd943c5b0160ba09f16",
+      "points": 2800,
+      "omitted_tail": 56,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/P-15.npy",
+        "raw_input_sha256": "2284348ac1fc998b5aa76c5bbfbeff977f36b17f9602b6654dc65552b50954ae",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2856,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "path": "readout\\MSL\\S-2.npz",
+      "sha256": "11eb930f7e7494e0594ac775d8e5bf1f251eba950ef2b7153ffd6090b9680f14",
+      "receipt_sha256": "1d166823b1127923d4491ba0438875159662c6ca129a7d821295f355bf943856",
+      "points": 1800,
+      "omitted_tail": 27,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/S-2.npy",
+        "raw_input_sha256": "fb9651f2d378bfceef7d694cbe3cb7eafd36b8113241da247b98da53caefaeea",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 1827,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "path": "readout\\MSL\\T-12.npz",
+      "sha256": "57e300908526cf0ae83b02cec91627dfd3de1d9ac9d620abed1b5b7ab3a364dd",
+      "receipt_sha256": "8108277e1075b34d8c46b3a2e31cb7d1981c54775a47a9a9283b1d6abda85117",
+      "points": 2400,
+      "omitted_tail": 30,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-12.npy",
+        "raw_input_sha256": "6848f4f7eec6c086862e0daf766617994935e265f2cd9bf229282609c13986bf",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2430,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "path": "readout\\MSL\\T-13.npz",
+      "sha256": "27730c3127c0db758590efefe20aee46646b4fe8d95edb4dae4cb6005ef39358",
+      "receipt_sha256": "20c07c5751f272753dc6e63138247519349164a04018d921ae569cec168f0cb7",
+      "points": 2400,
+      "omitted_tail": 30,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-13.npy",
+        "raw_input_sha256": "ebdf225ad1b21faf4c0c3013de07f1ab77cefd1329587421cfa424128b9433a6",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2430,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "path": "readout\\MSL\\T-4.npz",
+      "sha256": "e33ba57611fe35d25000cfce5e4c5f02356e4d0b814fd7991bf9e02fb1aec81e",
+      "receipt_sha256": "1351a43edd695fa9d287253511cfa83b377926ff0f78015cf3885e0e0274137a",
+      "points": 2200,
+      "omitted_tail": 17,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-4.npy",
+        "raw_input_sha256": "330499f248367f9bb3eae4eadc105fa9d44bfee3913a3d4b066f9dd3c43a4156",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2217,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "path": "readout\\MSL\\T-5.npz",
+      "sha256": "eb0967bd69ea298bc2b7b8ba16668e66972e0daf29d1721da4166eb35937529b",
+      "receipt_sha256": "b8f013cf8417cdb4001d744cf8f4c9a6bdd636db48ff11c94b675ab72fbf8c83",
+      "points": 2200,
+      "omitted_tail": 18,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-5.npy",
+        "raw_input_sha256": "164cc73b9f82861959f61c54828c3ac70e6ffcc005b38c84a620c125106a6041",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 2218,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "path": "readout\\MSL\\T-8.npz",
+      "sha256": "80f5cac8be60f6318ffd41510a711985287d4e2249647a49dab65795749fc983",
+      "receipt_sha256": "f7403d388626b3cfdaf5ee43274d847935b23cd1d1042a9b0908b2812b5705ab",
+      "points": 1500,
+      "omitted_tail": 19,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-8.npy",
+        "raw_input_sha256": "5778979c00621904c36f09bc432b462b87623b7ebc0255dcb4829895b2359b34",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 1519,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "path": "readout\\MSL\\T-9.npz",
+      "sha256": "98b596b02ceea7777fc18cb77d50b7bc795bc8c28a3bfc46091d8214fa8d5093",
+      "receipt_sha256": "484a3070986ba954eb21e00ce22853d9b8773a143ec2c16054015f366a94193e",
+      "points": 1000,
+      "omitted_tail": 96,
+      "input_binding": {
+        "raw_input_path": "data/native_event_msl_v1/test/T-9.npy",
+        "raw_input_sha256": "4746b631cc292906c2cbc3ede7d472268f2c799bca41e13f2b0253bf016617b4",
+        "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+        "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+        "original_points": 1096,
+        "channels": 1,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    },
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "path": "readout\\PSM\\PSM.npz",
+      "sha256": "bb247956eb664c95245a32bea33e9a881adcd6123013b9a1f35480110fecd20f",
+      "receipt_sha256": "6c88df0841cb5cabaef0ae0a766c75eaedc50926aff62a3067e56197213041de",
+      "points": 87800,
+      "omitted_tail": 41,
+      "input_binding": {
+        "raw_input_path": "data/common_psm_raw_20261029_v1/test.npy",
+        "raw_input_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+        "scaler_path": "results/native_target_normal_20261124_v1/PSM/scaler.npz",
+        "scaler_sha256": "e1228904dde4004349342a25cbfa5266f0cf2a30de8bdef391e9759ec2196900",
+        "original_points": 87841,
+        "channels": 25,
+        "scaling": "raw public test array -> complete official normal-train mean/scale once"
+      },
+      "aliases": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "reused_initial_columns": [],
+      "scaled_input_bit_exact_to_legacy": false
+    }
+  ],
+  "weights": {
+    "MSL": [
+      {
+        "kind": "official",
+        "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c"
+      },
+      {
+        "kind": "source_selected",
+        "arm": "copy",
+        "selected_step": 120,
+        "checkpoint_sha256": "c1d2c2f93f6ae299c5c8b843ddcade859d4490f9e6bebaf06b5ea1553744b8e4",
+        "path": "results/native_position_aligned_20261124_v1/train/copy/selected.pt"
+      },
+      {
+        "kind": "source_selected",
+        "arm": "all_positions",
+        "selected_step": 200,
+        "checkpoint_sha256": "08c628363b2c292238501d9ab79d1d423e9be287c361cbd6f95af9d35dda1f2c",
+        "path": "results/native_position_aligned_20261124_v1/train/all_positions/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "official",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "b00cb92e58d4e0b2672e550ef8f58dbd2b3d8ea7d5cc3a7e9c3b1f6a5127e9d9",
+        "path": "results/native_target_normal_20261124_v1/MSL/train/official/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "copy",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "8b0f7050c07f821a03d852ba5c92990f7f685b23a403e1ebe9a037d4c32f5a96",
+        "path": "results/native_target_normal_20261124_v1/MSL/train/copy/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "all_positions",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "7660d14927c01ec5f4a80d3b607b60606f2bcdd81aa0d9fde8b9ce397d81e17b",
+        "path": "results/native_target_normal_20261124_v1/MSL/train/all_positions/selected.pt"
+      }
+    ],
+    "PSM": [
+      {
+        "kind": "official",
+        "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c"
+      },
+      {
+        "kind": "source_selected",
+        "arm": "copy",
+        "selected_step": 120,
+        "checkpoint_sha256": "c1d2c2f93f6ae299c5c8b843ddcade859d4490f9e6bebaf06b5ea1553744b8e4",
+        "path": "results/native_position_aligned_20261124_v1/train/copy/selected.pt"
+      },
+      {
+        "kind": "source_selected",
+        "arm": "all_positions",
+        "selected_step": 200,
+        "checkpoint_sha256": "08c628363b2c292238501d9ab79d1d423e9be287c361cbd6f95af9d35dda1f2c",
+        "path": "results/native_position_aligned_20261124_v1/train/all_positions/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "official",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "0614156d087a144f9d360665fb92d889b8c6e0b2631dcc7e9b388176a527ce38",
+        "path": "results/native_target_normal_20261124_v1/PSM/train/official/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "copy",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "16169c59512bc454039f5607b8fb325c1e9fb5690424e6791626f62b9a46309e",
+        "path": "results/native_target_normal_20261124_v1/PSM/train/copy/selected.pt"
+      },
+      {
+        "kind": "target_normal_selected",
+        "arm": "all_positions",
+        "selected_epoch": 20,
+        "checkpoint_sha256": "09f16843a94091dc5c7a495cbf9809badd3d4d88f2441458bc57debf0ef1dd91",
+        "path": "results/native_target_normal_20261124_v1/PSM/train/all_positions/selected.pt"
+      }
+    ]
+  },
+  "readout_module_sha256": "929c2348f4c8a20e253b6ccff1826f53d1e6b2488fe27b7e40ee7d5cb06b41b9",
+  "code_base_commit": "341ee639dc254c5c2b2394dbbf20ecf18f6eef25",
+  "normal_checks": {
+    "NORMAL_CHECK_MSL_lane1.json": {
+      "domain": "MSL",
+      "entity": "C-1",
+      "role": "TARGET_NORMAL_TRAIN",
+      "window": [
+        0,
+        100
+      ],
+      "six_models_native_output_bit_exact": true,
+      "native_V_bit_exact": true,
+      "frozen_verified": true,
+      "RNG_restored": true,
+      "seconds": 0.589773619081825
+    },
+    "NORMAL_CHECK_MSL_lane2.json": {
+      "domain": "MSL",
+      "entity": "C-1",
+      "role": "TARGET_NORMAL_TRAIN",
+      "window": [
+        0,
+        100
+      ],
+      "six_models_native_output_bit_exact": true,
+      "native_V_bit_exact": true,
+      "frozen_verified": true,
+      "RNG_restored": true,
+      "seconds": 0.5877239489927888
+    },
+    "NORMAL_CHECK_MSL_lane3.json": {
+      "domain": "MSL",
+      "entity": "C-1",
+      "role": "TARGET_NORMAL_TRAIN",
+      "window": [
+        0,
+        100
+      ],
+      "six_models_native_output_bit_exact": true,
+      "native_V_bit_exact": true,
+      "frozen_verified": true,
+      "RNG_restored": true,
+      "seconds": 0.5834776498377323
+    },
+    "NORMAL_CHECK_PSM_lane0.json": {
+      "domain": "PSM",
+      "entity": "PSM",
+      "role": "TARGET_NORMAL_TRAIN",
+      "window": [
+        0,
+        100
+      ],
+      "six_models_native_output_bit_exact": true,
+      "native_V_bit_exact": true,
+      "frozen_verified": true,
+      "RNG_restored": true,
+      "seconds": 0.6057377480901778
+    }
+  },
+  "no_query_labels_in_readout": true,
+  "CAL_read": false
+}

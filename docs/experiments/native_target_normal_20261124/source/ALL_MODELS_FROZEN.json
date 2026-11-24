@@ -1,0 +1,53 @@
+{
+  "status": "COMPLETED_BEFORE_TEST",
+  "domains": {
+    "PSM": {
+      "official": {
+        "checkpoint_relative": "PSM/train/official/selected.pt",
+        "checkpoint_sha256": "0614156d087a144f9d360665fb92d889b8c6e0b2631dcc7e9b388176a527ce38",
+        "selected_epoch": 20,
+        "selected_updates": 680,
+        "selected_validation_MSE": 0.2452621330704653
+      },
+      "copy": {
+        "checkpoint_relative": "PSM/train/copy/selected.pt",
+        "checkpoint_sha256": "16169c59512bc454039f5607b8fb325c1e9fb5690424e6791626f62b9a46309e",
+        "selected_epoch": 20,
+        "selected_updates": 680,
+        "selected_validation_MSE": 0.23659695430912756
+      },
+      "all_positions": {
+        "checkpoint_relative": "PSM/train/all_positions/selected.pt",
+        "checkpoint_sha256": "09f16843a94091dc5c7a495cbf9809badd3d4d88f2441458bc57debf0ef1dd91",
+        "selected_epoch": 20,
+        "selected_updates": 680,
+        "selected_validation_MSE": 0.2346217455060193
+      }
+    },
+    "MSL": {
+      "official": {
+        "checkpoint_relative": "MSL/train/official/selected.pt",
+        "checkpoint_sha256": "b00cb92e58d4e0b2672e550ef8f58dbd2b3d8ea7d5cc3a7e9c3b1f6a5127e9d9",
+        "selected_epoch": 20,
+        "selected_updates": 300,
+        "selected_validation_MSE": 0.506821674321379
+      },
+      "copy": {
+        "checkpoint_relative": "MSL/train/copy/selected.pt",
+        "checkpoint_sha256": "8b0f7050c07f821a03d852ba5c92990f7f685b23a403e1ebe9a037d4c32f5a96",
+        "selected_epoch": 20,
+        "selected_updates": 300,
+        "selected_validation_MSE": 0.5037667858458701
+      },
+      "all_positions": {
+        "checkpoint_relative": "MSL/train/all_positions/selected.pt",
+        "checkpoint_sha256": "7660d14927c01ec5f4a80d3b607b60606f2bcdd81aa0d9fde8b9ce397d81e17b",
+        "selected_epoch": 20,
+        "selected_updates": 300,
+        "selected_validation_MSE": 0.5060297564115552
+      }
+    }
+  },
+  "test_values_read": false,
+  "test_labels_read": false
+}

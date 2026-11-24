@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "arms": [
+    {
+      "domain": "PSM",
+      "arm": "official",
+      "executed_updates": 680,
+      "selected_epoch": 20,
+      "validation_windows": 264,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 1059,
+      "last_logical_batch_windows": 3
+    },
+    {
+      "domain": "PSM",
+      "arm": "copy",
+      "executed_updates": 680,
+      "selected_epoch": 20,
+      "validation_windows": 264,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 1059,
+      "last_logical_batch_windows": 3
+    },
+    {
+      "domain": "PSM",
+      "arm": "all_positions",
+      "executed_updates": 680,
+      "selected_epoch": 20,
+      "validation_windows": 264,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 1059,
+      "last_logical_batch_windows": 3
+    },
+    {
+      "domain": "MSL",
+      "arm": "official",
+      "executed_updates": 300,
+      "selected_epoch": 20,
+      "validation_windows": 105,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 454,
+      "last_logical_batch_windows": 6
+    },
+    {
+      "domain": "MSL",
+      "arm": "copy",
+      "executed_updates": 300,
+      "selected_epoch": 20,
+      "validation_windows": 105,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 454,
+      "last_logical_batch_windows": 6
+    },
+    {
+      "domain": "MSL",
+      "arm": "all_positions",
+      "executed_updates": 300,
+      "selected_epoch": 20,
+      "validation_windows": 105,
+      "max_validation_mean_error": 0.0,
+      "train_windows": 454,
+      "last_logical_batch_windows": 6
+    }
+  ],
+  "snapshots": 126,
+  "normal_validation_banks": 126,
+  "raw_full_normal_scaler_recomputed_exact": true,
+  "all_role_windows_and_20_epoch_orders_recomputed": true,
+  "all_epoch0_states_match_fixed_initializations": true,
+  "nondecoder_states_unchanged": true,
+  "normal_validation_earliest_minimum_recomputed": true,
+  "source_labels_used_only_by_fixed_initial_history": true,
+  "independent_LEFT_scaler_comparison": {
+    "PSM": {
+      "mean": 1.6930901125533637e-14,
+      "scale": 1.2337353361147052e-14,
+      "var": 1.7520707107365752e-15
+    },
+    "MSL": {
+      "mean": 0.0,
+      "scale": 0.0,
+      "var": 0.0
+    }
+  },
+  "scope": "CPU artifact and source-code check; no gradient or model forward repeated",
+  "normal_raw_identity_against_archived_LEFT": {
+    "MSL": 27,
+    "PSM": 1,
+    "checks": "raw file SHA, sequence lengths and chronological 80/20 split; separately checked before target metrics"
+  }
+}

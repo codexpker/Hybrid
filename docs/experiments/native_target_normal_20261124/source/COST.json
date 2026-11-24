@@ -1,0 +1,11 @@
+{
+  "status": "COMPLETED",
+  "trainings": 6,
+  "total_seconds": 1930.743508736603,
+  "total_gpu_hours": 0.536317641315723,
+  "all_executed_epochs20": true,
+  "selected_models_and_all_validation_banks_preserved": true,
+  "all126_epoch_states_preserved_remotely": true,
+  "checks_not_separately_GPU_timed": true,
+  "implementation_commit": "341ee639dc254c5c2b2394dbbf20ecf18f6eef25"
+}

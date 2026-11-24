@@ -1,0 +1,17 @@
+domain,method,reference,contrast,AP,ROC_AUC,VUS_PR,VUS_ROC
+PSM,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,0.0015683190555705329,0.002914742782799129,0.0014923871957128187,0.0017509146655056984
+PSM,target_source_all,target_official,source-supervised minus official initialization after target training,-0.0021331600410925966,0.0004399195280790913,0.0007817097808339724,0.003227547605518355
+PSM,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,0.00457572237139936,0.018419823404209,0.003881715569770905,0.00299680917418077
+PSM,init_source_all,init_official,source-supervised minus official initialization before target training,0.012746503075104665,0.03513013779981944,0.006127445893835959,0.0026419321570442245
+PSM,target_official,init_official,"target training effect, official initialization",-0.002460154184484864,0.004787298291612174,-0.005829892871586917,-0.019045012651793147
+PSM,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",-0.014332413984853298,-0.0143978393587183,-0.008786300610530817,-0.017213502694643945
+PSM,target_source_all,init_source_all,"target training effect, source-supervised initialization",-0.017339817300682125,-0.029902919980128173,-0.011175628984588903,-0.018459397203319017
+PSM,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,-0.15535484409598266,-0.10755101023018077,-0.14471900198755894,-0.13142916732286114
+MSL,target_source_all,target_source_copy,source-supervised minus reconstruction initialization after target training,0.004057000676042561,0.004250443998263306,0.004581758346489876,0.0029347106223689516
+MSL,target_source_all,target_official,source-supervised minus official initialization after target training,0.010081309296155883,0.009275459687749895,0.012747639940992032,0.004768055192938095
+MSL,init_source_all,init_source_copy,source-supervised minus reconstruction initialization before target training,-0.02429589385650732,-0.0009779915758394656,-0.015549563957415637,-0.0004577611193741864
+MSL,init_source_all,init_official,source-supervised minus official initialization before target training,0.026968139722289175,0.02653929792109349,0.049744891792644685,0.017953229079209643
+MSL,target_official,init_official,"target training effect, official initialization",0.10591957180041091,0.10279878239651291,0.10808582252539593,0.07256710474701504
+MSL,target_source_copy,init_source_copy,"target training effect, source reconstruction initialization",0.06067984684172774,0.08030650858906652,0.05095724836983773,0.05598945911900036
+MSL,target_source_all,init_source_all,"target training effect, source-supervised initialization",0.08903274137427761,0.0855349441631693,0.07108857067374325,0.0593819308607435
+MSL,target_source_all,LEFT,complete source-supervised target-trained detector minus LEFT,-0.13636561952841464,-0.07459291096063696,-0.1451541096730049,-0.0637120967009354

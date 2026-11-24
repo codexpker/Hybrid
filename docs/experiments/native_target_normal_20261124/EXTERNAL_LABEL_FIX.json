@@ -1,0 +1,12 @@
+{
+  "reason": "three archived CATCH seeds previously shared a display key; now kept separate",
+  "model_or_new_score_changed": false,
+  "metric_recomputed": false,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "original_derived_outputs": "results/native_target_normal_20261124_v1/label_fix_original",
+  "cpu_summary_seconds": 0.0910553028807044
+}

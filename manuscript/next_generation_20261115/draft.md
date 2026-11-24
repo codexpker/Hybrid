@@ -6,7 +6,7 @@ lang: en
 bibliography: references.bib
 ---
 
-> The current offline training version compares reconstruction-only, endpoint-supervised and all-position-supervised native variance at three project-training seeds, selected by one common full-position SOURCE SELECT rule. Earlier causal endpoint results and fixed-weight offline results remain separate. Current U/F recipes are closed; no new adaptation, calibration or contamination condition is evaluated. Public source-event labels are explicit. This draft does not claim broad external-method superiority, independent FRFT novelty, weak/lag detection or established mixed-unlabeled robustness.
+> The current normal-target benchmark compares three fixed source initializations under identical normal reconstruction training on PSM and MSL, seed2025. Its zero-update references use the same new target-normal statistics. Earlier three-seed source-only, causal and U/F results remain separate; no mixed-U, F or contamination recipe is resumed. Public source-event labels and external-method training/context differences remain explicit. No broad external superiority or robustness claim is made.
 
 # Introduction
 
@@ -16,7 +16,7 @@ TimeRadar supplies an adaptive fractional time–frequency reconstruction detect
 
 We study source supervision that acts directly on the original reconstruction-disagreement score. The current Hybrid candidate, termed source-supervised native disagreement here, retains TimeRadar's complete pretrained representation, mask construction and inference score, while updating its reconstruction decoder with nominal reconstruction and a real-public-source-event pair loss. For the complete-window offline detector, the pair loss is evaluated separately at each output position before its 100-position average. A matched endpoint-supervised arm and a reconstruction-gradient arm distinguish supervision range from adding source discrimination. Sampling strata cover each source event's legal endpoint range, and their weights reflect the numbers of available positive endpoints. They are temporal sampling groups, rather than physical fault phases. The construction aims to connect source supervision to the criterion actually deployed. Whether that connection transfers is tested on public target records.
 
-Three comparisons frame the analysis. First, does supervised learning of native disagreement improve on the frozen official detector and reconstruction-only continuation? Second, how does it compare with supervision of mean reconstruction error or a standard MLP on the frozen representation under the same source-label pool? Third, how competitive is the complete detector against target-normal-trained external methods when evaluated on legal common points? The comparisons distinguish detector-level performance from attribution to an individual formula. Their permissions differ and are reported explicitly.
+Three comparisons frame the analysis. First, does supervised learning of native disagreement improve on the frozen official detector and reconstruction-only continuation? Second, how does it compare with supervision of mean reconstruction error or a standard MLP on the frozen representation under the same source-label pool? Third, does its initialization retain value after identical target-normal reconstruction training, and how competitive is the complete detector against mature external methods on legal common points? The comparisons distinguish detector-level performance from attribution to an individual formula. Their permissions differ and are reported explicitly.
 
 Earlier three-seed causal-endpoint results supported average AP improvements on PSM, MSL and SMAP, alongside NASA absolute-score limitations and SMD ranking losses. They do not establish performance at all output positions of a complete-window detector. The present comparison therefore evaluates the fixed complete-window objective and matched controls at three project seeds across all four tasks. Matched source supervision of reconstruction error and a standard classifier provides historical evidence about the learning objective and readout. Fixed U and F extensions test separate uses of the earlier endpoint detector; neither demonstrated a reliable net advantage. The present method study concerns source-supervised detection and its transfer boundaries. Mixed-unlabeled target learning remains part of the research objective, with its negative extension results retained. All data are public. First-paper laboratory runs, weak labels and enterprise records are excluded.
 
@@ -92,7 +92,17 @@ Freeze each selected model before reading target values or evaluation labels.
 Score every complete W100 test block using native V at all 100 positions.
 ```
 
-There are no new target parameter updates, binary thresholds, rolling causal banks or operating-point claims in this version. Official V/E, the fixed V+E and complete LEFT scores are reused on the legal common axes. The source-trained MLP remains in its existing causal panel because it supplies one window logit, not100 native point scores.
+The source-position comparison itself adds no target parameter updates, binary thresholds, rolling causal banks or operating-point claims; the separate target-normal extension below has its own fixed normal training procedure. Official V/E, the fixed V+E and complete LEFT scores are reused on the legal common axes. The source-trained MLP remains in its existing causal panel because it supplies one window logit, not100 native point scores.
+
+## Target-normal training of fixed source initializations
+
+A separate public-benchmark comparison tests whether source discrimination supplies a useful initialization after ordinary normal-target learning. For each of PSM and MSL, we start three decoder trajectories from the official checkpoint, the seed2025 reconstruction-source checkpoint selected at source step120, and the seed2025 all-position-source checkpoint selected at step200. These source weights are fixed before target training. The reconstruction-source initialization used source event labels for its historical checkpoint selection, although its source gradient was reconstruction-only. The supervised initialization additionally used the public source abnormal/normal pairs.
+
+The target normal-learning objective is only $L_{copy}$ defined above, with no source replay, pair loss or preservation term. Each target entity's released normal training array is split chronologically at $\lfloor0.8N_e\rfloor$. Training and validation windows of length100 and stride100 are formed separately inside these two roles and never across entities. PSM retains25 channels. MSL uses sensor0 and one shared decoder across all27 entities. The target scaler is fitted once to the complete released normal training arrays, including the normal validation part, and never to test data. PSM statistics are per channel; MSL statistics pool sensor0 across the admitted normal arrays. All three initializations use the same scaler. Their zero-update scores are computed under this same preprocessing, so preprocessing changes from the earlier source-transfer setting are not credited to parameter learning.
+
+All trajectories use project seed2025 and the same20 epoch-specific window permutations within a task. Only the original decoder updates, using the unchanged AdamW configuration at learning rate $10^{-4}$. Logical batches contain32 independently forwarded B1 windows; the final batch is divided by its actual number of windows. The first $\lceil0.1U\rceil$ of the planned $U$ updates form a linear warmup, after which the rate remains constant. Every trajectory completes20 epochs, without test-driven extension or early termination. PSM has1,059 train windows and264 validation windows per epoch, giving680 updates and68 warmup updates. MSL has454/105 windows across the domain, giving300 updates and30 warmup updates. Full training therefore presents21,180 PSM or9,080 MSL windows per trajectory. These are repeated window exposures, not independent events.
+
+Epoch0 and every completed epoch are evaluated on the complete legal normal-validation window set using native per-copy reconstruction MSE. This validation is a mean over legal windows; the later MSL detection results instead give each entity equal macro weight. The earliest minimum selects the formal checkpoint; training losses and all validation windows are retained. This is a fixed project training program, not an unchanged reproduction of an author training protocol. Models and selections are sealed before test readout. Evaluation retains full-window native V, fixed ten complementary masks, independent B1 fractional orders and window-end availability. This normal-target benchmark is distinct from mixed-unlabeled U and event-supervised F; neither earlier adaptation recipe is resumed. It uses one project-training seed and does not inherit the source experiment's three-seed standard deviation.
 
 # Experimental Setup
 
@@ -117,6 +127,86 @@ AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VU
 Strict and three-confirmation operation includes normal false-alarm point rate and fragments, abnormal recall, one-to-one event matches, any-hit, hit-only delay, complete-event coverage, and long steady coverage after the first 512 event points. Long-event macro and pooled coverages are both reported. MSL and SMAP have only four and ten eligible long events. PSM operation uses its original 64,728-point suffix, with all 512 CAL points labeled abnormal. NASA CAL is small and q99/higher equals its maximum. These thresholds do not certify normal 1% FPR. The SMD nominal-normal CAL and its actual normal test behavior are disclosed separately.
 
 # Results
+
+## Target-normal training: completed six-method comparison
+
+| Task | Initialization | Executed / selected epoch | Updates | Window exposures | Selected normal validation MSE |
+|---|---|---|---|---|---|
+| PSM | official | 20 / 20 | 680 | 21180 | 0.245262 |
+| PSM | copy | 20 / 20 | 680 | 21180 | 0.236597 |
+| PSM | all_positions | 20 / 20 | 680 | 21180 | 0.234622 |
+| MSL | official | 20 / 20 | 300 | 9080 | 0.506822 |
+| MSL | copy | 20 / 20 | 300 | 9080 | 0.503767 |
+| MSL | all_positions | 20 / 20 | 300 | 9080 | 0.506030 |
+
+All six runs executed20 epochs and selected epoch20 by normal-validation MSE, including epoch0 as an eligible state. No source initial checkpoint was reselected. The common-axis tables below use each initialization and trained model under the same newly fitted target-normal statistics; earlier source-transfer scores are not the zero-update baseline here.
+
+
+| Domain | Complete method | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | Official initialization, no target updates | 0.426134 | 0.663406 | 0.434457 | 0.670174 |
+| PSM | Source reconstruction initialization, no target updates | 0.434304 | 0.680116 | 0.436703 | 0.669819 |
+| PSM | All-position source-supervised initialization, no target updates | 0.438880 | 0.698536 | 0.440585 | 0.672816 |
+| PSM | Official initialization + target-normal training | 0.423674 | 0.668193 | 0.428627 | 0.651129 |
+| PSM | Source reconstruction initialization + target-normal training | 0.419972 | 0.665718 | 0.427917 | 0.652606 |
+| PSM | All-position source supervision + target-normal training | 0.421540 | 0.668633 | 0.429409 | 0.654356 |
+| PSM | Complete LEFT | 0.576895 | 0.776184 | 0.574128 | 0.785786 |
+| PSM | CATCH W192 seed0 | 0.446458 | 0.653765 | 0.536065 | 0.702828 |
+| PSM | CATCH W192 seed1 | 0.430683 | 0.641721 | 0.518706 | 0.689799 |
+| PSM | CATCH W192 seed2 | 0.433369 | 0.647474 | 0.526733 | 0.698310 |
+| PSM | PCA residual | 0.534437 | 0.793117 | 0.528731 | 0.766991 |
+| MSL | Official initialization, no target updates | 0.255976 | 0.576677 | 0.287096 | 0.653113 |
+| MSL | Source reconstruction initialization, no target updates | 0.307240 | 0.604195 | 0.352391 | 0.671524 |
+| MSL | All-position source-supervised initialization, no target updates | 0.282944 | 0.603217 | 0.336841 | 0.671066 |
+| MSL | Official initialization + target-normal training | 0.361896 | 0.679476 | 0.395182 | 0.725680 |
+| MSL | Source reconstruction initialization + target-normal training | 0.367920 | 0.684501 | 0.403348 | 0.727514 |
+| MSL | All-position source supervision + target-normal training | 0.371977 | 0.688752 | 0.407930 | 0.730448 |
+| MSL | Complete LEFT | 0.508343 | 0.763344 | 0.553084 | 0.794160 |
+
+All six rows per task use the new shared target-normal preprocessing. Each target-trained model uses only normal target windows and normal reconstruction-MSE checkpoint selection, including epoch0. The three initializations retain their different official/source-label histories. This is a single project-training seed, not a three-seed result. LEFT and CATCH retain native offline windows and their own training/scaler permissions. Equal timestamps do not imply equal context or training permissions. No independent-CAL operating metrics are asserted.
+
+## Initialization and training effects
+
+| Domain | Contrast | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | source-supervised minus reconstruction initialization after target training | +0.001568 | +0.002915 | +0.001492 | +0.001751 |
+| PSM | source-supervised minus official initialization after target training | -0.002133 | +0.000440 | +0.000782 | +0.003228 |
+| PSM | source-supervised minus reconstruction initialization before target training | +0.004576 | +0.018420 | +0.003882 | +0.002997 |
+| PSM | source-supervised minus official initialization before target training | +0.012747 | +0.035130 | +0.006127 | +0.002642 |
+| PSM | target training effect, official initialization | -0.002460 | +0.004787 | -0.005830 | -0.019045 |
+| PSM | target training effect, source reconstruction initialization | -0.014332 | -0.014398 | -0.008786 | -0.017214 |
+| PSM | target training effect, source-supervised initialization | -0.017340 | -0.029903 | -0.011176 | -0.018459 |
+| PSM | complete source-supervised target-trained detector minus LEFT | -0.155355 | -0.107551 | -0.144719 | -0.131429 |
+| MSL | source-supervised minus reconstruction initialization after target training | +0.004057 | +0.004250 | +0.004582 | +0.002935 |
+| MSL | source-supervised minus official initialization after target training | +0.010081 | +0.009275 | +0.012748 | +0.004768 |
+| MSL | source-supervised minus reconstruction initialization before target training | -0.024296 | -0.000978 | -0.015550 | -0.000458 |
+| MSL | source-supervised minus official initialization before target training | +0.026968 | +0.026539 | +0.049745 | +0.017953 |
+| MSL | target training effect, official initialization | +0.105920 | +0.102799 | +0.108086 | +0.072567 |
+| MSL | target training effect, source reconstruction initialization | +0.060680 | +0.080307 | +0.050957 | +0.055989 |
+| MSL | target training effect, source-supervised initialization | +0.089033 | +0.085535 | +0.071089 | +0.059382 |
+| MSL | complete source-supervised target-trained detector minus LEFT | -0.136366 | -0.074593 | -0.145154 | -0.063712 |
+
+Complete native axes and common axes remain separate in entity_metrics.csv and macro.csv. All27 MSL entities are evaluated separately before equal macro aggregation. Entity wins/ties/losses and median differences are in paired_distribution.csv; they are not independent training repetitions.
+
+
+## Target-normal training: interpretation and cost
+
+Under the same new preprocessing and target training, source-supervised initialization exceeds source reconstruction initialization in all four domain-macro metrics in both tasks. The paired AP differences are +0.001568 on PSM and +0.004057 on MSL. This is a single-seed complete-initialization comparison, not evidence that each entity benefits or that the effect is reproducible after target training. MSL has13 AP wins and14 losses against the reconstruction initialization, with median difference -0.001032. Against the official initialization after training, MSL has18 wins and9 losses, median +0.003263.
+
+The net effects differ sharply by task. PSM source-supervised AP declines from0.438880 to0.421540 (-0.017340), with ROC and both VUS values also decreasing. Its advantage over source reconstruction shrinks from0.004576 before target training to0.001568 afterwards. The trained source-supervised model is0.002133 below the official-initialization trained model in AP, although its ROC and VUS values are slightly higher. Official-initialization AP also falls slightly under this fixed normal-learning program. Lower normal-validation reconstruction MSE therefore does not establish improved detection ranking.
+
+MSL source-supervised AP rises from0.282944 to0.371977 (+0.089033). All three initializations improve all four macro metrics after target-normal learning. Before learning, the supervised initialization is0.024296 below source reconstruction in AP; afterwards it is0.004057 above it. This is not simply preservation of a pre-existing MSL AP lead. The domain-mean reversal coexists with the negative entity median against source reconstruction. MSL uses only sensor0 and cannot establish cross-variable modeling benefits.
+
+The complete detector remains below LEFT in AP, ROC and both VUS metrics on both tasks. PSM source-supervised target-trained AP is also below each of the three cached CATCH runs and the PCA residual baseline; its ROC is higher than CATCH but lower than PCA. These are complete-method comparisons with different native windows, training granularity and optimization permissions, not isolated architecture effects. LEFT trains with stride1 and native W192 (PSM)/W96 (MSL), whereas the new TimeRadar decoder program trains W100/stride100. No claim attributes the remaining gap to any one of these differences.
+
+The supported result is a small, bounded initialization advantage over source reconstruction after ordinary normal-target learning, plus a substantial MSL benefit from normal-target learning itself. The fixed program does not establish a net PSM detection benefit or close mature-method competitiveness. It neither validates mixed-unlabeled adaptation nor identifies contamination as a cause. No new loss, coefficient, seed or follow-on recipe is started.
+
+The source-supervised model's MSL AP entity record is13 wins/14 losses against source reconstruction and18/9 against official initialization after training, with medians-0.001032/+0.003263. All27 remain. The fixed normal learning program reduces validation error without establishing a PSM net ranking benefit. Training and successful readout use0.549119 recorded A40 GPU-hours, with engineering/import overhead separately disclosed. Independent raw AP/ROC recomputation covers24 model/axis rows plus four external PSM caches; VUS review covers aggregation only. [Complete results, curves, roles, cache identities and review](../../docs/experiments/native_target_normal_20261124/RESULTS.md).
+
+## Prior source-only repetition under archived transfer preprocessing
+
+The following source-only tables retain the original source-transfer preprocessing and source-event SELECT rule. They are not subtracted from the new target-normal panel. The historical NASA E/combination and U/F panels likewise retain their original statistics and axes.
+
 
 ## Completed matched source training and selection
 
@@ -283,6 +373,10 @@ Training labels are real public SWaT source events; this method is not purely se
 Native sample variance, the fractional representation, replay and mature classification losses retain their established attribution. Explicit weak-anomaly, long-lag, Self/Cross-lag and contamination-specific claims require additional evidence beyond these average public scores. Closed historical candidates and negative results remain available in the supplement and existing experiment records. The current complete detector has measurable source-supervised ranking gains and unresolved adaptation limitations; it is not yet a demonstrated complete solution to mixed-unlabeled learning.
 
 # Conclusion
+
+All-position source supervision has a bounded, repeated source-transfer effect, clearest on PSM against matched source controls. In the new normal-target benchmark, the supervised initialization has small positive macro differences over reconstruction initialization on PSM and MSL after identical learning, but does not establish broad public-benchmark superiority. PSM's normal training loses AP relative to its matched zero-update state and does not exceed the official-initialization trained model in AP. MSL improves substantially through normal-target learning, yet its supervised-minus-reconstruction AP median remains negative. Complete LEFT remains higher on all four macro metrics in both tasks. These results delimit the complete source-supervised initialization plus target-normal detector, not only its source objective. They do not establish mixed-unlabeled adaptation, event-supervised F, contamination robustness, weak/lag detection or independent FRFT contributions. Earlier extension failures and all task-dependent benefits/costs remain in their own panels.
+
+Historical source-only conclusion (unchanged scope):
 
 The three-seed complete-window comparison supports a reproducible supervision-range AP improvement over endpoint training on PSM, SMD and MSL, but not a uniform net benefit over reconstruction continuation. PSM improves on both matched controls at every seed. SMD's AP improvement over reconstruction is small and changes sign at one seed; both VUS differences against that control remain negative. NASA has VUS-PR benefits but no stable AP advantage over reconstruction, and retains ROC and absolute-performance limitations. Every domain remains below complete LEFT on all four macro metrics, under explicitly different source-supervised and target-normal training permissions. These results support a bounded effect of supervision range within the fixed native detector, not a complete mixed-unlabeled solution or an established advantage over mature external methods. Historical causal-endpoint, E/MLP, fixed-weight readout, U and F results remain separate; the earlier U/F recipes did not establish a reliable net benefit. No new adaptation or robustness claim follows from this repetition.
 
