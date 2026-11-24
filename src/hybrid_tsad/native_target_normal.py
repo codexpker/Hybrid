@@ -15,6 +15,7 @@ from .native_position_aligned_training import values
 from . import left_nasa_author as nasa
 
 OUT=Path('results/native_target_normal_20261124_v1')
+FULL_OUT=Path('results/native_target_normal_full_20261124_v1')
 SOURCE=Path('results/native_position_aligned_20261124_v1')
 ARMS=('official','copy','all_positions')
 DOMAINS=('PSM','MSL')
@@ -126,11 +127,74 @@ def check(w,domain):
         normal_only=True,seconds=time.monotonic()-t))
 
 
-def train(w,domain,arm):
+def parameter_groups(model):
+    groups = {}
+    for name, parameter in model.named_parameters():
+        groups.setdefault(name.split('.')[0], []).append((name, parameter))
+    assert set(groups) == {'net', 'real_input_embed', 'imag_input_embed', 'encoder', 'decoder'}
+    return groups
+
+
+def check_full(w, domain, arm):
+    device = setup()
+    seed(2025)
+    scaled, plan, cfg = data(w, domain)
+    model, initial = load_initial(w, arm, device)
+    before = state_hashes(model)
+    buffers = {name: before[name] for name, _ in model.named_buffers()}
+    cpu_rng, gpu_rng = torch.get_rng_state(), torch.cuda.get_rng_state(device)
+    x = window(scaled, plan['train'][0], device)
+    with torch.no_grad():
+        v_ref, loss_ref = values(model, x)
+    model.requires_grad_(True)
+    v, loss = values(model, x)
+    torch.testing.assert_close(v, v_ref, rtol=0, atol=0)
+    torch.testing.assert_close(loss, loss_ref, rtol=0, atol=0)
+    opt = optimizer(model)
+    assert {id(p) for g in opt.param_groups for p in g['params']} == {id(p) for p in model.parameters()}
+    torch.cuda.synchronize()
+    start = time.monotonic()
+    batch = plan['train'][plan['orders'][0, :32]]
+    for row in batch:
+        _, loss = values(model, window(scaled, row, device))
+        (loss/len(batch)).backward()
+    groups = parameter_groups(model)
+    gradient_norms = {}
+    for group, params in groups.items():
+        gradients = [p.grad for _, p in params if p.grad is not None]
+        assert gradients and all(torch.isfinite(g).all() for g in gradients)
+        gradient_norms[group] = float(torch.linalg.vector_norm(torch.stack([g.norm() for g in gradients])))
+        assert gradient_norms[group] > 0
+    for group in opt.param_groups:
+        group['lr'] = 1e-4/cfg['warmup_updates']
+    opt.step()
+    torch.cuda.synchronize()
+    elapsed = time.monotonic()-start
+    after = state_hashes(model)
+    changed = {group: sum(before[n] != after[n] for n, _ in params) for group, params in groups.items()}
+    assert all(changed.values())
+    assert all(after[n] == v for n, v in buffers.items())
+    assert all(not m.training for m in model.modules())
+    assert torch.equal(cpu_rng, torch.get_rng_state()) and torch.equal(gpu_rng, torch.cuda.get_rng_state(device))
+    root = w/FULL_OUT/domain
+    root.mkdir(parents=True, exist_ok=True)
+    dump(root/f'CHECK_{arm}.json', dict(passed=True, initial=initial, bit_exact_loss_and_V=True,
+         parameter_counts={g: sum(p.numel() for _, p in ps) for g, ps in groups.items()},
+         gradient_norms=gradient_norms, changed_parameter_tensors=changed,
+         logical_batch_seconds=elapsed, buffers_unchanged=True, eval=True, RNG_restored=True,
+         normal_only=True, plan_sha256=cfg['plan_sha256'], scaler_sha256=cfg['scaler_sha256']))
+
+
+def train(w,domain,arm, *, full=False):
     tic=time.monotonic();device=setup();seed(2025);scaled,plan,cfg=data(w,domain)
-    assert read(w/OUT/domain/'CHECKS.json')['passed']
-    d=w/OUT/domain/'train'/arm;d.mkdir(parents=True,exist_ok=False)
-    model,initial=load_initial(w,arm,device);before=state_hashes(model);opt=optimizer(model)
+    out = FULL_OUT if full else OUT
+    assert read(w/out/domain/(f'CHECK_{arm}.json' if full else 'CHECKS.json'))['passed']
+    d=w/out/domain/'train'/arm;d.mkdir(parents=True,exist_ok=False)
+    model,initial=load_initial(w,arm,device);before=state_hashes(model)
+    if full:
+        model.requires_grad_(True)
+    opt=optimizer(model)
+    groups = parameter_groups(model)
     cpu=torch.get_rng_state();gpu=torch.cuda.get_rng_state(device);updates=0;curve=[];best=None
     for epoch in range(EPOCHS+1):
         losses=[]
@@ -142,8 +206,8 @@ def train(w,domain,arm):
                 for g in opt.param_groups:g['lr']=lr
                 for row in batch:
                     _,loss=values(model,window(scaled,row,device));(loss/len(batch)).backward();losses.append(float(loss.detach()))
-                assert all(p.grad is None for n,p in model.named_parameters() if not n.startswith('decoder.'))
-                grads=[p.grad for p in model.decoder.parameters() if p.grad is not None]
+                assert all(p.grad is None for p in model.parameters() if not p.requires_grad)
+                grads=[p.grad for p in model.parameters() if p.grad is not None]
                 assert grads and all(torch.isfinite(g).all() for g in grads)
                 opt.step()
         mse,val=validate(model,scaled,plan['validation'],device)
@@ -157,7 +221,13 @@ def train(w,domain,arm):
         print(domain,arm,epoch,updates,mse,'best',best['epoch'],round(time.monotonic()-tic,1),flush=True)
     torch.cuda.synchronize()
     assert updates==cfg['updates']
-    assert all(before[k]==v for k,v in state_hashes(model).items() if not k.startswith('decoder.'))
+    after = state_hashes(model)
+    changed = {g: sum(before[n] != after[n] for n, _ in ps) for g, ps in groups.items()}
+    assert all(before[n] == after[n] for n, _ in model.named_buffers())
+    if full:
+        assert all(changed.values())
+    else:
+        assert all(before[k]==v for k,v in after.items() if not k.startswith('decoder.'))
     assert torch.equal(cpu,torch.get_rng_state()) and torch.equal(gpu,torch.cuda.get_rng_state(device))
     assert all(not m.training for m in model.modules())
     shutil.copyfile(d/best['checkpoint'],d/'selected.pt')
@@ -165,28 +235,34 @@ def train(w,domain,arm):
     dump(d/'SELECTION.json',dict(status='COMPLETED',domain=domain,arm=arm,seed=2025,initial=initial,executed_epochs=EPOCHS,
         executed_updates=updates,selected_epoch=best['epoch'],selected_updates=best['updates'],selected_validation_MSE=best['validation_MSE'],
         selected_window_exposures=best['nominal_window_exposures'],full_window_exposures=EPOCHS*len(plan['train']),
-        checkpoint_relative=str((d/'selected.pt').relative_to(w/OUT)),checkpoint_sha256=sha(d/'selected.pt'),
+        checkpoint_relative=str((d/'selected.pt').relative_to(w/out)),checkpoint_sha256=sha(d/'selected.pt'),
         plan_sha256=cfg['plan_sha256'],scaler_sha256=cfg['scaler_sha256'],seconds=time.monotonic()-tic,
         peak_reserved_bytes=torch.cuda.max_memory_reserved(),device=os.environ.get('CUDA_VISIBLE_DEVICES'),
-        native_frozen_unchanged=True,RNG_restored=True,target_labels_read=False,test_values_read=False,
+        native_frozen_unchanged=not full, train_scope='full' if full else 'decoder',
+        changed_parameter_tensors_at_epoch20=changed, buffers_unchanged=True,
+        RNG_restored=True,target_labels_read=False,test_values_read=False,
         curve=curve))
 
 
-def seal(w):
+def seal(w, *, full=False):
+    out = FULL_OUT if full else OUT
     domains={}
     for domain in DOMAINS:
         arms={}
         for arm in ARMS:
-            r=read(w/OUT/domain/'train'/arm/'SELECTION.json');assert r['status']=='COMPLETED'
-            assert sha(w/OUT/r['checkpoint_relative'])==r['checkpoint_sha256']
+            r=read(w/out/domain/'train'/arm/'SELECTION.json');assert r['status']=='COMPLETED'
+            assert sha(w/out/r['checkpoint_relative'])==r['checkpoint_sha256']
+            assert r.get('train_scope', 'decoder') == ('full' if full else 'decoder')
             arms[arm]={k:r[k] for k in ('checkpoint_relative','checkpoint_sha256','selected_epoch','selected_updates','selected_validation_MSE')}
         domains[domain]=arms
-    dump(w/OUT/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED_BEFORE_TEST',domains=domains,test_values_read=False,test_labels_read=False))
+    dump(w/out/'ALL_MODELS_FROZEN.json',dict(status='COMPLETED_BEFORE_TEST',domains=domains,test_values_read=False,test_labels_read=False))
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=('prepare','check','train','seal'));p.add_argument('--domain',choices=DOMAINS);p.add_argument('--arm',choices=ARMS);a=p.parse_args();w=Path.cwd()
+    p=argparse.ArgumentParser();p.add_argument('action',choices=('prepare','check','train','seal'));p.add_argument('--domain',choices=DOMAINS);p.add_argument('--arm',choices=ARMS);p.add_argument('--full',action='store_true');a=p.parse_args();w=Path.cwd()
     if a.action=='prepare':prepare(w)
-    elif a.action=='seal':seal(w)
-    elif a.action=='check':check(w,a.domain)
-    else:train(w,a.domain,a.arm)
+    elif a.action=='seal':seal(w,full=a.full)
+    elif a.action=='check':
+        if a.full:check_full(w,a.domain,a.arm)
+        else:check(w,a.domain)
+    else:train(w,a.domain,a.arm,full=a.full)
