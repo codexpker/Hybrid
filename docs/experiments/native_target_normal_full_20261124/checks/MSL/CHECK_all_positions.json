@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "initial": {
+    "arm": "all_positions",
+    "kind": "source_selected",
+    "checkpoint_sha256": "08c628363b2c292238501d9ab79d1d423e9be287c361cbd6f95af9d35dda1f2c",
+    "source_event_labels": true,
+    "checkpoint_relative": "results/native_position_aligned_20261124_v1/train/all_positions/selected.pt",
+    "selected_source_step": 200,
+    "source_gradient": "normal reconstruction plus all-position source pairs",
+    "source_selection": "full-position labeled source event risk"
+  },
+  "bit_exact_loss_and_V": true,
+  "parameter_counts": {
+    "real_input_embed": 384,
+    "imag_input_embed": 384,
+    "encoder": 815552,
+    "decoder": 793610,
+    "net": 26113
+  },
+  "gradient_norms": {
+    "real_input_embed": 0.04205768182873726,
+    "imag_input_embed": 0.03516160696744919,
+    "encoder": 0.8274407982826233,
+    "decoder": 0.24740543961524963,
+    "net": 0.4478287994861603
+  },
+  "changed_parameter_tensors": {
+    "real_input_embed": 2,
+    "imag_input_embed": 2,
+    "encoder": 90,
+    "decoder": 9,
+    "net": 4
+  },
+  "logical_batch_seconds": 1.041901842225343,
+  "buffers_unchanged": true,
+  "eval": true,
+  "RNG_restored": true,
+  "normal_only": true,
+  "plan_sha256": "dabec9aa6a4c6028f1ce6aaf0899135e0bc02d8544e1dd28a92938f83af444b3",
+  "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c"
+}

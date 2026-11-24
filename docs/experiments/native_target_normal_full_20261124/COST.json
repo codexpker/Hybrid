@@ -1,0 +1,15 @@
+{
+  "training_seconds": 3303.696603334043,
+  "scoring_seconds": 63.996391457971185,
+  "recorded_A40_hours": 0.9354702763311151,
+  "decoder_only_training_seconds": 1930.743508736603,
+  "training_cost_ratio": 1.7111007176172472,
+  "precheck_measured_batch_seconds": 6.850997765082866,
+  "precheck_setup_seconds": null,
+  "metric_cost": {
+    "objects": 28,
+    "elapsed_seconds": 184.1882257508114,
+    "worker_seconds": 326.80256152292714,
+    "GPU_used": false
+  }
+}

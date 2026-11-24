@@ -1,0 +1,113 @@
+domain,method,reference,metric,median_delta,wins,ties,losses
+PSM,full_official,target_official,AP,0.00247146948708582,1,0,0
+PSM,full_official,target_official,ROC_AUC,0.002805683031606554,1,0,0
+PSM,full_official,target_official,VUS_PR,0.019128943674886822,1,0,0
+PSM,full_official,target_official,VUS_ROC,0.02343475654544025,1,0,0
+PSM,full_copy,target_source_copy,AP,0.006009831407645383,1,0,0
+PSM,full_copy,target_source_copy,ROC_AUC,0.00538815127646286,1,0,0
+PSM,full_copy,target_source_copy,VUS_PR,0.019714735903439917,1,0,0
+PSM,full_copy,target_source_copy,VUS_ROC,0.02147702092633441,1,0,0
+PSM,full_all_positions,target_source_all,AP,0.0035473874024908314,1,0,0
+PSM,full_all_positions,target_source_all,ROC_AUC,0.001295098395708738,1,0,0
+PSM,full_all_positions,target_source_all,VUS_PR,0.01651074170412231,1,0,0
+PSM,full_all_positions,target_source_all,VUS_ROC,0.017373102877313418,1,0,0
+PSM,full_all_positions,full_copy,AP,-0.0008941249495840187,0,0,1
+PSM,full_all_positions,full_copy,ROC_AUC,-0.0011783100979549932,0,0,1
+PSM,full_all_positions,full_copy,VUS_PR,-0.001711607003604787,0,0,1
+PSM,full_all_positions,full_copy,VUS_ROC,-0.0023530033835152953,0,0,1
+PSM,full_all_positions,full_official,AP,-0.0010572421256875852,0,0,1
+PSM,full_all_positions,full_official,ROC_AUC,-0.0010706651078187246,0,0,1
+PSM,full_all_positions,full_official,VUS_PR,-0.0018364921899305386,0,0,1
+PSM,full_all_positions,full_official,VUS_ROC,-0.002834106062608477,0,0,1
+PSM,full_official,LEFT,AP,-0.15075021456780424,0,0,1
+PSM,full_official,LEFT,ROC_AUC,-0.1051852467266533,0,0,1
+PSM,full_official,LEFT,VUS_PR,-0.1263717680935061,0,0,1
+PSM,full_official,LEFT,VUS_ROC,-0.11122195838293925,0,0,1
+PSM,full_official,PCA residual,AP,-0.10829242497724134,0,0,1
+PSM,full_official,PCA residual,ROC_AUC,-0.12211853415838803,0,0,1
+PSM,full_official,PCA residual,VUS_PR,-0.08097476092507255,0,0,1
+PSM,full_official,PCA residual,VUS_ROC,-0.09242741765794549,0,0,1
+PSM,full_copy,LEFT,AP,-0.1509133317439078,0,0,1
+PSM,full_copy,LEFT,ROC_AUC,-0.10507760173651703,0,0,1
+PSM,full_copy,LEFT,VUS_PR,-0.12649665327983184,0,0,1
+PSM,full_copy,LEFT,VUS_ROC,-0.11170306106203243,0,0,1
+PSM,full_copy,PCA residual,AP,-0.10845554215334491,0,0,1
+PSM,full_copy,PCA residual,ROC_AUC,-0.12201088916825176,0,0,1
+PSM,full_copy,PCA residual,VUS_PR,-0.0810996461113983,0,0,1
+PSM,full_copy,PCA residual,VUS_ROC,-0.09290852033703867,0,0,1
+PSM,full_all_positions,LEFT,AP,-0.15180745669349183,0,0,1
+PSM,full_all_positions,LEFT,ROC_AUC,-0.10625591183447203,0,0,1
+PSM,full_all_positions,LEFT,VUS_PR,-0.12820826028343663,0,0,1
+PSM,full_all_positions,LEFT,VUS_ROC,-0.11405606444554772,0,0,1
+PSM,full_all_positions,PCA residual,AP,-0.10934966710292893,0,0,1
+PSM,full_all_positions,PCA residual,ROC_AUC,-0.12318919926620675,0,0,1
+PSM,full_all_positions,PCA residual,VUS_PR,-0.08281125311500309,0,0,1
+PSM,full_all_positions,PCA residual,VUS_ROC,-0.09526152372055396,0,0,1
+PSM,target_official,LEFT,AP,-0.15322168405489006,0,0,1
+PSM,target_official,LEFT,ROC_AUC,-0.10799092975825986,0,0,1
+PSM,target_official,LEFT,VUS_PR,-0.1455007117683929,0,0,1
+PSM,target_official,LEFT,VUS_ROC,-0.1346567149283795,0,0,1
+PSM,target_official,PCA residual,AP,-0.11076389446432716,0,0,1
+PSM,target_official,PCA residual,ROC_AUC,-0.12492421718999458,0,0,1
+PSM,target_official,PCA residual,VUS_PR,-0.10010370459995938,0,0,1
+PSM,target_official,PCA residual,VUS_ROC,-0.11586217420338574,0,0,1
+PSM,target_source_copy,LEFT,AP,-0.1569231631515532,0,0,1
+PSM,target_source_copy,LEFT,ROC_AUC,-0.1104657530129799,0,0,1
+PSM,target_source_copy,LEFT,VUS_PR,-0.14621138918327176,0,0,1
+PSM,target_source_copy,LEFT,VUS_ROC,-0.13318008198836684,0,0,1
+PSM,target_source_copy,PCA residual,AP,-0.11446537356099029,0,0,1
+PSM,target_source_copy,PCA residual,ROC_AUC,-0.12739904044471462,0,0,1
+PSM,target_source_copy,PCA residual,VUS_PR,-0.10081438201483822,0,0,1
+PSM,target_source_copy,PCA residual,VUS_ROC,-0.11438554126337308,0,0,1
+PSM,target_source_all,LEFT,AP,-0.15535484409598266,0,0,1
+PSM,target_source_all,LEFT,ROC_AUC,-0.10755101023018077,0,0,1
+PSM,target_source_all,LEFT,VUS_PR,-0.14471900198755894,0,0,1
+PSM,target_source_all,LEFT,VUS_ROC,-0.13142916732286114,0,0,1
+PSM,target_source_all,PCA residual,AP,-0.11289705450541976,0,0,1
+PSM,target_source_all,PCA residual,ROC_AUC,-0.12448429766191549,0,0,1
+PSM,target_source_all,PCA residual,VUS_PR,-0.0993219948191254,0,0,1
+PSM,target_source_all,PCA residual,VUS_ROC,-0.11263462659786738,0,0,1
+MSL,full_official,target_official,AP,0.032369043452286,17,0,10
+MSL,full_official,target_official,ROC_AUC,0.0035435122459615,17,0,10
+MSL,full_official,target_official,VUS_PR,0.022369550855615206,16,0,11
+MSL,full_official,target_official,VUS_ROC,0.006466678467524134,18,0,9
+MSL,full_copy,target_source_copy,AP,0.023716522988190047,17,0,10
+MSL,full_copy,target_source_copy,ROC_AUC,0.0018164967562558365,15,0,12
+MSL,full_copy,target_source_copy,VUS_PR,0.013894294389635964,18,0,9
+MSL,full_copy,target_source_copy,VUS_ROC,0.00042207691112616796,17,0,10
+MSL,full_all_positions,target_source_all,AP,0.013921069671197772,16,0,11
+MSL,full_all_positions,target_source_all,ROC_AUC,0.0022984244670992693,16,0,11
+MSL,full_all_positions,target_source_all,VUS_PR,0.004765356247593999,15,0,12
+MSL,full_all_positions,target_source_all,VUS_ROC,0.0003795474109083985,16,0,11
+MSL,full_all_positions,full_copy,AP,-0.0007748747782846677,12,0,15
+MSL,full_all_positions,full_copy,ROC_AUC,-0.002123325439045365,12,0,15
+MSL,full_all_positions,full_copy,VUS_PR,-0.0011618773616156874,12,0,15
+MSL,full_all_positions,full_copy,VUS_ROC,-0.0006013021949261566,12,0,15
+MSL,full_all_positions,full_official,AP,0.0013023927110280414,17,0,10
+MSL,full_all_positions,full_official,ROC_AUC,0.002703010613588963,17,0,10
+MSL,full_all_positions,full_official,VUS_PR,0.0028192476858904247,16,0,11
+MSL,full_all_positions,full_official,VUS_ROC,0.0016778861234787446,18,0,9
+MSL,full_official,LEFT,AP,-0.03681924136469594,9,0,18
+MSL,full_official,LEFT,ROC_AUC,-0.01220948410630529,9,0,18
+MSL,full_official,LEFT,VUS_PR,-0.027344692025244588,9,0,18
+MSL,full_official,LEFT,VUS_ROC,-0.006342836722135314,9,0,18
+MSL,full_copy,LEFT,AP,-0.04251215607568426,9,0,18
+MSL,full_copy,LEFT,ROC_AUC,-0.012527357998957878,10,0,17
+MSL,full_copy,LEFT,VUS_PR,-0.012573751939548683,10,0,17
+MSL,full_copy,LEFT,VUS_ROC,-0.002864761127181814,9,0,18
+MSL,full_all_positions,LEFT,AP,-0.043724169692460624,8,0,19
+MSL,full_all_positions,LEFT,ROC_AUC,-0.011702853769669397,9,0,18
+MSL,full_all_positions,LEFT,VUS_PR,-0.032727308318107315,10,0,17
+MSL,full_all_positions,LEFT,VUS_ROC,-0.014006785333568361,10,0,17
+MSL,target_official,LEFT,AP,-0.05828973088899975,6,0,21
+MSL,target_official,LEFT,ROC_AUC,-0.026448965024982174,8,0,19
+MSL,target_official,LEFT,VUS_PR,-0.06565766337143253,6,0,21
+MSL,target_official,LEFT,VUS_ROC,-0.012971111054806639,8,0,19
+MSL,target_source_copy,LEFT,AP,-0.05175096092842965,6,0,21
+MSL,target_source_copy,LEFT,ROC_AUC,-0.014585721730067669,8,0,19
+MSL,target_source_copy,LEFT,VUS_PR,-0.04537627623392382,6,0,21
+MSL,target_source_copy,LEFT,VUS_ROC,-0.006576192557872118,9,0,18
+MSL,target_source_all,LEFT,AP,-0.05065550391167625,6,0,21
+MSL,target_source_all,LEFT,ROC_AUC,-0.009315796269992127,10,0,17
+MSL,target_source_all,LEFT,VUS_PR,-0.038612727032062644,6,0,21
+MSL,target_source_all,LEFT,VUS_ROC,-0.0020067624860290456,10,0,17

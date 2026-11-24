@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "initial": {
+    "arm": "official",
+    "kind": "official",
+    "checkpoint_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+    "source_event_labels": false
+  },
+  "bit_exact_loss_and_V": true,
+  "parameter_counts": {
+    "real_input_embed": 384,
+    "imag_input_embed": 384,
+    "encoder": 815552,
+    "decoder": 793610,
+    "net": 26113
+  },
+  "gradient_norms": {
+    "real_input_embed": 0.05885158106684685,
+    "imag_input_embed": 0.04674767702817917,
+    "encoder": 1.0331279039382935,
+    "decoder": 0.3486957252025604,
+    "net": 0.37006881833076477
+  },
+  "changed_parameter_tensors": {
+    "real_input_embed": 2,
+    "imag_input_embed": 2,
+    "encoder": 90,
+    "decoder": 9,
+    "net": 4
+  },
+  "logical_batch_seconds": 1.0673050777986646,
+  "buffers_unchanged": true,
+  "eval": true,
+  "RNG_restored": true,
+  "normal_only": true,
+  "plan_sha256": "dabec9aa6a4c6028f1ce6aaf0899135e0bc02d8544e1dd28a92938f83af444b3",
+  "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c"
+}

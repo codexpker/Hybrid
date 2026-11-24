@@ -1,0 +1,31 @@
+{
+  "sha256": "091ace17abe3dd70e05652e750f8ce69728b8763d3ba65ab370fd5bace2f99c7",
+  "keys": [
+    "full_official",
+    "full_copy",
+    "full_all_positions"
+  ],
+  "input_binding": {
+    "raw_input_path": "data/common_psm_raw_20261029_v1/test.npy",
+    "raw_input_sha256": "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5",
+    "scaler_path": "results/native_target_normal_20261124_v1/PSM/scaler.npz",
+    "scaler_sha256": "e1228904dde4004349342a25cbfa5266f0cf2a30de8bdef391e9759ec2196900",
+    "original_points": 87841,
+    "channels": 25,
+    "scaling": "raw public test array -> complete official normal-train mean/scale once"
+  },
+  "weights_sha256": [
+    "0432579a70dcbeff80d597931f7dff92b43be4ef14e250ed5298120c6128adea",
+    "16fc4643aeb663c99ac62aca40c96bd190bd62e601132f1dcb4249521fd31bd5",
+    "d9ed4ed7b57e7c654cc6ded4487cea35ade040435ee2c8bed18f73b6df75c492"
+  ],
+  "native_B": 1,
+  "copies": 10,
+  "mask_seed": 84551,
+  "correction": 1,
+  "eval": true,
+  "frozen_verified": true,
+  "RNG_restored": true,
+  "labels_read": false,
+  "seconds": 36.78481512190774
+}

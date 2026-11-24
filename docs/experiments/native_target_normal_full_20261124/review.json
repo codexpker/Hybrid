@@ -1,0 +1,431 @@
+{
+  "status": "PASS",
+  "GPU_used": false,
+  "model_forward_calls": 0,
+  "training": {
+    "status": "PASS",
+    "arms": [
+      {
+        "domain": "PSM",
+        "arm": "official",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.04842738062143326,
+          "imag_input_embed": 0.03788616135716438,
+          "encoder": 0.7543296217918396,
+          "decoder": 0.30701425671577454,
+          "net": 0.13112947344779968
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 680,
+        "window_exposure": 21180,
+        "last_logical_batch_windows": 3
+      },
+      {
+        "domain": "PSM",
+        "arm": "copy",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.021770011633634567,
+          "imag_input_embed": 0.0183232594281435,
+          "encoder": 0.3645155131816864,
+          "decoder": 0.09774670749902725,
+          "net": 0.2508634328842163
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 680,
+        "window_exposure": 21180,
+        "last_logical_batch_windows": 3
+      },
+      {
+        "domain": "PSM",
+        "arm": "all_positions",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.017752617597579956,
+          "imag_input_embed": 0.015913067385554314,
+          "encoder": 0.2956898510456085,
+          "decoder": 0.11356177926063538,
+          "net": 0.2635352909564972
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 680,
+        "window_exposure": 21180,
+        "last_logical_batch_windows": 3
+      },
+      {
+        "domain": "MSL",
+        "arm": "official",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.05885158106684685,
+          "imag_input_embed": 0.04674767702817917,
+          "encoder": 1.0331279039382935,
+          "decoder": 0.3486957252025604,
+          "net": 0.37006881833076477
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 300,
+        "window_exposure": 9080,
+        "last_logical_batch_windows": 6
+      },
+      {
+        "domain": "MSL",
+        "arm": "copy",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.03485707566142082,
+          "imag_input_embed": 0.03020313009619713,
+          "encoder": 0.651763916015625,
+          "decoder": 0.20965568721294403,
+          "net": 0.43249747157096863
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 300,
+        "window_exposure": 9080,
+        "last_logical_batch_windows": 6
+      },
+      {
+        "domain": "MSL",
+        "arm": "all_positions",
+        "selected_epoch": 20,
+        "gradient_norms": {
+          "real_input_embed": 0.04205768182873726,
+          "imag_input_embed": 0.03516160696744919,
+          "encoder": 0.8274407982826233,
+          "decoder": 0.24740543961524963,
+          "net": 0.4478287994861603
+        },
+        "precheck_changed_parameter_tensors": {
+          "real_input_embed": 2,
+          "imag_input_embed": 2,
+          "encoder": 90,
+          "decoder": 9,
+          "net": 4
+        },
+        "archive_recomputed_changed_parameter_tensors": {
+          "selected": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          },
+          "epoch20": {
+            "decoder": 9,
+            "encoder": 90,
+            "imag_input_embed": 2,
+            "net": 4,
+            "real_input_embed": 2
+          }
+        },
+        "initial_state_matches_decoder_control_epoch0": true,
+        "max_validation_mean_error": 0.0,
+        "executed_updates": 300,
+        "window_exposure": 9080,
+        "last_logical_batch_windows": 6
+      }
+    ],
+    "checkpoint_files_verified": 126,
+    "validation_banks_verified": 126,
+    "raw_normal_arrays_roles_scaler_and_20_epoch_orders_checked": true,
+    "validation_selection": "Independent CPU recomputation of window-bank validation means and earliest minimum",
+    "scope": "Hashes and initial/selected/epoch20 parameter tensor comparisons plus recorded GPU gradient checks; no model forward or gradients repeated",
+    "CPU_wall_seconds": 1.926888870075345
+  },
+  "score_and_summary": {
+    "status": "PASS",
+    "score_objects": 28,
+    "raw_AP_ROC_recomputed_rows": 168,
+    "fixed_entities_detail": [
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "common",
+        "method": "full_official",
+        "AP": 0.4261450235318701,
+        "ROC_AUC": 0.6709985312570685,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "native_full",
+        "method": "full_official",
+        "AP": 0.42611705982067266,
+        "ROC_AUC": 0.6708542734206995,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "common",
+        "method": "full_copy",
+        "AP": 0.42598190635576655,
+        "ROC_AUC": 0.6711061762472048,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "native_full",
+        "method": "full_copy",
+        "AP": 0.42596053922439836,
+        "ROC_AUC": 0.6709720666513123,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "common",
+        "method": "full_all_positions",
+        "AP": 0.42508778140618253,
+        "ROC_AUC": 0.6699278661492498,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "axis": "native_full",
+        "method": "full_all_positions",
+        "AP": 0.4250587814608683,
+        "ROC_AUC": 0.669782593750635,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "common",
+        "method": "full_official",
+        "AP": 0.25442122062647254,
+        "ROC_AUC": 0.6863325950535252,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "native_full",
+        "method": "full_official",
+        "AP": 0.25397961006062664,
+        "ROC_AUC": 0.6997702935099606,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "common",
+        "method": "full_copy",
+        "AP": 0.2476153617620677,
+        "ROC_AUC": 0.6338150609080841,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "native_full",
+        "method": "full_copy",
+        "AP": 0.24635811365320454,
+        "ROC_AUC": 0.6442103642588598,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "common",
+        "method": "full_all_positions",
+        "AP": 0.26193258029671745,
+        "ROC_AUC": 0.6903229974160207,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "axis": "native_full",
+        "method": "full_all_positions",
+        "AP": 0.26190267489148167,
+        "ROC_AUC": 0.7062503608298825,
+        "AP_error": 0.0,
+        "ROC_AUC_error": 0.0
+      }
+    ],
+    "max_raw_AP_error": 0.0,
+    "max_raw_ROC_error": 0.0,
+    "cached_comparison_rows_checked": 368,
+    "cached_comparison_max_CSV_parse_error": 0.0,
+    "macro_rows_checked": 42,
+    "pair_macro_rows_checked": 28,
+    "pair_entity_rows_checked": 314,
+    "pair_distribution_rows_checked": 112,
+    "max_aggregation_abs_error": 2.220446049250313e-16,
+    "VUS_scope": "All entity-to-domain macro averages, paired differences and distributions checked; no VUS integration repeated",
+    "scores_sha256": {
+      "PSM/PSM": "091ace17abe3dd70e05652e750f8ce69728b8763d3ba65ab370fd5bace2f99c7",
+      "MSL/C-1": "24fe67fd66a3b55a6c0145b54cb5d262c1d0066961d5f9031e48b8a9e96e289b",
+      "MSL/C-2": "73c0759b705e9ae9b311640fba2464c9957d1fc9d0a5196f089c2e4fa24ec0fe",
+      "MSL/D-14": "5c5da22857909493a413795113dd9d30607d93e5e14b67dd6ce11bce9cf321f9",
+      "MSL/D-15": "7fcc7ea33c94477f4635211737fefecd0382cf03b73e7ba61f6e0fc291d9841a",
+      "MSL/D-16": "ae036c6a0e088599123e33975be96acc6a8329d94acb41a635ccdfcffa3d7d30",
+      "MSL/F-4": "e5175985f41131e966ce5ff0a11fdb82f279a869008f955e59eac2a439f8583a",
+      "MSL/F-5": "11b165b94b6fac8bed63ff3e2956e7261b007d57d372b2982c3084d2ac30d861",
+      "MSL/F-7": "6f581ddc984e1431017558bd85cf1b180f7203e2a116808f5761cb5577bbbb20",
+      "MSL/F-8": "4699a1a5c084ccac76f838d09e090f5a4e0cbb0fa4c05a65f82b08323b991b22",
+      "MSL/M-1": "ef293026262d5bdf791e032f643814e4cc8ddf4a0df4a274c0433c89fa7e1cc3",
+      "MSL/M-2": "f2c3167996e93679de7df1f7f82cd6e3f2756c49ea4414ad3f0147d6c9703b30",
+      "MSL/M-3": "d71c1d32a479c2728a4475e32d94224b8eab1318214e5edff03c06cfb2f2cd39",
+      "MSL/M-4": "3d0a4a0899ecde7507ce123f84eb833bbed82699ff00b436f46ff0c35674e198",
+      "MSL/M-5": "6b8b1b1075311071a9d59d98d868068976736d12a52333ede4a5c4fc5c099ec5",
+      "MSL/M-6": "f637f5c4286c7760c669f962b7f30b7797b4238ecb5e4bf55384eb99b93b299d",
+      "MSL/M-7": "a3022de26fa445df029c1f183d33eafc3eeb32f657f3cdd140b0468866fe910a",
+      "MSL/P-10": "0c587feaad33f6d7acf7cb03f15b9d2996ca0dd3ef61beb15033b399df51320a",
+      "MSL/P-11": "5c1e272cbe1e0f1d8366b031187699cab5b566693978aaedf7f7e8677f01c600",
+      "MSL/P-14": "0c587feaad33f6d7acf7cb03f15b9d2996ca0dd3ef61beb15033b399df51320a",
+      "MSL/P-15": "cb5a5a39afa1da6669d19f632a2e52c320b67311edc5be4017b12f5220fcd6ea",
+      "MSL/S-2": "38d0227bb8b2e889cd08884bb30c27e6752ec67d746a51526d351a5244d826d8",
+      "MSL/T-12": "b94a1bc152537d7e4ecd24be8cefbc3e3fe5372c7244ca2e418227d82367f93e",
+      "MSL/T-13": "1d2977ea265ec4332a3d7effabe21e900ef32b647f7e549db081a6e0affc8dca",
+      "MSL/T-4": "f67177dbd0d4c2128438e498bfb4f235fcf4800543ab24a81781d4ce4e20c738",
+      "MSL/T-5": "8f71bca4d6997949c6deafc6176c6cb8463a1a6c1f95b55e6cddd6ee6498f33a",
+      "MSL/T-8": "99144bf13b6b1e569a937d1cf69b9b7c6336263aa2310081a974af84e423302a",
+      "MSL/T-9": "a571d9939188c9bb51dafa96f4562f98dad29b860e80da3354f8bafdea68b938"
+    },
+    "tables_sha256": {
+      "entity_metrics.csv": "82b14941af53132659b3c2fcef11f2e29c9dd98c41f9f9c52038af19d3a0b7a5",
+      "macro.csv": "2c460692297363dc0da4504f6443a63bb6e04e6c90b9be670041f302521ef5a0",
+      "paired_macro.csv": "b3d70330bcfb27ebcff6ab7a3ff9617d38808923fddbc0c42d8922ee7cbb27fa",
+      "paired_entity.csv": "9960593a2a759d27b2c632548269d5aa571d3081d97028e04e663d357375ca1f",
+      "paired_distribution.csv": "35c8faf9f227553b2eddc650f15c9a52c75330021551cac083719ff3273e9a90"
+    }
+  },
+  "CPU_wall_seconds": 0.8795958650298417
+}

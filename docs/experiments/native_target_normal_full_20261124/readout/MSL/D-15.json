@@ -1,0 +1,31 @@
+{
+  "sha256": "7fcc7ea33c94477f4635211737fefecd0382cf03b73e7ba61f6e0fc291d9841a",
+  "keys": [
+    "full_official",
+    "full_copy",
+    "full_all_positions"
+  ],
+  "input_binding": {
+    "raw_input_path": "data/native_event_msl_v1/test/D-15.npy",
+    "raw_input_sha256": "0c5691a3fc17b87d06eb23548931ffa589a5f4bed608b6db40ac976cd5695acd",
+    "scaler_path": "results/native_target_normal_20261124_v1/MSL/scaler.npz",
+    "scaler_sha256": "9c397ad381ac2b5ce40568ea964f08ff6c52c59bae2499a90abbbacca7e10f7c",
+    "original_points": 2158,
+    "channels": 1,
+    "scaling": "raw public test array -> complete official normal-train mean/scale once"
+  },
+  "weights_sha256": [
+    "990d847a4b19b54eb4437ce611c9f7caee19847a3b09f6a3fd09544d9488285c",
+    "e1aa94e8dd7c4ba1156a497ed51d528a238fcdca7228dc8497c5866d0be9ca74",
+    "8a94e6f7ca99a50fcad8ff38efe5974fb2998f0a9eef19ee42673f50288a854f"
+  ],
+  "native_B": 1,
+  "copies": 10,
+  "mask_seed": 84551,
+  "correction": 1,
+  "eval": true,
+  "frozen_verified": true,
+  "RNG_restored": true,
+  "labels_read": false,
+  "seconds": 0.6372587559744716
+}

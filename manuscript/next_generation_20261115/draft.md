@@ -104,6 +104,12 @@ All trajectories use project seed2025 and the same20 epoch-specific window permu
 
 Epoch0 and every completed epoch are evaluated on the complete legal normal-validation window set using native per-copy reconstruction MSE. This validation is a mean over legal windows; the later MSL detection results instead give each entity equal macro weight. The earliest minimum selects the formal checkpoint; training losses and all validation windows are retained. This is a fixed project training program, not an unchanged reproduction of an author training protocol. Models and selections are sealed before test readout. Evaluation retains full-window native V, fixed ten complementary masks, independent B1 fractional orders and window-end availability. This normal-target benchmark is distinct from mixed-unlabeled U and event-supervised F; neither earlier adaptation recipe is resumed. It uses one project-training seed and does not inherit the source experiment's three-seed standard deviation.
 
+## Full-parameter control for target-normal training
+
+To test the effect of the trainable parameter range, we repeat target-normal training from the same three original initializations. The full-parameter arm enables the fractional-order network, real and imaginary input embeddings, fractional encoder, and decoder in the existing AdamW parameter groups. The decoder-only trajectories provide the matched controls. Both scopes use evaluation mode with dropout disabled. Every window passes through its own native forward with the same ten complementary masks. In particular, each full-parameter model computes its own order and representation during readout because these weights can differ after training.
+
+The normal inputs, scaler, role boundaries, ordered batches, warmup schedule, 20 epochs and normal-validation selection rule are shared with the decoder-only comparison. Both scopes minimize the same per-copy reconstruction MSE and use the same full-window variance score. Comparing scopes within one initialization estimates the effect of changing the trainable range under this fixed training program. Comparing initializations within full-parameter training tests the added value of the archived source-supervised state under that scope.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
@@ -127,6 +133,27 @@ AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VU
 Strict and three-confirmation operation includes normal false-alarm point rate and fragments, abnormal recall, one-to-one event matches, any-hit, hit-only delay, complete-event coverage, and long steady coverage after the first 512 event points. Long-event macro and pooled coverages are both reported. MSL and SMAP have only four and ten eligible long events. PSM operation uses its original 64,728-point suffix, with all 512 CAL points labeled abnormal. NASA CAL is small and q99/higher equals its maximum. These thresholds do not certify normal 1% FPR. The SMD nominal-normal CAL and its actual normal test behavior are disclosed separately.
 
 # Results
+
+## Target-normal training scope
+
+We evaluated six additional full-parameter trajectories with the archived target-normal procedure. Each selects epoch20 by the same normal validation rule as the matched decoder-only controls. The full-budget evaluation holds the original initializations and target-data permissions fixed.
+
+| Task | Full-parameter target-normal training | AP | ROC-AUC | VUS-PR | VUS-ROC |
+|---|---|---:|---:|---:|---:|
+| PSM | Official initialization | .426145 | .670999 | .447756 | .674564 |
+| PSM | Source reconstruction initialization | .425982 | .671106 | .447632 | .674083 |
+| PSM | All-position source-supervised initialization | .425088 | .669928 | .445920 | .671730 |
+| MSL | Official initialization | .464447 | .714421 | .517487 | .750163 |
+| MSL | Source reconstruction initialization | .443015 | .715395 | .488308 | .748806 |
+| MSL | All-position source-supervised initialization | .431968 | .717039 | .477313 | .750918 |
+
+Full-parameter training improves AP, ROC-AUC and both VUS metrics over decoder-only training for every matched initialization in both tasks. The AP increments for official, source-reconstruction and all-position-supervised initializations are +0.002471, +0.006010 and +0.003547 on PSM, and +0.102551, +0.075095 and +0.059991 on MSL. On MSL, those scope contrasts have 17/10, 17/10 and 16/11 entity AP wins/losses with respective median changes +0.032369, +0.023717 and +0.013921. This is a change in target training scope. Normal reconstruction MSE is also lower in all six matched contrasts.
+
+The all-position source-supervised initialization does not yield an additional AP benefit under full-parameter training. Against source reconstruction, its AP differences are -0.000894 (PSM) and -0.011047 (MSL). Against the official initialization they are -0.001057 and -0.032479. On PSM the supervised initialization is lower on all four metrics than both other full-parameter arms. On MSL it improves ROC-AUC and VUS-ROC slightly over both but loses AP and VUS-PR. Its MSL AP distribution is 12 wins/15 losses with median -0.000775 against source reconstruction, and 17 wins/10 losses with median +0.001302 against official initialization despite a lower macro mean. Thus the macro loss against official initialization does not describe every entity.
+
+The best trained TimeRadar AP remains below complete LEFT by 0.150750 on PSM and 0.043896 on MSL. The best trained PSM AP also remains below PCA by 0.108292 and below the source-supervised zero-update reference by 0.012735. TimeRadar full-parameter training reduces all four gaps to LEFT within each initialization, especially on MSL, where the official initialization reaches AP 0.464447 versus LEFT 0.508343. The MSL gain belongs to the broader target training scope, with the strongest AP obtained from the official initialization. This single-seed result closes the current sequence of local source-supervised implementation revisions. Its bounded source-only and earlier decoder-only evidence remains in the corresponding panels.
+
+[Complete public method comparison and training-scope ablation](../../docs/experiments/native_target_normal_full_20261124/TABLES.md) includes both training scopes, the matched zero-update references, LEFT and all compatible PSM external rows, with entity-level results and information permissions linked in the [experiment record](../../docs/experiments/native_target_normal_full_20261124/RESULTS.md).
 
 ## Target-normal training: completed six-method comparison
 
