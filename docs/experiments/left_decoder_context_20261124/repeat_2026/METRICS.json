@@ -1,0 +1,212 @@
+{
+  "complete": true,
+  "domains": {
+    "PSM": {
+      "rows": {
+        "native_2025": {
+          "AP": 0.5766388878626516,
+          "ROC_AUC": 0.7760951761906911,
+          "VUS_PR": 0.5726108085172741,
+          "VUS_ROC": 0.7850669177600398
+        },
+        "observation_2025": {
+          "AP": 0.5763348114049007,
+          "ROC_AUC": 0.7557163062844072,
+          "VUS_PR": 0.572616115805782,
+          "VUS_ROC": 0.7623789592618075
+        },
+        "native_2026": {
+          "AP": 0.5701854730953129,
+          "ROC_AUC": 0.7717851511563314,
+          "VUS_PR": 0.5622296176833008,
+          "VUS_ROC": 0.7784289196597641
+        },
+        "observation_2026": {
+          "AP": 0.5722563839695188,
+          "ROC_AUC": 0.7655208082908529,
+          "VUS_PR": 0.5646705801148332,
+          "VUS_ROC": 0.7712720642636061
+        },
+        "level": {
+          "AP": 0.438270734313076,
+          "ROC_AUC": 0.6542326324559526,
+          "VUS_PR": 0.44602031839929696,
+          "VUS_ROC": 0.6542904595377053
+        },
+        "CATCH W192 seed0": {
+          "method": "CATCH W192 seed0",
+          "AP": 0.4459895321862464,
+          "ROC_AUC": 0.6534180428847209,
+          "VUS_PR": 0.5366710274718616,
+          "VUS_ROC": 0.7036566998683302,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "ca4afcda291303fba08a0a3971791b628dc81d85e1f94081702bb680b86d4120",
+          "reused": true
+        },
+        "CATCH W192 seed1": {
+          "method": "CATCH W192 seed1",
+          "AP": 0.43026389280294763,
+          "ROC_AUC": 0.6413990585050262,
+          "VUS_PR": 0.5192734114277965,
+          "VUS_ROC": 0.6906908461257336,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "fe96aba4cad4e87511fc23e891b022f5d30b798343aa528136e532589aaf8c1d",
+          "reused": true
+        },
+        "CATCH W192 seed2": {
+          "method": "CATCH W192 seed2",
+          "AP": 0.43304387230768676,
+          "ROC_AUC": 0.6472479773958782,
+          "VUS_PR": 0.5264474766825534,
+          "VUS_ROC": 0.6987333443694175,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "ff42fac31c06b0b37e1a5aef94a53588b9fa3d9a3a36b3422171325a14bdbcd1",
+          "reused": true
+        },
+        "PCA residual": {
+          "method": "PCA residual",
+          "AP": 0.5344044566628354,
+          "ROC_AUC": 0.7933207677743441,
+          "VUS_PR": 0.5289908883203089,
+          "VUS_ROC": 0.7666858309268084,
+          "permission": "target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t",
+          "score_sha256": "c987378b3dd1f114b5232259bcdde2603f95705a557861b330f6a13e189ab170",
+          "reused": true
+        },
+        "TimeRadar official block0 seed2024": {
+          "method": "TimeRadar official block0 seed2024",
+          "AP": 0.43326507714637724,
+          "ROC_AUC": 0.6706685336173157,
+          "VUS_PR": 0.4412588678534923,
+          "VUS_ROC": 0.6783651103218603,
+          "permission": "native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "score_sha256": "cd4b56b591dbd7829910bdff018c0bd42282f701cd4c3bc4f4c144153286401d",
+          "reused": true
+        },
+        "TimeRadar common FIT scaler seed2024": {
+          "method": "TimeRadar common FIT scaler seed2024",
+          "AP": 0.4553705977017055,
+          "ROC_AUC": 0.683822930413065,
+          "VUS_PR": 0.45807148508238293,
+          "VUS_ROC": 0.689162677323765,
+          "permission": "FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order",
+          "score_sha256": "6419137b53914606705737854ec1ae04c0ec0d5d390a5483dca1d7c299fb4be4",
+          "reused": true
+        }
+      },
+      "axis": [
+        132481,
+        220225
+      ],
+      "score_bindings": {
+        "native_2025": "d8a7dbb09a342b7cc5ff159796272cb090f2ad0c6bc79cf9ac2d72bb7f6f492e",
+        "observation_2025": "4279535a196ae5677342a38e7f98ffd074a0981f00706631e5e6841c8a048cf2",
+        "level": "05a71d704470ac1f1fd01e46634003a05cc0d11b7d26d5e47537997a5adabb54",
+        "native_2026": "c12e825365b292b01716bfe7ac3fac5fec7ff3914f6ed3ba32158ab9e5851385",
+        "observation_2026": "52e61e5cef21f812f0dd1d0cffeb07d77e054ed94534927a40b7f4faf7637a20"
+      },
+      "common_sampler_epochs": 20,
+      "paired_deltas": [
+        {
+          "seed": 2025,
+          "AP": -0.0003040764577508792,
+          "ROC_AUC": -0.020378869906283903,
+          "VUS_PR": 5.307288507894192e-06,
+          "VUS_ROC": -0.02268795849823224
+        },
+        {
+          "seed": 2026,
+          "AP": 0.0020709108742059668,
+          "ROC_AUC": -0.0062643428654785005,
+          "VUS_PR": 0.0024409624315323564,
+          "VUS_ROC": -0.007156855396158068
+        }
+      ],
+      "AP_ROC_rechecked_rows": 11,
+      "AP_ROC_max_error": 3.3306690738754696e-16
+    },
+    "SWAT": {
+      "rows": {
+        "native_2025": {
+          "AP": 0.5438660678092361,
+          "ROC_AUC": 0.8208526827012225,
+          "VUS_PR": 0.5346014364625334,
+          "VUS_ROC": 0.8092551182247254
+        },
+        "observation_2025": {
+          "AP": 0.7137235149959673,
+          "ROC_AUC": 0.8387120140468056,
+          "VUS_PR": 0.5448197766250114,
+          "VUS_ROC": 0.7078964597345456
+        },
+        "native_2026": {
+          "AP": 0.586209774104897,
+          "ROC_AUC": 0.8145479297372068,
+          "VUS_PR": 0.5226561493386516,
+          "VUS_ROC": 0.750588498475738
+        },
+        "observation_2026": {
+          "AP": 0.7451221319674064,
+          "ROC_AUC": 0.8446779862695881,
+          "VUS_PR": 0.5733434528807063,
+          "VUS_ROC": 0.7932966310467563
+        },
+        "level": {
+          "AP": 0.7448001650500642,
+          "ROC_AUC": 0.8318233525898336,
+          "VUS_PR": 0.46453620006612656,
+          "VUS_ROC": 0.6442766623473728
+        },
+        "TimeRadar official block0": {
+          "method": "TimeRadar official block0",
+          "AP": 0.6392988989070734,
+          "ROC_AUC": 0.821970433379716,
+          "VUS_PR": 0.5140609641876642,
+          "VUS_ROC": 0.7668314484019835,
+          "permission": "native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "score_sha256": "8ab9edbf1de02e36da11cd114845e7df5cb220b7ae359b2fc68e1a89796cdd5b",
+          "reused": true
+        }
+      },
+      "axis": [
+        495000,
+        944856
+      ],
+      "score_bindings": {
+        "native_2025": "4a45d5839917cecffff01b9cc4f096c367428b19c9517fdcf17f4e915cc770c8",
+        "observation_2025": "301fd8f2f85c9d034933d3ffa116f9913f6b9df973f8cb05ee8aab58bd7fba6d",
+        "level": "48b149051f3c8ecb33e224a9f39c87053416c5ab77e00950e03d967f820894b4",
+        "native_2026": "e45883a3f3d09a203f08111a82a12e05d54c3109c23baa384c8c9e2989af83af",
+        "observation_2026": "edf7ac9b7d5238542cc91ce80f126a6caf2d6b039a21a2e1c43ab6c84b5bff06"
+      },
+      "common_sampler_epochs": 19,
+      "paired_deltas": [
+        {
+          "seed": 2025,
+          "AP": 0.16985744718673124,
+          "ROC_AUC": 0.01785933134558315,
+          "VUS_PR": 0.010218340162477912,
+          "VUS_ROC": -0.10135865849017978
+        },
+        {
+          "seed": 2026,
+          "AP": 0.15891235786250935,
+          "ROC_AUC": 0.030130056532381322,
+          "VUS_PR": 0.05068730354205475,
+          "VUS_ROC": 0.04270813257101824
+        }
+      ],
+      "AP_ROC_rechecked_rows": 6,
+      "AP_ROC_max_error": 6.661338147750939e-16
+    }
+  },
+  "new_training_runs": 4,
+  "new_training_seed": 2026,
+  "cpu_wall_seconds": 49.125376366078854,
+  "source_sha256": "30df3478291d55aab5bccb278c47ad71041e883622777e908c520f7a01a30d92",
+  "VUS": {
+    "windowSize": 100,
+    "thre": 250
+  },
+  "operations": "NA"
+}

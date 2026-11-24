@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETED",
+  "bank_sha256": "52e61e5cef21f812f0dd1d0cffeb07d77e054ed94534927a40b7f4faf7637a20",
+  "raw_test_values_sha256": "b909181b176a7e1e654a5f96929760960ae6d86ec254703e7940953d997c5933",
+  "checkpoint_sha256": "53fc2b841c8e4ddc9a50d61e43609681d256df2623a6e6f0ec9067307da1298d",
+  "scoring_seconds": 0.7639168328605592,
+  "points": 87744,
+  "omitted_tail": 97,
+  "state_unchanged": true,
+  "labels_read": false,
+  "seed": 2026,
+  "detection_modulation": "off",
+  "native_lambda": 0.3
+}

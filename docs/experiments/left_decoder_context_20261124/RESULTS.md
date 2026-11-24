@@ -133,3 +133,61 @@ Prototype-conditioned training leads observation-conditioned training only on AP
 The two new PSM score banks (87,744 points, 25 channel scores each) passed checkpoint, scaler, score and availability checks. Measured A40 readout time was 0.690942 s for the first execution and 0.092070 s for the second, totaling 0.783013 A40-seconds (0.000218 GPU-hours). This includes the cold first forward and excludes loading and compression. CPU evaluation and plotting took 71.346 wall-seconds on the successful run. The initial CPU preflight was retried after differences in float32 channel summation order. The independent SmoothL1 check then matched all elementwise values on the first 4,096 points per task. The level scores retained their original NumPy channel mean. Independent tie-group AP and ROC-AUC recomputation on all 19 plotted rows gave maximum error 6.66e-16. VUS uses the existing LEFT implementation with `windowSize=100` and `thre=250`. The VUS contrasts are differences of these same-axis metrics.
 
 The scored PSM outputs and both level baselines are stored outside Git in `results/left_context_unmodulated_20261124_v1`. PSM observation-off score SHA-256 is `4279535a196ae5677342a38e7f98ffd074a0981f00706631e5e6841c8a048cf2` and prototype-off is `f2787ea3e81cfbb3dc5ce44327118a827ba85d008622f7feb611ffa4be0fe5a6`.
+
+## Seed2026 repetition of observation-assisted LEFT
+
+The repetition fixes two complete methods. Native LEFT retains its original training and readout. Observation-assisted LEFT uses the added multiscale modulation in normal FIT and SELECT, selects by the same normal validation rule, and bypasses only that modulation in detection. The original time–frequency cycle, prototype reads, memory mixing at $\lambda=0.3$, scaler and scoring formula are retained. The two arms share a seed2026 initialization for their common components and matched training randomization within each task. Their CPU RNG fingerprints agree at all 20 common PSM epochs and all 19 common SWaT epochs. The seed2025 runs and source-of-context ablation are archived above. SWaT seed2025 supplied the post-hoc observation that motivated this rule.
+
+The common axes are PSM test-relative [0, 87744) and SWaT absolute [495000, 944856). LEFT W192 scores become available at the last point of the containing window and are evaluated retrospectively. All operation metrics remain NA because there is no compatible independent CAL. External rows retain their own training, scaler and context permissions.
+
+### Complete methods
+
+| Dataset | Method | Seed | AP | ROC-AUC | VUS-PR | VUS-ROC | Permissions |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 2025 | 0.576639 | 0.776095 | 0.572611 | 0.785067 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| PSM | Observation-assisted LEFT, modulation off at detection | 2025 | 0.576335 | 0.755716 | 0.572616 | 0.762379 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| PSM | Native LEFT | 2026 | 0.570185 | 0.771785 | 0.562230 | 0.778429 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| PSM | Observation-assisted LEFT, modulation off at detection | 2026 | 0.572256 | 0.765521 | 0.564671 | 0.771272 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| PSM | Pointwise level deviation | — | 0.438271 | 0.654233 | 0.446020 | 0.654290 | No parameter training, same normal-prefix scaler, current point only |
+| PSM | CATCH W192 seed0 | Archive | 0.445990 | 0.653418 | 0.536671 | 0.703657 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | CATCH W192 seed1 | Archive | 0.430264 | 0.641399 | 0.519273 | 0.690691 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | CATCH W192 seed2 | Archive | 0.433044 | 0.647248 | 0.526447 | 0.698733 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| PSM | PCA residual | Archive | 0.534404 | 0.793321 | 0.528991 | 0.766686 | target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t |
+| PSM | TimeRadar official block0 seed2024 | Archive | 0.433265 | 0.670669 | 0.441259 | 0.678365 | Frozen pretrained weights, native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| PSM | TimeRadar common FIT scaler seed2024 | Archive | 0.455371 | 0.683823 | 0.458071 | 0.689163 | Frozen pretrained weights, FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order |
+| SWaT | Native LEFT | 2025 | 0.543866 | 0.820853 | 0.534601 | 0.809255 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| SWaT | Observation-assisted LEFT, modulation off at detection | 2025 | 0.713724 | 0.838712 | 0.544820 | 0.707896 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| SWaT | Native LEFT | 2026 | 0.586210 | 0.814548 | 0.522656 | 0.750588 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| SWaT | Observation-assisted LEFT, modulation off at detection | 2026 | 0.745122 | 0.844678 | 0.573343 | 0.793297 | Normal FIT and SELECT, normal-prefix scaler including SELECT, offline W192 |
+| SWaT | Pointwise level deviation | — | 0.744800 | 0.831823 | 0.464536 | 0.644277 | No parameter training, same normal-prefix scaler, current point only |
+| SWaT | TimeRadar official block0 | Archive | 0.639299 | 0.821970 | 0.514061 | 0.766831 | Frozen pretrained weights, native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| SWaT | CATCH W192 | — | NA | NA | NA | NA | Compatible full-axis cache unavailable |
+| SWaT | PCA residual | — | NA | NA | NA | NA | Compatible full-axis cache unavailable |
+
+### Paired differences: observation-assisted LEFT minus native LEFT
+
+| Dataset | Seed | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | 2026 | +0.002071 | -0.006264 | +0.002441 | -0.007157 |
+| SWaT | 2025 | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | 2026 | +0.158912 | +0.030130 | +0.050687 | +0.042708 |
+
+On SWaT the candidate improves AP, ROC-AUC and VUS-PR relative to native LEFT in both seeds. VUS-ROC falls by 0.101359 in seed2025 and rises by 0.042708 in seed2026. The fixed pointwise level score reaches AP 0.744800. It exceeds the seed2025 candidate by 0.031077 and trails seed2026 by 0.000322. The trained candidate exceeds it on ROC-AUC and both VUS measures in both seeds. The AP gain relative to native LEFT is repeatable here, but these results leave the source of the gain beyond simple level deviation unresolved.
+
+On PSM, the AP difference changes from −0.000304 to +0.002071 and VUS-PR changes are small. ROC-AUC and VUS-ROC fall in both seeds. The repeated pattern is a ranking trade-off with near-tied AP. Both candidate seeds exceed the fixed level baseline on all four measures. These two seeds provide descriptive evidence about training variation on the same development tasks. They do not establish statistical significance or independent-domain confirmation.
+
+[PSM PR and ROC](repeat_2026/psm_pr_roc.svg) · [SWaT PR and ROC](repeat_2026/swat_pr_roc.svg) · [Full precision metrics and score identities](repeat_2026/METRICS.json)
+
+### Training and evaluation cost
+
+| Dataset | Seed2026 method | Epochs run | Selected epoch | Updates run | Training (A40 s) | Readout (A40 s) |
+| --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 20 | 19 | 16,540 | 974.416 | 0.800 |
+| PSM | Observation-assisted LEFT, modulation off at detection | 20 | 19 | 16,540 | 1000.938 | 0.764 |
+| SWaT | Native LEFT | 19 | 16 | 58,767 | 3838.619 | 3.935 |
+| SWaT | Observation-assisted LEFT, modulation off at detection | 19 | 16 | 58,767 | 3986.365 | 3.998 |
+
+The four new trainings used 2.722316 A40 GPU-hours. The four full readouts used 9.496 A40-seconds. Combined measured cost was 2.724954 A40 GPU-hours. CPU metrics, curves and numerical recomputation took 49.125 wall-seconds. Costs exclude process startup and reused runs.
+
+An independent tie-group AP and trapezoidal ROC-AUC calculation on 17 new and reused score rows matched the reported values to within 6.66e-16. VUS uses the fixed LEFT evaluator (windowSize 100, thre 250). Score banks, checkpoints and scalers for all four new runs match their SHA-256 receipts. The new per-point and per-channel banks, input indices, availability indices, scalers and checkpoints are archived outside Git under `results/left_context_unmodulated_repeat_20261125_v1`.

@@ -128,6 +128,8 @@ The SWaT fixed-weight switch experiment motivated a separate deployment rule. Th
 
 The observation-conditioned training arm controls for active capacity and the train-to-detection change. We also compare with a fixed pointwise level baseline, the channel mean of $\operatorname{SmoothL1}(z_{t,c},0)$ with $\beta=1$ and the same normal-prefix scaler. This baseline uses the current standardized observation directly. These comparisons test the complete detection rule and the contribution of the training context source under this rule.
 
+We repeat the observation-assisted method and native LEFT at seed2026 with matched common parameters and training randomization within each benchmark. The observation-assisted method uses modulation for normal training and validation-based checkpoint selection and removes only that modulation for detection. The seed2025 SWaT intervention is the discovery evidence, and the prototype comparison remains a separate source-of-context ablation.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
@@ -189,6 +191,23 @@ The SWaT figures reuse the discovery scores. Both off variants exceed native LEF
 Prototype-conditioned training leads observation-conditioned training only on AP in both datasets (+0.003535 and +0.006631). ROC-AUC and both VUS measures favor observation conditioning. The data do not establish an independent prototype benefit across metrics. The PSM check did not reproduce the broad SWaT improvement, and the SWaT AP gain over native LEFT is smaller than the gain from a static level score under the same scaler. These results do not justify repeating the complete two-domain recipe with new seeds at this stage. They also leave open other static explanations for the observed ranking differences.
 
 [Full comparison, paired contrasts, and costs](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#fixed-conditioned-training-comparison-with-unmodulated-detection). [PSM PR and ROC](../../docs/experiments/left_decoder_context_20261124/figures/psm_pr_roc.svg) and [SWaT PR and ROC](../../docs/experiments/left_decoder_context_20261124/figures/swat_pr_roc.svg).
+
+## Two-seed comparison of observation-assisted LEFT
+
+Differences below are observation-assisted LEFT with modulation off at detection minus native LEFT, paired by task and training seed. Both methods use W192 full-window offline evaluation on PSM [0, 87744) and SWaT [495000, 944856), relative to the test segment and the full array respectively. Independent-CAL operation metrics are unavailable.
+
+| Dataset | Seed | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | 2026 | +0.002071 | -0.006264 | +0.002441 | -0.007157 |
+| SWaT | 2025 | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | 2026 | +0.158912 | +0.030130 | +0.050687 | +0.042708 |
+
+On SWaT the candidate improves AP, ROC-AUC and VUS-PR relative to native LEFT in both seeds. VUS-ROC falls by 0.101359 in seed2025 and rises by 0.042708 in seed2026. The fixed pointwise level score reaches AP 0.744800. It exceeds the seed2025 candidate by 0.031077 and trails seed2026 by 0.000322. The trained candidate exceeds it on ROC-AUC and both VUS measures in both seeds. The AP gain relative to native LEFT is repeatable here, but these results leave the source of the gain beyond simple level deviation unresolved.
+
+On PSM, the AP difference changes from −0.000304 to +0.002071 and VUS-PR changes are small. ROC-AUC and VUS-ROC fall in both seeds. The repeated pattern is a ranking trade-off with near-tied AP. Both candidate seeds exceed the fixed level baseline on all four measures. These two seeds provide descriptive evidence about training variation on the same development tasks. They do not establish statistical significance or independent-domain confirmation.
+
+[Complete method table, permissions, cost and numerical check](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#seed2026-repetition-of-observation-assisted-left). [PSM PR and ROC](../../docs/experiments/left_decoder_context_20261124/repeat_2026/psm_pr_roc.svg) and [SWaT PR and ROC](../../docs/experiments/left_decoder_context_20261124/repeat_2026/swat_pr_roc.svg).
 
 ## Target-normal training scope
 
