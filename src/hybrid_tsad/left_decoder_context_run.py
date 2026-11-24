@@ -17,6 +17,7 @@ from .left_decoder_context import ARMS, REVISION, channel_context, model_class
 from .left_swat_author import dump, read, sha
 
 OUT = Path('results/left_decoder_context_20261124_v1')
+REPEAT = Path('results/left_context_unmodulated_repeat_20261125_v1')
 BASE = Path('preparations/left_baseline_build_20261101_v1')
 SWAT_PREP = Path('preparations/left_multievent_mixed_u_20261111_v1')
 SWA = Path('results/left_swat_author_20261118_v1')
@@ -135,18 +136,21 @@ def check(w, domain):
     dump(w/OUT/domain/'CHECKS.json', dict(passed=True, public_normal_only=True, results=fitted))
 
 
-def run(w, domain, arm):
-    out = w/OUT/domain/arm
+def run(w, domain, arm, *, repeat_2026=False):
+    if repeat_2026 and arm not in ('native','observation'):
+        raise ValueError('The fixed repetition covers native and observation only')
+    seed = 2026 if repeat_2026 else 2025
+    out = w/(REPEAT if repeat_2026 else OUT)/domain/arm
     out.mkdir(parents=True, exist_ok=False)
-    assert read(out.parent/'CHECKS.json')['passed']
+    assert read(w/OUT/domain/'CHECKS.json')['passed']
     official, configs, source = environment(w, domain)
     normalized, cut, scaler, raw_identity = normal(w, domain)
     normal_points = len(normalized)
     config_paths = sorted((configs/domain).glob('*.json'))
-    random.seed(2025)
-    np.random.seed(2025)
-    torch.manual_seed(2025)
-    torch.cuda.manual_seed_all(2025)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
     kind = model_class(official.Left, arm)
     trace, selected = [], []
     updates = 0
@@ -199,7 +203,7 @@ def run(w, domain, arm):
     config = exp.model
     init = fingerprint({k:v for k,v in config.state_dict().items() if not k.startswith('ms_decoder.to_gb.')})
     np.savez_compressed(out/'SCALER.npz', mean=scaler.mean_, scale=scaler.scale_, var=scaler.var_)
-    dump(out/'CONFIG.json', dict(domain=domain, arm=arm, seed=2025, official_reference_revision=REVISION,
+    setup = dict(domain=domain, arm=arm, seed=seed, official_reference_revision=REVISION,
          upstream_files=source, configuration={p.name:sha(p) for p in config_paths},
          common_initial_state_sha256=init, scaler_sha256=sha(out/'SCALER.npz'),
          normal_values_sha256=raw_identity, FIT=[0,cut], SELECT=[cut,normal_points],
@@ -207,7 +211,15 @@ def run(w, domain, arm):
          scaler_fit=[0,normal_points], curriculum=dict(warmup=config.warmup_steps,ramp=config.ramp_steps,maximum=config.lambda_max),
          batch=exp.train_configs.batch_size, max_epochs=exp.train_configs.train_epochs,
          early_stop_patience=exp.train_configs.patience, optimizer=exp.train_configs.optim, lr=exp.train_configs.learning_rate,
-         lr_schedule=exp.train_configs.lradj, labels_read=False))
+         lr_schedule=exp.train_configs.lradj, labels_read=False)
+    if repeat_2026:
+        reference = read(w/OUT/domain/arm/'CONFIG.json')
+        assert setup['common_initial_state_sha256'] != reference['common_initial_state_sha256']
+        assert all(v == reference[k] for k,v in setup.items() if k not in ('seed','common_initial_state_sha256'))
+        setup.update(reused_check_sha256=sha(w/OUT/domain/'CHECKS.json'),
+                     normal_select_modulation='on' if arm=='observation' else 'none',
+                     detection_modulation='off' if arm=='observation' else 'none')
+    dump(out/'CONFIG.json', setup)
     torch.cuda.reset_peak_memory_stats()
     start = time.monotonic()
     exp.train()
@@ -233,6 +245,14 @@ def run(w, domain, arm):
     raw_test_hash = hashlib.sha256(values.tobytes()).hexdigest()
     scaled = scaler.transform(np.array(values,dtype=np.float64,order='F',copy=True))
     config.eval()
+    lam = config._curriculum_lambda()
+    if repeat_2026:
+        assert raw_test_hash == read(w/OUT/domain/arm/'SCORE_RECEIPT.json')['raw_test_values_sha256']
+        if arm == 'observation':
+            from types import MethodType
+            from .left_context_unmodulated import off_ms
+            config._condition_ms = MethodType(off_ms, config)
+        assert config._curriculum_lambda() == lam > 0
     before, step = fingerprint(config.state_dict()), config.step
     start = time.monotonic()
     with torch.no_grad():
@@ -245,9 +265,13 @@ def run(w, domain, arm):
     bank = out/'raw_scores.npz'
     np.savez_compressed(bank,canonical_score=score,per_channel=raw_score,absolute_time_index=index,
                         available_index=normal_points+(np.arange(len(score))//WINDOW+1)*WINDOW-1)
-    dump(out/'SCORE_RECEIPT.json',dict(status='COMPLETED',bank_sha256=sha(bank),raw_test_values_sha256=raw_test_hash,
+    receipt = dict(status='COMPLETED',bank_sha256=sha(bank),raw_test_values_sha256=raw_test_hash,
          checkpoint_sha256=sha(ckpt), scoring_seconds=time.monotonic()-start, points=len(score),
-         omitted_tail=len(values)-len(score), state_unchanged=True, labels_read=False))
+         omitted_tail=len(values)-len(score), state_unchanged=True, labels_read=False)
+    if repeat_2026:
+        assert config._curriculum_lambda() == lam
+        receipt.update(seed=seed, detection_modulation=setup['detection_modulation'], native_lambda=lam)
+    dump(out/'SCORE_RECEIPT.json',receipt)
 
 
 if __name__ == '__main__':
@@ -255,6 +279,7 @@ if __name__ == '__main__':
     p.add_argument('action',choices=('check','run'))
     p.add_argument('--domain',choices=DOMAINS,required=True)
     p.add_argument('--arm',choices=ARMS)
+    p.add_argument('--repeat-2026',action='store_true')
     a = p.parse_args()
     torch.set_num_threads(1)
     torch.set_num_interop_threads(1)
@@ -262,7 +287,8 @@ if __name__ == '__main__':
     root = Path.cwd()
     (root/OUT/a.domain).mkdir(parents=True,exist_ok=True)
     if a.action == 'check':
+        assert not a.repeat_2026
         check(root,a.domain)
     else:
         assert a.arm is not None
-        run(root,a.domain,a.arm)
+        run(root,a.domain,a.arm,repeat_2026=a.repeat_2026)

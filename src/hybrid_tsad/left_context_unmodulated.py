@@ -110,12 +110,12 @@ def score_psm(w):
         print(arm, seconds, flush=True)
 
 
-def scores(w, domain):
+def scores(w, domain, *, keys=('native','observation_on','prototype_on','observation_off','prototype_off')):
     lo, hi = prior.AXES[domain]
     idx = np.arange(lo,hi)
     fingerprints = {}
     bank = {}
-    for key in ('native','observation_on','prototype_on','observation_off','prototype_off'):
+    for key in keys:
         arm = key.split('_')[0]
         raw_reference = w/OUT/domain/arm
         ref = read(raw_reference/'SCORE_RECEIPT.json')
@@ -198,7 +198,7 @@ def read_archive_curve(w, row, axis):
         return z[row['score_key']].reshape(-1)[take]
 
 
-def plot(root, domain, y, bank, rows):
+def plot(root, domain, y, bank, rows, *, names=None, dashed=()):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -214,7 +214,7 @@ def plot(root, domain, y, bank, rows):
         row = rows[key]
         prefix = key.split('_')[0]
         if prefix in palette:
-            color, ls = palette[prefix], '--' if key.endswith('_on') else '-'
+            color, ls = palette[prefix], '--' if key.endswith('_on') or key in dashed else '-'
         else:
             color, ls = external[ext_id], ':'
             ext_id += 1
@@ -222,7 +222,7 @@ def plot(root, domain, y, bank, rows):
         fpr, tpr, _ = roc_curve(y,values)
         pr.plot(recall,precision,color=color,ls=ls,lw=1.15)
         roc.plot(fpr,tpr,color=color,ls=ls,lw=1.15)
-        name = NAMES.get(key,key).replace('-conditioned training, detection',' conditioning,')
+        name = (names or NAMES).get(key,key).replace('-conditioned training, detection',' conditioning,')
         handles.append(Line2D([],[],color=color,ls=ls,label=f"{name} | {row['AP']:.3f} / {row['ROC_AUC']:.3f}"))
     pr.axhline(y.mean(),color='#aaa',ls=':',lw=.8)
     roc.plot([0,1],[0,1],color='#aaa',ls=':',lw=.8)
