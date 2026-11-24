@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "public_normal_only": true,
+  "results": {
+    "native": {
+      "loss_bit_exact_at_zero_modulation": true,
+      "score_bit_exact_at_zero_modulation": true,
+      "association_and_forced_EMA_calls": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "native_step_increment": 1,
+      "to_gb_weight_grad_norm": 0.0,
+      "inference_frozen": true
+    },
+    "observation": {
+      "loss_bit_exact_at_zero_modulation": true,
+      "score_bit_exact_at_zero_modulation": true,
+      "association_and_forced_EMA_calls": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "native_step_increment": 1,
+      "to_gb_weight_grad_norm": 0.19726388156414032,
+      "inference_frozen": true
+    },
+    "prototype": {
+      "loss_bit_exact_at_zero_modulation": true,
+      "score_bit_exact_at_zero_modulation": true,
+      "association_and_forced_EMA_calls": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "native_step_increment": 1,
+      "to_gb_weight_grad_norm": 0.20133888721466064,
+      "inference_frozen": true
+    }
+  }
+}

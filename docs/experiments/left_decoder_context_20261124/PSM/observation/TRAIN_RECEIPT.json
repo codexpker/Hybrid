@@ -1,0 +1,228 @@
+{
+  "status": "COMPLETED",
+  "selected": {
+    "epoch": 15,
+    "loss": 0.5252479016780853,
+    "step": 12405,
+    "sha256": "2d2dccc8ae0b88d24d188758928adb279e9888b0e6af554672f134674f95d4ee"
+  },
+  "validation": [
+    {
+      "epoch": 1,
+      "validation_loss": 0.6006101369857788,
+      "updates": 827,
+      "step": 827,
+      "cpu_rng_sha256": "246872e96ab001eb694faa628c2f6a597407b6012e056496ef5368a8fcadabf7"
+    },
+    {
+      "epoch": 2,
+      "validation_loss": 0.5722626149654388,
+      "updates": 1654,
+      "step": 1654,
+      "cpu_rng_sha256": "9053e99b10f043bbf05090d137c6218f093be51a37aa4f332fe683a547a243a9"
+    },
+    {
+      "epoch": 3,
+      "validation_loss": 0.5505123734474182,
+      "updates": 2481,
+      "step": 2481,
+      "cpu_rng_sha256": "8c1ae5f5baa27f8f8d6c5d5ba883123ea743f11a13c0512fe614bdfa7e696be6"
+    },
+    {
+      "epoch": 4,
+      "validation_loss": 0.5414391160011292,
+      "updates": 3308,
+      "step": 3308,
+      "cpu_rng_sha256": "c05142d89c1933a88c8681bf6ba83c91463f2499051c78abd694436d07dee98e"
+    },
+    {
+      "epoch": 5,
+      "validation_loss": 0.5367427915334702,
+      "updates": 4135,
+      "step": 4135,
+      "cpu_rng_sha256": "717bf5f98feb165e18d6df9e717522a10e7f76c31a8a8df22a66edf5ee23b897"
+    },
+    {
+      "epoch": 6,
+      "validation_loss": 0.5332298278808594,
+      "updates": 4962,
+      "step": 4962,
+      "cpu_rng_sha256": "bebf6939864e2d3f6e03fc849d20b91e417667b66683fa2d05c810e2362b7a26"
+    },
+    {
+      "epoch": 7,
+      "validation_loss": 0.5311231911182404,
+      "updates": 5789,
+      "step": 5789,
+      "cpu_rng_sha256": "842305be2dd8e5b2723e7c0d9aa8ed9e610233f4d66e3bf9d8db1b5381003b8f"
+    },
+    {
+      "epoch": 8,
+      "validation_loss": 0.5269820094108582,
+      "updates": 6616,
+      "step": 6616,
+      "cpu_rng_sha256": "4c0d0ea713ddfec44c4726dca038ba8d6273193942ccf55436348814a796367b"
+    },
+    {
+      "epoch": 9,
+      "validation_loss": 0.5273833274841309,
+      "updates": 7443,
+      "step": 7443,
+      "cpu_rng_sha256": "fce21f904af320516972d47ff171b311d7e87c69e90dfd35d1e0500caf956fa3"
+    },
+    {
+      "epoch": 10,
+      "validation_loss": 0.5266633927822113,
+      "updates": 8270,
+      "step": 8270,
+      "cpu_rng_sha256": "b56fba4c2ccf19006e86909ea42307c65ebac8c4f26ec1246f69c0ebea19e04b"
+    },
+    {
+      "epoch": 11,
+      "validation_loss": 0.5270515829324722,
+      "updates": 9097,
+      "step": 9097,
+      "cpu_rng_sha256": "5fd01e8bf748675ea6dd59403a7c04ec8d79b877838e1eee59c2059d20881868"
+    },
+    {
+      "epoch": 12,
+      "validation_loss": 0.5261597782373428,
+      "updates": 9924,
+      "step": 9924,
+      "cpu_rng_sha256": "183a6ee796287d42c837703f2b727e5d2406caa7895160209b93d68f81d4074d"
+    },
+    {
+      "epoch": 13,
+      "validation_loss": 0.5258436352014542,
+      "updates": 10751,
+      "step": 10751,
+      "cpu_rng_sha256": "ed88944fbf619445ade320e1c6005ccfd99b37836d0ee58a9dbb03abbaf2113c"
+    },
+    {
+      "epoch": 14,
+      "validation_loss": 0.5256741046905518,
+      "updates": 11578,
+      "step": 11578,
+      "cpu_rng_sha256": "54db58af5149e1a9e0e5556f1d8509334fa8d9ba9c3d99ef3111cae67734d8b5"
+    },
+    {
+      "epoch": 15,
+      "validation_loss": 0.5252479016780853,
+      "updates": 12405,
+      "step": 12405,
+      "cpu_rng_sha256": "4f34f1d8942a9e355474fef0e5875e25655008695f6fc6e4720dddb842e4d733"
+    },
+    {
+      "epoch": 16,
+      "validation_loss": 0.5253585875034332,
+      "updates": 13232,
+      "step": 13232,
+      "cpu_rng_sha256": "63e8c0cdfcdb34ebb8aebb4b4372211e31400def240b7b00b29aed595656b2f3"
+    },
+    {
+      "epoch": 17,
+      "validation_loss": 0.5252611339092255,
+      "updates": 14059,
+      "step": 14059,
+      "cpu_rng_sha256": "244f56079c7386b833274782d24d639d3f269b8e9425a2e9952dcf92408128c3"
+    },
+    {
+      "epoch": 18,
+      "validation_loss": 0.5253631919622421,
+      "updates": 14886,
+      "step": 14886,
+      "cpu_rng_sha256": "2d47bfb23bfd10ccf4f0c4a1b022fbaca4b234762faa91c3e508e21e62e67599"
+    }
+  ],
+  "selection_history": [
+    {
+      "epoch": 1,
+      "loss": 0.6006101369857788,
+      "step": 827,
+      "sha256": "ccaaef81a97c7a6273e02e6559670baa84d7a0c901efa0f3497773fe646c14a9"
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5722626149654388,
+      "step": 1654,
+      "sha256": "4012ca7560fdd5482edfd00aeade12b10b9ec82d3d2bcede07724eed08c7fba9"
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5505123734474182,
+      "step": 2481,
+      "sha256": "05410168b0b28eb2738d0739a26cc1b53884139a6236ec90b48d91da31957e98"
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5414391160011292,
+      "step": 3308,
+      "sha256": "50b9a871c344c3ab06999a63724a2b43acccb315f1bce72139be9b5154d32fa8"
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5367427915334702,
+      "step": 4135,
+      "sha256": "63f2d4967df392e854548c4f5eefb9ab6a38d401755576b4fd7e8d632f063f51"
+    },
+    {
+      "epoch": 6,
+      "loss": 0.5332298278808594,
+      "step": 4962,
+      "sha256": "319c88c84db2755edd1cb6e323f483876026b6c7d8f0c2b31cf0da8a07c644e8"
+    },
+    {
+      "epoch": 7,
+      "loss": 0.5311231911182404,
+      "step": 5789,
+      "sha256": "2cb38180f95d97fbae9544c1f5ebebd44bb6e79090dd9e6bdf47506cf18a516d"
+    },
+    {
+      "epoch": 8,
+      "loss": 0.5269820094108582,
+      "step": 6616,
+      "sha256": "6f2a119e1b5866a29ab59be23e4d3efefc8181bff50cead119b37da7340e334a"
+    },
+    {
+      "epoch": 10,
+      "loss": 0.5266633927822113,
+      "step": 8270,
+      "sha256": "0fd007030a8219b08b80682a360460b433d4fe83e42d89ce4d822cbe21ccf8eb"
+    },
+    {
+      "epoch": 12,
+      "loss": 0.5261597782373428,
+      "step": 9924,
+      "sha256": "37e45432b348ed5b82e053a7671b816e9bc0e0204250881972c8cc1dd19be58b"
+    },
+    {
+      "epoch": 13,
+      "loss": 0.5258436352014542,
+      "step": 10751,
+      "sha256": "20b30537cc23ddc28392d1d2b357a64ea24bfc898927e6517d92701ef7101cad"
+    },
+    {
+      "epoch": 14,
+      "loss": 0.5256741046905518,
+      "step": 11578,
+      "sha256": "eb68a4b80e53522f1b15fd1fbe2054fce876642d6da5728fe2396cc8bb9d6aef"
+    },
+    {
+      "epoch": 15,
+      "loss": 0.5252479016780853,
+      "step": 12405,
+      "sha256": "2d2dccc8ae0b88d24d188758928adb279e9888b0e6af554672f134674f95d4ee"
+    }
+  ],
+  "updates": 14886,
+  "final_step": 14886,
+  "parameters": {
+    "registered": 4519985,
+    "updated": 4519985,
+    "active_modulation": 33280
+  },
+  "train_seconds": 941.146127617918,
+  "train_peak_reserved": 1755316224,
+  "test_values_read": false,
+  "labels_read": false
+}

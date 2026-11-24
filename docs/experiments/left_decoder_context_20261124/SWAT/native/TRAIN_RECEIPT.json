@@ -1,0 +1,208 @@
+{
+  "status": "COMPLETED",
+  "selected": {
+    "epoch": 13,
+    "loss": 0.018679872527718543,
+    "step": 40209,
+    "sha256": "7d8188bed6d6c521322cd8617a0ca78571d0880e0087dddc7d00866050755b6e"
+  },
+  "validation": [
+    {
+      "epoch": 1,
+      "validation_loss": 0.02962929308414459,
+      "updates": 3093,
+      "step": 3093,
+      "cpu_rng_sha256": "fe696b384e3287d70f3de261b529a0001847c66487479466a99cb35fabd9cd50"
+    },
+    {
+      "epoch": 2,
+      "validation_loss": 0.023049657791852952,
+      "updates": 6186,
+      "step": 6186,
+      "cpu_rng_sha256": "eaa8d03fbc152fc4fdf678767f3de1d0409fa4936615236cced41df87cde6d4e"
+    },
+    {
+      "epoch": 3,
+      "validation_loss": 0.020863266289234163,
+      "updates": 9279,
+      "step": 9279,
+      "cpu_rng_sha256": "465bfd94178536b4921f192815084ecfceb6f269843d9ad4cbfd5da35588a44a"
+    },
+    {
+      "epoch": 4,
+      "validation_loss": 0.019353948161005975,
+      "updates": 12372,
+      "step": 12372,
+      "cpu_rng_sha256": "1ee5374ae7b405a754de0831a51020b11dcfa43cdc95bc99d095382b42b329ff"
+    },
+    {
+      "epoch": 5,
+      "validation_loss": 0.019002576917409898,
+      "updates": 15465,
+      "step": 15465,
+      "cpu_rng_sha256": "ee34b1c3ab4c7ff6b7dad6360f75219cd12d5b4057a47603829039d60aeddbce"
+    },
+    {
+      "epoch": 6,
+      "validation_loss": 0.018843569606542588,
+      "updates": 18558,
+      "step": 18558,
+      "cpu_rng_sha256": "730b282d97dd75ee9901982722b03da6c8c5d2316007afe6b556fae7d47fe371"
+    },
+    {
+      "epoch": 7,
+      "validation_loss": 0.01875666305422783,
+      "updates": 21651,
+      "step": 21651,
+      "cpu_rng_sha256": "442be7591af8ca158e226e4456efddae60b4fa73c89d8066c55686023e7102c8"
+    },
+    {
+      "epoch": 8,
+      "validation_loss": 0.01871084123849869,
+      "updates": 24744,
+      "step": 24744,
+      "cpu_rng_sha256": "64a1ba430bdf429d3b87ddb4edcd3ee229aa74b4127ba6eb3cef7ef0ee746cdd"
+    },
+    {
+      "epoch": 9,
+      "validation_loss": 0.018696505576372147,
+      "updates": 27837,
+      "step": 27837,
+      "cpu_rng_sha256": "bce711967859ca73f27be59e3229d8ac2833549279d4bc4cda7c8d98c7821692"
+    },
+    {
+      "epoch": 10,
+      "validation_loss": 0.018683817237615585,
+      "updates": 30930,
+      "step": 30930,
+      "cpu_rng_sha256": "09f5e156bd8183e572e7b1d7d440614fdf7711fbe46778ebe314cb22f48000f2"
+    },
+    {
+      "epoch": 11,
+      "validation_loss": 0.018684741482138632,
+      "updates": 34023,
+      "step": 34023,
+      "cpu_rng_sha256": "d24c7ec369b48046cf5dc1987ef03977aaca6f81ab3964c104e2040a5b1f53ae"
+    },
+    {
+      "epoch": 12,
+      "validation_loss": 0.018681422621011735,
+      "updates": 37116,
+      "step": 37116,
+      "cpu_rng_sha256": "3737c89a5f4ad559cb08100cc11fbb1d03a49313f67df2018f8ac2a6c0ae22b6"
+    },
+    {
+      "epoch": 13,
+      "validation_loss": 0.018679872527718543,
+      "updates": 40209,
+      "step": 40209,
+      "cpu_rng_sha256": "cc9a86def166284fdb05db2c234713b9aa135ad9b32bf2ccccef87d143535e19"
+    },
+    {
+      "epoch": 14,
+      "validation_loss": 0.018679897114634515,
+      "updates": 43302,
+      "step": 43302,
+      "cpu_rng_sha256": "b48395f4bf4038b1b8c04c670a089d59929c4e526eace8abfda8335cc8413a32"
+    },
+    {
+      "epoch": 15,
+      "validation_loss": 0.018679967895150185,
+      "updates": 46395,
+      "step": 46395,
+      "cpu_rng_sha256": "01d5269fa56cbaffc5da2955fcd76b996497c724a5b71bd2c72d8c7870637531"
+    },
+    {
+      "epoch": 16,
+      "validation_loss": 0.01868024915456772,
+      "updates": 49488,
+      "step": 49488,
+      "cpu_rng_sha256": "7bae164354cdf1e4873b2286ed79144637a301534dfb55d09ade77232a15e16e"
+    }
+  ],
+  "selection_history": [
+    {
+      "epoch": 1,
+      "loss": 0.02962929308414459,
+      "step": 3093,
+      "sha256": "7f9ea17ecc69d1637d5eec1018a5f1b222fd470fdcb30c9a64f98737d0522f36"
+    },
+    {
+      "epoch": 2,
+      "loss": 0.023049657791852952,
+      "step": 6186,
+      "sha256": "57bb1ef603831320997d342b894a156736ea3341b66237ff9abedc82d4e7dc7a"
+    },
+    {
+      "epoch": 3,
+      "loss": 0.020863266289234163,
+      "step": 9279,
+      "sha256": "2660ffb9894568e4a2227cd220bc6799958ca3fac64bccd63524a4e9cffa76c5"
+    },
+    {
+      "epoch": 4,
+      "loss": 0.019353948161005975,
+      "step": 12372,
+      "sha256": "f10c078c55855a51c3e8005af01b1ca997237293828b941f86eb8827e70659ef"
+    },
+    {
+      "epoch": 5,
+      "loss": 0.019002576917409898,
+      "step": 15465,
+      "sha256": "5908aa0a00b8967b72b165dc7b47a90e85faa94da6a2c85e9df13f08f57c0371"
+    },
+    {
+      "epoch": 6,
+      "loss": 0.018843569606542588,
+      "step": 18558,
+      "sha256": "1e0d784bf77ffedca76d4b9a0058c5417f519d3a32319bc19c4c20238fa9df7c"
+    },
+    {
+      "epoch": 7,
+      "loss": 0.01875666305422783,
+      "step": 21651,
+      "sha256": "90cce1b9d92450a594d146914b86f3757f9c7279452751180d81f65bac314bd4"
+    },
+    {
+      "epoch": 8,
+      "loss": 0.01871084123849869,
+      "step": 24744,
+      "sha256": "ba09ba9f3297a1e2fa9a35da481f7ea7110e69340b8c09cc93c8d2ae2ee9c1cf"
+    },
+    {
+      "epoch": 9,
+      "loss": 0.018696505576372147,
+      "step": 27837,
+      "sha256": "749ba85a35b7def7b22ba2fee410a11e8e2876e6332274d9f8fdfa9f1fd6c032"
+    },
+    {
+      "epoch": 10,
+      "loss": 0.018683817237615585,
+      "step": 30930,
+      "sha256": "a212868cfe3ac32591d6fea0429eac08aa1c81a8edb1034f5fb4cf22dfdee3f2"
+    },
+    {
+      "epoch": 12,
+      "loss": 0.018681422621011735,
+      "step": 37116,
+      "sha256": "da9dd06017d4b291d224087c19b58b62310bbc3db7113bf5927c7889ba54a216"
+    },
+    {
+      "epoch": 13,
+      "loss": 0.018679872527718543,
+      "step": 40209,
+      "sha256": "7d8188bed6d6c521322cd8617a0ca78571d0880e0087dddc7d00866050755b6e"
+    }
+  ],
+  "updates": 49488,
+  "final_step": 49488,
+  "parameters": {
+    "registered": 3742202,
+    "updated": 3708922,
+    "active_modulation": 0
+  },
+  "train_seconds": 3241.9018771620467,
+  "train_peak_reserved": 1730150400,
+  "test_values_read": false,
+  "labels_read": false
+}

@@ -146,6 +146,23 @@ Strict and three-confirmation operation includes normal false-alarm point rate a
 
 # Results
 
+## LEFT prototype conditioning under complete-window evaluation
+
+| Dataset | Complete method | AP | ROC-AUC | VUS-PR | VUS-ROC |
+|---|---|---:|---:|---:|---:|
+| PSM | Native LEFT | 0.576639 | 0.776095 | 0.572611 | 0.785067 |
+| PSM | Observation-conditioned LEFT | 0.576648 | 0.776028 | 0.573074 | 0.784999 |
+| PSM | Prototype-conditioned LEFT | 0.577939 | 0.776990 | 0.574991 | 0.786316 |
+| SWAT | Native LEFT | 0.543866 | 0.820853 | 0.534601 | 0.809255 |
+| SWAT | Observation-conditioned LEFT | 0.490931 | 0.791439 | 0.457082 | 0.730007 |
+| SWAT | Prototype-conditioned LEFT | 0.140230 | 0.529687 | 0.142682 | 0.501934 |
+
+On PSM the prototype-conditioned method improved all four ranking metrics against both controls. The AP increase was 0.001301 versus native LEFT and 0.001291 versus observation conditioning. This single-seed difference is small. Both conditioned arms selected epoch 15, so their direct comparison shares the same selected update count and effective modulation capacity.
+
+On SWaT, adding observation context decreased AP from 0.543866 to 0.490931. Prototype conditioning decreased it further to 0.140230. The prototype arm loses AP, ROC-AUC and both VUS metrics against both controls. The gaps against the capacity-matched control are -0.350700 AP, -0.261753 ROC-AUC, -0.314399 VUS-PR and -0.228073 VUS-ROC. Candidate selection used normal loss, which cannot locate the cause of the test ranking loss. This comparison supports a small PSM-specific increment and a large SWaT penalty. It does not support direct prototype conditioning as a generally effective modification of LEFT.
+
+Training and score export used 3.848479 measured A40 GPU-hours. The matched comparison uses one seed, full-window offline scores and the same normal data permissions in each task. [Complete benchmark, equal-capacity ablation, and independent review](../../docs/experiments/left_decoder_context_20261124/RESULTS.md).
+
 ## Target-normal training scope
 
 We evaluated six additional full-parameter trajectories with the archived target-normal procedure. Each selects epoch20 by the same normal validation rule as the matched decoder-only controls. The full-budget evaluation holds the original initializations and target-data permissions fixed.

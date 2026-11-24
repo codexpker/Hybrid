@@ -1,0 +1,19 @@
+{
+  "method": "prototype",
+  "AP": 0.14023017291553425,
+  "ROC_AUC": 0.5296866711587785,
+  "AUC_PR_trapezoidal": 0.1402098220690903,
+  "VUS_ROC": 0.501934460615085,
+  "VUS_PR": 0.14268223865111185,
+  "score_sha256": "8d8d1ce81ec1f6d17247f8981a351752dbac39b9ce18eb6ce9a46368555b1781",
+  "validation_loss": 0.019029076024889947,
+  "selected_epoch": 16,
+  "updates": 58767,
+  "registered": 3742202,
+  "updated": 3742202,
+  "active_modulation": 33280,
+  "train_seconds": 3968.5520172649994,
+  "scoring_seconds": 3.925627853255719,
+  "metric_seconds": 38.89927261788398,
+  "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+}

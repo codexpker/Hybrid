@@ -1,0 +1,8 @@
+{
+  "train_seconds": 13840.272707424127,
+  "readout_seconds": 14.250221547670662,
+  "recorded_A40_hours": 3.848478591381055,
+  "metric_wall_seconds": 60.16169671108946,
+  "actual_train_runs": 6,
+  "front_check_and_startup_seconds": null
+}

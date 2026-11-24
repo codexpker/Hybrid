@@ -1,0 +1,51 @@
+{
+  "domain": "SWAT",
+  "arm": "native",
+  "seed": 2025,
+  "official_reference_revision": "3fadb4811797075e233076b9faceb0d8ec59b697",
+  "upstream_files": {
+    "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+    "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+    "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+    "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+    "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+    "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+    "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863"
+  },
+  "configuration": {
+    "model_configs_0.json": "a8a62c8e72191b276710dcd8433193e99e1c828d4250c20f6a7431fca4ea9440",
+    "model_configs_Left.json": "2574e826155a684389026c3c08db24a20586d3f51040281876cc2eb6a28129d6",
+    "train_configs.json": "0a6b4cc8bb0b53f8ed63bfd1ad71741a15114ab7b458827b819054a90bbf6995"
+  },
+  "common_initial_state_sha256": "ea09fedd91ec539057ac01c6ac22deee0a85425aacc7af70312f026c0d040038",
+  "scaler_sha256": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+  "normal_values_sha256": "556156b4c4a7308de832c49be99310f6763dc5729a5427dd363b1e13cb176ed9",
+  "FIT": [
+    0,
+    396000
+  ],
+  "SELECT": [
+    396000,
+    495000
+  ],
+  "FIT_stride": 1,
+  "SELECT_stride": 192,
+  "channels": 31,
+  "window": 192,
+  "scaler_fit": [
+    0,
+    495000
+  ],
+  "curriculum": {
+    "warmup": 500,
+    "ramp": 1000,
+    "maximum": 0.3
+  },
+  "batch": 128,
+  "max_epochs": 20,
+  "early_stop_patience": 3,
+  "optimizer": "adam",
+  "lr": 0.0001,
+  "lr_schedule": "type1",
+  "labels_read": false
+}

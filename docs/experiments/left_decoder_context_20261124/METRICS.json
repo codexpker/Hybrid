@@ -1,0 +1,255 @@
+{
+  "domains": {
+    "PSM": {
+      "rows": [
+        {
+          "method": "native",
+          "AP": 0.5766388878626516,
+          "ROC_AUC": 0.7760951761906911,
+          "AUC_PR_trapezoidal": 0.5766273048356225,
+          "VUS_ROC": 0.7850669177600398,
+          "VUS_PR": 0.5726108085172741,
+          "score_sha256": "d8a7dbb09a342b7cc5ff159796272cb090f2ad0c6bc79cf9ac2d72bb7f6f492e",
+          "validation_loss": 0.5241763591766357,
+          "selected_epoch": 20,
+          "updates": 16540,
+          "registered": 4519985,
+          "updated": 4486705,
+          "active_modulation": 0,
+          "train_seconds": 977.8139767460525,
+          "scoring_seconds": 0.7939916253089905,
+          "metric_seconds": 20.29187484877184,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "observation",
+          "AP": 0.5766483322370394,
+          "ROC_AUC": 0.7760276963633357,
+          "AUC_PR_trapezoidal": 0.5766366739038611,
+          "VUS_ROC": 0.7849993965569412,
+          "VUS_PR": 0.5730741640315431,
+          "score_sha256": "bf8e09cc0602103312602b6af7a0e23f9e0620377b10f4bd030fcd5a48008806",
+          "validation_loss": 0.5252479016780853,
+          "selected_epoch": 15,
+          "updates": 14886,
+          "registered": 4519985,
+          "updated": 4519985,
+          "active_modulation": 33280,
+          "train_seconds": 941.146127617918,
+          "scoring_seconds": 0.9112379429861903,
+          "metric_seconds": 21.26205667341128,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "prototype",
+          "AP": 0.5779394311584682,
+          "ROC_AUC": 0.7769896802412586,
+          "AUC_PR_trapezoidal": 0.5779277449901287,
+          "VUS_ROC": 0.7863164082316928,
+          "VUS_PR": 0.5749913788793931,
+          "score_sha256": "22aacefb1037ca78e64dfd10afcaef47a1d1fa2d6f912f8bda6c8f524b568738",
+          "validation_loss": 0.5255314111709595,
+          "selected_epoch": 15,
+          "updates": 14886,
+          "registered": 4519985,
+          "updated": 4519985,
+          "active_modulation": 33280,
+          "train_seconds": 906.3076955778524,
+          "scoring_seconds": 0.794707718770951,
+          "metric_seconds": 20.401392865926027,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "CATCH W192 seed0",
+          "AP": 0.4459895321862464,
+          "ROC_AUC": 0.6534180428847209,
+          "VUS_PR": 0.5366710274718616,
+          "VUS_ROC": 0.7036566998683302,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "ca4afcda291303fba08a0a3971791b628dc81d85e1f94081702bb680b86d4120",
+          "reused": true
+        },
+        {
+          "method": "CATCH W192 seed1",
+          "AP": 0.43026389280294763,
+          "ROC_AUC": 0.6413990585050262,
+          "VUS_PR": 0.5192734114277965,
+          "VUS_ROC": 0.6906908461257336,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "fe96aba4cad4e87511fc23e891b022f5d30b798343aa528136e532589aaf8c1d",
+          "reused": true
+        },
+        {
+          "method": "CATCH W192 seed2",
+          "AP": 0.43304387230768676,
+          "ROC_AUC": 0.6472479773958782,
+          "VUS_PR": 0.5264474766825534,
+          "VUS_ROC": 0.6987333443694175,
+          "permission": "target FIT-only scaler; FIT trains, SELECT selects; full W192",
+          "score_sha256": "ff42fac31c06b0b37e1a5aef94a53588b9fa3d9a3a36b3422171325a14bdbcd1",
+          "reused": true
+        },
+        {
+          "method": "PCA residual",
+          "AP": 0.5344044566628354,
+          "ROC_AUC": 0.7933207677743441,
+          "VUS_PR": 0.5289908883203089,
+          "VUS_ROC": 0.7666858309268084,
+          "permission": "target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t",
+          "score_sha256": "c987378b3dd1f114b5232259bcdde2603f95705a557861b330f6a13e189ab170",
+          "reused": true
+        },
+        {
+          "method": "TimeRadar official block0 seed2024",
+          "AP": 0.43326507714637724,
+          "ROC_AUC": 0.6706685336173157,
+          "VUS_PR": 0.4412588678534923,
+          "VUS_ROC": 0.6783651103218603,
+          "permission": "native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "score_sha256": "cd4b56b591dbd7829910bdff018c0bd42282f701cd4c3bc4f4c144153286401d",
+          "reused": true
+        },
+        {
+          "method": "TimeRadar common FIT scaler seed2024",
+          "AP": 0.4553705977017055,
+          "ROC_AUC": 0.683822930413065,
+          "VUS_PR": 0.45807148508238293,
+          "VUS_ROC": 0.689162677323765,
+          "permission": "FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order",
+          "score_sha256": "6419137b53914606705737854ec1ae04c0ec0d5d390a5483dca1d7c299fb4be4",
+          "reused": true
+        }
+      ],
+      "deltas": [
+        {
+          "reference": "native",
+          "AP": 0.0013005432958166363,
+          "ROC_AUC": 0.0008945040505674573,
+          "VUS_PR": 0.0023805703621190277,
+          "VUS_ROC": 0.0012494904716530142
+        },
+        {
+          "reference": "observation",
+          "AP": 0.0012910989214288682,
+          "ROC_AUC": 0.0009619838779229006,
+          "VUS_PR": 0.0019172148478500128,
+          "VUS_ROC": 0.0013170116747516225
+        }
+      ],
+      "absolute_axis": [
+        132481,
+        220225
+      ]
+    },
+    "SWAT": {
+      "rows": [
+        {
+          "method": "native",
+          "AP": 0.5438660678092361,
+          "ROC_AUC": 0.8208526827012225,
+          "AUC_PR_trapezoidal": 0.5438433051713603,
+          "VUS_ROC": 0.8092551182247254,
+          "VUS_PR": 0.5346014364625334,
+          "score_sha256": "4a45d5839917cecffff01b9cc4f096c367428b19c9517fdcf17f4e915cc770c8",
+          "validation_loss": 0.018679872527718543,
+          "selected_epoch": 13,
+          "updates": 49488,
+          "registered": 3742202,
+          "updated": 3708922,
+          "active_modulation": 0,
+          "train_seconds": 3241.9018771620467,
+          "scoring_seconds": 3.8677985123358667,
+          "metric_seconds": 36.307296625338495,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "observation",
+          "AP": 0.49093061858394316,
+          "ROC_AUC": 0.791439263011863,
+          "AUC_PR_trapezoidal": 0.49090812324518635,
+          "VUS_ROC": 0.7300074708095649,
+          "VUS_PR": 0.45708166218836555,
+          "score_sha256": "27b8d2f69476e1214a884c32714890a096ed3bb4b92b297a421f80b5ab2081b9",
+          "validation_loss": 0.018322429805994033,
+          "selected_epoch": 15,
+          "updates": 55674,
+          "registered": 3742202,
+          "updated": 3742202,
+          "active_modulation": 33280,
+          "train_seconds": 3804.5510130552575,
+          "scoring_seconds": 3.956857895012945,
+          "metric_seconds": 38.015548335853964,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "prototype",
+          "AP": 0.14023017291553425,
+          "ROC_AUC": 0.5296866711587785,
+          "AUC_PR_trapezoidal": 0.1402098220690903,
+          "VUS_ROC": 0.501934460615085,
+          "VUS_PR": 0.14268223865111185,
+          "score_sha256": "8d8d1ce81ec1f6d17247f8981a351752dbac39b9ce18eb6ce9a46368555b1781",
+          "validation_loss": 0.019029076024889947,
+          "selected_epoch": 16,
+          "updates": 58767,
+          "registered": 3742202,
+          "updated": 3742202,
+          "active_modulation": 33280,
+          "train_seconds": 3968.5520172649994,
+          "scoring_seconds": 3.925627853255719,
+          "metric_seconds": 38.89927261788398,
+          "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+        },
+        {
+          "method": "TimeRadar official block0",
+          "AP": 0.6392988989070734,
+          "ROC_AUC": 0.821970433379716,
+          "VUS_PR": 0.5140609641876642,
+          "VUS_ROC": 0.7668314484019835,
+          "permission": "native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order",
+          "score_sha256": "8ab9edbf1de02e36da11cd114845e7df5cb220b7ae359b2fc68e1a89796cdd5b",
+          "reused": true
+        },
+        {
+          "method": "CATCH W192",
+          "permission": "No compatible full-axis cache",
+          "AP": null,
+          "ROC_AUC": null,
+          "VUS_PR": null,
+          "VUS_ROC": null
+        },
+        {
+          "method": "PCA residual",
+          "permission": "No compatible full-axis cache",
+          "AP": null,
+          "ROC_AUC": null,
+          "VUS_PR": null,
+          "VUS_ROC": null
+        }
+      ],
+      "deltas": [
+        {
+          "reference": "native",
+          "AP": -0.40363589489370183,
+          "ROC_AUC": -0.2911660115424439,
+          "VUS_PR": -0.3919191978114216,
+          "VUS_ROC": -0.30732065760964045
+        },
+        {
+          "reference": "observation",
+          "AP": -0.3507004456684089,
+          "ROC_AUC": -0.2617525918530844,
+          "VUS_PR": -0.3143994235372537,
+          "VUS_ROC": -0.2280730101944799
+        }
+      ],
+      "absolute_axis": [
+        495000,
+        944856
+      ]
+    }
+  },
+  "metric_seconds": 60.16169671108946,
+  "operations": "NA: independent full-axis calibration not established",
+  "metric_definition": "sklearn AP and ROC; LEFT VUS windowSize=100 thre=250"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "COMPLETED",
+  "bank_sha256": "4a45d5839917cecffff01b9cc4f096c367428b19c9517fdcf17f4e915cc770c8",
+  "raw_test_values_sha256": "1748bb1568d5deefe00c6ca88d258a720da856a257298d515e79c22fef770d37",
+  "checkpoint_sha256": "7d8188bed6d6c521322cd8617a0ca78571d0880e0087dddc7d00866050755b6e",
+  "scoring_seconds": 3.8677985123358667,
+  "points": 449856,
+  "omitted_tail": 63,
+  "state_unchanged": true,
+  "labels_read": false
+}

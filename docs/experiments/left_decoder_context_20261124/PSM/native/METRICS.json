@@ -1,0 +1,19 @@
+{
+  "method": "native",
+  "AP": 0.5766388878626516,
+  "ROC_AUC": 0.7760951761906911,
+  "AUC_PR_trapezoidal": 0.5766273048356225,
+  "VUS_ROC": 0.7850669177600398,
+  "VUS_PR": 0.5726108085172741,
+  "score_sha256": "d8a7dbb09a342b7cc5ff159796272cb090f2ad0c6bc79cf9ac2d72bb7f6f492e",
+  "validation_loss": 0.5241763591766357,
+  "selected_epoch": 20,
+  "updates": 16540,
+  "registered": 4519985,
+  "updated": 4486705,
+  "active_modulation": 0,
+  "train_seconds": 977.8139767460525,
+  "scoring_seconds": 0.7939916253089905,
+  "metric_seconds": 20.29187484877184,
+  "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+}

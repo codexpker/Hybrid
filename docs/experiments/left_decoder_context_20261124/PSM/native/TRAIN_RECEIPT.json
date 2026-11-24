@@ -1,0 +1,260 @@
+{
+  "status": "COMPLETED",
+  "selected": {
+    "epoch": 20,
+    "loss": 0.5241763591766357,
+    "step": 16540,
+    "sha256": "d8430bd59ad5aa35a189761e3f7d0357c4a557ff11dc770d6ee17f0d05988042"
+  },
+  "validation": [
+    {
+      "epoch": 1,
+      "validation_loss": 0.6006077527999878,
+      "updates": 827,
+      "step": 827,
+      "cpu_rng_sha256": "246872e96ab001eb694faa628c2f6a597407b6012e056496ef5368a8fcadabf7"
+    },
+    {
+      "epoch": 2,
+      "validation_loss": 0.5646251440048218,
+      "updates": 1654,
+      "step": 1654,
+      "cpu_rng_sha256": "9053e99b10f043bbf05090d137c6218f093be51a37aa4f332fe683a547a243a9"
+    },
+    {
+      "epoch": 3,
+      "validation_loss": 0.5497795343399048,
+      "updates": 2481,
+      "step": 2481,
+      "cpu_rng_sha256": "8c1ae5f5baa27f8f8d6c5d5ba883123ea743f11a13c0512fe614bdfa7e696be6"
+    },
+    {
+      "epoch": 4,
+      "validation_loss": 0.5406152904033661,
+      "updates": 3308,
+      "step": 3308,
+      "cpu_rng_sha256": "c05142d89c1933a88c8681bf6ba83c91463f2499051c78abd694436d07dee98e"
+    },
+    {
+      "epoch": 5,
+      "validation_loss": 0.5357753932476044,
+      "updates": 4135,
+      "step": 4135,
+      "cpu_rng_sha256": "717bf5f98feb165e18d6df9e717522a10e7f76c31a8a8df22a66edf5ee23b897"
+    },
+    {
+      "epoch": 6,
+      "validation_loss": 0.532052218914032,
+      "updates": 4962,
+      "step": 4962,
+      "cpu_rng_sha256": "bebf6939864e2d3f6e03fc849d20b91e417667b66683fa2d05c810e2362b7a26"
+    },
+    {
+      "epoch": 7,
+      "validation_loss": 0.5300564914941788,
+      "updates": 5789,
+      "step": 5789,
+      "cpu_rng_sha256": "842305be2dd8e5b2723e7c0d9aa8ed9e610233f4d66e3bf9d8db1b5381003b8f"
+    },
+    {
+      "epoch": 8,
+      "validation_loss": 0.5260733664035797,
+      "updates": 6616,
+      "step": 6616,
+      "cpu_rng_sha256": "4c0d0ea713ddfec44c4726dca038ba8d6273193942ccf55436348814a796367b"
+    },
+    {
+      "epoch": 9,
+      "validation_loss": 0.526392862200737,
+      "updates": 7443,
+      "step": 7443,
+      "cpu_rng_sha256": "fce21f904af320516972d47ff171b311d7e87c69e90dfd35d1e0500caf956fa3"
+    },
+    {
+      "epoch": 10,
+      "validation_loss": 0.5257266759872437,
+      "updates": 8270,
+      "step": 8270,
+      "cpu_rng_sha256": "b56fba4c2ccf19006e86909ea42307c65ebac8c4f26ec1246f69c0ebea19e04b"
+    },
+    {
+      "epoch": 11,
+      "validation_loss": 0.5260383784770966,
+      "updates": 9097,
+      "step": 9097,
+      "cpu_rng_sha256": "5fd01e8bf748675ea6dd59403a7c04ec8d79b877838e1eee59c2059d20881868"
+    },
+    {
+      "epoch": 12,
+      "validation_loss": 0.5251963138580322,
+      "updates": 9924,
+      "step": 9924,
+      "cpu_rng_sha256": "183a6ee796287d42c837703f2b727e5d2406caa7895160209b93d68f81d4074d"
+    },
+    {
+      "epoch": 13,
+      "validation_loss": 0.5249072909355164,
+      "updates": 10751,
+      "step": 10751,
+      "cpu_rng_sha256": "ed88944fbf619445ade320e1c6005ccfd99b37836d0ee58a9dbb03abbaf2113c"
+    },
+    {
+      "epoch": 14,
+      "validation_loss": 0.5247239768505096,
+      "updates": 11578,
+      "step": 11578,
+      "cpu_rng_sha256": "54db58af5149e1a9e0e5556f1d8509334fa8d9ba9c3d99ef3111cae67734d8b5"
+    },
+    {
+      "epoch": 15,
+      "validation_loss": 0.5243496000766754,
+      "updates": 12405,
+      "step": 12405,
+      "cpu_rng_sha256": "4f34f1d8942a9e355474fef0e5875e25655008695f6fc6e4720dddb842e4d733"
+    },
+    {
+      "epoch": 16,
+      "validation_loss": 0.5244402140378952,
+      "updates": 13232,
+      "step": 13232,
+      "cpu_rng_sha256": "63e8c0cdfcdb34ebb8aebb4b4372211e31400def240b7b00b29aed595656b2f3"
+    },
+    {
+      "epoch": 17,
+      "validation_loss": 0.5243383646011353,
+      "updates": 14059,
+      "step": 14059,
+      "cpu_rng_sha256": "244f56079c7386b833274782d24d639d3f269b8e9425a2e9952dcf92408128c3"
+    },
+    {
+      "epoch": 18,
+      "validation_loss": 0.5244281142950058,
+      "updates": 14886,
+      "step": 14886,
+      "cpu_rng_sha256": "2d47bfb23bfd10ccf4f0c4a1b022fbaca4b234762faa91c3e508e21e62e67599"
+    },
+    {
+      "epoch": 19,
+      "validation_loss": 0.524248942732811,
+      "updates": 15713,
+      "step": 15713,
+      "cpu_rng_sha256": "d1ad30bfbffb4ecc144df9f6365799a93439060c8e74ff024f56f0a4872e8422"
+    },
+    {
+      "epoch": 20,
+      "validation_loss": 0.5241763591766357,
+      "updates": 16540,
+      "step": 16540,
+      "cpu_rng_sha256": "e74835222ebfd28a736ce4fec76cc1793a23623dd15dcbe3c81798fdc697a52b"
+    }
+  ],
+  "selection_history": [
+    {
+      "epoch": 1,
+      "loss": 0.6006077527999878,
+      "step": 827,
+      "sha256": "6a95470e526b9045b439c22b5c5f92fcbe3fe54e110cffb3ee15bb349f544257"
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5646251440048218,
+      "step": 1654,
+      "sha256": "35322766329333559a19dd58c2020b44de8f50c899280846c269a29ea9e9d76d"
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5497795343399048,
+      "step": 2481,
+      "sha256": "a66bccff46c01b961820159b382c4105819c26e7f1c29020936763871d70eb0a"
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5406152904033661,
+      "step": 3308,
+      "sha256": "627935bd65082e27371a332734bc10f1f57b2366937d7a8050601c87f3366e44"
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5357753932476044,
+      "step": 4135,
+      "sha256": "364af6bf0c4826fb43b2c1cfe4566f70d18ae585abb4b32478afda6ef350dc0b"
+    },
+    {
+      "epoch": 6,
+      "loss": 0.532052218914032,
+      "step": 4962,
+      "sha256": "df935af845b52890dd426b80fc05b277474d0d99c082e8df410be916d5926feb"
+    },
+    {
+      "epoch": 7,
+      "loss": 0.5300564914941788,
+      "step": 5789,
+      "sha256": "5c5cb96d65295eefb230aaa1a1651f26aa32a4e4343cd26d40124d6a9dde46ff"
+    },
+    {
+      "epoch": 8,
+      "loss": 0.5260733664035797,
+      "step": 6616,
+      "sha256": "1dea415edab1b5d43418aab637ef46db187612c6e09ce1ba31dab1c1bf639e1d"
+    },
+    {
+      "epoch": 10,
+      "loss": 0.5257266759872437,
+      "step": 8270,
+      "sha256": "f4b5cf8eb0fe1659201b2138595b4105000791fc39dcdd3047f412872d25d345"
+    },
+    {
+      "epoch": 12,
+      "loss": 0.5251963138580322,
+      "step": 9924,
+      "sha256": "5baa600e3bdbe5a613b0eac9846f1ebb0472ccada9f4ab8b5373d1d479233e54"
+    },
+    {
+      "epoch": 13,
+      "loss": 0.5249072909355164,
+      "step": 10751,
+      "sha256": "b754a4e053b3690b24337ca0833630e683a8b001596c94e4b0c8c6812d45b1ba"
+    },
+    {
+      "epoch": 14,
+      "loss": 0.5247239768505096,
+      "step": 11578,
+      "sha256": "2f2476255e6d2f70acd2cedf6c764f3ddb00adb0fd04fde7fc7fd4adc36c6f50"
+    },
+    {
+      "epoch": 15,
+      "loss": 0.5243496000766754,
+      "step": 12405,
+      "sha256": "654598fa8e4e24f15eae72002d7094eada6cffefcfcb519e0a7cd84ddf6bf725"
+    },
+    {
+      "epoch": 17,
+      "loss": 0.5243383646011353,
+      "step": 14059,
+      "sha256": "078f6f99010202b401ec5fc11253aae7d1cac1e036cad57a45bd0e0d0aec0e6c"
+    },
+    {
+      "epoch": 19,
+      "loss": 0.524248942732811,
+      "step": 15713,
+      "sha256": "46ad049d15e44e7603206a923e1b210f5d57ce938edb45e5e5751358cac0bc1f"
+    },
+    {
+      "epoch": 20,
+      "loss": 0.5241763591766357,
+      "step": 16540,
+      "sha256": "d8430bd59ad5aa35a189761e3f7d0357c4a557ff11dc770d6ee17f0d05988042"
+    }
+  ],
+  "updates": 16540,
+  "final_step": 16540,
+  "parameters": {
+    "registered": 4519985,
+    "updated": 4486705,
+    "active_modulation": 0
+  },
+  "train_seconds": 977.8139767460525,
+  "train_peak_reserved": 1753219072,
+  "test_values_read": false,
+  "labels_read": false
+}

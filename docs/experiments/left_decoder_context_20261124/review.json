@@ -1,0 +1,289 @@
+{
+  "status": "PASS",
+  "independent_CPU_only": true,
+  "train_or_model_forward_calls": 0,
+  "ranking_scope": "tie-grouped NumPy AP and ROC-AUC from all six sealed score banks",
+  "VUS_scope": "Arithmetic of the two paired contrasts per dataset; volume integration not repeated.",
+  "domains": {
+    "PSM": {
+      "axis": "[0,87744) PSM test-relative",
+      "labels_sha256": "309449a288d65de43ff5e58ca2bc06b9913556e46024f5aa0b04153a40b30a69",
+      "matched_common_initialization_and_normal_data": true,
+      "matched_scaler_arrays": true,
+      "matched_CPU_sampler_rng_epochs": 18,
+      "profile_excluded_from_step_count": true,
+      "checked_engineering_receipt": {
+        "sha256": "175ecd3feb3d6e44208da30c8b50e510024742f8e6107019e9d982eb3c5f7c38",
+        "results": {
+          "native": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.0,
+            "inference_frozen": true
+          },
+          "observation": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.19726388156414032,
+            "inference_frozen": true
+          },
+          "prototype": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.20133888721466064,
+            "inference_frozen": true
+          }
+        }
+      },
+      "updates_per_epoch": 827,
+      "arms": {
+        "native": {
+          "AP": 0.5766388878626517,
+          "ROC_AUC": 0.7760951761906911,
+          "points": 87744,
+          "positive": 24290,
+          "selected_epoch": 20,
+          "selected_validation_loss": 0.5241763591766357,
+          "executed_epochs": 20,
+          "updates": 16540,
+          "parameters": {
+            "registered": 4519985,
+            "updated": 4486705,
+            "active_modulation": 0
+          },
+          "train_seconds": 977.8139767460525,
+          "scoring_seconds": 0.7939916253089905,
+          "checkpoint_sha256": "d8430bd59ad5aa35a189761e3f7d0357c4a557ff11dc770d6ee17f0d05988042",
+          "bank_sha256": "d8a7dbb09a342b7cc5ff159796272cb090f2ad0c6bc79cf9ac2d72bb7f6f492e"
+        },
+        "observation": {
+          "AP": 0.5766483322370394,
+          "ROC_AUC": 0.7760276963633358,
+          "points": 87744,
+          "positive": 24290,
+          "selected_epoch": 15,
+          "selected_validation_loss": 0.5252479016780853,
+          "executed_epochs": 18,
+          "updates": 14886,
+          "parameters": {
+            "registered": 4519985,
+            "updated": 4519985,
+            "active_modulation": 33280
+          },
+          "train_seconds": 941.146127617918,
+          "scoring_seconds": 0.9112379429861903,
+          "checkpoint_sha256": "2d2dccc8ae0b88d24d188758928adb279e9888b0e6af554672f134674f95d4ee",
+          "bank_sha256": "bf8e09cc0602103312602b6af7a0e23f9e0620377b10f4bd030fcd5a48008806"
+        },
+        "prototype": {
+          "AP": 0.5779394311584681,
+          "ROC_AUC": 0.7769896802412585,
+          "points": 87744,
+          "positive": 24290,
+          "selected_epoch": 15,
+          "selected_validation_loss": 0.5255314111709595,
+          "executed_epochs": 18,
+          "updates": 14886,
+          "parameters": {
+            "registered": 4519985,
+            "updated": 4519985,
+            "active_modulation": 33280
+          },
+          "train_seconds": 906.3076955778524,
+          "scoring_seconds": 0.794707718770951,
+          "checkpoint_sha256": "c2912be447d7d56e48b3c5476f078271b95f21c7b5f920c0860899f938cc3b11",
+          "bank_sha256": "22aacefb1037ca78e64dfd10afcaef47a1d1fa2d6f912f8bda6c8f524b568738"
+        }
+      },
+      "pair_deltas": {
+        "prototype_minus_native": {
+          "AP": 0.0013005432958164143,
+          "ROC_AUC": 0.0008945040505673463
+        },
+        "prototype_minus_observation": {
+          "AP": 0.0012910989214287572,
+          "ROC_AUC": 0.0009619838779226786
+        }
+      },
+      "verified_published_pair_deltas": {
+        "native": {
+          "AP": 0.0013005432958166363,
+          "ROC_AUC": 0.0008945040505674573,
+          "VUS_PR": 0.0023805703621190277,
+          "VUS_ROC": 0.0012494904716530142
+        },
+        "observation": {
+          "AP": 0.0012910989214288682,
+          "ROC_AUC": 0.0009619838779229006,
+          "VUS_PR": 0.0019172148478500128,
+          "VUS_ROC": 0.0013170116747516225
+        }
+      }
+    },
+    "SWAT": {
+      "axis": "[495000,944856) SWaT absolute",
+      "labels_sha256": "3b36bcfb5c519e40b2d4c51d56aff36a015718b826436e2d91657d0864be14bc",
+      "matched_common_initialization_and_normal_data": true,
+      "matched_scaler_arrays": true,
+      "matched_CPU_sampler_rng_epochs": 16,
+      "profile_excluded_from_step_count": true,
+      "checked_engineering_receipt": {
+        "sha256": "60061d5f795c5a06c4358061241a62910d5112b5f4efe68324f6fbcb01d44513",
+        "results": {
+          "native": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.0,
+            "inference_frozen": true
+          },
+          "observation": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.6020272970199585,
+            "inference_frozen": true
+          },
+          "prototype": {
+            "loss_bit_exact_at_zero_modulation": true,
+            "score_bit_exact_at_zero_modulation": true,
+            "association_and_forced_EMA_calls": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "native_step_increment": 1,
+            "to_gb_weight_grad_norm": 0.6036491990089417,
+            "inference_frozen": true
+          }
+        }
+      },
+      "updates_per_epoch": 3093,
+      "arms": {
+        "native": {
+          "AP": 0.5438660678092361,
+          "ROC_AUC": 0.8208526827012225,
+          "points": 449856,
+          "positive": 54621,
+          "selected_epoch": 13,
+          "selected_validation_loss": 0.018679872527718543,
+          "executed_epochs": 16,
+          "updates": 49488,
+          "parameters": {
+            "registered": 3742202,
+            "updated": 3708922,
+            "active_modulation": 0
+          },
+          "train_seconds": 3241.9018771620467,
+          "scoring_seconds": 3.8677985123358667,
+          "checkpoint_sha256": "7d8188bed6d6c521322cd8617a0ca78571d0880e0087dddc7d00866050755b6e",
+          "bank_sha256": "4a45d5839917cecffff01b9cc4f096c367428b19c9517fdcf17f4e915cc770c8"
+        },
+        "observation": {
+          "AP": 0.49093061858394316,
+          "ROC_AUC": 0.791439263011863,
+          "points": 449856,
+          "positive": 54621,
+          "selected_epoch": 15,
+          "selected_validation_loss": 0.018322429805994033,
+          "executed_epochs": 18,
+          "updates": 55674,
+          "parameters": {
+            "registered": 3742202,
+            "updated": 3742202,
+            "active_modulation": 33280
+          },
+          "train_seconds": 3804.5510130552575,
+          "scoring_seconds": 3.956857895012945,
+          "checkpoint_sha256": "25971bec2a5016e3cf089ad0015778a445e0529c8b68f7e0a0267fc644e05b01",
+          "bank_sha256": "27b8d2f69476e1214a884c32714890a096ed3bb4b92b297a421f80b5ab2081b9"
+        },
+        "prototype": {
+          "AP": 0.14023017291553425,
+          "ROC_AUC": 0.5296866711587785,
+          "points": 449856,
+          "positive": 54621,
+          "selected_epoch": 16,
+          "selected_validation_loss": 0.019029076024889947,
+          "executed_epochs": 19,
+          "updates": 58767,
+          "parameters": {
+            "registered": 3742202,
+            "updated": 3742202,
+            "active_modulation": 33280
+          },
+          "train_seconds": 3968.5520172649994,
+          "scoring_seconds": 3.925627853255719,
+          "checkpoint_sha256": "57cdc66e40e3e1ed573769a369eabcc9deff668feb14e1210ac745ed0142ba07",
+          "bank_sha256": "8d8d1ce81ec1f6d17247f8981a351752dbac39b9ce18eb6ce9a46368555b1781"
+        }
+      },
+      "pair_deltas": {
+        "prototype_minus_native": {
+          "AP": -0.40363589489370183,
+          "ROC_AUC": -0.2911660115424439
+        },
+        "prototype_minus_observation": {
+          "AP": -0.3507004456684089,
+          "ROC_AUC": -0.2617525918530844
+        }
+      },
+      "verified_published_pair_deltas": {
+        "native": {
+          "AP": -0.40363589489370183,
+          "ROC_AUC": -0.2911660115424439,
+          "VUS_PR": -0.3919191978114216,
+          "VUS_ROC": -0.30732065760964045
+        },
+        "observation": {
+          "AP": -0.3507004456684089,
+          "ROC_AUC": -0.2617525918530844,
+          "VUS_PR": -0.3143994235372537,
+          "VUS_ROC": -0.2280730101944799
+        }
+      }
+    }
+  },
+  "CAL_used": false,
+  "CPU_wall_seconds": 2.408257246017456,
+  "production_crosscheck": {
+    "metric_rows": 6,
+    "matched_pairs": 4,
+    "max_absolute_AP_ROC_difference": 1.1102230246251565e-16,
+    "max_absolute_delta_difference": 0.0
+  }
+}

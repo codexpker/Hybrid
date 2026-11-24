@@ -1,0 +1,19 @@
+{
+  "method": "observation",
+  "AP": 0.49093061858394316,
+  "ROC_AUC": 0.791439263011863,
+  "AUC_PR_trapezoidal": 0.49090812324518635,
+  "VUS_ROC": 0.7300074708095649,
+  "VUS_PR": 0.45708166218836555,
+  "score_sha256": "27b8d2f69476e1214a884c32714890a096ed3bb4b92b297a421f80b5ab2081b9",
+  "validation_loss": 0.018322429805994033,
+  "selected_epoch": 15,
+  "updates": 55674,
+  "registered": 3742202,
+  "updated": 3742202,
+  "active_modulation": 33280,
+  "train_seconds": 3804.5510130552575,
+  "scoring_seconds": 3.956857895012945,
+  "metric_seconds": 38.015548335853964,
+  "permission": "target normal FIT / normal SELECT; prefix scaler; W192 offline"
+}
