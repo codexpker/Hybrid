@@ -122,6 +122,12 @@ The context is computed once per window and broadcast to that window's channel a
 
 The two comparisons answer different questions. The difference from native LEFT measures the complete effect of direct conditioning. The difference from observation conditioning tests the source of the decoder context under matched active capacity. The decoder still sees the fused multiscale tokens, so this intervention does not impose a memory bottleneck. The scores use complete windows and are evaluated retrospectively.
 
+## Conditioned training with unmodulated detection
+
+The SWaT fixed-weight switch experiment motivated a separate deployment rule. The two conditioned arms keep their added multiscale modulation active in normal training and normal-validation checkpoint selection. At detection, both arms pass the original tokens $U$ into the multiscale decoder in place of $U'$. The cycle reconstruction still mixes its observed and prototype latents using the original curriculum weight at inference. Prototype reads, score components and input standardization retain their original definitions. The rule applies to both PSM and SWaT and uses the original checkpoints. The earlier SWaT switch results generated the hypothesis and contribute directly to this comparison.
+
+The observation-conditioned training arm controls for active capacity and the train-to-detection change. We also compare with a fixed pointwise level baseline, the channel mean of $\operatorname{SmoothL1}(z_{t,c},0)$ with $\beta=1$ and the same normal-prefix scaler. This baseline uses the current standardized observation directly. These comparisons test the complete detection rule and the contribution of the training context source under this rule.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
