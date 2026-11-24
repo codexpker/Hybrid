@@ -1,0 +1,12 @@
+{
+  "objects": 109,
+  "readout_GPU_seconds": 268.5420077559538,
+  "records_include": "per-entity load, comparison with original states, score, verification and output write",
+  "process_startup_and_checks": "not separately timed",
+  "source_GPU_seconds": 767.4959647618234,
+  "failed_scoring_jobs": 0,
+  "readout_model_reuse": "all selected tensors differed from old fixed banks; required new native full V reads",
+  "local_cache": "D:\\code\\bst\\seal_detection_project\\research_workspace\\results\\native_position_aligned_20261124_v1",
+  "local_banks_SHA_verified": true,
+  "total_recorded_A40_hours": 0.28778832569938256
+}

@@ -39,7 +39,7 @@ def models(w):
 def score(w,lane,lanes):
     from torch_frft.frft_module import ifrft
     setup(12);base,nets,digests,reuse=models(w)
-    identity=[state_hashes(m) for m in nets]
+    identity=[state_hashes(m) for m in nets];base_identity=state_hashes(base)
     order=[];base.net.register_forward_hook(lambda _m,_a,x:order.append(x.squeeze()))
     root=w/OUT/'readout';root.mkdir(exist_ok=True,parents=True)
     active=[i for i,j in enumerate(reuse) if j is None]
@@ -72,13 +72,13 @@ def score(w,lane,lanes):
                         with fixed_native_rng('cuda'):_,direct=nets[k](x,norm=0,mask_mode='c',copies=10)
                         torch.testing.assert_close(copies,direct,rtol=0,atol=0)
                     values[b*100:(b+1)*100,k]=nets[k].cal_anomaly_score(x,copies,None,1)[0].cpu().numpy()
-            assert identity==[state_hashes(m) for m in nets] and np.isfinite(values).all()
+            assert identity==[state_hashes(m) for m in nets] and base_identity==state_hashes(base) and np.isfinite(values).all()
             tmp=bank.with_suffix('.part.npz')
             np.savez_compressed(tmp,V=values,keys=ARMS,index=ix,window_start=ix//100*100,window_end_exclusive=(ix//100+1)*100,available_index=(ix//100+1)*100-1)
             tmp.replace(bank)
             dump(receipt,dict(domain=domain,entity=entity,sha256=sha(bank),keys=ARMS,weights_sha256=digests,reused_old_columns=reuse,prior_bank_sha256=oldr['sha256'],input_binding=binding,points=len(ix),omitted_tail=n-len(ix),seconds=time.monotonic()-tic,device=os.environ['CUDA_VISIBLE_DEVICES'],B=1,copies=10,mask_seed=84551,correction=1,frozen_verified=True,query_labels_read=False))
             print(domain,entity,len(ix),round(time.monotonic()-tic,2),flush=True)
-    dump(root/f'LANE_{lane}.json',dict(weights_sha256=digests,reused_old_columns=reuse,frozen_verified=identity==[state_hashes(m) for m in nets]))
+    dump(root/f'LANE_{lane}.json',dict(weights_sha256=digests,reused_old_columns=reuse,frozen_verified=identity==[state_hashes(m) for m in nets] and base_identity==state_hashes(base)))
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--lane',type=int,default=0);p.add_argument('--lanes',type=int,default=4);a=p.parse_args();score(Path.cwd(),a.lane,a.lanes)

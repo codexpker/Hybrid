@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "GPU_used": false,
+  "model_forward_calls": 0,
+  "source": {
+    "original_plan_and_scale_identical": true,
+    "complete_trajectory_checkpoints": 21,
+    "position_score_banks": 21,
+    "selection_policy": "earliest minimum full-position event/stratum balanced SOURCE SELECT risk",
+    "max_risk_error": 2.220446049250313e-16,
+    "arms": {
+      "copy": {
+        "selected_step": 120,
+        "risk": 0.8936365035705989,
+        "checkpoint_sha256": "c1d2c2f93f6ae299c5c8b843ddcade859d4490f9e6bebaf06b5ea1553744b8e4"
+      },
+      "terminal": {
+        "selected_step": 200,
+        "risk": 0.888699352660769,
+        "checkpoint_sha256": "656d5a7810262fcee2ac2fb47dd726ff0f3af76d9fa57017782552202bf12e56"
+      },
+      "all_positions": {
+        "selected_step": 200,
+        "risk": 0.7701348586637073,
+        "checkpoint_sha256": "08c628363b2c292238501d9ab79d1d423e9be287c361cbd6f95af9d35dda1f2c"
+      }
+    }
+  },
+  "cached_metric_review": {
+    "fixed_entities": [
+      {
+        "domain": "PSM",
+        "entity": "PSM",
+        "score_bank_sha256": "2c67d9d75f7c4212113e4368b12b80189aa95732a2747bdbe123d20cdc83fb84",
+        "verified_rows": 6,
+        "tail": 41
+      },
+      {
+        "domain": "SMD",
+        "entity": "machine-1-1",
+        "score_bank_sha256": "9e9c18c2719a52f75970a78269370faaf14d5d37499808ae178d7fa1f86e0253",
+        "verified_rows": 6,
+        "tail": 79
+      },
+      {
+        "domain": "MSL",
+        "entity": "C-1",
+        "score_bank_sha256": "ae868fb7b2246cb7c66fdf3e249f0b0d880fd30d624f59948c1fae7ea7077a35",
+        "verified_rows": 6,
+        "tail": 64
+      },
+      {
+        "domain": "SMAP",
+        "entity": "A-1",
+        "score_bank_sha256": "a1b0fffa8f284e30b4b238da9b64866ea45025f56a0d14c0b4b1d0e07d4665b5",
+        "verified_rows": 6,
+        "tail": 40
+      }
+    ],
+    "AP_max_absolute_error": 8.326672684688674e-17,
+    "ROC_max_absolute_error": 0.0,
+    "macro_max_absolute_error": 2.220446049250313e-16,
+    "paired_max_absolute_error": 2.983724378680108e-16,
+    "all_entity_count": 109,
+    "VUS_scope": "independent aggregation of production per-entity values only; formula not rerun"
+  },
+  "source_code_scope": "Reviewed position_pair and full-position validate: original scale, nonlinear per-position loss before mean100, then original sampling-stratum counts for training; source SELECT equal12 groups, normal MSE separate; decoder-only eval/fixed masks/RNG receipts",
+  "limitations": "No additional model forward, no full-domain AP/ROC recomputation; single seed has no sample SD."
+}

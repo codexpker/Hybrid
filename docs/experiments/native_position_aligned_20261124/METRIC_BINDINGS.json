@@ -1,0 +1,771 @@
+{
+  "entities": [
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "sha256": "4b69ee86efc77aa7202c03b3a54aef1b6aed155d90540e129345d73d389638b1",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "45734b7f4005379556f96150fce011536acac365c9d28b58c92f454f58c7909c"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "sha256": "0035b601ee8b47da318c31b80d8e29347fa5433b87f9c129299deb5e1f75f737",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "e7bce1d03d7919bba21da72a94ac3e5833ab158337c285f3a5f4e1b9e2ea2cb6"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "sha256": "50b50a0b2e54ada79bb196c357c488ce2f9ece90e8806ab597570117a2fefe0b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "45df76cdbae404fc66584f9937aaad6924247c5763aba12354496a6b81373fa9"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "sha256": "08681001d973528658f44746ae81078ca49a7585a740887f36d11603464ab46a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "9243906ab48bc1947d4681862ce60954a59eab69e23e8c7ef1e6b0401c65b6e1"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "sha256": "709d4979ef93b545b5544b201db283a4639cbca02355ff0abff80643a1fb4d32",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "23b7bb062d7e2b6f8c6a16cabaed9c8faabdfd6d80737e36441a7a64fe9d36b2"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "sha256": "718fcffe8a76d6729b020113e3552db78c29e3ea714f824af48465036dac7e20",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "c68d535beaac82d9b093f0d58dda85ec2e30733ef177a7cc94ff91ee09ab31ad"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "sha256": "23c15034cd3e82ab0f543dc3ca7b94b013614bce804fb459b2d8d0081000e71b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "10bd8da879551ac07576389c7124b83a7d6bf3d397776c8ae4507a761ad621bc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "sha256": "9e9c18c2719a52f75970a78269370faaf14d5d37499808ae178d7fa1f86e0253",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "8745158f04e5a861f5a4a2d785210979cbe505fd226a627a87a8d1efa54c4c21"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "sha256": "fde11c18bff197504b7e71c305d2f8a94a39b47cc530d2dc0ae9663c8517afca",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "354be5da015c58de88979b0b73ea9953a76d856221c5bdfa25de40ce43560a28"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-1",
+      "sha256": "a1b0fffa8f284e30b4b238da9b64866ea45025f56a0d14c0b4b1d0e07d4665b5",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "12f1554fa60edc5340eb42b1b1035785f8686fca0cb6c7c681b253ea6f9a25bd"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "sha256": "cd4ffe32c7d7cea160ba0bb5f0c2414704e54e6771c26fae9a5bb80e51ddf9f2",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ac9362727b07c1cb51fcf54632c5fa5e9c3bd786421d69d718f80ede50eda418"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-2",
+      "sha256": "d192b0744b512b68897137f2a44e2837a38eebc0ebedbab8b17a8505ec39babe",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "13cb4a84ca168613b4d122ef00fd10ecd35fbdea9a4c9118fd6403bfe91e5442"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "sha256": "e4ed614a08849780728242ec9a9a2461a54c81a57c822d036ad0ebbcfd95d108",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "72c8b4e4963a95b765459abb9dfb9469df7afd24a1ad7c5eb4ddfe8dd7e35f6d"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "sha256": "0699bd33600e07245c980a9707c7d62bb298d702fb087611671bd6e7df270235",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "175ab01e847285f3eca0a130c0e72a67741348eb4af56f299d21d3a4c3d80636"
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "sha256": "790c38476bde95b39552cc5bd9d4a8e7e01c7cefb1f9159c24d48ff920f039d0",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "996b4a4d8f0309e2f8306df3bb778e9121cfe83fe3930ac04ce2eafde7de7f6b"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "sha256": "c7886e182ed74f0b1b1fc9471a7b1e5bd2b0e2acb45f848450cd591fdc27b1b0",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "5506a5c3416dd50405caa26c29e54f68a893ff5cb369e2f101e06f30a2ee920b"
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "sha256": "ae868fb7b2246cb7c66fdf3e249f0b0d880fd30d624f59948c1fae7ea7077a35",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "6e012325812ee08aaf117059eee23d4e52fb961c797489ff3bd017d78a2add4e"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "sha256": "df825db930c71c602cf954e8aeda819f9a26a4ff8b8ebf3eaec4baf9d9f191a7",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "cad7e09d382f50b06c08c2ab4f70335f93445ee89cf435ceeea7580a3d2f24f8"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "sha256": "f7c11fb1242954b6abed48351d561e94422719b6534ec8b694049e4408aa336d",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2a73af8cef51187985f4bffe06d49d2b64d269983bbe8470713c0f1600bba556"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "sha256": "34c8f902e8a49c8b789b94d3da3c124282119c11ad46ea0dba4ad87531d5c895",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "90466d15ee6d2e9f5357b0e24531c06b8399fb29011cb36de608c1918a7bae82"
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "sha256": "1ffdcab1540fc8575ca7b49c8adc9f6b08f24e5d040ffc29f9d27875fa8c97e7",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "8df2757b7db0ebaa63de9e005eae0d954e1359d5eb2a45e06ad93250b5f1da70"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "sha256": "1903eea1b4f48cb42f678a1db02a4aef6047f1ab639e648ac7376d0d80a14604",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "f9e09448a2b941067dfbe05a2e7d436c46a695e8657125bdb4f8442f2c3f47ae"
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "sha256": "cbbe5f10d443f15251c56f452066c1d32d67be43672dc67ca558cf94a5ad7bbd",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "6caced52f07d9d9ba40d0946a13b5bc4c481c371645ba7a1a15b3c2a1dfde163"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "sha256": "8adbf977a7e9c0f9a77b870b7caa07829c2a55f9e473c94f8fe9015df221b936",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "00d90c399f865915ee395785ae4de3840307b3d5d8c62e416fff070c3b4cf20a"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "sha256": "46b734410c8de77e2bcc36fcab317163caa741401cb343e1c97d0b6f050c0b80",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "630a728e333ab83153c10da66209bb4817ef2110c322cf9cc5451f29d4885b0f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "sha256": "6bfb5047ba7e13685f4db58c289b67833600d7e4db6404633be1b77a46bdb36a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "76e049872a478a5a5ecb96f3b6ab47c71478b7e67e62fe4c1d68a4a9ddb2e256"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "sha256": "5e46c7ead9f1ef2130a88051ae0c2a3231035375c060a2793209e9b88d852981",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "05fd71a0a89f38ec8e496ee2ae9b2eccb71326ef532d650181cc33d8b0b77099"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "sha256": "d68fbe290f71c2e60c4d7f648ccb61444c87ded6398a4f630694659464d4f6d0",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ce72316713c513bb290c48c5fe1678e3300e38c2ca282fa42894ba95cc24901f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "sha256": "88db058b1bb2190875869a217b2087575deda34dfb25a18eb2e22ea0fec63643",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "a590ab7b2ed177e5cf12cfe22459f5f61b95c6ad8fb57acd6d98ba5ae3b3051f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "sha256": "5ea366e8f591a3530a51c812400b3149f5737be345dc7fc72f1382f8356fcda5",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "401e990e1c97e69d90177836f2b1c7cfd166747ac0926a3e2d2205733f2878f8"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "sha256": "7596f22312f0055afb76b0c8b4bfc7cf533e17a88bb096913e423262142b42d4",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2d9ac417770fb98b58e3bf73c3c5481890759d502c92d06f42ad8e9b81636750"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "sha256": "b6e7c593cd421b5dd14ef6cf987962d94e695a54f3c618a18fde5e8a3225095f",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "21b0ae68f41a9c847f4aa603fb3c6417e8a63be12bca064eb93f560e15af1856"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "sha256": "e911126d38635a4dd3fd5410ad20ae695be7887861c8482402a4d43e75314bb7",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "eddda57d2bf675ae768b8bfe0407ab18611efdd7e169797043d311d5498e61fb"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "sha256": "600ba5b6966d0af497b4d80638edddb3276c1dab4d4580f77fc7360d8ace4195",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "41543e1f62f3bed74501e3aef3e349a64923fb0f31efeffdffc2ad251ba32c0e"
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "sha256": "31598bf8731dba097ef5904e86548e44872b5937351d304ef2a5c7572c2b107b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ff72d6ac98982cb42c3b2c7f02e90755e898d7ddc2504afac7f12a38fb0fd7dc"
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "sha256": "ad751a4bc57419150700ea282034cfa5d620622346fa9f77ca0ec37bb9526477",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "813a796d1968bdb881756e8231432dc7f7a9684e5f6c90c38121a1803fd0ce0e"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "sha256": "670cf077e63542415f333f235b0a8b4cd2ae4fcd0586c763c4accf0733fb9ffc",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "5aaaffda0e8f3649c994cdf635206f009d8e055f9e6ca5d65e7f9d29e7e16185"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "sha256": "4b593a40dabc90644be0d9070a1ad40158fd3d15459812f127a7fc123f319946",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ffcb4569f169a732f95445c967ac3444fa0ef3c3e626edc87cc0a7768a8bb3d2"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "sha256": "5e55dc463def1d7a46c9eb5c2aa66b183bc35e6b690cd3249651247b44db4e0a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "c0e36fc9e07b4c4e95328ec6fb38f32aaa319154f67cfa316dc76fe7b1d7987d"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "sha256": "ded6f10aff55abe51bac85681b123d85892cc3c64c07562f34fb3312e3b560ff",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "749ef872a7723c3cdde8b89a4e0b58bf91687195c5449a2e6e3a016a8db97e94"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "sha256": "312a35e713f345beddc673836115f8a4791bd1d31fe2f4e8a9ba110e4dfea303",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "16e12fda327aea7a4ed570a8934e10bb537f834fc084952f6215ef03d3488a0f"
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "sha256": "ed8e92e7e0cbc9252510323d93e230126960f835ff08c8a7feec0af4e8674a57",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "b35e033c7c16dbd2d05ad86c3dad0f594de7d712da8d29e8c3e6bc46ddb26d7e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-3",
+      "sha256": "152ea5f6b21ff7b7845a775bdd880fb502a14da9ce333cd9268790b9fd9084c5",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2174b164fe4f005bae1009187bdcaaacc861ae04d3d103b0cafc14a0f1118c09"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-4",
+      "sha256": "f9d590049e5d98d9ed4a58fa912c14735286da735ce247cadfcc964910c6f396",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "16bf47f31fec678eeda3486be01f7916ee29ecfa6eb3eef50f9b97e2e6105a7c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-5",
+      "sha256": "e18a7d2b50433801733459862ad6386511fb7a10d8c3218e768c6902e64376be",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "d366bc0d8097bfc8b19c90377d3e2a4f2fd1bd6b95d89da3dabad72f11b8e2a6"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-6",
+      "sha256": "af36ad503fb5e3cf1b1e66a45ea7985c045e29c88509f6cb20fc006624957385",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "b77d2d2104a70d9c951d629bdb183343b69d065962e3b4256a378f170fe8a2b8"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-7",
+      "sha256": "53ca2ebddffe89ad7cbf078d885e68c2af16f028690c19e03d9f540c279b597c",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "5ef4436fbea8ac9c9cdd0d6967dd33e5bb82deb4dfdf585a27540651e62ab562"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "B-1",
+      "sha256": "79d2a3eaea111182f938a7aaa28f8952714d60f9fed5bbae46aca6db39f9b40e",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "1981775deb85c80c61cb3312686afd22f973060f4a838df1ccf0e977d07444d2"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-8",
+      "sha256": "5010a5e5909cfc3868e2e6fd6ef3a2e5dd2b8bd2b9b549ee53d8084ff66901f3",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "9348f3f141425923fb5e58d1958c29f7a091a1871cb1c66a82dcdcebcd54f963"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-9",
+      "sha256": "c24746836c5a09e6e8db5730e7ee3e784ad98ec4779441dfd3e402a3f5b9389c",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2c50b9ef505286766dffe3713d49d8ecd50e41154d021b814479e7031b2b8b18"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-1",
+      "sha256": "ccc26376c5ac2df21f2bf6c159074fc1b24e13b534047a13bbcec691ed4d9161",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "f74cc04324d5bf0267b5038498afb6b7a56bcd6a81131f18850b35df5ced3e5c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-11",
+      "sha256": "5931078b029c5fa1a40a7e5ec2db92989409a78429177d1861c7ca506c871687",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "42dc80502d7da822068082bc84808ff9fd85255bf1a8b48f54fa84a2b37cd8ce"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-13",
+      "sha256": "6e277077c3062d7d514f97b05dc791f8ab1012b9f2cff03e24eac1e16dc8d4b7",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "3eb4c8634d1cf8a88d1df644603ce4232936aac2a2a16919f239d6f10c0905a5"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-12",
+      "sha256": "ba0211df842899bff9c349f9ad3399830cd5582f59b96724591cd8ad03fe111e",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "a9034c574e7863e39ff518721ee64d32d408f06e035c9449d0e0a60f9e412294"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-2",
+      "sha256": "e8af7b2c8cd28c2a38c455d41f30f1b801467ffc2e9081ef75bbf25c773f0212",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "8fd57b088bbccb7a4d9d294a99251431d2173b9069f72fb3d473727d0c7fd106"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-5",
+      "sha256": "e0fe17a67e96803161e30e074bbe5c5a48781abcb4e3575d37e4beec2234113a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "702cdc51bddb5c5e329cd31b1a96873e8de26c46f505aa298d733c1ebf97e8c5"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-4",
+      "sha256": "afb64a992d9fbde24761761f4d040c9715967a37e2c14ee4ca9cd3a8cf0a1acf",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "24c1c071b991903011ae29536169387956653d8d5c53d83bfb4aeea10a570082"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-3",
+      "sha256": "450c0af3a0db079fb2a29d5ada1b3f07328273458c384a28720baf7fc809bc4b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "5f9bc211596fba880688f48b22b8a301b3a6cfcbae8d6d3de77e2fb61e56b749"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-6",
+      "sha256": "0de72f513465bb20b9d0d516a8c84e6f9bf957e6ef917fc511ec4b0df5cddedb",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "4e78fea84b0495e13416493d9e6a7b480c6adeef07a95659ee112f6127b95b6e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-8",
+      "sha256": "fc388a2a4022ba9357a3dbbb45339ab2e813fee092d2bfb540d014746ef53410",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ba0301dc00aed85b81a6ad7ffd92ed2258587b27354520c08e7eb3281804d869"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-9",
+      "sha256": "42d52032831aec93972bd350ab98bdd85b0cd483c6342b52c97912faf0a6d915",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2318e6a618c4fec55f122fee6dd56d311ecc9feddd3641997fa88f1be4790ba0"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-7",
+      "sha256": "13b2b3c738594f0ddfdce59ee1f75c3a67fee62307d1c7a7c260248c457bf8d9",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "17ad6446e305ec504a727b9f0578fe07b23291f4a0ad297471db2490a15fd6bb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-1",
+      "sha256": "92cf06540938da281671db31e764975a69af410310145c27ccd28f592e7a2716",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "0f9a8561a05f6f69f60517e710e35ff9e539241d52afd3b85c2cc19d8fe405e4"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-10",
+      "sha256": "5a12e1052b4c8adb5745f200209da14e0d68fa057435d871ee2863b1042aa97e",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "d9ebe6c4a310c01b21ea1ba680f0e3d16bb93ec143b4d8a52ab76810ae74c4fb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-11",
+      "sha256": "9be82b31667a2d959ff73ab91f473632cf7a90b10087bda37d521dfe49ecf2eb",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "e8753aa697760c55553ddaec5f33641c61be90551fb16a5ad6a1e09d4b41b67a"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-12",
+      "sha256": "705018a9c706bf4a1f6ef9baf37b5e1e194d663f6281c36742c38ca22e4375d8",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "d7a7e31bd69905331883c1413a695484d37faad45868138376cf41862f3b7899"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-2",
+      "sha256": "d09ccd64e7cd1036f98e8271061ba48107d749563f1a83869224e45a4e55255b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "3f33e51c520ab3598c87a386409c5ccf31f4e7b268b51c13326a04af1b835261"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-3",
+      "sha256": "eb041fe99a2441b8e94caac2b0f835928487898e6c77b215b211f2fd820afdc7",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "c0ddc0d79f8106d4f6417f765c1e822537820b4746d76ab06eae1389fe6dc43a"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-13",
+      "sha256": "e96bd87d8c0c1b4475316f20e5a1a09cdaee6856a9e96a6d6f637204b847561a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "af77af7fd680b68b3a24a56ddd88dd63c96c88eab55a02f822bd33540be07774"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-5",
+      "sha256": "f075230afecace10bc60fa51aa9c70aefe408b8d5f1cb8a442ca20f51fbe0b47",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "40224f9f82bdfd4d6c35921b569b4cac70673a00791b90e87ed0f0ae9399e479"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-4",
+      "sha256": "4d1699eef28d2c57210ed451586498ed131fa337c622e3dcc53610a92833e322",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "878ec0fb665392cd52b212a341f15b61c07c94efbcce4808efe7c10bc43d8305"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-6",
+      "sha256": "897c8b159fbb5a7232883a4f868edfc8208125d57aea574a107c959816982d13",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "fb065a576bd18608bc50140b474dc7654a04805d0868effdf92dcbcbc3b2801c"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-7",
+      "sha256": "ccf2922a0238643d09bff6465eb40728e2c3ae93108e77e8cc98b33cc523de5b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "feb2f4b1647955435d5ea4e7db2c6a16a1c26c3cb141c91a1b5df021dc5dbe00"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-8",
+      "sha256": "b67cf400293010843facdb623243f10e42de342566fd1d0c87832fb3d7bf0790",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "34e1644a90500cdabf431ba210567d84374b3c02ce0bcfa5de3d83fbe528596d"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-9",
+      "sha256": "a5c45d37945d041fa7ba43fee5f853d72fe6f04eb523991085416a6a9e29679f",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "b8c97cac41ee3f7c11d1d0a7c5e63c6e00e27b03247c4954073f91fc73044447"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-1",
+      "sha256": "cb14d924ec99714b83bdc20dca3c78cf3276620538c4e8763ef0ddade98b5d91",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "8c08067404cfbb7395b56ff105315bcaa7812dc318b998bca1c99469c9c217eb"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-3",
+      "sha256": "8fa82abfb799651b3e07052793648c10a2a659e326ca7186424bcb7b178047a4",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "560ea3ac86d377f6958a31156ccaa8a26f8d5c0b28b68e7648ac8bd6c6a1d639"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-2",
+      "sha256": "38146856d8ed3a4fe28a34dd4567dabdd01cea53e8442664f682694316934d16",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "d7e807e5c26203c8b2727b47967271e3fb92626ea4e8228c12e8951fe0a24ead"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-1",
+      "sha256": "7f743f24fd2b77dd09c45da87d4c2471c4c890b30304c7f7d093d05c26301075",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "d8fb88daed1d9cb769394c42b09033a5497313b711da384dca1f86e0f39d58ee"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-2",
+      "sha256": "4c7310eabe35530e7bef365ba307add32f5249035fd3c445370c4d40076ab41a",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "a153dc1509e06f9340d9a39b6055cb8d31eb764af249e7b1cf39d24ffce66993"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-3",
+      "sha256": "23aeb12bec60127cea033b15e8b88da1097f0e8ee947622acd8cae9d555b115c",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "dec6e11572cefa06d489c263091bd84dc03bdb16e00cf85a71ef0a8e8a88d0b1"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-4",
+      "sha256": "c2e7a1e609cedda1c761dc32032c771eb2ef945984123561c568e371f8f130a4",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "c15a7ec411ebe059ce986d16d8ef9891e9a7300f994158bf69ef945d7eec1376"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-6",
+      "sha256": "2fbcc336bd41bae29976d8fd5bd4eb785e0984a69ce31b41f40a59a90754f19d",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "6bf08730e42c0497c90d5674d929bbec8580d4f76241df8131d8dad371f29dc3"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-3",
+      "sha256": "505c5d34cadd1678d8866f520f5fdc0b8bd0ec883a555c3d86a74c8461102ec2",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "16ada655535d6133a24cd1ce28f018451fe26319dd8e0dac9c2369082790629b"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-7",
+      "sha256": "7c69543b12b817f938b37ea09fecff741b297777e60b5efb22c48bdb628e1af6",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "abd69c9f640939e26f03ea10db179b47d327f7c87fafccf0b10150014e5ab254"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-7",
+      "sha256": "320d854eff30aed0fe3625aea0355f68ba20e7ca83e6c49741ee6dc338b5ab94",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "1baec8c5c434298c877f77331b087950019997d621a90e2f1556a6eab3e31cb0"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-1",
+      "sha256": "d22d0739769c4fcb00440b2ebcc5f044c6a750a0c64c3df1aec08d01acf9d4ec",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "78e4ea45e5a3dd80e5a220b6f54cbb9fe20bdd503441da50a0bd8c74c003c263"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "R-1",
+      "sha256": "f36b41fa2ecc6014ac8d1ed349402483b8c4b0401bdaa2304069526ec5de2b8f",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "79fd385a91691a1448c4c80f43981ac6d97336f0ab9f7125684d79d224fd6b63"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-4",
+      "sha256": "5e5d0aa62324be87a0b356da33d3ddafdc38b1a7acdc700a6e3e5c601d9333ae",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2099f3ef2e7332756d3bf535deb2a649c95741a5bfb7921c1aa3501038b9c995"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "S-1",
+      "sha256": "b9dad0d2ae838cb2087a772698dd1309bfb4e3176b99d1bc54ba112724424639",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "43b8f200eba42b4d0ab755be4ae585be7a0381ebfe16aa8db788e2c75d0efd0b"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-2",
+      "sha256": "194be320096808186f529083f51671ffa200bbb7bd665f1993f36268054ec48e",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "26dc1b9ca3a9374fb801d8e3dc65bb91391f6818c13b0c65c9c2bf2b61e9cec8"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-1",
+      "sha256": "181ee6606c021c82b9b44104f118436ad21c855fcfe5ca0356d829b0d501d32c",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "cbba79817d5d4c0cc68685674220fbdf832957700e7daabfc43e1c8ecd42832e"
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-3",
+      "sha256": "ee78620010db76b2440c07a94c1c6de286cb8cc9a4ec0bbd32728f9a38835fd6",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "6fe68bf4b75d43b746feb60c9720d0e727973d6787ba7d04a89c0f44bc3d28a6"
+    },
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "sha256": "2c67d9d75f7c4212113e4368b12b80189aa95732a2747bdbe123d20cdc83fb84",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "e6f3d29928288eb316dd0cc38dd1b47b68cbcfba001f3f2909426d71436d0181"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "sha256": "cafaa16e07ffbf86047a6ed490030d4a69d923947170e1a40e8a64b52b1b24af",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "bf10a6f4c4e8c3b9d9f3ee96175475006075063a01050340238d5bcc21195616"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "sha256": "dac56332b70cb27e0ea273fbf67b06bf07764db40d11680d21faaba51f9f4ccf",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "590535cb29d504b12020a6292969291ab00c722a2b53c50d8c53244de657e211"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "sha256": "26f7e22d95d40a08cdb11173d8b8af0049a7e902bef366981128b0c3b62194c0",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "2b020980f8aa65b074b89d82903cba1e3c37418a302939ea47e497d6c411ab4b"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "sha256": "b99c21f414ac9cdf56538d92561458d272d62888decdf7a424bdd97f04430bbc",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "fc0b3f4fd90ab10551da62e283cfb5d0b81ab4a2dbb78d48b181fa7f89fde76a"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "sha256": "2d45722a181bbbed6e0c83f1a64da2758d81b13bd49eedec158cb9f782f6890b",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "665af1da2e1d322fa5c02a2d4fed2e3a71cba44692ab222e168b4153b4e39756"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "sha256": "1acfd32d22034e37a253290cfa4f039ac3f090d7dbf22c458484235f3d3fbaaf",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "ee573f2d8f2cdb5bf881df661bda53dc74d6b460b1eab8cbbce1776c9b2c4e2a"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "sha256": "6c88624f892cc7dd62f1239c278dff02d6970797ded6630f2d6ec7bd2d21c9e1",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "4dece04c49e2cf953a1c56fdc3556fd66dfead20f4f01528b69afd738db26d1d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "sha256": "e46403df9e750bcdf40ad1946f5343e2b586f5d7f324373efcf47c7dddc40574",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "30429e9d9e4865513758b0786ad5d48a227b7f40c828b70c519be5ea2d7b8129"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "sha256": "2829acb7b50106d734b67f4c975585ee781d8caea0bf1daa7f47e3ecac3f1262",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "a4b12a6f856603e3b2a972c650f063bad378d59b7bdfd3b9ea0565c4bff3cc69"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "sha256": "e98fa771e945468cd469eb567447570cd6bbd851ee992b50a52bd3f93ce5ac58",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "3b914864ef4feabbdefd2220a5e02b80368385419b6332c97d478945331cfbfc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "sha256": "a095b6174494444c3b5702777db1114c7d543c60a95971d78bacfeca4c6b27dd",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "60dcbf788226dbc0f0a0c8f47caeb6ef1f3f6f65fe5936499466ff129f79f73d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "sha256": "eaaaee557d7e6f47a22bba4a43eb88d1703590d6bbc434a3e91046c8ac05de05",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "c1e75a4d4168ac5e75d0bd5462555c0dd9db9c5a8eda53ed5794e18c2e40bffc"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "sha256": "7ed07966587449ed2a1f817a428ce7c8930a8afcbc817c1ed545e86968a9e602",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "fd1b2f27608a596272c3bcbf3aab735b19734eddd4fe59823db98b4355f874c6"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "sha256": "1f96460d3fe60b9c4df142039d8a753d3fd3d155bf3fb3735fd75c5f68ebd617",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "b8db5363dfd6f321ff37d39b8a52fcaba7896735b5257251c282b1f4c55ef01d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "sha256": "4841baa79b17dc381d4f96a330a3f0876243ce37828f0d56c02f8ef01df5f668",
+      "reused_metric_columns": {},
+      "axis_binding_sha256": "1e434c19d3706910c5d94fafc2ebedb5175e08a7573b149af528fde13a71c15c"
+    }
+  ],
+  "metrics": "pinned LEFT AP/ROC/VUS windowSize100 thre250",
+  "aggregation": "per entity then equal domain mean",
+  "calibration": "not performed",
+  "new_source_selection": "uniform full-position risk across arms; original scale"
+}

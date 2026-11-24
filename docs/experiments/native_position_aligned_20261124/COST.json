@@ -1,0 +1,36 @@
+{
+  "rows": [
+    {
+      "arm": "copy",
+      "selected_step": 120,
+      "seconds": 183.6051758211106,
+      "device": "0",
+      "peak_reserved": 444596224,
+      "updates": 240,
+      "selected_risk": 0.8936365035705989
+    },
+    {
+      "arm": "terminal",
+      "selected_step": 200,
+      "seconds": 291.1767717259936,
+      "device": "1",
+      "peak_reserved": 4674551808,
+      "updates": 240,
+      "selected_risk": 0.888699352660769
+    },
+    {
+      "arm": "all_positions",
+      "selected_step": 200,
+      "seconds": 292.7140172147192,
+      "device": "2",
+      "peak_reserved": 4674551808,
+      "updates": 240,
+      "selected_risk": 0.7701348586637073
+    }
+  ],
+  "source_training_GPU_seconds": 767.4959647618234,
+  "source_training_GPU_hours": 0.21319332354495094,
+  "minimal_engineering_check_GPU_seconds": null,
+  "check_timing": "minimal source arithmetic/gradient check not independently timed",
+  "failed_training_jobs": 0
+}

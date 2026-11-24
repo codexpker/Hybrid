@@ -1,0 +1,28 @@
+{
+  "status": "COMPLETED_BEFORE_TARGET",
+  "arms": {
+    "copy": {
+      "checkpoint_relative": "train/copy/selected.pt",
+      "checkpoint_sha256": "c1d2c2f93f6ae299c5c8b843ddcade859d4490f9e6bebaf06b5ea1553744b8e4",
+      "selected_step": 120,
+      "selection_relative": "train/copy/SELECTION.json",
+      "selection_sha256": "0af17502c2870ae60ae64078801f051130d42220dd06bfdb4fcfeb705379c638"
+    },
+    "terminal": {
+      "checkpoint_relative": "train/terminal/selected.pt",
+      "checkpoint_sha256": "656d5a7810262fcee2ac2fb47dd726ff0f3af76d9fa57017782552202bf12e56",
+      "selected_step": 200,
+      "selection_relative": "train/terminal/SELECTION.json",
+      "selection_sha256": "024e5d710a6f57ea34b0e6a6c1a6c8ffb756c6b5e5ee0202cf4195634bff2f20"
+    },
+    "all_positions": {
+      "checkpoint_relative": "train/all_positions/selected.pt",
+      "checkpoint_sha256": "08c628363b2c292238501d9ab79d1d423e9be287c361cbd6f95af9d35dda1f2c",
+      "selected_step": 200,
+      "selection_relative": "train/all_positions/SELECTION.json",
+      "selection_sha256": "19094f25422d63da62bc1fcbc3ed561d8b6a8def605bee7485dfde4d2e7417f5"
+    }
+  },
+  "source_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "query_read": false
+}

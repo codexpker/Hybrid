@@ -1,0 +1,24 @@
+{
+  "checks": [
+    {
+      "arm": "copy",
+      "step": 80,
+      "legacy": "copy",
+      "bit_exact_model_tensors": true,
+      "tensors": 110,
+      "new_checkpoint_sha256": "d28d13657370b6b5985ce9469f01953e43a2bd146749e6b02879cceb4f3a30f0",
+      "legacy_checkpoint_sha256": "20bbbdf728dcc08cbd2e20c65ab79e72a847d9469c7f004f28cf65f773cfcc6e"
+    },
+    {
+      "arm": "terminal",
+      "step": 240,
+      "legacy": "point_weighted",
+      "bit_exact_model_tensors": true,
+      "tensors": 110,
+      "new_checkpoint_sha256": "f24d28de2704e7f242df42f70cc457eadff84a68365ff7eac5e44f712e6a129d",
+      "legacy_checkpoint_sha256": "ec572d31d5612ff0d7ebdbe58b133ec631a2430700e3bd449907307de798ddf1"
+    }
+  ],
+  "legacy_files_unchanged": true,
+  "target_read": false
+}

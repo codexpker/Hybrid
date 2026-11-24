@@ -1,0 +1,9 @@
+{
+  "worker_sha256": "8d452630c93c08444c540f961286c57051c45a11796bb19795209af131566422",
+  "implementation": "native_position_aligned_training.py",
+  "source_initialization": "official native TimeRadar, frozen outside decoder",
+  "scale": "byte-reused prior SCALE.json and FIT_NORMAL_V.npz",
+  "source_plan": "byte-reused prior PLAN.npz df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "target_values_or_labels_used": false,
+  "check_scope": "one real normal source window: terminal/native gradient equality; synthetic full-position mean and gradient arithmetic; no target performance decision"
+}
