@@ -1,0 +1,39 @@
+{
+  "seed": 2025,
+  "base_plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "plan_sha256": "d099be789c4d15467a0cee120b0e31c6acfe3a09135d150f09bb8a8f56101f72",
+  "source_input_sha256": "45aa44fc5970b7e3c43baae4523db10e05a5e1a3075c37ff01bf7e663a49010f",
+  "arms": [
+    "single_V",
+    "expanded_V",
+    "expanded_E"
+  ],
+  "normal_exposures": [
+    2560,
+    2560,
+    2560
+  ],
+  "normal_channel_window_exposures": 309760,
+  "single_pair_channel_window_exposures": 223200,
+  "expanded_pair_channel_window_exposures": 298800,
+  "fit_tep_fault_runs": 400,
+  "select_tep_fault_runs": 100,
+  "select_domain_weights": [
+    0.5,
+    0.5
+  ],
+  "select_steps": [
+    0,
+    40,
+    80,
+    120,
+    160,
+    200,
+    240
+  ],
+  "swat_fit_events": 5,
+  "swat_select_events": 4,
+  "fit_weight": "SWaT normalized original stratum mass with inverse inclusion probability; TEP equal fault and stratum mass",
+  "scale": "original official decoder median on original 4632 SWaT FIT normal endpoints, separate for V and E",
+  "test_read": false
+}
