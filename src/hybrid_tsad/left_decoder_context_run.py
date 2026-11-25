@@ -6,7 +6,7 @@ from pathlib import Path
 import random
 import sys
 import time
-from types import SimpleNamespace
+from types import MethodType, SimpleNamespace
 
 import numpy as np
 import torch
@@ -18,6 +18,8 @@ from .left_swat_author import dump, read, sha
 
 OUT = Path('results/left_decoder_context_20261124_v1')
 REPEAT = Path('results/left_context_unmodulated_repeat_20261125_v1')
+PUBLIC = Path('results/left_context_unmodulated_public_20261125_v1')
+PUBLIC_ARMS = ('native', 'observation')
 BASE = Path('preparations/left_baseline_build_20261101_v1')
 SWAT_PREP = Path('preparations/left_multievent_mixed_u_20261111_v1')
 SWA = Path('results/left_swat_author_20261118_v1')
@@ -45,6 +47,75 @@ def environment(w, domain):
     from exp import exp_anomaly_detection as official
     return official, configs, reference['source_files']
 
+
+
+def public_kind(w, official, arm):
+    if arm not in PUBLIC_ARMS:
+        raise ValueError(arm)
+    upstream = w/BASE/'upstream'
+    source = read(w/SWA/'SOURCE_BINDING.json')['source_files']
+    assert all(sha(upstream/path) == digest for path, digest in source.items())
+    return model_class(official.Left, arm)
+
+
+def public_model_choices(exp, arm, output, check, sample, *, check_only):
+    model = exp.model
+    if check_only:
+        native = type(model).__bases__[0](exp.hyper_args).cuda().eval()
+        native.load_state_dict(model.state_dict())
+        model.eval()
+        x = torch.from_numpy(np.asarray(sample, dtype=np.float32)).cuda()
+        with torch.no_grad():
+            torch.testing.assert_close(model(x, None, None, None)[0],
+                                       native(x, None, None, None)[0], rtol=0, atol=0)
+            torch.testing.assert_close(model.infer(x, None, None, None)[0],
+                                       native.infer(x, None, None, None)[0], rtol=0, atol=0)
+        model.train()
+        model.step = model.warmup_steps + model.ramp_steps
+        step = model.step
+        loss, _ = model(x, None, None, None)
+        loss.backward()
+        gradient = model.ms_decoder.to_gb[-1].weight.grad
+        assert model.step == step + 1
+        assert gradient is not None and torch.isfinite(gradient).all() and gradient.norm() > 0
+        model.eval()
+        with torch.no_grad():
+            model.ms_decoder.to_gb[-1].bias.fill_(0.1)
+            on_score = model.infer(x, None, None, None)[0]
+            native.load_state_dict(model.state_dict())
+            native.step = model.step
+            lam, state, step = freeze_public_detection(model, arm)
+            off_score = model.infer(x, None, None, None)[0]
+            torch.testing.assert_close(off_score, native.infer(x, None, None, None)[0], rtol=0, atol=0)
+        assert not torch.equal(on_score, off_score)
+        assert fingerprint(model.state_dict()) == state and model.step == step
+        dump(output/'CHECKS.json', dict(passed=True, window=x.shape[1], channels=x.shape[2],
+             detection_off_native_exact=True, detection_on_changes_score=True, native_lambda=lam,
+             zero_modulation_loss_score_exact=True, step_increment=1,
+             to_gb_gradient_norm=float(gradient.norm()), normal_values_only=True,
+             model_sha256=sha(Path(__file__).with_name('left_decoder_context.py'))))
+        return None
+    proof = read(check)
+    assert proof['passed'] and proof['window']==sample.shape[1] and proof['channels']==sample.shape[2]
+    assert proof['model_sha256']==sha(Path(__file__).with_name('left_decoder_context.py'))
+    active = {k:v for k,v in model.state_dict().items() if not k.startswith('ms_decoder.to_gb.')}
+    return dict(arm=arm, common_initial_state_sha256=fingerprint(active), check_sha256=sha(check),
+                select_modulation='on' if arm=='observation' else 'none',
+                detection_modulation='off' if arm=='observation' else 'none')
+
+
+def freeze_public_detection(model, arm):
+    from .left_context_unmodulated import off_ms
+    model.eval()
+    lam = model._curriculum_lambda()
+    if arm == 'observation':
+        model._condition_ms = MethodType(off_ms, model)
+    assert model._curriculum_lambda() == lam > 0
+    return lam, fingerprint(model.state_dict()), model.step
+
+
+def sampler_fingerprint():
+    return hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest()
 
 def normal(w, domain):
     if domain == 'SWAT':
