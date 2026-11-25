@@ -130,6 +130,8 @@ The observation-conditioned training arm controls for active capacity and the tr
 
 We repeat the observation-assisted method and native LEFT at seed2026 with matched common parameters and training randomization within each benchmark. The observation-assisted method uses modulation for normal training and validation-based checkpoint selection and removes only that modulation for detection. The seed2025 SWaT intervention is the discovery evidence, and the prototype comparison remains a separate source-of-context ablation.
 
+The fixed public expansion applies the same observation-assisted path and detector to machine-specific SMD models (38 channels, W192) and domain-shared NASA models (one sensor, W96 for MSL and W192 for SMAP). All runs use the admitted data and native configuration for that task. The matched native arm uses the same pre-EMA snapshot treatment. The extra modulation remains on throughout normal selection and is bypassed for every detection record.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
@@ -208,6 +210,42 @@ On SWaT the candidate improves AP, ROC-AUC and VUS-PR relative to native LEFT in
 On PSM, the AP difference changes from −0.000304 to +0.002071 and VUS-PR changes are small. ROC-AUC and VUS-ROC fall in both seeds. The repeated pattern is a ranking trade-off with near-tied AP. Both candidate seeds exceed the fixed level baseline on all four measures. These two seeds provide descriptive evidence about training variation on the same development tasks. They do not establish statistical significance or independent-domain confirmation.
 
 [Complete method table, permissions, cost and numerical check](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#seed2026-repetition-of-observation-assisted-left). [PSM PR and ROC](../../docs/experiments/left_decoder_context_20261124/repeat_2026/psm_pr_roc.svg) and [SWaT PR and ROC](../../docs/experiments/left_decoder_context_20261124/repeat_2026/swat_pr_roc.svg).
+
+## Five-benchmark scope of observation-assisted LEFT
+
+The fixed method is evaluated on complete SMD28 and the admitted MSL27/SMAP53 cohorts at seed2025. SMD has a distinct 38-variable model for each machine. NASA uses one sensor and a shared model per spacecraft domain. Both LEFT arms use matched initialization and sampling, and retain the original dataset-specific window and normal-validation protocol. PSM and SWaT retain the two previous runs per method. Conclusions use the complete paired axes, with external comparisons on their explicitly cropped intersections and no independent-CAL operating estimates.
+
+| Dataset | Method | Seed | Eligible entities | Scored points | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 2025 | 1 | 87744 | 0.576639 | 0.776095 | 0.572611 | 0.785067 |
+| PSM | Observation-assisted LEFT (modulation off at detection) | 2025 | 1 | 87744 | 0.576335 | 0.755716 | 0.572616 | 0.762379 |
+| PSM | Native LEFT | 2026 | 1 | 87744 | 0.570185 | 0.771785 | 0.562230 | 0.778429 |
+| PSM | Observation-assisted LEFT (modulation off at detection) | 2026 | 1 | 87744 | 0.572256 | 0.765521 | 0.564671 | 0.771272 |
+| PSM | Pointwise level deviation | — | 1 | 87744 | 0.438271 | 0.654233 | 0.446020 | 0.654290 |
+| SWaT | Native LEFT | 2025 | 1 | 449856 | 0.543866 | 0.820853 | 0.534601 | 0.809255 |
+| SWaT | Observation-assisted LEFT (modulation off at detection) | 2025 | 1 | 449856 | 0.713724 | 0.838712 | 0.544820 | 0.707896 |
+| SWaT | Native LEFT | 2026 | 1 | 449856 | 0.586210 | 0.814548 | 0.522656 | 0.750588 |
+| SWaT | Observation-assisted LEFT (modulation off at detection) | 2026 | 1 | 449856 | 0.745122 | 0.844678 | 0.573343 | 0.793297 |
+| SWaT | Pointwise level deviation | — | 1 | 449856 | 0.744800 | 0.831823 | 0.464536 | 0.644277 |
+| SMD28 | Native LEFT | 2025 | 28 | 705984 | 0.497514 | 0.878682 | 0.541514 | 0.918616 |
+| SMD28 | Observation-assisted LEFT (modulation off at detection) | 2025 | 28 | 705984 | 0.497505 | 0.878689 | 0.541473 | 0.918610 |
+| SMD28 | Pointwise level deviation | — | 28 | 705984 | 0.426506 | 0.803366 | 0.425468 | 0.866640 |
+| MSL27 | Native LEFT | 2025 | 27 | 72384 | 0.503936 | 0.765166 | 0.548399 | 0.795734 |
+| MSL27 | Observation-assisted LEFT (modulation off at detection) | 2025 | 27 | 72384 | 0.504800 | 0.759691 | 0.549339 | 0.792847 |
+| MSL27 | Pointwise level deviation | — | 27 | 72384 | 0.282442 | 0.551861 | 0.297753 | 0.603685 |
+| SMAP53 | Native LEFT | 2025 | 53 | 423168 | 0.492403 | 0.763711 | 0.520537 | 0.785751 |
+| SMAP53 | Observation-assisted LEFT (modulation off at detection) | 2025 | 53 | 423168 | 0.497280 | 0.760521 | 0.524927 | 0.784207 |
+| SMAP53 | Pointwise level deviation | — | 53 | 423168 | 0.285296 | 0.569725 | 0.283968 | 0.610831 |
+
+On SMD28, the candidate's AP is 0.497505 versus 0.497514 for native LEFT. All four absolute macro differences are below 0.000042, all four medians are negative, and AP improves on 10 machines, ties on one and declines on 17. Every individual SMD difference is below 0.00075 in absolute value across all four metrics. The two learned methods both outperform the pointwise level baseline on all four macro metrics. The candidate's AP advantage over level deviation is 0.0710 with wins on 26 machines. Native LEFT already has nearly the same advantage.
+
+SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie.
+
+MSL27 and SMAP53 show small macro AP gains of 0.000864 and 0.004877, with similarly positive macro VUS-PR changes. Both macro ROC measures decline on both datasets. The AP difference is negative at the median on both, with wins on 12 of 27 MSL entities and 25 of 53 SMAP entities. The ranges of individual AP differences are [−0.093758, +0.113951] and [−0.090608, +0.194753]. The positive means therefore coexist with broad entity-level losses. The candidate exceeds level deviation by 0.2224 macro AP on MSL and 0.2120 on SMAP, with AP wins on 21 of 27 and 34 of 53 entities respectively. The native model already has a large advantage over level deviation in both cohorts.
+
+The larger gain over native LEFT remains specific to the fixed SWaT task among these benchmarks. SWaT's seed2025 switch result motivated the method and seed2026 repeats its AP, ROC-AUC and VUS-PR gains descriptively. SWaT VUS-ROC changes sign, and the level baseline remains higher in AP in seed2025 and close in seed2026. The SMD multi-variable extension shows no material added value, and the NASA single-sensor results indicate heterogeneous benefits rather than evidence of cross-variable improvement. The suite contributes three new single-seed benchmark results and two prior two-seed benchmark results.
+
+[Complete external comparisons by axis, paired distributions and run costs](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#fixed-public-benchmark-expansion).
 
 ## Target-normal training scope
 

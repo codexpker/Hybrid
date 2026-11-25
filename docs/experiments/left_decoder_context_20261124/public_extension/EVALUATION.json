@@ -1,0 +1,19 @@
+{
+  "complete": true,
+  "scored_entities": 108,
+  "observed_jobs": 60,
+  "VUS": {
+    "windowSize": 100,
+    "thre": 250
+  },
+  "AP_ROC_recomputed_rows": 977,
+  "max_AP_ROC_error": 3.3306690738754696e-16,
+  "train_A40_seconds": 15096.660420337692,
+  "score_A40_seconds": 51.19850268959999,
+  "process_seconds": 15388.352575008757,
+  "queue_wall_seconds": 4810.04588220641,
+  "evaluation_CPU_seconds": 418.6683011520654,
+  "calculator_sha256": "45576c377f6bf952ec62b852b03c01eb73dab28b8b024c0f69579f0ec4be45db",
+  "archived_two_domain_evaluation_sha256": "e0957690db2fc58b3dd830ecf5de9e16a248055d976d0bf56458139f87100286",
+  "operation_metrics": "NA"
+}

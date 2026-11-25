@@ -191,3 +191,141 @@ On PSM, the AP difference changes from −0.000304 to +0.002071 and VUS-PR chang
 The four new trainings used 2.722316 A40 GPU-hours. The four full readouts used 9.496 A40-seconds. Combined measured cost was 2.724954 A40 GPU-hours. CPU metrics, curves and numerical recomputation took 49.125 wall-seconds. Costs exclude process startup and reused runs.
 
 An independent tie-group AP and trapezoidal ROC-AUC calculation on 17 new and reused score rows matched the reported values to within 6.66e-16. VUS uses the fixed LEFT evaluator (windowSize 100, thre 250). Score banks, checkpoints and scalers for all four new runs match their SHA-256 receipts. The new per-point and per-channel banks, input indices, availability indices, scalers and checkpoints are archived outside Git under `results/left_context_unmodulated_repeat_20261125_v1`.
+
+## Fixed public benchmark expansion
+
+The two learning paths retain the established LEFT implementation. Observation-assisted LEFT enables the extra multiscale modulation in normal training and SELECT and bypasses only that computation in detection. Normal validation still selects the checkpoint. The native time–frequency cycle and prototype memory retain their original settings in each task. SMD uses raw 38-channel records, W192 and one model per machine. Telemanom MSL and SMAP use sensor zero, a shared model within each domain and W96 or W192 respectively. The frozen cohort contains 28 SMD, 27 MSL and 53 SMAP entities. Every new run uses seed2025.
+
+The earlier SMD and NASA native fits lack the matched implementation's pre-EMA prototype snapshot. Both arms were fitted again in the matched implementation. Within each task, common parameters start from the same state, samplers agree through all common epochs and the scaler is shared. The archive's 80/20 normal FIT and SELECT, per-machine SMD scaler or domain-shared NASA scaler fitted over the normal prefix including SELECT, optimizer, schedule and patience are preserved. Training stride is one, while SELECT and detection use non-overlapping windows. MSL's earlier loss-key compatibility mapping uses the same fixed values. Both arms use the published early-stopping logic, the selected weights and the original inference state convention. [Pinned LEFT implementation](https://github.com/DezhengWang/Left/tree/3fadb4811797075e233076b9faceb0d8ec59b697) · [SMD data provenance](../native_event_smd28_20261123/left/README.md) · [NASA rules](../left_nasa_author_20261123/RESULTS.md).
+
+### Complete method benchmark
+
+The internal comparison uses PSM test-relative [0, 87744), SWaT absolute [495000, 944856) and, for each new entity, [0, W floor(N/W)). Scores for incomplete final windows are omitted. LEFT's score at each point is available at that window's end. The simple level score is the fixed beta-one SmoothL1 distance to zero in the same standardized input space, averaged across channels and available at the current point. Each entity metric is calculated first and contributes equal weight to its domain. The two archived seeds remain separate. Independent CAL operations are NA.
+
+| Dataset | Method | Seed | Eligible entities | Scored points | AP | ROC-AUC | VUS-PR | VUS-ROC |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 2025 | 1 | 87744 | 0.576639 | 0.776095 | 0.572611 | 0.785067 |
+| PSM | Observation-assisted LEFT (modulation off at detection) | 2025 | 1 | 87744 | 0.576335 | 0.755716 | 0.572616 | 0.762379 |
+| PSM | Native LEFT | 2026 | 1 | 87744 | 0.570185 | 0.771785 | 0.562230 | 0.778429 |
+| PSM | Observation-assisted LEFT (modulation off at detection) | 2026 | 1 | 87744 | 0.572256 | 0.765521 | 0.564671 | 0.771272 |
+| PSM | Pointwise level deviation | — | 1 | 87744 | 0.438271 | 0.654233 | 0.446020 | 0.654290 |
+| SWaT | Native LEFT | 2025 | 1 | 449856 | 0.543866 | 0.820853 | 0.534601 | 0.809255 |
+| SWaT | Observation-assisted LEFT (modulation off at detection) | 2025 | 1 | 449856 | 0.713724 | 0.838712 | 0.544820 | 0.707896 |
+| SWaT | Native LEFT | 2026 | 1 | 449856 | 0.586210 | 0.814548 | 0.522656 | 0.750588 |
+| SWaT | Observation-assisted LEFT (modulation off at detection) | 2026 | 1 | 449856 | 0.745122 | 0.844678 | 0.573343 | 0.793297 |
+| SWaT | Pointwise level deviation | — | 1 | 449856 | 0.744800 | 0.831823 | 0.464536 | 0.644277 |
+| SMD28 | Native LEFT | 2025 | 28 | 705984 | 0.497514 | 0.878682 | 0.541514 | 0.918616 |
+| SMD28 | Observation-assisted LEFT (modulation off at detection) | 2025 | 28 | 705984 | 0.497505 | 0.878689 | 0.541473 | 0.918610 |
+| SMD28 | Pointwise level deviation | — | 28 | 705984 | 0.426506 | 0.803366 | 0.425468 | 0.866640 |
+| MSL27 | Native LEFT | 2025 | 27 | 72384 | 0.503936 | 0.765166 | 0.548399 | 0.795734 |
+| MSL27 | Observation-assisted LEFT (modulation off at detection) | 2025 | 27 | 72384 | 0.504800 | 0.759691 | 0.549339 | 0.792847 |
+| MSL27 | Pointwise level deviation | — | 27 | 72384 | 0.282442 | 0.551861 | 0.297753 | 0.603685 |
+| SMAP53 | Native LEFT | 2025 | 53 | 423168 | 0.492403 | 0.763711 | 0.520537 | 0.785751 |
+| SMAP53 | Observation-assisted LEFT (modulation off at detection) | 2025 | 53 | 423168 | 0.497280 | 0.760521 | 0.524927 | 0.784207 |
+| SMAP53 | Pointwise level deviation | — | 53 | 423168 | 0.285296 | 0.569725 | 0.283968 | 0.610831 |
+
+### External comparisons on their declared axes
+
+The PSM and SWaT full-axis TimeRadar, CATCH and PCA metrics reuse the archived panel above. PSM's History Mean512 is shown with recropped LEFT and level rows on [512, 87744). For SMD and MSL the external panel ends at min(W floor(N/W), 100 floor(N/100)) per entity and begins at zero. SMAP uses the same rule with start 512 to reflect the causal baseline warmup. Internal arms and level are recalculated on that exact external axis. The W100 TimeRadar row uses the fixed official pretrained model and project full-window readout. A/B TimeRCD and causal or fitted baselines keep their recorded permissions. CATCH and PCA are NA outside the PSM full panel because there is no compatible complete-cohort bank. SWaT, SMD and MSL have no compatible complete-cohort History Mean512 panel here. No scores are padded and no differences span panels.
+
+| Axis | Dataset | Method | Seed | Eligible entities | Scored points | AP | ROC-AUC | VUS-PR | VUS-ROC | Permissions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| [0, 87744) | PSM | CATCH W192 seed0 | — | 1 | 87744 | 0.445990 | 0.653418 | 0.536671 | 0.703657 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| [0, 87744) | PSM | CATCH W192 seed1 | — | 1 | 87744 | 0.430264 | 0.641399 | 0.519273 | 0.690691 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| [0, 87744) | PSM | CATCH W192 seed2 | — | 1 | 87744 | 0.433044 | 0.647248 | 0.526447 | 0.698733 | target FIT-only scaler; FIT trains, SELECT selects; full W192 |
+| [0, 87744) | PSM | PCA residual | — | 1 | 87744 | 0.534404 | 0.793321 | 0.528991 | 0.766686 | target FIT-only scaler and PCA fitted on at most 50000 FIT points; score only uses x_t |
+| [0, 87744) | PSM | TimeRadar official block0 seed2024 | — | 1 | 87744 | 0.433265 | 0.670669 | 0.441259 | 0.678365 | native norm=0, B64, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| [0, 87744) | PSM | TimeRadar common FIT scaler seed2024 | — | 1 | 87744 | 0.455371 | 0.683823 | 0.458071 | 0.689163 | FIT-only scaler, B64, norm=0, L1; complete W100 and batch-shared order |
+| [495000, 944856) | SWaT | TimeRadar official block0 | — | 1 | 449856 | 0.639299 | 0.821970 | 0.514061 | 0.766831 | native norm=0, B128, L1; prefix scaler includes SELECT; complete W100 and batch-shared order |
+| [512, 87744) | PSM | Native LEFT | 2025 | 1 | 87232 | 0.577321 | 0.775583 | 0.574517 | 0.785092 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| [512, 87744) | PSM | Native LEFT | 2026 | 1 | 87232 | 0.570818 | 0.771207 | 0.564039 | 0.778376 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| [512, 87744) | PSM | Observation-assisted LEFT (modulation off at detection) | 2025 | 1 | 87232 | 0.576855 | 0.754978 | 0.575355 | 0.763801 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| [512, 87744) | PSM | Observation-assisted LEFT (modulation off at detection) | 2026 | 1 | 87232 | 0.572879 | 0.764988 | 0.566836 | 0.771890 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| [512, 87744) | PSM | Pointwise level deviation | — | 1 | 87232 | 0.439055 | 0.653701 | 0.448014 | 0.655521 | Zero training, identical LEFT normal-prefix scaler, current point only |
+| [512, 87744) | PSM | History Mean512 | — | 1 | 87232 | 0.321036 | 0.530038 | 0.349870 | 0.573014 | Strictly past 512 points, archived target normal scaler |
+| W192/W100 intersection | SMD28 | Native LEFT | 2025 | 28 | 705768 | 0.497531 | 0.878703 | 0.541563 | 0.918638 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W192/W100 intersection | SMD28 | Observation-assisted LEFT (modulation off at detection) | 2025 | 28 | 705768 | 0.497522 | 0.878710 | 0.541519 | 0.918630 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W192/W100 intersection | SMD28 | Pointwise level deviation | — | 28 | 705768 | 0.426527 | 0.803372 | 0.425529 | 0.866664 | Zero training, identical LEFT normal-prefix scaler, current point only |
+| W192/W100 intersection | SMD28 | TimeRadar official V (project W100) | — | 28 | 705768 | 0.426105 | 0.827359 | 0.450810 | 0.882486 | Frozen official pretrained TimeRadar, archived target FIT statistics, W100 B1 full-window offline project readout |
+| W192/W100 intersection | SMD28 | TimeRCD A_official_role logit | — | 28 | 705768 | 0.486510 | 0.838190 | 0.519053 | 0.889934 | official pretrained discriminative network; W5000 offline; whole-role statistics including QUERY |
+| W192/W100 intersection | SMD28 | TimeRCD B_fit_only logit | — | 28 | 705768 | 0.472349 | 0.859429 | 0.514555 | 0.909734 | official pretrained discriminative network; W5000 offline; archived target FIT-only statistics |
+| W96/W100 intersection | MSL27 | Native LEFT | 2025 | 27 | 72168 | 0.504270 | 0.765985 | 0.548650 | 0.796502 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W96/W100 intersection | MSL27 | Observation-assisted LEFT (modulation off at detection) | 2025 | 27 | 72168 | 0.505130 | 0.760581 | 0.549542 | 0.793621 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W96/W100 intersection | MSL27 | Pointwise level deviation | — | 27 | 72168 | 0.288019 | 0.552958 | 0.306937 | 0.605509 | Zero training, identical LEFT normal-prefix scaler, current point only |
+| W96/W100 intersection | MSL27 | TimeRadar official V (project W100) | — | 27 | 72168 | 0.343649 | 0.670930 | 0.369678 | 0.719095 | Frozen official pretrained TimeRadar, archived target FIT statistics, W100 B1 full-window offline project readout |
+| W192/W100 intersection from 512 | SMAP53 | Native LEFT | 2025 | 53 | 395376 | 0.496715 | 0.760956 | 0.525739 | 0.783197 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W192/W100 intersection from 512 | SMAP53 | Observation-assisted LEFT (modulation off at detection) | 2025 | 53 | 395376 | 0.501512 | 0.757433 | 0.531688 | 0.781469 | Normal target FIT and SELECT, normal-prefix scaler includes SELECT, full-window offline |
+| W192/W100 intersection from 512 | SMAP53 | Pointwise level deviation | — | 53 | 395376 | 0.296622 | 0.572258 | 0.302059 | 0.613587 | Zero training, identical LEFT normal-prefix scaler, current point only |
+| W192/W100 intersection from 512 | SMAP53 | TimeRadar official V (project W100) | — | 53 | 395376 | 0.307180 | 0.662435 | 0.305468 | 0.704470 | Frozen official pretrained TimeRadar, archived target FIT statistics, W100 B1 full-window offline project readout |
+| W192/W100 intersection from 512 | SMAP53 | History Mean512 | — | 53 | 395376 | 0.317772 | 0.634378 | 0.335979 | 0.686471 | Strictly past 512 points, archived per-entity target FIT scaler |
+| W192/W100 intersection from 512 | SMAP53 | Persistence | — | 53 | 395376 | 0.175004 | 0.493964 | 0.172130 | 0.513465 | Previous point, archived per-entity target FIT scaler |
+| W192/W100 intersection from 512 | SMAP53 | RoCA FULL-T | — | 53 | 395376 | 0.202436 | 0.443330 | 0.194412 | 0.499605 | Archived target FIT and CAL, causal endpoint project readout |
+
+### Paired entity distribution
+
+The references below are on the internal axes. Exact metric ties are reported separately. The entity counts describe response heterogeneity at one seed.
+
+| Dataset | Reference | Metric | Mean Δ | Median Δ | Min Δ | Max Δ | W/T/L | Eligible pairs |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SMD28 | Native LEFT | AP | -0.000009 | -0.000013 | -0.000393 | +0.000611 | 10/1/17 | 28/28 |
+| SMD28 | Native LEFT | ROC-AUC | +0.000007 | -0.000003 | -0.000179 | +0.000260 | 12/1/15 | 28/28 |
+| SMD28 | Native LEFT | VUS-PR | -0.000042 | -0.000006 | -0.000626 | +0.000740 | 8/2/18 | 28/28 |
+| SMD28 | Native LEFT | VUS-ROC | -0.000006 | -0.000008 | -0.000196 | +0.000200 | 7/2/19 | 28/28 |
+| SMD28 | Pointwise level deviation | AP | +0.070999 | +0.046826 | -0.040143 | +0.332458 | 26/0/2 | 28/28 |
+| SMD28 | Pointwise level deviation | ROC-AUC | +0.075323 | +0.081679 | -0.056967 | +0.250508 | 26/0/2 | 28/28 |
+| SMD28 | Pointwise level deviation | VUS-PR | +0.116005 | +0.090701 | -0.029823 | +0.599113 | 27/0/1 | 28/28 |
+| SMD28 | Pointwise level deviation | VUS-ROC | +0.051970 | +0.038972 | -0.048169 | +0.189696 | 27/0/1 | 28/28 |
+| MSL27 | Native LEFT | AP | +0.000864 | -0.000607 | -0.093758 | +0.113951 | 12/0/15 | 27/27 |
+| MSL27 | Native LEFT | ROC-AUC | -0.005475 | -0.000069 | -0.070185 | +0.029514 | 12/0/15 | 27/27 |
+| MSL27 | Native LEFT | VUS-PR | +0.000940 | +0.000000 | -0.113562 | +0.133921 | 12/3/12 | 27/27 |
+| MSL27 | Native LEFT | VUS-ROC | -0.002887 | +0.000000 | -0.068831 | +0.029100 | 11/3/13 | 27/27 |
+| MSL27 | Pointwise level deviation | AP | +0.222358 | +0.157251 | -0.473357 | +0.885033 | 21/0/6 | 27/27 |
+| MSL27 | Pointwise level deviation | ROC-AUC | +0.207830 | +0.186679 | -0.193029 | +0.643832 | 23/0/4 | 27/27 |
+| MSL27 | Pointwise level deviation | VUS-PR | +0.251586 | +0.203444 | -0.474626 | +0.960439 | 22/0/5 | 27/27 |
+| MSL27 | Pointwise level deviation | VUS-ROC | +0.189162 | +0.156630 | -0.193870 | +0.543276 | 22/0/5 | 27/27 |
+| SMAP53 | Native LEFT | AP | +0.004877 | -0.000102 | -0.090608 | +0.194753 | 25/0/28 | 53/53 |
+| SMAP53 | Native LEFT | ROC-AUC | -0.003190 | +0.000116 | -0.057006 | +0.061134 | 28/0/25 | 53/53 |
+| SMAP53 | Native LEFT | VUS-PR | +0.004390 | -0.000068 | -0.086972 | +0.173440 | 26/0/27 | 53/53 |
+| SMAP53 | Native LEFT | VUS-ROC | -0.001544 | +0.000080 | -0.052820 | +0.089110 | 30/0/23 | 53/53 |
+| SMAP53 | Pointwise level deviation | AP | +0.211984 | +0.063793 | -0.635941 | +0.869150 | 34/0/19 | 53/53 |
+| SMAP53 | Pointwise level deviation | ROC-AUC | +0.190796 | +0.110241 | -0.825266 | +0.816433 | 36/0/17 | 53/53 |
+| SMAP53 | Pointwise level deviation | VUS-PR | +0.240960 | +0.069800 | -0.634163 | +0.874009 | 33/0/20 | 53/53 |
+| SMAP53 | Pointwise level deviation | VUS-ROC | +0.173376 | +0.097982 | -0.821606 | +0.807161 | 36/0/17 | 53/53 |
+
+The older two-seed panels use the archived full axes and retain each seed separately.
+
+| Dataset | Seed | Reference | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | Native LEFT | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | 2025 | Pointwise level deviation | +0.138064 | +0.101484 | +0.126596 | +0.108088 |
+| PSM | 2026 | Native LEFT | +0.002071 | -0.006264 | +0.002441 | -0.007157 |
+| PSM | 2026 | Pointwise level deviation | +0.133986 | +0.111288 | +0.118650 | +0.116982 |
+| SWaT | 2025 | Native LEFT | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | 2025 | Pointwise level deviation | -0.031077 | +0.006889 | +0.080284 | +0.063620 |
+| SWaT | 2026 | Native LEFT | +0.158912 | +0.030130 | +0.050687 | +0.042708 |
+| SWaT | 2026 | Pointwise level deviation | +0.000322 | +0.012855 | +0.108807 | +0.149020 |
+
+On SMD28, the candidate's AP is 0.497505 versus 0.497514 for native LEFT. All four absolute macro differences are below 0.000042, all four medians are negative, and AP improves on 10 machines, ties on one and declines on 17. Every individual SMD difference is below 0.00075 in absolute value across all four metrics. The two learned methods both outperform the pointwise level baseline on all four macro metrics. The candidate's AP advantage over level deviation is 0.0710 with wins on 26 machines. Native LEFT already has nearly the same advantage.
+
+SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie.
+
+MSL27 and SMAP53 show small macro AP gains of 0.000864 and 0.004877, with similarly positive macro VUS-PR changes. Both macro ROC measures decline on both datasets. The AP difference is negative at the median on both, with wins on 12 of 27 MSL entities and 25 of 53 SMAP entities. The ranges of individual AP differences are [−0.093758, +0.113951] and [−0.090608, +0.194753]. The positive means therefore coexist with broad entity-level losses. The candidate exceeds level deviation by 0.2224 macro AP on MSL and 0.2120 on SMAP, with AP wins on 21 of 27 and 34 of 53 entities respectively. The native model already has a large advantage over level deviation in both cohorts.
+
+The larger gain over native LEFT remains specific to the fixed SWaT task among these benchmarks. SWaT's seed2025 switch result motivated the method and seed2026 repeats its AP, ROC-AUC and VUS-PR gains descriptively. SWaT VUS-ROC changes sign, and the level baseline remains higher in AP in seed2025 and close in seed2026. The SMD multi-variable extension shows no material added value, and the NASA single-sensor results indicate heterogeneous benefits rather than evidence of cross-variable improvement. The suite contributes three new single-seed benchmark results and two prior two-seed benchmark results.
+
+### Execution cost and checks
+
+| Dataset | Method | Runs | Selected epoch range | Updates | Training A40 s | Readout A40 s |
+| --- | --- | --- | --- | --- | --- | --- |
+| SMD28 | Native LEFT | 28 | 1–20 | 76,595 | 6639.333 | 20.366 |
+| SMD28 | Observation-assisted LEFT (modulation off at detection) | 28 | 1–20 | 79,731 | 6991.834 | 19.951 |
+| MSL27 | Native LEFT | 1 | 9 | 4,140 | 170.440 | 0.926 |
+| MSL27 | Observation-assisted LEFT (modulation off at detection) | 1 | 9 | 4,140 | 193.402 | 0.794 |
+| SMAP53 | Native LEFT | 1 | 13 | 12,256 | 529.821 | 4.688 |
+| SMAP53 | Observation-assisted LEFT (modulation off at detection) | 1 | 13 | 12,256 | 571.831 | 4.473 |
+
+All 60 formal jobs completed, with 4.1935 A40 hours of training and 51.199 A40-seconds for scoring and score-bank writing. The successful run slots occupied 4.2745 device-slot hours across four GPUs, including setup. Queue elapsed time was 80.17 minutes. The CPU evaluation took 418.67 wall-seconds. The training and score times are worker timers. The totals reflect each run's actual early-stopping epoch. Raw score banks, checkpoints and detailed run logs remain archived outside Git in `results/left_context_unmodulated_public_20261125_v1`. The initial failed logging attempt was archived separately and recorded 229.440 A40-seconds across 14 completed epoch loops of seven aborted jobs, excluding their setup and interrupted validation overhead. Progress logging was changed to one file per epoch before restarting from the original initial states. No successful result was repeated.
+
+Three normal-data checks verified zero-modulation forward equivalence, active gradients, and that switching off the extra path reproduces the same-weight native score while retaining each domain's cycle coefficient. All runs bind the selected state, input, score, scaler and common-initialization hashes. A separate tie-group AP and ROC calculation for 977 cache rows gave a maximum error of 3.33e-16. VUS uses the pinned LEFT evaluator with windowSize 100 and thre 250. Domain aggregation and each pair summary were checked again directly from the per-entity CSV for all four metrics.
+
+[Machine-readable five-domain methods](public_extension/methods.csv) · [Per-entity metrics and score bindings](public_extension/entity_metrics.csv) · [Per-entity paired differences](public_extension/entity_deltas.csv) · [Pair distributions](public_extension/paired_distribution.csv) · [Costs](public_extension/costs.csv) · [Metric receipt](public_extension/EVALUATION.json) · [Training and checkpoint bindings](public_extension/TRAINING_BINDINGS.json) · [Fixed queue](public_extension/QUEUE.json).

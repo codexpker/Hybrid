@@ -1,0 +1,486 @@
+{
+  "wall_seconds": 4810.04588220641,
+  "jobs": [
+    {
+      "domain": "SMAP",
+      "entity": "SMAP",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 538.722674516961
+    },
+    {
+      "domain": "SMAP",
+      "entity": "SMAP",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 581.0090600196272
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 285.4089301689528
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 321.52692145714536
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 362.937703714706
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 387.1240783170797
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 380.94672076031566
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 356.09215368609875
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 344.1807478778064
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 388.21605087211356
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 258.25074751721695
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 304.1629459229298
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 175.82273978879675
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 0,
+      "elapsed_seconds": 125.63215524284169
+    },
+    {
+      "domain": "MSL",
+      "entity": "MSL",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 175.23601758480072
+    },
+    {
+      "domain": "MSL",
+      "entity": "MSL",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 198.5358541388996
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 295.4538029297255
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 295.7851457130164
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 287.6633572992869
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 292.4223772776313
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 235.3716668258421
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 244.5739124743268
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 236.75582301989198
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 236.9190086722374
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 245.54348500911146
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 252.66101294662803
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 201.64466507267207
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 1,
+      "elapsed_seconds": 237.362824650947
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 288.2436613771133
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 240.3627147367224
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 294.6367298923433
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 293.88844646094367
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 246.89672428602353
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 295.2686971160583
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 242.48366672778502
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 245.1429228130728
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 209.0261573502794
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 249.99988910276443
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 174.76320662721992
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 176.4482539622113
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 176.31147595122457
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 224.6593941031024
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 52.393549473024905
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 2,
+      "elapsed_seconds": 56.328645477071404
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 290.12542862119153
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 295.17081046197563
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 288.02609663503245
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 288.30908332113177
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 234.46975473407656
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 244.99049455905333
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 241.98682958213612
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 243.16581762442365
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 231.0229956228286
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 236.66734517086297
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 185.5122114699334
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 283.71746145840734
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 163.29966739332303
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 165.254764364101
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "arm": "native",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 141.2183846347034
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "arm": "observation",
+      "exit_code": 0,
+      "gpu": 3,
+      "elapsed_seconds": 142.59871042100713
+    }
+  ],
+  "completed": 60
+}
