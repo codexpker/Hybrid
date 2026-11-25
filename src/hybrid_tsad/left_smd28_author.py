@@ -126,7 +126,7 @@ def run_entity(w, entity, arm=None, *, check_only=False):
             losses.append(value)
             if arm is not None:
                 sampler.append(sampler_fingerprint())
-                dump(output/"PROGRESS.json", dict(epoch=len(losses), validation_loss=value,
+                dump(output/f"epoch{len(losses):02d}.json", dict(epoch=len(losses), validation_loss=value,
                      updates=train_steps*len(losses), cpu_rng_sha256=sampler[-1]))
             return value
 
