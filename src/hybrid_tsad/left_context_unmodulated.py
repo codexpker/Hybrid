@@ -206,7 +206,8 @@ def plot(root, domain, y, bank, rows, *, names=None, dashed=()):
 
     plt.rcParams.update({'font.size': 10, 'axes.spines.top': False, 'axes.spines.right': False})
     fig, (pr, roc) = plt.subplots(1,2,figsize=(9,4))
-    palette = dict(native='#222222', observation='#0072B2', prototype='#D55E00', level='#009E73')
+    palette = dict(native='#222222', observation='#0072B2', prototype='#D55E00',
+                   mismatched='#D55E00', level='#009E73')
     external = ['#5F9EA0','#7C4A87','#88913E','#94663A','#A94D89','#636A95']
     handles = []
     ext_id = 0
@@ -231,7 +232,8 @@ def plot(root, domain, y, bank, rows, *, names=None, dashed=()):
     fig.suptitle(f'{domain if domain=="PSM" else "SWaT"} · shared offline evaluation axis')
     fig.legend(handles=handles, loc='lower center', ncol=2, frameon=False,
                fontsize=7.6, title='Method | AP / ROC-AUC',title_fontsize=8)
-    fig.tight_layout(rect=(0,.33 if domain=='PSM' else .25,1,.94))
+    bottom = (.33 if domain=='PSM' else .25) + (.04 if any(k.startswith('mismatched_') for k in bank) else 0)
+    fig.tight_layout(rect=(0,bottom,1,.94))
     for suffix in ('svg','png'):
         fig.savefig(root/f'{domain.lower()}_pr_roc.{suffix}', dpi=200, bbox_inches='tight')
     plt.close(fig)
