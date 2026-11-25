@@ -22,8 +22,8 @@ def sha(path):
 
 def normalize_once(data, arm, fit_mean=None, fit_std=None):
     x=np.asarray(data,dtype=np.float64)
-    if x.ndim!=2 or not len(x) or x.shape[1]<2 or not np.isfinite(x).all():
-        raise ValueError('Finite nonempty raw multivariate series required')
+    if x.ndim!=2 or not len(x) or x.shape[1]<1 or not np.isfinite(x).all():
+        raise ValueError('Finite nonempty raw time series required')
     if arm=='A_official_role':
         mean=np.mean(x,axis=0);std=np.std(x,axis=0);std=np.where(std==0,1e-8,std)
     elif arm=='B_fit_only':
@@ -73,7 +73,10 @@ def detector_from_config(workspace, config, channels, device):
     checkpoint=resolve(config['checkpoint'])
     if sha(checkpoint)!=config['checkpoint_sha256']:raise ValueError('Official multi checkpoint SHA mismatch')
     Detector=import_official(resolve(config['author_root']),config['author_files_sha256'])
-    detector=Detector.from_local(checkpoint,variant='multi',win_size=5000,batch_size=1,device=str(device))
+    variant=config.get('variant','multi')
+    if (variant=='uni' and channels!=1) or (variant=='multi' and channels<2):
+        raise ValueError('Channel count is incompatible with the official checkpoint variant')
+    detector=Detector.from_local(checkpoint,variant=variant,win_size=5000,batch_size=1,device=str(device))
     detector._ensure_tester(channels)
     detector._tester.model.eval()
     return detector

@@ -1,0 +1,3340 @@
+{
+  "records": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "channels": 25,
+      "normal_points": 132481,
+      "test_points": 87841,
+      "raw_assets_sha256": [
+        "f722bce0b19324d85c7b5691efe73453eb56022e867ccc1ba47bb3406787df38",
+        "6592518615d690ab153592b6dd0220c424441a0d4ee7bac87c3f89fe942893f5"
+      ],
+      "causal_axis": [
+        99,
+        87841
+      ],
+      "offline_axis": [
+        99,
+        87744
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "cbde7ff3efec342d94654009581ed93fe6d86feecde42c1f259fef18ee5fa683",
+        "B_fit_only": "e998226f4bb0cb81f078bf5cec34d1d3094dbd5ced0d80457429f3218b8ef51c"
+      },
+      "history_axis": [
+        512,
+        87744
+      ]
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "channels": 38,
+      "normal_points": 28479,
+      "test_points": 28479,
+      "raw_assets_sha256": [
+        "ecebd2933ccdc1126e2abbfb538762dbde16410cebc77257a7b96e1e1fbcf753",
+        "bdb801d8d52ce6b0c4a20c310edf31b5cee9bc82eb84fb38e7d4a19309b16ddb"
+      ],
+      "causal_axis": [
+        99,
+        28479
+      ],
+      "offline_axis": [
+        99,
+        28400
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "9319d206134ed4466c13db315167d9701b964ccf4b9c7a0a865cdf67dd243801",
+        "B_fit_only": "023fe2a68523e8d9ed64c6ec337ca528a6e200052a195d119742563fe56e95b2"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "channels": 38,
+      "normal_points": 23694,
+      "test_points": 23694,
+      "raw_assets_sha256": [
+        "7f6f63ec34ce616c87b4c30d66fd52ad1b21149634ae3ff7bb1827a76d6ef79a",
+        "f409991af7c049d3f286a8cf89dc2fa99114bea8753f6c3aea4bd24cb03eb015"
+      ],
+      "causal_axis": [
+        99,
+        23694
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "510545130b1b7aedad1e2edc427d8042d5bf28cd51871fdfde0de0a27768d58e",
+        "B_fit_only": "f75f5ca4196ca52ff65fb10160a0d7e70f9a1191a9b83b574e2c172808fa9a94"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "channels": 38,
+      "normal_points": 23702,
+      "test_points": 23703,
+      "raw_assets_sha256": [
+        "a4ef16a49d921e0ba9497ce2690d3833eb4a85f9a8a88392de4c3fde42e413ac",
+        "f3c134d45ffa7aed66587dba893111396c8c7ea3b6fa7f76895955b26b1a75ef"
+      ],
+      "causal_axis": [
+        99,
+        23703
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "ba658e790a2ebff2846a6fd5510e51733697ddb52637270f8952994d78329dad",
+        "B_fit_only": "d19b290214bf7975556b2433e9b0c94189d3300e4a56b187cb2cf77f5a912384"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "channels": 38,
+      "normal_points": 23706,
+      "test_points": 23707,
+      "raw_assets_sha256": [
+        "2ec56c43f91684aa4751a6b72d359669266712dd69bdc7efda3dc60c0ade1156",
+        "98ade00e57eac63e8f81a506a8e848803b58590835ab2b3cf53d1f0459900bd3"
+      ],
+      "causal_axis": [
+        99,
+        23707
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "c2cbc1a3f9d358dfd278be8967831239e7a38bc030aa8bcd494a801b1e66ee90",
+        "B_fit_only": "36166dc36e7a11d1767415dfaa8c60aa9bcd8f648cd571c63d5f208ce3221adf"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "channels": 38,
+      "normal_points": 23705,
+      "test_points": 23706,
+      "raw_assets_sha256": [
+        "69061055f43413863434cb9c0424c14b13a7a0817056a8fd9439e53dc365fc0b",
+        "98b8979f21b4b68c7308f38dd093b9bff4275814578365103c692f28f60f61c5"
+      ],
+      "causal_axis": [
+        99,
+        23706
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "70300268ace8e19438110aa542b75285c8cde810bb39c86a268b521cc5c53340",
+        "B_fit_only": "7e37b1ed2c2f59654981a8159c268ee3b2eb9e30118c0a18a5cb7479d1f21596"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "channels": 38,
+      "normal_points": 23688,
+      "test_points": 23689,
+      "raw_assets_sha256": [
+        "27e1765c04c2a5d08f39d98e7979e7764886fc733c36382fe081157a5ac0b9d8",
+        "0797fe4bfd25ef13c830955cb9f2a36b4c9d5da265b8e91702408b6b048267f4"
+      ],
+      "causal_axis": [
+        99,
+        23689
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "5acfaa96b49ec0dc58561259fc7d54bdee57e0480906cfa688492184c5dff47d",
+        "B_fit_only": "f7626902deff06a0db2d936062db40fcdc6faf8248b5a352ffea81c58757e516"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "channels": 38,
+      "normal_points": 23697,
+      "test_points": 23697,
+      "raw_assets_sha256": [
+        "dddb9f770bdb8b1b952263e0cc4f000b6f8ec612941dd3eb7a303994f257edf8",
+        "785a3f542ef6ac171a3af55c534f9ca598d53fa0371010172c72e33af4588d16"
+      ],
+      "causal_axis": [
+        99,
+        23697
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "98c8874beaface9f7a8a496832cf9ee1fd4e7b7648611d087426960ed52aec2c",
+        "B_fit_only": "9acaae0b721fcee0b3ba1a0785a7d0aa5bca21dbf0ed8029a68f2be767b2caf7"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "channels": 38,
+      "normal_points": 23698,
+      "test_points": 23699,
+      "raw_assets_sha256": [
+        "3b46e9754ec06bebd0bf3fe68dbe28b2a4b67298e795c9501d97f42083e337fc",
+        "b8784c3b4169f8a0a2ed9f47b00070d72ed214dae0307553b8cfdb80c712d779"
+      ],
+      "causal_axis": [
+        99,
+        23699
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "b6fa32e07978c485cc4427e0e7ac5751939990c802c88795170064f9c4162ba3",
+        "B_fit_only": "c526f9fabc1e2aa300ab132c0553e93594db033f57e17ad1094020e572174d17"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "channels": 38,
+      "normal_points": 23693,
+      "test_points": 23694,
+      "raw_assets_sha256": [
+        "d6eb13ff74a537cf33686319fffdd4cdcb394862570a3acd519b4c37af97cd2e",
+        "2d103661799271be958227907950a1c76803356442d60a4070671cc0abbefb20"
+      ],
+      "causal_axis": [
+        99,
+        23694
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "6e7c93810b2edb455ccd175f67602d3f642a9c5519d1a6bde56896d021ad4f3b",
+        "B_fit_only": "3a01d4251d3af68eef44a70e6666b58d29455a3472fb87af7f8fbe763b0b3f3d"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "channels": 38,
+      "normal_points": 23699,
+      "test_points": 23700,
+      "raw_assets_sha256": [
+        "e2e0f52994c8c884f9552c6289e42268d9d988ba7c7abadcc0d8dcd8ba993c30",
+        "1cb0dd0a4b8738b184c62bb07700e6800e029f7a76a715fe0ee147c603b2f2c8"
+      ],
+      "causal_axis": [
+        99,
+        23700
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "e5cb8f08a8f4c1fb334c6caf3b1a08e527ea00f786f1d25d1c82b3047eed0f52",
+        "B_fit_only": "2a317b94132729f9f3617496b68a637f92076afefb04841d534115bf8f0d5166"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "channels": 38,
+      "normal_points": 23688,
+      "test_points": 23689,
+      "raw_assets_sha256": [
+        "d2b0fc37d08cb727438598a1b09ced94f71f7792a9b4d057242e2ce8f2580e13",
+        "eaa24c78ff438eec2f847c09eb4de6ab8dbe8a0bb8d77b52ac4ecdee5bd21a7d"
+      ],
+      "causal_axis": [
+        99,
+        23689
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "c396a95a3e6a02c965abc9bff6c587b37b86ab7539bc8a50a7cf05c5a4f5811d",
+        "B_fit_only": "c74417fa9ebc347a16f16048a67a93e846e320c32b645e9e4d202ec0aedf3017"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "channels": 38,
+      "normal_points": 23689,
+      "test_points": 23689,
+      "raw_assets_sha256": [
+        "077a5c18649b9d260d8dcbd4cfbf10b16cb83719a52013410cf3b5dc6a802fa6",
+        "85ba3101b9ab6a7684cd897b2d4c78e85caa6f5ef1c4f0e153479f4fca01cf38"
+      ],
+      "causal_axis": [
+        99,
+        23689
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "09e4554c9870c02caa1974d4f2c6214442d5c131e9c46f948f34e1bedf98be40",
+        "B_fit_only": "a252c21beb1bd9b50d895e1cabcfa735e091ba8ecc392b79df6749ef9b13e574"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "channels": 38,
+      "normal_points": 23688,
+      "test_points": 23689,
+      "raw_assets_sha256": [
+        "940cdf20a8345fdeeb8043efd7ce9f7506fe0e7f5f89f8b50edf19b61b304136",
+        "842588acfb9299735a785757fcadd98cc7f69b6a511d28e54e1af05c5e95137b"
+      ],
+      "causal_axis": [
+        99,
+        23689
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "aeac594675c5331ce4f14d881b7652b3d24b109d94c1a245f41310efecc1584f",
+        "B_fit_only": "0e8f98436b428a6dea451c78b80ec365498d4d10d12d5424a34c48ed907fef54"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "channels": 38,
+      "normal_points": 28743,
+      "test_points": 28743,
+      "raw_assets_sha256": [
+        "dc30adaef939060aebea3836c691e3d1bb47da593fa43553acbc52c6825dc8ae",
+        "c895144b7c7fb1ff960f506132d5aeefebce4325efad908d071fb7df5b3b1cf1"
+      ],
+      "causal_axis": [
+        99,
+        28743
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "f9ba50d4c7e10df9341531964b33b9e5bf25662a5e738033d6061fbe38a8010f",
+        "B_fit_only": "165b1d758a75d16b0a565fd7312d7844649b84b6ef609de155ec7d1d03b7936a"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "channels": 38,
+      "normal_points": 23696,
+      "test_points": 23696,
+      "raw_assets_sha256": [
+        "32e9d88b18bf1b377a2bd0a6d5de2a766f36c58781e76dbe2491b0347557dec2",
+        "58c3dfd109437ccbedab9d36608d32874c2ae5473484c5941f85349baf32cef8"
+      ],
+      "causal_axis": [
+        99,
+        23696
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "fb9bc4d5076950c895154e31b983d80868e4303af4149ecf228f7d67b5f77ef6",
+        "B_fit_only": "26568b79e661d48d9c32f133eb408c335130db4bd804ea50cb1e7c870cdb0fd1"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "channels": 38,
+      "normal_points": 23702,
+      "test_points": 23703,
+      "raw_assets_sha256": [
+        "01ae9289566e3518cf738518a25edb0812f889e8ed1dada057f4693ac5dda23c",
+        "846207955c546f0c3ea57aa7032b8e3c207ad67632a0605c8273f182059d1a72"
+      ],
+      "causal_axis": [
+        99,
+        23703
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "1ce6f4730e2b45c9eaa2de5a0cdb2c493a2d860d09b675cc0cd42b5b4278c1f0",
+        "B_fit_only": "ac21c1e7f378089512a066b19d9c3e4b0ae1456989556123c995c1dae8d31524"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "channels": 38,
+      "normal_points": 28722,
+      "test_points": 28722,
+      "raw_assets_sha256": [
+        "465db893338b6f14985dd30ac2ff20a319246bb8584cd0a9a4aaacf52cbc2f1f",
+        "8d93ccd1a6606de3f665cb2e905d206b60ad2b2a58f47e9561b9bb67a2cd4f28"
+      ],
+      "causal_axis": [
+        99,
+        28722
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "168da82c7565050b4faf064dee84fb3813ef6c017fc6c0ce9e15699dbe4bd813",
+        "B_fit_only": "d7e8cde2bf3a53d114e7ab8cb1197ceac215f96dd35b32b32838f949f324c27e"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "channels": 38,
+      "normal_points": 28700,
+      "test_points": 28700,
+      "raw_assets_sha256": [
+        "c1186ac085809c0590467dd42f4f12180012ebd994c1e615250dbed2a3588111",
+        "b110b204ba4919250351eba7aa253d73ab54af0cf18e272b9b284de5fa7df88d"
+      ],
+      "causal_axis": [
+        99,
+        28700
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "f748fadd4a417b2d49cd57760489bb8d2d3a61a587ded26213c33484a1519a19",
+        "B_fit_only": "d3e795a701e1fd44dd59f03b4a7163e2ec4dc5832b6b77396c0dfa7f7da20515"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "channels": 38,
+      "normal_points": 23692,
+      "test_points": 23693,
+      "raw_assets_sha256": [
+        "8f8258b3a85fe8aa5badb05e66b0cdd3405be5f180f0d418bc24c30503207fd2",
+        "febaf197d4a8864f3a70a5e5c0926d6dab8f1b515cf0d90d31ee81a22d80392f"
+      ],
+      "causal_axis": [
+        99,
+        23693
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "fb9093e220c481e1ca1542b0563e1c54392dad181267e9ce33fc8c2107c43929",
+        "B_fit_only": "f5124898d4b912f32d8ed6f5fe071e74ec43a31f92cc002e6471015a8fff186e"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "channels": 38,
+      "normal_points": 28695,
+      "test_points": 28696,
+      "raw_assets_sha256": [
+        "a2e531cf2bf9b8d833a0b6e7c42a596b1d3a64578a1c140537add46156bde4e9",
+        "c62f52e65d1b892ef8c556b38aa5c1d3504cf0cdd97a94e7df08985b922d7af0"
+      ],
+      "causal_axis": [
+        99,
+        28696
+      ],
+      "offline_axis": [
+        99,
+        28600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "c4edebb634d35a6bc9a8e9ad3f4246865ecdbe426680b0cc82f56df2459aac35",
+        "B_fit_only": "1467c6eba61cb03589be47b767005b6acc3798a0ee06804fe09c06454e3915b4"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "channels": 38,
+      "normal_points": 23702,
+      "test_points": 23703,
+      "raw_assets_sha256": [
+        "7cabed178422f7772425c6cabc3c20a1f7dedc3ab2a950f90a9edfcef3b5b3e3",
+        "5f83ded5fbfb9b682030bdd7dd82eb53a77f9caa3773ddcc7e38db73c25db46e"
+      ],
+      "causal_axis": [
+        99,
+        23703
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "672efe4d778ca4442c9538451b9ff06aa53a07f6a282262b00ef63a348c9e6bd",
+        "B_fit_only": "5bf2bc2d249e4dcb819d7f97f967f9c2d480cb97a3bdad34d054642583cd5c9a"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "channels": 38,
+      "normal_points": 23703,
+      "test_points": 23703,
+      "raw_assets_sha256": [
+        "6bbad775c6ef6319abba08aaa6faa2befb2cd570f9db85b80413ae6fdf1047a4",
+        "ecc3140ce24869a44ebac9b03ca372fb1a6eb7e5bde96946f1a350283d4b152a"
+      ],
+      "causal_axis": [
+        99,
+        23703
+      ],
+      "offline_axis": [
+        99,
+        23616
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "db4ac5e44b1f48f0a4da9fb984c41e77fa01cd935624ab437307d9cc204cd794",
+        "B_fit_only": "000b875fd6f435965721ba8cca9f8e988918186b9510ed9f80ecf1cae3f388a6"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "channels": 38,
+      "normal_points": 23687,
+      "test_points": 23687,
+      "raw_assets_sha256": [
+        "a27a88c5d96c3384e07776dd2ced9956f7ea78b1070b87786352bc6024129d72",
+        "07e1b43e20b7d8300fcd4b4f45ea47ea8c851f3dbd7d1fe971139c32f039357e"
+      ],
+      "causal_axis": [
+        99,
+        23687
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "7025e0196fb925d51429354d87acba2ee48a40bd5d556525fd8768661930c5ca",
+        "B_fit_only": "f14b67eaa1069b41c8c4ba769b9f9e1297a599c813c2ed9432e2b1faf2a08904"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "channels": 38,
+      "normal_points": 23690,
+      "test_points": 23691,
+      "raw_assets_sha256": [
+        "7eb4f157d5aace0f5758c8035a4cc90445fc0d3ae59c57b1bf00d7e62c363bba",
+        "85dbb13b3076981ad917f42081b71a1440d8b2aafd9bee626f0d1cacff43fcd6"
+      ],
+      "causal_axis": [
+        99,
+        23691
+      ],
+      "offline_axis": [
+        99,
+        23600
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "ada52949d49e233646ce0661239b185a20405e100b43ec32759dbd308b607d8a",
+        "B_fit_only": "0e024aed3a67c17d263bfb1d3af436171515a43c12ae0d09d0b90f33a8617d01"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "channels": 38,
+      "normal_points": 28726,
+      "test_points": 28726,
+      "raw_assets_sha256": [
+        "88b8164dccfe67704e83c0919aa40bf1d4b8d682aff0b947d4cdd1ec4f900b84",
+        "04f746a4dde41adbfe5727c6ff77839d1b0b21d6d65bdb0253557e0391c5d44c"
+      ],
+      "causal_axis": [
+        99,
+        28726
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "fc17add666ee74e794bce4abbb3686d782f9502239a06107658e88daf0e2022b",
+        "B_fit_only": "ada7a2e8acf93544a5ce1b60000d77763e0c306397db2cb26ecc7287cf6f0d28"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "channels": 38,
+      "normal_points": 28705,
+      "test_points": 28705,
+      "raw_assets_sha256": [
+        "5eb1f16e62c30eb498e968b2c6da3e8f60c8367e264f771245a970362d7d8574",
+        "a4588c1f39905d03bd24fce65052e7b175fba336d081843325ef780c9ed8cdad"
+      ],
+      "causal_axis": [
+        99,
+        28705
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "f3defe7da34ece4294384b9c5569571cf331b9d5f5075d8c0644f4b5faa2c5f3",
+        "B_fit_only": "6d7cf0c417e7417dfc04604950e98c5961ac62d146b2dbafc6e0fc93b5a8fc4f"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "channels": 38,
+      "normal_points": 28703,
+      "test_points": 28704,
+      "raw_assets_sha256": [
+        "414ba622ae70118948a3940009ce4e90580b494ea07f9e03893c26e102edd855",
+        "fa79d5dad3a703fbc13faf0eab26d9466b74789f2bb0d22776f2adaa4236f085"
+      ],
+      "causal_axis": [
+        99,
+        28704
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "a670fb36679010ba97321c63b9bc859ffe092d5702408f5f9fd1e516c252c7a0",
+        "B_fit_only": "4c797fef6c77ea8d98e1d10b30ec3d7b34771ed2a40a969b2ab572363ad84001"
+      }
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "channels": 38,
+      "normal_points": 28713,
+      "test_points": 28713,
+      "raw_assets_sha256": [
+        "7896b57b65da1d48ee992ba128fb914ae7e6d2bef8ea4ed8df039657fc017468",
+        "5a8968c269a8a3562e54235aa05344b262f44829c2bae04cf9f5d364f388310d"
+      ],
+      "causal_axis": [
+        99,
+        28713
+      ],
+      "offline_axis": [
+        99,
+        28608
+      ],
+      "TimeRCD_QUERY_sha256": {
+        "A_official_role": "4a769b463c8719e3e02b4982c2e068738dbfe9f1d32f251c93980a48e531bd29",
+        "B_fit_only": "a1999cbb4faadc5457999ece31ee169f84e0d47cba1318a10bae89a5f5dc57c5"
+      }
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-1",
+      "channels": 1,
+      "normal_points": 2158,
+      "test_points": 2264,
+      "raw_assets_sha256": [
+        "31fd0a2a44f5beac2c64e1484d5c96ea4adecdd1b52013775e215b01260975ee",
+        "ea8bf028555a09a45b5fd5003958c8500da46b12178c963186293db14e3c8aab"
+      ],
+      "causal_axis": [
+        99,
+        2264
+      ],
+      "offline_axis": [
+        99,
+        2200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1294
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.6631410519896187
+      ],
+      "TimeRCD_fit_std": [
+        0.501360815830453
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "C-2",
+      "channels": 1,
+      "normal_points": 764,
+      "test_points": 2051,
+      "raw_assets_sha256": [
+        "5d05b47d790135de8d91ca2918d95892c3f52fbfa567fe5b637d51aaa8b91871",
+        "dca3a5cc07ec3899c2b9c6bc28a889d9872a670d08677065d39da1326c14c2b4"
+      ],
+      "causal_axis": [
+        99,
+        2051
+      ],
+      "offline_axis": [
+        99,
+        2000
+      ],
+      "TimeRCD_fit": [
+        0,
+        458
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-14",
+      "channels": 1,
+      "normal_points": 3675,
+      "test_points": 2625,
+      "raw_assets_sha256": [
+        "1021af01d1935e16507c7696275c16cda3056997780baa8d9d72997a157fd65d",
+        "65400342172e5a01f36c389bd85b8bedce410965e155a10cc600c3c3834d8bc7"
+      ],
+      "causal_axis": [
+        99,
+        2625
+      ],
+      "offline_axis": [
+        99,
+        2592
+      ],
+      "TimeRCD_fit": [
+        0,
+        2205
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-15",
+      "channels": 1,
+      "normal_points": 2074,
+      "test_points": 2158,
+      "raw_assets_sha256": [
+        "18007d3503e9109d2c89e25e37ab4b8c652030d9e03dcde4f19b9a4d0496ab51",
+        "0c5691a3fc17b87d06eb23548931ffa589a5f4bed608b6db40ac976cd5695acd"
+      ],
+      "causal_axis": [
+        99,
+        2158
+      ],
+      "offline_axis": [
+        99,
+        2100
+      ],
+      "TimeRCD_fit": [
+        0,
+        1244
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.7850435455224904
+      ],
+      "TimeRCD_fit_std": [
+        0.6405732540994714
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "D-16",
+      "channels": 1,
+      "normal_points": 1451,
+      "test_points": 2191,
+      "raw_assets_sha256": [
+        "24f5d66a9158257c5b2595686f8888e50777427772b05a16f09470bdb7b5b577",
+        "85d98f5b6223a10d5ac1c881872cd7c6b93f288236632c282093a41dbba31490"
+      ],
+      "causal_axis": [
+        99,
+        2191
+      ],
+      "offline_axis": [
+        99,
+        2100
+      ],
+      "TimeRCD_fit": [
+        0,
+        870
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.22520368035411698
+      ],
+      "TimeRCD_fit_std": [
+        0.951852583581256
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-4",
+      "channels": 1,
+      "normal_points": 2244,
+      "test_points": 3422,
+      "raw_assets_sha256": [
+        "7dcf1bdd8a8b59a119b7b080a8b63a77a0a738723714402f20d9021bd4618bcb",
+        "6b9610c11604ecc64ee537533d7392b4337a0d50ef4bf9ae84783e7262fa9612"
+      ],
+      "causal_axis": [
+        99,
+        3422
+      ],
+      "offline_axis": [
+        99,
+        3360
+      ],
+      "TimeRCD_fit": [
+        0,
+        1346
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.5076688270083349
+      ],
+      "TimeRCD_fit_std": [
+        0.41584238188789974
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-5",
+      "channels": 1,
+      "normal_points": 2598,
+      "test_points": 3922,
+      "raw_assets_sha256": [
+        "3c79ee702010f82388b73bd537a84383d4dc22848b4c7aa4a2a3e0d6ac94102c",
+        "4ab308e3835547b8144acf8df136c9895ce759b30de0851fb23eca999877036e"
+      ],
+      "causal_axis": [
+        99,
+        3922
+      ],
+      "offline_axis": [
+        99,
+        3840
+      ],
+      "TimeRCD_fit": [
+        0,
+        1558
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.29851293012394303
+      ],
+      "TimeRCD_fit_std": [
+        1.0753099583922034
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-7",
+      "channels": 1,
+      "normal_points": 2511,
+      "test_points": 5054,
+      "raw_assets_sha256": [
+        "f1c908cad80a8bf6cb7117d736d1a22927522572ca7987128bc4f8419c886411",
+        "8474d57429c8541ad5efd4635c8751e3d90fb1feeba3a4b94958cada77f90665"
+      ],
+      "causal_axis": [
+        99,
+        5054
+      ],
+      "offline_axis": [
+        99,
+        4992
+      ],
+      "TimeRCD_fit": [
+        0,
+        1506
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.6188104734428296
+      ],
+      "TimeRCD_fit_std": [
+        0.5895406077908557
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "F-8",
+      "channels": 1,
+      "normal_points": 3342,
+      "test_points": 2487,
+      "raw_assets_sha256": [
+        "213ce7f2d28150b2df0e600b88f0574f9aaafafbe33449fae98470b99b0a9d8b",
+        "ebb950663e30ec91e52b6b422528bc4025563506af7fea6303eeabe5b2cd674e"
+      ],
+      "causal_axis": [
+        99,
+        2487
+      ],
+      "offline_axis": [
+        99,
+        2400
+      ],
+      "TimeRCD_fit": [
+        0,
+        2005
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.8093245148008452
+      ],
+      "TimeRCD_fit_std": [
+        0.46549144352226013
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-1",
+      "channels": 1,
+      "normal_points": 2209,
+      "test_points": 2277,
+      "raw_assets_sha256": [
+        "453bfb0edbbdfd3654098a652fad3a49f07fde9242993078dbe8f1bae1751612",
+        "58e16675dc0bada099130d02bd29279ea20c764bf3415bb5adefd626ef94dd56"
+      ],
+      "causal_axis": [
+        99,
+        2277
+      ],
+      "offline_axis": [
+        99,
+        2200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1325
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.569839014313623
+      ],
+      "TimeRCD_fit_std": [
+        0.45552700458663997
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-2",
+      "channels": 1,
+      "normal_points": 2208,
+      "test_points": 2277,
+      "raw_assets_sha256": [
+        "61b50d819aaa87f57ba8a90163c3fabf815e8c6a1f242ab60d410d5edd8f42fa",
+        "1bee2419bc4b5d9a7a71e830c1af5c98837ab31640da553f8f0d3eff9e86af49"
+      ],
+      "causal_axis": [
+        99,
+        2277
+      ],
+      "offline_axis": [
+        99,
+        2200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1324
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.9186707129561289
+      ],
+      "TimeRCD_fit_std": [
+        0.14563645309023904
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-3",
+      "channels": 1,
+      "normal_points": 2037,
+      "test_points": 2127,
+      "raw_assets_sha256": [
+        "c48a3f877d939f604cad977aa259595726cbf34f0193e423285545f512c2b3f3",
+        "3c43c068fddbf661c6e7cbd933f8b10adcef9cd446818a160ef7c62994fb3d3a"
+      ],
+      "causal_axis": [
+        99,
+        2127
+      ],
+      "offline_axis": [
+        99,
+        2100
+      ],
+      "TimeRCD_fit": [
+        0,
+        1222
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.6566449661690394
+      ],
+      "TimeRCD_fit_std": [
+        0.6569790707086501
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-4",
+      "channels": 1,
+      "normal_points": 2076,
+      "test_points": 2038,
+      "raw_assets_sha256": [
+        "a21e75cebb452724be26f5ca5f463c2b86588bcac25217c4cae27d563a81b0d1",
+        "bac52a304556631942d5e548a4ecc1cbf3aae3409aeb5c8eaaf3126b1ae83ac2"
+      ],
+      "causal_axis": [
+        99,
+        2038
+      ],
+      "offline_axis": [
+        99,
+        2000
+      ],
+      "TimeRCD_fit": [
+        0,
+        1245
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.6845653930645769
+      ],
+      "TimeRCD_fit_std": [
+        0.5882825954192722
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-5",
+      "channels": 1,
+      "normal_points": 2032,
+      "test_points": 2303,
+      "raw_assets_sha256": [
+        "a8512b5b0edc1515539539fe93eb731bf7e2528d9322b39782bf1781f5ca66a6",
+        "e4d8cf724bf78d94daae0dc66d5f1a3023545229e15ab9aa3877c267a41b57b5"
+      ],
+      "causal_axis": [
+        99,
+        2303
+      ],
+      "offline_axis": [
+        99,
+        2208
+      ],
+      "TimeRCD_fit": [
+        0,
+        1219
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.5502847706399769
+      ],
+      "TimeRCD_fit_std": [
+        0.651103926415788
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-6",
+      "channels": 1,
+      "normal_points": 1565,
+      "test_points": 2049,
+      "raw_assets_sha256": [
+        "681fab71a4c910ceddc519b96e00adbc31e53f485284a62cfae8de2eb5358f26",
+        "4138b2b33f919eb0791b0d2f5337f605bcfc533b07ed91015bfbbcda1c08a612"
+      ],
+      "causal_axis": [
+        99,
+        2049
+      ],
+      "offline_axis": [
+        99,
+        2000
+      ],
+      "TimeRCD_fit": [
+        0,
+        939
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "M-7",
+      "channels": 1,
+      "normal_points": 1587,
+      "test_points": 2156,
+      "raw_assets_sha256": [
+        "2d66222bfe39372470209a8d3e6f4aecd4e755fd18831cceb497c35e2a403405",
+        "28f065fa569a5073eca60f99dd2d3dc93b449ed61e53e543d36e43392fd27bf1"
+      ],
+      "causal_axis": [
+        99,
+        2156
+      ],
+      "offline_axis": [
+        99,
+        2100
+      ],
+      "TimeRCD_fit": [
+        0,
+        952
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.9766209331192389
+      ],
+      "TimeRCD_fit_std": [
+        0.15061241598839703
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-10",
+      "channels": 1,
+      "normal_points": 4308,
+      "test_points": 6100,
+      "raw_assets_sha256": [
+        "b537ea82e001d9eaaa611ee41e79fdcc4d5a8387fd27392e65678cc4c808a692",
+        "2a34698f41fd1a16324f26d86a9443f3c633e7554f524e53d4773b40ca83a52a"
+      ],
+      "causal_axis": [
+        99,
+        6100
+      ],
+      "offline_axis": [
+        99,
+        6048
+      ],
+      "TimeRCD_fit": [
+        0,
+        2584
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.9933389325167742
+      ],
+      "TimeRCD_fit_std": [
+        0.0012380702899939932
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-11",
+      "channels": 1,
+      "normal_points": 3969,
+      "test_points": 3535,
+      "raw_assets_sha256": [
+        "f21060190cc1a10a9aa4f58b37b2a1b9af660622c4e488194afb16d7b56d08b9",
+        "dad84034fd7ad1b2dd4bcbdaefc345719c2fb1b1d3a7713257c612fc995ecc44"
+      ],
+      "causal_axis": [
+        99,
+        3535
+      ],
+      "offline_axis": [
+        99,
+        3456
+      ],
+      "TimeRCD_fit": [
+        0,
+        2381
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.8330831891320825
+      ],
+      "TimeRCD_fit_std": [
+        0.12093698104798065
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-14",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 6100,
+      "raw_assets_sha256": [
+        "183f77aa16a596485f05bf2f79b8f40fcd707d42a640eb37306a65f4c7672aa4",
+        "2a34698f41fd1a16324f26d86a9443f3c633e7554f524e53d4773b40ca83a52a"
+      ],
+      "causal_axis": [
+        99,
+        6100
+      ],
+      "offline_axis": [
+        99,
+        6048
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.9994880177632526
+      ],
+      "TimeRCD_fit_std": [
+        8.008460739258686e-05
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "P-15",
+      "channels": 1,
+      "normal_points": 3682,
+      "test_points": 2856,
+      "raw_assets_sha256": [
+        "4a325d0b70aaa431f0c452472b5a30c3720b6881cd1c0bf4e7e73e821dc4c824",
+        "2284348ac1fc998b5aa76c5bbfbeff977f36b17f9602b6654dc65552b50954ae"
+      ],
+      "causal_axis": [
+        99,
+        2856
+      ],
+      "offline_axis": [
+        99,
+        2784
+      ],
+      "TimeRCD_fit": [
+        0,
+        2209
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.9346046696803644
+      ],
+      "TimeRCD_fit_std": [
+        0.036930361756465545
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "S-2",
+      "channels": 1,
+      "normal_points": 926,
+      "test_points": 1827,
+      "raw_assets_sha256": [
+        "48844faca56f15e5a698f1c0eee114b544f3b87dcaa134b8f0327e025eeac131",
+        "fb9651f2d378bfceef7d694cbe3cb7eafd36b8113241da247b98da53caefaeea"
+      ],
+      "causal_axis": [
+        99,
+        1827
+      ],
+      "offline_axis": [
+        99,
+        1800
+      ],
+      "TimeRCD_fit": [
+        0,
+        555
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-12",
+      "channels": 1,
+      "normal_points": 1145,
+      "test_points": 2430,
+      "raw_assets_sha256": [
+        "cd598282ee16a9f7cbed2ae6bfbfce489cabc2ea44ddd3391dc768d7276145d0",
+        "6848f4f7eec6c086862e0daf766617994935e265f2cd9bf229282609c13986bf"
+      ],
+      "causal_axis": [
+        99,
+        2430
+      ],
+      "offline_axis": [
+        99,
+        2400
+      ],
+      "TimeRCD_fit": [
+        0,
+        687
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.24718903073049023
+      ],
+      "TimeRCD_fit_std": [
+        0.5494305084564534
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-13",
+      "channels": 1,
+      "normal_points": 1145,
+      "test_points": 2430,
+      "raw_assets_sha256": [
+        "9f3d78fa06ddf72f26fc190e11d38a253c1e2b59a4fc0bd06633b98a010a4f86",
+        "ebdf225ad1b21faf4c0c3013de07f1ab77cefd1329587421cfa424128b9433a6"
+      ],
+      "causal_axis": [
+        99,
+        2430
+      ],
+      "offline_axis": [
+        99,
+        2400
+      ],
+      "TimeRCD_fit": [
+        0,
+        687
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.26747277600818153
+      ],
+      "TimeRCD_fit_std": [
+        0.4440159451631037
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-4",
+      "channels": 1,
+      "normal_points": 2272,
+      "test_points": 2217,
+      "raw_assets_sha256": [
+        "d137cceeedfd2c0759b9217ccb15cb29d7c8c0458d2d2515f84f54d5f0655c4c",
+        "330499f248367f9bb3eae4eadc105fa9d44bfee3913a3d4b066f9dd3c43a4156"
+      ],
+      "causal_axis": [
+        99,
+        2217
+      ],
+      "offline_axis": [
+        99,
+        2200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1363
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.5099046221570066
+      ],
+      "TimeRCD_fit_std": [
+        0.499901888834126
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-5",
+      "channels": 1,
+      "normal_points": 2272,
+      "test_points": 2218,
+      "raw_assets_sha256": [
+        "dee9cf73d88fedd63896b51c627880a5693645ba641806bbcfbae294e3e30376",
+        "164cc73b9f82861959f61c54828c3ac70e6ffcc005b38c84a620c125106a6041"
+      ],
+      "causal_axis": [
+        99,
+        2218
+      ],
+      "offline_axis": [
+        99,
+        2200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1363
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-8",
+      "channels": 1,
+      "normal_points": 748,
+      "test_points": 1519,
+      "raw_assets_sha256": [
+        "ce4c1d993e283f4b4d9c85922fa4e384e2aa65091a9dc74739e9c733e374c465",
+        "5778979c00621904c36f09bc432b462b87623b7ebc0255dcb4829895b2359b34"
+      ],
+      "causal_axis": [
+        99,
+        1519
+      ],
+      "offline_axis": [
+        99,
+        1440
+      ],
+      "TimeRCD_fit": [
+        0,
+        448
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        -0.9776348040572235
+      ],
+      "TimeRCD_fit_std": [
+        0.2105238684872485
+      ]
+    },
+    {
+      "domain": "MSL",
+      "entity": "T-9",
+      "channels": 1,
+      "normal_points": 439,
+      "test_points": 1096,
+      "raw_assets_sha256": [
+        "11052bf6842a5d8b097a30cdcba1d14ad5a2d3a4ffac4864853eef6cb7206738",
+        "4746b631cc292906c2cbc3ede7d472268f2c799bca41e13f2b0253bf016617b4"
+      ],
+      "causal_axis": [
+        99,
+        1096
+      ],
+      "offline_axis": [
+        99,
+        1000
+      ],
+      "TimeRCD_fit": [
+        0,
+        263
+      ],
+      "TimeRCD_fit_asset_sha256": null,
+      "TimeRCD_fit_mean": [
+        0.2344785120777304
+      ],
+      "TimeRCD_fit_std": [
+        0.24395264402601435
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-1",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8640,
+      "raw_assets_sha256": [
+        "ae426533f9d4c6247a5cc1eab89438fed8bf768b0a41d60d42f3a65a7ebc80b0",
+        "7509b72cd170003c3135e12d1f4c67b263dc5be58aabedf12ed14e7561fe6dc2"
+      ],
+      "causal_axis": [
+        99,
+        8640
+      ],
+      "offline_axis": [
+        99,
+        8600
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "b25a501e2e9309cb8053571e9c0dfbc91067974602508b8b1fe5d06f1acddeb5",
+      "TimeRCD_fit_mean": [
+        0.9990000128746033
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        8640
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-2",
+      "channels": 1,
+      "normal_points": 2648,
+      "test_points": 7914,
+      "raw_assets_sha256": [
+        "c31945b5a6dd5507b9d74862faf9c47ba58aca31bed6636b0e83e935ffbd5d78",
+        "48776d8e71a7d1b24d51adce4e21fc9aca968fea7aa1e06b073c4f219991311a"
+      ],
+      "causal_axis": [
+        99,
+        7914
+      ],
+      "offline_axis": [
+        99,
+        7872
+      ],
+      "TimeRCD_fit": [
+        0,
+        1588
+      ],
+      "TimeRCD_fit_asset_sha256": "c31fae8a6bb5d74d39f854f936b069e964ce025d5524d5e0075369d15c48c9ed",
+      "TimeRCD_fit_mean": [
+        0.004556077005229046
+      ],
+      "TimeRCD_fit_std": [
+        0.5598427973212499
+      ],
+      "history_axis": [
+        512,
+        7914
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-3",
+      "channels": 1,
+      "normal_points": 2736,
+      "test_points": 8205,
+      "raw_assets_sha256": [
+        "eaabc3d4cc6fa14db1fb0b4f621d6b219889305df6a4cf30c20730a881c3b5f0",
+        "a0d169d1cdb6b5e6af41782c64d2fedb8d585312069fedd052e3294b4f526c85"
+      ],
+      "causal_axis": [
+        99,
+        8205
+      ],
+      "offline_axis": [
+        99,
+        8064
+      ],
+      "TimeRCD_fit": [
+        0,
+        1641
+      ],
+      "TimeRCD_fit_asset_sha256": "0b20635e5b2035bcc37d3a6bb9dc8dc5942ebc6b774f5d11180ecb43a478748b",
+      "TimeRCD_fit_mean": [
+        0.0010193002607167168
+      ],
+      "TimeRCD_fit_std": [
+        0.4673912868674582
+      ],
+      "history_axis": [
+        512,
+        8205
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-4",
+      "channels": 1,
+      "normal_points": 2690,
+      "test_points": 8080,
+      "raw_assets_sha256": [
+        "c48f4ad7a5813794c1a476267a5e4782217c7ec5fef8f95ae255c3db128f4def",
+        "311760674bd5dafdd05cc91c39123330e1ad3dcfeeadb93385756d15b2d69592"
+      ],
+      "causal_axis": [
+        99,
+        8080
+      ],
+      "offline_axis": [
+        99,
+        8000
+      ],
+      "TimeRCD_fit": [
+        0,
+        1614
+      ],
+      "TimeRCD_fit_asset_sha256": "7a4f2ecafe144deebf9defeee36f0ab4e94a9a169d1c8fe78ba751fec0407fac",
+      "TimeRCD_fit_mean": [
+        0.04487840140512781
+      ],
+      "TimeRCD_fit_std": [
+        0.35404483050415725
+      ],
+      "history_axis": [
+        512,
+        8080
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-5",
+      "channels": 1,
+      "normal_points": 705,
+      "test_points": 4693,
+      "raw_assets_sha256": [
+        "86de2a5204c647da7db1921cdee0957c3cd2cc7778ab5424729210624847b178",
+        "45290a92c44a1f6e77a7531ed4fdbbb9b98c4516a2f851694429b67cf5d650a8"
+      ],
+      "causal_axis": [
+        99,
+        4693
+      ],
+      "offline_axis": [
+        99,
+        4600
+      ],
+      "TimeRCD_fit": [
+        0,
+        423
+      ],
+      "TimeRCD_fit_asset_sha256": "2ba5b9a444e7d42bdf7c3168ad0e5e14866008d5099167c97b54f2dc344ceb30",
+      "TimeRCD_fit_mean": [
+        -0.9996957990294653
+      ],
+      "TimeRCD_fit_std": [
+        6.496596665673381e-05
+      ],
+      "history_axis": [
+        512,
+        4693
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-6",
+      "channels": 1,
+      "normal_points": 682,
+      "test_points": 4453,
+      "raw_assets_sha256": [
+        "f47ac31688c05ca59b84648a4885de290c531e035974c313fb74d79f582cd0ba",
+        "cd72a62bc1758e487259988a4b93b31086a32ab48d0181a66f1af5cc1ce0e416"
+      ],
+      "causal_axis": [
+        99,
+        4453
+      ],
+      "offline_axis": [
+        99,
+        4400
+      ],
+      "TimeRCD_fit": [
+        0,
+        409
+      ],
+      "TimeRCD_fit_asset_sha256": "eac324da4b6854a0f3f07b7cbd2baa823212f99075bbacfc829f90ccf8dff17a",
+      "TimeRCD_fit_mean": [
+        -0.8397813988781209
+      ],
+      "TimeRCD_fit_std": [
+        0.06745151403208909
+      ],
+      "history_axis": [
+        512,
+        4453
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-7",
+      "channels": 1,
+      "normal_points": 2879,
+      "test_points": 8631,
+      "raw_assets_sha256": [
+        "8ab669b686d13b61027edde2fa674de73952fc0d498b412a1195c70cf20af52e",
+        "ef8212b614006f1c771e630de1778f3037f78b9f860bbf9a9422b8e147790d8c"
+      ],
+      "causal_axis": [
+        99,
+        8631
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1727
+      ],
+      "TimeRCD_fit_asset_sha256": "86cd65cdc6e808a197a452ac84c686c376b5cf5515f5a3ed21eb64d3b9ca74de",
+      "TimeRCD_fit_mean": [
+        -0.32440987570726565
+      ],
+      "TimeRCD_fit_std": [
+        0.38152153207919925
+      ],
+      "history_axis": [
+        512,
+        8631
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-8",
+      "channels": 1,
+      "normal_points": 762,
+      "test_points": 8375,
+      "raw_assets_sha256": [
+        "517840a64e14f8e47081518a7ae8301cd4331b323e690beef3a163298d15b2e2",
+        "16f318c276d5cead94e89c37773068511a35f34ea0830e25fdd3eb7f57cd5a71"
+      ],
+      "causal_axis": [
+        99,
+        8375
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        457
+      ],
+      "TimeRCD_fit_asset_sha256": "8641b0b2c71155222e57b5be7c8aa23150ab623e61fb0cf66f1fdef7a74c1de3",
+      "TimeRCD_fit_mean": [
+        0.25607338710739
+      ],
+      "TimeRCD_fit_std": [
+        0.966599537438368
+      ],
+      "history_axis": [
+        512,
+        8375
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "A-9",
+      "channels": 1,
+      "normal_points": 762,
+      "test_points": 8434,
+      "raw_assets_sha256": [
+        "37e69be31c164c4c190eebeb26f14b1de14ff44beaee0637d1a4d612c1cafd6e",
+        "0672a0de39d40511f289d157d81b9e74f6ebbee1bccf9ce23c704dc1baf69566"
+      ],
+      "causal_axis": [
+        99,
+        8434
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        457
+      ],
+      "TimeRCD_fit_asset_sha256": "970c8818bb18787cbed5107f4d48d0ccfb4b04bf120c1d66b3b49719302103ac",
+      "TimeRCD_fit_mean": [
+        -0.25738974603573656
+      ],
+      "TimeRCD_fit_std": [
+        0.9648900790924689
+      ],
+      "history_axis": [
+        512,
+        8434
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "B-1",
+      "channels": 1,
+      "normal_points": 2435,
+      "test_points": 8044,
+      "raw_assets_sha256": [
+        "96a10612e976d21bd8301086c35f422a97d55738ee85d7e16a37768d0d6104a1",
+        "4d6b0b3f0e31efd04fafbf6fea70710196095d9f5773ed714d6f4668b423146a"
+      ],
+      "causal_axis": [
+        99,
+        8044
+      ],
+      "offline_axis": [
+        99,
+        7872
+      ],
+      "TimeRCD_fit": [
+        0,
+        1461
+      ],
+      "TimeRCD_fit_asset_sha256": "93c075cd7cbe3f772e06702c36243d8cf4a2825cc5d2fb3995c6302dc6dab239",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        8044
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-1",
+      "channels": 1,
+      "normal_points": 2849,
+      "test_points": 8509,
+      "raw_assets_sha256": [
+        "8ef3242bcbe3d3b1b1d4a635b3bf556a1d40281327b91aa5d52604bf3eaac9f6",
+        "49ec824e3f887a59c012599acfc080471702ed3c2d243cc73dd8f8e2e1205711"
+      ],
+      "causal_axis": [
+        99,
+        8509
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1709
+      ],
+      "TimeRCD_fit_asset_sha256": "3a370f84957edec3c3eb43f5a059792fb8dcc93223787c5a4877f516e247812f",
+      "TimeRCD_fit_mean": [
+        -0.7721636170110485
+      ],
+      "TimeRCD_fit_std": [
+        0.06282287146629367
+      ],
+      "history_axis": [
+        512,
+        8509
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-11",
+      "channels": 1,
+      "normal_points": 2611,
+      "test_points": 7431,
+      "raw_assets_sha256": [
+        "805fbf974233e01837fbff8f55e43d5ec2ae4278221b49fb65e66db4ee9f448a",
+        "e5703acb3633dc8285ed755d9b74d2e2a08fc00ebb9e04aba34e37fcf47231ed"
+      ],
+      "causal_axis": [
+        99,
+        7431
+      ],
+      "offline_axis": [
+        99,
+        7296
+      ],
+      "TimeRCD_fit": [
+        0,
+        1566
+      ],
+      "TimeRCD_fit_asset_sha256": "f3cf548a02187442eba91ce521c5a32f6f27527ccf911438df8db2279ba4e836",
+      "TimeRCD_fit_mean": [
+        -0.6157939679549571
+      ],
+      "TimeRCD_fit_std": [
+        0.22690396708843322
+      ],
+      "history_axis": [
+        512,
+        7431
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-12",
+      "channels": 1,
+      "normal_points": 312,
+      "test_points": 7918,
+      "raw_assets_sha256": [
+        "950f67a5fba71ce5f1dc1f6560f4c4cbfef88ff1702b6755a6d6677e9959f8c3",
+        "5b6eb79d58d5017ff04b8bd0275c8e14915e272352f528646c63d7cef1d6598f"
+      ],
+      "causal_axis": [
+        99,
+        7918
+      ],
+      "offline_axis": [
+        99,
+        7872
+      ],
+      "TimeRCD_fit": [
+        0,
+        187
+      ],
+      "TimeRCD_fit_asset_sha256": "a742cf2291a72116f4c2a9329a2c531ac298d5bea96a2f33bb27547b21f79e93",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7918
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-13",
+      "channels": 1,
+      "normal_points": 1490,
+      "test_points": 7663,
+      "raw_assets_sha256": [
+        "c667ac320263fb30d462dbdbd909966d821b9a609a08f2ca2f7fb635f6f6d87b",
+        "242836dc5c0f6ebe3e1256c66430219e5369e2c525435f4da4f9b7ff10dc24a1"
+      ],
+      "causal_axis": [
+        99,
+        7663
+      ],
+      "offline_axis": [
+        99,
+        7488
+      ],
+      "TimeRCD_fit": [
+        0,
+        894
+      ],
+      "TimeRCD_fit_asset_sha256": "11e0370967f247cb3aa0d96be1359df9d166ced22a66d1bbdec9e880c4675c9c",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7663
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-2",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8595,
+      "raw_assets_sha256": [
+        "5c794ba84fd1304faa79623a1f108549910a846cb17e77700d2f25a0112b8d96",
+        "06233a61aabed60cf25a8d983182ef4d5673ee7dd6dd5337df76c9014f8e8080"
+      ],
+      "causal_axis": [
+        99,
+        8595
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "bbeaa20c241a29729f82eae1fe16f5c8d50bf56fe9e4c9827c5ac6c8d4a97818",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        8595
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-3",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8640,
+      "raw_assets_sha256": [
+        "7e6f12c26dfe7706734151e0b6f4e2a446f0aa9df800bc6b894477c7724a006c",
+        "81c676e4741b4047c4c9e88521ed09c6c5c0323e6ab78a06328323776a5492c3"
+      ],
+      "causal_axis": [
+        99,
+        8640
+      ],
+      "offline_axis": [
+        99,
+        8600
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "3472df18340bbe17ed8e0e351ca2744768617ca7f09fef644a04fd2c5fcbf226",
+      "TimeRCD_fit_mean": [
+        -0.9908573239075916
+      ],
+      "TimeRCD_fit_std": [
+        0.005256929541975935
+      ],
+      "history_axis": [
+        512,
+        8640
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-4",
+      "channels": 1,
+      "normal_points": 2833,
+      "test_points": 8473,
+      "raw_assets_sha256": [
+        "c8e8fb80a31fe2fb0d181ba80a4f7590e4e17643dacc8f3adcac08c97d801daa",
+        "cfd4a2d02f94983d92ac300cc4d88ce64bb5e497b18468d04cc102572e7f8a09"
+      ],
+      "causal_axis": [
+        99,
+        8473
+      ],
+      "offline_axis": [
+        99,
+        8400
+      ],
+      "TimeRCD_fit": [
+        0,
+        1699
+      ],
+      "TimeRCD_fit_asset_sha256": "d4e7be18628a4e95f52efa99c85469c7c1d039cf4f77124f6c188db2dc670aac",
+      "TimeRCD_fit_mean": [
+        -0.9940065553147629
+      ],
+      "TimeRCD_fit_std": [
+        0.005187519446666425
+      ],
+      "history_axis": [
+        512,
+        8473
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-5",
+      "channels": 1,
+      "normal_points": 2561,
+      "test_points": 7628,
+      "raw_assets_sha256": [
+        "47622486ea1a1931fabcce70fc83b930e55f64e0872bcd86524bcf3fcefc4631",
+        "3840a275b0ac6d50ccb499d7d225a081ab44098c67abed5a91e5ce3534cc2ceb"
+      ],
+      "causal_axis": [
+        99,
+        7628
+      ],
+      "offline_axis": [
+        99,
+        7488
+      ],
+      "TimeRCD_fit": [
+        0,
+        1536
+      ],
+      "TimeRCD_fit_asset_sha256": "d574925b956a8e09d1c87621b4d1916067a16f6db13b77d6e807a01aeabdf189",
+      "TimeRCD_fit_mean": [
+        0.9994116950159272
+      ],
+      "TimeRCD_fit_std": [
+        0.0002194124158299621
+      ],
+      "history_axis": [
+        512,
+        7628
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-6",
+      "channels": 1,
+      "normal_points": 2594,
+      "test_points": 7884,
+      "raw_assets_sha256": [
+        "5219165cfc37c33cd4b7552de3bbe33c52996a42ed8b47e865645aba3e8250e4",
+        "16b49e76d9e9ee125159b841cde0e7d29b1f8bfe1cd64474cd886e1a5d41593f"
+      ],
+      "causal_axis": [
+        99,
+        7884
+      ],
+      "offline_axis": [
+        99,
+        7800
+      ],
+      "TimeRCD_fit": [
+        0,
+        1556
+      ],
+      "TimeRCD_fit_asset_sha256": "07ac4b16a43385877109429ec9964711270e1a439fde19a8ee2f22a70ae5c39f",
+      "TimeRCD_fit_mean": [
+        -0.06088363768049255
+      ],
+      "TimeRCD_fit_std": [
+        0.4393824952759892
+      ],
+      "history_axis": [
+        512,
+        7884
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-7",
+      "channels": 1,
+      "normal_points": 2583,
+      "test_points": 7642,
+      "raw_assets_sha256": [
+        "4e6ae078370b1307e988a45b87e0b93a1df21b1b07ea1327955b3f5d3bde637a",
+        "3ac8e58d26b2fcd4f276a60ea15d24ad3306a7ea829f719d61752d4e3feae36f"
+      ],
+      "causal_axis": [
+        99,
+        7642
+      ],
+      "offline_axis": [
+        99,
+        7488
+      ],
+      "TimeRCD_fit": [
+        0,
+        1549
+      ],
+      "TimeRCD_fit_asset_sha256": "1518072d15c94ed90979b7e917bcab2b29a5236b03607b1759e7c1669bb00ca9",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7642
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-8",
+      "channels": 1,
+      "normal_points": 2602,
+      "test_points": 7874,
+      "raw_assets_sha256": [
+        "57aa44aa6b07db647f074bbf56b2c67e5f7a6e4f4305787dd1b39ac2224ccd87",
+        "a7e8cd34563f2e0c846afb0a0a87e5b7151c16e44e36376db2fe774f145b183d"
+      ],
+      "causal_axis": [
+        99,
+        7874
+      ],
+      "offline_axis": [
+        99,
+        7800
+      ],
+      "TimeRCD_fit": [
+        0,
+        1561
+      ],
+      "TimeRCD_fit_asset_sha256": "2005038f96dcda6f6381e66119657dc7659c111907360cde4a301c962734f4a3",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7874
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "D-9",
+      "channels": 1,
+      "normal_points": 2583,
+      "test_points": 7406,
+      "raw_assets_sha256": [
+        "8e88aa864b0de99b9b04d19d5c2db07d9f8aebd0595076f8be7f98b7487ec942",
+        "ccf6c64b3cc2dd4bfb408d7225b3540f4a68de4be7808c12e642697b61f9bfbd"
+      ],
+      "causal_axis": [
+        99,
+        7406
+      ],
+      "offline_axis": [
+        99,
+        7296
+      ],
+      "TimeRCD_fit": [
+        0,
+        1549
+      ],
+      "TimeRCD_fit_asset_sha256": "1518072d15c94ed90979b7e917bcab2b29a5236b03607b1759e7c1669bb00ca9",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7406
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-1",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8516,
+      "raw_assets_sha256": [
+        "adef4d2a83660467f41fdb1d586b63ced4ff59e5516f07e2efae824d9129a023",
+        "b3426072dcf0b153bc34acefc827e2a8933d1c3d86ae20674504ad1ad7000f86"
+      ],
+      "causal_axis": [
+        99,
+        8516
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "f8d5fbe9db3fb5e5a54c085e56d0528cb7372460dcb7752fdbdd6673b42c4e37",
+      "TimeRCD_fit_mean": [
+        -0.5752314814814815
+      ],
+      "TimeRCD_fit_std": [
+        0.8179906739765558
+      ],
+      "history_axis": [
+        512,
+        8516
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-10",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8505,
+      "raw_assets_sha256": [
+        "df543a47b41d33c52eefb7c320c3b03f0979d89ba2be29730601886d2b7cbf2d",
+        "d1d28e86edff75219683e0d18c5342fdc240fc17a263bee47065c7e7b03f6d49"
+      ],
+      "causal_axis": [
+        99,
+        8505
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "54385dd576630a268211169d8753b2379baadab68a934952508939f7642fbafb",
+      "TimeRCD_fit_mean": [
+        -0.5759329391574418
+      ],
+      "TimeRCD_fit_std": [
+        0.8166421538571328
+      ],
+      "history_axis": [
+        512,
+        8505
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-11",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8514,
+      "raw_assets_sha256": [
+        "34c59f1e07a46a971e0546014c248b03ecf7f6a38cdc81d34481165164aaa27c",
+        "7e92f952316e2996e6dad1595eff26fc88be8a37c026f11b6d55e4df27af7a81"
+      ],
+      "causal_axis": [
+        99,
+        8514
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "b1e3fc0d6c261cc43d286889a8f23c060dbd4a68b63b4bf7cab0884fe8e06a6e",
+      "TimeRCD_fit_mean": [
+        -0.5757385443689095
+      ],
+      "TimeRCD_fit_std": [
+        0.8170190263531151
+      ],
+      "history_axis": [
+        512,
+        8514
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-12",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8512,
+      "raw_assets_sha256": [
+        "8eaefcc79039f9c781bc66b2cc2933f97599d63dfdcad4fe4fb9b8170f28d27d",
+        "d00acd9fb12fb9e97315d266963e8dedb051a29f8fa0bf3f4cdcc5f27c7029d1"
+      ],
+      "causal_axis": [
+        99,
+        8512
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "f8d5fbe9db3fb5e5a54c085e56d0528cb7372460dcb7752fdbdd6673b42c4e37",
+      "TimeRCD_fit_mean": [
+        -0.5752314814814815
+      ],
+      "TimeRCD_fit_std": [
+        0.8179906739765558
+      ],
+      "history_axis": [
+        512,
+        8512
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-13",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8640,
+      "raw_assets_sha256": [
+        "8544a2e2b737b6962d86daeb1046f7d864ec9221b7d3ec6d6bdcc2444c9deef7",
+        "e869a18acde867b1aca34a346d6e7158fe391cb46722619ea1e3ed0f3ffa3e65"
+      ],
+      "causal_axis": [
+        99,
+        8640
+      ],
+      "offline_axis": [
+        99,
+        8600
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "dfdc0eeee5447eea5adc294bb59bb4e2c4602fda4938619c5dc36feedad84692",
+      "TimeRCD_fit_mean": [
+        -0.5857986173230327
+      ],
+      "TimeRCD_fit_std": [
+        0.5499367066456078
+      ],
+      "history_axis": [
+        512,
+        8640
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-2",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8532,
+      "raw_assets_sha256": [
+        "8709cde1ac1d574fb0c85b2eb5c02c58dabed541aa3f90053adedd42c5ebaafb",
+        "47f7e5bafc9bbc8f4f3f3547f2e77f794ab24bcaaa9662c7020fd18c2384129b"
+      ],
+      "causal_axis": [
+        99,
+        8532
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "8da608a0d299058546093012c51edb6f5fdd7aff028eda656c71a6133af0470b",
+      "TimeRCD_fit_mean": [
+        -0.38183018304429156
+      ],
+      "TimeRCD_fit_std": [
+        0.5501132708694554
+      ],
+      "history_axis": [
+        512,
+        8532
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-3",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8307,
+      "raw_assets_sha256": [
+        "611bed41517fcdc3ad6648f36d22026cf4877d3be542b498a96a42a9c34a08c6",
+        "86865b2a9b95eb854d7a75755d27001dc8337d0f24d45fcf4202b7dcd796f13c"
+      ],
+      "causal_axis": [
+        99,
+        8307
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "e9696296f411600f1d667d15a74d27828dbcfa2afbe3b6ebdb5951c99932438d",
+      "TimeRCD_fit_mean": [
+        0.20636024623861346
+      ],
+      "TimeRCD_fit_std": [
+        0.39752707561747097
+      ],
+      "history_axis": [
+        512,
+        8307
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-4",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8354,
+      "raw_assets_sha256": [
+        "d1046979a23e31d3da6563332c3e5eaa106d73d50729e3be04b7ef53ecbe139b",
+        "d0e6cc6c43e986b49a1eea5c7b37efc0f15bf73b96b816a11d84b5755e28f750"
+      ],
+      "causal_axis": [
+        99,
+        8354
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "a34fc47e32aa10c2f97be0dd155ea13342e613bfa51ce58d01677dabccc44e26",
+      "TimeRCD_fit_mean": [
+        -0.3988783333194011
+      ],
+      "TimeRCD_fit_std": [
+        0.44093979160111196
+      ],
+      "history_axis": [
+        512,
+        8354
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-5",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8294,
+      "raw_assets_sha256": [
+        "bc1b6ed3f1e939bb29899088ecc328cb7516487752a1c8668434de50932e8ee3",
+        "e1d0d97f898c474cccf04c7ff9cb57e319a215bf2ef51c61302ba944c69d3ceb"
+      ],
+      "causal_axis": [
+        99,
+        8294
+      ],
+      "offline_axis": [
+        99,
+        8200
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "f8d5fbe9db3fb5e5a54c085e56d0528cb7372460dcb7752fdbdd6673b42c4e37",
+      "TimeRCD_fit_mean": [
+        -0.5752314814814815
+      ],
+      "TimeRCD_fit_std": [
+        0.8179906739765558
+      ],
+      "history_axis": [
+        512,
+        8294
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-6",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8300,
+      "raw_assets_sha256": [
+        "810daf92496572d7f2046e70a23109836e6b23bc0df1c9236dcc61015849376b",
+        "cc791f2bb1b9ef88af2702eacf2265c4b9991eb2c224c8faffcdbe8fac53baa2"
+      ],
+      "causal_axis": [
+        99,
+        8300
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "74c029c56d0e4fdc63af2fba2fde64558fbffa3024a99c9960ebcc345977ef19",
+      "TimeRCD_fit_mean": [
+        0.9913136656913493
+      ],
+      "TimeRCD_fit_std": [
+        0.003377995933319784
+      ],
+      "history_axis": [
+        512,
+        8300
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-7",
+      "channels": 1,
+      "normal_points": 2769,
+      "test_points": 8310,
+      "raw_assets_sha256": [
+        "ae811efa8fce18d8bb99770929d3782e62cb0bd96bbbe37bb73f00e1c9104afc",
+        "229a2fa46dc670b911e35fd939f4380eae71fd112c8e7957f0a30c2113afe408"
+      ],
+      "causal_axis": [
+        99,
+        8310
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1661
+      ],
+      "TimeRCD_fit_asset_sha256": "30e9f24a46dd3567ca52eccd6aeb42c44c85f45541b14211478c9924b9d4534b",
+      "TimeRCD_fit_mean": [
+        -0.969815839492435
+      ],
+      "TimeRCD_fit_std": [
+        0.0437697571795621
+      ],
+      "history_axis": [
+        512,
+        8310
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-8",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8532,
+      "raw_assets_sha256": [
+        "b84fe984f4aa107444094cd3e1b6f10401420cdda1cd1e7dcf3bce65498b322d",
+        "75c44c1016aa13059013cb85bfca05289de9f7b844b9c0a0090a181fa420f713"
+      ],
+      "causal_axis": [
+        99,
+        8532
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "42cd6615b0c7ea3c633dfd7b8756c7aacb0d992b6abefab2978a72afc8da08da",
+      "TimeRCD_fit_mean": [
+        -0.2305212056078879
+      ],
+      "TimeRCD_fit_std": [
+        0.4997058489663072
+      ],
+      "history_axis": [
+        512,
+        8532
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "E-9",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8302,
+      "raw_assets_sha256": [
+        "91b75853f36b902e8b933682f031dd0552c365e5b9f2048d867c987a0b3206d0",
+        "567a05e4c2bf3b80778f9f2ddb2e310a3b48e48c01eb653b43dda22575dfb759"
+      ],
+      "causal_axis": [
+        99,
+        8302
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "7d937bebc70ae9e5dcb0a5692879a2c90df4406b9cf3a69fb2e842356177d82a",
+      "TimeRCD_fit_mean": [
+        -0.05781054179856761
+      ],
+      "TimeRCD_fit_std": [
+        0.5109697141264956
+      ],
+      "history_axis": [
+        512,
+        8302
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-1",
+      "channels": 1,
+      "normal_points": 2869,
+      "test_points": 8584,
+      "raw_assets_sha256": [
+        "9a769de4be510d19f39570c36a7ebf348da354d8d3a5bd014c0a37a26dfad00d",
+        "359a895d7be89c775c7e743a6bba889944bc173faee8d996b9ea3b0cf7a35dad"
+      ],
+      "causal_axis": [
+        99,
+        8584
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1721
+      ],
+      "TimeRCD_fit_asset_sha256": "7e52e2313ab452d7ed3db009d12eb6bab34b20adcc002f549b28eec16fd3454a",
+      "TimeRCD_fit_mean": [
+        -0.21701594110467226
+      ],
+      "TimeRCD_fit_std": [
+        0.22193684605268282
+      ],
+      "history_axis": [
+        512,
+        8584
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-2",
+      "channels": 1,
+      "normal_points": 2861,
+      "test_points": 8626,
+      "raw_assets_sha256": [
+        "9a49936dd5450e6eca94e3f8652959d1d3cc106b877d315a2ec669c6fbc8b842",
+        "fad0245c5da022c75d0e8aba2b2dc6d3a7533acb1ec2531696aa2158fd22cb26"
+      ],
+      "causal_axis": [
+        99,
+        8626
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1716
+      ],
+      "TimeRCD_fit_asset_sha256": "622709ceb7ac3f72a0aa10a0d2d297d74fac7503b6ad34bfcf7b0d09eeba9cbb",
+      "TimeRCD_fit_mean": [
+        -0.45525230949502626
+      ],
+      "TimeRCD_fit_std": [
+        0.16924427562523212
+      ],
+      "history_axis": [
+        512,
+        8626
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "F-3",
+      "channels": 1,
+      "normal_points": 2880,
+      "test_points": 8376,
+      "raw_assets_sha256": [
+        "be15ed5bb3773df3eacb98e29b98bfa32b5b6f455da6a32b693176c1d6faf021",
+        "89594ed83d720ebb56cd72485eed1fdd64f4f405ad00ea2659f33d828f6fe915"
+      ],
+      "causal_axis": [
+        99,
+        8376
+      ],
+      "offline_axis": [
+        99,
+        8256
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "61b86fe7773de59e4410a87a397035c27833d9c551c9ed7d98625582aa5b996d",
+      "TimeRCD_fit_mean": [
+        -0.40018608701137526
+      ],
+      "TimeRCD_fit_std": [
+        0.34654597068378107
+      ],
+      "history_axis": [
+        512,
+        8376
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-1",
+      "channels": 1,
+      "normal_points": 2820,
+      "test_points": 8469,
+      "raw_assets_sha256": [
+        "41ddb9a1a0615cb86803e147a612fcd5e8502d3e114096b3fd689e8be32f8cdf",
+        "1de5cba1063374e9ab488020d53a380a9a412e24f91b11ffb4361260aa240613"
+      ],
+      "causal_axis": [
+        99,
+        8469
+      ],
+      "offline_axis": [
+        99,
+        8400
+      ],
+      "TimeRCD_fit": [
+        0,
+        1692
+      ],
+      "TimeRCD_fit_asset_sha256": "8e843c22dc879080d2268dba434e34b779a664697564cce87598d4ee7bc400d1",
+      "TimeRCD_fit_mean": [
+        0.2918562037494037
+      ],
+      "TimeRCD_fit_std": [
+        0.43836936697597945
+      ],
+      "history_axis": [
+        512,
+        8469
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-2",
+      "channels": 1,
+      "normal_points": 2478,
+      "test_points": 7361,
+      "raw_assets_sha256": [
+        "8b44fdda45871023ee3b7a6eac9422f0727ccc2bd2c38bb42c89f62aaa018d42",
+        "e32d52571233429743f9e30fb68682ece87408f2393c9d36d96e9e8238578cab"
+      ],
+      "causal_axis": [
+        99,
+        7361
+      ],
+      "offline_axis": [
+        99,
+        7296
+      ],
+      "TimeRCD_fit": [
+        0,
+        1486
+      ],
+      "TimeRCD_fit_asset_sha256": "552e12f4a09422cd85463c5991d800b65cef2e9edd27ef82ca5d789bb922b92e",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7361
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-3",
+      "channels": 1,
+      "normal_points": 2624,
+      "test_points": 7907,
+      "raw_assets_sha256": [
+        "98c574aca9cbfece2ff9b9fc23d58fe499c3df8ae91f51cacdb98608a31df4bf",
+        "b6d8bd083551ae1c720df050f4b96ecba080e885833499fd8f0d20c7b89a74fc"
+      ],
+      "causal_axis": [
+        99,
+        7907
+      ],
+      "offline_axis": [
+        99,
+        7872
+      ],
+      "TimeRCD_fit": [
+        0,
+        1574
+      ],
+      "TimeRCD_fit_asset_sha256": "ce9b790e791870917c1bd342bcbc565f4b9bbf84d1f21f74d8d001377e87970d",
+      "TimeRCD_fit_mean": [
+        1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7907
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-4",
+      "channels": 1,
+      "normal_points": 2551,
+      "test_points": 7632,
+      "raw_assets_sha256": [
+        "416e2602798d4193b095f0f9432d446a4fcc655640994d98fc8c69fe23ffb57b",
+        "f4ca6997c44f3eb2f407a0fa45dd7c236d4540e36b3ff2cafdd1d73900fa29d0"
+      ],
+      "causal_axis": [
+        99,
+        7632
+      ],
+      "offline_axis": [
+        99,
+        7488
+      ],
+      "TimeRCD_fit": [
+        0,
+        1530
+      ],
+      "TimeRCD_fit_asset_sha256": "449c97fb19906838515981b87396a988423260c3eade567f8664c3325e055455",
+      "TimeRCD_fit_mean": [
+        0.9946797436358882
+      ],
+      "TimeRCD_fit_std": [
+        0.008837414668698473
+      ],
+      "history_axis": [
+        512,
+        7632
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-6",
+      "channels": 1,
+      "normal_points": 2881,
+      "test_points": 8640,
+      "raw_assets_sha256": [
+        "9e645aaf5e8e14d747265e838cc62b0d1f5ed2be830b6732c1e3d3f7c717d288",
+        "634a6702fd8132143ec49767774910a75f50e8962cedcce4e1b98e15d0e39579"
+      ],
+      "causal_axis": [
+        99,
+        8640
+      ],
+      "offline_axis": [
+        99,
+        8600
+      ],
+      "TimeRCD_fit": [
+        0,
+        1728
+      ],
+      "TimeRCD_fit_asset_sha256": "7cb54babbc8411634fdbf6234e7444eef729c56c1f84c1a02618619e9d5fb584",
+      "TimeRCD_fit_mean": [
+        -0.4001356042944685
+      ],
+      "TimeRCD_fit_std": [
+        0.34659199455679846
+      ],
+      "history_axis": [
+        512,
+        8640
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "G-7",
+      "channels": 1,
+      "normal_points": 2446,
+      "test_points": 8029,
+      "raw_assets_sha256": [
+        "f11ec2989110630857b54a30750eca5a94a72e4e91c63671f16d61f04c85f455",
+        "51c434210b75beedb37304dcce9e68c4bce0cac4e1d52b0f70a13b59ea7b31ef"
+      ],
+      "causal_axis": [
+        99,
+        8029
+      ],
+      "offline_axis": [
+        99,
+        7872
+      ],
+      "TimeRCD_fit": [
+        0,
+        1467
+      ],
+      "TimeRCD_fit_asset_sha256": "60f9f7e3c6a2a392ed4224bf5c9a60bbe500c7394120baec39163dda1ca74e7d",
+      "TimeRCD_fit_mean": [
+        0.9859122926675307
+      ],
+      "TimeRCD_fit_std": [
+        0.16544191813218453
+      ],
+      "history_axis": [
+        512,
+        8029
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-1",
+      "channels": 1,
+      "normal_points": 2872,
+      "test_points": 8505,
+      "raw_assets_sha256": [
+        "78b6eec2b3cb1e6711d07ce994c7375de94b036d839c0f06fe258f446dff667a",
+        "5dbed44bbd0a643e5e3131578c233e73428c70cc678ea9727dde4f3a2da53ce1"
+      ],
+      "causal_axis": [
+        99,
+        8505
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1723
+      ],
+      "TimeRCD_fit_asset_sha256": "3233b10f33304b755481837dc85a35326a5b192b95aa8bcddcc76b05322c4267",
+      "TimeRCD_fit_mean": [
+        -0.42902777501915973
+      ],
+      "TimeRCD_fit_std": [
+        0.39335077840532906
+      ],
+      "history_axis": [
+        512,
+        8505
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-3",
+      "channels": 1,
+      "normal_points": 2855,
+      "test_points": 8493,
+      "raw_assets_sha256": [
+        "0046a883736324dcc63f91c942f7bc68a2c388168548ef9e9f57fc360a78ede1",
+        "e3193c5386eeef89e74f20dfda2125952ef95b621338bceed747a17c7ad334c5"
+      ],
+      "causal_axis": [
+        99,
+        8493
+      ],
+      "offline_axis": [
+        99,
+        8400
+      ],
+      "TimeRCD_fit": [
+        0,
+        1713
+      ],
+      "TimeRCD_fit_asset_sha256": "7262026ec9c337f17969de6054fdb7aeee63d236b9ce20e72e6f25cbe6891080",
+      "TimeRCD_fit_mean": [
+        -0.14282887842690684
+      ],
+      "TimeRCD_fit_std": [
+        0.30064415536383005
+      ],
+      "history_axis": [
+        512,
+        8493
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-4",
+      "channels": 1,
+      "normal_points": 2609,
+      "test_points": 7783,
+      "raw_assets_sha256": [
+        "3633cc3488ccabd80319c12f4abdf4e9190455fdf92c57980e9e2ed5ff0004a6",
+        "a52c4146fef3a001cf4a878eca3c0738ea228ff23f97880607c1650e1e73a44e"
+      ],
+      "causal_axis": [
+        99,
+        7783
+      ],
+      "offline_axis": [
+        99,
+        7680
+      ],
+      "TimeRCD_fit": [
+        0,
+        1565
+      ],
+      "TimeRCD_fit_asset_sha256": "2c3107990649b2d1392eaa6a87044a848efc69e30b1638cf3deab1c01f3b6553",
+      "TimeRCD_fit_mean": [
+        -1.0
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7783
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "P-7",
+      "channels": 1,
+      "normal_points": 2853,
+      "test_points": 8071,
+      "raw_assets_sha256": [
+        "2aa7a74edcbde2d51383e401a726062ae1015ba51276c792ae26a6a2a0df1bda",
+        "4b253756e2e4d0283a6c83064ed5730558e345b3e6f85d1dc4018a7c1b655786"
+      ],
+      "causal_axis": [
+        99,
+        8071
+      ],
+      "offline_axis": [
+        99,
+        8000
+      ],
+      "TimeRCD_fit": [
+        0,
+        1711
+      ],
+      "TimeRCD_fit_asset_sha256": "787ec0ac3c96cef0776d9788ea984a305a5a640cfcbb5b46ebacea27e6b2c4ff",
+      "TimeRCD_fit_mean": [
+        -0.00544355530890542
+      ],
+      "TimeRCD_fit_std": [
+        0.2355017238970812
+      ],
+      "history_axis": [
+        512,
+        8071
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "R-1",
+      "channels": 1,
+      "normal_points": 2874,
+      "test_points": 7244,
+      "raw_assets_sha256": [
+        "116213e95e68274c79c9e5d2d69c27e4f42c566a105494d425080a1e00bef580",
+        "6bce84dddd243d5b82a7d47c42a3237b550564c28c7dcf92b11c58de1ca0d010"
+      ],
+      "causal_axis": [
+        99,
+        7244
+      ],
+      "offline_axis": [
+        99,
+        7104
+      ],
+      "TimeRCD_fit": [
+        0,
+        1724
+      ],
+      "TimeRCD_fit_asset_sha256": "849213274866559a96660dcbeb64d428004104b2d3ddb0eba98435ff4c585c53",
+      "TimeRCD_fit_mean": [
+        0.9990000128746033
+      ],
+      "TimeRCD_fit_std": [
+        1e-08
+      ],
+      "history_axis": [
+        512,
+        7244
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "S-1",
+      "channels": 1,
+      "normal_points": 2818,
+      "test_points": 7331,
+      "raw_assets_sha256": [
+        "196c8413ba0319ea6366273b1d558c07d87c286425e1611768fcb95df37fb309",
+        "76dbe1a9717b1fc4e6e7119883c4ccdf984764a1e8599b225a4241b67d043652"
+      ],
+      "causal_axis": [
+        99,
+        7331
+      ],
+      "offline_axis": [
+        99,
+        7296
+      ],
+      "TimeRCD_fit": [
+        0,
+        1690
+      ],
+      "TimeRCD_fit_asset_sha256": "b9959b5744320d1d32eff60a277e2935362fc3456ce484752c2d6c49c41bd376",
+      "TimeRCD_fit_mean": [
+        -0.11341544565518756
+      ],
+      "TimeRCD_fit_std": [
+        0.4499696531135451
+      ],
+      "history_axis": [
+        512,
+        7331
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-1",
+      "channels": 1,
+      "normal_points": 2875,
+      "test_points": 8612,
+      "raw_assets_sha256": [
+        "cc96f9cb762742131748e009a58640887c6dac69032798e3f3a01447e10111b6",
+        "570153ed8c8368cde8122f87ee1078eaf33ccaa972baf3e7ea81cc3a1ee41004"
+      ],
+      "causal_axis": [
+        99,
+        8612
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1725
+      ],
+      "TimeRCD_fit_asset_sha256": "cd10807fdda36918381df45c426e4fa8cfdcdaca8010856be3c81d0fb47e5054",
+      "TimeRCD_fit_mean": [
+        0.5856338062267615
+      ],
+      "TimeRCD_fit_std": [
+        0.6024627852585983
+      ],
+      "history_axis": [
+        512,
+        8612
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-2",
+      "channels": 1,
+      "normal_points": 2855,
+      "test_points": 8625,
+      "raw_assets_sha256": [
+        "2cb8f5405401e35f152569b434b73ab820fb70ccc2241b92e9bcac3e23d7cf12",
+        "6245ae92ccb55f3a9cffe6b28b05b1c8644b5ff6033f5f9017c89d485340c445"
+      ],
+      "causal_axis": [
+        99,
+        8625
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1713
+      ],
+      "TimeRCD_fit_asset_sha256": "43c83d85ef9ac20b0fe4c17b939e1ecc1e81db1662a28807876954893dc4403f",
+      "TimeRCD_fit_mean": [
+        0.5891612066614936
+      ],
+      "TimeRCD_fit_std": [
+        0.603035233450471
+      ],
+      "history_axis": [
+        512,
+        8625
+      ]
+    },
+    {
+      "domain": "SMAP",
+      "entity": "T-3",
+      "channels": 1,
+      "normal_points": 2876,
+      "test_points": 8579,
+      "raw_assets_sha256": [
+        "a1cf66e4d13dfcf22e3ae14be5b5561ea534cff6f7761880a63b11753de0c855",
+        "ee251c98320e7164f233b4a3f9f5e1a0f447ce6d4c70e6d402e9705ae3c06103"
+      ],
+      "causal_axis": [
+        99,
+        8579
+      ],
+      "offline_axis": [
+        99,
+        8448
+      ],
+      "TimeRCD_fit": [
+        0,
+        1725
+      ],
+      "TimeRCD_fit_asset_sha256": "516f81664a2936a9717615ae9b6181798e31a1a62d235f1d8ae404f0ad26d1ff",
+      "TimeRCD_fit_mean": [
+        0.9766288093553073
+      ],
+      "TimeRCD_fit_std": [
+        0.015663616982750206
+      ],
+      "history_axis": [
+        512,
+        8579
+      ]
+    }
+  ],
+  "DADA": {
+    "code": "ea172389acb466a11a7caac2d18b5ead754aaa43",
+    "sha256": {
+      "config.json": "f59ba5fbfb8f84be1122058bd6d376c7290962bd6cfce35ad04fd45a1c354f53",
+      "configuration_DADA.py": "af07aa40bd7cab9571c59a613b7fd99498c6dce5a88036cbf23ce4ef83e34be6",
+      "modeling_DADA.py": "9c71040d57e52c26613c4a91bcda414dc5ef5533b54acaf12570b94c224c58f4",
+      "pytorch_model.bin": "66db3cc568d3df550bdb0aab7cf40c191acc1acd4bfee62b2b63af843369d850"
+    },
+    "window": 100,
+    "stride": 100,
+    "setup": {
+      "PSM": [
+        1,
+        32
+      ],
+      "SMD": [
+        0,
+        32
+      ],
+      "MSL": [
+        0,
+        128
+      ],
+      "SMAP": [
+        1,
+        32
+      ]
+    },
+    "mask_seed_per_entity": 2024,
+    "scaler": "per-entity StandardScaler over full released normal array, including validation if applicable",
+    "score": "native infer, ten complementary copies, variance across copies averaged over input channels"
+  },
+  "TimeRCD": {
+    "code": "b031773e323bc0e6c9dcd8c9119b800ec4d70f8c",
+    "multi_sha256": "a497ac910f24f8fb347d690a21b60d74bc04785ebc777880553c158dea4434d0",
+    "uni_sha256": "be8906c6a62f16cedd8fe0fe48ef11c4363099633ed6ba8780af819337f7ffaa",
+    "uni_checkpoint": "literature/timercd_official_b031773e/pretrain_checkpoint_best_uni.pth",
+    "hf_revision": "0880420070a524efe14d7e163b34dcca90d2be1b",
+    "config_sha256": "41601562a34092e4b5a6f9aa1eaacb367aed5d10d505d8bf6fb9d94387f8f8ee",
+    "window": 5000,
+    "batch_size": 1,
+    "score": "raw abnormal-class minus normal-class channel-mean logit",
+    "main_statistics": "existing raw FIT only, std==0 replaced by 1e-8 as in the fixed TimeRCD protocol",
+    "diagnostic_statistics": "separate full QUERY role as in official API"
+  },
+  "metric": {
+    "VUS_windowSize": 100,
+    "VUS_thre": 250
+  },
+  "seed_alignment": "candidate original seeds 2025/26/27",
+  "labels_read": false,
+  "source_sha256": "f7a08796960b565c4e8fee58d56de53cc0bbb803ffd18f42b65b9e04e2a41f90",
+  "preparation_seconds": 8.849594587925822
+}
