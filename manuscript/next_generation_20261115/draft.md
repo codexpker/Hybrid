@@ -132,6 +132,8 @@ We repeat the observation-assisted method and native LEFT at seed2026 with match
 
 The fixed public expansion applies the same observation-assisted path and detector to machine-specific SMD models (38 channels, W192) and domain-shared NASA models (one sensor, W96 for MSL and W192 for SMAP). All runs use the admitted data and native configuration for that task. The matched native arm uses the same pre-EMA snapshot treatment. The extra modulation remains on throughout normal selection and is bypassed for every detection record.
 
+The correspondence control retains the observation-conditioned training and SELECT procedure. It rotates the complete observation vector by half the batch before projection and channel broadcast, preserving the batch's vectors and the differentiable path. The additional modulation is bypassed at detection under the same rule as own-window conditioning.
+
 # Experimental Setup
 
 ## Public records, axes and aggregation
@@ -239,13 +241,40 @@ The fixed method is evaluated on complete SMD28 and the admitted MSL27/SMAP53 co
 
 On SMD28, the candidate's AP is 0.497505 versus 0.497514 for native LEFT. All four absolute macro differences are below 0.000042, all four medians are negative, and AP improves on 10 machines, ties on one and declines on 17. Every individual SMD difference is below 0.00075 in absolute value across all four metrics. The two learned methods both outperform the pointwise level baseline on all four macro metrics. The candidate's AP advantage over level deviation is 0.0710 with wins on 26 machines. Native LEFT already has nearly the same advantage.
 
-SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie.
+SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie. SMD uses the author's type1 schedule. The 26 selected candidate checkpoints that reached a positive modulation update first reached it in epoch 6 (nine machines) or epoch 7 (17 machines), when the learning rate was already 6.25e-6 or 3.125e-6, respectively. The eight selected checkpoints that reached step 3,000 did so in epoch 17, at a learning rate of about 3.05e-9. These are properties of the fixed training recipe. Their effect on the SMD near-tie is unidentified in this comparison.
 
 MSL27 and SMAP53 show small macro AP gains of 0.000864 and 0.004877, with similarly positive macro VUS-PR changes. Both macro ROC measures decline on both datasets. The AP difference is negative at the median on both, with wins on 12 of 27 MSL entities and 25 of 53 SMAP entities. The ranges of individual AP differences are [−0.093758, +0.113951] and [−0.090608, +0.194753]. The positive means therefore coexist with broad entity-level losses. The candidate exceeds level deviation by 0.2224 macro AP on MSL and 0.2120 on SMAP, with AP wins on 21 of 27 and 34 of 53 entities respectively. The native model already has a large advantage over level deviation in both cohorts.
 
 The larger gain over native LEFT remains specific to the fixed SWaT task among these benchmarks. SWaT's seed2025 switch result motivated the method and seed2026 repeats its AP, ROC-AUC and VUS-PR gains descriptively. SWaT VUS-ROC changes sign, and the level baseline remains higher in AP in seed2025 and close in seed2026. The SMD multi-variable extension shows no material added value, and the NASA single-sensor results indicate heterogeneous benefits rather than evidence of cross-variable improvement. The suite contributes three new single-seed benchmark results and two prior two-seed benchmark results.
 
 [Complete external comparisons by axis, paired distributions and run costs](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#fixed-public-benchmark-expansion).
+
+## Window-level correspondence control
+
+The control assigns each normal window the complete observation condition from another window in the same batch. The fixed donor is a circular shift of floor(B/2) on the window axis. It is applied before the projection and before expansion to the receiving window's channels. The assignment preserves the vector set, is differentiable, uses no random draws, and leaves a singleton intact. Native time–frequency cycles, prototype memory, losses and reconstruction targets use their original inputs. Normal SELECT uses the same shifted conditions. Detection bypasses only the added modulation for both conditioned arms. PSM and SWaT reuse the earlier 2025 and 2026 matched initialization and normal-data recipes. The comparisons use PSM test-relative [0, 87744) and SWaT absolute [495000, 944856). W192 scores are available at their containing window end. Independent-CAL operations are NA.
+
+| Dataset | Seed | Contrast | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | Own-window condition − Mismatched window condition | -0.000912 | -0.017664 | +0.000489 | -0.018232 |
+| PSM | 2025 | Mismatched window condition − Native LEFT | +0.000608 | -0.002715 | -0.000483 | -0.004456 |
+| PSM | 2025 | Own-window condition − Native LEFT | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | 2026 | Own-window condition − Mismatched window condition | +0.000968 | -0.005690 | +0.002868 | -0.004945 |
+| PSM | 2026 | Mismatched window condition − Native LEFT | +0.001103 | -0.000574 | -0.000427 | -0.002212 |
+| PSM | 2026 | Own-window condition − Native LEFT | +0.002071 | -0.006264 | +0.002441 | -0.007157 |
+| SWaT | 2025 | Own-window condition − Mismatched window condition | -0.042116 | -0.001977 | -0.004018 | +0.007267 |
+| SWaT | 2025 | Mismatched window condition − Native LEFT | +0.211974 | +0.019837 | +0.014236 | -0.108626 |
+| SWaT | 2025 | Own-window condition − Native LEFT | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | 2026 | Own-window condition − Mismatched window condition | +0.000927 | +0.006598 | +0.035147 | +0.040967 |
+| SWaT | 2026 | Mismatched window condition − Native LEFT | +0.157985 | +0.023532 | +0.015540 | +0.001741 |
+| SWaT | 2026 | Own-window condition − Native LEFT | +0.158912 | +0.030130 | +0.050687 | +0.042708 |
+
+On SWaT, the mismatched arm improved AP by 0.211974 and 0.157985 over native LEFT in seeds 2025 and 2026. Own-window conditioning minus mismatch was −0.042116 and +0.000927 AP. Both mismatch runs also improved ROC-AUC and VUS-PR over native LEFT. VUS-ROC fell for both conditioned arms in seed2025. In seed2026, own-window conditioning exceeded mismatch on ROC-AUC and both VUS metrics, including +0.040967 VUS-ROC. Mismatched AP was 0.755840 in seed2025 and 0.744195 in seed2026, compared with 0.744800 for the level baseline. The two-seed experiment therefore does not establish consistent value of correct pairing for the training and selection procedure. The SWaT improvements over native LEFT were attainable with mismatched conditioning.
+
+For PSM, own-window and mismatched AP differ by less than 0.001 in each seed and change order. Own-window VUS-PR is slightly higher in both seeds. Mismatch has smaller ROC-AUC and VUS-ROC penalties relative to native LEFT. The PSM validation losses in the first epoch, before any positive training modulation, differ by approximately 5.3e-6 and 0.8e-6 despite the matched starts and sampling. The reference trajectories are paired by these controls and are not exact numerical replays.
+
+The permutation altered every selected SELECT condition vector. In the SWaT mismatched models, the induced modulation increment change is about 2.5% of their assigned increment RMS, compared with 48–54% in PSM. This limits the strength of the intervention at the decoder in SWaT. It establishes that the fixed mismatched training and selection procedure can retain the ranking gains. It leaves unresolved how sensitively a model trained with correct pairing would respond to a larger condition intervention. These outcomes concern offline benchmark rankings for the complete training and selection program.
+
+[Complete comparison, intervention measurements and run costs](../../docs/experiments/left_decoder_context_20261124/RESULTS.md#fixed-condition-correspondence-ablation).
 
 ## Target-normal training scope
 

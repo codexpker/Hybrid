@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "full_pre_optimizer_state_sha256": {
+    "PSM/2025": {
+      "observation": "271ad70ac2ec81634d0af7b234bd5594a31fe5b4e3187cc7a8e930495d91bc15",
+      "mismatched": "271ad70ac2ec81634d0af7b234bd5594a31fe5b4e3187cc7a8e930495d91bc15"
+    },
+    "PSM/2026": {
+      "observation": "edd01d3aa396aed2790c845d43c24a1684b6e7324576e12d19b229567f3fffbb",
+      "mismatched": "edd01d3aa396aed2790c845d43c24a1684b6e7324576e12d19b229567f3fffbb"
+    },
+    "SWAT/2025": {
+      "observation": "53da84b240cd15ef0d4fe23ed92a96328797cf8ad754aea1b4580ad7b7c2e89e",
+      "mismatched": "53da84b240cd15ef0d4fe23ed92a96328797cf8ad754aea1b4580ad7b7c2e89e"
+    },
+    "SWAT/2026": {
+      "observation": "1423809f6e2eb352e130cf37a11f8cea3cd519a2772ecf7f7b6616cf36b2ed63",
+      "mismatched": "1423809f6e2eb352e130cf37a11f8cea3cd519a2772ecf7f7b6616cf36b2ed63"
+    }
+  }
+}

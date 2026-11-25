@@ -307,7 +307,7 @@ The older two-seed panels use the archived full axes and retain each seed separa
 
 On SMD28, the candidate's AP is 0.497505 versus 0.497514 for native LEFT. All four absolute macro differences are below 0.000042, all four medians are negative, and AP improves on 10 machines, ties on one and declines on 17. Every individual SMD difference is below 0.00075 in absolute value across all four metrics. The two learned methods both outperform the pointwise level baseline on all four macro metrics. The candidate's AP advantage over level deviation is 0.0710 with wins on 26 machines. Native LEFT already has nearly the same advantage.
 
-SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie.
+SMD keeps its 1,000-step warm-up and 2,000-step ramp. Among the 28 candidate checkpoints, two are selected at or before step 1,000, 18 between steps 1,000 and 3,000, and eight at or after step 3,000. The full-cohort comparison includes all three cases under the fixed selection procedure. These counts describe realized exposure to the added path and do not identify the cause of the SMD near-tie. SMD uses the author's type1 schedule. The 26 selected candidate checkpoints that reached a positive modulation update first reached it in epoch 6 (nine machines) or epoch 7 (17 machines), when the learning rate was already 6.25e-6 or 3.125e-6, respectively. The eight selected checkpoints that reached step 3,000 did so in epoch 17, at a learning rate of about 3.05e-9. These are properties of the fixed training recipe. Their effect on the SMD near-tie is unidentified in this comparison.
 
 MSL27 and SMAP53 show small macro AP gains of 0.000864 and 0.004877, with similarly positive macro VUS-PR changes. Both macro ROC measures decline on both datasets. The AP difference is negative at the median on both, with wins on 12 of 27 MSL entities and 25 of 53 SMAP entities. The ranges of individual AP differences are [−0.093758, +0.113951] and [−0.090608, +0.194753]. The positive means therefore coexist with broad entity-level losses. The candidate exceeds level deviation by 0.2224 macro AP on MSL and 0.2120 on SMAP, with AP wins on 21 of 27 and 34 of 53 entities respectively. The native model already has a large advantage over level deviation in both cohorts.
 
@@ -329,3 +329,82 @@ All 60 formal jobs completed, with 4.1935 A40 hours of training and 51.199 A40-s
 Three normal-data checks verified zero-modulation forward equivalence, active gradients, and that switching off the extra path reproduces the same-weight native score while retaining each domain's cycle coefficient. All runs bind the selected state, input, score, scaler and common-initialization hashes. A separate tie-group AP and ROC calculation for 977 cache rows gave a maximum error of 3.33e-16. VUS uses the pinned LEFT evaluator with windowSize 100 and thre 250. Domain aggregation and each pair summary were checked again directly from the per-entity CSV for all four metrics.
 
 [Machine-readable five-domain methods](public_extension/methods.csv) · [Per-entity metrics and score bindings](public_extension/entity_metrics.csv) · [Per-entity paired differences](public_extension/entity_deltas.csv) · [Pair distributions](public_extension/paired_distribution.csv) · [Costs](public_extension/costs.csv) · [Metric receipt](public_extension/EVALUATION.json) · [Training and checkpoint bindings](public_extension/TRAINING_BINDINGS.json) · [Fixed queue](public_extension/QUEUE.json).
+
+## Fixed condition correspondence ablation
+
+The control assigns each normal window the complete observation condition from another window in the same batch. The fixed donor is a circular shift of floor(B/2) on the window axis. It is applied before the projection and before expansion to the receiving window's channels. The assignment preserves the vector set, is differentiable, uses no random draws, and leaves a singleton intact. Native time–frequency cycles, prototype memory, losses and reconstruction targets use their original inputs. Normal SELECT uses the same shifted conditions. Detection bypasses only the added modulation for both conditioned arms. PSM and SWaT reuse the earlier 2025 and 2026 matched initialization and normal-data recipes. The comparisons use PSM test-relative [0, 87744) and SWaT absolute [495000, 944856). W192 scores are available at their containing window end. Independent-CAL operations are NA.
+
+### Complete methods
+
+| Dataset | Method | Seed | AP | ROC-AUC | VUS-PR | VUS-ROC | Selected epoch | Permissions |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | Native LEFT | 2025 | 0.576639 | 0.776095 | 0.572611 | 0.785067 | 20 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Own-window condition (modulation off at detection) | 2025 | 0.576335 | 0.755716 | 0.572616 | 0.762379 | 15 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Mismatched window condition (modulation off at detection) | 2025 | 0.577247 | 0.773380 | 0.572127 | 0.780610 | 15 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Native LEFT | 2026 | 0.570185 | 0.771785 | 0.562230 | 0.778429 | 19 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Own-window condition (modulation off at detection) | 2026 | 0.572256 | 0.765521 | 0.564671 | 0.771272 | 19 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Mismatched window condition (modulation off at detection) | 2026 | 0.571288 | 0.771211 | 0.561803 | 0.776217 | 19 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| PSM | Pointwise level deviation | — | 0.438271 | 0.654233 | 0.446020 | 0.654290 | — | Zero training, same normal-prefix scaler, current point only |
+| PSM | CATCH W192 seed0 | — | 0.445990 | 0.653418 | 0.536671 | 0.703657 | — | target FIT-only scaler, FIT trains, SELECT selects, full W192 |
+| PSM | CATCH W192 seed1 | — | 0.430264 | 0.641399 | 0.519273 | 0.690691 | — | target FIT-only scaler, FIT trains, SELECT selects, full W192 |
+| PSM | CATCH W192 seed2 | — | 0.433044 | 0.647248 | 0.526447 | 0.698733 | — | target FIT-only scaler, FIT trains, SELECT selects, full W192 |
+| PSM | PCA residual | — | 0.534404 | 0.793321 | 0.528991 | 0.766686 | — | target FIT-only scaler and PCA fitted on at most 50000 FIT points, score only uses x_t |
+| PSM | TimeRadar official block0 seed2024 | — | 0.433265 | 0.670669 | 0.441259 | 0.678365 | — | native norm=0, B64, L1, prefix scaler includes SELECT, complete W100 and batch-shared order |
+| PSM | TimeRadar common FIT scaler seed2024 | — | 0.455371 | 0.683823 | 0.458071 | 0.689163 | — | FIT-only scaler, B64, norm=0, L1, complete W100 and batch-shared order |
+| SWaT | Native LEFT | 2025 | 0.543866 | 0.820853 | 0.534601 | 0.809255 | 13 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Own-window condition (modulation off at detection) | 2025 | 0.713724 | 0.838712 | 0.544820 | 0.707896 | 15 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Mismatched window condition (modulation off at detection) | 2025 | 0.755840 | 0.840689 | 0.548837 | 0.700629 | 15 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Native LEFT | 2026 | 0.586210 | 0.814548 | 0.522656 | 0.750588 | 16 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Own-window condition (modulation off at detection) | 2026 | 0.745122 | 0.844678 | 0.573343 | 0.793297 | 16 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Mismatched window condition (modulation off at detection) | 2026 | 0.744195 | 0.838080 | 0.538196 | 0.752330 | 16 | Normal FIT and SELECT, normal-prefix scaler, offline W192 |
+| SWaT | Pointwise level deviation | — | 0.744800 | 0.831823 | 0.464536 | 0.644277 | — | Zero training, same normal-prefix scaler, current point only |
+| SWaT | TimeRadar official block0 | — | 0.639299 | 0.821970 | 0.514061 | 0.766831 | — | native norm=0, B128, L1, prefix scaler includes SELECT, complete W100 and batch-shared order |
+| SWaT | CATCH W192 | — | NA | NA | NA | NA | — | Compatible full-axis bank unavailable |
+| SWaT | PCA residual | — | NA | NA | NA | NA | — | Compatible full-axis bank unavailable |
+
+### Seed-paired contrasts
+
+| Dataset | Seed | Contrast | ΔAP | ΔROC-AUC | ΔVUS-PR | ΔVUS-ROC |
+| --- | --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | Own-window condition − Mismatched window condition | -0.000912 | -0.017664 | +0.000489 | -0.018232 |
+| PSM | 2025 | Mismatched window condition − Native LEFT | +0.000608 | -0.002715 | -0.000483 | -0.004456 |
+| PSM | 2025 | Own-window condition − Native LEFT | -0.000304 | -0.020379 | +0.000005 | -0.022688 |
+| PSM | 2026 | Own-window condition − Mismatched window condition | +0.000968 | -0.005690 | +0.002868 | -0.004945 |
+| PSM | 2026 | Mismatched window condition − Native LEFT | +0.001103 | -0.000574 | -0.000427 | -0.002212 |
+| PSM | 2026 | Own-window condition − Native LEFT | +0.002071 | -0.006264 | +0.002441 | -0.007157 |
+| SWaT | 2025 | Own-window condition − Mismatched window condition | -0.042116 | -0.001977 | -0.004018 | +0.007267 |
+| SWaT | 2025 | Mismatched window condition − Native LEFT | +0.211974 | +0.019837 | +0.014236 | -0.108626 |
+| SWaT | 2025 | Own-window condition − Native LEFT | +0.169857 | +0.017859 | +0.010218 | -0.101359 |
+| SWaT | 2026 | Own-window condition − Mismatched window condition | +0.000927 | +0.006598 | +0.035147 | +0.040967 |
+| SWaT | 2026 | Mismatched window condition − Native LEFT | +0.157985 | +0.023532 | +0.015540 | +0.001741 |
+| SWaT | 2026 | Own-window condition − Native LEFT | +0.158912 | +0.030130 | +0.050687 | +0.042708 |
+
+On SWaT, the mismatched arm improved AP by 0.211974 and 0.157985 over native LEFT in seeds 2025 and 2026. Own-window conditioning minus mismatch was −0.042116 and +0.000927 AP. Both mismatch runs also improved ROC-AUC and VUS-PR over native LEFT. VUS-ROC fell for both conditioned arms in seed2025. In seed2026, own-window conditioning exceeded mismatch on ROC-AUC and both VUS metrics, including +0.040967 VUS-ROC. Mismatched AP was 0.755840 in seed2025 and 0.744195 in seed2026, compared with 0.744800 for the level baseline. The two-seed experiment therefore does not establish consistent value of correct pairing for the training and selection procedure. The SWaT improvements over native LEFT were attainable with mismatched conditioning.
+
+For PSM, own-window and mismatched AP differ by less than 0.001 in each seed and change order. Own-window VUS-PR is slightly higher in both seeds. Mismatch has smaller ROC-AUC and VUS-ROC penalties relative to native LEFT. The PSM validation losses in the first epoch, before any positive training modulation, differ by approximately 5.3e-6 and 0.8e-6 despite the matched starts and sampling. The reference trajectories are paired by these controls and are not exact numerical replays.
+
+The permutation altered every selected SELECT condition vector. In the SWaT mismatched models, the induced modulation increment change is about 2.5% of their assigned increment RMS, compared with 48–54% in PSM. This limits the strength of the intervention at the decoder in SWaT. It establishes that the fixed mismatched training and selection procedure can retain the ranking gains. It leaves unresolved how sensitively a model trained with correct pairing would respond to a larger condition intervention. These outcomes concern offline benchmark rankings for the complete training and selection program.
+
+### Manipulation recorded during normal SELECT
+
+For every SELECT batch in every epoch, the inverse shift recovered the original condition vectors exactly. All multi-window batches had zero fixed points. The audit reuses the ordinary validation forward at the weights reached by training. It computes the decoder token increment for an own-window assignment in the same state and contrasts it with the increment used by the shifted assignment. The table pools RMS over the selected epoch's actual SELECT windows. Both percentages divide the RMS contrast by the indicated pooled RMS. Counts are recorded across formal training, without changing batch sizes or forcing curriculum progress. The validation audit consumed no CUDA RNG draws.
+
+| Dataset | Seed | Selected epoch | Changed SELECT conditions | RMS Δc | RMS Δmodulation | Δmodulation / assigned modulation | Δmodulation / input tokens | FIT/SELECT singleton totals |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | 15 | 138/138 | 4.23153 | 0.264577 | 54.423% | 20.778% | 0/0 |
+| PSM | 2026 | 19 | 138/138 | 4.01418 | 0.23224 | 48.001% | 18.858% | 0/0 |
+| SWaT | 2025 | 15 | 515/515 | 3.75643 | 0.0285262 | 2.490% | 2.551% | 0/0 |
+| SWaT | 2026 | 16 | 515/515 | 3.75817 | 0.0325662 | 2.547% | 3.023% | 0/0 |
+
+### Cost and reproducibility
+
+| Dataset | Seed | Epochs | Selected epoch | Updates | Matched sampler epochs | Training (A40 s) | Scoring (A40 s) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| PSM | 2025 | 18 | 15 | 14,886 | 18 | 893.687 | 0.756 |
+| PSM | 2026 | 20 | 19 | 16,540 | 20 | 992.538 | 0.754 |
+| SWaT | 2025 | 18 | 15 | 55,674 | 18 | 3674.969 | 3.841 |
+| SWaT | 2026 | 19 | 16 | 58,767 | 19 | 3878.790 | 3.878 |
+
+The four new jobs used 2.622218 A40-hours for training and 9.229 A40-seconds for score generation and serialization. The four-GPU queue took 64.8 wall-minutes. CPU evaluation and plotting took 39.125 wall-seconds. Full initialization, common-epoch window sampler, config, scaler, selected normal checkpoint and raw score-bank identities were verified. Tie-group AP and ROC-AUC were independently recomputed on all 21 compared rows. The largest absolute difference was 6.66e-16. VUS uses LEFT's fixed windowSize 100 and thre 250. Previous model banks, scores and five-domain tables were retained. New raw banks and checkpoints remain outside Git under `results/left_context_correspondence_20261125_v1`.
+
+[Full-precision scores, paired differences, and cost](correspondence/METRICS.json) · [PSM PR and ROC](correspondence/psm_pr_roc.svg) · [SWaT PR and ROC](correspondence/swat_pr_roc.svg) · [Complete initialization check](correspondence/INITIAL_STATE_CHECK.json).
