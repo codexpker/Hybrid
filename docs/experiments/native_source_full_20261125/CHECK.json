@@ -1,0 +1,82 @@
+{
+  "native_values": {
+    "V": [
+      0.015112416818737984,
+      0.2828567624092102
+    ],
+    "E": [
+      0.21736009418964386,
+      0.2828567624092102
+    ]
+  },
+  "gradients": {
+    "copy_V": {
+      "real_input_embed": 0.03370140679180622,
+      "imag_input_embed": 0.023751812055706978,
+      "encoder": 2.917968981899321,
+      "decoder": 0.321168853668496,
+      "net": 0.07092142850160599
+    },
+    "pair_V": {
+      "real_input_embed": {
+        "norm": 0.13850261643528938,
+        "reachable": 2
+      },
+      "imag_input_embed": {
+        "norm": 0.16832999140024185,
+        "reachable": 2
+      },
+      "encoder": {
+        "norm": 8.03016605367884,
+        "reachable": 90
+      },
+      "decoder": {
+        "norm": 1.1965664247982204,
+        "reachable": 9
+      },
+      "net": {
+        "norm": 3.3081916393712163,
+        "reachable": 4
+      }
+    },
+    "copy_E": {
+      "real_input_embed": 0.03370140679180622,
+      "imag_input_embed": 0.023751812055706978,
+      "encoder": 2.917968981899321,
+      "decoder": 0.321168853668496,
+      "net": 0.07092142850160599
+    },
+    "pair_E": {
+      "real_input_embed": {
+        "norm": 0.013659639982506633,
+        "reachable": 2
+      },
+      "imag_input_embed": {
+        "norm": 0.014095224672928452,
+        "reachable": 2
+      },
+      "encoder": {
+        "norm": 0.9826795266126283,
+        "reachable": 90
+      },
+      "decoder": {
+        "norm": 0.32488422171445563,
+        "reachable": 9
+      },
+      "net": {
+        "norm": 0.3372253804700449,
+        "reachable": 4
+      }
+    }
+  },
+  "all_native_params": true,
+  "parameter_counts": {
+    "real_input_embed": 384,
+    "imag_input_embed": 384,
+    "encoder": 815552,
+    "decoder": 793610,
+    "net": 26113
+  },
+  "plan_sha256": "df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9",
+  "test_read": false
+}
