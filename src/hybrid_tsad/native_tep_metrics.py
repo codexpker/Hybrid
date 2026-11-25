@@ -1,6 +1,10 @@
 """Common-axis ranking, original calibrated operating protocols and within-entity contrasts."""
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
+import fcntl
+import gzip
+import json
+import sys
 import time
 import numpy as np
 import pandas as pd
@@ -42,6 +46,8 @@ def entity(args):
                 ix = np.arange(lo,hi)
                 s = score[ix-99]
                 vals,_ = continuous_metrics(y[ix],s,metric)
+                if panel=="causal":
+                    causal_rank=vals
                 ap,roc = ranking_check(y[ix],s)
                 max_error=max(max_error,abs(ap-vals["AP"]),abs(roc-vals["ROC_AUC"]))
                 ranks.append(dict(domain=d,entity=e,method=arm,seed=2025,panel=panel,start=lo,stop=hi,
@@ -53,7 +59,7 @@ def entity(args):
                     query_stop=87744,original_length=len(y),expected_events=(48,5),ranking=None)
                 causal_timing(rr,ee)
             else:
-                rr,ee = operating_metrics(qi,score,y,tau,{})
+                rr,ee = operating_metrics(qi,score,y,tau,causal_rank)
             ident = dict(domain=d,entity=e,method=arm)
             ops.extend(dict(k,**ident,cal_n=len(ci),cal_threshold=tau) for k in rr)
             events.extend(dict(k,**ident) for k in ee)
@@ -71,7 +77,7 @@ def evaluate(w):
     err=0.
     start=time.perf_counter()
     with ProcessPoolExecutor(max_workers=12) as pool:
-        for rs,os,es,er,info in pool.map(entity,((w,r) for r in rows)):
+        for rs,os,es,er,info in pool.map(cached_entity,((w,r) for r in rows)):
             ranks.extend(rs)
             ops.extend(os)
             events.extend(es)
@@ -116,11 +122,45 @@ def evaluate(w):
     pd.DataFrame(oper).to_csv(root/"operating.csv",index=False)
     pd.DataFrame(costs).to_csv(root/"inference_cost.csv",index=False)
     dump(root/"EVALUATION.json",dict(source_selection_before_scoring=True,axis_sha256=AXIS_SHA,
-        time_seconds=time.perf_counter()-start,entities=len(rows),AP_ROC_max_error=err,
+        aggregation_wall_seconds=time.perf_counter()-start,entities=len(rows),AP_ROC_max_error=err,
+        metric_worker_seconds=sum(r["metric_worker_seconds"] for r in costs),
         rank_rows=len(ranks),VUS_window=100,VUS_thresholds=250,
         train_seconds=sum(read(root/a/"SELECTION.json")["seconds"] for a in ARMS),
         inference_seconds=sum(c["seconds"] for c in costs),source_sha256=sha(__file__)))
 
 
+def cached_entity(args):
+    w,r=args
+    folder=w/OUT/"metric_parts"/r["domain"]
+    folder.mkdir(parents=True,exist_ok=True)
+    path=folder/(r["entity"]+".json.gz")
+    with path.with_suffix(".lock").open("a") as f:
+        fcntl.flock(f,fcntl.LOCK_EX)
+        if not path.exists():
+            tick=time.perf_counter()
+            result=entity(args)
+            result[-1]["metric_worker_seconds"]=time.perf_counter()-tick
+            temp=path.with_suffix(".part")
+            with gzip.open(temp,"wt",encoding="utf8") as out:
+                json.dump(result,out,default=lambda x:x.item(),allow_nan=False)
+            temp.replace(path)
+        with gzip.open(path,"rt",encoding="utf8") as inp:
+            return json.load(inp)
+
+
+def collect(w):
+    manifest=w/EXTERNAL/"AXES_AND_INPUTS.json"
+    assert sha(manifest)==AXIS_SHA
+    pending=read(manifest)["records"]
+    with ProcessPoolExecutor(max_workers=8) as pool:
+        while pending:
+            ready=[r for r in pending if (w/OUT/"scores"/r["domain"]/(r["entity"]+".json")).exists()]
+            for _ in pool.map(cached_entity,((w,r) for r in ready)):
+                pass
+            pending=[r for r in pending if r not in ready]
+            if pending:
+                time.sleep(20)
+
+
 if __name__=="__main__":
-    evaluate(Path.cwd())
+    (collect if sys.argv[1:]==["collect"] else evaluate)(Path.cwd())

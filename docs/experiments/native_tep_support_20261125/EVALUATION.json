@@ -1,0 +1,14 @@
+{
+  "source_selection_before_scoring": true,
+  "axis_sha256": "a79c649f93d65017c2fcb2f1827a4d1c8305264eb817e0431deae7980d212875",
+  "aggregation_wall_seconds": 51.3818093133159,
+  "entities": 109,
+  "AP_ROC_max_error": 4.440892098500626e-16,
+  "metric_worker_seconds": 1278.2519119614735,
+  "rank_rows": 816,
+  "VUS_window": 100,
+  "VUS_thresholds": 250,
+  "train_seconds": 1169.1020514913835,
+  "inference_seconds": 12907.45685091475,
+  "source_sha256": "696960458196444e4199383cd9148b1d28600d11c37d94ebf7cfe7615f1b8043"
+}

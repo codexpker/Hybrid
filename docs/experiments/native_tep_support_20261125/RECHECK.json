@@ -1,0 +1,12 @@
+{
+  "archived_external_rows": 113,
+  "new_entity_metric_rows": 816,
+  "matched_selection": {
+    "single_V": 240,
+    "expanded_V": 240,
+    "expanded_E": 200
+  },
+  "max_aggregation_difference": 2.324800508352043e-16,
+  "rank_check": "AP and ROC raw-score tied-rank recheck in each new entity/panel; see EVALUATION.json",
+  "VUS_check": "Aggregation only; unchanged author implementation, no independent VUS algorithm"
+}

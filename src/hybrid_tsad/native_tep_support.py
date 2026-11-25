@@ -100,3 +100,9 @@ def prepare(w):
         fit_weight="SWaT normalized original stratum mass with inverse inclusion probability; TEP equal fault and stratum mass",
         scale="original official decoder median on original 4632 SWaT FIT normal endpoints, separate for V and E",
         test_read=False))
+
+
+if __name__=="__main__":
+    workspace=Path.cwd()
+    extract(workspace)
+    prepare(workspace)
