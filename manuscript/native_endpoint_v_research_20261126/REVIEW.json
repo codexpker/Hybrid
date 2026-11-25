@@ -1,0 +1,15 @@
+{
+  "purpose": "One bounded read-only manuscript review for advisor assessment",
+  "reviewer": "fresh Codex subagent, gpt-6-astra",
+  "scope": "Single endpoint method consistency, table assembly against archived CSV, permissions and claim scope",
+  "findings": [
+    "Target scaler wording in the figure needed to match archived target FIT permissions",
+    "Mask bank described one [5C,20] draw, then its complement and [10,C,20] reshape",
+    "Provenance files needed explicit paths and hashes in the evidence manifest",
+    "Figure should say correction=1 rather than implying independent-copy statistical unbiasedness"
+  ],
+  "resolution": "All four findings corrected in the final templates and figure generator",
+  "numeric_review": "Reviewer matched twelve descriptive table groups to archived CSVs and checked the ten CSV hashes available at review time",
+  "final_document_checks": "Citations resolved, formulas rendered, PDF table pages visually inspected; broad operations table split for readability",
+  "excluded": "No training, model inference, historical score changes or recomputation of historical detection metrics"
+}

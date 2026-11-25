@@ -1,0 +1,27 @@
+{
+  "metric_files_sha256": {
+    "native_endpoint_external_20261125/domain_metrics.csv": "c1ce05e8f58a73764bd14b4e5c21473400c04fa7cb20fd3a230d29d4e2f2c49d",
+    "native_event_stage2_u_20261123/methods.csv": "bab17f6e18fda84c6c35bd00b11d912bc0c364844fc686101b0cf69c4c6aed62",
+    "native_event_stage2_f_20261123/methods.csv": "731fe5415d16758705ed35689dc6086efbd339ec54ad20cabb76b2601d090735",
+    "native_supervised_mlp_20261123/methods.csv": "344161ad942184de86e8bad60d5059d59703fcad4bec1f26ea1c15faea2965ca",
+    "native_e_vs_v_20261123/methods.csv": "2610ea07efeaf08f35c1b7352fdf3eeaf3d839a0c5a423aad0882fe22706bcf4",
+    "native_tep_support_20261125/paired_distribution.csv": "fa62e8ca4ce3b26d978b7ce2d84d62e9d167efc1b482c76ffdbaa34ced6fa933",
+    "native_source_full_20261125/paired_distribution.csv": "4d7e9600f841f2bc5ffb0bac6e8a850474e735f678eac3ce96d6dfc3b8f54f36",
+    "native_event_rank_repeats_20261122/operating_methods.csv": "098e71c704df071fb2908b3a5ce9cad223f877df9a0bbf5f24cc7733638fe0ca",
+    "native_event_smd28_20261123/native/operating.csv": "2effe5e88ae40ba0e7b7b9dc4248feefec28e23ce497ae3fb3312dabd0f86c8b",
+    "native_endpoint_external_20261125/entity_pairs.csv": "16517e2e3a095d0ad3164631dd0025efae2932d1c36e2aca26398dee31dc8aad",
+    "native_event_rank_20261122/source_select.csv": "ac993375801e8f73a2ea4206be8764c89c878bf1f4b8a036413b2c2039fd1328",
+    "native_event_rank_repeats_20261122/source/source_select.csv": "4f90592509b8c64a22817a7084b53c499d534371e80f88ed6951fbbb812260ac"
+  },
+  "provenance_files_sha256": {
+    "native_event_rank_20261122/PROVENANCE.json": "0f5d8359f9aaa781db9288ea18d574b55f2ced8295823c36b13ec2da5c639567",
+    "native_event_rank_repeats_20261122/source/source_provenance.json": "8ad51aa6e9308dccc90106fee194b3c62929ce4c9aa6b301a0f775df71e27653",
+    "native_endpoint_external_20261125/AXES_AND_INPUTS.json": "a79c649f93d65017c2fcb2f1827a4d1c8305264eb817e0431deae7980d212875",
+    "native_endpoint_external_20261125/RESULTS.md": "ada571956c8f340e15c15f56e83f90e52f1dfeeab525623d47e52b12015e9be6",
+    "native_event_rank_public_20261122/MSL_NATIVE_MEMBERS.json": "8f3c80fe1986dfbed41e473d22ab67ee5381802cbf578b2684134a211d14021f"
+  },
+  "source_git": "d92740aec208017b56723055f365318f19159f48",
+  "snapshots": "manuscript\\snapshots\\before_endpoint_research_20261126",
+  "statistics": "Entity-first original exports; seed sample SD ddof=1",
+  "experiment_execution": false
+}
