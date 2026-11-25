@@ -1,0 +1,270 @@
+domain,entity,method,seconds
+PSM,PSM,DADA official V,2.3088988442905247
+SMD,machine-1-1,DADA official V,0.8311267769895494
+SMD,machine-1-2,DADA official V,0.6771209640428424
+SMD,machine-1-3,DADA official V,0.6759660448879004
+SMD,machine-1-4,DADA official V,0.6784555139020085
+SMD,machine-1-5,DADA official V,0.6892998996190727
+SMD,machine-1-6,DADA official V,0.6883249818347394
+SMD,machine-1-7,DADA official V,0.6754511990584433
+SMD,machine-1-8,DADA official V,0.6804714030586183
+SMD,machine-2-1,DADA official V,0.6816595899872482
+SMD,machine-2-2,DADA official V,0.6868158932775259
+SMD,machine-2-3,DADA official V,0.6785944402217865
+SMD,machine-2-4,DADA official V,0.6810001437552273
+SMD,machine-2-5,DADA official V,0.6775180697441101
+SMD,machine-2-6,DADA official V,1.3088098489679396
+SMD,machine-2-7,DADA official V,0.6743462011218071
+SMD,machine-2-8,DADA official V,0.682126082945615
+SMD,machine-2-9,DADA official V,0.8335545798763633
+SMD,machine-3-1,DADA official V,0.8326746327802539
+SMD,machine-3-10,DADA official V,0.6723905643448234
+SMD,machine-3-11,DADA official V,0.820305947214365
+SMD,machine-3-2,DADA official V,0.6821224917657673
+SMD,machine-3-3,DADA official V,0.685134103987366
+SMD,machine-3-4,DADA official V,0.6769401202909648
+SMD,machine-3-5,DADA official V,0.6852797111496329
+SMD,machine-3-6,DADA official V,1.3297748393379152
+SMD,machine-3-7,DADA official V,0.8185884240083396
+SMD,machine-3-8,DADA official V,0.8263629558496177
+SMD,machine-3-9,DADA official V,0.8339082142338157
+MSL,C-1,DADA official V,0.005038795061409473
+MSL,C-1,TimeRCD official whole-QUERY normalization,0.28200199315324426
+MSL,C-1,"TimeRCD official weights, FIT-only adapter",0.008013473823666573
+MSL,C-2,DADA official V,0.004874334670603275
+MSL,C-2,TimeRCD official whole-QUERY normalization,0.008635970763862133
+MSL,C-2,"TimeRCD official weights, FIT-only adapter",0.00783071480691433
+MSL,D-14,DADA official V,0.010181100107729435
+MSL,D-14,TimeRCD official whole-QUERY normalization,0.008833291940391064
+MSL,D-14,"TimeRCD official weights, FIT-only adapter",0.007960569113492966
+MSL,D-15,DADA official V,0.004881842993199825
+MSL,D-15,TimeRCD official whole-QUERY normalization,0.008641691878437996
+MSL,D-15,"TimeRCD official weights, FIT-only adapter",0.007789046037942171
+MSL,D-16,DADA official V,0.00496689323335886
+MSL,D-16,TimeRCD official whole-QUERY normalization,0.008458030875772238
+MSL,D-16,"TimeRCD official weights, FIT-only adapter",0.007734239101409912
+MSL,F-4,DADA official V,0.010676253587007523
+MSL,F-4,TimeRCD official whole-QUERY normalization,0.008497228845953941
+MSL,F-4,"TimeRCD official weights, FIT-only adapter",0.008191279135644436
+MSL,F-5,DADA official V,0.010972000192850828
+MSL,F-5,TimeRCD official whole-QUERY normalization,0.00887773698195815
+MSL,F-5,"TimeRCD official weights, FIT-only adapter",0.007894176058471203
+MSL,F-7,DADA official V,0.011625878978520632
+MSL,F-7,TimeRCD official whole-QUERY normalization,0.0157424658536911
+MSL,F-7,"TimeRCD official weights, FIT-only adapter",0.015253175050020218
+MSL,F-8,DADA official V,0.010196635965257883
+MSL,F-8,TimeRCD official whole-QUERY normalization,0.008222864009439945
+MSL,F-8,"TimeRCD official weights, FIT-only adapter",0.007574314717203379
+MSL,M-1,DADA official V,0.005041197873651981
+MSL,M-1,TimeRCD official whole-QUERY normalization,0.008105163928121328
+MSL,M-1,"TimeRCD official weights, FIT-only adapter",0.007632189895957708
+MSL,M-2,DADA official V,0.00511151785030961
+MSL,M-2,TimeRCD official whole-QUERY normalization,0.007852255832403898
+MSL,M-2,"TimeRCD official weights, FIT-only adapter",0.0075227669440209866
+MSL,M-3,DADA official V,0.004861610010266304
+MSL,M-3,TimeRCD official whole-QUERY normalization,0.008051635231822729
+MSL,M-3,"TimeRCD official weights, FIT-only adapter",0.007521897088736296
+MSL,M-4,DADA official V,0.004855737090110779
+MSL,M-4,TimeRCD official whole-QUERY normalization,0.0077928202226758
+MSL,M-4,"TimeRCD official weights, FIT-only adapter",0.008542428724467754
+MSL,M-5,DADA official V,0.010297520086169243
+MSL,M-5,TimeRCD official whole-QUERY normalization,0.007982766721397638
+MSL,M-5,"TimeRCD official weights, FIT-only adapter",0.007263978011906147
+MSL,M-6,DADA official V,0.004897198174148798
+MSL,M-6,TimeRCD official whole-QUERY normalization,0.00788983702659607
+MSL,M-6,"TimeRCD official weights, FIT-only adapter",0.0075205788016319275
+MSL,M-7,DADA official V,0.004925049841403961
+MSL,M-7,TimeRCD official whole-QUERY normalization,0.007888919208198786
+MSL,M-7,"TimeRCD official weights, FIT-only adapter",0.007476007100194693
+MSL,P-10,DADA official V,0.011844906024634838
+MSL,P-10,TimeRCD official whole-QUERY normalization,0.015229527838528156
+MSL,P-10,"TimeRCD official weights, FIT-only adapter",0.014695733785629272
+MSL,P-11,DADA official V,0.010675345081835985
+MSL,P-11,TimeRCD official whole-QUERY normalization,0.00820023100823164
+MSL,P-11,"TimeRCD official weights, FIT-only adapter",0.007776480168104172
+MSL,P-14,DADA official V,0.011243500281125307
+MSL,P-14,TimeRCD official whole-QUERY normalization,0.01530667394399643
+MSL,P-14,"TimeRCD official weights, FIT-only adapter",0.014949474018067122
+MSL,P-15,DADA official V,0.010166430845856667
+MSL,P-15,TimeRCD official whole-QUERY normalization,0.008204717189073563
+MSL,P-15,"TimeRCD official weights, FIT-only adapter",0.0076820203103125095
+MSL,S-2,DADA official V,0.009691998828202486
+MSL,S-2,TimeRCD official whole-QUERY normalization,0.008113046176731586
+MSL,S-2,"TimeRCD official weights, FIT-only adapter",0.007597851101309061
+MSL,T-12,DADA official V,0.010126675944775343
+MSL,T-12,TimeRCD official whole-QUERY normalization,0.007772597949951887
+MSL,T-12,"TimeRCD official weights, FIT-only adapter",0.007213076110929251
+MSL,T-13,DADA official V,0.010142310988157988
+MSL,T-13,TimeRCD official whole-QUERY normalization,0.0075777131132781506
+MSL,T-13,"TimeRCD official weights, FIT-only adapter",0.007240094244480133
+MSL,T-4,DADA official V,0.005076562985777855
+MSL,T-4,TimeRCD official whole-QUERY normalization,0.00803779624402523
+MSL,T-4,"TimeRCD official weights, FIT-only adapter",0.007515408098697662
+MSL,T-5,DADA official V,0.0046708653680980206
+MSL,T-5,TimeRCD official whole-QUERY normalization,0.007950929924845695
+MSL,T-5,"TimeRCD official weights, FIT-only adapter",0.007501252926886082
+MSL,T-8,DADA official V,0.004842855967581272
+MSL,T-8,TimeRCD official whole-QUERY normalization,0.008091348689049482
+MSL,T-8,"TimeRCD official weights, FIT-only adapter",0.008256310131400824
+MSL,T-9,DADA official V,0.004449188243597746
+MSL,T-9,TimeRCD official whole-QUERY normalization,0.007948297075927258
+MSL,T-9,"TimeRCD official weights, FIT-only adapter",0.007469500880688429
+SMAP,A-1,DADA official V,0.0366820739582181
+SMAP,A-1,TimeRCD official whole-QUERY normalization,0.015865617897361517
+SMAP,A-1,"TimeRCD official weights, FIT-only adapter",0.014639068860560656
+SMAP,A-2,DADA official V,0.01898359600454569
+SMAP,A-2,TimeRCD official whole-QUERY normalization,0.01566972304135561
+SMAP,A-2,"TimeRCD official weights, FIT-only adapter",0.014792480040341616
+SMAP,A-3,DADA official V,0.01904760394245386
+SMAP,A-3,TimeRCD official whole-QUERY normalization,0.015702748205512762
+SMAP,A-3,"TimeRCD official weights, FIT-only adapter",0.014725679066032171
+SMAP,A-4,DADA official V,0.01932696532458067
+SMAP,A-4,TimeRCD official whole-QUERY normalization,0.01636516908183694
+SMAP,A-4,"TimeRCD official weights, FIT-only adapter",0.014750295784324408
+SMAP,A-5,DADA official V,0.009651016909629107
+SMAP,A-5,TimeRCD official whole-QUERY normalization,0.008721379097551107
+SMAP,A-5,"TimeRCD official weights, FIT-only adapter",0.007563504856079817
+SMAP,A-6,DADA official V,0.009387355763465166
+SMAP,A-6,TimeRCD official whole-QUERY normalization,0.008583941031247377
+SMAP,A-6,"TimeRCD official weights, FIT-only adapter",0.008213059976696968
+SMAP,A-7,DADA official V,0.015222469810396433
+SMAP,A-7,TimeRCD official whole-QUERY normalization,0.01609844295307994
+SMAP,A-7,"TimeRCD official weights, FIT-only adapter",0.014764360152184963
+SMAP,A-8,DADA official V,0.01923256227746606
+SMAP,A-8,TimeRCD official whole-QUERY normalization,0.015770636033266783
+SMAP,A-8,"TimeRCD official weights, FIT-only adapter",0.01579969935119152
+SMAP,A-9,DADA official V,0.013950649183243513
+SMAP,A-9,TimeRCD official whole-QUERY normalization,0.01587267406284809
+SMAP,A-9,"TimeRCD official weights, FIT-only adapter",0.01471847016364336
+SMAP,B-1,DADA official V,0.018649321980774403
+SMAP,B-1,TimeRCD official whole-QUERY normalization,0.015767475124448538
+SMAP,B-1,"TimeRCD official weights, FIT-only adapter",0.014672595076262951
+SMAP,D-1,DADA official V,0.014578728936612606
+SMAP,D-1,TimeRCD official whole-QUERY normalization,0.015634119044989347
+SMAP,D-1,"TimeRCD official weights, FIT-only adapter",0.014711272902786732
+SMAP,D-11,DADA official V,0.01894832868129015
+SMAP,D-11,TimeRCD official whole-QUERY normalization,0.015692963264882565
+SMAP,D-11,"TimeRCD official weights, FIT-only adapter",0.014626577962189913
+SMAP,D-12,DADA official V,0.01868209196254611
+SMAP,D-12,TimeRCD official whole-QUERY normalization,0.015686821192502975
+SMAP,D-12,"TimeRCD official weights, FIT-only adapter",0.014909203629940748
+SMAP,D-13,DADA official V,0.019702353049069643
+SMAP,D-13,TimeRCD official whole-QUERY normalization,0.015617091208696365
+SMAP,D-13,"TimeRCD official weights, FIT-only adapter",0.014714200980961323
+SMAP,D-2,DADA official V,0.018693427089601755
+SMAP,D-2,TimeRCD official whole-QUERY normalization,0.01566694676876068
+SMAP,D-2,"TimeRCD official weights, FIT-only adapter",0.014741107821464539
+SMAP,D-3,DADA official V,0.027066444046795368
+SMAP,D-3,TimeRCD official whole-QUERY normalization,0.015700997319072485
+SMAP,D-3,"TimeRCD official weights, FIT-only adapter",0.01480232272297144
+SMAP,D-4,DADA official V,0.01892875600606203
+SMAP,D-4,TimeRCD official whole-QUERY normalization,0.0157464062795043
+SMAP,D-4,"TimeRCD official weights, FIT-only adapter",0.014671092852950096
+SMAP,D-5,DADA official V,0.013634411618113518
+SMAP,D-5,TimeRCD official whole-QUERY normalization,0.015664075035601854
+SMAP,D-5,"TimeRCD official weights, FIT-only adapter",0.015640204306691885
+SMAP,D-6,DADA official V,0.019037518184632063
+SMAP,D-6,TimeRCD official whole-QUERY normalization,0.01571339275687933
+SMAP,D-6,"TimeRCD official weights, FIT-only adapter",0.014667488634586334
+SMAP,D-7,DADA official V,0.0194240128621459
+SMAP,D-7,TimeRCD official whole-QUERY normalization,0.01569463312625885
+SMAP,D-7,"TimeRCD official weights, FIT-only adapter",0.014693157281726599
+SMAP,D-8,DADA official V,0.01870473986491561
+SMAP,D-8,TimeRCD official whole-QUERY normalization,0.0156220649369061
+SMAP,D-8,"TimeRCD official weights, FIT-only adapter",0.014759018085896969
+SMAP,D-9,DADA official V,0.019241156987845898
+SMAP,D-9,TimeRCD official whole-QUERY normalization,0.015811651945114136
+SMAP,D-9,"TimeRCD official weights, FIT-only adapter",0.014733784832060337
+SMAP,E-1,DADA official V,0.014560374896973372
+SMAP,E-1,TimeRCD official whole-QUERY normalization,0.016035379376262426
+SMAP,E-1,"TimeRCD official weights, FIT-only adapter",0.01550379628315568
+SMAP,E-10,DADA official V,0.013818477280437946
+SMAP,E-10,TimeRCD official whole-QUERY normalization,0.015929677058011293
+SMAP,E-10,"TimeRCD official weights, FIT-only adapter",0.014831645879894495
+SMAP,E-11,DADA official V,0.013842604123055935
+SMAP,E-11,TimeRCD official whole-QUERY normalization,0.016975377220660448
+SMAP,E-11,"TimeRCD official weights, FIT-only adapter",0.015150084160268307
+SMAP,E-12,DADA official V,0.013974725268781185
+SMAP,E-12,TimeRCD official whole-QUERY normalization,0.015855586156249046
+SMAP,E-12,"TimeRCD official weights, FIT-only adapter",0.014833044726401567
+SMAP,E-13,DADA official V,0.03708510706201196
+SMAP,E-13,TimeRCD official whole-QUERY normalization,0.015956322196871042
+SMAP,E-13,"TimeRCD official weights, FIT-only adapter",0.014694293960928917
+SMAP,E-2,DADA official V,0.013788293115794659
+SMAP,E-2,TimeRCD official whole-QUERY normalization,0.015736181754618883
+SMAP,E-2,"TimeRCD official weights, FIT-only adapter",0.014714499935507774
+SMAP,E-3,DADA official V,0.013815789017826319
+SMAP,E-3,TimeRCD official whole-QUERY normalization,0.01597348414361477
+SMAP,E-3,"TimeRCD official weights, FIT-only adapter",0.014734573662281036
+SMAP,E-4,DADA official V,0.019020226318389177
+SMAP,E-4,TimeRCD official whole-QUERY normalization,0.01606029598042369
+SMAP,E-4,"TimeRCD official weights, FIT-only adapter",0.014725632034242153
+SMAP,E-5,DADA official V,0.019150238018482924
+SMAP,E-5,TimeRCD official whole-QUERY normalization,0.015782903879880905
+SMAP,E-5,"TimeRCD official weights, FIT-only adapter",0.014661048073321581
+SMAP,E-6,DADA official V,0.013898786623030901
+SMAP,E-6,TimeRCD official whole-QUERY normalization,0.01566303288564086
+SMAP,E-6,"TimeRCD official weights, FIT-only adapter",0.014940484892576933
+SMAP,E-7,DADA official V,0.014608446974307299
+SMAP,E-7,TimeRCD official whole-QUERY normalization,0.015840062405914068
+SMAP,E-7,"TimeRCD official weights, FIT-only adapter",0.014771363697946072
+SMAP,E-8,DADA official V,0.013893125113099813
+SMAP,E-8,TimeRCD official whole-QUERY normalization,0.015818015672266483
+SMAP,E-8,"TimeRCD official weights, FIT-only adapter",0.014713882002979517
+SMAP,E-9,DADA official V,0.013645760249346495
+SMAP,E-9,TimeRCD official whole-QUERY normalization,0.015821743290871382
+SMAP,E-9,"TimeRCD official weights, FIT-only adapter",0.014698608312755823
+SMAP,F-1,DADA official V,0.019372434820979834
+SMAP,F-1,TimeRCD official whole-QUERY normalization,0.01576867513358593
+SMAP,F-1,"TimeRCD official weights, FIT-only adapter",0.0147212203592062
+SMAP,F-2,DADA official V,0.01442017499357462
+SMAP,F-2,TimeRCD official whole-QUERY normalization,0.015797369182109833
+SMAP,F-2,"TimeRCD official weights, FIT-only adapter",0.014678345993161201
+SMAP,F-3,DADA official V,0.018552768975496292
+SMAP,F-3,TimeRCD official whole-QUERY normalization,0.01598446210846305
+SMAP,F-3,"TimeRCD official weights, FIT-only adapter",0.014785281848162413
+SMAP,G-1,DADA official V,0.01968588400632143
+SMAP,G-1,TimeRCD official whole-QUERY normalization,0.016304710879921913
+SMAP,G-1,"TimeRCD official weights, FIT-only adapter",0.014921363908797503
+SMAP,G-2,DADA official V,0.018913833890110254
+SMAP,G-2,TimeRCD official whole-QUERY normalization,0.015854014083743095
+SMAP,G-2,"TimeRCD official weights, FIT-only adapter",0.015502533409744501
+SMAP,G-3,DADA official V,0.020346627105027437
+SMAP,G-3,TimeRCD official whole-QUERY normalization,0.016132724937051535
+SMAP,G-3,"TimeRCD official weights, FIT-only adapter",0.014752540737390518
+SMAP,G-4,DADA official V,0.020622360985726118
+SMAP,G-4,TimeRCD official whole-QUERY normalization,0.015599999111145735
+SMAP,G-4,"TimeRCD official weights, FIT-only adapter",0.014706090092658997
+SMAP,G-6,DADA official V,0.01382802939042449
+SMAP,G-6,TimeRCD official whole-QUERY normalization,0.015684049110859632
+SMAP,G-6,"TimeRCD official weights, FIT-only adapter",0.014627957250922918
+SMAP,G-7,DADA official V,0.01444611232727766
+SMAP,G-7,TimeRCD official whole-QUERY normalization,0.01570346998050809
+SMAP,G-7,"TimeRCD official weights, FIT-only adapter",0.014659279026091099
+SMAP,P-1,DADA official V,0.014599645975977182
+SMAP,P-1,TimeRCD official whole-QUERY normalization,0.015767548233270645
+SMAP,P-1,"TimeRCD official weights, FIT-only adapter",0.014681172091513872
+SMAP,P-3,DADA official V,0.02007124200463295
+SMAP,P-3,TimeRCD official whole-QUERY normalization,0.015878777019679546
+SMAP,P-3,"TimeRCD official weights, FIT-only adapter",0.014716242905706167
+SMAP,P-4,DADA official V,0.01966334180906415
+SMAP,P-4,TimeRCD official whole-QUERY normalization,0.016286852303892374
+SMAP,P-4,"TimeRCD official weights, FIT-only adapter",0.01474588131532073
+SMAP,P-7,DADA official V,0.01920055877417326
+SMAP,P-7,TimeRCD official whole-QUERY normalization,0.01601850101724267
+SMAP,P-7,"TimeRCD official weights, FIT-only adapter",0.014753926079720259
+SMAP,R-1,DADA official V,0.019571639597415924
+SMAP,R-1,TimeRCD official whole-QUERY normalization,0.015621373895555735
+SMAP,R-1,"TimeRCD official weights, FIT-only adapter",0.014688882045447826
+SMAP,S-1,DADA official V,0.019086813554167747
+SMAP,S-1,TimeRCD official whole-QUERY normalization,0.015762839000672102
+SMAP,S-1,"TimeRCD official weights, FIT-only adapter",0.014633637852966785
+SMAP,T-1,DADA official V,0.014020971022546291
+SMAP,T-1,TimeRCD official whole-QUERY normalization,0.016058084089308977
+SMAP,T-1,"TimeRCD official weights, FIT-only adapter",0.014827681239694357
+SMAP,T-2,DADA official V,0.01344853499904275
+SMAP,T-2,TimeRCD official whole-QUERY normalization,0.016154144890606403
+SMAP,T-2,"TimeRCD official weights, FIT-only adapter",0.015261118300259113
+SMAP,T-3,DADA official V,0.020224505104124546
+SMAP,T-3,TimeRCD official whole-QUERY normalization,0.016795000061392784
+SMAP,T-3,"TimeRCD official weights, FIT-only adapter",0.01494451891630888

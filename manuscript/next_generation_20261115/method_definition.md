@@ -1,3 +1,11 @@
+# Active fixed detector and external method comparison
+
+The active method for this comparison is the three originally selected point-weighted TimeRadar endpoint V decoders in the archived native_event_rank run. Their deployment statistic is the unchanged variance of ten complementary-mask copies at j=99, with correction one, channel mean, W100, and B1. The pair loss acts on the same log-scaled statistic. Nominal source windows retain the per-copy reconstruction objective. Public SWaT source events enter fitting and source-only checkpoint selection. PSM remains a development task, the SMD normal train records were visible at the source, and NASA uses sensor zero. Target scaling uses the original FIT permissions. No target parameters are updated.
+
+TimeRadar CDL shapes cosine-based context deviation in hidden fractional-domain patches. DADA adapts its bottleneck and learns with dual adversarial decoders, then uses normal-decoder copy variance for detection. TimeRCD has relative-context synthetic supervision and a pretrained class head. Directly training the deployed endpoint variance on real source pairs is the evaluated difference. TimeRadar's published V+E rule and the official-code L=1 variance are displayed separately. Differences across complete methods retain their distinct labels, pretraining, statistics and temporal context. [TimeRadar paper](https://arxiv.org/html/2602.19068v1#S3.SS4) · [DADA paper](https://openreview.net/forum?id=aKcd7ImG5e) · [TimeRCD paper](https://proceedings.mlr.press/v306/lan26b.html).
+
+The remaining sections retain the earlier method and comparison records.
+
 # Completed target-normal comparison of fixed source initializations
 
 The latest fixed extension uses the official initialization, archived seed2025 source reconstruction step120 and source all-position supervision step200. Each is separately trained on published normal target arrays only, with the same task scaler and window-order plan. No source weights are retrained/reselected. Source-copy initialization already used real source labels for historical SELECT; all-position initialization also used abnormal/normal source pairs. Subsequent target training uses only native per-copy reconstruction, without replay, pair retention or any extra loss.

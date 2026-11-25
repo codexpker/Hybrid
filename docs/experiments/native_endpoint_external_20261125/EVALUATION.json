@@ -1,0 +1,20 @@
+{
+  "complete": true,
+  "protocol_sha256": "a79c649f93d65017c2fcb2f1827a4d1c8305264eb817e0431deae7980d212875",
+  "scored_entities": 109,
+  "metric_rows": 2943,
+  "AP_ROC_max_abs_recheck": 5.551115123125783e-16,
+  "CPU_wall_seconds": 715.4256066991948,
+  "metric": {
+    "VUS_windowSize": 100,
+    "VUS_thre": 250
+  },
+  "score_files": {
+    "new_DADA": 109,
+    "new_TimeRCD": 160,
+    "reused_TimeRCD": 58
+  },
+  "train_updates": 0,
+  "source_sha256": "149b835b1f8168d80ef0313dafe6eb4547e9a723f21e27660a285ecb21213e45",
+  "calibrated_new_methods": false
+}

@@ -1,12 +1,12 @@
 ---
 title: "Source-Supervised Learning of Native Reconstruction Disagreement for Public Time-Series Anomaly Detection"
 author: []
-date: "Working method and experiment draft, 24 November 2026"
+date: "Working method and experiment draft, 25 November 2026"
 lang: en
 bibliography: references.bib
 ---
 
-> The current normal-target benchmark compares three fixed source initializations under identical normal reconstruction training on PSM and MSL, seed2025. Its zero-update references use the same new target-normal statistics. Earlier three-seed source-only, causal and U/F results remain separate; no mixed-U, F or contamination recipe is resumed. Public source-event labels and external-method training/context differences remain explicit. No broad external superiority or robustness claim is made.
+> The active comparison is the original source-supervised TimeRadar endpoint V detector. All three selected project checkpoints and original endpoint score banks are fixed. DADA and TimeRCD are complete external references under their reported input and statistics permissions. The earlier source whole-window, target-normal and LEFT conditioning studies remain separate.
 
 # Introduction
 
@@ -14,17 +14,19 @@ bibliography: references.bib
 
 TimeRadar supplies an adaptive fractional time–frequency reconstruction detector with a native score based on disagreement among masked reconstructions [@timeradar2026]. LEFT learns interacting temporal, spectral and multiscale representations [@left2026]. Both motivate learning informative anomaly representations, but they also raise a training question. Reconstruction quality on nominal windows and the discrimination of real anomalous events are different objectives. A model can reduce average reconstruction error without improving the ordering of anomalous and normal observations. A separately supervised classification head can also learn source labels without transferring as well as the original detection criterion.
 
-We study source supervision that acts directly on the original reconstruction-disagreement score. The current Hybrid candidate, termed source-supervised native disagreement here, retains TimeRadar's complete pretrained representation, mask construction and inference score, while updating its reconstruction decoder with nominal reconstruction and a real-public-source-event pair loss. For the complete-window offline detector, the pair loss is evaluated separately at each output position before its 100-position average. A matched endpoint-supervised arm and a reconstruction-gradient arm distinguish supervision range from adding source discrimination. Sampling strata cover each source event's legal endpoint range, and their weights reflect the numbers of available positive endpoints. They are temporal sampling groups, rather than physical fault phases. The construction aims to connect source supervision to the criterion actually deployed. Whether that connection transfers is tested on public target records.
+We study source supervision applied directly to the deployed score. The fixed method starts from the official TimeRadar checkpoint and retains its fractional representation, encoder, complementary masks and variance readout. Only the native decoder receives additional fitting. Nominal source reconstruction remains in the objective, while public SWaT abnormal and normal source windows provide a pairwise loss on their endpoint reconstruction disagreement. The pair groups stratify legal endpoints by event and time. Their weights reflect available positive endpoints. Each target score uses a 100-point window ending at that score's timestamp, with no target parameter update.
 
-Three comparisons frame the analysis. First, does supervised learning of native disagreement improve on the frozen official detector and reconstruction-only continuation? Second, how does it compare with supervision of mean reconstruction error or a standard MLP on the frozen representation under the same source-label pool? Third, does its initialization retain value after identical target-normal reconstruction training, and how competitive is the complete detector against mature external methods on legal common points? The comparisons distinguish detector-level performance from attribution to an individual formula. Their permissions differ and are reported explicitly.
+Three comparisons govern interpretation. The frozen official detector and matched source reconstruction continuation test the net value of supervised score training under fixed readout. The earlier E and MLP comparisons probe the training target and output statistic. Complete DADA, TimeRCD and target-trained external methods establish competitive scope across PSM, SMD28, MSL27 and SMAP53. The shared score axes align observations, with causal and offline methods retaining distinct context permissions.
 
-Earlier three-seed causal-endpoint results supported average AP improvements on PSM, MSL and SMAP, alongside NASA absolute-score limitations and SMD ranking losses. They do not establish performance at all output positions of a complete-window detector. The present comparison therefore evaluates the fixed complete-window objective and matched controls at three project seeds across all four tasks. Matched source supervision of reconstruction error and a standard classifier provides historical evidence about the learning objective and readout. Fixed U and F extensions test separate uses of the earlier endpoint detector; neither demonstrated a reliable net advantage. The present method study concerns source-supervised detection and its transfer boundaries. Mixed-unlabeled target learning remains part of the research objective, with its negative extension results retained. All data are public. First-paper laboratory runs, weak labels and enterprise records are excluded.
+Earlier source repetitions established higher average AP than both matched controls on PSM, MSL and SMAP, with SMD AP and VUS penalties. Here the checkpoint and original deployment score are frozen. The historical full-window, target-normal, LEFT conditioning and U/F results remain available on their own protocols. PSM influenced development, SMD supplied nominal source data and NASA uses one continuous sensor per entity. All sources and target records in this comparison are public.
 
 # Related Work
 
 ## Time–frequency representations and reconstruction disagreement
 
 TimeRadar's adaptive fractional transform, reconstruction chain, pretraining and native scoring are reused components [@timeradar2026]. LEFT's full tri-view model and analysis–synthesis scoring remain a named external comparator [@left2026]. CATCH uses frequency patching and channel-aware modeling [@catch2025]. Our source decoder objective changes learning within an existing complete detector. It does not introduce FRFT or establish that the transform itself explains the measured gain. The E-supervised and MLP controls retain the same TimeRadar chain or representation, limiting causal attribution of their performance differences.
+
+DADA learns adaptive bottlenecks and two adversarial reconstruction decoders on multidomain series with injected anomalies, then scores variance across complementary-mask reconstructions from its normal decoder [@shentu2025dada]. TimeRCD instead learns a contextual anomaly decision from labeled synthetic patterns with relative context discrepancy and uses the pretrained class head at deployment [@lan2026timercd]. These are direct external comparisons for a source-adapted variance detector, with different pretraining records and data permissions.
 
 ## Supervision, target adaptation and information permissions
 
@@ -43,6 +45,14 @@ PSM, MSL and SMAP are excluded from this project's source gradient updates. PSM 
 The Z setting makes no target parameter updates. SOURCE SELECT chooses its checkpoint. U and F are separate completed extensions. U consumes isolated mixed-unlabeled target windows and source replay. F uses one fixed public support event and 512 labeled-normal points from the target's U-FIT role. Those SUPPORT labels are distinct from QUERY. CAL scores determine the frozen empirical threshold; retrospective CAL label composition explains its limitations. QUERY labels are used only to calculate the fixed test outcomes.
 
 # Method
+
+## Fixed source-supervised endpoint V
+
+The active detector uses $X_t=x_{t-99:t+1}$ and outputs $s_t=V_\theta(X_t)_{99}$ when $x_t$ arrives. Ten complementary-mask reconstructions contribute the sample variance (correction one), then the score averages across channels. W100 and B1 preserve the original independent-window fractional order and masked forward. The nominal copy loss still reconstructs the full window. The real-source pair loss acts on the log-scaled endpoint variance itself, with existing window-stratum point-count weights. Source-event SELECT fixes all three supervised checkpoints at step 240 under the original earliest-minimum rule. Source reconstruction continuation receives nominal copy gradients and uses the same source-event validation selection. Target FIT supplies archived scaling, with no target parameter update in either model.
+
+The learning statistic separates this objective from the nearest detectors. The TimeRadar paper's CDL applies a margin to a cosine-based deviation of hidden fractional-domain patch amplitudes from their within-window context [@timeradar2026]. DADA uses adversarial reconstruction objectives and adopts variance for inference [@shentu2025dada]. TimeRCD trains an explicit contextual anomaly head from synthetic labels [@lan2026timercd]. The current source objective differentiates through the native deployment variance and updates the decoder on real public source pairs. The comparison tests that choice of training statistic and its transfer. The TimeRadar article's inference formula adds residual-of-the-copy-mean E to V. The release setting L=1 selects V. The archived E and fixed V+E rows are scored on the original endpoint protocol rather than selected per dataset.
+
+The full-position and target-normal training sections below record earlier experiments with different objectives or preprocessing.
 
 ## Native complete-window reconstruction disagreement
 
@@ -157,6 +167,63 @@ AP is average precision, rather than trapezoidal PR area. ROC-AUC and the two VU
 Strict and three-confirmation operation includes normal false-alarm point rate and fragments, abnormal recall, one-to-one event matches, any-hit, hit-only delay, complete-event coverage, and long steady coverage after the first 512 event points. Long-event macro and pooled coverages are both reported. MSL and SMAP have only four and ten eligible long events. PSM operation uses its original 64,728-point suffix, with all 512 CAL points labeled abnormal. NASA CAL is small and q99/higher equals its maximum. These thresholds do not certify normal 1% FPR. The SMD nominal-normal CAL and its actual normal test behavior are disclosed separately.
 
 # Results
+
+## Fixed endpoint V against complete external detectors
+
+This round compares the original endpoint-supervised native V detector on the admitted PSM, SMD28, MSL27 and SMAP53 records. Project source SELECT fixed the three checkpoint states before the target comparison. Decoder-only source supervision used real public SWaT events and archived nominal SWaT and SMD windows. The source reconstruction controls use the same nominal pool and target inference with source-event SELECT. PSM is development-exposed, SMD is a held-out test of seen normal source machines, and both NASA sets use one continuous sensor per entity. SWaT's source-supervised run remains on the source side of this fold. No training or target threshold selection is added here.
+
+Every row reports AP / ROC-AUC / VUS-PR / VUS-ROC. Metrics use labels only for evaluation. VUS uses the pinned LEFT implementation with windowSize 100 and thre 250. Each entity is evaluated independently before equal-weight domain aggregation. SD describes the three project seeds. The frozen external detectors are single fixed references. Candidate and continuation rows in the offline-common table are causal scores restricted to the same timestamps as the offline references.
+
+The causal full test range is [99, N) per entity. The offline-common range starts at 99 and ends before the smaller of the complete DADA W100 and LEFT W96/W192 block endpoints. It is the same for every method listed within that domain panel. History Mean uses [512, 87744) on PSM and [512, N) per SMAP entity. The PSM PCA and History Mean rows use only their covered points. CATCH full W192 and LEFT retain future context within a window. TimeRCD B waits for the actual last input in its window. TimeRCD A waits for the end of QUERY to determine normalization. The historical operating panels retain the 64,728-point PSM suffix and its 512 all-attack CAL points, the NASA nominal normal small-sample CAL with a maximum-value q99/higher cutoff, and SMD's nominal-normal CAL. These thresholds are empirical and their false-alarm interpretation follows the archived protocols. The existing strict and three-confirmation scores, one-to-one event matches, any-hit and eligibility stay separate. New external operating values are NA.
+
+| Dataset | Entities | Channels | Full causal points | Offline-common points | History-common points |
+| --- | --- | --- | --- | --- | --- |
+| PSM | 1 | 25 | 87,742 | 87,645 | 87,232 |
+| SMD28 | 28 | 38 | 705,648 | 702,996 | NA |
+| MSL27 | 27 | 1 | 71,056 | 69,495 | NA |
+| SMAP53 | 53 | 1 | 422,370 | 417,265 | 400,481 |
+
+### Core causal panel
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 | Training and statistics | Score availability |
+| --- | --- | --- | --- | --- | --- | --- |
+| Frozen TimeRadar V (release L=1) | 0.5352 / 0.7306 / 0.4839 / 0.6646 | 0.4442 / 0.8130 / 0.4664 / 0.8697 | 0.3356 / 0.6287 / 0.4057 / 0.7015 | 0.3656 / 0.6419 / 0.4027 / 0.6887 | Official pretrained TimeRadar, no project updates, archived target FIT | causal W100 endpoint |
+| Frozen TimeRadar E | 0.3898 / 0.5711 / 0.4012 / 0.5826 | 0.4287 / 0.8051 / 0.4326 / 0.8485 | 0.3780 / 0.6917 / 0.4597 / 0.7668 | 0.4250 / 0.6789 / 0.4679 / 0.7371 | Official pretrained TimeRadar, no project updates, archived target FIT | causal W100 endpoint |
+| Frozen TimeRadar fixed V+E | 0.4217 / 0.6047 / 0.4261 / 0.6085 | 0.4384 / 0.8118 / 0.4415 / 0.8549 | 0.3866 / 0.7014 / 0.4695 / 0.7726 | 0.4143 / 0.7057 / 0.4551 / 0.7566 | Official pretrained TimeRadar, no project updates, archived target FIT | causal W100 endpoint |
+| Source reconstruction continuation (2025) | 0.5390 / 0.7315 / 0.4918 / 0.6667 | 0.4502 / 0.8202 / 0.4761 / 0.8751 | 0.3415 / 0.6322 / 0.4139 / 0.7047 | 0.3683 / 0.6389 / 0.3981 / 0.6790 | SWaT real-event SELECT, nominal source reconstruction gradients, no target update, archived FIT | causal W100 endpoint |
+| Source-supervised endpoint V (2025) | 0.5772 / 0.7658 / 0.5138 / 0.6799 | 0.4421 / 0.8271 / 0.4335 / 0.8610 | 0.3541 / 0.6657 / 0.4230 / 0.7356 | 0.3827 / 0.6268 / 0.4295 / 0.6762 | SWaT real-event pairs and SELECT, nominal SWaT/SMD reconstruction, no target update, archived FIT | causal W100 endpoint |
+| Source reconstruction continuation (2026) | 0.5365 / 0.7304 / 0.4847 / 0.6641 | 0.4461 / 0.8143 / 0.4687 / 0.8707 | 0.3399 / 0.6311 / 0.4111 / 0.7027 | 0.3641 / 0.6306 / 0.3991 / 0.6756 | SWaT real-event SELECT, nominal source reconstruction gradients, no target update, archived FIT | causal W100 endpoint |
+| Source-supervised endpoint V (2026) | 0.5680 / 0.7607 / 0.5040 / 0.6722 | 0.4398 / 0.8251 / 0.4297 / 0.8595 | 0.3509 / 0.6612 / 0.4182 / 0.7296 | 0.3808 / 0.6304 / 0.4261 / 0.6788 | SWaT real-event pairs and SELECT, nominal SWaT/SMD reconstruction, no target update, archived FIT | causal W100 endpoint |
+| Source reconstruction continuation (2027) | 0.5407 / 0.7322 / 0.4949 / 0.6680 | 0.4509 / 0.8209 / 0.4766 / 0.8756 | 0.3427 / 0.6343 / 0.4140 / 0.7060 | 0.3663 / 0.6354 / 0.3949 / 0.6775 | SWaT real-event SELECT, nominal source reconstruction gradients, no target update, archived FIT | causal W100 endpoint |
+| Source-supervised endpoint V (2027) | 0.5741 / 0.7650 / 0.5088 / 0.6750 | 0.4370 / 0.8253 / 0.4228 / 0.8580 | 0.3530 / 0.6606 / 0.4194 / 0.7264 | 0.3851 / 0.6360 / 0.4332 / 0.6858 | SWaT real-event pairs and SELECT, nominal SWaT/SMD reconstruction, no target update, archived FIT | causal W100 endpoint |
+| Source-supervised endpoint V (three-seed mean ± sample SD) | 0.5731 ± 0.0047 / 0.7638 ± 0.0027 / 0.5089 ± 0.0049 / 0.6757 ± 0.0039 | 0.4396 ± 0.0025 / 0.8258 ± 0.0011 / 0.4287 ± 0.0054 / 0.8595 ± 0.0015 | 0.3527 ± 0.0016 / 0.6625 ± 0.0028 / 0.4202 ± 0.0025 / 0.7306 ± 0.0047 | 0.3829 ± 0.0021 / 0.6310 ± 0.0046 / 0.4296 ± 0.0036 / 0.6803 ± 0.0050 | SWaT real-event pairs and SELECT, nominal SWaT/SMD reconstruction, no target update, archived FIT | causal W100 endpoint |
+
+### Core offline-common panel
+
+| Method | PSM | SMD28 | MSL27 | SMAP53 |
+| --- | --- | --- | --- | --- |
+| Source reconstruction continuation (2025) | 0.5391 / 0.7319 / 0.4915 / 0.6669 | 0.4508 / 0.8205 / 0.4773 / 0.8754 | 0.3498 / 0.6360 / 0.4235 / 0.7078 | 0.3684 / 0.6398 / 0.3982 / 0.6806 |
+| Source-supervised endpoint V (2025) | 0.5772 / 0.7660 / 0.5133 / 0.6799 | 0.4427 / 0.8273 / 0.4348 / 0.8613 | 0.3679 / 0.6712 / 0.4377 / 0.7410 | 0.3825 / 0.6274 / 0.4305 / 0.6782 |
+| Source reconstruction continuation (2026) | 0.5366 / 0.7307 / 0.4844 / 0.6642 | 0.4467 / 0.8145 / 0.4696 / 0.8710 | 0.3474 / 0.6348 / 0.4207 / 0.7058 | 0.3641 / 0.6315 / 0.3998 / 0.6773 |
+| Source-supervised endpoint V (2026) | 0.5680 / 0.7608 / 0.5035 / 0.6722 | 0.4404 / 0.8253 / 0.4311 / 0.8598 | 0.3642 / 0.6664 / 0.4325 / 0.7349 | 0.3805 / 0.6310 / 0.4265 / 0.6805 |
+| Source reconstruction continuation (2027) | 0.5408 / 0.7326 / 0.4945 / 0.6682 | 0.4515 / 0.8212 / 0.4777 / 0.8760 | 0.3511 / 0.6380 / 0.4244 / 0.7090 | 0.3664 / 0.6364 / 0.3950 / 0.6792 |
+| Source-supervised endpoint V (2027) | 0.5741 / 0.7652 / 0.5083 / 0.6750 | 0.4376 / 0.8256 / 0.4242 / 0.8584 | 0.3657 / 0.6657 / 0.4332 / 0.7310 | 0.3849 / 0.6368 / 0.4331 / 0.6870 |
+| Complete LEFT | 0.5769 / 0.7762 / 0.5741 / 0.7858 | 0.4981 / 0.8785 / 0.5418 / 0.9185 | 0.5083 / 0.7633 / 0.5531 / 0.7942 | 0.4932 / 0.7629 / 0.5217 / 0.7849 |
+| DADA official V | 0.3957 / 0.6050 / 0.4395 / 0.6520 | 0.4146 / 0.8514 / 0.4747 / 0.8997 | 0.3957 / 0.7336 / 0.4298 / 0.7747 | 0.4288 / 0.6459 / 0.4459 / 0.6826 |
+| TimeRCD official weights, FIT-only adapter | 0.3019 / 0.4762 / 0.3485 / 0.5320 | 0.4729 / 0.8594 / 0.5151 / 0.9098 | 0.4827 / 0.7631 / 0.5298 / 0.8065 | 0.4427 / 0.6749 / 0.4280 / 0.7038 |
+| Source-supervised endpoint V (three-seed mean ± sample SD) | 0.5731 ± 0.0047 / 0.7640 ± 0.0028 / 0.5084 ± 0.0049 / 0.6757 ± 0.0039 | 0.4402 ± 0.0025 / 0.8261 ± 0.0011 / 0.4300 ± 0.0054 / 0.8598 ± 0.0015 | 0.3659 ± 0.0019 / 0.6678 ± 0.0030 / 0.4345 ± 0.0028 / 0.7356 ± 0.0050 | 0.3826 ± 0.0022 / 0.6317 ± 0.0047 / 0.4300 ± 0.0033 / 0.6819 ± 0.0046 |
+
+The original causal banks retain the three-seed AP gains over frozen V on PSM, MSL and SMAP, with a loss on the seen-normal-source SMD28 task. The frozen E and V+E comparisons also remain relevant. On the causal NASA axes, both exceed the source-supervised V candidate's AP. These scores use a single continuous sensor per NASA entity. Raw rank differences between the complete detectors reflect different pretraining, scaling and availability.
+
+On PSM's offline-common timestamps all three candidate seeds exceed DADA and FIT-only TimeRCD on the four metrics. The candidate's mean AP is 0.5731, close to LEFT at 0.5769. The seed2025 AP edge over LEFT is 0.000286 and reverses in the other two seeds. LEFT's ROC-AUC and both VUS measures are higher for all three seeds. PCA also exceeds the candidate on those same three measures.
+
+On SMD28 the candidate's mean AP is 0.4402 versus DADA at 0.4146. Every seed has a negative median AP difference and only 12–13 of 28 machines win. DADA has higher ROC-AUC and both VUS measures. FIT-only TimeRCD and complete LEFT exceed the candidate on all four domain macro metrics. The candidate continues to fall below the source reconstruction controls in AP and both VUS measures on the full causal SMD axis.
+
+On MSL, FIT-only TimeRCD reaches AP 0.4827 and LEFT reaches 0.5083, compared with the candidate's 0.3659. The three candidate seeds each win AP on 11 of 27 entities against TimeRCD. On SMAP, DADA and FIT-only TimeRCD reach 0.4288 and 0.4427 AP, compared with 0.3826. The candidate's VUS-PR mean (0.4300) is close to FIT-only TimeRCD (0.4280), while its ROC-AUC and VUS-ROC are lower. TimeRCD's official whole-QUERY normalization changes AP in different directions across domains and is reported on a separate statistics track.
+
+The competitive evidence is therefore strongest on the development PSM record. The seen-normal-source SMD task has a majority-machine AP deficit against all three principal offline comparators despite a positive mean contrast with DADA. NASA remains below the stronger complete methods in AP. The distinct contribution tested here is direct source-event supervision of the deployed endpoint variance. Evidence for that objective comes from matched source contrasts. The external table establishes where the resulting complete detector is competitive under its causal readout and where ranking gaps remain.
+
+Per-entity and all-metric distributions, fixed parent references, CATCH, PCA, History Mean, the official whole-QUERY normalization reference and inference costs are included in the companion results. The earlier LEFT five-domain study follows as a separate model family. [Complete tables and provenance](../../docs/experiments/native_endpoint_external_20261125/RESULTS.md).
 
 ## LEFT prototype conditioning under complete-window evaluation
 
@@ -542,6 +609,10 @@ Training labels are real public SWaT source events; this method is not purely se
 Native sample variance, the fractional representation, replay and mature classification losses retain their established attribution. Explicit weak-anomaly, long-lag, Self/Cross-lag and contamination-specific claims require additional evidence beyond these average public scores. Closed historical candidates and negative results remain available in the supplement and existing experiment records. The current complete detector has measurable source-supervised ranking gains and unresolved adaptation limitations; it is not yet a demonstrated complete solution to mixed-unlabeled learning.
 
 # Conclusion
+
+The original endpoint-supervised detector improves causal AP over frozen TimeRadar V and matched reconstruction continuation on PSM, MSL and SMAP. On shared PSM timestamps it exceeds DADA and FIT-only TimeRCD across all four ranking metrics and remains close to target-trained LEFT in AP. Its SMD and NASA rankings leave substantial gaps to the complete external detectors. These results bound the benefit of supervising the deployed variance with real source events. The pretraining, statistics and context permissions recorded with each reference constrain cross-method interpretation.
+
+Earlier target-normal and full-position findings
 
 All-position source supervision has a bounded, repeated source-transfer effect, clearest on PSM against matched source controls. In the new normal-target benchmark, the supervised initialization has small positive macro differences over reconstruction initialization on PSM and MSL after identical learning, but does not establish broad public-benchmark superiority. PSM's normal training loses AP relative to its matched zero-update state and does not exceed the official-initialization trained model in AP. MSL improves substantially through normal-target learning, yet its supervised-minus-reconstruction AP median remains negative. Complete LEFT remains higher on all four macro metrics in both tasks. These results delimit the complete source-supervised initialization plus target-normal detector, not only its source objective. They do not establish mixed-unlabeled adaptation, event-supervised F, contamination robustness, weak/lag detection or independent FRFT contributions. Earlier extension failures and all task-dependent benefits/costs remain in their own panels.
 
