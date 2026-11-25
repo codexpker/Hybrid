@@ -1,0 +1,11 @@
+{
+  "entities": 109,
+  "AP_ROC_max_error": 4.440892098500626e-16,
+  "rank_rows": 1088,
+  "VUS_window": 100,
+  "VUS_thresholds": 250,
+  "inference_seconds": 17379.234199494123,
+  "train_seconds": 1216.9068145025522,
+  "metric_worker_seconds": 1763.0844007744454,
+  "axis_sha256": "a79c649f93d65017c2fcb2f1827a4d1c8305264eb817e0431deae7980d212875"
+}

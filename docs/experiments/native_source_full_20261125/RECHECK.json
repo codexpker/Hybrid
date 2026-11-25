@@ -1,0 +1,11 @@
+{
+  "selected": {
+    "copy": 40,
+    "point_weighted": 200,
+    "point_weighted_e": 120
+  },
+  "new_entity_rows": 1088,
+  "paired_entity_rows": 1959,
+  "AP_ROC": "Independent tied-rank recomputation on raw scores in each entity/panel",
+  "VUS": "Fixed upstream implementation; independent macro and pair aggregation only"
+}

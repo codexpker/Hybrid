@@ -1,0 +1,289 @@
+domain,panel,method,reference,metric,mean,median,wins,ties,losses
+MSL,causal,Full E supervision / E,Decoder E supervision / E,AP,0.0070501227769108514,0.0026315076695281325,19,0,8
+MSL,causal,Full E supervision / E,Decoder E supervision / E,ROC_AUC,0.00844581706507854,0.0026810714441964922,16,0,11
+MSL,causal,Full E supervision / E,Decoder E supervision / E,VUS_PR,0.01388245659007612,0.003018710133670305,19,0,8
+MSL,causal,Full E supervision / E,Decoder E supervision / E,VUS_ROC,0.015159090642063064,0.002605605042551251,18,0,9
+MSL,causal,Full V supervision / V,Full E supervision / E,AP,-0.0269456014671127,-0.008493584664657931,10,0,17
+MSL,causal,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.006869125372189535,0.00561232593847627,17,0,10
+MSL,causal,Full V supervision / V,Full E supervision / E,VUS_PR,-0.03461111060719805,-0.010728131099805971,11,0,16
+MSL,causal,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.016437492174297335,0.0006077128952078903,15,0,12
+MSL,causal,Full V supervision / V,Full normal reconstruction / V,AP,0.013880845541337497,0.009182117279757929,16,0,11
+MSL,causal,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.051223904335020325,0.013379450636678447,16,0,11
+MSL,causal,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.020609512272432556,0.00814029364722385,18,0,9
+MSL,causal,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.048837652979316026,0.012044719496861478,19,0,8
+MSL,causal,Full V supervision / V,Source-supervised endpoint V,AP,-0.004266266548234834,0.0010571587855757458,14,0,13
+MSL,causal,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.019074911704858526,0.0042886641605337505,17,0,10
+MSL,causal,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.0022435650159691595,0.006559171723254417,16,0,11
+MSL,causal,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.01263754482504589,0.0035161086889734516,19,0,8
+MSL,causal,Full V supervision / V,official_V,AP,0.014258673315278574,-0.0023991143571052698,13,0,14
+MSL,causal,Full V supervision / V,official_V,ROC_AUC,0.05606677349454082,0.05665335239331798,18,0,9
+MSL,causal,Full V supervision / V,official_V,VUS_PR,0.015036252219524782,0.007231872709878351,15,0,12
+MSL,causal,Full V supervision / V,official_V,VUS_ROC,0.046805410837753136,0.038470406503683385,19,0,8
+MSL,causal,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.005548370083668021,1.3679497579466293e-05,14,0,13
+MSL,causal,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.0013344873318354568,0.00018853695324261288,14,0,13
+MSL,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,-0.013759283535405342,-9.755742388761757e-05,13,0,14
+MSL,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,-0.005235837085045114,6.778723216838145e-05,15,0,12
+MSL,common_offline,Full E supervision / E,Decoder E supervision / E,AP,0.004619375791437245,0.002617258456116933,19,0,8
+MSL,common_offline,Full E supervision / E,Decoder E supervision / E,ROC_AUC,0.008575583282597114,0.0022082619455549013,16,0,11
+MSL,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_PR,0.013625735847726342,0.003069152530560143,19,0,8
+MSL,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_ROC,0.01515337260022498,0.002272120935751132,18,0,9
+MSL,common_offline,Full V supervision / V,Complete LEFT,AP,-0.1488622854192796,-0.06002251853202484,8,0,19
+MSL,common_offline,Full V supervision / V,Complete LEFT,ROC_AUC,-0.07318455614918412,-0.07397078353253655,8,0,19
+MSL,common_offline,Full V supervision / V,Complete LEFT,VUS_PR,-0.12104286427187086,-0.045353081146105395,8,0,19
+MSL,common_offline,Full V supervision / V,Complete LEFT,VUS_ROC,-0.04192863513393128,-0.026467610725079638,8,0,19
+MSL,common_offline,Full V supervision / V,DADA official V,AP,-0.036172072694590614,-0.0034075569411058937,13,0,14
+MSL,common_offline,Full V supervision / V,DADA official V,ROC_AUC,-0.043446733162642505,-0.022079207920791988,10,0,17
+MSL,common_offline,Full V supervision / V,DADA official V,VUS_PR,0.0022840202589380558,-0.00019724184299818592,13,0,14
+MSL,common_offline,Full V supervision / V,DADA official V,VUS_ROC,-0.022469261613437187,-0.008804941573664515,10,0,17
+MSL,common_offline,Full V supervision / V,Full E supervision / E,AP,-0.02633155959528754,-0.008364433712238467,10,0,17
+MSL,common_offline,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.003716196858267538,0.006531454107940982,17,0,10
+MSL,common_offline,Full V supervision / V,Full E supervision / E,VUS_PR,-0.03422417038376971,-0.010727916839740947,11,0,16
+MSL,common_offline,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.014519975541490145,0.0006022265044728359,15,0,12
+MSL,common_offline,Full V supervision / V,Full normal reconstruction / V,AP,0.014625715872947212,0.008606372720075584,15,0,12
+MSL,common_offline,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.05224881692881108,0.02288732817095862,16,0,11
+MSL,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.02259629847425125,0.00839512907487805,17,0,10
+MSL,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.04914774376176308,0.021576796152751654,18,0,9
+MSL,common_offline,Full V supervision / V,Source-supervised endpoint V,AP,-0.008428145083158943,-0.0038117330575774266,12,0,15
+MSL,common_offline,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.01894572098430147,0.004357181280258193,16,0,11
+MSL,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.005687768081217531,0.006554357247995343,16,0,11
+MSL,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.011248169516109525,0.0007292946069554773,17,0,10
+MSL,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",AP,-0.12317088593484188,-0.09469553064052688,9,0,18
+MSL,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",ROC_AUC,-0.07290245958704782,-0.072412714955706,10,0,17
+MSL,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_PR,-0.09772741861845848,-0.02596072712244736,9,0,18
+MSL,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_ROC,-0.05426941837905276,-0.031833910046559666,9,0,18
+MSL,common_offline,Full V supervision / V,official_V,AP,0.016919704069112338,0.0030018933247061563,14,0,13
+MSL,common_offline,Full V supervision / V,official_V,ROC_AUC,0.05744457316355227,0.05709506741764808,17,0,10
+MSL,common_offline,Full V supervision / V,official_V,VUS_PR,0.017359450195596197,0.007457307534521451,16,0,11
+MSL,common_offline,Full V supervision / V,official_V,VUS_ROC,0.04742545135659298,0.03615420524172086,19,0,8
+MSL,common_offline,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.004971306951733896,2.4717259735587693e-05,15,1,11
+MSL,common_offline,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.0018922382701607248,0.0003233087777341215,14,1,12
+MSL,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,-0.014093667600456614,1.1102230246251565e-16,14,0,13
+MSL,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,-0.004747387293273556,4.559300611561845e-05,15,0,12
+PSM,causal,Full E supervision / E,Decoder E supervision / E,AP,-0.00486850462189059,-0.00486850462189059,0,0,1
+PSM,causal,Full E supervision / E,Decoder E supervision / E,ROC_AUC,-0.0026069879895816994,-0.0026069879895816994,0,0,1
+PSM,causal,Full E supervision / E,Decoder E supervision / E,VUS_PR,-0.0042246336184742495,-0.0042246336184742495,0,0,1
+PSM,causal,Full E supervision / E,Decoder E supervision / E,VUS_ROC,-0.0017566907946063859,-0.0017566907946063859,0,0,1
+PSM,causal,Full V supervision / V,Full E supervision / E,AP,0.025194751288343253,0.025194751288343253,1,0,0
+PSM,causal,Full V supervision / V,Full E supervision / E,ROC_AUC,0.11547802541033148,0.11547802541033148,1,0,0
+PSM,causal,Full V supervision / V,Full E supervision / E,VUS_PR,0.009093439702365425,0.009093439702365425,1,0,0
+PSM,causal,Full V supervision / V,Full E supervision / E,VUS_ROC,0.028305218784576813,0.028305218784576813,1,0,0
+PSM,causal,Full V supervision / V,Full normal reconstruction / V,AP,0.00697753901692888,0.00697753901692888,1,0,0
+PSM,causal,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.05505213153806443,0.05505213153806443,1,0,0
+PSM,causal,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.00045852405845681066,0.00045852405845681066,1,0,0
+PSM,causal,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.01738386598300512,0.01738386598300512,1,0,0
+PSM,causal,Full V supervision / V,Source-supervised endpoint V,AP,-0.03334353857041805,-0.03334353857041805,0,0,1
+PSM,causal,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.022599211116081652,0.022599211116081652,1,0,0
+PSM,causal,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.006005408384250677,-0.006005408384250677,0,0,1
+PSM,causal,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.01772857711265785,0.01772857711265785,1,0,0
+PSM,causal,Full V supervision / V,official_V,AP,0.008615842195174528,0.008615842195174528,1,0,0
+PSM,causal,Full V supervision / V,official_V,ROC_AUC,0.05774692110040591,0.05774692110040591,1,0,0
+PSM,causal,Full V supervision / V,official_V,VUS_PR,0.023860231492215722,0.023860231492215722,1,0,0
+PSM,causal,Full V supervision / V,official_V,VUS_ROC,0.033025246710766565,0.033025246710766565,1,0,0
+PSM,causal,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.0021820095768239067,-0.0021820095768239067,0,0,1
+PSM,causal,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.0018230984145821694,0.0018230984145821694,1,0,0
+PSM,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,0.01551814576365479,0.01551814576365479,1,0,0
+PSM,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,0.013556686866861845,0.013556686866861845,1,0,0
+PSM,causal_history,Full E supervision / E,Decoder E supervision / E,AP,-0.00481152089286796,-0.00481152089286796,0,0,1
+PSM,causal_history,Full E supervision / E,Decoder E supervision / E,ROC_AUC,-0.002721742942626282,-0.002721742942626282,0,0,1
+PSM,causal_history,Full E supervision / E,Decoder E supervision / E,VUS_PR,-0.00417278330309645,-0.00417278330309645,0,0,1
+PSM,causal_history,Full E supervision / E,Decoder E supervision / E,VUS_ROC,-0.0018431272719471314,-0.0018431272719471314,0,0,1
+PSM,causal_history,Full V supervision / V,Full E supervision / E,AP,0.02417342964782987,0.02417342964782987,1,0,0
+PSM,causal_history,Full V supervision / V,Full E supervision / E,ROC_AUC,0.11583643910211672,0.11583643910211672,1,0,0
+PSM,causal_history,Full V supervision / V,Full E supervision / E,VUS_PR,0.00906641646306372,0.00906641646306372,1,0,0
+PSM,causal_history,Full V supervision / V,Full E supervision / E,VUS_ROC,0.028922820351961476,0.028922820351961476,1,0,0
+PSM,causal_history,Full V supervision / V,Full normal reconstruction / V,AP,0.0037870366173944348,0.0037870366173944348,1,0,0
+PSM,causal_history,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.0521973123559375,0.0521973123559375,1,0,0
+PSM,causal_history,Full V supervision / V,Full normal reconstruction / V,VUS_PR,-0.0023311191957443578,-0.0023311191957443578,0,0,1
+PSM,causal_history,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.014565903693361415,0.014565903693361415,1,0,0
+PSM,causal_history,Full V supervision / V,Source-supervised endpoint V,AP,-0.03560718502314719,-0.03560718502314719,0,0,1
+PSM,causal_history,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.021262180369277517,0.021262180369277517,1,0,0
+PSM,causal_history,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.007579128117145673,-0.007579128117145673,0,0,1
+PSM,causal_history,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.016452802756588336,0.016452802756588336,1,0,0
+PSM,causal_history,Full V supervision / V,official_V,AP,0.0057534813112528616,0.0057534813112528616,1,0,0
+PSM,causal_history,Full V supervision / V,official_V,ROC_AUC,0.055529998829791816,0.055529998829791816,1,0,0
+PSM,causal_history,Full V supervision / V,official_V,VUS_PR,0.02144641338382791,0.02144641338382791,1,0,0
+PSM,causal_history,Full V supervision / V,official_V,VUS_ROC,0.030580943799788707,0.030580943799788707,1,0,0
+PSM,causal_history,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.0018367565539441078,-0.0018367565539441078,0,0,1
+PSM,causal_history,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.0024997478078778723,0.0024997478078778723,1,0,0
+PSM,causal_history,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,0.015842584904526502,0.015842584904526502,1,0,0
+PSM,causal_history,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,0.013970586259155593,0.013970586259155593,1,0,0
+PSM,common_offline,Full E supervision / E,Decoder E supervision / E,AP,-0.004764905871198932,-0.004764905871198932,0,0,1
+PSM,common_offline,Full E supervision / E,Decoder E supervision / E,ROC_AUC,-0.0025754240085351654,-0.0025754240085351654,0,0,1
+PSM,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_PR,-0.004153938031212667,-0.004153938031212667,0,0,1
+PSM,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_ROC,-0.0017641297093505814,-0.0017641297093505814,0,0,1
+PSM,common_offline,Full V supervision / V,Complete LEFT,AP,-0.03497279274072984,-0.03497279274072984,0,0,1
+PSM,common_offline,Full V supervision / V,Complete LEFT,ROC_AUC,0.011646281172929318,0.011646281172929318,1,0,0
+PSM,common_offline,Full V supervision / V,Complete LEFT,VUS_PR,-0.06786785824422137,-0.06786785824422137,0,0,1
+PSM,common_offline,Full V supervision / V,Complete LEFT,VUS_ROC,-0.08841092979615228,-0.08841092979615228,0,0,1
+PSM,common_offline,Full V supervision / V,DADA official V,AP,0.1462694467849196,0.1462694467849196,1,0,0
+PSM,common_offline,Full V supervision / V,DADA official V,ROC_AUC,0.1828748953390379,0.1828748953390379,1,0,0
+PSM,common_offline,Full V supervision / V,DADA official V,VUS_PR,0.06680791941401537,0.06680791941401537,1,0,0
+PSM,common_offline,Full V supervision / V,DADA official V,VUS_ROC,0.04540274397949773,0.04540274397949773,1,0,0
+PSM,common_offline,Full V supervision / V,Full E supervision / E,AP,0.024363926960447313,0.024363926960447313,1,0,0
+PSM,common_offline,Full V supervision / V,Full E supervision / E,ROC_AUC,0.11575451163889094,0.11575451163889094,1,0,0
+PSM,common_offline,Full V supervision / V,Full E supervision / E,VUS_PR,0.009105401783275124,0.009105401783275124,1,0,0
+PSM,common_offline,Full V supervision / V,Full E supervision / E,VUS_ROC,0.028889472986591613,0.028889472986591613,1,0,0
+PSM,common_offline,Full V supervision / V,Full normal reconstruction / V,AP,0.004646774378264551,0.004646774378264551,1,0,0
+PSM,common_offline,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.05351846798604276,0.05351846798604276,1,0,0
+PSM,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_PR,-0.001193515053183325,-0.001193515053183325,0,0,1
+PSM,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.016516511764902098,0.016516511764902098,1,0,0
+PSM,common_offline,Full V supervision / V,Source-supervised endpoint V,AP,-0.03525822956702329,-0.03525822956702329,0,0,1
+PSM,common_offline,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.021843960425926845,0.021843960425926845,1,0,0
+PSM,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.007004666656532987,-0.007004666656532987,0,0,1
+PSM,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.017482464880832715,0.017482464880832715,1,0,0
+PSM,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",AP,0.23998963484270924,0.23998963484270924,1,0,0
+PSM,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",ROC_AUC,0.31164491300735647,0.31164491300735647,1,0,0
+PSM,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_PR,0.15775751563210766,0.15775751563210766,1,0,0
+PSM,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_ROC,0.1654077052716536,0.1654077052716536,1,0,0
+PSM,common_offline,Full V supervision / V,official_V,AP,0.006644603220573586,0.006644603220573586,1,0,0
+PSM,common_offline,Full V supervision / V,official_V,ROC_AUC,0.056845809551770765,0.056845809551770765,1,0,0
+PSM,common_offline,Full V supervision / V,official_V,VUS_PR,0.02267084412918907,0.02267084412918907,1,0,0
+PSM,common_offline,Full V supervision / V,official_V,VUS_ROC,0.0325995753101922,0.0325995753101922,1,0,0
+PSM,common_offline,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.0018584750115759885,-0.0018584750115759885,0,0,1
+PSM,common_offline,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.0024190903123320062,0.0024190903123320062,1,0,0
+PSM,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,0.015961273605398063,0.015961273605398063,1,0,0
+PSM,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,0.01400339723670252,0.01400339723670252,1,0,0
+SMAP,causal,Full E supervision / E,Decoder E supervision / E,AP,0.013992532682747671,3.2594379634556803e-09,28,1,24
+SMAP,causal,Full E supervision / E,Decoder E supervision / E,ROC_AUC,0.009270531810075951,0.0018605861788872913,31,2,20
+SMAP,causal,Full E supervision / E,Decoder E supervision / E,VUS_PR,0.010316292427985128,-3.991412325519972e-05,23,3,27
+SMAP,causal,Full E supervision / E,Decoder E supervision / E,VUS_ROC,0.004664303988333027,0.0,25,2,26
+SMAP,causal,Full V supervision / V,Full E supervision / E,AP,-0.04726448134052065,-0.007309646627075039,20,1,32
+SMAP,causal,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.08151372236259714,-0.018879847929889948,17,2,34
+SMAP,causal,Full V supervision / V,Full E supervision / E,VUS_PR,-0.04493551738711943,-0.00685795880493556,17,1,35
+SMAP,causal,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.07698753178641324,-0.018388959609961675,19,1,33
+SMAP,causal,Full V supervision / V,Full normal reconstruction / V,AP,0.00874841082594708,0.0,25,2,26
+SMAP,causal,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.011188415554907792,0.0001249681068091757,27,3,23
+SMAP,causal,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.017819494761415495,0.0007666818226612915,27,2,24
+SMAP,causal,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.019960943036486236,0.00034830027907517547,28,2,23
+SMAP,causal,Full V supervision / V,Source-supervised endpoint V,AP,-0.020716968646369988,7.546047120499111e-17,27,0,26
+SMAP,causal,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,-0.0010736682050361667,0.0,26,2,25
+SMAP,causal,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.029584620392863376,-0.0012056113272684021,23,1,29
+SMAP,causal,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.002180789627504573,-1.1102230246251565e-16,25,1,27
+SMAP,causal,Full V supervision / V,official_V,AP,-0.0036001868133601904,1.1102230246251565e-16,28,0,25
+SMAP,causal,Full V supervision / V,official_V,ROC_AUC,-0.01620295186934754,0.0,25,2,26
+SMAP,causal,Full V supervision / V,official_V,VUS_PR,-0.0027626702490853314,0.0,25,2,26
+SMAP,causal,Full V supervision / V,official_V,VUS_ROC,-0.010345012243588992,-5.182328342789866e-06,24,1,28
+SMAP,causal,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.015046362613415945,2.824313977828341e-08,29,1,23
+SMAP,causal,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,-0.024392851718850285,-0.0003948520236167763,22,2,29
+SMAP,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,-0.015984035135724474,-0.00010321387413328442,19,2,32
+SMAP,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,-0.020588368131360193,-0.0019591989893877892,21,1,31
+SMAP,causal_history,Full E supervision / E,Decoder E supervision / E,AP,0.013782100046628346,3.259437964323042e-09,28,1,24
+SMAP,causal_history,Full E supervision / E,Decoder E supervision / E,ROC_AUC,0.009107500384433828,0.0003725208315342732,31,2,20
+SMAP,causal_history,Full E supervision / E,Decoder E supervision / E,VUS_PR,0.010369324750524921,0.0,24,3,26
+SMAP,causal_history,Full E supervision / E,Decoder E supervision / E,VUS_ROC,0.004214038243097587,1.1809507934890107e-05,27,2,24
+SMAP,causal_history,Full V supervision / V,Full E supervision / E,AP,-0.043261271701754034,-0.007414893869799828,20,1,32
+SMAP,causal_history,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.07878141157896089,-0.018773752148924183,18,2,33
+SMAP,causal_history,Full V supervision / V,Full E supervision / E,VUS_PR,-0.04084725077790217,-0.00795263391816855,18,1,34
+SMAP,causal_history,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.07421983916712915,-0.020138208776639077,19,1,33
+SMAP,causal_history,Full V supervision / V,Full normal reconstruction / V,AP,0.012429666947379079,0.0,25,2,26
+SMAP,causal_history,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.014596857786034617,0.00013832174927030927,27,3,23
+SMAP,causal_history,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.02163862484836844,3.3306690738754696e-16,27,1,25
+SMAP,causal_history,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.023120831491086978,0.00034521490566541413,28,2,23
+SMAP,causal_history,Full V supervision / V,Source-supervised endpoint V,AP,-0.017191466374432935,0.0,26,1,26
+SMAP,causal_history,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,0.001510492087259249,1.1102230246251565e-16,27,1,25
+SMAP,causal_history,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.02603348788461617,-0.0002479108828780229,21,1,31
+SMAP,causal_history,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.004342373034661244,-1.4946912258340106e-05,25,1,27
+SMAP,causal_history,Full V supervision / V,official_V,AP,-0.0037891652079667625,9.016066997758615e-06,28,1,24
+SMAP,causal_history,Full V supervision / V,official_V,ROC_AUC,-0.015545519681361227,0.0,25,2,26
+SMAP,causal_history,Full V supervision / V,official_V,VUS_PR,-0.002090081195260746,3.3306690738754696e-16,27,1,25
+SMAP,causal_history,Full V supervision / V,official_V,VUS_ROC,-0.009294392871508489,-1.8709208310152547e-05,25,1,27
+SMAP,causal_history,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.018298124313241966,2.8243139781752857e-08,28,2,23
+SMAP,causal_history,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,-0.02576665205066134,-0.0005349992895603561,21,2,30
+SMAP,causal_history,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,-0.020646242136515672,-0.00010438036601304046,20,2,31
+SMAP,causal_history,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,-0.02265663659151929,-0.0018688590403451721,21,1,31
+SMAP,common_offline,Full E supervision / E,Decoder E supervision / E,AP,0.013602193153877127,1.1102230246251565e-16,27,1,25
+SMAP,common_offline,Full E supervision / E,Decoder E supervision / E,ROC_AUC,0.009116454126819948,0.0019122013992688425,29,3,21
+SMAP,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_PR,0.009651216541797542,-3.024045360169869e-05,22,4,27
+SMAP,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_ROC,0.004237804607506054,0.0,25,4,24
+SMAP,common_offline,Full V supervision / V,Complete LEFT,AP,-0.1320853195878862,-0.0392132872502749,16,0,37
+SMAP,common_offline,Full V supervision / V,Complete LEFT,ROC_AUC,-0.13713027957430096,-0.11648318433815263,12,0,41
+SMAP,common_offline,Full V supervision / V,Complete LEFT,VUS_PR,-0.12306206328247114,-0.04266394886147695,14,0,39
+SMAP,common_offline,Full V supervision / V,Complete LEFT,VUS_ROC,-0.10613827081191649,-0.08605937697653698,11,0,42
+SMAP,common_offline,Full V supervision / V,DADA official V,AP,-0.06769002815971362,-0.0023276201820192077,22,0,31
+SMAP,common_offline,Full V supervision / V,DADA official V,ROC_AUC,-0.02010773713322343,-0.02296932798107426,21,0,32
+SMAP,common_offline,Full V supervision / V,DADA official V,VUS_PR,-0.04726184551060331,-0.0002798452701693599,25,0,28
+SMAP,common_offline,Full V supervision / V,DADA official V,VUS_ROC,-0.003760955845875027,-0.02934090220692076,21,0,32
+SMAP,common_offline,Full V supervision / V,Full E supervision / E,AP,-0.04884374970383589,-0.007518046750921712,20,1,32
+SMAP,common_offline,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.08364529668806966,-0.01887654828831309,16,3,34
+SMAP,common_offline,Full V supervision / V,Full E supervision / E,VUS_PR,-0.04662389019069759,-0.006159217899764646,17,2,34
+SMAP,common_offline,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.0790397559585185,-0.018383754735600055,18,2,33
+SMAP,common_offline,Full V supervision / V,Full normal reconstruction / V,AP,0.00781290179511149,0.0,25,2,26
+SMAP,common_offline,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,0.010707320055500557,6.146512718669916e-05,27,4,22
+SMAP,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_PR,0.01650891589708098,0.0007459331125330704,27,3,23
+SMAP,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,0.019141206616546277,0.0004249839917916942,29,3,21
+SMAP,common_offline,Full V supervision / V,Source-supervised endpoint V,AP,-0.021415023026829016,8.847089727481716e-17,27,1,25
+SMAP,common_offline,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,-0.0016430579617008364,0.0,24,3,26
+SMAP,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.031828686418090876,-0.0012094703979709798,21,2,30
+SMAP,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,0.0006299479266648158,0.0,24,3,26
+SMAP,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",AP,-0.0815845708738498,-0.014411263514626182,24,0,29
+SMAP,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",ROC_AUC,-0.04918813153194303,-0.07143802397164911,22,0,31
+SMAP,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_PR,-0.029301858664245523,-0.009326119885119777,25,0,28
+SMAP,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_ROC,-0.024991606999859507,-0.05754608601538613,23,0,30
+SMAP,common_offline,Full V supervision / V,official_V,AP,-0.004485205652975818,8.847089727481716e-17,27,1,25
+SMAP,common_offline,Full V supervision / V,official_V,ROC_AUC,-0.01694239989228705,-1.1102230246251565e-16,23,3,27
+SMAP,common_offline,Full V supervision / V,official_V,VUS_PR,-0.0040287426463279,0.0,25,2,26
+SMAP,common_offline,Full V supervision / V,official_V,VUS_ROC,-0.01144113284750255,0.0,24,3,26
+SMAP,common_offline,Full normal reconstruction / V,Source reconstruction continuation,AP,-0.015171388348122816,1.1102230246251565e-16,28,2,23
+SMAP,common_offline,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,-0.02476788498266267,-0.00039138137024685715,19,3,31
+SMAP,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,-0.016088136023086508,-5.459705096695633e-05,21,2,30
+SMAP,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,-0.020909937135835388,-0.0019881806718972106,18,4,31
+SMD,causal,Full E supervision / E,Decoder E supervision / E,AP,-0.008511539396933564,0.00046788569621550313,15,0,13
+SMD,causal,Full E supervision / E,Decoder E supervision / E,ROC_AUC,-0.0038954988947127616,-0.0019929324928597003,8,0,20
+SMD,causal,Full E supervision / E,Decoder E supervision / E,VUS_PR,-0.011370720255616128,-0.012162620362569418,8,0,20
+SMD,causal,Full E supervision / E,Decoder E supervision / E,VUS_ROC,-0.00427976603927434,-0.00324345573098328,7,0,21
+SMD,causal,Full V supervision / V,Full E supervision / E,AP,-0.08901614521612533,-0.0425123349633513,11,0,17
+SMD,causal,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.04192708751697731,-0.015290383944753183,11,0,17
+SMD,causal,Full V supervision / V,Full E supervision / E,VUS_PR,-0.05695696524770793,-0.01569387571266037,10,0,18
+SMD,causal,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.026528097925764955,-0.022933307719907037,10,0,18
+SMD,causal,Full V supervision / V,Full normal reconstruction / V,AP,-0.12853627702029152,-0.09564245246476899,4,0,24
+SMD,causal,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,-0.06578834143806615,-0.036493592466574354,9,0,19
+SMD,causal,Full V supervision / V,Full normal reconstruction / V,VUS_PR,-0.1122560202613008,-0.07372538984495744,7,0,21
+SMD,causal,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,-0.0542471780112168,-0.040558431874820555,7,0,21
+SMD,causal,Full V supervision / V,Source-supervised endpoint V,AP,-0.1110088592559656,-0.06067690831980174,5,0,23
+SMD,causal,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,-0.05918900599981182,-0.031024609842984885,7,0,21
+SMD,causal,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.06035979286105626,-0.05492711783221174,7,0,21
+SMD,causal,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,-0.03121767842747463,-0.010999287180965378,11,0,17
+SMD,causal,Full V supervision / V,official_V,AP,-0.11318095126010179,-0.07356531370074239,7,0,21
+SMD,causal,Full V supervision / V,official_V,ROC_AUC,-0.04508976797626096,-0.01630508570771716,10,0,18
+SMD,causal,Full V supervision / V,official_V,VUS_PR,-0.09319565451451095,-0.0416157002758418,8,0,20
+SMD,causal,Full V supervision / V,official_V,VUS_ROC,-0.039949310152753666,-0.008937107675095146,10,0,18
+SMD,causal,Full normal reconstruction / V,Source reconstruction continuation,AP,0.009369627532408433,0.0076180227875564666,19,0,9
+SMD,causal,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.013404140449084407,0.011445498774953822,22,0,6
+SMD,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,0.009327024320772861,0.0038514030777288266,18,0,10
+SMD,causal,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,0.008911662655347014,0.007112094522987833,21,0,7
+SMD,common_offline,Full E supervision / E,Decoder E supervision / E,AP,-0.008454680147551522,0.0004945738474597117,15,0,13
+SMD,common_offline,Full E supervision / E,Decoder E supervision / E,ROC_AUC,-0.003861923275587415,-0.0019746906335706416,8,0,20
+SMD,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_PR,-0.011245901059453695,-0.011967411529078154,8,0,20
+SMD,common_offline,Full E supervision / E,Decoder E supervision / E,VUS_ROC,-0.004257328250034256,-0.003193120806597227,7,0,21
+SMD,common_offline,Full V supervision / V,Complete LEFT,AP,-0.16642439185312494,-0.13033851415990438,5,0,23
+SMD,common_offline,Full V supervision / V,Complete LEFT,ROC_AUC,-0.11034317520833004,-0.08446478233568439,2,0,26
+SMD,common_offline,Full V supervision / V,Complete LEFT,VUS_PR,-0.1675186102172637,-0.14604377481818354,4,0,24
+SMD,common_offline,Full V supervision / V,Complete LEFT,VUS_ROC,-0.08837300919563741,-0.05939131729454472,1,0,27
+SMD,common_offline,Full V supervision / V,DADA official V,AP,-0.08294999147203644,-0.11944626534859584,9,0,19
+SMD,common_offline,Full V supervision / V,DADA official V,ROC_AUC,-0.0831512683257303,-0.05225667772417181,7,0,21
+SMD,common_offline,Full V supervision / V,DADA official V,VUS_PR,-0.10033298957864033,-0.13700016771353957,7,0,21
+SMD,common_offline,Full V supervision / V,DADA official V,VUS_ROC,-0.06954941839669804,-0.05007101108046336,6,0,22
+SMD,common_offline,Full V supervision / V,Full E supervision / E,AP,-0.08887758869877845,-0.0417005842550026,11,0,17
+SMD,common_offline,Full V supervision / V,Full E supervision / E,ROC_AUC,-0.041862206079781514,-0.014898166300075621,11,0,17
+SMD,common_offline,Full V supervision / V,Full E supervision / E,VUS_PR,-0.05690841831849885,-0.015873559932319675,10,0,18
+SMD,common_offline,Full V supervision / V,Full E supervision / E,VUS_ROC,-0.026458546326149284,-0.023142682755189325,10,0,18
+SMD,common_offline,Full V supervision / V,Full normal reconstruction / V,AP,-0.1285525753171288,-0.09564266681738628,4,0,24
+SMD,common_offline,Full V supervision / V,Full normal reconstruction / V,ROC_AUC,-0.06570400174608935,-0.03684347094849666,9,0,19
+SMD,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_PR,-0.11224740653712874,-0.07350037506179036,7,0,21
+SMD,common_offline,Full V supervision / V,Full normal reconstruction / V,VUS_ROC,-0.0541663837788968,-0.040965085370024024,7,0,21
+SMD,common_offline,Full V supervision / V,Source-supervised endpoint V,AP,-0.11101685402693263,-0.06121685458387233,5,0,23
+SMD,common_offline,Full V supervision / V,Source-supervised endpoint V,ROC_AUC,-0.05912835813174877,-0.030787213097600685,7,0,21
+SMD,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_PR,-0.060467391643426,-0.05568594029576582,7,0,21
+SMD,common_offline,Full V supervision / V,Source-supervised endpoint V,VUS_ROC,-0.031151912585230528,-0.010715211578708805,11,0,17
+SMD,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",AP,-0.14128617774763136,-0.09862787458950856,5,0,23
+SMD,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",ROC_AUC,-0.09121407448517314,-0.05500734316343048,6,0,22
+SMD,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_PR,-0.14082203256238224,-0.08184592977617675,6,0,22
+SMD,common_offline,Full V supervision / V,"TimeRCD official weights, FIT-only adapter",VUS_ROC,-0.07960015263316585,-0.054940331775126194,5,0,23
+SMD,common_offline,Full V supervision / V,official_V,AP,-0.11314026855434492,-0.07362648503620862,7,0,21
+SMD,common_offline,Full V supervision / V,official_V,ROC_AUC,-0.04500789550285993,-0.016767971869367293,10,0,18
+SMD,common_offline,Full V supervision / V,official_V,VUS_PR,-0.0928749929121765,-0.04041679787068066,8,0,20
+SMD,common_offline,Full V supervision / V,official_V,VUS_ROC,-0.03981050301983167,-0.0089423438266934,10,0,18
+SMD,common_offline,Full normal reconstruction / V,Source reconstruction continuation,AP,0.009408060805953248,0.007618331840155146,19,0,9
+SMD,common_offline,Full normal reconstruction / V,Source reconstruction continuation,ROC_AUC,0.013409026271489766,0.011520635089592945,22,0,6
+SMD,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_PR,0.009250540767215371,0.005097983380798393,18,0,10
+SMD,common_offline,Full normal reconstruction / V,Source reconstruction continuation,VUS_ROC,0.008962266614239886,0.007159728845978097,21,0,7
