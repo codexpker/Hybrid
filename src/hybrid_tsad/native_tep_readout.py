@@ -295,4 +295,3 @@ if __name__=="__main__":
     p.add_argument("lane",type=int)
     a=p.parse_args()
     score(Path.cwd(),a.lane,4)
-

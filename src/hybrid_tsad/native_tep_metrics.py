@@ -124,4 +124,3 @@ def evaluate(w):
 
 if __name__=="__main__":
     evaluate(Path.cwd())
-

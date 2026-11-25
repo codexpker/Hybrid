@@ -118,4 +118,3 @@ def train(w,arm):
 
 if __name__=="__main__":
     train(Path.cwd(),sys.argv[1])
-
