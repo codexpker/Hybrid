@@ -1,4 +1,4 @@
-"""Three matched uses of LEFT's registered multiscale modulation path."""
+"""Matched uses of LEFT's registered multiscale modulation path."""
 
 import inspect
 from types import MethodType
@@ -15,8 +15,13 @@ def channel_context(context, channels):
     return context.repeat_interleave(channels, dim=0)
 
 
+def mismatch_context(context):
+    """Rotate window contexts by half the current batch, retaining a singleton."""
+    return context.roll(context.shape[0]//2, dims=0)
+
+
 def model_class(native, arm):
-    if arm not in ARMS:
+    if arm not in (*ARMS, 'mismatched'):
         raise ValueError(arm)
     # Reorder only the deterministic association/read block to make its
     # outputs available at the original decoder call. Preserve upstream RNG
@@ -40,6 +45,9 @@ def model_class(native, arm):
 
         def __init__(self, config):
             super().__init__(config)
+            if arm == 'mismatched':
+                self.context_audit = None
+                self.fit_singletons = 0
             for bank in (self.proto_t, self.proto_f):
                 original_norm = bank._norm
 
@@ -61,16 +69,21 @@ def model_class(native, arm):
 
         def _condition_ms(self, tokens, z_t, z_f, m_t, m_f, lam, batch, channels):
             assert tokens.shape[0] == batch * channels
+            if arm == 'mismatched' and self.training and batch == 1:
+                self.fit_singletons += 1
             if arm == 'native' or lam == 0:
                 return self.ms_decoder(tokens, context=None)
-            pair = (z_t, z_f) if arm == 'observation' else (m_t, m_f)
+            pair = (m_t, m_f) if arm == 'prototype' else (z_t, z_f)
             context = self.z_fuse(torch.cat(pair, dim=-1))
+            assigned = mismatch_context(context) if arm == 'mismatched' else context
             # Project once per sample, then share the modulation across that
             # sample's channel tokens. Dropout and the native decoder remain
             # in their original locations.
-            gb = channel_context(self.ms_decoder.to_gb(context), channels)
+            gb = channel_context(self.ms_decoder.to_gb(assigned), channels)
             gamma, beta = gb.unsqueeze(1).chunk(2, dim=-1)
-            tokens = tokens + lam * (gamma.tanh() * tokens + beta)
-            return self.ms_decoder(tokens, context=None)
+            increment = lam * (gamma.tanh() * tokens + beta)
+            if arm == 'mismatched' and self.context_audit is not None:
+                self.context_audit(self.ms_decoder.to_gb, context, assigned, tokens, increment, lam, channels)
+            return self.ms_decoder(tokens + increment, context=None)
 
     return ConditionedLeft

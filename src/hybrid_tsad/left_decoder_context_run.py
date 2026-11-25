@@ -19,6 +19,7 @@ from .left_swat_author import dump, read, sha
 OUT = Path('results/left_decoder_context_20261124_v1')
 REPEAT = Path('results/left_context_unmodulated_repeat_20261125_v1')
 PUBLIC = Path('results/left_context_unmodulated_public_20261125_v1')
+MISMATCH = Path('results/left_context_correspondence_20261125_v1')
 PUBLIC_ARMS = ('native', 'observation')
 BASE = Path('preparations/left_baseline_build_20261101_v1')
 SWAT_PREP = Path('preparations/left_multievent_mixed_u_20261111_v1')
@@ -207,11 +208,42 @@ def check(w, domain):
     dump(w/OUT/domain/'CHECKS.json', dict(passed=True, public_normal_only=True, results=fitted))
 
 
+@torch.no_grad()
+def select_context_audit(rows, projection, context, assigned, tokens, increment, lam, channels):
+    """Compare the actual SELECT increment with own-window assignment at the same weights."""
+    batch = len(context)
+    shift = batch//2
+    order = torch.arange(batch)
+    fixed = int((order.roll(shift)==order).sum())
+    assert fixed == (1 if batch == 1 else 0)
+    assert torch.equal(assigned.roll(-shift,dims=0), context)
+    gamma, beta = channel_context(projection(context), channels).unsqueeze(1).chunk(2,dim=-1)
+    own_increment = lam * (gamma.tanh() * tokens + beta)
+    c_delta = assigned-context
+    u_delta = increment-own_increment
+    result = dict(
+        context_rms=context.square().mean().sqrt(),
+        context_delta_rms=c_delta.square().mean().sqrt(),
+        own_increment_rms=own_increment.square().mean().sqrt(),
+        assigned_increment_rms=increment.square().mean().sqrt(),
+        increment_delta_rms=u_delta.square().mean().sqrt(),
+        unmodulated_token_rms=tokens.square().mean().sqrt(),
+        increment_delta_max=u_delta.abs().max(),
+        changed_context_rows=(c_delta!=0).any(dim=1).sum().to(c_delta.dtype),
+    )
+    values = torch.stack(list(result.values())).tolist()
+    assert np.isfinite(values).all()
+    rows.append(dict(batch=batch, shift=shift, fixed_points=fixed, context_multiset_preserved=True,
+                     lam=lam, **dict(zip(result,values))))
+
+
 def run(w, domain, arm, *, repeat_2026=False):
-    if repeat_2026 and arm not in ('native','observation'):
-        raise ValueError('The fixed repetition covers native and observation only')
+    mismatch = arm == 'mismatched'
+    if repeat_2026 and arm == 'prototype':
+        raise ValueError('No prototype training was specified for seed2026')
     seed = 2026 if repeat_2026 else 2025
-    out = w/(REPEAT if repeat_2026 else OUT)/domain/arm
+    ref_root = REPEAT if repeat_2026 else OUT
+    out = w/(MISMATCH if mismatch else ref_root)/domain/(str(seed) if mismatch else arm)
     out.mkdir(parents=True, exist_ok=False)
     assert read(w/OUT/domain/'CHECKS.json')['passed']
     official, configs, source = environment(w, domain)
@@ -259,11 +291,24 @@ def run(w, domain, arm, *, repeat_2026=False):
             return optimizer
 
         def vali(self, loader):
-            loss = super().vali(loader)
+            audit = []
+            if mismatch:
+                rng_before = torch.cuda.get_rng_state()
+                self.model.context_audit = lambda *args: select_context_audit(audit, *args)
+            try:
+                loss = super().vali(loader)
+            finally:
+                if mismatch:
+                    self.model.context_audit = None
             assert np.isfinite(loss)
-            trace.append(dict(epoch=len(trace)+1, validation_loss=float(loss), updates=updates,
-                              step=self.model.step, cpu_rng_sha256=hashlib.sha256(torch.get_rng_state().numpy().tobytes()).hexdigest()))
-            dump(out/f'epoch{len(trace):02d}.json',trace[-1])
+            row = dict(epoch=len(trace)+1, validation_loss=float(loss), updates=updates,
+                       step=self.model.step, cpu_rng_sha256=sampler_fingerprint())
+            if mismatch:
+                assert torch.equal(rng_before, torch.cuda.get_rng_state())
+                assert len(audit)==len(loader) and sum(r['batch'] for r in audit)==len(loader.dataset)
+                row['select_context_audit'] = audit
+            trace.append(row)
+            dump(out/f'epoch{len(trace):02d}.json',row)
             return loss
 
     official.EarlyStopping = Stopping
@@ -283,7 +328,16 @@ def run(w, domain, arm, *, repeat_2026=False):
          batch=exp.train_configs.batch_size, max_epochs=exp.train_configs.train_epochs,
          early_stop_patience=exp.train_configs.patience, optimizer=exp.train_configs.optim, lr=exp.train_configs.learning_rate,
          lr_schedule=exp.train_configs.lradj, labels_read=False)
-    if repeat_2026:
+    if mismatch:
+        reference_path = w/ref_root/domain/'observation'/'CONFIG.json'
+        reference = read(reference_path)
+        assert all(v == reference[k] for k,v in setup.items() if k!='arm')
+        setup.update(reused_check_sha256=sha(w/OUT/domain/'CHECKS.json'),
+                     normal_select_modulation='on', detection_modulation='off',
+                     context_assignment='roll floor(B/2) on window batch dimension',
+                     reference_config_sha256=sha(reference_path),
+                     full_initial_state_sha256=fingerprint(config.state_dict()))
+    elif repeat_2026:
         reference = read(w/OUT/domain/arm/'CONFIG.json')
         assert setup['common_initial_state_sha256'] != reference['common_initial_state_sha256']
         assert all(v == reference[k] for k,v in setup.items() if k not in ('seed','common_initial_state_sha256'))
@@ -302,10 +356,24 @@ def run(w, domain, arm, *, repeat_2026=False):
     assert parameters['active_modulation'] == (0 if arm=='native' else 33280)
     ckpt = Path(exp.model_save_path)/'checkpoint.pth'
     assert selected[-1]['sha256'] == sha(ckpt)
-    dump(out/'TRAIN_RECEIPT.json', dict(status='COMPLETED', selected=selected[-1], validation=trace,
+    train_receipt = dict(status='COMPLETED', selected=selected[-1], validation=trace,
          selection_history=selected, updates=updates, final_step=config.step, parameters=parameters,
          train_seconds=train_seconds, train_peak_reserved=torch.cuda.max_memory_reserved(),
-         test_values_read=False, labels_read=False))
+         test_values_read=False, labels_read=False)
+    if mismatch:
+        reference = read(w/ref_root/domain/'observation'/'TRAIN_RECEIPT.json')['validation']
+        overlap = list(zip(trace,reference))
+        assert overlap and all(x['cpu_rng_sha256']==r['cpu_rng_sha256'] and x['epoch']==r['epoch']
+                               for x,r in overlap)
+        fit_windows = cut-WINDOW+1
+        select_batches = [b for row in trace for b in row['select_context_audit']]
+        assert config.fit_singletons == len(trace)*(fit_windows%setup['batch']==1)
+        train_receipt.update(matched_sampler_epochs=len(overlap), context_audit=dict(
+            fit_windows=fit_windows*len(trace), fit_singletons=config.fit_singletons,
+            select_windows=sum(b['batch'] for b in select_batches),
+            select_singletons=sum(b['fixed_points'] for b in select_batches),
+            selected_epoch=selected[-1]['epoch'], actual_select_forwards=True))
+    dump(out/'TRAIN_RECEIPT.json', train_receipt)
     # Read test values only after the author's normal-validation selection.
     if domain == 'SWAT':
         values = np.load(w/SWAT_PREP/'data/ALL_VALUES.npy', mmap_mode='r', allow_pickle=False)[normal_points:]
@@ -317,10 +385,10 @@ def run(w, domain, arm, *, repeat_2026=False):
     scaled = scaler.transform(np.array(values,dtype=np.float64,order='F',copy=True))
     config.eval()
     lam = config._curriculum_lambda()
-    if repeat_2026:
-        assert raw_test_hash == read(w/OUT/domain/arm/'SCORE_RECEIPT.json')['raw_test_values_sha256']
-        if arm == 'observation':
-            from types import MethodType
+    if repeat_2026 or mismatch:
+        reference_arm = 'observation' if mismatch else arm
+        assert raw_test_hash == read(w/OUT/domain/reference_arm/'SCORE_RECEIPT.json')['raw_test_values_sha256']
+        if arm in ('observation','mismatched'):
             from .left_context_unmodulated import off_ms
             config._condition_ms = MethodType(off_ms, config)
         assert config._curriculum_lambda() == lam > 0
@@ -339,7 +407,7 @@ def run(w, domain, arm, *, repeat_2026=False):
     receipt = dict(status='COMPLETED',bank_sha256=sha(bank),raw_test_values_sha256=raw_test_hash,
          checkpoint_sha256=sha(ckpt), scoring_seconds=time.monotonic()-start, points=len(score),
          omitted_tail=len(values)-len(score), state_unchanged=True, labels_read=False)
-    if repeat_2026:
+    if repeat_2026 or mismatch:
         assert config._curriculum_lambda() == lam
         receipt.update(seed=seed, detection_modulation=setup['detection_modulation'], native_lambda=lam)
     dump(out/'SCORE_RECEIPT.json',receipt)
@@ -349,7 +417,7 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('action',choices=('check','run'))
     p.add_argument('--domain',choices=DOMAINS,required=True)
-    p.add_argument('--arm',choices=ARMS)
+    p.add_argument('--arm',choices=(*ARMS,'mismatched'))
     p.add_argument('--repeat-2026',action='store_true')
     a = p.parse_args()
     torch.set_num_threads(1)
