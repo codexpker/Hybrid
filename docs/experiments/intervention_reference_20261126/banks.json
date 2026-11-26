@@ -1,0 +1,106 @@
+[
+  {
+    "file": "results/intervention_reference_20261126_v1/PSM/banks/CAL.npz",
+    "sha256": "8be0d0d59cddd5b7fdd9061e2e31ce0d2d7fab8422df5aeb5a43ecc498b8b83d",
+    "seconds": 2.919873141217977,
+    "arms": [
+      "pair",
+      "replay",
+      "absolute",
+      "relative"
+    ],
+    "models": {
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2",
+      "replay": "4a788e686a54cfc29c7770c7208275f908a4aabfefd09649f47b0e3cf26dace3",
+      "absolute": "9e56bc9b7350666613a26c003e96bb99e5095f94ca55afd9887f62e007832d59",
+      "relative": "afbdea3445dd4a4e97d73ca48e7a22b4d67279e4bdcb93b30034ac0ae6271225"
+    },
+    "points": 3700
+  },
+  {
+    "file": "results/intervention_reference_20261126_v1/PSM/banks/QUERY.npz",
+    "sha256": "61e5e41ae8cd2e696ce58888cc321243a8405e02b065f376b75833b98c9d39c8",
+    "seconds": 18.308783111162484,
+    "arms": [
+      "pair",
+      "replay",
+      "absolute",
+      "relative"
+    ],
+    "models": {
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2",
+      "replay": "4a788e686a54cfc29c7770c7208275f908a4aabfefd09649f47b0e3cf26dace3",
+      "absolute": "9e56bc9b7350666613a26c003e96bb99e5095f94ca55afd9887f62e007832d59",
+      "relative": "afbdea3445dd4a4e97d73ca48e7a22b4d67279e4bdcb93b30034ac0ae6271225"
+    },
+    "points": 65200
+  },
+  {
+    "file": "results/intervention_reference_20261126_v1/PSM/banks/TEST.npz",
+    "sha256": "f1317435f78046fe18cd776c32bffbb0c5d7aa8e52df70601f4af2ca264d2f23",
+    "seconds": 19.229675522074103,
+    "arms": [
+      "official",
+      "reconstruction",
+      "pair"
+    ],
+    "models": {
+      "official": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "reconstruction": "87304cc673430d5f70a51a89a022bacb1c1f38a164c42e6f5dab32f58410fd41",
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2"
+    },
+    "points": 87800
+  },
+  {
+    "file": "results/intervention_reference_20261126_v1/SWAT/banks/CAL.npz",
+    "sha256": "081c92b9738aaf0a9319bb22777e2e359f617a042eb8946572e88764516a598a",
+    "seconds": 8.124823039863259,
+    "arms": [
+      "pair",
+      "replay",
+      "absolute",
+      "relative"
+    ],
+    "models": {
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2",
+      "replay": "493678497413f907d0382264b754a655305a77a0b28f6a6fddbc7e7da88b89c7",
+      "absolute": "ee7b22abf08655c6a1cf82adaedeca0b7bf529ec0f930755fccfe0bdfa9014b1",
+      "relative": "2caf4aafa11cb32502b7656915b41c680168a0bf2a97f35700b7740f525ccddd"
+    },
+    "points": 21800
+  },
+  {
+    "file": "results/intervention_reference_20261126_v1/SWAT/banks/QUERY.npz",
+    "sha256": "a031f97c732c579550002d622aa0b79b06ad043f9e0feca961c676e657ff9e94",
+    "seconds": 96.49222365394235,
+    "arms": [
+      "pair",
+      "replay",
+      "absolute",
+      "relative"
+    ],
+    "models": {
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2",
+      "replay": "493678497413f907d0382264b754a655305a77a0b28f6a6fddbc7e7da88b89c7",
+      "absolute": "ee7b22abf08655c6a1cf82adaedeca0b7bf529ec0f930755fccfe0bdfa9014b1",
+      "relative": "2caf4aafa11cb32502b7656915b41c680168a0bf2a97f35700b7740f525ccddd"
+    },
+    "points": 336800
+  },
+  {
+    "file": "results/intervention_reference_20261126_v1/SWAT/banks/TEST.npz",
+    "sha256": "8684e6a5417479435d334e50953d883d6d4e686600130f176476b848b42975ae",
+    "seconds": 104.78532124077901,
+    "arms": [
+      "official",
+      "reconstruction",
+      "pair"
+    ],
+    "models": {
+      "official": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "reconstruction": "87304cc673430d5f70a51a89a022bacb1c1f38a164c42e6f5dab32f58410fd41",
+      "pair": "f408397b1797fc6c30a1a943c3f333417940e69766e75580652c5440454e6fd2"
+    },
+    "points": 449900
+  }
+]

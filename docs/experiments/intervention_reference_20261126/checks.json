@@ -1,0 +1,28 @@
+{
+  "shift_checks": {
+    "source": {
+      "rank_change": 0.0,
+      "anchor_cost": 1.3833641408318624,
+      "max_translation_derivative": 0.0,
+      "seconds": 8.50298417499289
+    },
+    "PSM": {
+      "rank_change": 0.0,
+      "anchor_cost": 0.9780982138541193,
+      "max_translation_derivative": 0.0,
+      "seconds": 6.5593131822533906
+    },
+    "SWAT": {
+      "rank_change": 0.0,
+      "anchor_cost": 0.9965849109809952,
+      "max_translation_derivative": 0.0,
+      "seconds": 7.297361758071929
+    }
+  },
+  "python": "3.12.13",
+  "torch": "2.12.0+cu130",
+  "cuda": "13.0",
+  "all_eight_weight_hashes_verified": true,
+  "source_selection_rechecked": true,
+  "all_six_banks_verified": true
+}

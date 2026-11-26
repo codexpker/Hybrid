@@ -4,7 +4,7 @@
 
 Can public source records teach a detector which local dynamics recur across sensors, and can the detector learn new normal dynamics from a target record that also contains anomalies? We study this question in two stages. A complete public detection benchmark establishes the performance that a proposed method must reach. Separate experiments examine zero target updates (Z), mixed-unlabeled learning (U), a fixed labeled support set (F), controlled extra abnormal exposure and the mechanism of the update.
 
-The proposed detector learns short, frequency-specific trajectory subspaces across public source domains. During mixed target adaptation it estimates a normal multichannel trajectory and a sparse departure on the original timeline, then updates the subspaces from the estimated normal trajectory. At test time the residual from this trajectory produces a point score. The [method definition](method_definition.md) specifies the source folds, objective, solver, permissions and identifying controls. The first deterministic PSM and SWaT fits are complete.
+The current study tests whether a pretrained TimeRadar decoder can learn from an artificial edit of an unlabeled target window while retaining the native score of its original input. The source comparison uses normal TEP and SMD records. The matched target comparison changes the ranking reference from one fixed source-normal value to the frozen score of the corresponding target point. Both use the same edited windows, decoder capacity, drift correction and original-score anchor. The [method specification](method_definition.md) and [complete comparison](../../docs/experiments/intervention_reference_20261126/RESULTS.md) distinguish synthetic source evidence from outcomes on real public events.
 
 ## Public benchmark
 
@@ -147,11 +147,17 @@ Published VUS-PR and VUS-ROC are provided independently of local AP, preprocessi
 | ModernTCN (LEFT benchmark) | VUS-PR | .1596 | .4668 | .0941 | .3010 | .1395 |
 | ModernTCN (LEFT benchmark) | VUS-ROC | .7707 | .6480 | .2735 | .7747 | .5470 |
 
+### Synthetic supervision of the pretrained variance detector
+
+On the complete public axes, frozen official TimeRadar, source reconstruction and source intervention training attained AP of 0.4481, 0.4557 and 0.4556 on PSM, and 0.6423, 0.6558 and 0.6562 on SWaT. Most of the AP improvement over the official checkpoint was already present after normal reconstruction. Source pairing improved SWaT VUS-PR by 0.0030 and VUS-ROC by 0.0045 over reconstruction, with near-identical AP. On PSM, target-trained LEFT and PCA exceeded the paired model in AP. On SWaT its AP exceeded LEFT but remained below pointwise level deviation, and LEFT retained higher VUS-PR.
+
+On the separate mixed-target suffixes the local intervention reference changed AP by −0.01587 (PSM) and −0.01799 (SWaT) from the frozen source-pair detector. Against the matched absolute reference, AP changed by −0.00145 and +0.00090. The gains in sensitivity to artificial amplitude edits thus did not yield a consistent advantage on real events. SWaT's three-confirmation FPR decreased from 37.65% to 27.10%, while long-event macro coverage decreased from 40.01% to 29.18% and the number of normal alarm fragments increased. PSM's three-confirmation recall increased slightly with the same number of one-to-one matches. Its 512 mixed CAL points were all attack-labeled. Results are offline and conditional on the fixed edits and one training seed. [Public and U tables, full ablation and operating costs](../../docs/experiments/intervention_reference_20261126/RESULTS.md)
+
 ## Use conditions, contamination and mechanism
 
 Establish the complete detector on the public benchmark before attributing gains. The source-excluded Z, separate U and labeled F lanes share one score. Report the zero-update comparator again on the same untouched target suffix where a comparison requires it. Controlled abnormal exposure compares fixed abnormal and nominal replacements of the same slots. Seek a net improvement in absolute detection and measure false alarms, matched events, delay and sustained coverage. Sparse deviation estimates are statistical residuals. Their existence supplies no physical fault-channel labels. The prior PSM mixed CAL was entirely attack-labeled; NASA small-sample empirical q99 can equal the maximum. The actual use of each CAL governs what can be inferred about normal false alarms.
 
-## Fixed mixed-unlabeled target results
+## Archived fixed trajectory-subspace mixed-target results
 
 | Method | PSM AP | PSM ROC-AUC | PSM VUS-PR | PSM VUS-ROC | SWaT AP | SWaT ROC-AUC | SWaT VUS-PR | SWaT VUS-ROC |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
