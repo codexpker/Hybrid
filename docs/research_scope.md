@@ -1,5 +1,12 @@
 # 研究范围与原方案对应
 
+## 当前公开 TSAD 协议
+
+正式主线为公开多变量 TSAD 的多源预训练与目标域使用或适配。主稿先给出完整检测器的公开比较，再按 Z、U、F、自然混合与受控污染、核心机制和检测代价展开。[唯一工作骨架及本地主表](../manuscript/next_generation_20261115/draft.md) · [两阶段方法及数据角色](../manuscript/next_generation_20261115/method_definition.md) · [因果与逐种子补表](../manuscript/next_generation_20261115/README.md)。
+
+当前设计从多源正常轨迹学习分频段滞后子空间，在混合目标记录上交替估计正常轨迹、局部偏离和目标子空间。性能栏待验证。仅使用公开数据。SWaT 作为项目源排除目标时，新的两源折使用 TEP 正常训练与 SMD 正常训练。历史末点 V 折用过 SWaT 真实事件与 SMD 正常源，实测结论仍归其[冻结阶段稿](../manuscript/native_endpoint_v_research_20261126/manuscript.md)。下方日期条目为历史记录。
+
+
 ## 2026-11-22 公开 TSAD 方法论文归位
 
 以多源预训练和目标 Z／U／F 为同一方法的两阶段结构，研究公开多变量混合无标签数据的时频—时序异常表示、检测与污染鲁棒性。第一篇数据与标签不进入实验。Hybrid 是待验证的所提方法，TimeRadar、LEFT、TimesFM 和主流检测器保留外部身份。此前实证稿、四旋转、MeanT 及其他已停止配方维持归档状态。

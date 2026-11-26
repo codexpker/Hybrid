@@ -1,5 +1,8 @@
 # Hybrid TSAD 独立研究工程
 
+当前第二篇以多源预训练、目标使用或适配的公开多变量 TSAD 方法为研究对象。[公开基准主表](manuscript/next_generation_20261115/draft.md) · [当前方法设计](manuscript/next_generation_20261115/method_definition.md) · [研究协议](docs/research_scope.md)。末点 V 的训练及其结论保留在[冻结阶段稿](manuscript/native_endpoint_v_research_20261126/manuscript.md)。以下为历史进度。
+
+
 ## 2026-11-22 原生 LEFT 局部跨通道评分保持，源端前检完成
 
 冻结轨迹的正常源验证中，SWaT 515 个窗口均为近零，PSM 四块均值为负。两域均未达到正向对比支持条件。原生评分、状态恢复和实际 Adam 位移检查通过，未启动目标适配或 QUERY。英文方法草稿固定提交 `cf90902b78b31d5e7225cef913c4df312662c96a`。[结果及独立复算](docs/experiments/left_score_contrast_20261122/RESULTS.md)
@@ -83,7 +86,7 @@ Eight seed2025 native LEFT TT/R x B/C adaptations are complete, reusing A/noU/SS
 
 “冻结TimeRadar编码器＋目标域重构训练＋浅层跨变量适配”已完成评估，未建立广泛稳定增量，不再作为接近定型的论文主方法。停止追加聚合器、冻结策略、正则、蒸馏、评分组合和训练预算搜索。完整TimeRadar、LEFT、原三台SMD重复性正项、全部负项及原始代码/权重/分数/统计保持，不能把成熟基线或历史最好值记为Hybrid贡献。第二篇仍定位方法论文；后续方法决策与本分支明确分开，本次没有提出新候选或启动计算。
 
-[既有草稿中的结果与边界](manuscript/next_generation_20261115/draft.md#completed-adaptation-branch-evidence-17-november-2026)已同步。以下段落为历史阶段状态，不代表当前任务仍在运行或旧方案仍待扩展。
+[既有草稿中的结果与边界](manuscript/snapshots/before_endpoint_research_20261126/draft.md)已同步。以下段落为历史阶段状态，不代表当前任务仍在运行或旧方案仍待扩展。
 
 ## 2026-11-16 当前：固定选择性通道上下文适配实验
 
