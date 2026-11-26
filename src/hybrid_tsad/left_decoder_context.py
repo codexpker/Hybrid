@@ -20,7 +20,7 @@ def mismatch_context(context):
     return context.roll(context.shape[0]//2, dims=0)
 
 
-def model_class(native, arm, ema_selector=None):
+def model_class(native, arm, ema_selector=None, weighted_reductions=None):
     if arm not in (*ARMS, 'mismatched'):
         raise ValueError(arm)
     # Reorder only the deterministic association/read block to make its
@@ -41,6 +41,12 @@ def model_class(native, arm, ema_selector=None):
         marker = '            if good.any():'
         assert source.count(marker) == 1
         source = source.replace(marker, '            good = self._select_ema(good, err_b, ad_b, conf_t_b, conf_f_b, thr_err, thr_ad)\n' + marker)
+    if weighted_reductions is not None:
+        for arguments, grid in (("S_hat_from_X, S", False), ("X_hat_from_S, x_enc", True),
+                                ("X_hat_ms, X_hat_from_S.detach()", True)):
+            native_loss = f"F.smooth_l1_loss({arguments})"
+            assert source.count(native_loss) == 1
+            source = source.replace(native_loss, f"self._weighted_loss({arguments}, {grid})")
     namespace = dict(native._forward.__globals__)
     exec(compile(source, '<LEFT fixed decoder context>', 'exec'), namespace)
 
@@ -50,6 +56,9 @@ def model_class(native, arm, ema_selector=None):
 
         def __init__(self, config):
             super().__init__(config)
+            if weighted_reductions is not None:
+                self._weighted_loss = MethodType(weighted_reductions[0], self)
+                self._ms_weighted_smoothl1 = MethodType(weighted_reductions[1], self)
             if arm == 'mismatched':
                 self.context_audit = None
                 self.fit_singletons = 0

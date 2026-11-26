@@ -24,7 +24,7 @@ U_STEPS = 2000
 BATCH = 32
 
 
-def initialize(w, domain, ema_selector=None):
+def initialize(w, domain, ema_selector=None, weighted_reductions=None):
     random.seed(2025)
     np.random.seed(2025)
     torch.manual_seed(2025)
@@ -32,7 +32,8 @@ def initialize(w, domain, ema_selector=None):
     torch.set_num_threads(1)
     official, cfgs, _ = environment(w,domain)
     cfg = official.Configs(str(cfgs/domain/"model_configs_Left.json"))
-    model = model_class(official.Left,"native",ema_selector=ema_selector)(cfg).cuda()
+    model = model_class(official.Left,"native",ema_selector=ema_selector,
+                        weighted_reductions=weighted_reductions)(cfg).cuda()
     assert model.enc_in == WIDTH[domain] and model.seq_len == WINDOW
     return model
 

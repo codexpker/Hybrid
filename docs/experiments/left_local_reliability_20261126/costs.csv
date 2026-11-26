@@ -1,0 +1,27 @@
+domain,stage,seconds
+PSM,Frozen scoring and exposure ranks,6.631973807699978
+PSM,window_A training,73.21092677302659
+PSM,window_A readout,1.7808718518353999
+PSM,window_B training,71.47935874387622
+PSM,window_B readout,0.6788932732306421
+PSM,window_C training,71.0786194219254
+PSM,window_C readout,0.667990448884666
+PSM,local_A training,69.4391288231127
+PSM,local_A readout,0.6751058120280504
+PSM,local_B training,72.73702309513465
+PSM,local_B readout,0.6753527787514031
+PSM,local_C training,74.09560089372098
+PSM,local_C readout,0.665974996984005
+SWAT,Frozen scoring and exposure ranks,11.312175548635423
+SWAT,window_A training,77.89977220958099
+SWAT,window_A readout,4.573088623583317
+SWAT,window_B training,76.49280596803874
+SWAT,window_B readout,3.448231475893408
+SWAT,window_C training,79.74882721807808
+SWAT,window_C readout,3.419558445457369
+SWAT,local_A training,79.69857688667253
+SWAT,local_A readout,3.426344605628401
+SWAT,local_B training,77.78018592530861
+SWAT,local_B readout,3.415401177946478
+SWAT,local_C training,80.01566988788545
+SWAT,local_C readout,3.413323299959302
