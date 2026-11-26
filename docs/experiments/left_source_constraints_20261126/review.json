@@ -1,0 +1,68 @@
+{
+  "PSM/source_only": {
+    "points": 65088,
+    "AP": 0.5241327417831918,
+    "ROC": 0.729912283389212,
+    "threshold": 0.5890439748764038,
+    "CAL_attack": 512
+  },
+  "PSM/mean": {
+    "points": 65088,
+    "AP": 0.5917739671234311,
+    "ROC": 0.755485336984786,
+    "threshold": 0.5038159489631653,
+    "CAL_attack": 512,
+    "positive_enforced_raw_dots": 0,
+    "sampled_vectors": [
+      "delta_1.npz",
+      "delta_1000.npz",
+      "delta_2000.npz"
+    ]
+  },
+  "PSM/separate": {
+    "points": 65088,
+    "AP": 0.5922646941519378,
+    "ROC": 0.7556175277027364,
+    "threshold": 0.5041876435279846,
+    "CAL_attack": 512,
+    "positive_enforced_raw_dots": 0,
+    "sampled_vectors": [
+      "delta_1.npz",
+      "delta_1000.npz",
+      "delta_2000.npz"
+    ]
+  },
+  "SWAT/source_only": {
+    "points": 336321,
+    "AP": 0.7897186450213629,
+    "ROC": 0.8428889869879104,
+    "threshold": 0.2758130133152008,
+    "CAL_attack": 38
+  },
+  "SWAT/mean": {
+    "points": 336321,
+    "AP": 0.7860200057317189,
+    "ROC": 0.842002097975735,
+    "threshold": 0.2577274441719055,
+    "CAL_attack": 38,
+    "positive_enforced_raw_dots": 0,
+    "sampled_vectors": [
+      "delta_1.npz",
+      "delta_1000.npz",
+      "delta_2000.npz"
+    ]
+  },
+  "SWAT/separate": {
+    "points": 336321,
+    "AP": 0.7859286368624765,
+    "ROC": 0.8419141976777375,
+    "threshold": 0.25801894068717957,
+    "CAL_attack": 38,
+    "positive_enforced_raw_dots": 0,
+    "sampled_vectors": [
+      "delta_1.npz",
+      "delta_1000.npz",
+      "delta_2000.npz"
+    ]
+  }
+}

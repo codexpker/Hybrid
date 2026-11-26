@@ -1,0 +1,328 @@
+{
+  "PSM": {
+    "gate": {
+      "analytic_cases": 8,
+      "plain_loss": 0.7487598061561584,
+      "native_after": "7eba9e725c1285e59e8b039918734b529267444ce7ee0f51db4101c7e8526779",
+      "native_max_abs_difference": 2.4400651454925537e-07,
+      "reference_step": {
+        "loss": 0.7487598061561584,
+        "trigger": 0,
+        "proposed": 0.1978828343341518,
+        "actual": 0.1978828343341518,
+        "correction": 0.0,
+        "storage_error": 0.0,
+        "storage_nudges": 0,
+        "enforced_residual": -0.021868133149561524,
+        "tep_norm": 0.030096671631346068,
+        "tep_raw": -0.000658158022592907,
+        "tep_actual": -0.000658158022592907,
+        "tep_before": 1.4458273649215698,
+        "tep_after": 1.447218656539917,
+        "tep_change": 0.001391291618347168,
+        "smd_norm": 0.03956036170371156,
+        "smd_raw": -0.001017834420622293,
+        "smd_actual": -0.001017834420622293,
+        "smd_before": 0.5013310313224792,
+        "smd_after": 0.5028636455535889,
+        "smd_change": 0.0015326142311096191
+      }
+    },
+    "arms": {
+      "source_only": {
+        "domain": "PSM",
+        "arm": "source_only",
+        "updates": 2000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "1c42904f569060e40cb21f2589c1597a65993eddecad852bb2d82aeaf3ac46af",
+        "seconds": 77.37791602592915,
+        "peak_bytes": 463858688,
+        "device": "NVIDIA A40",
+        "target_windows": 0,
+        "windows_per_source": 32000,
+        "reference_windows_per_source": 0,
+        "step_log_sha256": "e4ec6e9fd80ba1e0b6eefd070b8d1c5b2a22cf191654488a9502172690a0eb3f",
+        "vectors": {},
+        "banks": [
+          {
+            "start": 18240,
+            "stop": 21888,
+            "points": 3648,
+            "role": "CAL",
+            "seconds": 1.2830369137227535,
+            "sha256": "a38b28940c4b8697187855f711eb10fafbf997115542167e9ab27b3ed2d85389",
+            "checkpoint_sha256": "1c42904f569060e40cb21f2589c1597a65993eddecad852bb2d82aeaf3ac46af",
+            "step": 6000
+          },
+          {
+            "start": 22656,
+            "stop": 87744,
+            "points": 65088,
+            "role": "QUERY",
+            "seconds": 0.4412822127342224,
+            "sha256": "fdf9e3f3ddfcc12299a72195f3d59d19061a7b3128b957e8f51797aac954f7de",
+            "checkpoint_sha256": "1c42904f569060e40cb21f2589c1597a65993eddecad852bb2d82aeaf3ac46af",
+            "step": 6000
+          }
+        ]
+      },
+      "mean": {
+        "domain": "PSM",
+        "arm": "mean",
+        "updates": 2000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "2d3a00db71a1f319ec34e429425a6c5a0515750a252f2f029cae3f462e508e00",
+        "seconds": 228.298301554285,
+        "peak_bytes": 482492928,
+        "device": "NVIDIA A40",
+        "target_windows": 32000,
+        "windows_per_source": 16000,
+        "reference_windows_per_source": 16000,
+        "step_log_sha256": "db189cb44757419355f944bf47f7290b204feadaf9fce870fb279ae9878577e6",
+        "vectors": {
+          "delta_1000.npz": "f4175486291b7151b0ab08093581b52601444f18422b1b5c92eb98fc9aad7844",
+          "delta_1.npz": "9c5898c0c041b5626f697356345b2bbc3a3fc4e2e9bf89b7a05e0b86129fef87",
+          "delta_2000.npz": "1c8a499d11f21df31e67d9c0b708975d612db89605dc8970460f54e1cd95f5e2"
+        },
+        "banks": [
+          {
+            "start": 18240,
+            "stop": 21888,
+            "points": 3648,
+            "role": "CAL",
+            "seconds": 0.28577735600993037,
+            "sha256": "2547a69812de9d77788902590e3f6645c3280de12437c58706c31ee96b6ebb51",
+            "checkpoint_sha256": "2d3a00db71a1f319ec34e429425a6c5a0515750a252f2f029cae3f462e508e00",
+            "step": 6000
+          },
+          {
+            "start": 22656,
+            "stop": 87744,
+            "points": 65088,
+            "role": "QUERY",
+            "seconds": 0.3954412639141083,
+            "sha256": "64c0a66a3cbc1d04b850961f0dd5521ea041d1b969e13502e738f2a2f6d14990",
+            "checkpoint_sha256": "2d3a00db71a1f319ec34e429425a6c5a0515750a252f2f029cae3f462e508e00",
+            "step": 6000
+          }
+        ]
+      },
+      "separate": {
+        "domain": "PSM",
+        "arm": "separate",
+        "updates": 2000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "9b8ce66573f78a86af6eee4b38d73a5db749ac0d00315f761e2ceca81952ce70",
+        "seconds": 228.38037601299584,
+        "peak_bytes": 518652928,
+        "device": "NVIDIA A40",
+        "target_windows": 32000,
+        "windows_per_source": 16000,
+        "reference_windows_per_source": 16000,
+        "step_log_sha256": "dddb34ff623d0fd35f6708e40f093614e99aebb5bc873d920037fee12d01dbce",
+        "vectors": {
+          "delta_1000.npz": "2b9b5332cca5ee40d89666c88e3b16f9d5ea7000155bf894326c1c519b49a148",
+          "delta_1.npz": "ea8dcb71aa294aa2cccce18942033f451050568cb127a92077f1059a4acef475",
+          "delta_2000.npz": "ac3b193adc6048d7c5836a09d5fe81c8f6e28e41e6a38dd12ed3cd2265779d1b"
+        },
+        "banks": [
+          {
+            "start": 18240,
+            "stop": 21888,
+            "points": 3648,
+            "role": "CAL",
+            "seconds": 0.2744429507292807,
+            "sha256": "ae1bfaef2d8b341edacd406e9e81bc1917ff5fd5bc80bf5c570d7541bf9c9673",
+            "checkpoint_sha256": "9b8ce66573f78a86af6eee4b38d73a5db749ac0d00315f761e2ceca81952ce70",
+            "step": 6000
+          },
+          {
+            "start": 22656,
+            "stop": 87744,
+            "points": 65088,
+            "role": "QUERY",
+            "seconds": 0.3877755180001259,
+            "sha256": "e45a5a564f643e28276849d958cd28da613ffa2b30745b30d0797968b4b21ea9",
+            "checkpoint_sha256": "9b8ce66573f78a86af6eee4b38d73a5db749ac0d00315f761e2ceca81952ce70",
+            "step": 6000
+          }
+        ]
+      }
+    },
+    "evaluation": {
+      "wall_seconds": 20.0,
+      "user_cpu_seconds": 45.27,
+      "system_cpu_seconds": 1.79,
+      "peak_RSS_KiB": 1722028
+    }
+  },
+  "SWAT": {
+    "gate": {
+      "analytic_cases": 8,
+      "plain_loss": 0.2547253370285034,
+      "native_after": "1b5d69acf4ce881130f72c99df64f540f0351af1f5f4900bd91fff2524f9d45e",
+      "native_max_abs_difference": 7.990747690200806e-07,
+      "reference_step": {
+        "loss": 0.2547253370285034,
+        "trigger": 0,
+        "proposed": 0.17079284697640018,
+        "actual": 0.17079284697640018,
+        "correction": 0.0,
+        "storage_error": 0.0,
+        "storage_nudges": 0,
+        "enforced_residual": -0.006199004002139404,
+        "tep_norm": 0.024320201025117637,
+        "tep_raw": -0.00015076102348753908,
+        "tep_actual": -0.00015076102348753908,
+        "tep_before": 0.5311465859413147,
+        "tep_after": 0.5329046845436096,
+        "tep_change": 0.0017580986022949219,
+        "smd_norm": 0.032658230161315235,
+        "smd_raw": -0.0009592067688954445,
+        "smd_actual": -0.0009592067688954445,
+        "smd_before": 0.27796798944473267,
+        "smd_after": 0.27926793694496155,
+        "smd_change": 0.0012999475002288818
+      }
+    },
+    "arms": {
+      "source_only": {
+        "domain": "SWAT",
+        "arm": "source_only",
+        "updates": 2000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "c2339024655b280b9c670a5a0bb4a781f9c7fc9b410fb9f9dff152b993fdf275",
+        "seconds": 79.58525533415377,
+        "peak_bytes": 453297152,
+        "device": "NVIDIA A40",
+        "target_windows": 0,
+        "windows_per_source": 32000,
+        "reference_windows_per_source": 0,
+        "step_log_sha256": "d705e8ffa59b1c3385e3b17da6bd342b95b9c70eb6ab6ebca0d7496cf4872539",
+        "vectors": {},
+        "banks": [
+          {
+            "start": 585624,
+            "stop": 607320,
+            "points": 21696,
+            "role": "CAL",
+            "seconds": 2.373596335761249,
+            "sha256": "ae68b0a48b84c74f8d42402eaa7912a39fd7752bdbc4e0571c30497ac7ca144b",
+            "checkpoint_sha256": "c2339024655b280b9c670a5a0bb4a781f9c7fc9b410fb9f9dff152b993fdf275",
+            "step": 6000
+          },
+          {
+            "start": 608088,
+            "stop": 944856,
+            "points": 336768,
+            "role": "QUERY",
+            "seconds": 2.0493688490241766,
+            "sha256": "a1b0379f6f8dc3ab8e3b913fec8af1eaefd9e9fb5b0fec3f0cf337f62bff9382",
+            "checkpoint_sha256": "c2339024655b280b9c670a5a0bb4a781f9c7fc9b410fb9f9dff152b993fdf275",
+            "step": 6000
+          }
+        ]
+      },
+      "mean": {
+        "domain": "SWAT",
+        "arm": "mean",
+        "updates": 2000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "2c32c3ff9361a76cdd002ffba50388c8b9ec240ec2e05652d404d597970a2df1",
+        "seconds": 230.54473035875708,
+        "peak_bytes": 452246016,
+        "device": "NVIDIA A40",
+        "target_windows": 32000,
+        "windows_per_source": 16000,
+        "reference_windows_per_source": 16000,
+        "step_log_sha256": "014bf0572f56842f01fc3d3e4c063bd5d31cf4ce685d55cee2c6a7c2cd53d0d9",
+        "vectors": {
+          "delta_1000.npz": "274e7726f3543bbd7ffe7571f6a12701d11817dedf34f7d66f256168b41d37e8",
+          "delta_1.npz": "a200645fde11e9a112319bd359ad8bd948987b12518562c94729634ca6bb3ebd",
+          "delta_2000.npz": "3d4851d5b7c4add0e3c7a5f5e0475ffe0783c74981c059b1279848311498e725"
+        },
+        "banks": [
+          {
+            "start": 585624,
+            "stop": 607320,
+            "points": 21696,
+            "role": "CAL",
+            "seconds": 1.345896559767425,
+            "sha256": "72cbf9c4c0a03ec4f60a18512120f3d604f0458ab6562d5e6a94f5826748a9a7",
+            "checkpoint_sha256": "2c32c3ff9361a76cdd002ffba50388c8b9ec240ec2e05652d404d597970a2df1",
+            "step": 6000
+          },
+          {
+            "start": 608088,
+            "stop": 944856,
+            "points": 336768,
+            "role": "QUERY",
+            "seconds": 2.0183407217264175,
+            "sha256": "e6f53228b56039028cfbd63ffeac18f7341e51b6c95a5668b907255dae3966b9",
+            "checkpoint_sha256": "2c32c3ff9361a76cdd002ffba50388c8b9ec240ec2e05652d404d597970a2df1",
+            "step": 6000
+          }
+        ]
+      },
+      "separate": {
+        "domain": "SWAT",
+        "arm": "separate",
+        "updates": 2000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "seed": 2025,
+        "step": 6000,
+        "sha256": "d7d901e1e5c7fa8e2eda1ee00de4152a697abd3e068daab974af489cd525a44d",
+        "seconds": 226.84636424202472,
+        "peak_bytes": 452246016,
+        "device": "NVIDIA A40",
+        "target_windows": 32000,
+        "windows_per_source": 16000,
+        "reference_windows_per_source": 16000,
+        "step_log_sha256": "cb5c95e4dbff8b021382e4cba4472102dd3479a9b12677bf855cfa760700f829",
+        "vectors": {
+          "delta_1000.npz": "7446a72602504f37d5d5b5d83b1081bd2543e7f52a80f2c12ce3ecd5801e927d",
+          "delta_1.npz": "2a03fbaa82eeeeede125a6fe6060250a1c7bc0f056d55713eb12b55b004e741a",
+          "delta_2000.npz": "d41723bb3765a8b8a68a35237753c9d356a694f818d5dac80d002c05e7f32576"
+        },
+        "banks": [
+          {
+            "start": 585624,
+            "stop": 607320,
+            "points": 21696,
+            "role": "CAL",
+            "seconds": 1.3500818870961666,
+            "sha256": "66f2ec2faeab8a0b9ba5dca4f02a81293db1c987ad631938a96ad3b0cba265d8",
+            "checkpoint_sha256": "d7d901e1e5c7fa8e2eda1ee00de4152a697abd3e068daab974af489cd525a44d",
+            "step": 6000
+          },
+          {
+            "start": 608088,
+            "stop": 944856,
+            "points": 336768,
+            "role": "QUERY",
+            "seconds": 2.0169704277068377,
+            "sha256": "d4193da3b1df00faff6d20ae6d589b6b49edad7a59e889b340837e81a7b88029",
+            "checkpoint_sha256": "d7d901e1e5c7fa8e2eda1ee00de4152a697abd3e068daab974af489cd525a44d",
+            "step": 6000
+          }
+        ]
+      }
+    },
+    "evaluation": {
+      "wall_seconds": 34.59,
+      "user_cpu_seconds": 70.11,
+      "system_cpu_seconds": 3.28,
+      "peak_RSS_KiB": 1772896
+    }
+  }
+}
