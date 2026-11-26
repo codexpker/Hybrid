@@ -58,57 +58,67 @@ def paired_tables():
 
 def main_tables(frame):
     offline=frame[frame.panel=="common_offline"]
-    labels=[("official_V","Frozen TimeRadar V"),("official_E","Frozen TimeRadar E"),
-            ("official_V_plus_E","Frozen fixed V + E"),("Source reconstruction continuation","Source reconstruction (3 seeds)"),
-            ("Source-supervised endpoint V","Direct V (3 seeds)"),("Complete LEFT","Complete LEFT (1 seed)"),
-            ("DADA official V","Complete DADA"),
-            ("TimeRCD official weights, FIT-only adapter","TimeRCD, FIT-only"),
-            ("CATCH W192 seed0","CATCH seed0"),("CATCH W192 seed1","CATCH seed1"),
-            ("CATCH W192 seed2","CATCH seed2"),("PCA residual","PCA")]
-    panels=[]
-    for metrics in (M[:2],M[2:]):
+    c=offline[offline.method.str.startswith("CATCH W192 seed")]
+    assert len(c)==3 and c.domain.eq("PSM").all()
+    pd.DataFrame([dict(domain="PSM",metric=k,n=3,mean=float(c[k].mean()),
+        sample_sd=float(c[k].std(ddof=1))) for k in M]).to_csv(ROOT/"catch_seed_summary.csv",index=False)
+    labels=[("official_V","Frozen V [P]"),("official_E","Frozen E [P]"),
+        ("official_V_plus_E","Fixed V+E [P]"),("Source reconstruction continuation","Reconstruction [S]"),
+        ("Source-supervised endpoint V","Direct V [S]"),("Complete LEFT","LEFT [L]"),
+        ("DADA official V","DADA [D]"),("TimeRCD official weights, FIT-only adapter","TimeRCD [R]"),
+        ("CATCH","CATCH [C]"),("PCA residual","PCA [Q]")]
+    blocks=[]
+    catch=[]
+    for domain in D:
         rows=[]
-        for method,name in labels:
-            values=[]
-            for domain in D:
-                a=offline[(offline.domain==domain)&(offline.method==method)]
-                values.append("NA" if a.empty else " / ".join(
-                    f"{a[k].mean():.4f}"+(f" ± {a[k].std(ddof=1):.4f}" if len(a)==3 else "") for k in metrics))
-            rows.append([name,*values])
-        panels.append(md(["Method","PSM","SMD28","MSL27","SMAP53"],rows))
+        for key,label in labels:
+            a=offline[(offline.domain==domain)&
+                (offline.method.str.startswith("CATCH W192 seed") if key=="CATCH" else offline.method.eq(key))]
+            if a.empty:
+                continue
+            if key=="CATCH":
+                assert len(a)==3
+                for _,r in a.iterrows():
+                    catch.append([domain,r.method,*[f"{r[k]:.6f}" for k in M]])
+            rows.append([label,*[f"{a[k].mean():.4f}"+(f" ± {a[k].std(ddof=1):.4f}" if len(a)==3 else "") for k in M]])
+        title=domain+(" — single sensor per entity" if domain in ("MSL","SMAP") else "")
+        blocks.append("\\Needspace{16\\baselineskip}\n\n**"+title+"**\n\n"+md(["Method / permission",*M],rows))
     aux=frame[frame.panel=="causal_history"]
     rows=[]
     for method in ["Source-supervised endpoint V","History Mean512","PCA residual"]:
         a=aux[(aux.method==method)&aux.seed.isin([0,2025])]
         for _,r in a.iterrows():
             rows.append([r.domain,method,*[f"{r[k]:.5f}" for k in M]])
-    return *panels,md(["Domain","Method",*M],rows)
+    return "\n\n".join(blocks),md(["Domain","Method",*M],rows),md(["Domain","CATCH seed",*M],catch)
 
 
 def ablation():
     f=csv("native_supervised_mlp_20261123/methods.csv")
     cross=csv("native_e_vs_v_20261123/methods.csv")
-    f=pd.concat([f,cross[cross.method.isin(["Vtrain_E","Etrain_V"])]],ignore_index=True)
-    rows=[]
-    for key,label in [("copy_V","Normal reconstruction / V"),("Vtrain_V","Direct V / V"),
-                      ("Etrain_E","Direct E / E"),("MLP_full","Frozen features + supervised MLP"),
-                      ("Vtrain_E","V-trained / E (auxiliary)"),("Etrain_V","E-trained / V (auxiliary)")]:
-        a=f[f.method==key].set_index("dataset")
-        rows.append([label,*[" / ".join(f"{a.loc[d,k]:.4f}" for k in M) for d in D]])
-    return md(["Training / formal readout (seed2025)","PSM","SMD28","MSL27","SMAP53"],rows)
+    formal=[];aux=[]
+    names=[("copy_V","Reconstruction / V"),("Vtrain_V","Direct V / V"),
+           ("Etrain_E","Direct E / E"),("MLP_full","Supervised MLP / logit")]
+    for d in D:
+        for key,label in names:
+            r=f[(f.dataset==d)&(f.method==key)].iloc[0]
+            formal.append([d,label,*[f"{r[k]:.4f}" for k in M]])
+        for key,label in [("Vtrain_E","V-trained / E"),("Etrain_V","E-trained / V")]:
+            r=cross[(cross.dataset==d)&(cross.method==key)].iloc[0]
+            aux.append([d,label,*[f"{r[k]:.4f}" for k in M]])
+    return md(["Domain","Learning / readout",*M],formal),md(["Domain","Auxiliary readout",*M],aux)
 
 
 def boundaries():
     rows=[]
     for path,method,ref,label in [
-        ("native_tep_support_20261125/paired_distribution.csv",None,"single_V","Expanded support V − matched single-source V"),
-        ("native_source_full_20261125/paired_distribution.csv","Full V supervision / V","Source-supervised endpoint V","Full update V − decoder-only V")]:
-        f=csv(path)
-        f=f[(f.panel=="causal")&(f.reference==ref)]
+        ("native_tep_support_20261125/paired_distribution.csv",None,"single_V","Expanded source V − matched V"),
+        ("native_source_full_20261125/paired_distribution.csv","Full V supervision / V","Source-supervised endpoint V","Full update V − decoder V")]:
+        f=csv(path);f=f[(f.panel=="causal")&(f.reference==ref)]
         if method:f=f[f.method==method]
         a=f.set_index(["domain","metric"])
-        rows.append([label,*[" / ".join(f"{a.loc[(d,k),'mean']:+.4f}" for k in M) for d in D]])
-    return md(["Boundary comparison (AP / ROC / VUS-PR / VUS-ROC)","PSM","SMD28","MSL27","SMAP53"],rows)
+        for d in D:
+            rows.append([d,label,*[f"{a.loc[(d,k),'mean']:+.4f}" for k in M]])
+    return md(["Domain","Fixed boundary contrast",*M],rows)
 
 
 def operations():
@@ -224,25 +234,26 @@ def build():
         if target.exists():assert target.read_bytes()==source.read_bytes()
         else:shutil.copy2(source,target)
     frame,repeat,paired,seeds=paired_tables()
-    ap,vu,history=main_tables(frame)
+    main,history,catch=main_tables(frame)
+    abl,aux=ablation()
     u,f=extensions()
-    values={"MAIN_AP":ap,"MAIN_VUS":vu,"REPEATS":repeat,"PAIRED":paired,"SEEDS":seeds,
-            "ABLATION":ablation(),"BOUNDARIES":boundaries(),"OPERATIONS":operations(),"ENTITIES":entities(),
+    values={"MAIN_TABLE":main,"CATCH_SEEDS":catch,"CROSS_READOUT":aux,"REPEATS":repeat,"PAIRED":paired,"SEEDS":seeds,
+            "ABLATION":abl,"BOUNDARIES":boundaries(),"OPERATIONS":operations(),"ENTITIES":entities(),
             "U":u,"F":f,"HISTORY":history,"SELECTION":selections()}
     for template,output in (("main.template.md","manuscript.md"),("supplement.template.md","supplement.md")):
         text=(ROOT/template).read_text(encoding="utf8")
-        text=re.sub(r"(?<=[a-z])(?=\d)"," ",text)
-        text=re.sub(r"@([A-Za-z]+) (?=\d)",r"@\1",text)
-        text=re.sub(r"(?<=[A-Za-z]),(?=\d)",", ",text)
+        original=text
         for key,value in values.items():text=text.replace("{{"+key+"}}",value)
         assert not re.search(r"\{\{[A-Z_]+\}\}",text)
+        validate_literals(original,text)
         (ROOT/output).write_text(text,encoding="utf8")
     usedbib=(REPO/"manuscript/next_generation_20261115/references.bib").read_text()
     keys=["timeradar2026","left2026","catch2025","shentu2025dada","lan2026timercd"]
     entries=[re.search(r"@[^@]+\{"+k+r",.*?(?=\n@|\Z)",usedbib,re.S).group().strip() for k in keys]
     extra=(ROOT/"additional_references.bib").read_text()
     (ROOT/"references.bib").write_text("\n\n".join(entries)+"\n\n"+extra,encoding="utf8")
-    diagram()
+    if not all((ROOT/"figures"/f"method.{ext}").is_file() for ext in ("pdf","png")):
+        diagram()
     provenance=["native_event_rank_20261122/PROVENANCE.json",
         "native_event_rank_repeats_20261122/source/source_provenance.json",
         "native_endpoint_external_20261125/AXES_AND_INPUTS.json",
@@ -251,9 +262,39 @@ def build():
     lineage={name:hashlib.sha256((DOC/name).read_bytes()).hexdigest() for name in provenance}
     (ROOT/"evidence_sources.json").write_text(json.dumps(dict(metric_files_sha256=USED,
         provenance_files_sha256=lineage,
-        source_git="d92740aec208017b56723055f365318f19159f48",
+        source_git="c8fe247dac0c3700e28e3bae0e9588b43c196572",
         snapshots=str(snapshot.relative_to(REPO)),statistics="Entity-first original exports; seed sample SD ddof=1",
         experiment_execution=False),indent=2),encoding="utf8")
+    validate_outputs()
+
+
+def validate_literals(template, rendered):
+    """Only named table placeholders may be substituted into the template."""
+    patterns=(r"\x60[^\x60\n]+\x60", r"\]\(([^)]+)\)", r"@[A-Za-z][A-Za-z0-9_]*",
+              r"(?<![a-f0-9])[a-f0-9]{64}(?![a-f0-9])")
+    for pattern in patterns:
+        for value in re.findall(pattern,template):
+            assert value in rendered, f"Protected literal altered: {value}"
+
+
+def validate_outputs():
+    links=0
+    for name in ("manuscript.md","supplement.md"):
+        text=(ROOT/name).read_text(encoding="utf8")
+        for target in re.findall(r"\]\(([^)]+)\)",text):
+            if "://" in target or target.startswith("#"):
+                continue
+            assert (ROOT/target.split("#",1)[0]).is_file(), f"Missing evidence: {target}"
+            links+=1
+        for path in re.findall(r"src/hybrid_tsad/[A-Za-z0-9_]+\.py",text):
+            assert (REPO/path).is_file(), f"Altered implementation path: {path}"
+    evidence=json.loads((ROOT/"evidence_sources.json").read_text(encoding="utf8"))
+    for group in ("metric_files_sha256","provenance_files_sha256"):
+        for name,digest in evidence[group].items():
+            assert hashlib.sha256((DOC/name).read_bytes()).hexdigest()==digest
+    (ROOT/"DOCUMENT_CHECKS.json").write_text(json.dumps(dict(relative_links_checked=links,
+        protected_literals_preserved=True,archived_source_hashes_valid=True,
+        substitutions="Named table placeholders only",experiment_execution=False),indent=2),encoding="utf8")
 
 
 if __name__=="__main__":

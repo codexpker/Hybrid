@@ -1,6 +1,5 @@
 ---
 title: "Direct Source Supervision of Native Reconstruction Disagreement for Time-Series Anomaly Detection"
-subtitle: "Research manuscript for assessment of methodological contribution"
 date: "26 November 2026"
 lang: en
 bibliography: references.bib
@@ -8,13 +7,14 @@ geometry: margin=22mm
 fontsize: 10pt
 header-includes:
   - \usepackage{etoolbox}
+  - \usepackage{needspace}
   - \AtBeginEnvironment{longtable}{\footnotesize}
   - \setlength{\tabcolsep}{4pt}
 ---
 
 # Abstract
 
-A pretrained reconstruction detector may deploy disagreement among masked reconstructions even when subsequent learning primarily rewards reconstruction accuracy. We investigate direct supervision of that deployed statistic. Starting from official TimeRadar weights, we freeze the fractional representation and encoder and update only the native decoder. Nominal source windows retain the per-copy reconstruction objective. Publicly labeled abnormal and normal windows supply a point-count-weighted pairwise loss on log-scaled endpoint variance. Detection uses the same native variance with no additional head or target parameter update. Three project-training seeds yield mean average-precision gains over matched reconstruction continuation of 0.03433 on PSM, 0.01128 on MSL and 0.01665 on SMAP, while SMD decreases by 0.00946. These seeds share one official initialization. Same-label reconstruction-error and supervised-head comparisons support task-dependent value for direct variance learning, with stronger reconstruction-error performance on NASA and substantial gaps to complete target-trained LEFT. Source-support expansion and full updates fail to broaden competitiveness under the tested protocols. Operational results expose false-alarm, event-discovery and coverage tradeoffs. The evidence supports a narrowly defined source-supervised learning procedure and identifies limits to its transfer.
+A pretrained reconstruction detector may deploy disagreement among masked reconstructions even when subsequent learning primarily rewards reconstruction accuracy. We investigate direct supervision of that deployed statistic. Starting from official TimeRadar weights, we freeze the fractional representation and encoder and update only the native decoder. Nominal source windows retain the per-copy reconstruction objective. Publicly labeled abnormal and normal windows supply a point-count-weighted pairwise loss on log-scaled endpoint variance. Detection uses the same native variance with no additional head or target parameter update. The reconstruction control shares the backbone, nominal sampling plan, update cap and source-selection program. Supervised exposure and selected steps differ. Across three project-training seeds sharing one official initialization, direct V improves mean AP over that control by 0.03433 on PSM, 0.01128 on MSL and 0.01665 on SMAP, while SMD decreases by 0.00946. Same-label reconstruction-error and supervised-head comparisons support task-dependent value for direct variance learning, with stronger reconstruction-error performance on NASA and substantial gaps to complete target-trained LEFT. Source-support expansion and full updates fail to broaden competitiveness under the tested protocols. Operational results expose false-alarm, event-discovery and coverage tradeoffs. The evidence supports a narrowly defined source-supervised learning procedure and identifies limits to its transfer.
 
 # 1 Introduction
 
@@ -28,10 +28,9 @@ The technical question concerns the object being supervised. Pairwise ranking, s
 
 Three questions organize the study. Does direct endpoint-variance supervision improve on frozen detection and source reconstruction continuation under the same readout? How does the complete procedure compare with reconstruction-error supervision, a standard supervised head and mature external detectors? How stable are its gains across source-training seeds, tasks and operating criteria?
 
-The proposed contribution is the specification and implementation of source-event supervision on native deployed endpoint disagreement, with source-only checkpoint selection. The experimental contribution is a matched three-seed evaluation and a set of same-label and complete-method comparisons that locate the benefit and its boundaries. These contributions concern a concrete learning procedure and its observed transfer. Their significance is limited by inherited components and by the evidence's scope.
+We make three contributions. First, we define a decoder-only learning procedure that applies real source-event ranking supervision directly to the native disagreement deployed by a pretrained detector, while retaining nominal per-copy reconstruction. Second, we quantify its transfer effects using three paired source-training seeds, alternative supervised readouts and complete external detectors. Third, we characterize the scope of those effects through entity distributions, operational costs and fixed support/scope extensions. The formulation reuses established representations and ranking tools.
 
-The positive evidence consists of repeated average ranking gains on PSM and two NASA tasks relative to the original reconstruction controls. Important limitations remain. PSM informed development, SMD contributed nominal source data, and NASA uses one sensor per entity. SMAP precision–recall gains coexist with ROC costs. Complete LEFT is stronger across most external comparisons. Completed mixed-update and single-event-support experiments do not establish reliable additional benefit.
-
+Direct V improves mean AP over reconstruction continuation on PSM, MSL and SMAP at all three project seeds. SMD loses AP and VUS, SMAP retains ROC costs, and complete LEFT is stronger across most external comparisons. PSM informed development, SMD nominal records were source-visible, and NASA uses single-sensor inputs. Completed mixed-update and single-event-support extensions do not establish stable net gains.
 # 2 Related Work
 
 ## 2.1 Pretrained detection and native disagreement
@@ -76,7 +75,7 @@ H^{(m)}(X;\theta_0,\mathcal M_C),\qquad
 \widehat X_\psi^{(m)}
 =\left|\operatorname{iFRFT}_{\alpha_{\theta_0}(X)}
 \!\left(D_\psi(H^{(m)})\right)\right|,
-\quad m=1,\ldots, 10.
+\quad m=1,\ldots,10.
 \]
 The fixed parameters \(\theta_0\) include the order network, real/imaginary input mappings and encoder. \(D_\psi\) is the original complex decoder. The order is computed independently for each B=1 window using its variables according to the native rule. Official fractional transforms and variable ordering are retained.
 
@@ -88,14 +87,14 @@ The mask bank \(\mathcal M_C\) contains five fixed random patch masks and their 
 
 Define the copy mean
 \[
-\overline x_{\psi,j,c}=\frac 1{10}\sum_{m=1}^{10}\widehat X_{\psi,j,c}^{(m)}.
+\overline x_{\psi,j,c}=\frac1{10}\sum_{m=1}^{10}\widehat X_{\psi,j,c}^{(m)}.
 \]
 The deployment statistic is
 \[
-V_\psi(X)=\frac 1C\sum_{c=1}^{C}\frac 1{9}
+V_\psi(X)=\frac1C\sum_{c=1}^{C}\frac1{9}
 \sum_{m=1}^{10}
-\left(\widehat X_{\psi, 99,c}^{(m)}
--\overline x_{\psi, 99,c}\right)^2.
+\left(\widehat X_{\psi,99,c}^{(m)}
+-\overline x_{\psi,99,c}\right)^2.
 \tag{1}
 \]
 This uses correction 1 and the channel mean. Ten copies and position 99 are identical in the training pairs and deployment.
@@ -103,8 +102,8 @@ This uses correction 1 and the channel mean. Ten copies and position 99 are iden
 Nominal windows retain the complete per-copy objective
 \[
 \mathcal L_{\rm copy}=
-\frac 1{|\mathcal B_N|}\sum_{X\in\mathcal B_N}
-\frac 1{10\cdot 100\cdot C_X}
+\frac1{|\mathcal B_N|}\sum_{X\in\mathcal B_N}
+\frac1{10\cdot100\cdot C_X}
 \sum_{m,j,c}
 \left(\widehat X_{\psi,j,c}^{(m)}-X_{j,c}\right)^2.
 \tag{2}
@@ -116,6 +115,21 @@ This loss decomposes exactly into
 \mathcal L_{\rm copy}(X)=E_{\rm full}(X)+0.9V_{\rm full}(X),
 \]
 where both terms average all positions and channels, and the variance uses correction 1. Nominal reconstruction therefore already penalizes disagreement on nominal windows. It supplies no direct ordering constraint between labeled abnormal and normal endpoints. That distinction motivates supervision, without identifying a unique cause of historical failures.
+
+### Output gradients of error and disagreement
+
+At one position and channel, write the ten reconstructed values as \(r_1,\ldots,r_M\), their mean as \(\mu\), and the observed value as \(y\), with \(M=10\). Define \(E=(\mu-y)^2\) and \(V=(M-1)^{-1}\sum_m(r_m-\mu)^2\). Then
+\[
+\frac1M\sum_m(r_m-y)^2=E+\frac{M-1}{M}V,
+\qquad
+\frac{\partial E}{\partial r_m}=\frac{2(\mu-y)}{M},
+\qquad
+\frac{\partial V}{\partial r_m}=\frac{2(r_m-\mu)}{M-1}.
+\tag{2a}
+\]
+The E gradient is the same for every copy. It changes their common reconstruction level. The V gradient is centered, with \(\sum_m\partial V/\partial r_m=0\), and changes deviations around the copy mean. These two output-gradient vectors are orthogonal. The nominal copy-loss gradient combines them as \(2(r_m-y)/M\), reducing both mean error and spread on nominal inputs.
+
+A pair loss on V therefore acts directly on copy spread at the supervised endpoint. An otherwise identical pair loss on E acts through the common mean residual. This is an output-space distinction. If \(J_\psi\) is the Jacobian of all reconstructed outputs with respect to the shared decoder parameters, the corresponding parameter gradients are \(J_\psi^\top\nabla_r E\) and \(J_\psi^\top\nabla_r V\). Their interaction depends on \(J_\psi J_\psi^\top\), so output orthogonality does not imply decoupled parameter updates. A shared decoder can change other positions, variables and windows. Transfer of the induced source ordering remains an empirical question.
 
 ## 4.3 Weighted endpoint pair learning
 
@@ -138,7 +152,7 @@ The supervised and total losses are
 \mathcal L=\mathcal L_{\rm copy}+\mathcal L_{\rm pair}.
 \tag{4}
 \]
-Margin and pair coefficient are both 1. The weights describe window-sampling strata. Overlapping windows do not become independent events or uniformly supervised original timepoints.
+Margin and pair coefficient are both 1. Under the stated uniform draws within each stratum and normal pool, Equation 3 estimates the empirical risk that weights each legal positive endpoint equally and averages its pairing over the legal normal pool. Strata with more eligible endpoints receive proportionally more mass despite one draw per stratum per update. Overlapping endpoints remain dependent, and the rule does not uniformly weight original anomalous timepoints by repeated window inclusion. Point-count weighting specifies this empirical sampling risk. The present study does not establish it as an independent methodological innovation.
 
 For \(u=1-g(P)+g(N)\),
 \[
@@ -154,16 +168,16 @@ Updating only \(\psi\) preserves upstream parameters while permitting the decode
 
 ## 4.4 Source selection and implementation
 
-The five fitting events yield 15 strata. Each update uses 32 nominal windows, 16 SWaT and 16 SMD, plus 15 positive and 15 paired-normal windows. SMD first samples a machine uniformly, then a legal endpoint. Independent native B=1 forwards accumulate decoder gradients before one optimizer step.
+The five fitting events yield 15 strata. Each update uses 32 nominal windows,16 SWaT and 16 SMD, plus 15 positive and 15 paired-normal windows. SMD first samples a machine uniformly, then a legal endpoint. Independent native B=1 forwards accumulate decoder gradients before one optimizer step.
 
-Fresh AdamW uses learning rate \(10^{-4}\), betas \((0.9,0.95)\), epsilon \(10^{-8}\), weight decay 0.1 excluding bias and LayerNorm parameters, and 24-step linear warmup. The cap is 240 updates. At updates \(0,40,\ldots, 240\), source selection evaluates 16 fixed pairs per validation event/stratum. Risk averages pairs within each stratum, then equally over four events and three strata. The earliest minimum wins. Training is point-count weighted and selection is event/stratum balanced. The reconstruction control uses this same label-assisted selection. Selected steps and exposures differ across methods.
+Fresh AdamW uses learning rate \(10^{-4}\), betas \((0.9,0.95)\), epsilon \(10^{-8}\), weight decay 0.1 excluding bias and LayerNorm parameters, and 24-step linear warmup. The cap is 240 updates. At updates \(0,40,\ldots,240\), source selection evaluates 16 fixed pairs per validation event/stratum. Risk averages pairs within each stratum, then equally over four events and three strata. The earliest minimum wins. Training is point-count weighted and selection is event/stratum balanced. The reconstruction control uses this same label-assisted selection. Selected steps and exposures differ across methods.
 
 **Algorithm 1. Direct source supervision of native endpoint V**
 
 ~~~text
-Inputs: official parameters (theta 0, psi 0), fixed source roles,
+Inputs: official parameters (theta0, psi0), fixed source roles,
         seed-specific window plan, mask bank M_C, source scale a
-Freeze theta <- theta 0; set trainable psi <- psi 0
+Freeze theta <- theta0; set trainable psi <- psi0
 Keep the complete model in eval mode; create fresh decoder AdamW
 best_risk <- infinity
 For q = 0,...,240
@@ -193,22 +207,25 @@ The implementation is in native_event_rank.py, native_event_rank_training.py and
 
 ## 5.1 Public data and axes
 
-PSM uses 25 channels and SMD all 28 machines with 38 channels. NASA uses sensor column 0 for 27 MSL and 53 admitted SMAP entities. The archived admission rule excludes SMAP P-2 because of a pre-existing label/record conflict. The rule predates these comparisons. Complete causal axes are \([99,N)\) within records, totaling 87,742 PSM, 705,648 SMD, 71,056 MSL and 422,370 SMAP points. Entities are never concatenated into a continuous record.
+PSM originates in the RANSynCoders data release [@psmdata], SMD in the OmniAnomaly repository [@smddata], and MSL/SMAP in the spacecraft telemetry benchmark and Telemanom release [@hundman2018spacecraft; @telemanomdata]. SWaT source events come from the public process-data resource maintained by iTrust [@swatdata]. These citations identify data origins. The arrays, index mappings and admitted entity sets used here are the archived project versions described below and fingerprinted in Supplement S1.
+
+
+PSM uses 25 channels and SMD all 28 machines with 38 channels. NASA uses sensor column 0 for 27 MSL and 53 admitted SMAP entities. The archived admission rule excludes SMAP P-2 because of a pre-existing label/record conflict. The rule predates these comparisons. Complete causal axes are \([99,N)\) within records, totaling 87,742 PSM,705,648 SMD,71,056 MSL and 422,370 SMAP points. Entities are never concatenated into a continuous record.
 
 Nominal SWaT FIT is \([0,396000)\). The authorized labeled slice \([495000,585000)\) splits at 502578, in a normal inter-event gap. Five fitting events provide 1,857 legal positive endpoints and 4,632 legal normal endpoints. Four selection events provide 2,439 positive and 79,092 normal endpoints. SWaT is excluded as a target for this fold. SMD nominal training-side FIT supplies reconstruction windows.
 
 PSM is exposed development data. SMD evaluates held-out tests of nominal-source-visible devices. NASA supplies different public tasks with single-sensor inputs. These permissions differ from fully unseen-domain testing. Target FIT scalers are retained from the archived protocol.
 
-The external common axis starts at 99 and ends at each entity's last point jointly scored by LEFT and DADA. Totals are 87,645 PSM, 702,996 SMD, 69,495 MSL and 417,265 SMAP points. Our causal values are restricted to those indices without changing their scores. LEFT uses W96 on MSL and W192 elsewhere, DADA W100, and TimeRCD blocks up to 5000 points. Their interior scores retain later availability. A separate history-baseline panel appears in the supplement.
+The external common axis starts at 99 and ends at each entity's last point jointly scored by LEFT and DADA. Totals are 87,645 PSM,702,996 SMD,69,495 MSL and 417,265 SMAP points. Our causal values are restricted to those indices without changing their scores. LEFT uses W96 on MSL and W192 elsewhere, DADA W100, and TimeRCD blocks up to 5000 points. Their interior scores retain later availability. A separate history-baseline panel appears in the supplement.
 
 ## 5.2 Metrics and comparisons
 
-AP is non-interpolated average precision, distinct from trapezoidal PR area. ROC-AUC and both VUS metrics accompany it. VUS uses the pinned LEFT implementation with windowSize 100 and 250 thresholds. It incorporates tolerance around ranges and is interpreted alongside strict point ranking.
+AP is non-interpolated average precision, distinct from trapezoidal PR area. ROC-AUC and both VUS metrics accompany it. VUS integrates range-aware ROC or PR curves over tolerance sizes [@paparrizos2022vus]. The reference software is documented separately [@vussoftware]. Our archived computations use the pinned LEFT metric implementation with windowSize=100 and thre=250. It incorporates tolerance around ranges and is interpreted alongside strict point ranking.
 
 Frozen official V, E and V+E are local project endpoint results. Here
 \[
-E_\psi(X)=\frac 1C\sum_c
-(\overline x_{\psi, 99,c}-X_{99,c})^2.
+E_\psi(X)=\frac1C\sum_c
+(\overline x_{\psi,99,c}-X_{99,c})^2.
 \]
 The fixed sum is the existing paper-formula comparison under the project endpoint protocol. It is separate from released-code L=1 V and from exact reproduction of the author's complete original evaluation track.
 
@@ -220,68 +237,93 @@ Seeds 2025–2027 vary source sampling from one pretrained initial state. We rep
 
 ## 5.3 Complete detectors
 
-Table 1 uses the external common axis. Cells contain two metrics each. Trained native controls show three-seed mean and sample SD. Single official/external results retain their fixed identity. Every value is a local computation, including project protocol adaptations.
+Table 1 asks how the complete detector compares with mature methods on the external common axis. Each metric has its own column. Reconstruction and direct V show three-seed means and sample SDs. CATCH is likewise summarized from its three archived full-precision metric rows, with individual seeds in Supplement S5. Single official and external runs have no invented SD. Every value is a local result under the permissions below.
 
-**Table 1A. Complete methods, AP / ROC-AUC.**
+**Table 1. Complete methods, organized by dataset.**
 
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
+| Code | Training and source labels | Target standardization | Score context and availability |
+|---|---|---|---|
+| P | Official pretrained, no project update | Archived target FIT | Causal W100 endpoint |
+| S | SWaT/SMD nominal fitting; real SWaT event SELECT; Direct V also uses fitting pairs | Same archived FIT as P | Causal W100 endpoint |
+| L | Target-normal training and validation | Complete normal prefix | Offline W96 MSL, W192 elsewhere; window end |
+| D | Official DADA pretraining | Complete normal training arrays | Offline W100; window end |
+| R | Official contextual synthetic pretraining; no target updates | Archived target FIT, applied once | Offline block up to 5000; block end |
+| C | Target FIT learning and normal SELECT | Target FIT only | Offline W192; window end |
+| Q | PCA fitted to permitted target FIT | Target FIT only | Current observation |
+
+\Needspace{16\baselineskip}
+
+**PSM**
+
+| Method / permission | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|
-| Frozen TimeRadar V | 0.5353 / 0.7310 | 0.4448 / 0.8132 | 0.3426 / 0.6327 | 0.3656 / 0.6427 |
-| Frozen TimeRadar E | 0.3873 / 0.5697 | 0.4291 / 0.8053 | 0.3904 / 0.6932 | 0.4254 / 0.6805 |
-| Frozen fixed V + E | 0.4195 / 0.6034 | 0.4388 / 0.8121 | 0.3999 / 0.7037 | 0.4148 / 0.7080 |
-| Source reconstruction (3 seeds) | 0.5388 ± 0.0021 / 0.7317 ± 0.0009 | 0.4497 ± 0.0026 / 0.8187 ± 0.0037 | 0.3494 ± 0.0019 / 0.6363 ± 0.0016 | 0.3663 ± 0.0022 / 0.6359 ± 0.0042 |
-| Direct V (3 seeds) | 0.5731 ± 0.0047 / 0.7640 ± 0.0028 | 0.4402 ± 0.0025 / 0.8261 ± 0.0011 | 0.3659 ± 0.0019 / 0.6678 ± 0.0030 | 0.3826 ± 0.0022 / 0.6317 ± 0.0047 |
-| Complete LEFT (1 seed) | 0.5769 / 0.7762 | 0.4981 / 0.8785 | 0.5083 / 0.7633 | 0.4932 / 0.7629 |
-| Complete DADA | 0.3957 / 0.6050 | 0.4146 / 0.8514 | 0.3957 / 0.7336 | 0.4288 / 0.6459 |
-| TimeRCD, FIT-only | 0.3019 / 0.4762 | 0.4729 / 0.8594 | 0.4827 / 0.7631 | 0.4427 / 0.6749 |
-| CATCH seed0 | 0.4465 / 0.6538 | NA | NA | NA |
-| CATCH seed1 | 0.4307 / 0.6417 | NA | NA | NA |
-| CATCH seed2 | 0.4334 / 0.6475 | NA | NA | NA |
-| PCA | 0.5344 / 0.7931 | NA | NA | NA |
+| Frozen V [P] | 0.5353 | 0.7310 | 0.4836 | 0.6648 |
+| Frozen E [P] | 0.3873 | 0.5697 | 0.3985 | 0.5814 |
+| Fixed V+E [P] | 0.4195 | 0.6034 | 0.4237 | 0.6074 |
+| Reconstruction [S] | 0.5388 ± 0.0021 | 0.7317 ± 0.0009 | 0.4901 ± 0.0052 | 0.6664 ± 0.0020 |
+| Direct V [S] | 0.5731 ± 0.0047 | 0.7640 ± 0.0028 | 0.5084 ± 0.0049 | 0.6757 ± 0.0039 |
+| LEFT [L] | 0.5769 | 0.7762 | 0.5741 | 0.7858 |
+| DADA [D] | 0.3957 | 0.6050 | 0.4395 | 0.6520 |
+| TimeRCD [R] | 0.3019 | 0.4762 | 0.3485 | 0.5320 |
+| CATCH [C] | 0.4368 ± 0.0084 | 0.6477 ± 0.0060 | 0.5272 ± 0.0087 | 0.6970 ± 0.0066 |
+| PCA [Q] | 0.5344 | 0.7931 | 0.5287 | 0.7670 |
 
-**Table 1B. Identical methods and axes, VUS-PR / VUS-ROC.**
+\Needspace{16\baselineskip}
 
-| Method | PSM | SMD28 | MSL27 | SMAP53 |
+**SMD**
+
+| Method / permission | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|
-| Frozen TimeRadar V | 0.4836 / 0.6648 | 0.4672 / 0.8700 | 0.4147 / 0.7048 | 0.4027 / 0.6902 |
-| Frozen TimeRadar E | 0.3985 / 0.5814 | 0.4336 / 0.8487 | 0.4701 / 0.7671 | 0.4686 / 0.7386 |
-| Frozen fixed V + E | 0.4237 / 0.6074 | 0.4428 / 0.8552 | 0.4805 / 0.7739 | 0.4558 / 0.7594 |
-| Source reconstruction (3 seeds) | 0.4901 ± 0.0052 / 0.6664 ± 0.0020 | 0.4749 ± 0.0046 / 0.8741 ± 0.0027 | 0.4229 ± 0.0019 / 0.7076 ± 0.0016 | 0.3977 ± 0.0024 / 0.6790 ± 0.0017 |
-| Direct V (3 seeds) | 0.5084 ± 0.0049 / 0.6757 ± 0.0039 | 0.4300 ± 0.0054 / 0.8598 ± 0.0015 | 0.4345 ± 0.0028 / 0.7356 ± 0.0050 | 0.4300 ± 0.0033 / 0.6819 ± 0.0046 |
-| Complete LEFT (1 seed) | 0.5741 / 0.7858 | 0.5418 / 0.9185 | 0.5531 / 0.7942 | 0.5217 / 0.7849 |
-| Complete DADA | 0.4395 / 0.6520 | 0.4747 / 0.8997 | 0.4298 / 0.7747 | 0.4459 / 0.6826 |
-| TimeRCD, FIT-only | 0.3485 / 0.5320 | 0.5151 / 0.9098 | 0.5298 / 0.8065 | 0.4280 / 0.7038 |
-| CATCH seed0 | 0.5361 / 0.7028 | NA | NA | NA |
-| CATCH seed1 | 0.5187 / 0.6898 | NA | NA | NA |
-| CATCH seed2 | 0.5267 / 0.6983 | NA | NA | NA |
-| PCA | 0.5287 / 0.7670 | NA | NA | NA |
+| Frozen V [P] | 0.4448 | 0.8132 | 0.4672 | 0.8700 |
+| Frozen E [P] | 0.4291 | 0.8053 | 0.4336 | 0.8487 |
+| Fixed V+E [P] | 0.4388 | 0.8121 | 0.4428 | 0.8552 |
+| Reconstruction [S] | 0.4497 ± 0.0026 | 0.8187 ± 0.0037 | 0.4749 ± 0.0046 | 0.8741 ± 0.0027 |
+| Direct V [S] | 0.4402 ± 0.0025 | 0.8261 ± 0.0011 | 0.4300 ± 0.0054 | 0.8598 ± 0.0015 |
+| LEFT [L] | 0.4981 | 0.8785 | 0.5418 | 0.9185 |
+| DADA [D] | 0.4146 | 0.8514 | 0.4747 | 0.8997 |
+| TimeRCD [R] | 0.4729 | 0.8594 | 0.5151 | 0.9098 |
 
-The candidate's strongest competitive scope is PSM. Its mean AP0.5731 is close to LEFT0.5769 and above DADA0.3957 and FIT-only TimeRCD0.3019. LEFT has higher ROC and both VUS measures. SMD candidate AP0.4402 is below LEFT and TimeRCD and above DADA. Its mean margin over DADA includes negative entity medians and only 12–13 winning machines across seeds.
+\Needspace{16\baselineskip}
 
-NASA exposes larger gaps. Candidate mean AP is 0.3659 on MSL and 0.3826 on SMAP, compared with LEFT0.5083 and 0.4932. DADA and TimeRCD also have higher AP. Frozen E and V+E remain strong NASA references. These limits coexist with gains over matched native controls.
+**MSL — single sensor per entity**
+
+| Method / permission | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|
+| Frozen V [P] | 0.3426 | 0.6327 | 0.4147 | 0.7048 |
+| Frozen E [P] | 0.3904 | 0.6932 | 0.4701 | 0.7671 |
+| Fixed V+E [P] | 0.3999 | 0.7037 | 0.4805 | 0.7739 |
+| Reconstruction [S] | 0.3494 ± 0.0019 | 0.6363 ± 0.0016 | 0.4229 ± 0.0019 | 0.7076 ± 0.0016 |
+| Direct V [S] | 0.3659 ± 0.0019 | 0.6678 ± 0.0030 | 0.4345 ± 0.0028 | 0.7356 ± 0.0050 |
+| LEFT [L] | 0.5083 | 0.7633 | 0.5531 | 0.7942 |
+| DADA [D] | 0.3957 | 0.7336 | 0.4298 | 0.7747 |
+| TimeRCD [R] | 0.4827 | 0.7631 | 0.5298 | 0.8065 |
+
+\Needspace{16\baselineskip}
+
+**SMAP — single sensor per entity**
+
+| Method / permission | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|
+| Frozen V [P] | 0.3656 | 0.6427 | 0.4027 | 0.6902 |
+| Frozen E [P] | 0.4254 | 0.6805 | 0.4686 | 0.7386 |
+| Fixed V+E [P] | 0.4148 | 0.7080 | 0.4558 | 0.7594 |
+| Reconstruction [S] | 0.3663 ± 0.0022 | 0.6359 ± 0.0042 | 0.3977 ± 0.0024 | 0.6790 ± 0.0017 |
+| Direct V [S] | 0.3826 ± 0.0022 | 0.6317 ± 0.0047 | 0.4300 ± 0.0033 | 0.6819 ± 0.0046 |
+| LEFT [L] | 0.4932 | 0.7629 | 0.5217 | 0.7849 |
+| DADA [D] | 0.4288 | 0.6459 | 0.4459 | 0.6826 |
+| TimeRCD [R] | 0.4427 | 0.6749 | 0.4280 | 0.7038 |
+
+NASA panels use one sensor per entity and entity-equal metric means. The same mean/SD notation summarizes source-training seeds for S and archived target-training seeds for C, so these variations describe different training procedures.
+
+The candidate's strongest competitive scope is PSM. Its mean AP 0.5731 is close to LEFT 0.5769 and above DADA 0.3957 and FIT-only TimeRCD 0.3019. LEFT has higher ROC and both VUS measures. SMD candidate AP 0.4402 is below LEFT and TimeRCD and above DADA. Its mean margin over DADA includes negative entity medians and only 12–13 winning machines across seeds.
+
+NASA exposes larger gaps. Candidate mean AP is 0.3659 on MSL and 0.3826 on SMAP, compared with LEFT 0.5083 and 0.4932. DADA and TimeRCD also have higher AP. Frozen E and V+E remain strong NASA references. These limits coexist with gains over matched native controls.
 
 ## 5.4 Repeated learning effects
 
-Table 2 reports method means and seed SDs on complete causal axes. Table 3 reports within-seed differences and their SDs. Difference uncertainty must be calculated from paired values.
+Table 2 isolates the original learning increment on complete causal axes. Differences are computed within seed before their means and sample SDs. Absolute method values and per-seed differences are retained in Supplement S3, avoiding a second full absolute-value table in the main text.
 
-**Table 2. Complete causal axes, method values.**
-
-| Domain | Method | Training seeds | AP | ROC_AUC | VUS_PR | VUS_ROC |
-|---|---|---|---|---|---|---|
-| PSM | Frozen V | 1 | 0.53521 | 0.73065 | 0.48391 | 0.66457 |
-| PSM | Reconstruction | 3 | 0.53874 ± 0.00208 | 0.73136 ± 0.00094 | 0.49047 ± 0.00519 | 0.66623 ± 0.00197 |
-| PSM | Direct V | 3 | 0.57307 ± 0.00467 | 0.76382 ± 0.00275 | 0.50889 ± 0.00487 | 0.67571 ± 0.00386 |
-| SMD | Frozen V | 1 | 0.44423 | 0.81295 | 0.46636 | 0.86971 |
-| SMD | Reconstruction | 3 | 0.44909 ± 0.00258 | 0.81849 ± 0.00365 | 0.47381 ± 0.00443 | 0.87381 ± 0.00271 |
-| SMD | Direct V | 3 | 0.43963 ± 0.00254 | 0.82581 ± 0.00108 | 0.42868 ± 0.00545 | 0.85949 ± 0.00150 |
-| MSL | Frozen V | 1 | 0.33559 | 0.62874 | 0.40570 | 0.70148 |
-| MSL | Reconstruction | 3 | 0.34139 ± 0.00138 | 0.63255 ± 0.00164 | 0.41301 ± 0.00162 | 0.70444 ± 0.00166 |
-| MSL | Direct V | 3 | 0.35267 ± 0.00162 | 0.66251 ± 0.00281 | 0.42019 ± 0.00249 | 0.73057 ± 0.00468 |
-| SMAP | Frozen V | 1 | 0.36560 | 0.64193 | 0.40267 | 0.68870 |
-| SMAP | Reconstruction | 3 | 0.36623 ± 0.00213 | 0.63499 ± 0.00417 | 0.39735 ± 0.00220 | 0.67737 ± 0.00170 |
-| SMAP | Direct V | 3 | 0.38287 ± 0.00213 | 0.63104 ± 0.00462 | 0.42961 ± 0.00357 | 0.68028 ± 0.00497 |
-
-**Table 3. Same-axis paired differences, mean ± sample SD, n=3.**
+**Table 2. Paired learning increments on complete causal axes, mean ± sample SD, n=3.**
 
 | Domain | Within-seed contrast | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|---|
@@ -300,18 +342,28 @@ Against reconstruction, MSL has 16–17 AP wins among 27 entities. SMAP has 28�
 
 ## 5.5 Training statistic and supervised readout
 
-Table 4 uses seed 2025 and complete causal axes. Each cell contains AP / ROC-AUC / VUS-PR / VUS-ROC. Formal procedures deploy their designated scores. Auxiliary cross-readouts were fixed before evaluation.
+Table 3 uses seed 2025 and complete causal axes. Each metric occupies a separate column. Each row is a complete learning and selection procedure deploying its designated score. Auxiliary cross-readouts, fixed before evaluation, are retained in Supplement S5.
 
-**Table 4. Training objectives and readouts.**
+**Table 3. Training objectives and formal readouts, seed 2025.**
 
-| Training / formal readout (seed2025) | PSM | SMD28 | MSL27 | SMAP53 |
-|---|---|---|---|---|
-| Normal reconstruction / V | 0.5390 / 0.7315 / 0.4918 / 0.6667 | 0.4502 / 0.8202 / 0.4761 / 0.8751 | 0.3415 / 0.6322 / 0.4139 / 0.7047 | 0.3683 / 0.6389 / 0.3981 / 0.6790 |
-| Direct V / V | 0.5772 / 0.7658 / 0.5138 / 0.6799 | 0.4421 / 0.8271 / 0.4335 / 0.8610 | 0.3541 / 0.6657 / 0.4230 / 0.7356 | 0.3827 / 0.6268 / 0.4295 / 0.6762 |
-| Direct E / E | 0.5235 / 0.6755 / 0.5029 / 0.6710 | 0.4286 / 0.8137 / 0.4415 / 0.8606 | 0.3697 / 0.6832 / 0.4415 / 0.7496 | 0.3953 / 0.6980 / 0.4345 / 0.7507 |
-| Frozen features + supervised MLP | 0.5049 / 0.7217 / 0.4526 / 0.6052 | 0.3765 / 0.7589 / 0.3184 / 0.7676 | 0.2817 / 0.5509 / 0.3170 / 0.6278 | 0.2890 / 0.5389 / 0.3127 / 0.5911 |
-| V-trained / E (auxiliary) | 0.5530 / 0.6862 / 0.5133 / 0.6616 | 0.3902 / 0.8102 / 0.3973 / 0.8519 | 0.3709 / 0.6782 / 0.4377 / 0.7442 | 0.4285 / 0.7016 / 0.4691 / 0.7557 |
-| E-trained / V (auxiliary) | 0.4580 / 0.6387 / 0.4478 / 0.6206 | 0.4413 / 0.8330 / 0.4926 / 0.8826 | 0.3269 / 0.6148 / 0.3912 / 0.6814 | 0.3538 / 0.6090 / 0.3961 / 0.6586 |
+| Domain | Learning / readout | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | Reconstruction / V | 0.5390 | 0.7315 | 0.4918 | 0.6667 |
+| PSM | Direct V / V | 0.5772 | 0.7658 | 0.5138 | 0.6799 |
+| PSM | Direct E / E | 0.5235 | 0.6755 | 0.5029 | 0.6710 |
+| PSM | Supervised MLP / logit | 0.5049 | 0.7217 | 0.4526 | 0.6052 |
+| SMD | Reconstruction / V | 0.4502 | 0.8202 | 0.4761 | 0.8751 |
+| SMD | Direct V / V | 0.4421 | 0.8271 | 0.4335 | 0.8610 |
+| SMD | Direct E / E | 0.4286 | 0.8137 | 0.4415 | 0.8606 |
+| SMD | Supervised MLP / logit | 0.3765 | 0.7589 | 0.3184 | 0.7676 |
+| MSL | Reconstruction / V | 0.3415 | 0.6322 | 0.4139 | 0.7047 |
+| MSL | Direct V / V | 0.3541 | 0.6657 | 0.4230 | 0.7356 |
+| MSL | Direct E / E | 0.3697 | 0.6832 | 0.4415 | 0.7496 |
+| MSL | Supervised MLP / logit | 0.2817 | 0.5509 | 0.3170 | 0.6278 |
+| SMAP | Reconstruction / V | 0.3683 | 0.6389 | 0.3981 | 0.6790 |
+| SMAP | Direct V / V | 0.3827 | 0.6268 | 0.4295 | 0.6762 |
+| SMAP | Direct E / E | 0.3953 | 0.6980 | 0.4345 | 0.7507 |
+| SMAP | Supervised MLP / logit | 0.2890 | 0.5389 | 0.3127 | 0.5911 |
 
 Direct V has higher mean AP than the MLP on all four tasks. The head reduced source-validation loss from 0.697998 to 0.458485. Its target gap therefore does not show simple failure to fit the source task. Full-range and exposure-limited selection chose the same \(10^{-3}\), step 40 weights. The head searched two rates over up to 2400 steps. These differences preclude interpreting the result as a strict single-factor test.
 
@@ -319,7 +371,7 @@ V has higher AP than E on PSM and SMD. E has higher AP, ROC and both VUS measure
 
 ## 5.6 False alarms, events and coverage
 
-Each model uses its own CAL scores at the same permitted indices, q 99/higher and strict exceedance. PSM operations use the original 64,728-point suffix. All 512 CAL points there have attack labels. NASA has 14–30 MSL and 4–29 SMAP CAL points, making q 99/higher the sample maximum. SMD CAL is nominal training-side data. These thresholds do not certify a normal 1% false-positive budget.
+Each model uses its own CAL scores at the same permitted indices, q99/higher and strict exceedance. PSM operations use the original 64,728-point suffix. All 512 CAL points there have attack labels. NASA has 14–30 MSL and 4–29 SMAP CAL points, making q99/higher the sample maximum. SMD CAL is nominal training-side data. These thresholds do not certify a normal 1% false-positive budget.
 
 Three-confirmation starts at the third consecutive exceedance, with no backfill or bridging time gaps. One-to-one matching and any-hit are distinct. Long steady coverage excludes the first 512 event points, with only four MSL and ten SMAP long events. Misses and delays use sample units.
 
@@ -327,14 +379,20 @@ At seed 2025, direct V increased SMAP false fragments from 607 for frozen V to 8
 
 ## 5.7 Boundaries and independent target extensions
 
-Table 5 reports fixed single-seed boundary contrasts on complete causal axes. Expanded support replaces half the SWaT pairs with TEP at fixed total exposure. Its matched control shares the enlarged nominal pool and combined validation panel. The full-update contrast restores the original source contract. These boundary results retain their own controls.
+Table 4 reports fixed single-seed boundary contrasts on complete causal axes. Expanded support uses the Rieth et al. TEP Training release, Version 1 [@rieth2017tep], to replace half the SWaT pairs at fixed total exposure. Its matched control shares the enlarged nominal pool and combined validation panel. The full-update contrast restores the original source contract. These boundary results retain their own controls.
 
-**Table 5. Boundary contrasts, ΔAP / ΔROC-AUC / ΔVUS-PR / ΔVUS-ROC.**
+**Table 4. Boundary contrasts, single seed.**
 
-| Boundary comparison (AP / ROC / VUS-PR / VUS-ROC) | PSM | SMD28 | MSL27 | SMAP53 |
-|---|---|---|---|---|
-| Expanded support V − matched single-source V | -0.0174 / -0.0125 / -0.0310 / -0.0171 | -0.0062 / -0.0042 / -0.0121 / -0.0048 | +0.0001 / -0.0141 / -0.0041 / -0.0164 | +0.0021 / +0.0124 / +0.0059 / +0.0111 |
-| Full update V − decoder-only V | -0.0333 / +0.0226 / -0.0060 / +0.0177 | -0.1110 / -0.0592 / -0.0604 / -0.0312 | -0.0043 / +0.0191 / -0.0022 / +0.0126 | -0.0207 / -0.0011 / -0.0296 / +0.0022 |
+| Domain | Fixed boundary contrast | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | Expanded source V − matched V | -0.0174 | -0.0125 | -0.0310 | -0.0171 |
+| SMD | Expanded source V − matched V | -0.0062 | -0.0042 | -0.0121 | -0.0048 |
+| MSL | Expanded source V − matched V | +0.0001 | -0.0141 | -0.0041 | -0.0164 |
+| SMAP | Expanded source V − matched V | +0.0021 | +0.0124 | +0.0059 | +0.0111 |
+| PSM | Full update V − decoder V | -0.0333 | +0.0226 | -0.0060 | +0.0177 |
+| SMD | Full update V − decoder V | -0.1110 | -0.0592 | -0.0604 | -0.0312 |
+| MSL | Full update V − decoder V | -0.0043 | +0.0191 | -0.0022 | +0.0126 |
+| SMAP | Full update V − decoder V | -0.0207 | -0.0011 | -0.0296 | +0.0022 |
 
 TEP gives a small SMAP gain but no material expansion of V's competitive scope. Full native updates lower AP relative to decoder-only V on every task despite verified representation gradients. Selected steps differ and are part of the complete learning effects. These results constrain the tested procedures without identifying a universal failure of source diversity or representation learning.
 
@@ -348,18 +406,16 @@ The learning difference is concrete. True public event labels supervise the vari
 
 They do not isolate its scalar formula from all surrounding resources. Supervised fitting receives extra positive and pair-normal windows beyond reconstruction. Labels also select the reconstruction control. E has its own scale and selection risk. The MLP changes components and searches a larger optimization range. The supported comparison concerns the specified complete procedures.
 
-Novelty remains narrow. Fractional transforms, official representation and pretraining, masks, variance, ranking loss and source labels all have precedents. The project contribution is their concrete use to directly supervise native endpoint disagreement and the measured transfer effects. Whether this difference and its evidence suffice for a method paper requires scholarly assessment. The manuscript does not enlarge that difference through component renaming.
-
+The scientific scope is specific to supervision of an inherited deployment statistic. The fractional representation, pretraining, masks and variance score come from TimeRadar, and the ranking loss is established. The comparisons support task-dependent transfer from this complete decoder-learning procedure. They do not isolate an independent contribution from FRFT, source labels or the weighting rule.
 Generalization is limited by five fitting events from one real public process, with four more used for selection. Dataset anomaly semantics differ. PSM was used in development and SMD nominal data were source-visible. Upstream pretraining limits unseen-data claims. NASA's single-sensor setting cannot establish cross-variable learning. No experiment isolates an independent FRFT benefit in this candidate.
 
 Ranking improvement also coexists with false fragments, coverage losses and metric tradeoffs. Calibration restrictions limit operating conclusions. External methods have different source supervision, target training, statistics and temporal permissions. Timestamp alignment alone cannot establish equal-context architecture fairness.
 
 The method adds no parameters or inference head. It retains ten-copy inference and a B=1 sliding-window forward to preserve order computation. Source pairs add compute and exposure. The original seed 2025 candidate training process occupied 286.75 A40-seconds, excluding separately recorded scale/readout work. Unchanged parameter count does not imply unchanged learning cost. The supplement links actual resource records.
 
-The original broad Hybrid objective is incomplete. The formal detector includes no separately validated long-history component, explicit lag mechanism or demonstrated robust mixed-unlabeled adaptation. Completed target extensions and broader variants supply boundaries. They are not combined with the endpoint results to claim that wider objective.
-
+The evaluated detector contains no separately validated long-history or explicit lag component. Its completed target extensions do not establish mixed-unlabeled robustness. These are limitations of the capabilities supported by the current evidence.
 # 7 Conclusion
 
-We studied public-source supervision applied directly to a pretrained detector's native reconstruction-disagreement statistic. The method updates only TimeRadar's decoder with nominal per-copy reconstruction and a point-count-weighted endpoint pair objective, then deploys the same raw V with zero target updates. Three source-training seeds improve average AP over matched reconstruction on PSM, MSL and SMAP, while SMD declines and operating costs persist. Alternative readouts and complete external methods show limited competitive scope, especially on NASA. Source expansion and full updates do not resolve those limits under the tested procedures. The evidence supports a specific, task-dependent learning intervention whose methodological contribution must be judged within that scope.
+We studied public-source supervision applied directly to a pretrained detector's native reconstruction-disagreement statistic. The method updates only TimeRadar's decoder with nominal per-copy reconstruction and a point-count-weighted endpoint pair objective, then deploys the same raw V with zero target updates. Three source-training seeds improve average AP over matched reconstruction on PSM, MSL and SMAP, while SMD declines and operating costs persist. Alternative readouts and complete external methods show limited competitive scope, especially on NASA. Source expansion and full updates do not resolve those limits under the tested procedures. The results support direct supervision of native endpoint disagreement as a task-dependent source-learning procedure. Its gains are strongest against matched native controls and remain limited by external performance gaps and operating costs.
 
 # References

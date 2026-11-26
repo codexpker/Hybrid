@@ -16,21 +16,29 @@ This supplement contains material needed to understand and reproduce the endpoin
 
 | Formal component | Existing implementation | Fixed behavior |
 |---|---|---|
-| Score and pair objective | src/hybrid_tsad/native_event_rank.py | native_endpoint_and_copy_loss and event_pair_loss |
-| Source roles, draws, fitting and selection | src/hybrid_tsad/native_event_rank_training.py | prepare, train_step, validate, training |
-| Seed repeats | src/hybrid_tsad/native_event_rank_repeats.py | original initialization and fixed SELECT panel |
-| PSM complete causal axis | src/hybrid_tsad/native_rank_psm_extension.py and native_rank_psm_repeats.py | original terminal V on legal windows |
-| NASA single sensor | src/hybrid_tsad/native_event_space.py | read_roles and per-entity metrics |
-| SMD28 | src/hybrid_tsad/native_event_smd 28.py | independent machine records |
+| Score and pair objective | [native_event_rank.py](../../src/hybrid_tsad/native_event_rank.py) | native_endpoint_and_copy_loss and event_pair_loss |
+| Source roles, draws, fitting and selection | [native_event_rank_training.py](../../src/hybrid_tsad/native_event_rank_training.py) | prepare, train_step, validate, training |
+| Seed repeats | [native_event_rank_repeats.py](../../src/hybrid_tsad/native_event_rank_repeats.py) | original initialization and fixed SELECT panel |
+| PSM complete causal axis | [native_rank_psm_extension.py](../../src/hybrid_tsad/native_rank_psm_extension.py) and native_rank_psm_repeats.py | original terminal V on legal windows |
+| NASA single sensor | [native_event_space.py](../../src/hybrid_tsad/native_event_space.py) | read_roles and per-entity metrics |
+| SMD28 | [native_event_smd28.py](../../src/hybrid_tsad/native_event_smd28.py) | independent machine records |
 | E and cross-readouts | native_e_vs_v_psm.py, native_e_vs_v_space.py, native_e_vs_v_smd.py | same archived target inputs |
-| Standard head | src/hybrid_tsad/native_supervised_mlp.py | frozen encoder and shared nonlinear per-copy/channel head |
-| External common axis | src/hybrid_tsad/external_endpoint_metrics.py | immutable per-entity intersections |
+| Standard head | [native_supervised_mlp.py](../../src/hybrid_tsad/native_supervised_mlp.py) | frozen encoder and shared nonlinear per-copy/channel head |
+| External common axis | [external_endpoint_metrics.py](../../src/hybrid_tsad/external_endpoint_metrics.py) | immutable per-entity intersections |
 
-Official TimeRadar source SHA256 is 881e 8912e 4c 5b 298b 202e 5b 7ac 2fe 58107c 7dcf 1b 56acf 733e 28c 99f 2ffc 0317. Its initial checkpoint SHA256 is 528aea 6e 803f 9e 6b 1ea 5d 07e 64e 44162309bdb 016cc 7721a 8ac 3753d 942e 6c 7c. The seed 2025 plan hash isdf 7e 74047bb 0fd 49d 25a 2da 0bb 58e 54a 2fbe 3327fd 9f 61b 6e 07ceca 6422543e 9. The official source model is loaded with seq_len 100, hidden_dim 64, d_model 256, depth 10, patch_len 5 and mask_mode c. The existing raw source and checkpoint identities are preserved. This writing task produces no model artifacts.
+Official TimeRadar source SHA-256 is `881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317`. Its initial checkpoint SHA-256 is `528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c`. The seed 2025 plan hash is `df7e74047bb0fd49d25a2da0bb58e54a2fbe3327fd9f61b6e07ceca6422543e9`. The official source model is loaded with `seq_len=100, hidden_dim=64, d_model=256, depth=10, patch_len=5, mask_mode='c'`. The existing raw source and checkpoint identities are preserved. This writing task produces no model artifacts.
 
-Masks are generated with isolated seed 84551. One tensor of shape \([5C, 20]\) contains five masks of shape \([C, 20]\). Appending its complement yields a bank reshaped to \([10,C, 20]\), restored for each window with channel count C. Batch membership therefore cannot change the order of a scored window. Source and target scalers are applied before the native forward, whose norm option is 0. Eval mode disables dropout throughout the project decoder fitting. No ordinary no_grad inference call is used for the differentiable pair term.
+Masks are generated with isolated seed 84551. One tensor of shape \([5C,20]\) contains five masks of shape \([C,20]\). Appending its complement yields a bank reshaped to \([10,C,20]\), restored for each window with channel count C. Batch membership therefore cannot change the order of a scored window. Source and target scalers are applied before the native forward, whose norm option is 0. Eval mode disables dropout throughout the project decoder fitting. No ordinary no_grad inference call is used for the differentiable pair term.
 
 The registered official model has 1,636,043 parameters. The method updates the 793,610 parameters of the original decoder and adds zero parameters. All other native parameters and buffers are fixed. Scores retain full observed current windows and are causal reconstruction scores. They are not forecasts from strictly past-only inputs.
+
+## Data origins, project versions and metric software
+
+Primary distributions are cited in the main text. Project identity is additionally fixed by archived array hashes. PSM uses the 25-channel arrays with 132,481 normal-prefix points and 87,841 test points recorded in AXES_AND_INPUTS.json. SMD uses all 28 original machines and 38 channels, with entity roles and scaler hashes in its archived binding. NASA uses the version-1 archive whose download URL, member hashes and shapes are retained in MSL_NATIVE_MEMBERS.json, together with the archived SMAP mapping and pre-existing P-2 exclusion. The primary telemetry publication does not by itself specify this project's single-sensor or admission choices. SWaT uses the archived physical-process arrays and fixed 31-channel map.
+
+TEP appears only in the completed source-support extension. Its DOI is `10.7910/DVN/6C3JR1`, Version 1. The two files are `TEP_FaultFree_Training.RData` and `TEP_Faulty_Training.RData`; their identities, column mapping, run split and injection timing are in the [TEP source manifest](../../docs/experiments/native_tep_support_20261125/INPUT.json). They do not enter the formal endpoint method.
+
+The original VUS article defines the measure. The VUS repository is its reference software distribution, while this study called the metric file bundled with the archived LEFT implementation. The wrapper is [left_native_swat_metrics.py](../../src/hybrid_tsad/left_native_swat_metrics.py). Its metric-file SHA-256 is `808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc`, with invocation `RangeAUC_volume_opt(truth, score, windowSize=100, thre=250)`. The maximum buffer and threshold discretization are fixed software parameters. Neither the dataset paper nor current VUS package defaults determine these recorded results. [The completed evaluation receipt](../../docs/experiments/native_endpoint_external_20261125/EVALUATION.json) records the metric settings; the wrapper binds the metric-file hash. This revision aggregates existing exports only.
 
 # S2 Exact source roles and selection
 
@@ -54,7 +62,7 @@ All indices are half-open in the archived SWaT record with 31 channels.
 
 FIT positive stratum sizes are(281,280,280),(115,115,114),(95,95,94),(97,97,97),(33,32,32). Positive windows must be completely inside their event. Paired negatives have 100 labeled-normal points in the authorized role. The four SELECT events contribute three strata each, with 16 fixed paired draws per stratum. Training and validation risk thus have different, explicit aggregation rules.
 
-The complete 240-step supervised trajectory presents 7,680 nominal windows, 3,600 positive windows and 3,600 paired-negative windows. Each of the 15 positive strata is presented 240 times, with repeat sampling. Counts describe exposure, not distinct source events or independent original points. Reconstruction continuation has the nominal stream only. It shares the source-label-assisted selection criterion.
+The complete 240-step supervised trajectory presents 7,680 nominal windows,3,600 positive windows and 3,600 paired-negative windows. Each of the 15 positive strata is presented 240 times, with repeat sampling. Counts describe exposure, not distinct source events or independent original points. Reconstruction continuation has the nominal stream only. It shares the source-label-assisted selection criterion.
 
 The six original selected trajectories have the following source-only choices. Actual selected exposure follows the saved update, while all trajectories retain the same 240-update cap.
 
@@ -74,6 +82,21 @@ The source roles, all seed plans, selected checkpoint identities and dependency 
 # S3 Per-seed differences and entity distributions
 
 The following tables use complete causal axes, with each difference calculated before domain aggregation. Exact ties use the existing numerical comparison rule.
+
+| Domain | Method | Training seeds | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|---|
+| PSM | Frozen V | 1 | 0.53521 | 0.73065 | 0.48391 | 0.66457 |
+| PSM | Reconstruction | 3 | 0.53874 ± 0.00208 | 0.73136 ± 0.00094 | 0.49047 ± 0.00519 | 0.66623 ± 0.00197 |
+| PSM | Direct V | 3 | 0.57307 ± 0.00467 | 0.76382 ± 0.00275 | 0.50889 ± 0.00487 | 0.67571 ± 0.00386 |
+| SMD | Frozen V | 1 | 0.44423 | 0.81295 | 0.46636 | 0.86971 |
+| SMD | Reconstruction | 3 | 0.44909 ± 0.00258 | 0.81849 ± 0.00365 | 0.47381 ± 0.00443 | 0.87381 ± 0.00271 |
+| SMD | Direct V | 3 | 0.43963 ± 0.00254 | 0.82581 ± 0.00108 | 0.42868 ± 0.00545 | 0.85949 ± 0.00150 |
+| MSL | Frozen V | 1 | 0.33559 | 0.62874 | 0.40570 | 0.70148 |
+| MSL | Reconstruction | 3 | 0.34139 ± 0.00138 | 0.63255 ± 0.00164 | 0.41301 ± 0.00162 | 0.70444 ± 0.00166 |
+| MSL | Direct V | 3 | 0.35267 ± 0.00162 | 0.66251 ± 0.00281 | 0.42019 ± 0.00249 | 0.73057 ± 0.00468 |
+| SMAP | Frozen V | 1 | 0.36560 | 0.64193 | 0.40267 | 0.68870 |
+| SMAP | Reconstruction | 3 | 0.36623 ± 0.00213 | 0.63499 ± 0.00417 | 0.39735 ± 0.00220 | 0.67737 ± 0.00170 |
+| SMAP | Direct V | 3 | 0.38287 ± 0.00213 | 0.63104 ± 0.00462 | 0.42961 ± 0.00357 | 0.68028 ± 0.00497 |
 
 | Domain | Contrast | Seed | AP | ROC_AUC | VUS_PR | VUS_ROC |
 |---|---|---|---|---|---|---|
@@ -125,7 +148,7 @@ The following tables use complete causal axes, with each difference calculated b
 
 # S4 Operational evaluation
 
-Every operating result uses its original legal CAL locations and each model's own threshold. No threshold was chosen from these tables. PSM evaluates [23016,87744), separate from the full causal ranking axis. Its 512 CAL points all have attack labels. NASA q 99/higher equals the maximum of the small eligible CAL sample. SMD CAL records are nominally normal. These are empirical operation points without certified normal error budgets.
+Every operating result uses its original legal CAL locations and each model's own threshold. No threshold was chosen from these tables. PSM evaluates [23016,87744), separate from the full causal ranking axis. Its 512 CAL points all have attack labels. NASA q99/higher equals the maximum of the small eligible CAL sample. SMD CAL records are nominally normal. These are empirical operation points without certified normal error budgets.
 
 Strict and three-confirmation rows remain distinct. Three-confirmation has no backfill. The same absolute indices are used to preserve continuity. One-to-one event matching uses the archived chronological interval matching implementation and requires overlap of predicted and true intervals with each interval used at most once. Any-hit counts true events with any alarm and need not agree with matching. Only complete eligible events enter event coverage. Long steady coverage begins 512 points after onset. No-eligibility entries remain NA.
 
@@ -189,7 +212,28 @@ Event and coverage values for the same models and streams follow.
 
 Long-event populations are five for the PSM suffix, four for MSL and ten for SMAP. The SMD population and all entity-specific eligibility records are retained in the source files. Hit delay is a detected-event-only median within each seed, then averaged across seeds. Missed events are also represented by event recall, right-censoring records and longest missed spans. A short hit-only delay does not establish fast discovery of all events.
 
-# S5 Simple references and temporal permissions
+# S5 Auxiliary readouts, CATCH seeds and temporal permissions
+
+The two cross-readouts are explanatory outputs from the fixed seed2025 decoders. They do not select a target-specific method.
+
+| Domain | Auxiliary readout | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | V-trained / E | 0.5530 | 0.6862 | 0.5133 | 0.6616 |
+| PSM | E-trained / V | 0.4580 | 0.6387 | 0.4478 | 0.6206 |
+| SMD | V-trained / E | 0.3902 | 0.8102 | 0.3973 | 0.8519 |
+| SMD | E-trained / V | 0.4413 | 0.8330 | 0.4926 | 0.8826 |
+| MSL | V-trained / E | 0.3709 | 0.6782 | 0.4377 | 0.7442 |
+| MSL | E-trained / V | 0.3269 | 0.6148 | 0.3912 | 0.6814 |
+| SMAP | V-trained / E | 0.4285 | 0.7016 | 0.4691 | 0.7557 |
+| SMAP | E-trained / V | 0.3538 | 0.6090 | 0.3961 | 0.6586 |
+
+CATCH's individual archived metric rows follow. Main-table means and sample SDs are calculated from these full-precision records, with n=3 and ddof=1.
+
+| Domain | CATCH seed | AP | ROC_AUC | VUS_PR | VUS_ROC |
+|---|---|---|---|---|---|
+| PSM | CATCH W192 seed0 | 0.446458 | 0.653765 | 0.536065 | 0.702828 |
+| PSM | CATCH W192 seed1 | 0.430683 | 0.641721 | 0.518706 | 0.689799 |
+| PSM | CATCH W192 seed2 | 0.433369 | 0.647474 | 0.526733 | 0.698310 |
 
 History Mean uses 512 preceding observations. The following panel uses its separate compatible axis, beginning at 512, with the prior endpoint and PCA values restricted to that same axis. These numbers do not enter differences with the external panel beginning at 99. Candidate entries here use seed 2025.
 
@@ -254,13 +298,13 @@ Candidate F has lower AP than either matched F control on both eligible tasks. S
 | Original source roles, fixed scale and initial model identity | [Source provenance](../../docs/experiments/native_event_rank_20261122/PROVENANCE.json) |
 | Repeated source plans and checkpoint selection | [Three-seed source provenance](../../docs/experiments/native_event_rank_repeats_20261122/source/source_provenance.json) |
 | PSM/NASA per-seed ranking | [Original ranking rows](../../docs/experiments/native_event_rank_repeats_20261122/ranking_by_seed.csv) |
-| SMD28 entity metrics and operations | [Entity rows](../../docs/experiments/native_event_smd 28_20261123/native/entity_methods.csv) |
+| SMD28 entity metrics and operations | [Entity rows](../../docs/experiments/native_event_smd28_20261123/native/entity_methods.csv) |
 | Complete external comparison and timestamps | [Axis and input manifest](../../docs/experiments/native_endpoint_external_20261125/AXES_AND_INPUTS.json) |
 | External entity-level comparisons | [All entity/panel rows](../../docs/experiments/native_endpoint_external_20261125/entity_metrics.csv) |
 | Same-label V/E and cross-readouts | [Fixed statistic controls](../../docs/experiments/native_e_vs_v_20261123/methods.csv) |
 | Standard supervised head | [Fixed-head comparison](../../docs/experiments/native_supervised_mlp_20261123/RESULTS.md) |
 | Original operating data | [Three-seed operations](../../docs/experiments/native_event_rank_repeats_20261122/operating_by_seed.csv) |
-| Independent U/F extensions | [U](../../docs/experiments/native_event_stage 2_u_20261123/RESULTS.md), [F](../../docs/experiments/native_event_stage 2_f_20261123/RESULTS.md) |
+| Independent U/F extensions | [U](../../docs/experiments/native_event_stage2_u_20261123/RESULTS.md), [F](../../docs/experiments/native_event_stage2_f_20261123/RESULTS.md) |
 
 The build script reads archived metric CSVs, computes descriptive seed means and sample SDs, and renders tables and the method figure. It does not invoke an experiment runner, model forward or historical metric recomputation. Its output preserves axis identity. evidence_sources.json records source file hashes. This supplement links original results rather than reproducing the unrelated historical exploration archive.
 

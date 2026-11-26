@@ -1,0 +1,117 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+  10pt,
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=22mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Scoped academic revision},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Scoped academic revision}
+\author{}
+\date{26 November 2026}
+
+\begin{document}
+\maketitle
+
+The formal method remains the original decoder-only endpoint-V
+procedure. This revision changes exposition, document generation and
+descriptive tables from archived metrics.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Literal integrity.} Removed global alphanumeric spacing
+  substitutions from the builder. Prose spacing is now edited in the
+  templates. Code, paths, URLs, citation keys and SHA-256 strings retain
+  their literal forms. The builder checks relative evidence links,
+  implementation paths and archived-source hashes, and records the
+  result in DOCUMENT\_CHECKS.json.
+\item
+  \textbf{Learning explanation.} Derived the per-copy output gradients
+  of mean error and correction-one variance from the reconstruction
+  decomposition. Explained centered versus common-mode output effects,
+  the shared-decoder Jacobian and the absence of a transfer guarantee.
+  Defined point-count weights as the sampling estimator of a specified
+  empirical endpoint risk.
+\item
+  \textbf{Claims and controls.} Rewrote contributions and conclusion as
+  method statements and bounded findings. The abstract identifies the
+  shared reconstruction-control components and the different supervised
+  exposures/selected steps. V/E and MLP comparisons concern complete
+  learning and selection procedures.
+\item
+  \textbf{Tables.} External results use dataset panels with separate
+  columns for all four metrics and an adjacent permissions key. CATCH
+  means and sample SDs use the archived full-precision seed metrics.
+  Individual CATCH seeds, repeated absolute method values and auxiliary
+  cross-readouts move to the supplement. Main paired increments and
+  formal readout ablations serve separate questions.
+\item
+  \textbf{Attribution.} Added primary dataset/distribution references,
+  TEP Version 1 and original VUS references. Distinguished the metric
+  definition, reference software and actually pinned LEFT implementation
+  from the project's array versions.
+\end{itemize}
+
+\textbf{Remaining scientific limits.} The method has inherited
+architecture and mature ranking tools. Only five fitting and four
+selection source events support it. PSM was development-exposed, SMD
+nominal-source-visible and NASA single-sensor. SMD AP/VUS losses, strong
+NASA E and external LEFT gaps, false-alarm/coverage costs and CAL
+limitations remain. Current U/F extensions establish no stable net
+advantage.
+
+\textbf{For the advisor.} Contribution sufficiency remains an assessment
+of this specific learning intervention and its bounded transfer
+evidence. The broader original Hybrid objective remains incomplete. This
+internal assessment has been removed from the formal scientific
+narrative.
+
+Historical weights, source selection, scores, method choices and
+experiment conclusions were preserved. No training, inference or new
+candidate was executed.
+
+\end{document}
