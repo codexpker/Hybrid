@@ -4,11 +4,11 @@
 
 Can public source records teach a detector which local dynamics recur across sensors, and can the detector learn new normal dynamics from a target record that also contains anomalies? We study this question in two stages. A complete public detection benchmark establishes the performance that a proposed method must reach. Separate experiments examine zero target updates (Z), mixed-unlabeled learning (U), a fixed labeled support set (F), controlled extra abnormal exposure and the mechanism of the update.
 
-The proposed detector learns short, frequency-specific trajectory subspaces across public source domains. During mixed target adaptation it estimates a normal multichannel trajectory and a sparse departure on the original timeline, then updates the subspaces from the estimated normal trajectory. At test time the residual from this trajectory produces a point score. The [method definition](method_definition.md) specifies the source folds, objective, solver, permissions and identifying controls. Its status is a design. The tables below contain measured external comparators.
+The proposed detector learns short, frequency-specific trajectory subspaces across public source domains. During mixed target adaptation it estimates a normal multichannel trajectory and a sparse departure on the original timeline, then updates the subspaces from the estimated normal trajectory. At test time the residual from this trajectory produces a point score. The [method definition](method_definition.md) specifies the source folds, objective, solver, permissions and identifying controls. The first deterministic PSM and SWaT fits are complete.
 
 ## Public benchmark
 
-Each method occupies one row within its training group. Panels A and B use different archived timestamp intersections. Panel C in the [supplement](README.md) covers scores available at the observation on fixed suffixes. Only compare values within a dataset, panel and metric; future-window context and target-normal training are additional information even on identical timestamps. Blank coverage is marked NA. All numerical cells in A–C come from local evaluations. Hybrid's proposed row has no scores.
+Each method occupies one row within its training group. Panels A and B use different archived timestamp intersections. Panel C in the [supplement](README.md) covers scores available at the observation on fixed suffixes. Only compare values within a dataset, panel and metric; future-window context and target-normal training are additional information even on identical timestamps. Blank coverage is marked NA. All numerical cells in A–C come from local evaluations. The trajectory-subspace rows use target FIT-only standardization.
 
 ### A. Complete-window comparison on the five public tasks
 
@@ -25,10 +25,13 @@ LEFT uses normal FIT and SELECT, a normal-prefix scaler including SELECT and W19
 | Pretrained | TimeRCD, FIT-only | 0.4723 | NA | NA | NA | NA |
 | Pretrained | TimeRadar, W100 individual-window order | 0.4261 | NA | NA | 0.3436 | 0.3072 |
 | Pretrained | TimeRadar, block0 batch order | NA | 0.4333 | 0.6393 | NA | NA |
+| Pretrained | TimeRadar, FIT-only batch order | NA | 0.4554 | NA | NA | NA |
 | Statistical | History Mean512 | NA | NA | NA | NA | 0.3178 |
 | Statistical | Level deviation | 0.4265 | 0.4383 | 0.7448 | 0.2880 | 0.2966 |
 | Statistical | PCA residual | NA | 0.5344 | NA | NA | NA |
-| Proposed | Adapted trajectory subspaces (design) | Pending | Pending | Pending | Pending | Pending |
+| Project multi-source, frozen | Frozen multi-source subspaces | NA | 0.3294 | 0.2002 | NA | NA |
+| Source + normal target | Source planes → normal target fit | NA | 0.3278 | 0.1113 | NA | NA |
+| Normal target only | Normal target covariance → normal target fit | NA | 0.3278 | 0.0981 | NA | NA |
 
 **ROC-AUC**
 
@@ -39,10 +42,13 @@ LEFT uses normal FIT and SELECT, a normal-prefix scaler including SELECT and W19
 | Pretrained | TimeRCD, FIT-only | 0.8594 | NA | NA | NA | NA |
 | Pretrained | TimeRadar, W100 individual-window order | 0.8274 | NA | NA | 0.6709 | 0.6624 |
 | Pretrained | TimeRadar, block0 batch order | NA | 0.6707 | 0.8220 | NA | NA |
+| Pretrained | TimeRadar, FIT-only batch order | NA | 0.6838 | NA | NA | NA |
 | Statistical | History Mean512 | NA | NA | NA | NA | 0.6344 |
 | Statistical | Level deviation | 0.8034 | 0.6542 | 0.8318 | 0.5530 | 0.5723 |
 | Statistical | PCA residual | NA | 0.7933 | NA | NA | NA |
-| Proposed | Adapted trajectory subspaces (design) | Pending | Pending | Pending | Pending | Pending |
+| Project multi-source, frozen | Frozen multi-source subspaces | NA | 0.5347 | 0.5534 | NA | NA |
+| Source + normal target | Source planes → normal target fit | NA | 0.5325 | 0.4264 | NA | NA |
+| Normal target only | Normal target covariance → normal target fit | NA | 0.5326 | 0.3983 | NA | NA |
 
 **VUS-PR**
 
@@ -53,10 +59,13 @@ LEFT uses normal FIT and SELECT, a normal-prefix scaler including SELECT and W19
 | Pretrained | TimeRCD, FIT-only | 0.5146 | NA | NA | NA | NA |
 | Pretrained | TimeRadar, W100 individual-window order | 0.4508 | NA | NA | 0.3697 | 0.3055 |
 | Pretrained | TimeRadar, block0 batch order | NA | 0.4413 | 0.5141 | NA | NA |
+| Pretrained | TimeRadar, FIT-only batch order | NA | 0.4581 | NA | NA | NA |
 | Statistical | History Mean512 | NA | NA | NA | NA | 0.3360 |
 | Statistical | Level deviation | 0.4255 | 0.4460 | 0.4645 | 0.3069 | 0.3021 |
 | Statistical | PCA residual | NA | 0.5290 | NA | NA | NA |
-| Proposed | Adapted trajectory subspaces (design) | Pending | Pending | Pending | Pending | Pending |
+| Project multi-source, frozen | Frozen multi-source subspaces | NA | 0.3624 | 0.2108 | NA | NA |
+| Source + normal target | Source planes → normal target fit | NA | 0.3607 | 0.1163 | NA | NA |
+| Normal target only | Normal target covariance → normal target fit | NA | 0.3607 | 0.1019 | NA | NA |
 
 **VUS-ROC**
 
@@ -67,10 +76,13 @@ LEFT uses normal FIT and SELECT, a normal-prefix scaler including SELECT and W19
 | Pretrained | TimeRCD, FIT-only | 0.9097 | NA | NA | NA | NA |
 | Pretrained | TimeRadar, W100 individual-window order | 0.8825 | NA | NA | 0.7191 | 0.7045 |
 | Pretrained | TimeRadar, block0 batch order | NA | 0.6784 | 0.7668 | NA | NA |
+| Pretrained | TimeRadar, FIT-only batch order | NA | 0.6892 | NA | NA | NA |
 | Statistical | History Mean512 | NA | NA | NA | NA | 0.6865 |
 | Statistical | Level deviation | 0.8667 | 0.6543 | 0.6443 | 0.6055 | 0.6136 |
 | Statistical | PCA residual | NA | 0.7667 | NA | NA | NA |
-| Proposed | Adapted trajectory subspaces (design) | Pending | Pending | Pending | Pending | Pending |
+| Project multi-source, frozen | Frozen multi-source subspaces | NA | 0.5812 | 0.5665 | NA | NA |
+| Source + normal target | Source planes → normal target fit | NA | 0.5790 | 0.4419 | NA | NA |
+| Normal target only | Normal target covariance → normal target fit | NA | 0.5790 | 0.4139 | NA | NA |
 
 ### B. Fixed pretrained detectors on the external intersection
 
@@ -138,6 +150,17 @@ Published VUS-PR and VUS-ROC are provided independently of local AP, preprocessi
 ## Use conditions, contamination and mechanism
 
 Establish the complete detector on the public benchmark before attributing gains. The source-excluded Z, separate U and labeled F lanes share one score. Report the zero-update comparator again on the same untouched target suffix where a comparison requires it. Controlled abnormal exposure compares fixed abnormal and nominal replacements of the same slots. Seek a net improvement in absolute detection and measure false alarms, matched events, delay and sustained coverage. Sparse deviation estimates are statistical residuals. Their existence supplies no physical fault-channel labels. The prior PSM mixed CAL was entirely attack-labeled; NASA small-sample empirical q99 can equal the maximum. The actual use of each CAL governs what can be inferred about normal false alarms.
+
+## Fixed mixed-unlabeled target results
+
+| Method | PSM AP | PSM ROC-AUC | PSM VUS-PR | PSM VUS-ROC | SWaT AP | SWaT ROC-AUC | SWaT VUS-PR | SWaT VUS-ROC |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Frozen multi-source subspaces | 0.3292 | 0.5442 | 0.3608 | 0.5875 | 0.2348 | 0.5675 | 0.2447 | 0.5770 |
+| Source planes → quadratic U | 0.3273 | 0.5415 | 0.3589 | 0.5850 | 0.1394 | 0.4571 | 0.1460 | 0.4688 |
+| Mixed target covariance → robust U | 0.3275 | 0.5417 | 0.3591 | 0.5852 | 0.1207 | 0.4415 | 0.1251 | 0.4535 |
+| Source planes → robust U | 0.3273 | 0.5415 | 0.3589 | 0.5850 | 0.1374 | 0.4550 | 0.1438 | 0.4668 |
+
+Both target-initialized references use the covariance of the permitted target fit. On the public comparison, the frozen source model exceeded the two updated subspace models on both datasets, while falling below LEFT and the pointwise level baseline. On the mixed suffix, replacing quadratic fitting with localized sparse separation changed AP by −0.000001 on PSM and −0.00195 on SWaT. On SWaT both fits matched 17 of 22 events after confirmation, but the source robust U model reached just 0.68% point recall compared with 6.24% for frozen Z. Source-initialized robust U exceeded target-only robust U there by 0.01671 AP. This is evidence of a limited reference-subspace advantage alongside a loss from adaptation. No substantive benefit of separating deviations during U was established. All readouts are retrospective. [Axes, costs, convergence, decompositions and event results](../../docs/experiments/trajectory_subspace_20261126/RESULTS.md).
 
 ## Prior evidence and its limits
 

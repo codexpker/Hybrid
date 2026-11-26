@@ -1,0 +1,146 @@
+{
+  "protocol_commit": "a3400d8f51b654fe7e819b1c960e2d52af673f46",
+  "amendment": "target-only reference and initial planes estimated from the entire permitted target covariance",
+  "W": 96,
+  "stride": 96,
+  "L": 32,
+  "dct": "orthonormal II",
+  "band_bins": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ]
+  ],
+  "rank": 2,
+  "sparse_lambda": 1,
+  "nuclear_tau": 0.05,
+  "ridge_eps": 0.0001,
+  "source_anchor_eta": 0.1,
+  "alternations": 5,
+  "solver": {
+    "dtype": "float64",
+    "relative_mapping_tolerance": 1e-05,
+    "max_steps": 500,
+    "initial_Y": "observed block",
+    "step": "1/(1+largest eigenvalue of the scaled lag/ridge Hessian); backtracking if needed",
+    "cap": "keep last finite iterate, record block; nonfinite invalidates comparison"
+  },
+  "source": {
+    "TEP": "archived 52-variable nominal FIT-standardized float32 array promoted to float64; runs 1-20 FIT, 61-65 SELECT",
+    "SMD": "28 verified original normal arrays, per-machine floor(0.8*N) split, FIT mean/std; ISO record boundaries",
+    "weights": "equal domain, then record, then valid non-overlapping W96 block",
+    "labels": false
+  },
+  "target": {
+    "PSM": {
+      "FIT": [
+        0,
+        105984
+      ],
+      "SELECT": [
+        105984,
+        132481
+      ],
+      "U": [
+        0,
+        17568
+      ],
+      "CAL": [
+        18112,
+        21960
+      ],
+      "QUERY": [
+        22504,
+        87841
+      ],
+      "public_common": [
+        0,
+        87744
+      ],
+      "U_common": [
+        22656,
+        87744
+      ],
+      "workers": 8
+    },
+    "SWAT": {
+      "FIT": [
+        0,
+        396000
+      ],
+      "SELECT": [
+        396000,
+        495000
+      ],
+      "U": [
+        495000,
+        585000
+      ],
+      "CAL": [
+        585544,
+        607479
+      ],
+      "QUERY": [
+        608023,
+        944919
+      ],
+      "public_common": [
+        495000,
+        944856
+      ],
+      "U_common": [
+        608535,
+        944856
+      ],
+      "workers": 23
+    }
+  },
+  "run": {
+    "device": "CPU, Intel Xeon Silver 4310",
+    "GPU_hours": 0,
+    "python": "3.12.13",
+    "numpy": "2.4.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.7.2",
+    "parallel_metric_workers": 12,
+    "seed": "no training RNG; numerical directional checks only use seed 2025",
+    "delta_units": "metric differences on 0–1 scale",
+    "data_workspace_output": "results/trajectory_subspace_20261126_v1"
+  }
+}

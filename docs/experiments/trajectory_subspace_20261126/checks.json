@@ -1,0 +1,28 @@
+{
+  "panel": "PSM first 8 disjoint normal FIT blocks",
+  "blocks": 8,
+  "checks": [
+    "adjoint",
+    "DCT",
+    "Huber",
+    "lag quadratic",
+    "gradient",
+    "SVT",
+    "anchored eigen optimum",
+    "descent"
+  ],
+  "max_relative_residual": 9.452727118503855e-06,
+  "iterations": [
+    38.0,
+    18.0,
+    19.0,
+    18.0,
+    18.0,
+    17.0,
+    18.0,
+    18.0
+  ],
+  "mean_initial": 0.12251034275933004,
+  "mean_final": 0.09008563969707989,
+  "seconds": 0.03138799173757434
+}

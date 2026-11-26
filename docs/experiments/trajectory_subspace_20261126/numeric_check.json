@@ -1,0 +1,8 @@
+{
+  "comparisons": 14,
+  "AP_ROC": "all full and common banks, custom tie-group AP and rank-sum ROC, absolute tolerance 1e-11",
+  "VUS": "pinned implementation only; no second VUS implementation",
+  "metric_sha256": "808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc",
+  "python": "3.12.13",
+  "numpy": "2.4.6"
+}

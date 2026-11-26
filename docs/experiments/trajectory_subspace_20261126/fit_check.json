@@ -1,0 +1,65 @@
+{
+  "PSM": {
+    "select_blocks": 276,
+    "fits": {
+      "Z": {
+        "normal_SELECT_trajectory_risk": 0.04178139652461489,
+        "distance_from_source": 0.0
+      },
+      "source_normal": {
+        "normal_SELECT_trajectory_risk": 0.03574977162374784,
+        "distance_from_source": 0.05690892947725314
+      },
+      "target_normal": {
+        "normal_SELECT_trajectory_risk": 0.03505916541325213,
+        "distance_from_source": 2.669400655219209
+      },
+      "source_quadratic": {
+        "normal_SELECT_trajectory_risk": 0.035456642802295935,
+        "distance_from_source": 0.06527599798081661
+      },
+      "target_robust": {
+        "normal_SELECT_trajectory_risk": 0.035208155614363024,
+        "distance_from_source": 2.435373339204382
+      },
+      "source_robust": {
+        "normal_SELECT_trajectory_risk": 0.03545443657763078,
+        "distance_from_source": 0.06531776384446061
+      }
+    },
+    "first_U_block_objective_abs_error": 2.0816681711721685e-16,
+    "first_U_block_iterations": 19
+  },
+  "SWAT": {
+    "select_blocks": 1031,
+    "fits": {
+      "Z": {
+        "normal_SELECT_trajectory_risk": 0.0050064515408757265,
+        "distance_from_source": 0.0
+      },
+      "source_normal": {
+        "normal_SELECT_trajectory_risk": 0.0044767325888666,
+        "distance_from_source": 0.059464024527799815
+      },
+      "target_normal": {
+        "normal_SELECT_trajectory_risk": 0.004473806264508747,
+        "distance_from_source": 1.6435525165891112
+      },
+      "source_quadratic": {
+        "normal_SELECT_trajectory_risk": 0.004485684222053112,
+        "distance_from_source": 0.05422147888592269
+      },
+      "target_robust": {
+        "normal_SELECT_trajectory_risk": 0.004468584324116674,
+        "distance_from_source": 2.1163795653231925
+      },
+      "source_robust": {
+        "normal_SELECT_trajectory_risk": 0.004482743036300849,
+        "distance_from_source": 0.055518393151732744
+      }
+    },
+    "first_U_block_objective_abs_error": 1.1796119636642288e-16,
+    "first_U_block_iterations": 19
+  },
+  "seconds": 0.9896042309701443
+}
