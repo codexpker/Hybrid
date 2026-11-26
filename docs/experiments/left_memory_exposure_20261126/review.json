@@ -1,0 +1,110 @@
+{
+  "arithmetic_check_source_slots": [
+    17,
+    18,
+    19,
+    20
+  ],
+  "PSM": {
+    "restricted_A": {
+      "AP": 0.5919498734229446,
+      "ROC": 0.7555553025423429,
+      "threshold": 0.50388503074646,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "ordinary_B": {
+      "AP": 0.5264646952921954,
+      "ROC": 0.7402168153667246,
+      "threshold": 0.48844796419143677,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "replay_B": {
+      "AP": 0.5753721171103734,
+      "ROC": 0.7327957944446838,
+      "threshold": 0.4956575632095337,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "restricted_B": {
+      "AP": 0.5752993728250537,
+      "ROC": 0.7327647407155213,
+      "threshold": 0.4956430196762085,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "ordinary_C": {
+      "AP": 0.577490932517153,
+      "ROC": 0.7638327409564564,
+      "threshold": 0.501301646232605,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "replay_C": {
+      "AP": 0.5959956789082861,
+      "ROC": 0.7569906233930882,
+      "threshold": 0.506261944770813,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "restricted_C": {
+      "AP": 0.5959909850198517,
+      "ROC": 0.7569903636162999,
+      "threshold": 0.5062633156776428,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    }
+  },
+  "SWAT": {
+    "restricted_A": {
+      "AP": 0.7861553351876074,
+      "ROC": 0.8419671033315546,
+      "threshold": 0.2553979754447937,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "ordinary_B": {
+      "AP": 0.778414802500387,
+      "ROC": 0.8387304238265373,
+      "threshold": 0.24673372507095337,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "replay_B": {
+      "AP": 0.7806055691263406,
+      "ROC": 0.8418430274612233,
+      "threshold": 0.264139324426651,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "restricted_B": {
+      "AP": 0.7805800788788657,
+      "ROC": 0.841834503959944,
+      "threshold": 0.26404106616973877,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "ordinary_C": {
+      "AP": 0.779960331038228,
+      "ROC": 0.8417869511096139,
+      "threshold": 0.2693908214569092,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "replay_C": {
+      "AP": 0.7860897725050209,
+      "ROC": 0.8418466491313943,
+      "threshold": 0.25342822074890137,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    },
+    "restricted_C": {
+      "AP": 0.7860864633755353,
+      "ROC": 0.8418459292947523,
+      "threshold": 0.25318649411201477,
+      "ema_steps": 0,
+      "ema_presentations": 0
+    }
+  }
+}

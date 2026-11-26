@@ -20,7 +20,7 @@ def mismatch_context(context):
     return context.roll(context.shape[0]//2, dims=0)
 
 
-def model_class(native, arm):
+def model_class(native, arm, ema_selector=None):
     if arm not in (*ARMS, 'mismatched'):
         raise ValueError(arm)
     # Reorder only the deterministic association/read block to make its
@@ -37,11 +37,16 @@ def model_class(native, arm):
     insertion = source.index('    y_flat, _, _ = '+call)
     source = source[:insertion] + read_block + source[insertion:]
     source = source.replace(call, 'self._condition_ms(Mtok_up, z_t, z_f, z_t_mem, z_f_mem, lam, B, C)')
+    if ema_selector is not None:
+        marker = '            if good.any():'
+        assert source.count(marker) == 1
+        source = source.replace(marker, '            good = self._select_ema(good, err_b, ad_b, conf_t_b, conf_f_b, thr_err, thr_ad)\n' + marker)
     namespace = dict(native._forward.__globals__)
     exec(compile(source, '<LEFT fixed decoder context>', 'exec'), namespace)
 
     class ConditionedLeft(native):
         _forward = namespace['_forward']
+        _select_ema = ema_selector
 
         def __init__(self, config):
             super().__init__(config)
