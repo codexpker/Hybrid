@@ -1,0 +1,16 @@
+{
+  "phase": "complete",
+  "first_domain": "PSM",
+  "smd_entities": [
+    "machine-1-1",
+    "machine-1-4",
+    "machine-1-7",
+    "machine-2-2",
+    "machine-2-5",
+    "machine-2-8",
+    "machine-3-10",
+    "machine-3-3",
+    "machine-3-6",
+    "machine-3-9"
+  ]
+}

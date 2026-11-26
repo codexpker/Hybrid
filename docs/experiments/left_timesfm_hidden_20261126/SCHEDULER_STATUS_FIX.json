@@ -1,0 +1,137 @@
+{
+  "time_utc": 1795709828.881713,
+  "reason": "Mutable scheduler/summary state used exclusive-create writer",
+  "old_queues": [
+    {
+      "domain": "PSM",
+      "gpu": "1",
+      "pid": 3426161,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "PSM"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-lane1.log",
+      "status_at_stop": {
+        "phase": "waiting for all source arms to seal",
+        "waiting_for": [
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/A/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/B/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/D/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/E/receipt.json"
+        ]
+      }
+    },
+    {
+      "domain": "SWAT",
+      "gpu": "2",
+      "pid": 3426162,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "SWAT"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SWAT-lane2.log",
+      "status_at_stop": {
+        "phase": "waiting for all source arms to seal",
+        "waiting_for": [
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/A/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/B/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/D/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/E/receipt.json"
+        ]
+      }
+    },
+    {
+      "domain": "SMD",
+      "gpu": "3",
+      "pid": 3426164,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "SMD"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-lane3.log",
+      "status_at_stop": {
+        "phase": "waiting for PSM/SWaT U and SMD source seals",
+        "waiting_for": [
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/U/PSM/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/U/SWAT/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/A/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/B/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/D/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/E/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/U_SOURCE_FEATURES/receipt.json"
+        ]
+      }
+    }
+  ],
+  "new_queues": [
+    {
+      "domain": "PSM",
+      "gpu": 1,
+      "pid": 3452091,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "PSM"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-lane1-statusfix.log"
+    },
+    {
+      "domain": "SWAT",
+      "gpu": 2,
+      "pid": 3452092,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "SWAT"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SWAT-lane2-statusfix.log"
+    },
+    {
+      "domain": "SMD",
+      "gpu": 3,
+      "pid": 3452093,
+      "command": [
+        "/home/a312/tsad_research/envs/timeradar/bin/python",
+        "-u",
+        "-m",
+        "hybrid_tsad.left_timesfm_adaptation",
+        "/home/a312/tsad_research",
+        "queue",
+        "SMD"
+      ],
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-lane3-statusfix.log"
+    }
+  ],
+  "old_metrics_pid": 3439696,
+  "new_metrics_pid": 3452094,
+  "interrupted_optimizer_updates": 0,
+  "source_training_interrupted": false,
+  "old_code_sha256": "5c215f8f70812f5a3b42f8a867c590aa12dd39488fd3cd5b2ffa7a259f757ced",
+  "new_code_sha256": "16616727fd8c25813335e986102a34ab64ae9bea35d32ac61bd40eb8adef4e38"
+}

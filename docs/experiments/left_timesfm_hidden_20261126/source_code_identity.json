@@ -1,0 +1,18 @@
+{
+  "source_jobs_started_utc": "2026-11-26T15:17:22Z",
+  "source_screen": "3387562.left_timesfm_source",
+  "executed_project_files_sha256": {
+    "src/hybrid_tsad/left_timesfm_condition.py": "15097d7365ed8613a8db4408b6bed58bbd8e871ad4ab467a8fe9f825e785a994",
+    "src/hybrid_tsad/left_timesfm_training.py": "ec6b1f1b1b1e21614bdec5708a847710a3335a7c4d4e9d666d6c1dec4166342c",
+    "src/hybrid_tsad/left_multisource.py": "19a2828d45bda6980bd1373a63a9abbca63b7ccce1e37bb6ba7f193586638e8b",
+    "src/hybrid_tsad/left_smd_source.py": "a5bd25998973a86aa44318ed37cda4c01f70f0f459d89c5103def894114df3f2",
+    "src/hybrid_tsad/left_decoder_context.py": "6a94b04c91d17ef553cf3f64bf1a88ca2470f028977abb03d64d187acb8991cb",
+    "src/hybrid_tsad/intervention_reference.py": "0a39270e0c5a82a85b8ae1b0bb5df05257a5b0132be63dc1fab7ba1d67cde2de",
+    "scripts/run_left_timesfm_source.sh": "ae307ff9a8d0298b8bd0efe1d6210377984f26ac209c44b3c2ab8ab1ae342ccb"
+  },
+  "hidden_extractor_archive": "executed_source/timesfm_hidden.py",
+  "hidden_extractor_archive_status": "reconstructed launch snapshot from the exact two recorded edits; not a runtime-captured original hash",
+  "hidden_extractor_reconstructed_sha256": "89cd6a771ee1c357341bdb00b8f1ccd7541da9b498733d644b10be72ed369e3a",
+  "post_launch_hidden_extractor_sha256": "29b5357d964196d3813c7394836a5a412214f5fa1c0799419a19310450e35c8d",
+  "post_launch_diff": "One assertion checks hidden.dtype==torch.float32. Engineering-check explanation text and comments were made more cautious. No tensor operation or forward argument changed. Source processes already imported the archived earlier version."
+}

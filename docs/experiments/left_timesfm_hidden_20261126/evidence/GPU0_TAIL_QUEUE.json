@@ -1,0 +1,13 @@
+{
+  "pid": 3548954,
+  "time": 1795715744.1595979,
+  "entities": [
+    "machine-3-9",
+    "machine-3-8",
+    "machine-3-7"
+  ],
+  "scope": "Three already fixed pending SMD U A/C pairs; existing lanes reuse their receipts before returning; no added training jobs",
+  "gpu": 0,
+  "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-tail-gpu0.log",
+  "uses_same_entrypoint": true
+}

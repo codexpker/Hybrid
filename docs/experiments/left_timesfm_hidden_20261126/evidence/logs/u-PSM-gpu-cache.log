@@ -1,0 +1,15 @@
+Loading weights from local directory
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/a312/tsad_research/tmp/trajectory_src/src/hybrid_tsad/left_timesfm_adaptation.py", line 494, in <module>
+    queue(args.workspace, args.domain)
+  File "/home/a312/tsad_research/tmp/trajectory_src/src/hybrid_tsad/left_timesfm_adaptation.py", line 475, in queue
+    train(w, "SMD", entity)
+  File "/home/a312/tsad_research/tmp/trajectory_src/src/hybrid_tsad/left_timesfm_adaptation.py", line 303, in train
+    target_history, target_current = target_windows(data, starts[step])
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/tmp/trajectory_src/src/hybrid_tsad/left_timesfm_adaptation.py", line 145, in target_windows
+    return torch.from_numpy(history).cuda(), torch.from_numpy(current).cuda()
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.00 MiB. GPU 0 has a total capacity of 44.42 GiB of which 21.93 GiB is free. Including non-PyTorch memory, this process has 22.49 GiB memory in use. 20.00 GiB allowed; Of the allocated memory 21.97 GiB is allocated by PyTorch, and 211.03 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

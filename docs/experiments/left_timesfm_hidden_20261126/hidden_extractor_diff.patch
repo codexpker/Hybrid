@@ -1,0 +1,35 @@
+diff --git a/docs/experiments/left_timesfm_hidden_20261126/executed_source/timesfm_hidden.py b/src/hybrid_tsad/timesfm_hidden.py
+index 329e65a..a52e87d 100644
+--- a/docs/experiments/left_timesfm_hidden_20261126/executed_source/timesfm_hidden.py
++++ b/src/hybrid_tsad/timesfm_hidden.py
+@@ -101,6 +101,9 @@ def encode(model, history, valid_lengths=None):
+     output = model.forward(packed, return_aux_outputs=True)
+     hidden = output["__call__:transformer_output"]
+     valid = ~packed["masks"].all(-1)
++    assert hidden.dtype == torch.float32, (
++        "The frozen hidden-feature contract uses native fp32"
++    )
+     assert hidden.shape == (*valid.shape, HIDDEN) and torch.isfinite(hidden).all()
+     return hidden, valid
+ 
+@@ -130,8 +133,9 @@ def check(workspace, destination):
+         ]
+         error_padding = (b[:, :, -8:] - badpad[:, :, -8:]).abs().max().item()
+         error_length = (a - b[:, :, -8:]).abs().max().item()
+-        # Native RoPE indices differ for an unpadded short sequence. Preserve
+-        # the fixed 512-point indexing rather than changing official attention.
++        # Short and padded input formats produce different representations.
++        # Do not attribute that difference to one internal mechanism here;
++        # deployment always preserves the same left-padded 512-point format.
+         padded_output = model.forward(inputs(padded, counts), return_aux_outputs=True)
+         short_output = model.forward(inputs(te), return_aux_outputs=True)
+         for padded_stat, short_stat in zip(
+@@ -198,7 +202,7 @@ def check(workspace, destination):
+         valid_mask_shape=list(bm.shape),
+         padded_valid_max_abs_error=error_length,
+         short_vs_padded_agreement_required=False,
+-        short_vs_padded_reason="Official RoPE positions differ; deployment fixes left-padded512 indexing",
++        short_vs_padded_reason="Native input-format sensitivity observed; its internal cause is not isolated. Deployment fixes left-padded512 indexing.",
+         padded_running_stats_equal=True,
+         padded_attention_keys_excluded=True,
+         padding_value_max_abs_error=error_padding,

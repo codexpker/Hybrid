@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "domain": "PSM",
+  "fixed_model_checkpoints": 5,
+  "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+  "source_select_fixture_sha256": "ec6ba86be133cfe61980fe6b7a5398c8fb9d92bd64f413deeefe5e6036c66eee",
+  "select_padding_mask_verified": true,
+  "independently_rebuilt_current_history_hashes_at_updates": [
+    1,
+    1000,
+    2000
+  ],
+  "normalized_source_record_identities_cpu_rebuilt": true,
+  "plan_sha256": "8d2c3ceeb43da12f6a62460dbeab9c043651a0b213869e4cd2e6badda5848649",
+  "plans": {
+    "fit": {
+      "rows": 64000,
+      "source_group_counts": [
+        32000,
+        32000
+      ],
+      "identical_histories": 586,
+      "mean_history_overlap_by_group": [
+        0.9477926025390625,
+        0.06834967041015624
+      ]
+    },
+    "select": {
+      "rows": 1024,
+      "source_group_counts": [
+        512,
+        512
+      ],
+      "identical_histories": 9,
+      "mean_history_overlap_by_group": [
+        0.9497222900390625,
+        0.25595855712890625
+      ]
+    }
+  },
+  "all_native_rng_receipts_agree_and_final_rng_archive_matches": true,
+  "validated_history_feature_checksums_per_train_step": 2000,
+  "note": "Source SELECT is diagnostic. Matching set/shape and held-out source groups verified; no forward pass repeated.",
+  "currently_available_scores": {
+    "rows_recomputed": 12,
+    "score_banks_checked": 7,
+    "AP_max_abs_error": 2.220446049250313e-16,
+    "ROC_AUC_max_abs_error": 2.220446049250313e-15
+  }
+}

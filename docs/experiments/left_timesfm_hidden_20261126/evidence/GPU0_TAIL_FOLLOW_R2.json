@@ -1,0 +1,11 @@
+{
+  "pid": 3601936,
+  "time": 1795719690.6498315,
+  "entities": [
+    "machine-3-6",
+    "machine-3-5"
+  ],
+  "scope": "Launcher argument correction only: entities are positional. Previous command exited at argument parsing, before model loading or updates.",
+  "failed_log": "logs/u-tail-follow-r1.log",
+  "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-tail-follow-r2.log"
+}

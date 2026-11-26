@@ -1,0 +1,52 @@
+{
+  "reason": "Replace host target-feature storage with identical FP32 CUDA storage; no model or update formula change",
+  "old_sha256": "0fc7464312b2572883f7da4d4101da7c12f05b125bc56f929138f95c04aa0795",
+  "new_sha256": "135af77fac3392097f1f8a81f91cd6ee07e194555168b3fc1aecb2280cd29ded",
+  "lanes": [
+    {
+      "lane": "PSM",
+      "gpu": 1,
+      "previous_pid": 3509414,
+      "new_pid": 3546803,
+      "completed_entity": "machine-1-1",
+      "previous_state": {
+        "phase": "training",
+        "domain": "SMD",
+        "entity": "machine-1-4"
+      },
+      "no_unsealed_optimizer_updates_interrupted": true,
+      "stopped_time": 1795715623.7398252,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-gpu-cache.log"
+    },
+    {
+      "lane": "SMD",
+      "gpu": 3,
+      "previous_pid": 3509418,
+      "new_pid": 3546806,
+      "completed_entity": "machine-1-3",
+      "previous_state": {
+        "phase": "training",
+        "domain": "SMD",
+        "entity": "machine-1-6"
+      },
+      "no_unsealed_optimizer_updates_interrupted": true,
+      "stopped_time": 1795715624.1418366,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-gpu-cache.log"
+    },
+    {
+      "lane": "SWAT",
+      "gpu": 2,
+      "previous_pid": 3452092,
+      "new_pid": 3557237,
+      "completed_entity": "machine-1-2",
+      "previous_state": {
+        "phase": "training",
+        "domain": "SMD",
+        "entity": "machine-1-2"
+      },
+      "no_unsealed_optimizer_updates_interrupted": true,
+      "stopped_time": 1795716287.6877472,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SWAT-gpu-cache.log"
+    }
+  ]
+}

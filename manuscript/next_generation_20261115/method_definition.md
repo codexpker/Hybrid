@@ -1,4 +1,68 @@
-# Historical relation prediction with the multi-source LEFT detector
+# Frozen TimesFM history conditioning of the multi-source LEFT detector
+
+## Frozen TimesFM history conditioning
+
+The fixed experiment is complete: fifteen source endpoints, three-domain Z evaluation and sixty matched replay endpoints across PSM, SWaT and all SMD machines. The architecture is not advanced to more seeds, pollution or F because the public comparisons and fixed controlled inputs did not establish a useful incremental advantage. The following definition describes the executed architecture; it is not a claim that the project's final method has been established. [Complete results and evidence boundary](../../docs/experiments/left_timesfm_hidden_20261126/RESULTS.md)
+
+The current architecture conditions a complete LEFT detector on the hidden sequence of the released TimesFM 3.0 model. This experiment uses Google code `918df02c9d366b2145bc5876135fa2131d3ed2a6` and checkpoint revision `43046b85ec22d584a13f8098c2ed39c889e129c2`. Its model.safetensors SHA-256 is `a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da`. The original twenty layers, causal temporal attention and multivariate attention are retained. The code is Apache-2.0. The downloaded 3.0 weights have the separately archived non-commercial, non-production license. [Official implementation](https://github.com/google-research/timesfm)
+
+For a current W192 window beginning at s, input only observations preceding s to TimesFM. TEP provides 256 valid observations within one 500-point run. Other source records and target evaluation use 512 valid observations. TEP histories are left-padded to the same 512-position layout with a value mask. Every variable is a separate coordinate within the same multivariate sample. The full official forward with `return_aux_outputs=True` supplies `__call__:transformer_output`, a tensor of shape B×C×16×1280. Padding is excluded from official running statistics and valid attention keys. Hidden values for padded query positions are additionally masked in the downstream condition module. On the normal-source check, changing only padding values left valid hidden states exactly unchanged. Calling the model on a shorter unpadded tensor did not produce identical hidden states; its largest difference was about 0.329. The internal cause of that input-format sensitivity was not isolated. All experiments retain the same 512-slot representation and mask rule. Sample counts also represent different physical durations across the source datasets.
+
+Let Q_i be LEFT's native encoded tokens for variable i and let H_i contain its TimesFM hidden patches. A trainable linear projection maps each H_i to dimension 128. Four-head cross-attention takes normalized Q_i as queries and normalized projected H_i as keys and values. It returns A_i, and the detector replaces Q_i by Q_i + tanh(g) A_i, with a trainable scalar g initialized at zero. The attention acts before LEFT's existing three-view fusion and reconstruction pathways. Its history remains variable-specific, while TimesFM's original variable attention has already mixed information across variables. The added attention has zero dropout. LEFT and the condition layer receive the unmodified full native training objective. TimesFM remains frozen. Deployment uses the native LEFT anomaly score from the conditioned reconstruction and cycle.
+
+At D=128, the pretrained, reassigned and random-encoder conditions each add 230,529 trainable parameters. The statistics condition adds 66,945. In addition, the three hidden-state arms depend on a complete frozen TimesFM model, whose runtime and storage must be included in cost comparisons. The archived configuration declares `max_variates=32`, but this field is not used by the fixed PyTorch attention path. The implementation reshapes each patch to its actual variable count and attends across all variables. The 38-variable SMD call therefore retains full 38-by-38 variable attention without cropping or grouping. This does not establish that upstream pretraining included 38-variable samples.
+
+```mermaid
+flowchart LR
+    H["Past 512 slots<br/>TEP has 256 valid"] --> TF["Frozen official TimesFM 3.0<br/>temporal and variable attention"]
+    TF --> HP["Per-variable history patches<br/>1280 to 128 projection"]
+    X["Current 192 observations"] --> EN["Native LEFT multiscale encoder"]
+    EN --> CA["Gated cross-attention<br/>variable-preserving history"]
+    HP --> CA
+    CA --> DE["Native LEFT three-view fusion<br/>cycles, prototypes and decoders"]
+    DE --> LS["Native complete training loss"]
+    DE --> SC["Native LEFT anomaly score<br/>available at window end"]
+```
+
+The five matched source arms are native continuation, a historical mean/variance condition, pretrained hidden features, causally reassigned pretrained features and hidden features from an identically configured randomly initialized frozen TimesFM. All inherit the same existing LEFT compatibility wrapper: differentiable prototype snapshots preserve the pre-EMA read, while the original loss, curriculum and score definitions are retained. The decoder's older optional context interface remains unused. The new difference is the encoder-output history hook. The last three arms share the same condition module initialization. The mean/variance control has two inputs per variable and one condition token. Only this control directly receives raw historical level and variance. The main model has the information carried by the original hidden states. The random encoder has the full official architecture and is frozen; it is not a small randomly initialized predictor.
+
+Writing the official historical encoder as \(F_{\psi}\), define \(H=F_{\psi}(X_{s-h:s})\), with \(\psi\) fixed. For each variable, \(K_i=V_i=\operatorname{LN}(W_HH_i+b_H)\), \(Q_i'=\operatorname{LN}(Q_i)\), and \(\widetilde Q_i=Q_i+\tanh(g)\operatorname{MHA}(Q_i',K_i,V_i)\). The objective is exactly \(\mathcal L_{\mathrm{LEFT}}(X_{s:s+192};\theta,\widetilde Q)\), including the original reconstruction, multiscale and cycle terms and their existing coefficients. Optimization updates \(\theta\) and the projection, normalization, attention and gate parameters. There is no historical prediction loss or extra score. The frozen historical encoder receives neither current-window observations nor gradients. Parameter conditioning can change every downstream component of the native anomaly score; it does not create a separately calibrated anomaly detector.
+
+This use of historical attention is motivated by the original TimesFM temporal and variable modeling architecture, while the reconstruction and detection objective remains LEFT's. Reusing cross-attention and a gate is not itself an originality claim. The empirical questions are whether pretrained historical features improve the complete detector beyond matched continuation and historical statistics, whether that gain requires the actual window history, and whether it survives ordinary mixed-target replay. Temporal causality here describes the historical encoder's input and mask. The current detection window still uses all 192 observations, so scores are retrospective and become available at the current window end. No attention visualization, gate value or public AP gain alone establishes weak-anomaly, delay-specific or physical causal capability. [TimesFM architecture description](https://research.google/blog/timesfm-3-a-zero-shot-foundation-model-for-multivariate-forecasting/) · [LEFT](https://arxiv.org/abs/2602.08638)
+
+Historical reassignment is restricted to the same record and role with donor history ending no later than the recipient's current start. The recipient's ordered variable mapping is retained. When earlier history exists, the assignment uses an isolated deterministic random stream and excludes the identical start. Earliest windows can remain aligned, and their count is recorded. This causal reassignment changes the empirical donor frequency. An arbitrary permutation over an entire evaluation record could disclose observations later than the recipient's detection time.
+
+Project source exclusion applies to the TEP/SMD or TEP/HAI continuation data. Membership of the public target datasets in the upstream TimesFM pretraining corpus is not established by these local records. The experiments therefore evaluate frozen official representations on exposed public tasks.
+
+Both source domains receive equal window presentations. All arms start from the matching archived 25-, 31- or 38-channel source model, share their current windows and native random stream, and receive 2,000 Adam updates at learning rate 10⁻⁴ with batch size 32. Fixed endpoints determine the source models. Normal source SELECT supplies diagnostics and feature fixtures. Features are calculated in full float32 and streamed to avoid storing hundreds of gigabytes per source fold. Each batch records its feature hash, history footprint, original record and ordered variable mapping. Public score banks retain their input identities and actual window-end availability.
+
+| Fold | Project source records | Variables per sample | Target permission |
+|---|---|---:|---|
+| PSM | TEP FaultFree Training + all SMD normal FIT records | 25 | Known normal target-prefix scaling; no target parameter update in Z |
+| SWaT | TEP FaultFree Training + all SMD normal FIT records | 31 | Known normal target-prefix scaling; no target parameter update in Z |
+| SMD28 | TEP FaultFree Training + HAI 21.03 normal FIT files | 38 | Per-machine normal scaling; no SMD source optimization or source SELECT in this fold |
+
+Each source draw selects distinct ordered channels once and keeps that ordering for the full history and current window. TEP FIT uses runs 1–20 and SELECT uses runs 61–65. The SMD source split uses each record's first 80% and last 20% without cross-boundary windows. HAI uses train1/train3 for FIT and train2 for SELECT. In every case, existing FIT-derived source scalers remain fixed. An A–E source step therefore has the following implementation:
+
+```text
+Draw the shared 32 current windows and their preceding legal histories.
+Extract frozen pretrained, causally reassigned pretrained, and frozen random states.
+For each of the five LEFT arms:
+    Restore the same native dropout RNG state for this update.
+    Set its prescribed history condition, retaining variable and patch indices.
+    Run the complete native LEFT forward once; update native EMA and step once.
+    Backpropagate the native complete loss; take one Adam step.
+Check that the native RNG advances identically across arms; archive input hashes.
+After update 2000, seal all endpoints before target metric computation.
+```
+
+The frozen encoder has 330,710,976 registered parameters. Its output head is retained in the full official forward, although forecast outputs do not enter the detector. Costs include feature extraction, not just the small trainable attention module. Source and target feature reuse requires equal normalized input hashes, ordered channel maps, masks and historical indices.
+
+The second stage compares ordinary source replay from the native continuation with the same replay from the conditioned source model. Each step includes sixteen mixed target windows and eight windows from each normal source. Both use 2,000 updates, fresh Adam at 10⁻⁴ and a fixed endpoint. Every target history and current window belongs to the existing U-FIT role. Z and U are evaluated separately on their legal axes. Existing CAL indices retain their original definition. An operating point is unavailable if its complete legal history cannot be formed at every required CAL location.
+
+Implementation separates the [official hidden-state adapter](../../src/hybrid_tsad/timesfm_hidden.py), [native encoder-output condition](../../src/hybrid_tsad/left_timesfm_condition.py), [matched source learning](../../src/hybrid_tsad/left_timesfm_training.py), [paired replay](../../src/hybrid_tsad/left_timesfm_adaptation.py) and [footprint-aware evaluation](../../src/hybrid_tsad/left_timesfm_evaluation.py). Feature-cache placement and allocator allowances were corrected during execution without changing the mathematical program, sample plans or selected endpoints. Executed-source snapshots and failed preparation records are retained with the experiment, rather than being presented as method contributions.
+
+The historical Pearson prediction-head experiment below is archived. Its representations, scores and conclusions retain their original identities.
 
 ## Historical reference for changes in local dependence
 

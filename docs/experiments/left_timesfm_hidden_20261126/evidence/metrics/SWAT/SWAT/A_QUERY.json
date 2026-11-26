@@ -1,0 +1,33 @@
+{
+  "rows": [
+    {
+      "domain": "SWAT",
+      "entity": "SWAT",
+      "method": "A",
+      "panel": "mixed",
+      "role": "QUERY",
+      "start": 608664,
+      "stop": 944856,
+      "points": 336192,
+      "positives": 47777,
+      "score_sha256": "940640fb0fef90aa17347b27fa12b5f7702121fb837e8fc3113341d60fde2c5a",
+      "AP": 0.7899377676608645,
+      "ROC_AUC": 0.8430205007666528,
+      "VUS_PR": 0.6297900241268068,
+      "VUS_ROC": 0.7371036123967674,
+      "independent_AP_ROC_error": 2.220446049250313e-16
+    }
+  ],
+  "operations": [
+    {
+      "domain": "SWAT",
+      "entity": "SWAT",
+      "method": "A",
+      "cal_points": 512,
+      "cal_legal_points": 498,
+      "status": "NA: fixed CAL lacks legal full history"
+    }
+  ],
+  "events": [],
+  "seconds": 19.84219673834741
+}

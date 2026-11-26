@@ -1,0 +1,47 @@
+{
+  "reason": "Overlap two SMD lanes with streaming SWaT after PSM releases its large cache",
+  "training_and_scoring_ast_unchanged": true,
+  "old_sha256": "16616727fd8c25813335e986102a34ab64ae9bea35d32ac61bd40eb8adef4e38",
+  "new_sha256": "0fc7464312b2572883f7da4d4101da7c12f05b125bc56f929138f95c04aa0795",
+  "SWAT_active_process_untouched": 3452092,
+  "lanes": [
+    {
+      "domain": "PSM",
+      "previous_pid": 3452091,
+      "previous_state": {
+        "phase": "waiting for PSM/SWaT U and SMD source seals",
+        "waiting_for": [
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/U/PSM/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/U/SWAT/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/A/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/B/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/D/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/E/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/U_SOURCE_FEATURES/receipt.json"
+        ]
+      },
+      "new_pid": 3509414,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-lane1-overlap.log"
+    },
+    {
+      "domain": "SMD",
+      "previous_pid": 3452093,
+      "previous_state": {
+        "phase": "waiting for PSM/SWaT U and SMD source seals",
+        "waiting_for": [
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/PSM/U/PSM/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/U/SWAT/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/A/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/B/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/C/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/D/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/E/receipt.json",
+          "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SMD/U_SOURCE_FEATURES/receipt.json"
+        ]
+      },
+      "new_pid": 3509418,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-lane3-overlap.log"
+    }
+  ]
+}

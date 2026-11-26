@@ -1,0 +1,240 @@
+Loading weights from local directory
+sealed PSM PSM A_U QUERY 64704
+sealed PSM PSM C_U QUERY 64704
+{"event": "U_SCORED", "domain": "PSM", "entity": "PSM", "role": "QUERY", "process_wall_seconds": 19.926268339157104}
+Loading weights from local directory
+sealed PSM PSM A_U CAL 3264
+sealed PSM PSM C_U CAL 3264
+{"event": "U_SCORED", "domain": "PSM", "entity": "PSM", "role": "CAL", "process_wall_seconds": 11.16263461112976}
+Loading weights from local directory
+sealed SWAT SWAT A_U QUERY 336192
+sealed SWAT SWAT C_U QUERY 336192
+{"event": "U_SCORED", "domain": "SWAT", "entity": "SWAT", "role": "QUERY", "process_wall_seconds": 64.15347385406494}
+Loading weights from local directory
+sealed SWAT SWAT A_U CAL 21120
+sealed SWAT SWAT C_U CAL 21120
+{"event": "U_SCORED", "domain": "SWAT", "entity": "SWAT", "role": "CAL", "process_wall_seconds": 18.563215494155884}
+Loading weights from local directory
+sealed SMD machine-1-1 A_U QUERY 17856
+sealed SMD machine-1-1 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-1", "role": "QUERY", "process_wall_seconds": 34.581422567367554}
+Loading weights from local directory
+sealed SMD machine-1-1 A_U CAL 4416
+sealed SMD machine-1-1 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-1", "role": "CAL", "process_wall_seconds": 10.667526006698608}
+Loading weights from local directory
+sealed SMD machine-1-3 A_U QUERY 14592
+sealed SMD machine-1-3 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-3", "role": "QUERY", "process_wall_seconds": 12.16880750656128}
+Loading weights from local directory
+sealed SMD machine-1-3 A_U CAL 3456
+sealed SMD machine-1-3 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-3", "role": "CAL", "process_wall_seconds": 10.715673685073853}
+Loading weights from local directory
+sealed SMD machine-1-2 A_U QUERY 14592
+sealed SMD machine-1-2 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-2", "role": "QUERY", "process_wall_seconds": 13.564938068389893}
+Loading weights from local directory
+sealed SMD machine-1-2 A_U CAL 3456
+sealed SMD machine-1-2 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-2", "role": "CAL", "process_wall_seconds": 12.233952522277832}
+Loading weights from local directory
+sealed SMD machine-1-4 A_U QUERY 14592
+sealed SMD machine-1-4 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-4", "role": "QUERY", "process_wall_seconds": 11.663042068481445}
+Loading weights from local directory
+sealed SMD machine-1-4 A_U CAL 3456
+sealed SMD machine-1-4 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-4", "role": "CAL", "process_wall_seconds": 10.340967178344727}
+Loading weights from local directory
+sealed SMD machine-1-6 A_U QUERY 14592
+sealed SMD machine-1-6 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-6", "role": "QUERY", "process_wall_seconds": 12.104748964309692}
+Loading weights from local directory
+sealed SMD machine-1-6 A_U CAL 3456
+sealed SMD machine-1-6 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-6", "role": "CAL", "process_wall_seconds": 12.348487854003906}
+Loading weights from local directory
+sealed SMD machine-3-9 A_U QUERY 17856
+sealed SMD machine-3-9 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-9", "role": "QUERY", "process_wall_seconds": 13.866856575012207}
+Loading weights from local directory
+sealed SMD machine-3-9 A_U CAL 4416
+sealed SMD machine-3-9 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-9", "role": "CAL", "process_wall_seconds": 12.257349967956543}
+Loading weights from local directory
+sealed SMD machine-1-5 A_U QUERY 14592
+sealed SMD machine-1-5 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-5", "role": "QUERY", "process_wall_seconds": 13.295376777648926}
+Loading weights from local directory
+sealed SMD machine-1-5 A_U CAL 3456
+sealed SMD machine-1-5 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-5", "role": "CAL", "process_wall_seconds": 12.13980507850647}
+Loading weights from local directory
+sealed SMD machine-2-1 A_U QUERY 14592
+sealed SMD machine-2-1 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-1", "role": "QUERY", "process_wall_seconds": 11.615573644638062}
+Loading weights from local directory
+sealed SMD machine-2-1 A_U CAL 3456
+sealed SMD machine-2-1 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-1", "role": "CAL", "process_wall_seconds": 10.377307176589966}
+Loading weights from local directory
+sealed SMD machine-1-7 A_U QUERY 14592
+sealed SMD machine-1-7 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-7", "role": "QUERY", "process_wall_seconds": 11.518498182296753}
+Loading weights from local directory
+sealed SMD machine-1-7 A_U CAL 3456
+sealed SMD machine-1-7 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-7", "role": "CAL", "process_wall_seconds": 10.337539434432983}
+Loading weights from local directory
+sealed SMD machine-3-8 A_U QUERY 17856
+sealed SMD machine-3-8 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-8", "role": "QUERY", "process_wall_seconds": 13.836981773376465}
+Loading weights from local directory
+sealed SMD machine-3-8 A_U CAL 4416
+sealed SMD machine-3-8 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-8", "role": "CAL", "process_wall_seconds": 12.339233160018921}
+Loading weights from local directory
+sealed SMD machine-1-8 A_U QUERY 14592
+sealed SMD machine-1-8 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-8", "role": "QUERY", "process_wall_seconds": 13.288909912109375}
+Loading weights from local directory
+sealed SMD machine-1-8 A_U CAL 3456
+sealed SMD machine-1-8 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-1-8", "role": "CAL", "process_wall_seconds": 11.977177381515503}
+Loading weights from local directory
+sealed SMD machine-2-4 A_U QUERY 14592
+sealed SMD machine-2-4 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-4", "role": "QUERY", "process_wall_seconds": 11.683555364608765}
+Loading weights from local directory
+sealed SMD machine-2-4 A_U CAL 3456
+sealed SMD machine-2-4 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-4", "role": "CAL", "process_wall_seconds": 10.815732955932617}
+Loading weights from local directory
+sealed SMD machine-2-2 A_U QUERY 14592
+sealed SMD machine-2-2 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-2", "role": "QUERY", "process_wall_seconds": 11.55055546760559}
+Loading weights from local directory
+sealed SMD machine-2-2 A_U CAL 3456
+sealed SMD machine-2-2 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-2", "role": "CAL", "process_wall_seconds": 10.334909439086914}
+Loading weights from local directory
+sealed SMD machine-3-7 A_U QUERY 17856
+sealed SMD machine-3-7 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-7", "role": "QUERY", "process_wall_seconds": 11.741025447845459}
+Loading weights from local directory
+sealed SMD machine-3-7 A_U CAL 4416
+sealed SMD machine-3-7 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-7", "role": "CAL", "process_wall_seconds": 10.459088325500488}
+Loading weights from local directory
+sealed SMD machine-2-3 A_U QUERY 14592
+sealed SMD machine-2-3 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-3", "role": "QUERY", "process_wall_seconds": 11.492376327514648}
+Loading weights from local directory
+sealed SMD machine-2-3 A_U CAL 3456
+sealed SMD machine-2-3 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-3", "role": "CAL", "process_wall_seconds": 10.258306503295898}
+Loading weights from local directory
+sealed SMD machine-2-7 A_U QUERY 14592
+sealed SMD machine-2-7 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-7", "role": "QUERY", "process_wall_seconds": 12.02341890335083}
+Loading weights from local directory
+sealed SMD machine-2-7 A_U CAL 3456
+sealed SMD machine-2-7 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-7", "role": "CAL", "process_wall_seconds": 10.395091533660889}
+Loading weights from local directory
+sealed SMD machine-2-5 A_U QUERY 14592
+sealed SMD machine-2-5 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-5", "role": "QUERY", "process_wall_seconds": 11.967191696166992}
+Loading weights from local directory
+sealed SMD machine-2-5 A_U CAL 3456
+sealed SMD machine-2-5 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-5", "role": "CAL", "process_wall_seconds": 10.651787042617798}
+Loading weights from local directory
+sealed SMD machine-2-6 A_U QUERY 17856
+sealed SMD machine-2-6 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-6", "role": "QUERY", "process_wall_seconds": 11.606613159179688}
+Loading weights from local directory
+sealed SMD machine-2-6 A_U CAL 4416
+sealed SMD machine-2-6 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-6", "role": "CAL", "process_wall_seconds": 10.167269706726074}
+Loading weights from local directory
+sealed SMD machine-3-6 A_U QUERY 17856
+sealed SMD machine-3-6 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-6", "role": "QUERY", "process_wall_seconds": 12.054935216903687}
+Loading weights from local directory
+sealed SMD machine-3-6 A_U CAL 4416
+sealed SMD machine-3-6 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-6", "role": "CAL", "process_wall_seconds": 12.42064356803894}
+Loading weights from local directory
+sealed SMD machine-2-8 A_U QUERY 14592
+sealed SMD machine-2-8 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-8", "role": "QUERY", "process_wall_seconds": 11.65484070777893}
+Loading weights from local directory
+sealed SMD machine-2-8 A_U CAL 3456
+sealed SMD machine-2-8 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-8", "role": "CAL", "process_wall_seconds": 11.009527921676636}
+Loading weights from local directory
+sealed SMD machine-3-1 A_U QUERY 17856
+sealed SMD machine-3-1 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-1", "role": "QUERY", "process_wall_seconds": 11.86557126045227}
+Loading weights from local directory
+sealed SMD machine-3-1 A_U CAL 4416
+sealed SMD machine-3-1 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-1", "role": "CAL", "process_wall_seconds": 10.845696210861206}
+Loading weights from local directory
+sealed SMD machine-2-9 A_U QUERY 17856
+sealed SMD machine-2-9 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-9", "role": "QUERY", "process_wall_seconds": 11.825626850128174}
+Loading weights from local directory
+sealed SMD machine-2-9 A_U CAL 4416
+sealed SMD machine-2-9 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-2-9", "role": "CAL", "process_wall_seconds": 10.638392210006714}
+Loading weights from local directory
+sealed SMD machine-3-5 A_U QUERY 14592
+sealed SMD machine-3-5 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-5", "role": "QUERY", "process_wall_seconds": 11.742720603942871}
+Loading weights from local directory
+sealed SMD machine-3-5 A_U CAL 3456
+sealed SMD machine-3-5 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-5", "role": "CAL", "process_wall_seconds": 11.277754068374634}
+Loading weights from local directory
+sealed SMD machine-3-10 A_U QUERY 14592
+sealed SMD machine-3-10 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-10", "role": "QUERY", "process_wall_seconds": 11.653794527053833}
+Loading weights from local directory
+sealed SMD machine-3-10 A_U CAL 3456
+sealed SMD machine-3-10 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-10", "role": "CAL", "process_wall_seconds": 10.322102308273315}
+Loading weights from local directory
+sealed SMD machine-3-2 A_U QUERY 14592
+sealed SMD machine-3-2 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-2", "role": "QUERY", "process_wall_seconds": 11.623365879058838}
+Loading weights from local directory
+sealed SMD machine-3-2 A_U CAL 3456
+sealed SMD machine-3-2 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-2", "role": "CAL", "process_wall_seconds": 10.315519094467163}
+Loading weights from local directory
+sealed SMD machine-3-11 A_U QUERY 17856
+sealed SMD machine-3-11 C_U QUERY 17856
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-11", "role": "QUERY", "process_wall_seconds": 12.14369535446167}
+Loading weights from local directory
+sealed SMD machine-3-11 A_U CAL 4416
+sealed SMD machine-3-11 C_U CAL 4416
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-11", "role": "CAL", "process_wall_seconds": 10.508052825927734}
+Loading weights from local directory
+sealed SMD machine-3-3 A_U QUERY 14592
+sealed SMD machine-3-3 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-3", "role": "QUERY", "process_wall_seconds": 11.508085250854492}
+Loading weights from local directory
+sealed SMD machine-3-3 A_U CAL 3456
+sealed SMD machine-3-3 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-3", "role": "CAL", "process_wall_seconds": 10.478571653366089}
+Loading weights from local directory
+sealed SMD machine-3-4 A_U QUERY 14592
+sealed SMD machine-3-4 C_U QUERY 14592
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-4", "role": "QUERY", "process_wall_seconds": 11.633210897445679}
+Loading weights from local directory
+sealed SMD machine-3-4 A_U CAL 3456
+sealed SMD machine-3-4 C_U CAL 3456
+{"event": "U_SCORED", "domain": "SMD", "entity": "machine-3-4", "role": "CAL", "process_wall_seconds": 10.365573167800903}

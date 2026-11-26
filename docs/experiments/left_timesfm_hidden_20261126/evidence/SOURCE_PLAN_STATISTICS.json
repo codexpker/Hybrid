@@ -1,0 +1,1656 @@
+{
+  "PSM": {
+    "fit": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 32000,
+        "distinct_records": 20,
+        "distinct_record_current_starts": 1060,
+        "repeat_presentations_ignoring_channels": 30940,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          18.0,
+          26.0,
+          30.0,
+          33.25,
+          53.0
+        ],
+        "channel_window_presentations": 800000,
+        "current_value_presentations": 153600000,
+        "by_record": [
+          {
+            "record_id": "TEP/run1",
+            "window_presentations": 1576,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1576,
+            "max_presentations_per_start": 47
+          },
+          {
+            "record_id": "TEP/run2",
+            "window_presentations": 1550,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1550,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run3",
+            "window_presentations": 1634,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1634,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run4",
+            "window_presentations": 1617,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1617,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run5",
+            "window_presentations": 1609,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1609,
+            "max_presentations_per_start": 41
+          },
+          {
+            "record_id": "TEP/run6",
+            "window_presentations": 1618,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1618,
+            "max_presentations_per_start": 53
+          },
+          {
+            "record_id": "TEP/run7",
+            "window_presentations": 1585,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1585,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run8",
+            "window_presentations": 1502,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1502,
+            "max_presentations_per_start": 38
+          },
+          {
+            "record_id": "TEP/run9",
+            "window_presentations": 1603,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1603,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run10",
+            "window_presentations": 1572,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1572,
+            "max_presentations_per_start": 41
+          },
+          {
+            "record_id": "TEP/run11",
+            "window_presentations": 1600,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1600,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run12",
+            "window_presentations": 1631,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1631,
+            "max_presentations_per_start": 49
+          },
+          {
+            "record_id": "TEP/run13",
+            "window_presentations": 1608,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1608,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run14",
+            "window_presentations": 1639,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1639,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run15",
+            "window_presentations": 1562,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1562,
+            "max_presentations_per_start": 39
+          },
+          {
+            "record_id": "TEP/run16",
+            "window_presentations": 1635,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1635,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run17",
+            "window_presentations": 1677,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1677,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run18",
+            "window_presentations": 1565,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1565,
+            "max_presentations_per_start": 40
+          },
+          {
+            "record_id": "TEP/run19",
+            "window_presentations": 1603,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1603,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run20",
+            "window_presentations": 1614,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1614,
+            "max_presentations_per_start": 47
+          }
+        ]
+      },
+      {
+        "source_domain": "SMD",
+        "window_presentations": 32000,
+        "distinct_records": 28,
+        "distinct_record_current_starts": 31089,
+        "repeat_presentations_ignoring_channels": 911,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          3.0
+        ],
+        "channel_window_presentations": 800000,
+        "current_value_presentations": 153600000,
+        "by_record": [
+          {
+            "record_id": "SMD/machine-1-1",
+            "window_presentations": 1111,
+            "distinct_current_starts": 1094,
+            "distinct_inputs_including_ordered_channels": 1111,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-2",
+            "window_presentations": 1205,
+            "distinct_current_starts": 1162,
+            "distinct_inputs_including_ordered_channels": 1205,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-3",
+            "window_presentations": 1201,
+            "distinct_current_starts": 1165,
+            "distinct_inputs_including_ordered_channels": 1201,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-1-4",
+            "window_presentations": 1116,
+            "distinct_current_starts": 1085,
+            "distinct_inputs_including_ordered_channels": 1116,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-5",
+            "window_presentations": 1184,
+            "distinct_current_starts": 1140,
+            "distinct_inputs_including_ordered_channels": 1184,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-6",
+            "window_presentations": 1138,
+            "distinct_current_starts": 1102,
+            "distinct_inputs_including_ordered_channels": 1138,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-7",
+            "window_presentations": 1150,
+            "distinct_current_starts": 1123,
+            "distinct_inputs_including_ordered_channels": 1150,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-8",
+            "window_presentations": 1155,
+            "distinct_current_starts": 1108,
+            "distinct_inputs_including_ordered_channels": 1155,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-1",
+            "window_presentations": 1134,
+            "distinct_current_starts": 1094,
+            "distinct_inputs_including_ordered_channels": 1134,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-2",
+            "window_presentations": 1105,
+            "distinct_current_starts": 1075,
+            "distinct_inputs_including_ordered_channels": 1105,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-3",
+            "window_presentations": 1108,
+            "distinct_current_starts": 1074,
+            "distinct_inputs_including_ordered_channels": 1108,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-4",
+            "window_presentations": 1140,
+            "distinct_current_starts": 1098,
+            "distinct_inputs_including_ordered_channels": 1140,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-5",
+            "window_presentations": 1186,
+            "distinct_current_starts": 1150,
+            "distinct_inputs_including_ordered_channels": 1186,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-6",
+            "window_presentations": 1159,
+            "distinct_current_starts": 1139,
+            "distinct_inputs_including_ordered_channels": 1159,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-7",
+            "window_presentations": 1105,
+            "distinct_current_starts": 1078,
+            "distinct_inputs_including_ordered_channels": 1105,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-8",
+            "window_presentations": 1126,
+            "distinct_current_starts": 1094,
+            "distinct_inputs_including_ordered_channels": 1126,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-9",
+            "window_presentations": 1117,
+            "distinct_current_starts": 1090,
+            "distinct_inputs_including_ordered_channels": 1117,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-1",
+            "window_presentations": 1183,
+            "distinct_current_starts": 1154,
+            "distinct_inputs_including_ordered_channels": 1183,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-10",
+            "window_presentations": 1139,
+            "distinct_current_starts": 1109,
+            "distinct_inputs_including_ordered_channels": 1139,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-11",
+            "window_presentations": 1099,
+            "distinct_current_starts": 1073,
+            "distinct_inputs_including_ordered_channels": 1099,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-2",
+            "window_presentations": 1168,
+            "distinct_current_starts": 1128,
+            "distinct_inputs_including_ordered_channels": 1168,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-3",
+            "window_presentations": 1102,
+            "distinct_current_starts": 1072,
+            "distinct_inputs_including_ordered_channels": 1102,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-4",
+            "window_presentations": 1131,
+            "distinct_current_starts": 1098,
+            "distinct_inputs_including_ordered_channels": 1131,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-5",
+            "window_presentations": 1143,
+            "distinct_current_starts": 1105,
+            "distinct_inputs_including_ordered_channels": 1143,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-6",
+            "window_presentations": 1141,
+            "distinct_current_starts": 1116,
+            "distinct_inputs_including_ordered_channels": 1141,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-7",
+            "window_presentations": 1154,
+            "distinct_current_starts": 1128,
+            "distinct_inputs_including_ordered_channels": 1154,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-8",
+            "window_presentations": 1151,
+            "distinct_current_starts": 1112,
+            "distinct_inputs_including_ordered_channels": 1151,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-9",
+            "window_presentations": 1149,
+            "distinct_current_starts": 1123,
+            "distinct_inputs_including_ordered_channels": 1149,
+            "max_presentations_per_start": 2
+          }
+        ]
+      }
+    ],
+    "select": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 512,
+        "distinct_records": 5,
+        "distinct_record_current_starts": 226,
+        "repeat_presentations_ignoring_channels": 286,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          2.0,
+          3.0,
+          7.0
+        ],
+        "channel_window_presentations": 12800,
+        "current_value_presentations": 2457600,
+        "by_record": [
+          {
+            "record_id": "TEP/run61",
+            "window_presentations": 104,
+            "distinct_current_starts": 46,
+            "distinct_inputs_including_ordered_channels": 104,
+            "max_presentations_per_start": 7
+          },
+          {
+            "record_id": "TEP/run62",
+            "window_presentations": 88,
+            "distinct_current_starts": 45,
+            "distinct_inputs_including_ordered_channels": 88,
+            "max_presentations_per_start": 5
+          },
+          {
+            "record_id": "TEP/run63",
+            "window_presentations": 98,
+            "distinct_current_starts": 41,
+            "distinct_inputs_including_ordered_channels": 98,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run64",
+            "window_presentations": 122,
+            "distinct_current_starts": 50,
+            "distinct_inputs_including_ordered_channels": 122,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run65",
+            "window_presentations": 100,
+            "distinct_current_starts": 44,
+            "distinct_inputs_including_ordered_channels": 100,
+            "max_presentations_per_start": 5
+          }
+        ]
+      },
+      {
+        "source_domain": "SMD",
+        "window_presentations": 512,
+        "distinct_records": 28,
+        "distinct_record_current_starts": 512,
+        "repeat_presentations_ignoring_channels": 0,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "channel_window_presentations": 12800,
+        "current_value_presentations": 2457600,
+        "by_record": [
+          {
+            "record_id": "SMD/machine-1-1",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-2",
+            "window_presentations": 15,
+            "distinct_current_starts": 15,
+            "distinct_inputs_including_ordered_channels": 15,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-3",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-4",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-5",
+            "window_presentations": 16,
+            "distinct_current_starts": 16,
+            "distinct_inputs_including_ordered_channels": 16,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-6",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-7",
+            "window_presentations": 20,
+            "distinct_current_starts": 20,
+            "distinct_inputs_including_ordered_channels": 20,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-8",
+            "window_presentations": 25,
+            "distinct_current_starts": 25,
+            "distinct_inputs_including_ordered_channels": 25,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-1",
+            "window_presentations": 17,
+            "distinct_current_starts": 17,
+            "distinct_inputs_including_ordered_channels": 17,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-2",
+            "window_presentations": 16,
+            "distinct_current_starts": 16,
+            "distinct_inputs_including_ordered_channels": 16,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-3",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-4",
+            "window_presentations": 26,
+            "distinct_current_starts": 26,
+            "distinct_inputs_including_ordered_channels": 26,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-5",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-6",
+            "window_presentations": 15,
+            "distinct_current_starts": 15,
+            "distinct_inputs_including_ordered_channels": 15,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-7",
+            "window_presentations": 17,
+            "distinct_current_starts": 17,
+            "distinct_inputs_including_ordered_channels": 17,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-8",
+            "window_presentations": 13,
+            "distinct_current_starts": 13,
+            "distinct_inputs_including_ordered_channels": 13,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-9",
+            "window_presentations": 10,
+            "distinct_current_starts": 10,
+            "distinct_inputs_including_ordered_channels": 10,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-1",
+            "window_presentations": 22,
+            "distinct_current_starts": 22,
+            "distinct_inputs_including_ordered_channels": 22,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-10",
+            "window_presentations": 28,
+            "distinct_current_starts": 28,
+            "distinct_inputs_including_ordered_channels": 28,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-11",
+            "window_presentations": 7,
+            "distinct_current_starts": 7,
+            "distinct_inputs_including_ordered_channels": 7,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-2",
+            "window_presentations": 27,
+            "distinct_current_starts": 27,
+            "distinct_inputs_including_ordered_channels": 27,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-3",
+            "window_presentations": 24,
+            "distinct_current_starts": 24,
+            "distinct_inputs_including_ordered_channels": 24,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-4",
+            "window_presentations": 23,
+            "distinct_current_starts": 23,
+            "distinct_inputs_including_ordered_channels": 23,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-5",
+            "window_presentations": 15,
+            "distinct_current_starts": 15,
+            "distinct_inputs_including_ordered_channels": 15,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-6",
+            "window_presentations": 16,
+            "distinct_current_starts": 16,
+            "distinct_inputs_including_ordered_channels": 16,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-7",
+            "window_presentations": 14,
+            "distinct_current_starts": 14,
+            "distinct_inputs_including_ordered_channels": 14,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-8",
+            "window_presentations": 15,
+            "distinct_current_starts": 15,
+            "distinct_inputs_including_ordered_channels": 15,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-9",
+            "window_presentations": 11,
+            "distinct_current_starts": 11,
+            "distinct_inputs_including_ordered_channels": 11,
+            "max_presentations_per_start": 1
+          }
+        ]
+      }
+    ],
+    "fit_history_reassignment": {
+      "presentations": 64000,
+      "identity_presentations": 586,
+      "shift_quantiles": [
+        0.0,
+        10.0,
+        44.0,
+        3618.0,
+        22094.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    },
+    "select_history_reassignment": {
+      "presentations": 1024,
+      "identity_presentations": 9,
+      "shift_quantiles": [
+        0.0,
+        9.0,
+        34.0,
+        684.0,
+        4418.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    }
+  },
+  "SWAT": {
+    "fit": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 32000,
+        "distinct_records": 20,
+        "distinct_record_current_starts": 1060,
+        "repeat_presentations_ignoring_channels": 30940,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          15.0,
+          26.0,
+          30.0,
+          34.0,
+          50.0
+        ],
+        "channel_window_presentations": 992000,
+        "current_value_presentations": 190464000,
+        "by_record": [
+          {
+            "record_id": "TEP/run1",
+            "window_presentations": 1509,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1509,
+            "max_presentations_per_start": 38
+          },
+          {
+            "record_id": "TEP/run2",
+            "window_presentations": 1637,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1637,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run3",
+            "window_presentations": 1577,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1577,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run4",
+            "window_presentations": 1698,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1698,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run5",
+            "window_presentations": 1577,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1577,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run6",
+            "window_presentations": 1605,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1605,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run7",
+            "window_presentations": 1628,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1628,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run8",
+            "window_presentations": 1704,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1704,
+            "max_presentations_per_start": 48
+          },
+          {
+            "record_id": "TEP/run9",
+            "window_presentations": 1595,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1595,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run10",
+            "window_presentations": 1563,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1563,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run11",
+            "window_presentations": 1601,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1601,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run12",
+            "window_presentations": 1620,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1620,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run13",
+            "window_presentations": 1567,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1567,
+            "max_presentations_per_start": 47
+          },
+          {
+            "record_id": "TEP/run14",
+            "window_presentations": 1574,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1574,
+            "max_presentations_per_start": 50
+          },
+          {
+            "record_id": "TEP/run15",
+            "window_presentations": 1662,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1662,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run16",
+            "window_presentations": 1537,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1537,
+            "max_presentations_per_start": 40
+          },
+          {
+            "record_id": "TEP/run17",
+            "window_presentations": 1555,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1555,
+            "max_presentations_per_start": 49
+          },
+          {
+            "record_id": "TEP/run18",
+            "window_presentations": 1629,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1629,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run19",
+            "window_presentations": 1576,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1576,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run20",
+            "window_presentations": 1586,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1586,
+            "max_presentations_per_start": 40
+          }
+        ]
+      },
+      {
+        "source_domain": "SMD",
+        "window_presentations": 32000,
+        "distinct_records": 28,
+        "distinct_record_current_starts": 31033,
+        "repeat_presentations_ignoring_channels": 967,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          3.0
+        ],
+        "channel_window_presentations": 992000,
+        "current_value_presentations": 190464000,
+        "by_record": [
+          {
+            "record_id": "SMD/machine-1-1",
+            "window_presentations": 1104,
+            "distinct_current_starts": 1086,
+            "distinct_inputs_including_ordered_channels": 1104,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-1-2",
+            "window_presentations": 1108,
+            "distinct_current_starts": 1068,
+            "distinct_inputs_including_ordered_channels": 1108,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-1-3",
+            "window_presentations": 1075,
+            "distinct_current_starts": 1044,
+            "distinct_inputs_including_ordered_channels": 1075,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-4",
+            "window_presentations": 1179,
+            "distinct_current_starts": 1139,
+            "distinct_inputs_including_ordered_channels": 1179,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-5",
+            "window_presentations": 1161,
+            "distinct_current_starts": 1118,
+            "distinct_inputs_including_ordered_channels": 1161,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-6",
+            "window_presentations": 1126,
+            "distinct_current_starts": 1090,
+            "distinct_inputs_including_ordered_channels": 1126,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-1-7",
+            "window_presentations": 1187,
+            "distinct_current_starts": 1149,
+            "distinct_inputs_including_ordered_channels": 1187,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-1-8",
+            "window_presentations": 1161,
+            "distinct_current_starts": 1133,
+            "distinct_inputs_including_ordered_channels": 1161,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-1",
+            "window_presentations": 1110,
+            "distinct_current_starts": 1075,
+            "distinct_inputs_including_ordered_channels": 1110,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-2",
+            "window_presentations": 1120,
+            "distinct_current_starts": 1075,
+            "distinct_inputs_including_ordered_channels": 1120,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-3",
+            "window_presentations": 1136,
+            "distinct_current_starts": 1104,
+            "distinct_inputs_including_ordered_channels": 1136,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-4",
+            "window_presentations": 1232,
+            "distinct_current_starts": 1191,
+            "distinct_inputs_including_ordered_channels": 1232,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-2-5",
+            "window_presentations": 1160,
+            "distinct_current_starts": 1121,
+            "distinct_inputs_including_ordered_channels": 1160,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-6",
+            "window_presentations": 1113,
+            "distinct_current_starts": 1085,
+            "distinct_inputs_including_ordered_channels": 1113,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-7",
+            "window_presentations": 1187,
+            "distinct_current_starts": 1144,
+            "distinct_inputs_including_ordered_channels": 1187,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-8",
+            "window_presentations": 1194,
+            "distinct_current_starts": 1155,
+            "distinct_inputs_including_ordered_channels": 1194,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-2-9",
+            "window_presentations": 1139,
+            "distinct_current_starts": 1104,
+            "distinct_inputs_including_ordered_channels": 1139,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-1",
+            "window_presentations": 1136,
+            "distinct_current_starts": 1105,
+            "distinct_inputs_including_ordered_channels": 1136,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-10",
+            "window_presentations": 1149,
+            "distinct_current_starts": 1106,
+            "distinct_inputs_including_ordered_channels": 1149,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-11",
+            "window_presentations": 1149,
+            "distinct_current_starts": 1122,
+            "distinct_inputs_including_ordered_channels": 1149,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-2",
+            "window_presentations": 1159,
+            "distinct_current_starts": 1121,
+            "distinct_inputs_including_ordered_channels": 1159,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-3",
+            "window_presentations": 1109,
+            "distinct_current_starts": 1072,
+            "distinct_inputs_including_ordered_channels": 1109,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-4",
+            "window_presentations": 1183,
+            "distinct_current_starts": 1154,
+            "distinct_inputs_including_ordered_channels": 1183,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-5",
+            "window_presentations": 1147,
+            "distinct_current_starts": 1105,
+            "distinct_inputs_including_ordered_channels": 1147,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "SMD/machine-3-6",
+            "window_presentations": 1183,
+            "distinct_current_starts": 1146,
+            "distinct_inputs_including_ordered_channels": 1183,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-7",
+            "window_presentations": 1136,
+            "distinct_current_starts": 1116,
+            "distinct_inputs_including_ordered_channels": 1136,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-8",
+            "window_presentations": 1040,
+            "distinct_current_starts": 1012,
+            "distinct_inputs_including_ordered_channels": 1040,
+            "max_presentations_per_start": 2
+          },
+          {
+            "record_id": "SMD/machine-3-9",
+            "window_presentations": 1117,
+            "distinct_current_starts": 1093,
+            "distinct_inputs_including_ordered_channels": 1117,
+            "max_presentations_per_start": 2
+          }
+        ]
+      }
+    ],
+    "select": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 512,
+        "distinct_records": 5,
+        "distinct_record_current_starts": 232,
+        "repeat_presentations_ignoring_channels": 280,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          2.0,
+          3.0,
+          6.0
+        ],
+        "channel_window_presentations": 15872,
+        "current_value_presentations": 3047424,
+        "by_record": [
+          {
+            "record_id": "TEP/run61",
+            "window_presentations": 108,
+            "distinct_current_starts": 46,
+            "distinct_inputs_including_ordered_channels": 108,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run62",
+            "window_presentations": 88,
+            "distinct_current_starts": 47,
+            "distinct_inputs_including_ordered_channels": 88,
+            "max_presentations_per_start": 5
+          },
+          {
+            "record_id": "TEP/run63",
+            "window_presentations": 105,
+            "distinct_current_starts": 46,
+            "distinct_inputs_including_ordered_channels": 105,
+            "max_presentations_per_start": 5
+          },
+          {
+            "record_id": "TEP/run64",
+            "window_presentations": 101,
+            "distinct_current_starts": 47,
+            "distinct_inputs_including_ordered_channels": 101,
+            "max_presentations_per_start": 5
+          },
+          {
+            "record_id": "TEP/run65",
+            "window_presentations": 110,
+            "distinct_current_starts": 46,
+            "distinct_inputs_including_ordered_channels": 110,
+            "max_presentations_per_start": 6
+          }
+        ]
+      },
+      {
+        "source_domain": "SMD",
+        "window_presentations": 512,
+        "distinct_records": 28,
+        "distinct_record_current_starts": 512,
+        "repeat_presentations_ignoring_channels": 0,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "channel_window_presentations": 15872,
+        "current_value_presentations": 3047424,
+        "by_record": [
+          {
+            "record_id": "SMD/machine-1-1",
+            "window_presentations": 20,
+            "distinct_current_starts": 20,
+            "distinct_inputs_including_ordered_channels": 20,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-2",
+            "window_presentations": 14,
+            "distinct_current_starts": 14,
+            "distinct_inputs_including_ordered_channels": 14,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-3",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-4",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-5",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-6",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-7",
+            "window_presentations": 16,
+            "distinct_current_starts": 16,
+            "distinct_inputs_including_ordered_channels": 16,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-1-8",
+            "window_presentations": 11,
+            "distinct_current_starts": 11,
+            "distinct_inputs_including_ordered_channels": 11,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-1",
+            "window_presentations": 23,
+            "distinct_current_starts": 23,
+            "distinct_inputs_including_ordered_channels": 23,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-2",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-3",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-4",
+            "window_presentations": 19,
+            "distinct_current_starts": 19,
+            "distinct_inputs_including_ordered_channels": 19,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-5",
+            "window_presentations": 26,
+            "distinct_current_starts": 26,
+            "distinct_inputs_including_ordered_channels": 26,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-6",
+            "window_presentations": 27,
+            "distinct_current_starts": 27,
+            "distinct_inputs_including_ordered_channels": 27,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-7",
+            "window_presentations": 17,
+            "distinct_current_starts": 17,
+            "distinct_inputs_including_ordered_channels": 17,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-8",
+            "window_presentations": 21,
+            "distinct_current_starts": 21,
+            "distinct_inputs_including_ordered_channels": 21,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-2-9",
+            "window_presentations": 12,
+            "distinct_current_starts": 12,
+            "distinct_inputs_including_ordered_channels": 12,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-1",
+            "window_presentations": 18,
+            "distinct_current_starts": 18,
+            "distinct_inputs_including_ordered_channels": 18,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-10",
+            "window_presentations": 11,
+            "distinct_current_starts": 11,
+            "distinct_inputs_including_ordered_channels": 11,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-11",
+            "window_presentations": 22,
+            "distinct_current_starts": 22,
+            "distinct_inputs_including_ordered_channels": 22,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-2",
+            "window_presentations": 24,
+            "distinct_current_starts": 24,
+            "distinct_inputs_including_ordered_channels": 24,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-3",
+            "window_presentations": 17,
+            "distinct_current_starts": 17,
+            "distinct_inputs_including_ordered_channels": 17,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-4",
+            "window_presentations": 11,
+            "distinct_current_starts": 11,
+            "distinct_inputs_including_ordered_channels": 11,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-5",
+            "window_presentations": 14,
+            "distinct_current_starts": 14,
+            "distinct_inputs_including_ordered_channels": 14,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-6",
+            "window_presentations": 14,
+            "distinct_current_starts": 14,
+            "distinct_inputs_including_ordered_channels": 14,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-7",
+            "window_presentations": 13,
+            "distinct_current_starts": 13,
+            "distinct_inputs_including_ordered_channels": 13,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-8",
+            "window_presentations": 20,
+            "distinct_current_starts": 20,
+            "distinct_inputs_including_ordered_channels": 20,
+            "max_presentations_per_start": 1
+          },
+          {
+            "record_id": "SMD/machine-3-9",
+            "window_presentations": 24,
+            "distinct_current_starts": 24,
+            "distinct_inputs_including_ordered_channels": 24,
+            "max_presentations_per_start": 1
+          }
+        ]
+      }
+    ],
+    "fit_history_reassignment": {
+      "presentations": 64000,
+      "identity_presentations": 603,
+      "shift_quantiles": [
+        0.0,
+        10.0,
+        44.0,
+        3596.0,
+        21825.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    },
+    "select_history_reassignment": {
+      "presentations": 1024,
+      "identity_presentations": 8,
+      "shift_quantiles": [
+        0.0,
+        8.75,
+        36.5,
+        768.25,
+        4818.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    }
+  },
+  "SMD": {
+    "fit": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 32000,
+        "distinct_records": 20,
+        "distinct_record_current_starts": 1060,
+        "repeat_presentations_ignoring_channels": 30940,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          11.0,
+          26.0,
+          30.0,
+          34.0,
+          52.0
+        ],
+        "channel_window_presentations": 1216000,
+        "current_value_presentations": 233472000,
+        "by_record": [
+          {
+            "record_id": "TEP/run1",
+            "window_presentations": 1635,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1635,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run2",
+            "window_presentations": 1640,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1640,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run3",
+            "window_presentations": 1577,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1577,
+            "max_presentations_per_start": 39
+          },
+          {
+            "record_id": "TEP/run4",
+            "window_presentations": 1627,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1627,
+            "max_presentations_per_start": 41
+          },
+          {
+            "record_id": "TEP/run5",
+            "window_presentations": 1592,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1592,
+            "max_presentations_per_start": 45
+          },
+          {
+            "record_id": "TEP/run6",
+            "window_presentations": 1599,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1599,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run7",
+            "window_presentations": 1633,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1633,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run8",
+            "window_presentations": 1557,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1557,
+            "max_presentations_per_start": 51
+          },
+          {
+            "record_id": "TEP/run9",
+            "window_presentations": 1617,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1617,
+            "max_presentations_per_start": 42
+          },
+          {
+            "record_id": "TEP/run10",
+            "window_presentations": 1641,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1641,
+            "max_presentations_per_start": 44
+          },
+          {
+            "record_id": "TEP/run11",
+            "window_presentations": 1572,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1572,
+            "max_presentations_per_start": 40
+          },
+          {
+            "record_id": "TEP/run12",
+            "window_presentations": 1590,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1590,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run13",
+            "window_presentations": 1588,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1588,
+            "max_presentations_per_start": 49
+          },
+          {
+            "record_id": "TEP/run14",
+            "window_presentations": 1609,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1609,
+            "max_presentations_per_start": 46
+          },
+          {
+            "record_id": "TEP/run15",
+            "window_presentations": 1598,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1598,
+            "max_presentations_per_start": 47
+          },
+          {
+            "record_id": "TEP/run16",
+            "window_presentations": 1519,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1519,
+            "max_presentations_per_start": 41
+          },
+          {
+            "record_id": "TEP/run17",
+            "window_presentations": 1601,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1601,
+            "max_presentations_per_start": 52
+          },
+          {
+            "record_id": "TEP/run18",
+            "window_presentations": 1597,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1597,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run19",
+            "window_presentations": 1624,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1624,
+            "max_presentations_per_start": 43
+          },
+          {
+            "record_id": "TEP/run20",
+            "window_presentations": 1584,
+            "distinct_current_starts": 53,
+            "distinct_inputs_including_ordered_channels": 1584,
+            "max_presentations_per_start": 38
+          }
+        ]
+      },
+      {
+        "source_domain": "HAI",
+        "window_presentations": 32000,
+        "distinct_records": 2,
+        "distinct_record_current_starts": 31170,
+        "repeat_presentations_ignoring_channels": 830,
+        "distinct_inputs_including_ordered_channels": 32000,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          3.0
+        ],
+        "channel_window_presentations": 1216000,
+        "current_value_presentations": 233472000,
+        "by_record": [
+          {
+            "record_id": "HAI/train1",
+            "window_presentations": 15905,
+            "distinct_current_starts": 15331,
+            "distinct_inputs_including_ordered_channels": 15905,
+            "max_presentations_per_start": 3
+          },
+          {
+            "record_id": "HAI/train3",
+            "window_presentations": 16095,
+            "distinct_current_starts": 15839,
+            "distinct_inputs_including_ordered_channels": 16095,
+            "max_presentations_per_start": 3
+          }
+        ]
+      }
+    ],
+    "select": [
+      {
+        "source_domain": "TEP",
+        "window_presentations": 512,
+        "distinct_records": 5,
+        "distinct_record_current_starts": 235,
+        "repeat_presentations_ignoring_channels": 277,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          2.0,
+          3.0,
+          6.0
+        ],
+        "channel_window_presentations": 19456,
+        "current_value_presentations": 3735552,
+        "by_record": [
+          {
+            "record_id": "TEP/run61",
+            "window_presentations": 97,
+            "distinct_current_starts": 45,
+            "distinct_inputs_including_ordered_channels": 97,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run62",
+            "window_presentations": 100,
+            "distinct_current_starts": 44,
+            "distinct_inputs_including_ordered_channels": 100,
+            "max_presentations_per_start": 5
+          },
+          {
+            "record_id": "TEP/run63",
+            "window_presentations": 109,
+            "distinct_current_starts": 50,
+            "distinct_inputs_including_ordered_channels": 109,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run64",
+            "window_presentations": 122,
+            "distinct_current_starts": 50,
+            "distinct_inputs_including_ordered_channels": 122,
+            "max_presentations_per_start": 6
+          },
+          {
+            "record_id": "TEP/run65",
+            "window_presentations": 84,
+            "distinct_current_starts": 46,
+            "distinct_inputs_including_ordered_channels": 84,
+            "max_presentations_per_start": 6
+          }
+        ]
+      },
+      {
+        "source_domain": "HAI",
+        "window_presentations": 512,
+        "distinct_records": 1,
+        "distinct_record_current_starts": 510,
+        "repeat_presentations_ignoring_channels": 2,
+        "distinct_inputs_including_ordered_channels": 512,
+        "presentations_per_record_start_quantiles": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          2.0
+        ],
+        "channel_window_presentations": 19456,
+        "current_value_presentations": 3735552,
+        "by_record": [
+          {
+            "record_id": "HAI/train2",
+            "window_presentations": 512,
+            "distinct_current_starts": 510,
+            "distinct_inputs_including_ordered_channels": 512,
+            "max_presentations_per_start": 2
+          }
+        ]
+      }
+    ],
+    "fit_history_reassignment": {
+      "presentations": 64000,
+      "identity_presentations": 588,
+      "shift_quantiles": [
+        0.0,
+        10.0,
+        50.0,
+        57743.25,
+        469314.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    },
+    "select_history_reassignment": {
+      "presentations": 1024,
+      "identity_presentations": 10,
+      "shift_quantiles": [
+        0.0,
+        10.0,
+        51.0,
+        35185.75,
+        217520.0
+      ],
+      "preserved_record_role_channel_mapping": true,
+      "future_history_presentations": 0
+    }
+  }
+}

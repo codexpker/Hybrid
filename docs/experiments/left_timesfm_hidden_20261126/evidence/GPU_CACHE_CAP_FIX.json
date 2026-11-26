@@ -1,0 +1,37 @@
+{
+  "reason": "Native initialize resets allocator cap; restore 40 GiB storage allowance after each model load",
+  "no_model_formula_change": true,
+  "lanes": [
+    {
+      "lane": "PSM",
+      "gpu": 1,
+      "previous_pid": 3546803,
+      "new_pid": 3553671,
+      "entity": "machine-1-4",
+      "time": 1795716061.0688255,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-gpu-cache-r1.log",
+      "previous_progress_checkpoint": false
+    },
+    {
+      "lane": "SMD",
+      "gpu": 3,
+      "previous_pid": 3546806,
+      "new_pid": 3553672,
+      "entity": "machine-1-6",
+      "time": 1795716061.0693908,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SMD-gpu-cache-r1.log",
+      "previous_progress_checkpoint": false
+    },
+    {
+      "lane": "tail",
+      "gpu": 0,
+      "previous_pid": 3548954,
+      "new_pid": 3553674,
+      "entity": "machine-3-9",
+      "time": 1795716061.2708807,
+      "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-tail-gpu-cache-r1.log",
+      "previous_progress_checkpoint": false
+    }
+  ],
+  "code_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0"
+}

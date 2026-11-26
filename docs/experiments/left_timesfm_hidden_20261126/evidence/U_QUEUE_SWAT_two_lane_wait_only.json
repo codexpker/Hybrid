@@ -1,0 +1,10 @@
+{
+  "phase": "waiting for all source arms to seal",
+  "waiting_for": [
+    "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/A/receipt.json",
+    "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/B/receipt.json",
+    "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/C/receipt.json",
+    "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/D/receipt.json",
+    "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/SWAT/E/receipt.json"
+  ]
+}

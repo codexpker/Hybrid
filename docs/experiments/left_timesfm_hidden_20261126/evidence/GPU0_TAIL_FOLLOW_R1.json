@@ -1,0 +1,11 @@
+{
+  "pid": 3601359,
+  "time": 1795719657.7506998,
+  "entities": [
+    "machine-3-6",
+    "machine-3-5"
+  ],
+  "scope": "Scheduling only; previous glob matched a historical list-valued status record and failed before invoking any model. Retry restricts status files to three current lane dictionaries.",
+  "failed_log": "logs/u-tail-follow.log",
+  "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-tail-follow-r1.log"
+}

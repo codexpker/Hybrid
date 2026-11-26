@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "previous_code_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0",
+  "code_sha256": "a740881e3390fec82ec12d4a20f047625ee0f93a3acaf29f1976f6b1ed699659",
+  "AST_equal_after_removing_one_allocator_helper_and_normalizing_call_site": true,
+  "simulated_cpu_success_exception_and_no_cache_paths": true,
+  "nested_budget_floor_GiB": 40,
+  "failure": {
+    "entity": "machine-3-5",
+    "location": "ConditionalLEFT.cuda during initialization",
+    "actual_free_GiB": 21.91,
+    "failed_process_cap_GiB": 20,
+    "allocation_MiB": 2,
+    "before_training_model_forward": true,
+    "before_optimizer_update": true,
+    "log_sha256": "49365141143e7300d72a126d657846f2378b66fba1342ac62ef93d59d278fa3b",
+    "cache_preparation_had_already_run": true
+  },
+  "previous_entity_machine_3_6_checkpoints": {
+    "A": "55435be663578f258ad0dbee3971b482e155fbe2d0cff2a1ca00a7049c1306c2",
+    "C": "afbc3612c39ff7a60d7eb611327c6621f94f5c3b6f7e38f31e290bb6dbe49d3e"
+  },
+  "launcher_failures": [
+    {
+      "receipt": "GPU0_TAIL_FOLLOW_R1.json",
+      "failed_log": "logs/u-tail-follow.log",
+      "failure_before_model_load": true,
+      "log_sha256": "b6afbf54d539778ebb17199fb8bfece73a3251c3ed615509164026df72a02f97"
+    },
+    {
+      "receipt": "GPU0_TAIL_FOLLOW_R2.json",
+      "failed_log": "logs/u-tail-follow-r1.log",
+      "failure_before_model_load": true,
+      "log_sha256": "643e22026ed0119ca854b45a473316615124d1b5a6da9d16525d0d2b66cc1944"
+    }
+  ],
+  "GPU_or_model_forward_repetitions": 0
+}

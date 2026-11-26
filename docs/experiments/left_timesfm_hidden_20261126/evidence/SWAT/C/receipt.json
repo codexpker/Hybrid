@@ -1,0 +1,23 @@
+{
+  "domain": "SWAT",
+  "arm": "C",
+  "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+  "sha256": "39b5aae5772b8cdcac3033bd5242bb6afc59fd54ce66b486dedfc69db545b712",
+  "plan_sha256": "f07d2aff11d10f29ddb4ef104cff3c5c4f310e1df32841d302e2506278686d21",
+  "seed": 2025,
+  "updates": 2000,
+  "current_windows": 64000,
+  "endpoint": 6000,
+  "selection": "fixed endpoint",
+  "source_select_loss": 0.4118708297610283,
+  "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+  "native_rng_end": "cccb49dc4628f675c7c6328f37333bd1c9c0b2bc1fea47e5f4944b6cac306c1a",
+  "native_parameters": 3742202,
+  "condition_parameters": 230529,
+  "history_encoder_pretrained_sha": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+  "history_encoder_random_sha": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "shared_fold_elapsed_seconds": 6172.013522506226,
+  "peak_bytes": 4704918528,
+  "retained_feature_cache": "streamed FP32, per-step hashes; exact plans retained",
+  "shuffled_singletons": 603
+}

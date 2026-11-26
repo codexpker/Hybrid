@@ -1,0 +1,15 @@
+{
+  "phase": "complete",
+  "first_domain": "SWAT",
+  "smd_entities": [
+    "machine-1-2",
+    "machine-1-5",
+    "machine-1-8",
+    "machine-2-3",
+    "machine-2-6",
+    "machine-2-9",
+    "machine-3-11",
+    "machine-3-4",
+    "machine-3-7"
+  ]
+}

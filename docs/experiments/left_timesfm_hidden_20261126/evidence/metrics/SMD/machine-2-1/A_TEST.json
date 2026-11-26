@@ -1,0 +1,41 @@
+{
+  "rows": [
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "method": "A",
+      "panel": "complete",
+      "role": "TEST",
+      "start": 576,
+      "stop": 23616,
+      "points": 23040,
+      "positives": 1170,
+      "score_sha256": "c749f22807cbd928a618a1bb0f5c56e42b67be8c7c2b2938fb512d6a623eb1a5",
+      "AP": 0.29311372932569507,
+      "ROC_AUC": 0.7831512355449257,
+      "VUS_PR": 0.40629244102063783,
+      "VUS_ROC": 0.8895045959097986,
+      "independent_AP_ROC_error": 2.220446049250313e-16
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "method": "A",
+      "panel": "external",
+      "role": "TEST",
+      "start": 576,
+      "stop": 23600,
+      "points": 23024,
+      "positives": 1170,
+      "score_sha256": "c749f22807cbd928a618a1bb0f5c56e42b67be8c7c2b2938fb512d6a623eb1a5",
+      "AP": 0.2931253364564678,
+      "ROC_AUC": 0.7830902086027005,
+      "VUS_PR": 0.40619332129112135,
+      "VUS_ROC": 0.8894262337196075,
+      "independent_AP_ROC_error": 1.1102230246251565e-16
+    }
+  ],
+  "operations": [],
+  "events": [],
+  "seconds": 8.440739539917558
+}

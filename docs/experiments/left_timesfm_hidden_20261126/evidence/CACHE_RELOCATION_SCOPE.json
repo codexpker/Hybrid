@@ -1,0 +1,6 @@
+{
+  "correction_to": "GPU_CACHE_RELOCATION.json",
+  "field": "no_unsealed_optimizer_updates_interrupted",
+  "scope": "The prior controller field was stronger than its recorded checkpoint test. It records no next-entity progress checkpoint; absence alone does not prove the number of unsealed updates. Completed previous-entity endpoints were reused. The two later allocator failures are separately located before the first training forward by their tracebacks.",
+  "formal_matrix_unchanged": true
+}

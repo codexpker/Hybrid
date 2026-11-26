@@ -1,0 +1,33 @@
+{
+  "rows": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "method": "A",
+      "panel": "mixed",
+      "role": "QUERY",
+      "start": 23040,
+      "stop": 87744,
+      "points": 64704,
+      "positives": 17395,
+      "score_sha256": "f10eadeb876528bf5376e7d52f071f32decdfe3f351ede15dfa4218b29ccaf0d",
+      "AP": 0.5474336868803568,
+      "ROC_AUC": 0.7358984446321548,
+      "VUS_PR": 0.5508669721518795,
+      "VUS_ROC": 0.7482754960926897,
+      "independent_AP_ROC_error": 1.1102230246251565e-16
+    }
+  ],
+  "operations": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "method": "A",
+      "cal_points": 512,
+      "cal_legal_points": 458,
+      "status": "NA: fixed CAL lacks legal full history"
+    }
+  ],
+  "events": [],
+  "seconds": 13.164552580099553
+}

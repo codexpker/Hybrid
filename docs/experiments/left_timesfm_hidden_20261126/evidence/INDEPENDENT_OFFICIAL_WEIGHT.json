@@ -1,0 +1,10 @@
+{
+  "checkpoint_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+  "source_commit": "918df02c9d366b2145bc5876135fa2131d3ed2a6",
+  "weight_revision": "43046b85ec22d584a13f8098c2ed39c889e129c2",
+  "full_state_fingerprint": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+  "checkpoint_tensors": 445,
+  "checkpoint_elements": 330710976,
+  "random_state_fingerprint": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "gradient_scope": "Read-only checkpoint identity check and inspection of frozen eval/no-grad feature path. Padding and causal self-checks read from saved normal-source engineering receipts."
+}

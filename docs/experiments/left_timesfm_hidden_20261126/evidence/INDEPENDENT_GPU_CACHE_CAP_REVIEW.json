@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "previous_code_sha256": "135af77fac3392097f1f8a81f91cd6ee07e194555168b3fc1aecb2280cd29ded",
+  "code_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0",
+  "model_and_training_code_AST_equal_after_removing_one_allocator_call": true,
+  "native_initializer_resets_allocator_to_GiB": 20,
+  "reapplied_cache_allocator_limit_GiB": 40,
+  "failure_receipts": [
+    {
+      "entity": "machine-1-4",
+      "condition": "20GiB per-process allocator cap; physical free memory remained",
+      "allocation_attempt_MiB": 2.0,
+      "physical_free_GiB": 21.93,
+      "configured_allowed_GiB": 20.0,
+      "failure_before_forward_for_failed_step": true,
+      "optimizer_step_trace_in_failed_log": false,
+      "log_sha256": "76f804bc3a2efe57a68971a4d0b5c494466806bfc41d3f9658199fc6cdf0489c"
+    },
+    {
+      "entity": "machine-1-6",
+      "condition": "20GiB per-process allocator cap; physical free memory remained",
+      "allocation_attempt_MiB": 2.0,
+      "physical_free_GiB": 21.92,
+      "configured_allowed_GiB": 20.0,
+      "failure_before_forward_for_failed_step": true,
+      "optimizer_step_trace_in_failed_log": false,
+      "log_sha256": "395860ab60893f04d50284f620d58350f72e07eae77d7d294fa7c0cabeb79585"
+    }
+  ],
+  "tail_restart": {
+    "entity": "machine-3-9",
+    "recorded_progress_checkpoint": false,
+    "optimizer_step_trace_in_previous_log": false,
+    "previous_log_sha256": "f63207b58c3fce8475f4b830ad545bb803ff04c3bd40d573b4f06b0e5daddc78"
+  },
+  "trace_limit": "Tracebacks locate failure at input materialization before forward and optimizer for the failed step. No 100-step update record or progress checkpoint exists from these attempts.",
+  "reviewed_GPU_OR_model_forward_repetitions": 0
+}

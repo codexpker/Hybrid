@@ -1,0 +1,26 @@
+[
+  {
+    "fold": "PSM",
+    "archive": "PLANS.npz.gz",
+    "uncompressed_sha256": "8d2c3ceeb43da12f6a62460dbeab9c043651a0b213869e4cd2e6badda5848649",
+    "compressed_sha256": "0039b15722e87185e20babcea13206228390cda5087788740234325c24263ce0",
+    "uncompressed_bytes": 15086578,
+    "compressed_bytes": 3945296
+  },
+  {
+    "fold": "SMD",
+    "archive": "PLANS.npz.gz",
+    "uncompressed_sha256": "90212521e0a5ceca0d374649dbde7809d4842c10301dd2aa61957fa7f7e9b6ab",
+    "compressed_sha256": "2aa85e4944e83f77489e618c0782c9f9ad51bcc2fea9a1c54bc261c890d111a7",
+    "uncompressed_bytes": 21849074,
+    "compressed_bytes": 6208045
+  },
+  {
+    "fold": "SWAT",
+    "archive": "PLANS.npz.gz",
+    "uncompressed_sha256": "f07d2aff11d10f29ddb4ef104cff3c5c4f310e1df32841d302e2506278686d21",
+    "compressed_sha256": "1c197fd1e8f6c2f447c9c85ebc675e557a32b85f97b27df8a9b2702c16921fab",
+    "uncompressed_bytes": 18207730,
+    "compressed_bytes": 4733048
+  }
+]

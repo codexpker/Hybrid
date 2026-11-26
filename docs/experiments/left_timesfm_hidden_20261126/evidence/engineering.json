@@ -1,0 +1,135 @@
+{
+  "source_commit": "918df02c9d366b2145bc5876135fa2131d3ed2a6",
+  "weight_revision": "43046b85ec22d584a13f8098c2ed39c889e129c2",
+  "weight_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+  "full_model_state_sha256": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+  "random_model_state_sha256": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "random_seed": 2025,
+  "official_config": {
+    "input_patch_len": 32,
+    "output_patch_len": 64,
+    "quantiles": [
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9
+    ],
+    "residual_block_config": {
+      "hidden_dims": 1280,
+      "output_dims": 1280,
+      "use_bias": false,
+      "activation": "relu",
+      "dropout": 0.0,
+      "identity_skip": false,
+      "prenorm": "none"
+    },
+    "transformer_config": {
+      "num_layers": 20,
+      "transformer": {
+        "model_dims": 1280,
+        "hidden_dims": 1280,
+        "num_heads": 16,
+        "attention_norm": "rms",
+        "feedforward_norm": "rms",
+        "qk_norm": "rms",
+        "use_bias": false,
+        "use_rope_seq": true,
+        "use_rope_var": false,
+        "ff_activation": "relu",
+        "deterministic": true,
+        "v_norm": "none",
+        "causal_attention": true,
+        "debug_no_masking": false,
+        "training": true,
+        "use_memory_efficient_attention": true,
+        "paired_token_skip_second": false,
+        "max_variates": 32,
+        "use_sdpa": true
+      },
+      "use_remat": true
+    },
+    "use_variate_attention": true,
+    "value_clip": 1e+20,
+    "use_stitching": true,
+    "use_linear_detrending": true,
+    "linear_detrending_threshold": 0.5,
+    "use_iterative_cpm_revin": true,
+    "use_frozen_running_stats": false,
+    "input_transform": "identity"
+  },
+  "pretrained_layers": 20,
+  "hidden_dim": 1280,
+  "patch_len": 32,
+  "hidden_axes": "batch,variable,chronological_patch,hidden",
+  "no_current_input": true,
+  "padding_mask_true_means_missing": true,
+  "valid_mask_shape": [
+    2,
+    25,
+    16
+  ],
+  "padded_valid_max_abs_error": 0.32921648025512695,
+  "short_vs_padded_agreement_required": false,
+  "short_vs_padded_reason": "Official RoPE positions differ; deployment fixes left-padded512 indexing",
+  "padded_running_stats_equal": true,
+  "padded_attention_keys_excluded": true,
+  "padding_value_max_abs_error": 0.0,
+  "temporal_future_mutation_max_abs_error": 0.0,
+  "cross_variable_max_change": 1.3034723997116089,
+  "random_shape": [
+    2,
+    25,
+    8,
+    1280
+  ],
+  "frozen": true,
+  "state_unchanged": true,
+  "precision": "float32",
+  "timings": [
+    {
+      "channels": 25,
+      "batch": 4,
+      "history": 512,
+      "shape": [
+        4,
+        25,
+        16,
+        1280
+      ],
+      "seconds_per_window": 0.024457077612169087,
+      "peak_bytes": 1471285248
+    },
+    {
+      "channels": 31,
+      "batch": 4,
+      "history": 512,
+      "shape": [
+        4,
+        31,
+        16,
+        1280
+      ],
+      "seconds_per_window": 0.03029766057928403,
+      "peak_bytes": 1501297152
+    },
+    {
+      "channels": 38,
+      "batch": 4,
+      "history": 512,
+      "shape": [
+        4,
+        38,
+        16,
+        1280
+      ],
+      "seconds_per_window": 0.036605911406998835,
+      "peak_bytes": 1528162304
+    }
+  ],
+  "source_only": true
+}

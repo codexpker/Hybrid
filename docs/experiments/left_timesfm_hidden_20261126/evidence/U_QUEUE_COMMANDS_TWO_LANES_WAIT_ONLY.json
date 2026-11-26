@@ -1,0 +1,32 @@
+[
+  {
+    "domain": "PSM",
+    "gpu": "1",
+    "pid": 3399545,
+    "command": [
+      "/home/a312/tsad_research/envs/timeradar/bin/python",
+      "-u",
+      "-m",
+      "hybrid_tsad.left_timesfm_adaptation",
+      "/home/a312/tsad_research",
+      "queue",
+      "PSM"
+    ],
+    "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-PSM-lane1.log"
+  },
+  {
+    "domain": "SWAT",
+    "gpu": "2",
+    "pid": 3399546,
+    "command": [
+      "/home/a312/tsad_research/envs/timeradar/bin/python",
+      "-u",
+      "-m",
+      "hybrid_tsad.left_timesfm_adaptation",
+      "/home/a312/tsad_research",
+      "queue",
+      "SWAT"
+    ],
+    "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-SWAT-lane2.log"
+  }
+]

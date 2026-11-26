@@ -1,0 +1,20 @@
+{
+  "all_non_assert_computation_ast_identical": true,
+  "records": [
+    {
+      "file": "docs/experiments/left_timesfm_hidden_20261126/executed_source/timesfm_hidden.py",
+      "file_sha256": "89cd6a771ee1c357341bdb00b8f1ccd7541da9b498733d644b10be72ed369e3a",
+      "non_assert_computation_ast_sha256": "74a0fce3075ddc1b6dd26ec65587a8b5f2fc5a8dacb3d526f24a8e487908c55e"
+    },
+    {
+      "file": "docs/experiments/left_timesfm_hidden_20261126/executed_source/u_timesfm_hidden.py",
+      "file_sha256": "cc75886b4d45a774aeee552f48f506fc283fe707e52b6dddac181dd72b729204",
+      "non_assert_computation_ast_sha256": "74a0fce3075ddc1b6dd26ec65587a8b5f2fc5a8dacb3d526f24a8e487908c55e"
+    },
+    {
+      "file": "src/hybrid_tsad/timesfm_hidden.py",
+      "file_sha256": "29b5357d964196d3813c7394836a5a412214f5fa1c0799419a19310450e35c8d",
+      "non_assert_computation_ast_sha256": "74a0fce3075ddc1b6dd26ec65587a8b5f2fc5a8dacb3d526f24a8e487908c55e"
+    }
+  ]
+}

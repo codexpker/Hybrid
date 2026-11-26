@@ -1,0 +1,10 @@
+{
+  "sha256": "e80753ab273ca3604ce218df464ef7b8971e1690317f5f5baf7e63aaef728d3e",
+  "seconds": 1.4007464707829058,
+  "input_archive_sha256": "f5f902c37ef5d6395f7d1a985112e81be16e7303e71008eb5d6a7be7f05fbca3",
+  "historical_input_sha256": "efb19a1c26fa708115bf7401812d50006e560ebb2e3c419458856ad97f5a98b2",
+  "effective_history": 256,
+  "padded_history": 512,
+  "encoder_state_sha256": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "checkpoint_sha256": null
+}

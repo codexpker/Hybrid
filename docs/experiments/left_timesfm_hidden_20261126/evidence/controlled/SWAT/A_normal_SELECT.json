@@ -1,0 +1,30 @@
+{
+  "domain": "SWAT",
+  "arm": "A",
+  "group": "normal_SELECT",
+  "checkpoint": "929c31509dd0c0a5857edfe2a7d72dd3a76b1e04f01aa4f64455193ce9abc14f",
+  "sha256": "15725b9e6f54a9df743e40b500c4c9ceb920a204849c949fde6b7cce0dd1bb34",
+  "seconds": 0.07776382006704807,
+  "effective_history": 256,
+  "input_archive_sha256": "166f7083a0d59a149c4538b346cfc29b061be3dd29e6ab12191e5e75ed0285cb",
+  "history_donors": [
+    0,
+    0,
+    0,
+    0,
+    1,
+    2,
+    4,
+    2,
+    3,
+    0,
+    7,
+    5,
+    9,
+    5,
+    4,
+    10
+  ],
+  "singleton_record_identity": false,
+  "labels_read": false
+}

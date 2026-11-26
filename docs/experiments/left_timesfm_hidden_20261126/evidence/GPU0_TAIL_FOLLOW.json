@@ -1,0 +1,11 @@
+{
+  "pid": 3585175,
+  "time": 1795718440.4764953,
+  "entities": [
+    "machine-3-6",
+    "machine-3-5"
+  ],
+  "after": "machine-3-7 endpoints sealed",
+  "scope": "Scheduling only: same already-fixed U endpoints, no new matrix entries",
+  "log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-tail-follow.log"
+}

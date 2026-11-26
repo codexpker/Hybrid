@@ -1,0 +1,1329 @@
+{
+  "metric_files": [
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/A_QUERY.json",
+      "sha256": "ddf6dbddc157842e28c9ee4a3b61b51c3246b9d46c45ab16e5baf60464a9f88b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/A_TEST.json",
+      "sha256": "d55f5bc0f67a279f880156d03fa6928f457814a4ded4b4d1abbc2f67e425aeb3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/A_U_QUERY.json",
+      "sha256": "857bfc0b5756d17e22b99de6b4428a0f532de0b69905d4ea2c8999088e18e7e9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/B_TEST.json",
+      "sha256": "4bdc52dd4c4d40b49406b9e3ed655eea2e35dd2fba43e0d6bb09fe9e64c1540b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/C_QUERY.json",
+      "sha256": "94c5c9d0c9b0168db01a5f858a5e368444a9f0f9de8fe07ec2ea6a4a61117c76"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/C_TEST.json",
+      "sha256": "3df06c8c906da9396c6df2de3e6e36c7b7b3819f9abcaeed935c9f1d2f6ca62b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/C_U_QUERY.json",
+      "sha256": "19ee5c8a0f8575fae10d125215e08486a9672cc0c3b97a819e0e10740d1ce959"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/D_TEST.json",
+      "sha256": "b44a0ad1f5bdaf3407694335609639f2dc155d2b532bbb3e7becb354b6972a9e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/E_TEST.json",
+      "sha256": "e98fac9df5199c52c6892f1970fdc1cdbcc8dd0db9f232384aed445baf6ffa4e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/archived_QUERY.json",
+      "sha256": "2bcc4cb02bf95aa332580e102afc2a822f3b30b7befa8d4af2b16d8034ee680b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/PSM/PSM/archived_TEST.json",
+      "sha256": "521a9fa4324eda9bfcad5507c30866e0d1c9f2363715dcc89418b54ab2c8cd36"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/A_QUERY.json",
+      "sha256": "435181b029031f1fc27563dd695c9b37a55ecb8c296fcf2c02aceeb87b4650fe"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/A_TEST.json",
+      "sha256": "6690cadf383f95d7f709c19c960703009d39011b53492fc2cf22318cc011850f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/A_U_QUERY.json",
+      "sha256": "0e3ea8aad807559ea6feb14cc8428c03047d73e2c6568f832639fd3cd61d4535"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/B_TEST.json",
+      "sha256": "d58b073f12a7f99da288bf307b94d5dd9536d9fdd8cb4e0d10f18fedb0b0a5aa"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/C_QUERY.json",
+      "sha256": "8e03a3b36361f5efceae2efb0fc5579642ba24e6c030f4b3f51acba05c2f0eab"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/C_TEST.json",
+      "sha256": "1dc8eac48d1dd6779d18f29eba35f92aa43b621f9ae86c9d1377a72a366b7c04"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/C_U_QUERY.json",
+      "sha256": "54982c06bb3f0acca8990317bc41f87cd5a31dcaac5f566450eb0d44601bca9f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/D_TEST.json",
+      "sha256": "3712eee5e2467877b99e17d62ef3a3771c17639e02c511d7b81ed55d33a04e24"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/E_TEST.json",
+      "sha256": "9f163f29648a22afcb91dcee9a76a3f618c97ad579e9b89116d2ce9394a58dcb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/archived_QUERY.json",
+      "sha256": "30635661d5cb4f5bae2f528aa83634ef8f1c720d93a7e2133c53260f71131790"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-1/archived_TEST.json",
+      "sha256": "2838da46603016f2742dcb442796eca9fda3cf7282d6a7fa58b85844f5997e2c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/A_QUERY.json",
+      "sha256": "95c086146df77ae893a7f4f3ace5be4d1cefc5d088ad35ed9416ec86a192c90b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/A_TEST.json",
+      "sha256": "d3ec48e44e9d322770b52e230c3623d2a2bb37076c3af03c2f45b0c68751479c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/A_U_QUERY.json",
+      "sha256": "bf9f083c67dd74e31b17bafdc212a69320621e36389b08e96afa40d523023382"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/B_TEST.json",
+      "sha256": "2bfc1702cb7ad9f817bb1f676eb872f26a76bc056fd1f4b765197716cd5e0d85"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/C_QUERY.json",
+      "sha256": "3b04bce16cd72282d4bceaac6c6e349a9a02683cb84e9ca721a3898038779d49"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/C_TEST.json",
+      "sha256": "5a6863debcb05c2639d394c52eccc5bcc67766dbeeea0143e026693a174f9231"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/C_U_QUERY.json",
+      "sha256": "90982af4197d3c2098d3135723a1bcd893916171ee58b2cb75d4730198eb3cbe"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/D_TEST.json",
+      "sha256": "31ae49878e71bed03ed9200101a88e1b510715574dd4ba92f9f2884e8992d80a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/E_TEST.json",
+      "sha256": "721d6786772ecad4423f43d6c583144b607ea74cf1e9bd45131e92c4c4734182"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/archived_QUERY.json",
+      "sha256": "891647447be97eb0562dece5b7baf4a97079b849b23d26056890e0c10a5f57f4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-2/archived_TEST.json",
+      "sha256": "296f286b2c39e8f2ced2379b8a88e3eadec25c959f09fb995a2927a0911df735"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/A_QUERY.json",
+      "sha256": "fd67ab09fbd53f375513ba628705721cc15b5c9ce33bc901889ac53b7e3ca98b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/A_TEST.json",
+      "sha256": "05bf8687de2925cc935df183586796c193a166d4b35cac25e38947bb56afc64c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/A_U_QUERY.json",
+      "sha256": "7aa10822b0c420ea2d3021689d659b09c00cddc043498a520feea509c8837f3b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/B_TEST.json",
+      "sha256": "7fe4667c2599ae8047aa6f13da7d984b20d5364e9334fc9ab18dec2a79427737"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/C_QUERY.json",
+      "sha256": "8c8dfe2e60ca59e1140df5e8f9f3345278963386ac25c3b4b026004d3601b173"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/C_TEST.json",
+      "sha256": "e0e4ac2e53ecf684ee432d14b1124535533ea6f8a6b361040f225a5435abe98c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/C_U_QUERY.json",
+      "sha256": "7b5ec8a44e96b6d696603e491f0dbd598944ce1a5cac983a3b6936c391e33ce3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/D_TEST.json",
+      "sha256": "64490fcb2878e00df314486ddba940679ed69df0c75e8df56b57f0f1df2bff89"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/E_TEST.json",
+      "sha256": "401bda89298c1d5f91102ed2f8dfb7036a60d7b8692c55dca20a9d75c7989359"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/archived_QUERY.json",
+      "sha256": "0a79f691211b5222fd2b3cf4c915bb4a6728f2de6054f8340ba6ae084de175d6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-3/archived_TEST.json",
+      "sha256": "1364bb2c2759b717765c6fc88771933fafed16fe75a29c18c7acb7dd0b55d9a8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/A_QUERY.json",
+      "sha256": "7bad503730ce608a87b1d47568673b55dd2b8c58c7d9a3188dda5a5728fb0ca2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/A_TEST.json",
+      "sha256": "05622f807adfa2aa30d3191ad4859bc76028e2e9d9ecf6eeef57ac196115fb34"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/A_U_QUERY.json",
+      "sha256": "cf01568f8f6f1bd8e4b37b92b63a5e895cc75df76224ca45a71396c47554ee89"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/B_TEST.json",
+      "sha256": "b5a8f6131b822a15caeca9098dd58b56a6aad6b3b4c29acb12036d956456a76b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/C_QUERY.json",
+      "sha256": "31153ebb7790a8834b1e3bf193448d7f5d5d972856938ae4600c89d07a8eb1a3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/C_TEST.json",
+      "sha256": "d40b97ba1134673c33ee6d3ac0f8d40c2dc66563693081f03629df43e242f359"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/C_U_QUERY.json",
+      "sha256": "fd3f21de935d68bcd19cdb1498a2130beecdfe4749f379fd5c808879c4b0fab1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/D_TEST.json",
+      "sha256": "d541018005de62339ae65581d2a30b1f0ae1095541d68d183cf0a5ba7285d79b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/E_TEST.json",
+      "sha256": "cd010e84d3ab103b3eacfbf9a5fc4db387eec51ee9414c7d6139cf8951714147"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/archived_QUERY.json",
+      "sha256": "b669360f7b933f97014af1811ec4bbcb2d4c1db461eb567061db0937461145b3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-4/archived_TEST.json",
+      "sha256": "ba999880d775915b81becd1eec9bf12af67ff93a7c4133d75cb317395a927d03"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/A_QUERY.json",
+      "sha256": "64fdd2a89d3b40b53dc406fa07d8a9d856c9d14b5e1993b5075574bdb610b97e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/A_TEST.json",
+      "sha256": "90e7793dd69557c7e678bb4a23737f3b9577cf946f81ba438fd486d3f1b5e79b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/A_U_QUERY.json",
+      "sha256": "1443fdd7810ebe9f6169788cca5ab38b44db4cedd0c96d6c5b097c88ee25e06d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/B_TEST.json",
+      "sha256": "71ebae0259b12ea5ab1fec8c0e5a930e5534f4573121c7bbb1aeb859f731d0f0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/C_QUERY.json",
+      "sha256": "cc1179ec21ac9d34d5e03b3bba470e4b91457d586c41efc984b5a341053b9e06"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/C_TEST.json",
+      "sha256": "d89987cda56fef0688bf4e349643586f4ff659e4c49c64976de716cf50fbbd41"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/C_U_QUERY.json",
+      "sha256": "a531f434b5918e5046c6baa59fdb2fa33432c8ce47d78249d4abcae1c79bedc5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/D_TEST.json",
+      "sha256": "e616234b77c4ff35c1341bc16513e99743858f1352fb4d962b01c85a65a0debe"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/E_TEST.json",
+      "sha256": "2c50d90fee993ddbdf417064202bed8a2d454d2737747cc11f321edfae810102"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/archived_QUERY.json",
+      "sha256": "71f8c23d294eabb6a917f50e5b2aa51b47b808b7de07ca239151739de4134edc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-5/archived_TEST.json",
+      "sha256": "36419dcc5b48b6b646e9782f68aded35becb5d2a6c0ca826dcbeebf0d935679b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/A_QUERY.json",
+      "sha256": "1848a8379bb71f3aa034035e409fa4406cad3ff2ef3cc2c553aecf94cc4dbfc3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/A_TEST.json",
+      "sha256": "9f3aad446a58ec7a47d0861d8e366b8d5ce01972ce1bb2bb549a510beb1ee5ee"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/A_U_QUERY.json",
+      "sha256": "da3f24216c8918cd7cce78ad499fb8be5643b02702581b1804d63df1fe364921"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/B_TEST.json",
+      "sha256": "8bb5c1b518de0b94aa4e4df6b965664f7a8227ef42d212b89f383b668a1da37b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/C_QUERY.json",
+      "sha256": "72e829339c06e071909b149312cdc4b4784e39125701e5cabb92b37af57c9e3f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/C_TEST.json",
+      "sha256": "01883039e7a20fa38e368eed76a9f11b045d20e6b90bf478beb39425c8f38d47"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/C_U_QUERY.json",
+      "sha256": "1673525b1bb58697f5963881729fe3e47f6386a2a0dd3caaf0178c35fc85cfdc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/D_TEST.json",
+      "sha256": "2a647a95f99c43a1708573dbbc6c6c8f2d012cc76adfcef39fa1209562d15e54"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/E_TEST.json",
+      "sha256": "5800f2c27bd3297aa4e39ba1dac131dd30653afe5bc1e45f26e3fd016caeb1a3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/archived_QUERY.json",
+      "sha256": "f851184b9df0048b1339cb02969cb53eb822ed2bddfcb36021e0c2d1af874e38"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-6/archived_TEST.json",
+      "sha256": "8ba0bdc05f589f70162a3d294bfc5156a157a5bb67d9e89d22147b10ed59ce83"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/A_QUERY.json",
+      "sha256": "741b673ed1681e3e56bcde68c7ebd1b7e2a341537cc92be66149b4b293ebf0f5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/A_TEST.json",
+      "sha256": "e890b42e345a3ddb3b9243346acea59a97f39d3d494e8b6afc8a826ee1ef31a1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/A_U_QUERY.json",
+      "sha256": "068ba5b851cd94ff0bfeb14940f81fe84776e9c33de417531fc9c764e456b33c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/B_TEST.json",
+      "sha256": "40bb50445805b8f0b2710ce722bbbf519cd2e23565cd03d209d2e83b98d963c1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/C_QUERY.json",
+      "sha256": "6db693ea4a35009974c13c6349d36314930c562eea4929257bc0e4a23f0b0962"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/C_TEST.json",
+      "sha256": "a5ff8dbeb4d831f1d4e2ff46e874adccf714c41644974845fbb9d3c2e0b01871"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/C_U_QUERY.json",
+      "sha256": "17e281d07cea14eccf97219c4ee61acd76ccb7de3485d91f1e622e67d04c5aea"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/D_TEST.json",
+      "sha256": "76b9bdbf8ee2999ce3b4c217363c0785c98e99e05c19ea94742a34af6e22c616"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/E_TEST.json",
+      "sha256": "71a202fd2d76b586ee4d036b063ca681404b9b4c673dcbd4b8f43dbb9df9163f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/archived_QUERY.json",
+      "sha256": "bcf46f18ea442aa6de94414302459f73fc55c2e0cf700b6b2003f6d238708e74"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-7/archived_TEST.json",
+      "sha256": "76c2aa18bd51cd411040a3fdfcb3aff68fd8bfc712deaca3c9d29d57bc5cc33a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/A_QUERY.json",
+      "sha256": "f7d31d96b0509b94900239eccc831f5809036d29dab6a6fdeb020d932d361ef2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/A_TEST.json",
+      "sha256": "871c4a61c9fa5196ca4e8bf9e01f9d2576da9fae51dcfb7400a19283b36e606b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/A_U_QUERY.json",
+      "sha256": "f9a4ea23b0cdb63005fa03c4e401e4a024cc78eb3ce1c6a12b7e11fab1cc2a79"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/B_TEST.json",
+      "sha256": "893118c99b94763c50380435178dca3e70be626643baa3581735d8a477c9628b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/C_QUERY.json",
+      "sha256": "4e2fb1b86693318b92e4fceb29630765dc0f364070d129cfd7d402b11d767a38"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/C_TEST.json",
+      "sha256": "cd455164814aab2d082b069952f7f5f057db1a523eadfad6a495a5a818c80fa4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/C_U_QUERY.json",
+      "sha256": "3055a3c35470a9fcb1c5e1bd58ffb3c8c136662ee4bc725242159d721b236a04"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/D_TEST.json",
+      "sha256": "998d031a95f3da5ae56ee4122054618a02bbd92e7c943c74614a75abb9ef6f52"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/E_TEST.json",
+      "sha256": "c5e149b986a9805f84c4b661b2bd5b5273c6909092e841ff369085c6518aa8ee"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/archived_QUERY.json",
+      "sha256": "07127de558a807d0cc2c673e7fb5b8090ab32e08c82e33a40da5b16b72fd2a3b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-1-8/archived_TEST.json",
+      "sha256": "dea2b8bba9f591fe8d5dc7396aad0bae83f03b31cf61df4419db0b92e54d81e5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/A_QUERY.json",
+      "sha256": "9040dce716c5b04b785f4022f1b901637e96e15dd769ddbb910272a76bec3724"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/A_TEST.json",
+      "sha256": "c592f9b7d9cacf4fb505ad44dcb664974f3a7d0f9a9b347b7beec2cb78e4a1ff"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/A_U_QUERY.json",
+      "sha256": "d5f256221b4d16cbcb0bcbc33a38baff79a3d989264f7aa34be493cde2e01c3c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/B_TEST.json",
+      "sha256": "2888b78f51c20f60cfe3b8a9f7428a9f54bed25e3d66d7efc299740e885a12ee"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/C_QUERY.json",
+      "sha256": "543c6d8660bffa1c5c7d7fcac3a1de248b3d3b5746ae87f6fcecd7a6b1b9c617"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/C_TEST.json",
+      "sha256": "02e624afa078c2a08b743ae6031cec12cbff5fae2c71aca68dce2058da6ed72a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/C_U_QUERY.json",
+      "sha256": "11df124c620a7b03a8fa4c2e900cac6b3f42a73e6af9f7739a8ce85dd52ba4aa"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/D_TEST.json",
+      "sha256": "d2b128cf19812d29ba1cb86ed7d6a7f58ac99184ae2f4ecf75a1ec0d3ec61016"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/E_TEST.json",
+      "sha256": "934c80fceb5a29d3d45e94f26b00752c46fcec61ca105ecab7ad6a071ede40be"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/archived_QUERY.json",
+      "sha256": "5d032b38c803087d83fe88ea10132b2952fde94603344e47e2236a852ba2f803"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-1/archived_TEST.json",
+      "sha256": "6b3432aed58a7161c0b6676c23a3a0a82fedc89e1f089e519688e95c54bb5f92"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/A_QUERY.json",
+      "sha256": "c3da5d4b96a5c2c4e8bd392bcf82853a22bb1156aaeff49a50688051d387b11c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/A_TEST.json",
+      "sha256": "aa5ddf273a4fbf495ec9ec983f00db368d57e179707754779ac7490e7b3c68e4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/A_U_QUERY.json",
+      "sha256": "220bbddcf8d54208c803c35b40c72f1accc68a6db8001d40abda6e2df2377021"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/B_TEST.json",
+      "sha256": "878cb5b54d68159ae5b33c14503865f5fd44e09c7563e7ddd14d4ac7e24edfaa"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/C_QUERY.json",
+      "sha256": "bf200c21c9430184c1609ab847eca4a1332967aecdbccdb8fb65b5a065e58e05"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/C_TEST.json",
+      "sha256": "2c035866da09242e18f6dcb07cd7b7e27d27eb5c1f4372b88d5bfa3f6926b27c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/C_U_QUERY.json",
+      "sha256": "b54bfe922b4bcdeae79bd535eb1647e97c03e675510100326f5b7e4652c2a32d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/D_TEST.json",
+      "sha256": "21424eb990a6d54ee1a04275ef31c530f475b8e873bc21b09e66e2539172840f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/E_TEST.json",
+      "sha256": "27e8a6aca4b808e9d24293d6eb89c770850057af93b46f61c3d7fa75bea6abdd"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/archived_QUERY.json",
+      "sha256": "d39941a1254f7a2aa34b07935e9056947db23168dcfd1bef0cb262dd0c916fe3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-2/archived_TEST.json",
+      "sha256": "a8ed870fa6df81349271e38082451841da7994b71ec69ce2af545cd9c301e6b0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/A_QUERY.json",
+      "sha256": "9451f5014a0522a1ae5cd60fa640633b607aa8c0916661da6c1acddd634d66d2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/A_TEST.json",
+      "sha256": "88cd583114b1fb5f16d17ec797fedc4c3c6173b06b2089f6b3873d7f52267615"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/A_U_QUERY.json",
+      "sha256": "a2562f7bbb4e5d9d68fe61734e3cad1c513a064efc2ea4e261e7224e7ed9ade2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/B_TEST.json",
+      "sha256": "f1e570be96f130f7893221191acd1e6127cc22500226c9640ac9265eb066b595"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/C_QUERY.json",
+      "sha256": "a7f099658d4ac060fdd3b414c402c3c251234caf0a71aadf1d2047de06d4ce0d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/C_TEST.json",
+      "sha256": "ae542c40e8ebcb42fccacb6abefc07c4c521598370e3132799f2b661a3a96934"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/C_U_QUERY.json",
+      "sha256": "f5ab28973adb26564621acca15c05d21ff337685b86349c9e4150f0354b7d25c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/D_TEST.json",
+      "sha256": "fc1267da5aec57382b00bab397ce267895e1c7a7f78d309b32b798761bab12ea"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/E_TEST.json",
+      "sha256": "3e199f1ce8cff466b423e369eeff0adc7a6cc993040b4ba3e790790f60d9bf09"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/archived_QUERY.json",
+      "sha256": "b3faa4b3100c29187912570e1db8a3773ae3b8230b463a2fddd68de99afe4e33"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-3/archived_TEST.json",
+      "sha256": "4badf6595f1e9e567714bf3b8506851b57f1e3603b71b5d38b1deb1e72078ff2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/A_QUERY.json",
+      "sha256": "fdb71399815970a930ee4eeaa6fff0f9983054d67959176ae71a33ad113cc8c2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/A_TEST.json",
+      "sha256": "bc3334e0010a1f7ab14c5dc89cb6d49aac5ab9010d113fd8e7ba1f93d219f482"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/A_U_QUERY.json",
+      "sha256": "aafecc9409cfd94a62c17e69bdeee1545d24231378f480aa8a8dd0d18b8e52b4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/B_TEST.json",
+      "sha256": "e102e7906af90f202ca3473581c107c42d8a9608153ab3170cfa282edc12b59e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/C_QUERY.json",
+      "sha256": "74cedaf0f66ed00048f276be6c30d152998783d479015d13e343fb0ba397214a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/C_TEST.json",
+      "sha256": "65cfc7f42291a09642fdfe16db32733e7602d70ff01180ef537272d19ffd0286"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/C_U_QUERY.json",
+      "sha256": "6a0b5f56612a0937a376328fe5f521b38cff2fafb61b0aab337df4641f35bfd2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/D_TEST.json",
+      "sha256": "53750a3b3a592c24289147233c08c4bff7bdbf325f2488cc2edc0434284c03f7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/E_TEST.json",
+      "sha256": "6e2c183341a43459219eae95445b196692ff80e6e685c625620065a7db562878"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/archived_QUERY.json",
+      "sha256": "da2ab7b1d04bb7cc43f7f5d57407e49aeafc15c9c82060c45613ac142a5fe174"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-4/archived_TEST.json",
+      "sha256": "6859650867872020736731c96a7643bf11f55b4b9bd7a65a1209de6cbe41a210"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/A_QUERY.json",
+      "sha256": "f2d1465bb20e72c4ed7842827fc6b294337c778a3f8649487dcc27d8de7a62b6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/A_TEST.json",
+      "sha256": "267c55026adab615a1d04fd2dd1aa1ae9e06de0472157a3df3e69d63f0d0d7e9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/A_U_QUERY.json",
+      "sha256": "71c13639932f3177674b993d06c316455b9129669a069a1c163985a18a780067"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/B_TEST.json",
+      "sha256": "b724ba7e494283e4650c533cd91288d0ee30143d2fc27f307bf0b7d877b6c102"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/C_QUERY.json",
+      "sha256": "887c8eea2476eafbb25c8bf947d8a1227395e70605d88587edacb1f686a78433"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/C_TEST.json",
+      "sha256": "1ac3f5cc5ac155ed83ca2a1b8a879e6c9e13eb901fba75acf512bcbccb8e40e4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/C_U_QUERY.json",
+      "sha256": "8c37652239c46e434c6068c841643abd3f2082af6df018913e08197fc032aed3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/D_TEST.json",
+      "sha256": "828a2147e6d566022de32ea9b1c8ffb1bf6dd14006cc5ca3d16833a1ba637574"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/E_TEST.json",
+      "sha256": "ea89e2ddea1a26febc4ecef6f978125cba6aed889aa910360354d54b56ed4112"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/archived_QUERY.json",
+      "sha256": "609a37cfc9bc8bf085b09cac178c68ea4a385f062444da45f1d6f5497e2e8ecf"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-5/archived_TEST.json",
+      "sha256": "3fff73214b65bc72340e58d3ee7e732656483dcfb96e0780c80b3698ef456439"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/A_QUERY.json",
+      "sha256": "8d94c0a717b644227529730eebe7d6d8170300f7b93833c965896eb921e0b5eb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/A_TEST.json",
+      "sha256": "9f7b33b2ff0fd573c95189cf6958590a86040606ef75841d388eb4053134ad00"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/A_U_QUERY.json",
+      "sha256": "356f53d499799c7a5a0be8b6d59769d5ebbbca89b1e97c29914619dab3747fcd"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/B_TEST.json",
+      "sha256": "07d6cb94292ebc65c8a59040c3c8f3e3a4e6f7bde01b240bc25bbc4fd50b2a38"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/C_QUERY.json",
+      "sha256": "24f1945ce4c4e8f5dac479f2f67a0c3f0c040c88745160b2f222a8368694a1a2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/C_TEST.json",
+      "sha256": "d3a6bd3a4528fc0235c446bd8b19c35d3a6ebd47e01e88b060b014cab3fdf3d3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/C_U_QUERY.json",
+      "sha256": "cfddca9d31e284c3274af1c2fa4f5d0670fd425281dd78ac206179b70fa88c8b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/D_TEST.json",
+      "sha256": "0f060f8f06484babf7e9c27f37af89f70943df9ef436689ec68689e320494619"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/E_TEST.json",
+      "sha256": "f9708fcb6cc8c303ae389c225509cc581591b6de9bd1084ed9c2ee7f4b9bd5d6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/archived_QUERY.json",
+      "sha256": "ffc7885ef180099ebc432c2e2633b6823947d3cb4590566ed12db2cbd77fb644"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-6/archived_TEST.json",
+      "sha256": "cdeb7151dd255124023878d9b4892b1a0e45dda1c02d313bd9bc8d21199c8e33"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/A_QUERY.json",
+      "sha256": "ea682eae84eb1c300a801ea1fd3ef658f74fd6c33b3b6e057a65c6605252968e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/A_TEST.json",
+      "sha256": "bdb6f5b653f1c0b1601085afae736a3ffa4fc74edfb975a17bb9ecef664f6e19"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/A_U_QUERY.json",
+      "sha256": "1f5c7b559df1deeaacaae86805936314db7ca2fc395de51515f0b27dce7ccaf9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/B_TEST.json",
+      "sha256": "e8fd79fb4c4b08f19dc752a53cca02dccea678880871bd6a7d4a7509557ccd1c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/C_QUERY.json",
+      "sha256": "43af3a26fae0878213406054ad089a7b5c96c2db8e0b36f82f745dfd2b45ddde"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/C_TEST.json",
+      "sha256": "02f082b7f7651ce102cde9261c92488c9b5240e1948c58b9849371b7a16121d6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/C_U_QUERY.json",
+      "sha256": "f9a6dfda63ad462f247612422bc4df9c88d4a3d6a947898cb447b2603961ddf2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/D_TEST.json",
+      "sha256": "77a77e2eff2e7be0b6d72e75ef3f2e215d2257d74a7164c31d0a77e57ff2a460"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/E_TEST.json",
+      "sha256": "6eadafba2368ecafc6c7765751c6b818181a26ee4193e26a1646bc6285fa68aa"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/archived_QUERY.json",
+      "sha256": "cfcd6919125e04ef1a0f9a0e3503d92a350bcd050316ee566c02cb91ceb1f902"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-7/archived_TEST.json",
+      "sha256": "c232fbaaaf39996a2a1b8308e175d9586071a323c9a5db6389013020498f92a0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/A_QUERY.json",
+      "sha256": "dd7a1706160beff0f3e9b78567a2eba54eee475ed093830a8518a59bf58bfda6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/A_TEST.json",
+      "sha256": "844114db9f91b547893a46b84eecf1a7f88fd8698084427d9bf7eb06ad8838ab"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/A_U_QUERY.json",
+      "sha256": "0ee0431cd609816e86b93c94df35c6c7f2e8f3b1d24fc33225eafb113f1597bb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/B_TEST.json",
+      "sha256": "e5111d502dc59664c42c58a397e66f3d9abd2c8d5dd07782bcf002f5004350a2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/C_QUERY.json",
+      "sha256": "d0b7d175ae1942bfc3a31dad90e79a0d6fc91de06c05404d9fb417200053e387"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/C_TEST.json",
+      "sha256": "fb1c59546048e3750dc6739800cac75c1e7583120a2f7bc45d4400323598415a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/C_U_QUERY.json",
+      "sha256": "ab3641a6e630080808dfff63858c80605febd3e53c9770e3c3d0bc9fdd64646e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/D_TEST.json",
+      "sha256": "d8012cc9c08829b98334bd90d438c795bbbc22f9735bc8df8dff18a6a7b39400"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/E_TEST.json",
+      "sha256": "5c843912d2de9c6f42e85311da1be09ec742eab34eb198779d07cabb498e757e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/archived_QUERY.json",
+      "sha256": "ff8361d6c4143deaae58a1c85a31329474642f064a64c5632a025663a004c5f9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-8/archived_TEST.json",
+      "sha256": "fec068558ec82cebb06f9029688bb5b57a157438b443714cc8af149d42e876ff"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/A_QUERY.json",
+      "sha256": "0d6272c0d626b79147a03cfc7dbba203e546245b7e153e42069668c55b2adbc1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/A_TEST.json",
+      "sha256": "b5f1f1f2f804e104afd0d2f5e0f41afee8dcda52172865447ae98210a166ad14"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/A_U_QUERY.json",
+      "sha256": "18d641cd8b4ed3031d71e8c19e8089eb311bcbf596b9a8e5945d9e6f4df611d8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/B_TEST.json",
+      "sha256": "00e0c9c9d23a2b5060ac87710811edf4978ccab38b99d73070fa836da8a5abae"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/C_QUERY.json",
+      "sha256": "ea8f1c83e6c4f963ba386a2488803f3f759482c1cfb27be164eafb1025ceaf7f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/C_TEST.json",
+      "sha256": "2183f025a6dcb55ae7519ad371a602da309930766183dd2aa3356c1f04a17e69"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/C_U_QUERY.json",
+      "sha256": "9eba2c858c92e816e6043b243c459cbbd68d9e46b86a4390084d70b611799f34"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/D_TEST.json",
+      "sha256": "7646c11faccb480b2340ab092c9a3160c9bafef3811dae61a7c1a8c98a1c730c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/E_TEST.json",
+      "sha256": "54af2917d769c50e2ab2e1ec39104eee5e7edf0d46ed8383ad1b54d573c39038"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/archived_QUERY.json",
+      "sha256": "9478372614deca7bcbfb4e342daab298613adb50131870e7c550050fe26f854c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-2-9/archived_TEST.json",
+      "sha256": "4479d75459ab1cea2869558dfdf1c1c15a482785b5b0b09ac051cf6617418b1d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/A_QUERY.json",
+      "sha256": "9ab01ecbfb80825b8609b559a95c73cfa8997739c443eb06e99ec2e277889d72"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/A_TEST.json",
+      "sha256": "d8bb62e4e0ab492a327d80f7f08734091fc546f8be507dc769b6d222adecad41"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/A_U_QUERY.json",
+      "sha256": "5c52fba20ed29f462ff95d2d5e430bf97aefca64132b13765e310d5173316df6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/B_TEST.json",
+      "sha256": "83689d34d3bd6a1a424173cd81f32d83fcb5e1e3533fdec5041f45949f0cd7b7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/C_QUERY.json",
+      "sha256": "5870b58848c2ddd6a6a7eafb597c8b758499cc24f69022c6553cd1c088e95c02"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/C_TEST.json",
+      "sha256": "e5ecb71674b74e8b618af27062af620303fa06dffa1f6222299937cde2ee2ea5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/C_U_QUERY.json",
+      "sha256": "8a61b077b8b803ab694364b66d25f98eb5b14b5937204233bc5baba33ffad0ad"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/D_TEST.json",
+      "sha256": "7e8a4df07f07b8c1a2dda1a6ad1274fd19fa30972df46f2dffd36e49803468a3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/E_TEST.json",
+      "sha256": "6f4d1ac21f27b8bfcb11e3a6bb8f15644dc9a9356f7bc2fbcbc324278b266574"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/archived_QUERY.json",
+      "sha256": "e547de2c73eb08359b6d4aa53bc7abee416411e2f8ff1984d9333c1ac13dfeb2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-1/archived_TEST.json",
+      "sha256": "cc517af713d385300cb5746b13ecd6fc4420d780fad9a0f5142f82178d4465a7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/A_QUERY.json",
+      "sha256": "c1e81d0c656e9f741ea330c531c506f827d95f7c13ab4b8e7f7274e983e6a3bb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/A_TEST.json",
+      "sha256": "14ab60089ea49c9fd50f61b55e52a967aa683742a490b81a35b2f5daf4b716f8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/A_U_QUERY.json",
+      "sha256": "c54bc069e44a99d7136a18d012ca96f40e1116637ca40f03469dd0b5fca168e0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/B_TEST.json",
+      "sha256": "716af9ec9822da3368f60845b1574043156d8f5a947f968cd0e7abf6af4415ec"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/C_QUERY.json",
+      "sha256": "cb39d6706aa948ad80b142ee9b0d0d2d29359293ae829db6fefc8f2e4a4c92f0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/C_TEST.json",
+      "sha256": "c5b160ef67fd51395fe6d453e2400022e43aabb612bd00cc8d41d256d975b087"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/C_U_QUERY.json",
+      "sha256": "1f00eac3b97d325d675288a4580993d41fd51613caed84a3110e2fb3e16d25d8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/D_TEST.json",
+      "sha256": "d0073ef9c4833e76677440bea66d0f02152ddb2fc8dc4667c15e587257ae72d9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/E_TEST.json",
+      "sha256": "bd971f0cbd5617dfe4b252864c9a82f2194ac3f4de90420bd2424c8844c30755"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/archived_QUERY.json",
+      "sha256": "1a2d05dbab86585cd005071929811e0a250d350be7526b5b3f922ddd9f232674"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-10/archived_TEST.json",
+      "sha256": "7402d9b888c4590c21d3fa5e7b0ee81f8ee3d77cf3cef6c297228452f5569b50"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/A_QUERY.json",
+      "sha256": "d7d394da4c09e0ef7dd8fc68bfa022dd060478aa1c48057de06d50309478ed4e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/A_TEST.json",
+      "sha256": "5d6f1c46b8055dfa4b8e05259d6f5d5710a8794e0971a78f9303e6275f9c2884"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/A_U_QUERY.json",
+      "sha256": "d77c4dad30a000022709c3576731340696ff5e25c2a0e49fcfbcaab8bdf127b8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/B_TEST.json",
+      "sha256": "402f7bf47c13e478475a467214c2a5170853f9fca4bc4093bcbd72badde51b31"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/C_QUERY.json",
+      "sha256": "59ef9bd706030cc26f0910d8df9921333bd87aa3af5fc1f233882a9c3f41d987"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/C_TEST.json",
+      "sha256": "5121cede4b21c0bf97401788e0c2f3ad2246248e1d7eeb233a38a7bd2881415f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/C_U_QUERY.json",
+      "sha256": "5e1b8e24cb398e708550b8c206c2dde70f32b55d12b7ec5e522a5a27916c0f52"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/D_TEST.json",
+      "sha256": "591a546e9ff94cc8b647af61e14212f8e316d56dba822ccdce34689a00f99bdc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/E_TEST.json",
+      "sha256": "dcc2c89c89787fdc0464f272eb9ad64903a8dac004ff13946ab44a09824f807d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/archived_QUERY.json",
+      "sha256": "a5507830c3db5c1d18c05fb379328491eeec832cd390e9ed2500764e13d506ec"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-11/archived_TEST.json",
+      "sha256": "32807d6ad72dd0e894be4d4a9091be3fa6d9b4d4cc087ca9c679f5691b49b57b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/A_QUERY.json",
+      "sha256": "17cc61473c1a3dbb3f1251eb406013abeb5ee48fb65953812bff24d97400b774"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/A_TEST.json",
+      "sha256": "d6b46acfe0a831309c514f7b54f697e021dd0ef7d67b36a81ec1c1237e07b633"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/A_U_QUERY.json",
+      "sha256": "bf21f1c6438552d621d41fa921bc6bfd5404d65ccf655b01a7e51b9beafd7d4c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/B_TEST.json",
+      "sha256": "3374bbd7d90796b797e88cb36d289cfba3657ad1605271c9c335890bc3e7f5a8"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/C_QUERY.json",
+      "sha256": "4dc83dbbf4197e9f0b35c49435f481c90c932b23a1bee3bd039e474363382c38"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/C_TEST.json",
+      "sha256": "c5d11efa840c6201bd55f25c7d69d0276a7ce446559a9d553bc65a23ce7cde5d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/C_U_QUERY.json",
+      "sha256": "48cd13e323ac86c69b80c2db2c79719868dd53d511de6b628d738fb43a75bcc7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/D_TEST.json",
+      "sha256": "be2d71443a70195fbb659190f1e0dcf8ee24fffe109edd92497a5dc9656bab69"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/E_TEST.json",
+      "sha256": "0d0ca4bd111ff09821439689983f0146bfa14abb9115d11f8870dc1b38171be7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/archived_QUERY.json",
+      "sha256": "0464dc04a0607c1ff2e69df001136b9f8f187ed2785f45acd0c57568caef1223"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-2/archived_TEST.json",
+      "sha256": "931dab120e6073e4d70b1f0532f31ca4a787f54d1c3daa2b46abc06f680220f1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/A_QUERY.json",
+      "sha256": "81a55437599dba0c4f8e6f20cbe1c94119967e8027a1ee032ed5194132fa5a4c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/A_TEST.json",
+      "sha256": "44f63296d3046ec8cfecd2614b5902e9767f079bfc7bc801ec6a679750f5a19c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/A_U_QUERY.json",
+      "sha256": "cf928ab85a998359f4fa159f722c916443576aa007564f9e051ab86a549482ca"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/B_TEST.json",
+      "sha256": "682919e3044d4b787a33341778f214b3c9884a7dc38f0e97199fdc5fec5d7967"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/C_QUERY.json",
+      "sha256": "0a9778e5d1e353c055856c10ba3fe28199824df5eb89956f53999b73a8bcb521"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/C_TEST.json",
+      "sha256": "2955e3fa1ed03c1e72cd04a4069b308de0a7f894ea7ca51b3a4e1f514826a569"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/C_U_QUERY.json",
+      "sha256": "8b18c5a42c3031aaf2b05b1da14eb9aac38ba818c00c82d2f7c9f28881a22173"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/D_TEST.json",
+      "sha256": "01af350e8fab941273a610e9aabea51b6da5ae1bae8b91643a6c978e2ab43b2a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/E_TEST.json",
+      "sha256": "206bc28273ed1ea5f8e86cda868d9567cd600e164a99aaf6b091fa357d86cc1a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/archived_QUERY.json",
+      "sha256": "1cf463487ea15c05da4883f6bed3f0d0add02c69de6ebed329058ad7e42bad51"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-3/archived_TEST.json",
+      "sha256": "e2d1321286eb9961988200c9f979598ebb96b6e384a19c55855e4c1c6a70d389"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/A_QUERY.json",
+      "sha256": "687f8168c1577a51dcbe315481aad7e498637ac31f36e29225816c61fb90de3b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/A_TEST.json",
+      "sha256": "9e2ce828dc9819863a9dd4bcdae2f36e70bdca0715762d384fcc19e7b20eea44"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/A_U_QUERY.json",
+      "sha256": "caf15bf3bb3c2ef62b0c9095d9c7df851b19d6d9ee0060ce4b0bba9b546becdc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/B_TEST.json",
+      "sha256": "8236addb4df7e728b47321bfa0c2c2f8d58aba0b78fd87158106710db1a04fad"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/C_QUERY.json",
+      "sha256": "6f3ef42724174e277114707739e106a1156f3842672cd379ea31c829a07d1286"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/C_TEST.json",
+      "sha256": "11e25792a6a176ae12cebe205e44c770062b3f9a3978fa0f6fbd688bb5cd8b40"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/C_U_QUERY.json",
+      "sha256": "7c358244e4d694160665d2c4ef1a103f676fc83c7a338419ef1cf89bc5ea747d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/D_TEST.json",
+      "sha256": "68f9bec2d13218482d3d00a9062f5824fcd850e1ece13e203088802f7ea90e9e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/E_TEST.json",
+      "sha256": "39a5a749855fd1ddf676fa6dd27b86711e685027bc39e8d87f523ac6a8ac6a39"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/archived_QUERY.json",
+      "sha256": "61e19a9c415c8d81ce4e80c30ffab59211cf962884462f0f4baef74c009a9c82"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-4/archived_TEST.json",
+      "sha256": "c91d8253583dd6239e16f1ad5d32c0e3fda8a8b184973811b00642499815279d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/A_QUERY.json",
+      "sha256": "020a95a0fad015e305e3c25c604aa45a09c65f5948766b9dbdd2f78e32e30548"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/A_TEST.json",
+      "sha256": "7d336986f0e8a19c67e15ba08472331faf26dd063e280f3c62987f5200ce1b00"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/A_U_QUERY.json",
+      "sha256": "056240e4a49154bbc477b8ba6fd58c463549f4593e084875c88b35d534013876"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/B_TEST.json",
+      "sha256": "44f1e3365c3d6dd31ad980da76a39a9318768b707ae5e501e6527890f13ef12f"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/C_QUERY.json",
+      "sha256": "62e121e78dba4984c0574e06424c6042fa56545455fabc3b7d1acebe2d11a104"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/C_TEST.json",
+      "sha256": "2a5875d8c3c7710963659d75723859ba78511fbd70ae99dc96acb06bf95d2363"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/C_U_QUERY.json",
+      "sha256": "26a0a6ef1fa7eb27de960a71d1504bb61f9b81b610721b4e4a824897d738edce"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/D_TEST.json",
+      "sha256": "a694a44491e9442d048757db5a3d81d6aafd51737fa0e96f75eec1a16e63fee3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/E_TEST.json",
+      "sha256": "fe797acc37706edc11fb2fe000d281f11ed8dec7834108f11fdf587c1a8ed164"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/archived_QUERY.json",
+      "sha256": "bc5168cbdf864c03852315c31ee5e881422183f768f45ff742fae03aad73f5c4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-5/archived_TEST.json",
+      "sha256": "60f761b198a486267ac369edf4c0b1736d930829ca79512a76b3f07e453947ec"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/A_QUERY.json",
+      "sha256": "5248898f5f32c2cebf3dfd78853c01c8fe53d01a8d82b38f12918573e898660d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/A_TEST.json",
+      "sha256": "586b7540630374d135b918ade4483d520c825e084e07a3ec75493a6a0302f6b5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/A_U_QUERY.json",
+      "sha256": "4b00707b2c5a5a5e0f488eef3cd78d0d6bf94d7d31588faad2409e71d570a709"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/B_TEST.json",
+      "sha256": "cac8d93acd2a3e4f0d7bdddfdbe67f441f20f14930830aac6b03163dbcfa990e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/C_QUERY.json",
+      "sha256": "cf136b4d7bd38264b7cdadf0de86da5f9cdefb334fb26a8b08761c3fad08341d"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/C_TEST.json",
+      "sha256": "cc7883039f94696e544a9a93f9f702337f385a9b11132446defb37a898d20141"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/C_U_QUERY.json",
+      "sha256": "c9301cb123c3d07f6e4ae14bed2d05b4723234c3563fd7d913d7538925f3ad4e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/D_TEST.json",
+      "sha256": "ca1ec1f8a0989e4643c3c169de44a27efb774bad076be04996ceca5b6e05919c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/E_TEST.json",
+      "sha256": "39e610ef96dac8dd76908b71af6188b4736aab8b42c3269c6dddbf7b35f3c8bb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/archived_QUERY.json",
+      "sha256": "920853215997488b066e817325ca679988f30b15d662d66a85b161b2acd5a7c6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-6/archived_TEST.json",
+      "sha256": "774796db39609275853dbcbf35a57eeb9db1c5cd91f5c071788aabe0095839e4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/A_QUERY.json",
+      "sha256": "31ec8762405e9885094be6963f1d365e8ee23d16eec2b523403440589d3fe330"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/A_TEST.json",
+      "sha256": "d8f1e6217e9b5e979d63f0394c9316b499e2e44ca4bc070aa788e29c3e201758"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/A_U_QUERY.json",
+      "sha256": "ee64c5a4d35abd692af6699e1802b6e6af1792d202572806de40a3ab235bba60"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/B_TEST.json",
+      "sha256": "4de3fa8e4827f14f261dc3dde8ef3fa07705cf42356ea64624012323651587f4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/C_QUERY.json",
+      "sha256": "2afc25974a7bbf9270cfecc3ca172e56bca971d19442eb0fa91f830e850edcb9"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/C_TEST.json",
+      "sha256": "eeb32570c47bb7c08d82c5285410920fc4fce62cf4a988ce9b7044ed0f40f489"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/C_U_QUERY.json",
+      "sha256": "24671b4aee8df524ea3932093c8eafa4372759d33cc4c452e3f7a74b69edc1e0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/D_TEST.json",
+      "sha256": "d10101e5bcb8a64143aa668de88e3bc468427d7e25351b682fb4c9c9bfa47978"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/E_TEST.json",
+      "sha256": "67700e135107cf499957a70bcbb9ca8e319e5f36494baaf6c3b3d1f97bb2f1e0"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/archived_QUERY.json",
+      "sha256": "9fc00e1feebae625f006f7745dd2cf11bf9ef30270b3a3a338d7617ae22a043b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-7/archived_TEST.json",
+      "sha256": "d86380b3d7736481722cb4cf169e7976af4308e6e917183a0150a1d8cf07aaf2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/A_QUERY.json",
+      "sha256": "e649c88c47950f0bc6bfbde8cfade04fe7d42137f7b32072dc5c9af3b14d2004"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/A_TEST.json",
+      "sha256": "f519bcea0e41a7609578aa58512bed168f08f1a63d45e8e4c70fff8aa7b8173e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/A_U_QUERY.json",
+      "sha256": "8d947ce85d42e9709bd939c68c10eb15c3877308eac5095d462f6b7039370b09"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/B_TEST.json",
+      "sha256": "6544a1b01bd17be827c79642bdbf15ba058a75a9b535b8353e6078755e279d65"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/C_QUERY.json",
+      "sha256": "502d24a0c94d32efbc2285ec05d181fa75294ca2dcb749a27ec34506ea4831d4"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/C_TEST.json",
+      "sha256": "fcfb81b8f1827ed03741a9f7d9cde1ff4ea4faa66d8232dcc21eb3cfcee5be52"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/C_U_QUERY.json",
+      "sha256": "fa6c1f237a6053870c047d1fba87f7a9b0bbaee5a95ca75bb798c10a6c1856ba"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/D_TEST.json",
+      "sha256": "84a503b228a1b1c8397bba192e69d1108e479aab0ce08f03fe65ca130dcc7aaf"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/E_TEST.json",
+      "sha256": "9118a88c1272767f82621f23b1e6bd19fa9ebd68eb50cb338285ac0e41de5b0a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/archived_QUERY.json",
+      "sha256": "0d51ba1e3a0aba7a13c7a6a96a322ee4382acd613823713d82a030e8c323ea5c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-8/archived_TEST.json",
+      "sha256": "db3a6b34fc10ab9cfab02f6a7ea9b2c5f3f8728d01466fabf9d562bb814d96ed"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/A_QUERY.json",
+      "sha256": "0e55f5e112787fe50782f49de9300bb7f1a404c74bcdc9b25037ba99561ad0a2"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/A_TEST.json",
+      "sha256": "e1c25f4a6b3f73dac2af98a3fd69b436b8b71be09cc95abcb2a77c5872a220f5"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/A_U_QUERY.json",
+      "sha256": "050caec1ccfd65f183977225e3e4824698d9bda4381450e6c13fda11f79f73a1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/B_TEST.json",
+      "sha256": "b9ffe0c915662bbe07549c191f4c0e72fc48038e46703b544cc8a549078c7213"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/C_QUERY.json",
+      "sha256": "7fa4d64e34f96f3a4e09672877a16df2a9d1a473bffd5973a91e8e4afd3659a3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/C_TEST.json",
+      "sha256": "57a39ba8b752c2ace5fe760109c1ec43f23723a2a5babb4f279a2eccde224c8a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/C_U_QUERY.json",
+      "sha256": "8c8f23d9345de536544b60ea6669b59b104e54a727bdf7789d3d02a071f49bbb"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/D_TEST.json",
+      "sha256": "61b33fc56373eedf9f000b5bbaea6252695905028e35421c7ec35986e445657c"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/E_TEST.json",
+      "sha256": "0a5c159ea87fb5a934fcf4f565601dc8590bd925e43ab882ff5aa5ebc0c480fc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/archived_QUERY.json",
+      "sha256": "fc7a7f2bb9ba9875ff13e4d0e64e01ccc9e7654d6bdf112bd78fddad07e1f1a3"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SMD/machine-3-9/archived_TEST.json",
+      "sha256": "9184e40df6419409cc0b170f0c28ebcec21075c55094afcd8c20434da8535bac"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/A_QUERY.json",
+      "sha256": "b3df186087891eaaefc0b6a811703b525c088a7bc65166b736efce8321b304e6"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/A_TEST.json",
+      "sha256": "cbda44b737fd835e94991516cb9305db93b2398096a9a96fd7b088c6773cf5f1"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/A_U_QUERY.json",
+      "sha256": "f10b9df34f99dd6cb51162c69110d6dac5433cc6937dee2604183494806e157a"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/B_TEST.json",
+      "sha256": "153c45486fc4a6002f00cb2b9b1a985aab80fc21edb3aaa472b3e557a99f794b"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/C_QUERY.json",
+      "sha256": "5c79c2b3385b87b45e91dce2c748bcfe400d59426540bd20171f99195cc7d6bc"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/C_TEST.json",
+      "sha256": "7f1ec29d54e58f03be6aa8ccdbef8d3a457ca3b8ead972efeca8614a0cab3e07"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/C_U_QUERY.json",
+      "sha256": "a70a06202e3482a4833f77796181e2a509325d3a60b93405503ab40b415037f7"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/D_TEST.json",
+      "sha256": "7f3f417909d845bb4c90ef674a7dc7a60a350b5bba9245687c2b57f6572bf542"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/E_TEST.json",
+      "sha256": "419dba1733f2d039119e716d60fe22ef53306ca51c1b4b721630afbe08e49d0e"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/archived_QUERY.json",
+      "sha256": "1b077c94ee6b9a06c373794021fb2f75ec8ef46222f6cf17ee52748949de9c66"
+    },
+    {
+      "path": "results/left_timesfm_hidden_20261126_v1/metrics/SWAT/SWAT/archived_TEST.json",
+      "sha256": "11ba8dc691d7fd0efa034601463e55d39ceba2a9d74f85ed438cedb531841e79"
+    }
+  ],
+  "independent_AP_ROC_max_error": 4.440892098500626e-16,
+  "aggregation": "per-entity then equal-weight domain macro; one development seed",
+  "VUS_review": "fixed author implementation, aggregation only; no independent VUS algorithm",
+  "axes_sha256": "0ff48768ec21553588b53edf02fb0c3248477b4da8205ef8ff5c826be4fa5224",
+  "donors_and_archives_sha256": "ac85bc3f87b93d25711f34ba038972a2996e68bde761c99ff1a5738ad342062d"
+}

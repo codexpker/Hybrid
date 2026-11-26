@@ -1,0 +1,332 @@
+{
+  "status": "PARTIAL_PASS_PENDING_SMD_U",
+  "reviewer": "Separate CPU-only audit by a collaboration agent. No model forwards.",
+  "audited_utc": "2026-11-26T17:43:52.596754+00:00",
+  "GPU_used": false,
+  "model_forward_calls": 0,
+  "history_encoder": {
+    "checkpoint_sha256": "a7592b0a8432baee54483254e5647856911ce69e09d09a9bb65904b2d98f17da",
+    "source_commit": "918df02c9d366b2145bc5876135fa2131d3ed2a6",
+    "weight_revision": "43046b85ec22d584a13f8098c2ed39c889e129c2",
+    "full_state_fingerprint": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+    "checkpoint_tensors": 445,
+    "checkpoint_elements": 330710976,
+    "random_state_fingerprint": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+    "gradient_scope": "Read-only checkpoint identity check and inspection of frozen eval/no-grad feature path. Padding and causal self-checks read from saved normal-source engineering receipts."
+  },
+  "source_training": [
+    {
+      "status": "PASS",
+      "domain": "PSM",
+      "fixed_model_checkpoints": 5,
+      "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+      "source_select_fixture_sha256": "ec6ba86be133cfe61980fe6b7a5398c8fb9d92bd64f413deeefe5e6036c66eee",
+      "select_padding_mask_verified": true,
+      "independently_rebuilt_current_history_hashes_at_updates": [
+        1,
+        1000,
+        2000
+      ],
+      "normalized_source_record_identities_cpu_rebuilt": true,
+      "plan_sha256": "8d2c3ceeb43da12f6a62460dbeab9c043651a0b213869e4cd2e6badda5848649",
+      "plans": {
+        "fit": {
+          "rows": 64000,
+          "source_group_counts": [
+            32000,
+            32000
+          ],
+          "identical_histories": 586,
+          "mean_history_overlap_by_group": [
+            0.9477926025390625,
+            0.06834967041015624
+          ]
+        },
+        "select": {
+          "rows": 1024,
+          "source_group_counts": [
+            512,
+            512
+          ],
+          "identical_histories": 9,
+          "mean_history_overlap_by_group": [
+            0.9497222900390625,
+            0.25595855712890625
+          ]
+        }
+      },
+      "all_native_rng_receipts_agree_and_final_rng_archive_matches": true,
+      "validated_history_feature_checksums_per_train_step": 2000,
+      "note": "Source SELECT is diagnostic. Matching set/shape and held-out source groups verified; no forward pass repeated.",
+      "currently_available_scores": {
+        "rows_recomputed": 12,
+        "score_banks_checked": 7,
+        "AP_max_abs_error": 2.220446049250313e-16,
+        "ROC_AUC_max_abs_error": 2.220446049250313e-15
+      }
+    },
+    {
+      "status": "PASS",
+      "domain": "SWAT",
+      "fixed_model_checkpoints": 5,
+      "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+      "source_select_fixture_sha256": "8f75d35810020f13d46c29ca0b46ae1c5553ca7fe3046cceb1d0536fe7784844",
+      "select_padding_mask_verified": true,
+      "independently_rebuilt_current_history_hashes_at_updates": [
+        1,
+        1000,
+        2000
+      ],
+      "normalized_source_record_identities_cpu_rebuilt": true,
+      "plan_sha256": "f07d2aff11d10f29ddb4ef104cff3c5c4f310e1df32841d302e2506278686d21",
+      "plans": {
+        "fit": {
+          "rows": 64000,
+          "source_group_counts": [
+            32000,
+            32000
+          ],
+          "identical_histories": 603,
+          "mean_history_overlap_by_group": [
+            0.9473267822265625,
+            0.06900152587890625
+          ]
+        },
+        "select": {
+          "rows": 1024,
+          "source_group_counts": [
+            512,
+            512
+          ],
+          "identical_histories": 8,
+          "mean_history_overlap_by_group": [
+            0.9498291015625,
+            0.23717498779296875
+          ]
+        }
+      },
+      "all_native_rng_receipts_agree_and_final_rng_archive_matches": true,
+      "validated_history_feature_checksums_per_train_step": 2000,
+      "note": "Source SELECT is diagnostic. Matching set/shape and held-out source groups verified; no forward pass repeated.",
+      "currently_available_scores": {
+        "rows_recomputed": 12,
+        "score_banks_checked": 7,
+        "AP_max_abs_error": 2.220446049250313e-16,
+        "ROC_AUC_max_abs_error": 1.4210854715202004e-14
+      }
+    },
+    {
+      "status": "PASS",
+      "domain": "SMD",
+      "fixed_model_checkpoints": 5,
+      "parent": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+      "source_select_fixture_sha256": "f1887f5a69c1e07ef41c3fcb9ed17240fad60b03a80d85d60b8dc3e5a9b55cf8",
+      "select_padding_mask_verified": true,
+      "independently_rebuilt_current_history_hashes_at_updates": [
+        1,
+        1000,
+        2000
+      ],
+      "normalized_source_record_identities_cpu_rebuilt": true,
+      "plan_sha256": "90212521e0a5ceca0d374649dbde7809d4842c10301dd2aa61957fa7f7e9b6ab",
+      "plans": {
+        "fit": {
+          "rows": 64000,
+          "source_group_counts": [
+            32000,
+            32000
+          ],
+          "identical_histories": 588,
+          "mean_history_overlap_by_group": [
+            0.9479417724609375,
+            0.0066407470703125
+          ]
+        },
+        "select": {
+          "rows": 1024,
+          "source_group_counts": [
+            512,
+            512
+          ],
+          "identical_histories": 10,
+          "mean_history_overlap_by_group": [
+            0.95086669921875,
+            0.008304595947265625
+          ]
+        }
+      },
+      "all_native_rng_receipts_agree_and_final_rng_archive_matches": true,
+      "validated_history_feature_checksums_per_train_step": 2000,
+      "note": "Source SELECT is diagnostic. Matching set/shape and held-out source groups verified; no forward pass repeated."
+    }
+  ],
+  "source_Z": {
+    "rows_recomputed": 300,
+    "score_banks_checked": 150,
+    "AP_max_abs_error": 3.3306690738754696e-16,
+    "ROC_AUC_max_abs_error": 1.9206858326015208e-14
+  },
+  "completed_mixed_U": [
+    {
+      "domain": "PSM",
+      "checkpoints": 2,
+      "query": {
+        "rows_recomputed": 2,
+        "score_banks_checked": 2,
+        "AP_max_abs_error": 1.1102230246251565e-16,
+        "ROC_AUC_max_abs_error": 5.551115123125783e-16
+      },
+      "CAL_banks_checked": 4
+    },
+    {
+      "domain": "SWAT",
+      "checkpoints": 2,
+      "query": {
+        "rows_recomputed": 2,
+        "score_banks_checked": 2,
+        "AP_max_abs_error": 2.220446049250313e-16,
+        "ROC_AUC_max_abs_error": 9.103828801926284e-15
+      },
+      "CAL_banks_checked": 4
+    }
+  ],
+  "fixed_CAL_eligibility": {
+    "PSM": {
+      "entities": 1,
+      "eligible": 0,
+      "min_legal_points": 458,
+      "max_legal_points": 458
+    },
+    "SWAT": {
+      "entities": 1,
+      "eligible": 0,
+      "min_legal_points": 498,
+      "max_legal_points": 498
+    },
+    "SMD": {
+      "entities": 28,
+      "eligible": 0,
+      "min_legal_points": 438,
+      "max_legal_points": 453
+    }
+  },
+  "official_source_integrity": {
+    "TimesFM_src_files_exact_to_pinned_tar": 74,
+    "LEFT_source_files_match_existing_binding": 7
+  },
+  "scope_remaining": "All 28 SMD U pairs, complete jointly written macro and paired summary tables, and controlled comparisons. The remote CPU auditor starts the final check once the fixed matrix is complete.",
+  "VUS_scope": "Final aggregation verification only; no independent VUS integration is scheduled.",
+  "interpretation_limit": "Earlier same-record histories can overlap extensively, especially in short TEP runs. Controlled coupled_AR singleton donors have no reassignment.",
+  "exact_cache_relocation": {
+    "code": {
+      "pre_change_source_sha256": "0fc7464312b2572883f7da4d4101da7c12f05b125bc56f929138f95c04aa0795",
+      "post_change_source_sha256": "135af77fac3392097f1f8a81f91cd6ee07e194555168b3fc1aecb2280cd29ded",
+      "normalization": "Omitted only memory-placement branch, cache hashing device transfer, equivalent gather, and placement receipt keyword.",
+      "remaining_module_AST_equal": true,
+      "feature_encoder_batch_and_input_slice_AST_equal": true
+    },
+    "sample": {
+      "CPU_sample_payload_sha256": "be3964d2a1fdce7a646def67e2eab5bac1dff80781b9c95a4da1dda6238c60aa",
+      "CPU_gathered_batch_sha256": "0d76b4ec206cbe269176073ae0b944885007d660f16d58b947ebfebb95199e14",
+      "sample": "First64 rows of the retained full-history source group, CUDA comparison read from the stored receipt.",
+      "gather_indices": [
+        63,
+        1,
+        1,
+        31,
+        0,
+        32,
+        8,
+        14,
+        25,
+        12,
+        11,
+        10,
+        20,
+        55,
+        60,
+        33
+      ],
+      "GPU_recorded_max_abs_difference": 0.0,
+      "replayed_model": false
+    },
+    "pending": "Whole-matrix review binds all three sealed transition boundaries and checks current cache-placement receipts for later SMD entities.",
+    "scope": "CPU verification of code and reference sample hashes, plus stored CUDA equality receipt. The CUDA comparison was not repeated.",
+    "allocator_cap_fix": {
+      "status": "PASS",
+      "previous_code_sha256": "135af77fac3392097f1f8a81f91cd6ee07e194555168b3fc1aecb2280cd29ded",
+      "code_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0",
+      "model_and_training_code_AST_equal_after_removing_one_allocator_call": true,
+      "native_initializer_resets_allocator_to_GiB": 20,
+      "reapplied_cache_allocator_limit_GiB": 40,
+      "failure_receipts": [
+        {
+          "entity": "machine-1-4",
+          "condition": "20GiB per-process allocator cap; physical free memory remained",
+          "allocation_attempt_MiB": 2.0,
+          "physical_free_GiB": 21.93,
+          "configured_allowed_GiB": 20.0,
+          "failure_before_forward_for_failed_step": true,
+          "optimizer_step_trace_in_failed_log": false,
+          "log_sha256": "76f804bc3a2efe57a68971a4d0b5c494466806bfc41d3f9658199fc6cdf0489c"
+        },
+        {
+          "entity": "machine-1-6",
+          "condition": "20GiB per-process allocator cap; physical free memory remained",
+          "allocation_attempt_MiB": 2.0,
+          "physical_free_GiB": 21.92,
+          "configured_allowed_GiB": 20.0,
+          "failure_before_forward_for_failed_step": true,
+          "optimizer_step_trace_in_failed_log": false,
+          "log_sha256": "395860ab60893f04d50284f620d58350f72e07eae77d7d294fa7c0cabeb79585"
+        }
+      ],
+      "tail_restart": {
+        "entity": "machine-3-9",
+        "recorded_progress_checkpoint": false,
+        "optimizer_step_trace_in_previous_log": false,
+        "previous_log_sha256": "f63207b58c3fce8475f4b830ad545bb803ff04c3bd40d573b4f06b0e5daddc78"
+      },
+      "trace_limit": "Tracebacks locate failure at input materialization before forward and optimizer for the failed step. No 100-step update record or progress checkpoint exists from these attempts.",
+      "reviewed_GPU_OR_model_forward_repetitions": 0
+    },
+    "nested_initialization_allocator_guard": {
+      "status": "PASS",
+      "previous_code_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0",
+      "code_sha256": "a740881e3390fec82ec12d4a20f047625ee0f93a3acaf29f1976f6b1ed699659",
+      "AST_equal_after_removing_one_allocator_helper_and_normalizing_call_site": true,
+      "simulated_cpu_success_exception_and_no_cache_paths": true,
+      "nested_budget_floor_GiB": 40,
+      "failure": {
+        "entity": "machine-3-5",
+        "location": "ConditionalLEFT.cuda during initialization",
+        "actual_free_GiB": 21.91,
+        "failed_process_cap_GiB": 20,
+        "allocation_MiB": 2,
+        "before_training_model_forward": true,
+        "before_optimizer_update": true,
+        "log_sha256": "49365141143e7300d72a126d657846f2378b66fba1342ac62ef93d59d278fa3b",
+        "cache_preparation_had_already_run": true
+      },
+      "previous_entity_machine_3_6_checkpoints": {
+        "A": "55435be663578f258ad0dbee3971b482e155fbe2d0cff2a1ca00a7049c1306c2",
+        "C": "afbc3612c39ff7a60d7eb611327c6621f94f5c3b6f7e38f31e290bb6dbe49d3e"
+      },
+      "launcher_failures": [
+        {
+          "receipt": "GPU0_TAIL_FOLLOW_R1.json",
+          "failed_log": "logs/u-tail-follow.log",
+          "failure_before_model_load": true,
+          "log_sha256": "b6afbf54d539778ebb17199fb8bfece73a3251c3ed615509164026df72a02f97"
+        },
+        {
+          "receipt": "GPU0_TAIL_FOLLOW_R2.json",
+          "failed_log": "logs/u-tail-follow-r1.log",
+          "failure_before_model_load": true,
+          "log_sha256": "643e22026ed0119ca854b45a473316615124d1b5a6da9d16525d0d2b66cc1944"
+        }
+      ],
+      "GPU_or_model_forward_repetitions": 0
+    }
+  }
+}

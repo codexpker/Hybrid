@@ -1,0 +1,34 @@
+{
+  "code": {
+    "pre_change_source_sha256": "0fc7464312b2572883f7da4d4101da7c12f05b125bc56f929138f95c04aa0795",
+    "post_change_source_sha256": "135af77fac3392097f1f8a81f91cd6ee07e194555168b3fc1aecb2280cd29ded",
+    "normalization": "Omitted only memory-placement branch, cache hashing device transfer, equivalent gather, and placement receipt keyword.",
+    "remaining_module_AST_equal": true,
+    "feature_encoder_batch_and_input_slice_AST_equal": true
+  },
+  "sample": {
+    "CPU_sample_payload_sha256": "be3964d2a1fdce7a646def67e2eab5bac1dff80781b9c95a4da1dda6238c60aa",
+    "CPU_gathered_batch_sha256": "0d76b4ec206cbe269176073ae0b944885007d660f16d58b947ebfebb95199e14",
+    "sample": "First64 rows of the retained full-history source group, CUDA comparison read from the stored receipt.",
+    "gather_indices": [
+      63,
+      1,
+      1,
+      31,
+      0,
+      32,
+      8,
+      14,
+      25,
+      12,
+      11,
+      10,
+      20,
+      55,
+      60,
+      33
+    ],
+    "GPU_recorded_max_abs_difference": 0.0,
+    "replayed_model": false
+  }
+}

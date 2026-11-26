@@ -1,0 +1,482 @@
+{
+  "action": "Advisory eviction of reloadable read-only pages from this run only",
+  "files_unchanged": true,
+  "processes_and_updates_untouched": true,
+  "files": [
+    {
+      "file": "features/PSM/PSM/TEST/random.npy",
+      "bytes": 929792128
+    },
+    {
+      "file": "features/PSM/PSM/TEST/pretrained.npy",
+      "bytes": 929792128
+    },
+    {
+      "file": "features/SMD/machine-1-3/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-3/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-3/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-3/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-3/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-3-3/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-3/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-3/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-5/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-5/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-5/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-5/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-9/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-2-9/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-2-9/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-2-9/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-3-5/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-3-5/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-5/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-5/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-1-5/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-5/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-5/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-5/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-11/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-11/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-11/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-11/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-1-6/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-6/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-6/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-6/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-1-1/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-1-1/TEST/random.npy",
+      "bytes": 451379328
+    },
+    {
+      "file": "features/SMD/machine-1-1/TEST/pretrained.npy",
+      "bytes": 451379328
+    },
+    {
+      "file": "features/SMD/machine-1-1/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-1-7/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-7/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-7/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-7/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-10/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-3-10/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-10/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-10/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-9/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-9/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-9/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-9/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-1-2/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-2/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-2/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-2/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-4/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-4/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-4/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-4/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-4/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-3-4/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-4/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-4/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-7/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-7/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-7/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-7/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-3-8/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-8/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-8/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-8/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-2-6/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-2-6/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-2-6/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-2-6/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-1-8/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-8/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-8/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-8/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-6/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-6/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-6/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-6/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-3-2/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-3-2/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-2/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-3-2/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-2/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-2/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-2/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-2/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-3-1/CAL/pretrained.npy",
+      "bytes": 71598208
+    },
+    {
+      "file": "features/SMD/machine-3-1/TEST/random.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-1/TEST/pretrained.npy",
+      "bytes": 454492288
+    },
+    {
+      "file": "features/SMD/machine-3-1/QUERY/pretrained.npy",
+      "bytes": 289505408
+    },
+    {
+      "file": "features/SMD/machine-2-8/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-8/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-8/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-8/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-1/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-1/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-1/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-1/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-7/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-7/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-7/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-7/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-2-3/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-2-3/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-3/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-2-3/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SMD/machine-1-4/CAL/pretrained.npy",
+      "bytes": 56033408
+    },
+    {
+      "file": "features/SMD/machine-1-4/TEST/random.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-4/TEST/pretrained.npy",
+      "bytes": 373555328
+    },
+    {
+      "file": "features/SMD/machine-1-4/QUERY/pretrained.npy",
+      "bytes": 236585088
+    },
+    {
+      "file": "features/SWAT/SWAT/TEST/random.npy",
+      "bytes": 5942476928
+    },
+    {
+      "file": "features/SWAT/SWAT/TEST/pretrained.npy",
+      "bytes": 5942476928
+    },
+    {
+      "file": "SMD/U_SOURCE_FEATURES/domain0.npy",
+      "bytes": 24903680128
+    },
+    {
+      "file": "SMD/U_SOURCE_FEATURES/domain1.npy",
+      "bytes": 49807360128
+    }
+  ],
+  "meminfo_before": "MemTotal:       131432116 kB\nMemFree:         7578712 kB\nMemAvailable:   77975284 kB\nBuffers:          131208 kB\nCached:         69653964 kB\nSwapCached:        48680 kB\nActive:         70025944 kB\nInactive:       48399324 kB\nActive(anon):   14999108 kB\nInactive(anon): 33988940 kB\nActive(file):   55026836 kB\nInactive(file): 14410384 kB\nUnevictable:       30736 kB\nMlocked:           27664 kB\nSwapTotal:       8388604 kB\nSwapFree:         210556 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               428 kB\nWriteback:             0 kB\nAnonPages:      48622180 kB\nMapped:         26036356 kB\nShmem:            339024 kB\nKReclaimable:    2020708 kB\nSlab:            2860944 kB\nSReclaimable:    2020708 kB\nSUnreclaim:       840236 kB\nKernelStack:       25120 kB\nPageTables:       270672 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    74104660 kB\nCommitted_AS:   100617300 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:      373888 kB\nVmallocChunk:          0 kB\nPercpu:           204672 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:  36012032 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:    10614756 kB\nDirectMap2M:    110458880 kB\nDirectMap1G:    14680064 kB\n",
+  "meminfo_after": "MemTotal:       131432116 kB\nMemFree:        48420624 kB\nMemAvailable:   78450436 kB\nBuffers:          131524 kB\nCached:         30471108 kB\nSwapCached:        49568 kB\nActive:         51124848 kB\nInactive:       27820132 kB\nActive(anon):   41706136 kB\nInactive(anon):  6985644 kB\nActive(file):    9418712 kB\nInactive(file): 20834488 kB\nUnevictable:       30736 kB\nMlocked:           27664 kB\nSwapTotal:       8388604 kB\nSwapFree:          25896 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               144 kB\nWriteback:             0 kB\nAnonPages:      48323308 kB\nMapped:         26236672 kB\nShmem:            341088 kB\nKReclaimable:     866640 kB\nSlab:            1597680 kB\nSReclaimable:     866640 kB\nSUnreclaim:       731040 kB\nKernelStack:       25008 kB\nPageTables:       271612 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    74104660 kB\nCommitted_AS:   100520012 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:      373952 kB\nVmallocChunk:          0 kB\nPercpu:           204672 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:  35231744 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:    10614756 kB\nDirectMap2M:    110458880 kB\nDirectMap1G:    14680064 kB\n",
+  "timestamp": 1795714583.2416284
+}

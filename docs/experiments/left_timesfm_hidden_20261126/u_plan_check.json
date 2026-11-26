@@ -1,0 +1,20 @@
+{
+  "PSM": {
+    "rows": 32000,
+    "TEP_rows": 16000,
+    "other_rows": 16000,
+    "boundaries_checked": true
+  },
+  "SWAT": {
+    "rows": 32000,
+    "TEP_rows": 16000,
+    "other_rows": 16000,
+    "boundaries_checked": true
+  },
+  "SMD": {
+    "rows": 32000,
+    "TEP_rows": 16000,
+    "other_rows": 16000,
+    "boundaries_checked": true
+  }
+}

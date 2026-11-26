@@ -1,0 +1,19 @@
+{
+  "scope": "FP32 source hidden features only; no model forward",
+  "shape": [
+    64,
+    38,
+    16,
+    1280
+  ],
+  "payload_sha256": "be3964d2a1fdce7a646def67e2eab5bac1dff80781b9c95a4da1dda6238c60aa",
+  "batch_sha256": "0d76b4ec206cbe269176073ae0b944885007d660f16d58b947ebfebb95199e14",
+  "max_absolute_difference": 0.0,
+  "identical_gather": true,
+  "unchanged_encoding_batch": 32,
+  "new_storage": "CUDA float32",
+  "previous_storage": "numpy float32",
+  "new_vram_cap_GiB": 40,
+  "cache_limit_GiB": 30,
+  "time": 1795715597.930309
+}

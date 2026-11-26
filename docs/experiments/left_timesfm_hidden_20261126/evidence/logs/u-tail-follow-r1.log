@@ -1,0 +1,11 @@
+FIXED_PENDING_ENTITY machine-3-6
+usage: left_timesfm_adaptation.py [-h]
+                                  workspace {cache,check,train,queue}
+                                  {PSM,SWAT,SMD} [entities ...]
+left_timesfm_adaptation.py: error: unrecognized arguments: --entities
+Traceback (most recent call last):
+  File "/home/a312/tsad_research/tmp/timesfm_tail_follow_r1.py", line 18, in <module>
+    subprocess.run([str(w/"envs/timeradar/bin/python"),"-u","-m","hybrid_tsad.left_timesfm_adaptation",str(w),"train","SMD","--entities",entity],check=True)
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/a312/tsad_research/envs/timeradar/bin/python', '-u', '-m', 'hybrid_tsad.left_timesfm_adaptation', '/home/a312/tsad_research', 'train', 'SMD', '--entities', 'machine-3-6']' returned non-zero exit status 2.

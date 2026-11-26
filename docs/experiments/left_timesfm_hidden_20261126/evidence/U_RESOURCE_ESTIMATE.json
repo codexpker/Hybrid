@@ -1,0 +1,242 @@
+[
+  {
+    "domain": "PSM",
+    "entity": "PSM",
+    "role_length": 17568,
+    "unique_target_windows": 14320,
+    "cache_GiB": 27.313232421875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SWAT",
+    "entity": "SWAT",
+    "role_length": 90000,
+    "unique_target_windows": 26984,
+    "cache_GiB": 63.8201904296875,
+    "cache_fits_30GiB": false
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-1",
+    "role_length": 9493,
+    "unique_target_windows": 8557,
+    "cache_GiB": 24.808197021484375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-2",
+    "role_length": 7898,
+    "unique_target_windows": 7110,
+    "cache_GiB": 20.61309814453125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-3",
+    "role_length": 7901,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-4",
+    "role_length": 7902,
+    "unique_target_windows": 7111,
+    "cache_GiB": 20.615997314453125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-5",
+    "role_length": 7902,
+    "unique_target_windows": 7111,
+    "cache_GiB": 20.615997314453125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-6",
+    "role_length": 7896,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-7",
+    "role_length": 7899,
+    "unique_target_windows": 7108,
+    "cache_GiB": 20.6072998046875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-1-8",
+    "role_length": 7899,
+    "unique_target_windows": 7108,
+    "cache_GiB": 20.6072998046875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-1",
+    "role_length": 7898,
+    "unique_target_windows": 7110,
+    "cache_GiB": 20.61309814453125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-2",
+    "role_length": 7900,
+    "unique_target_windows": 7122,
+    "cache_GiB": 20.64788818359375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-3",
+    "role_length": 7896,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-4",
+    "role_length": 7896,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-5",
+    "role_length": 7896,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-6",
+    "role_length": 9581,
+    "unique_target_windows": 8645,
+    "cache_GiB": 25.063323974609375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-7",
+    "role_length": 7898,
+    "unique_target_windows": 7110,
+    "cache_GiB": 20.61309814453125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-8",
+    "role_length": 7901,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-2-9",
+    "role_length": 9574,
+    "unique_target_windows": 8641,
+    "cache_GiB": 25.051727294921875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-1",
+    "role_length": 9566,
+    "unique_target_windows": 8644,
+    "cache_GiB": 25.0604248046875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-10",
+    "role_length": 7897,
+    "unique_target_windows": 7116,
+    "cache_GiB": 20.6304931640625,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-11",
+    "role_length": 9565,
+    "unique_target_windows": 8610,
+    "cache_GiB": 24.96185302734375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-2",
+    "role_length": 7901,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-3",
+    "role_length": 7901,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-4",
+    "role_length": 7895,
+    "unique_target_windows": 7113,
+    "cache_GiB": 20.621795654296875,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-5",
+    "role_length": 7897,
+    "unique_target_windows": 7116,
+    "cache_GiB": 20.6304931640625,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-6",
+    "role_length": 9575,
+    "unique_target_windows": 8614,
+    "cache_GiB": 24.97344970703125,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-7",
+    "role_length": 9568,
+    "unique_target_windows": 8645,
+    "cache_GiB": 25.063323974609375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-8",
+    "role_length": 9568,
+    "unique_target_windows": 8645,
+    "cache_GiB": 25.063323974609375,
+    "cache_fits_30GiB": true
+  },
+  {
+    "domain": "SMD",
+    "entity": "machine-3-9",
+    "role_length": 9571,
+    "unique_target_windows": 8648,
+    "cache_GiB": 25.072021484375,
+    "cache_fits_30GiB": true
+  }
+]

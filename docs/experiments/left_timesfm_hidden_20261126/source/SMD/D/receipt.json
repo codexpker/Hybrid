@@ -1,0 +1,23 @@
+{
+  "domain": "SMD",
+  "arm": "D",
+  "parent": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+  "sha256": "82a989add970577da3956f89aae689a9ac891c54f37448f7754074781ed35af2",
+  "plan_sha256": "90212521e0a5ceca0d374649dbde7809d4842c10301dd2aa61957fa7f7e9b6ab",
+  "seed": 2025,
+  "updates": 2000,
+  "current_windows": 64000,
+  "endpoint": 6000,
+  "selection": "fixed endpoint",
+  "source_select_loss": 0.5022852271795273,
+  "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+  "native_rng_end": "f6599da0a287588fa4806dd3f4f8352c2647f5f4e31ccb9d404c0be4e40db5ab",
+  "native_parameters": 10162030,
+  "condition_parameters": 230529,
+  "history_encoder_pretrained_sha": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+  "history_encoder_random_sha": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "shared_fold_elapsed_seconds": 7436.607203807216,
+  "peak_bytes": 5606524928,
+  "retained_feature_cache": "streamed FP32, per-step hashes; exact plans retained",
+  "shuffled_singletons": 588
+}

@@ -1,0 +1,13 @@
+{
+  "pid": 3623140,
+  "time": 1795721299.4561536,
+  "entity": "machine-3-5",
+  "before_sha256": "afd58b99e4e5070388d13547d37ed65b674078129505e38664a59570e38dfbd0",
+  "after_sha256": "a740881e3390fec82ec12d4a20f047625ee0f93a3acaf29f1976f6b1ed699659",
+  "AST_identical_except_budget_guard": true,
+  "CPU_guard_and_exception_restoration": true,
+  "failed_before_training": true,
+  "failed_log": "logs/u-tail-follow-r2.log",
+  "failed_phase": "ConditionalLEFT.cuda within model initialization after target-feature preparation; physical memory still free, old allocator cap reset",
+  "retry_log": "/home/a312/tsad_research/results/left_timesfm_hidden_20261126_v1/logs/u-tail-3-5-cap-guard.log"
+}

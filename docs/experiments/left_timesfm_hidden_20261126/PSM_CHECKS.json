@@ -1,0 +1,764 @@
+{
+  "domain": "PSM",
+  "checks": {
+    "B": {
+      "zero_loss_score_exact": true,
+      "gate_gradient": -0.000913104391656816,
+      "projection_gradient_after_one_step": 3.3036465652003244e-07,
+      "added_parameters": 66945,
+      "inference_frozen": true
+    },
+    "C": {
+      "zero_loss_score_exact": true,
+      "gate_gradient": 6.399740959750488e-05,
+      "projection_gradient_after_one_step": 1.283759320358513e-05,
+      "added_parameters": 230529,
+      "inference_frozen": true
+    }
+  },
+  "source_identities": {
+    "fit": [
+      [
+        {
+          "record_id": "TEP/run1",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "9aaa9972b06028a540f3a5e7e412e1d364de460c1ee2746393175a3c2d2818cf"
+        },
+        {
+          "record_id": "TEP/run2",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "53baddb5dabf2b3539c942148b39cdb280caf2251e663153fe177b1a33a1caf7"
+        },
+        {
+          "record_id": "TEP/run3",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "a59cfe3215ad0ffafa42e00e451ddcce793cff78789fab7290628fcb6748d1af"
+        },
+        {
+          "record_id": "TEP/run4",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "e9aeca77208b2a63b44fc4fcbaf21046fb80c26e8f535f25102c81b243030df9"
+        },
+        {
+          "record_id": "TEP/run5",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "8cc5bf6fa8689f8011ac4786fb2efd9caa291fbb0672aaae65bffe2f1cc8e49e"
+        },
+        {
+          "record_id": "TEP/run6",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "26af17af3d58e3bd8343e8b2091811c67f8ea96ad0bdee729c86fd46aacf962f"
+        },
+        {
+          "record_id": "TEP/run7",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "5515b1b1222cad0f598019668e094c4e7a64d40338f68d657f0ce87825f69b0f"
+        },
+        {
+          "record_id": "TEP/run8",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "c3bb28ced85fd2ea67d7082201a0b7b034e1e27454b5b23819612c1f776f6ac8"
+        },
+        {
+          "record_id": "TEP/run9",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "cc84d22d19925db5314456cc93fa098a8e8d7cf88f033e41d5de2ebd6816fb63"
+        },
+        {
+          "record_id": "TEP/run10",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "fd5a5352f3d0bf0c4f5723c2acf55e153cbf19bb7312e8ba5439c37f7a39571f"
+        },
+        {
+          "record_id": "TEP/run11",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "b8c0d1a1faef9aede65857a115ebef94b8264d88798d8d12f608e15848ed7a47"
+        },
+        {
+          "record_id": "TEP/run12",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "48c0a2716a71d2819e6eb2e45e9190ed8f1bd97bbab74cdadf9907fca2aa608a"
+        },
+        {
+          "record_id": "TEP/run13",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "75c3cf7c99668805805b14aa6a8e0016e158c1bf69220b75e30b874d74967152"
+        },
+        {
+          "record_id": "TEP/run14",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "4c3d5348cde39bcf22e1b7adeb7c2b2e860d2dc102806e9e7317362437439a87"
+        },
+        {
+          "record_id": "TEP/run15",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "93a65032bcfae87038b4183769a6d73ec551db1aafbc80d5ab1e820a51642468"
+        },
+        {
+          "record_id": "TEP/run16",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "9f05cedc1765e5523ab49d4cfbf32c703251fd05cf49e03a075d178cfdb1bfd8"
+        },
+        {
+          "record_id": "TEP/run17",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "495389a7bbe371e8c62554a5da2aabf079a8d47979b4038b07705f6a0969faa5"
+        },
+        {
+          "record_id": "TEP/run18",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "ce701f09e8fd8706b9df9d9cf84e0c74871c9b50d5c658364fb9b1fe9b16cd42"
+        },
+        {
+          "record_id": "TEP/run19",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "8b182d7e2a912f612f13f5856e5fb3fcd3939e56ae279d288de0c6bfb5167382"
+        },
+        {
+          "record_id": "TEP/run20",
+          "role": "fit",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "2f0ca88292b72570b1deb6f804eec5ab198ff017db39f7b2ea6380fb399d6573"
+        }
+      ],
+      [
+        {
+          "record_id": "SMD/machine-1-1",
+          "role": "fit",
+          "shape": [
+            22783,
+            38
+          ],
+          "normalized_sha256": "198c828ca5dd749f84373d88becc3317b6ca1f0c99068ac022152f22b2f1ee6d"
+        },
+        {
+          "record_id": "SMD/machine-1-2",
+          "role": "fit",
+          "shape": [
+            18955,
+            38
+          ],
+          "normalized_sha256": "1e7291a336bb9c1c451c2940374c345585bb3ff407efe55f7aa6b8a5fc2d3007"
+        },
+        {
+          "record_id": "SMD/machine-1-3",
+          "role": "fit",
+          "shape": [
+            18961,
+            38
+          ],
+          "normalized_sha256": "6870e81cfce42e1cb71bec32530430363ff57ecdd73107d6f5428e40b97486ac"
+        },
+        {
+          "record_id": "SMD/machine-1-4",
+          "role": "fit",
+          "shape": [
+            18964,
+            38
+          ],
+          "normalized_sha256": "ffcd167e3d4021089eb090fd3d56300e46ad09324246f12d8b35a917d57f3beb"
+        },
+        {
+          "record_id": "SMD/machine-1-5",
+          "role": "fit",
+          "shape": [
+            18964,
+            38
+          ],
+          "normalized_sha256": "c502d7b31a665e7f1839aebeb5e8fa0631d34e60f77973ff18c6563e93c1623b"
+        },
+        {
+          "record_id": "SMD/machine-1-6",
+          "role": "fit",
+          "shape": [
+            18950,
+            38
+          ],
+          "normalized_sha256": "c92879715fc02b45c6efcb0a48781c9b0fad0000faee7e8c11c87261e5bd1707"
+        },
+        {
+          "record_id": "SMD/machine-1-7",
+          "role": "fit",
+          "shape": [
+            18957,
+            38
+          ],
+          "normalized_sha256": "cd1863ecd56996979dd90337ff396799ce61dd3f98572a9faf1a0ccd3e22e557"
+        },
+        {
+          "record_id": "SMD/machine-1-8",
+          "role": "fit",
+          "shape": [
+            18958,
+            38
+          ],
+          "normalized_sha256": "3951c47be97d5d1bd3f951c741a23c4c5b9d0541054a7c541512fdc40e2da684"
+        },
+        {
+          "record_id": "SMD/machine-2-1",
+          "role": "fit",
+          "shape": [
+            18954,
+            38
+          ],
+          "normalized_sha256": "66e5efcd8a013fe6ecd81575a691153dcb0ca2f9c4d7f8c6a1f936d78cd92c0a"
+        },
+        {
+          "record_id": "SMD/machine-2-2",
+          "role": "fit",
+          "shape": [
+            18959,
+            38
+          ],
+          "normalized_sha256": "6e1b1eed2dab589b979b1efb5716b33d1bfe4efab167ddc967b9325aff618745"
+        },
+        {
+          "record_id": "SMD/machine-2-3",
+          "role": "fit",
+          "shape": [
+            18950,
+            38
+          ],
+          "normalized_sha256": "f41412af710d439360d5457de31af909472af63dbb832e12b5dd156436a80bfd"
+        },
+        {
+          "record_id": "SMD/machine-2-4",
+          "role": "fit",
+          "shape": [
+            18951,
+            38
+          ],
+          "normalized_sha256": "280518b34def41e22602fc8d2957246d797847dec8af023f50c79844d5a0ec4b"
+        },
+        {
+          "record_id": "SMD/machine-2-5",
+          "role": "fit",
+          "shape": [
+            18950,
+            38
+          ],
+          "normalized_sha256": "67b5448a413efc18f7de026bf1adedd8a2fd6ce2cc62014dce114dfc678989a6"
+        },
+        {
+          "record_id": "SMD/machine-2-6",
+          "role": "fit",
+          "shape": [
+            22994,
+            38
+          ],
+          "normalized_sha256": "256c4688f904c372319edcc47a675104e427df130ce03333ea1bec580975ee5a"
+        },
+        {
+          "record_id": "SMD/machine-2-7",
+          "role": "fit",
+          "shape": [
+            18956,
+            38
+          ],
+          "normalized_sha256": "fe3400b262207ced8d8ca07e33ed532e2d2662399f7434a5b8234dbd8d241261"
+        },
+        {
+          "record_id": "SMD/machine-2-8",
+          "role": "fit",
+          "shape": [
+            18961,
+            38
+          ],
+          "normalized_sha256": "469000ef704a5e9a1620538ef7167650a82400af3b332c27616fefae0d3bc4ad"
+        },
+        {
+          "record_id": "SMD/machine-2-9",
+          "role": "fit",
+          "shape": [
+            22977,
+            38
+          ],
+          "normalized_sha256": "c618e62292114cb43376af07412bfba70d7db94b0d619db17b05e42ed5779758"
+        },
+        {
+          "record_id": "SMD/machine-3-1",
+          "role": "fit",
+          "shape": [
+            22960,
+            38
+          ],
+          "normalized_sha256": "ff44774a1a4cbd018af2cc1528db1a0ac36d1c886d732afc7f3adac41a3d7719"
+        },
+        {
+          "record_id": "SMD/machine-3-10",
+          "role": "fit",
+          "shape": [
+            18953,
+            38
+          ],
+          "normalized_sha256": "7658fca3ee7fd2c419c586a7fd0eb679a3a4af26c2331f359b0a2c764e248c94"
+        },
+        {
+          "record_id": "SMD/machine-3-11",
+          "role": "fit",
+          "shape": [
+            22956,
+            38
+          ],
+          "normalized_sha256": "bdc73c804fa365a47724572fd47f144449ac135929dc8e70c20b9623d1afcafb"
+        },
+        {
+          "record_id": "SMD/machine-3-2",
+          "role": "fit",
+          "shape": [
+            18961,
+            38
+          ],
+          "normalized_sha256": "1d699dd48d834d22906f410e107f16634cf8af17098aaec9b274cf036e8281ab"
+        },
+        {
+          "record_id": "SMD/machine-3-3",
+          "role": "fit",
+          "shape": [
+            18962,
+            38
+          ],
+          "normalized_sha256": "ea803aba0b5a43d3b5e4f34355dda61718dcd3889437ade19787fb66f5ea16b4"
+        },
+        {
+          "record_id": "SMD/machine-3-4",
+          "role": "fit",
+          "shape": [
+            18949,
+            38
+          ],
+          "normalized_sha256": "1d8a9617884ff111f333672143d42779d0401ad40429237f1a613d7ef908a733"
+        },
+        {
+          "record_id": "SMD/machine-3-5",
+          "role": "fit",
+          "shape": [
+            18952,
+            38
+          ],
+          "normalized_sha256": "6e80ab2449604079ef1b5e6b4697e684242fe47b352d0eb295f4e457e80aae1e"
+        },
+        {
+          "record_id": "SMD/machine-3-6",
+          "role": "fit",
+          "shape": [
+            22980,
+            38
+          ],
+          "normalized_sha256": "3c3cf214d8b5b312dcfc1fe8bc8f45675ea484a303d6c72cb3795576e153b255"
+        },
+        {
+          "record_id": "SMD/machine-3-7",
+          "role": "fit",
+          "shape": [
+            22964,
+            38
+          ],
+          "normalized_sha256": "284ae3d3713aefe53ec0089fb19aea72eabc8818d96e879fa45fa78396b5472a"
+        },
+        {
+          "record_id": "SMD/machine-3-8",
+          "role": "fit",
+          "shape": [
+            22962,
+            38
+          ],
+          "normalized_sha256": "54bcaa4622d3cb5a5cd3390ace5ecd765876be25dfa31e582980771ea5abbd4a"
+        },
+        {
+          "record_id": "SMD/machine-3-9",
+          "role": "fit",
+          "shape": [
+            22970,
+            38
+          ],
+          "normalized_sha256": "adb2a83f7e8053aacebf06f3a9e006ab7e073a77549470cc04f04daaf7e78948"
+        }
+      ]
+    ],
+    "select": [
+      [
+        {
+          "record_id": "TEP/run61",
+          "role": "select",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "cb9fae664ead78a284bbc433466e9685ff7dbcb57598767c4e725be82cd3c4fc"
+        },
+        {
+          "record_id": "TEP/run62",
+          "role": "select",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "4a5b14944947c2e16d1ab372464912c3e57dd1b82ce836bc86d67f9935aeacd1"
+        },
+        {
+          "record_id": "TEP/run63",
+          "role": "select",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "e240d9bed550a3c3767579a72abe8c8a9d6a963b1c2898d221ca50d1c9c4b7b2"
+        },
+        {
+          "record_id": "TEP/run64",
+          "role": "select",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "37d8aa2a6b934c9e256d29b94b56e81e35dcf86464bf342680955209f8d83436"
+        },
+        {
+          "record_id": "TEP/run65",
+          "role": "select",
+          "shape": [
+            500,
+            52
+          ],
+          "normalized_sha256": "577ae16df471eff21bd631569a03fc01348a8a2bc6fd97dd7432725efe25759c"
+        }
+      ],
+      [
+        {
+          "record_id": "SMD/machine-1-1",
+          "role": "select",
+          "shape": [
+            5696,
+            38
+          ],
+          "normalized_sha256": "117a48d8bbb5ae1635cd23c6cbb5568a556578fdac32670dfa105f4c1918b397"
+        },
+        {
+          "record_id": "SMD/machine-1-2",
+          "role": "select",
+          "shape": [
+            4739,
+            38
+          ],
+          "normalized_sha256": "4c4292b73a301192a879b3c22fcfe4d1fd9077eafa76c30ee4fb816cfa628a25"
+        },
+        {
+          "record_id": "SMD/machine-1-3",
+          "role": "select",
+          "shape": [
+            4741,
+            38
+          ],
+          "normalized_sha256": "de50d59a03a4b733e1a564b0899cb48fd89a75598106cc03b9086e0039b1344e"
+        },
+        {
+          "record_id": "SMD/machine-1-4",
+          "role": "select",
+          "shape": [
+            4742,
+            38
+          ],
+          "normalized_sha256": "466e02bcfa560980562a1366b16875f7dd4f7d8fecb6facf8f29c477d2e1f119"
+        },
+        {
+          "record_id": "SMD/machine-1-5",
+          "role": "select",
+          "shape": [
+            4741,
+            38
+          ],
+          "normalized_sha256": "50520d4bc2ec73a7b0cdbacec456d1d88c1da40f025565fc26c4a3085ebf590e"
+        },
+        {
+          "record_id": "SMD/machine-1-6",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "f195942382d90aad7f13f24002437d75cad693b6f7a5351e836f2975c3556b02"
+        },
+        {
+          "record_id": "SMD/machine-1-7",
+          "role": "select",
+          "shape": [
+            4740,
+            38
+          ],
+          "normalized_sha256": "7c5eb507e48b28b9e8dbda36bdc8857e48a97f67d655f00e1d4cddba8d087c2f"
+        },
+        {
+          "record_id": "SMD/machine-1-8",
+          "role": "select",
+          "shape": [
+            4740,
+            38
+          ],
+          "normalized_sha256": "8ddf73589d22fc9c575bb00533ae727202cdb05109c44130cea097d087cdfcb8"
+        },
+        {
+          "record_id": "SMD/machine-2-1",
+          "role": "select",
+          "shape": [
+            4739,
+            38
+          ],
+          "normalized_sha256": "83b30940a5459e116873d77ad36beffbd6fa1292d4a6c3f302d5a36b0e281711"
+        },
+        {
+          "record_id": "SMD/machine-2-2",
+          "role": "select",
+          "shape": [
+            4740,
+            38
+          ],
+          "normalized_sha256": "6c4d72b7121532973036d176f36f5ba0dbde4631e1ab048549796ff6b9758626"
+        },
+        {
+          "record_id": "SMD/machine-2-3",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "a52bd52b778250f209ace51f0b633b93a71f028fab677bca86a56c751d7a970d"
+        },
+        {
+          "record_id": "SMD/machine-2-4",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "01b2be2434594c2c6217671f15946b5ff33c2c3bbfba72ecfbef00ff3cc44deb"
+        },
+        {
+          "record_id": "SMD/machine-2-5",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "b9cc191381dc827606f36d002d780f74056b76371fbcea8364e9b985941baadf"
+        },
+        {
+          "record_id": "SMD/machine-2-6",
+          "role": "select",
+          "shape": [
+            5749,
+            38
+          ],
+          "normalized_sha256": "756bcb033087dfab78d349230849f343882ed7c0dd4298f80f30d21a04aee460"
+        },
+        {
+          "record_id": "SMD/machine-2-7",
+          "role": "select",
+          "shape": [
+            4740,
+            38
+          ],
+          "normalized_sha256": "7f9ed5a8a8098d791d094d2bfd8d7dc548de52e745c9026d3df6cd92d9505b9a"
+        },
+        {
+          "record_id": "SMD/machine-2-8",
+          "role": "select",
+          "shape": [
+            4741,
+            38
+          ],
+          "normalized_sha256": "61eb98ba782993bee71baddccd71a6ded9676ddb18ca79f3322e81571ed1cb32"
+        },
+        {
+          "record_id": "SMD/machine-2-9",
+          "role": "select",
+          "shape": [
+            5745,
+            38
+          ],
+          "normalized_sha256": "0eb979b7efb36d0807bab227443f8f0f9d1bbdcf0ed94bbd75db9725d2b3d683"
+        },
+        {
+          "record_id": "SMD/machine-3-1",
+          "role": "select",
+          "shape": [
+            5740,
+            38
+          ],
+          "normalized_sha256": "d43e24ac465b7b00fe384caee1ac84791855600296d30823f28564138645a72d"
+        },
+        {
+          "record_id": "SMD/machine-3-10",
+          "role": "select",
+          "shape": [
+            4739,
+            38
+          ],
+          "normalized_sha256": "29d295a74664cea24bae69d3c63ce393e74522d97953835bc2830665ef7f8b43"
+        },
+        {
+          "record_id": "SMD/machine-3-11",
+          "role": "select",
+          "shape": [
+            5739,
+            38
+          ],
+          "normalized_sha256": "2043952ea36a83bb6d965f3881cad9149a0517f06667c1ff57896fc7dd91f684"
+        },
+        {
+          "record_id": "SMD/machine-3-2",
+          "role": "select",
+          "shape": [
+            4741,
+            38
+          ],
+          "normalized_sha256": "529d53198d8a07cbc3598c5c167bc789297c8060622ac14cdc2708310b83b984"
+        },
+        {
+          "record_id": "SMD/machine-3-3",
+          "role": "select",
+          "shape": [
+            4741,
+            38
+          ],
+          "normalized_sha256": "824f1a08e666cf4a8d9b12adcdf8087ad49728b281f433470fb64fb8be52c98e"
+        },
+        {
+          "record_id": "SMD/machine-3-4",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "0eb83ab365fa28b6264a72eb732e3265afe21bdc709f2259ab66919017660270"
+        },
+        {
+          "record_id": "SMD/machine-3-5",
+          "role": "select",
+          "shape": [
+            4738,
+            38
+          ],
+          "normalized_sha256": "8d27b8cb0f5540c1c52a91ab75f2ea33e13af60e8768cb876f260bae1d835eaa"
+        },
+        {
+          "record_id": "SMD/machine-3-6",
+          "role": "select",
+          "shape": [
+            5746,
+            38
+          ],
+          "normalized_sha256": "4543bfb5288d9cc22d52fe209905df6c5f8dd1558ce00118b73bb2673d63fa23"
+        },
+        {
+          "record_id": "SMD/machine-3-7",
+          "role": "select",
+          "shape": [
+            5741,
+            38
+          ],
+          "normalized_sha256": "c56d5067a0b03201cd1d74820b82f6c766307ef870aab4b83eb08d82d44cf028"
+        },
+        {
+          "record_id": "SMD/machine-3-8",
+          "role": "select",
+          "shape": [
+            5741,
+            38
+          ],
+          "normalized_sha256": "1c3650a8fbcd0be87c61afd46f73a95c032f78e399a6525814e89c47e55800ce"
+        },
+        {
+          "record_id": "SMD/machine-3-9",
+          "role": "select",
+          "shape": [
+            5743,
+            38
+          ],
+          "normalized_sha256": "a0fb4aac2d1e69d4aa5c29a70b46fee1cd0d556a9e30934994e300722c1ce54d"
+        }
+      ]
+    ]
+  },
+  "normal_only": true,
+  "seconds": 10.130240539088845
+}

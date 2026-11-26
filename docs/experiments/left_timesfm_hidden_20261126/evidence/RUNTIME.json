@@ -1,0 +1,25 @@
+{
+  "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+  "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.12.0",
+    "numpy": "2.4.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.9",
+    "safetensors": "0.7.0",
+    "huggingface-hub": "0.36.2",
+    "einops": "0.8.1"
+  },
+  "torch_cuda_build": "13.0",
+  "gpu": [
+    "0, NVIDIA A40, 580.178.04, 46068 MiB",
+    "1, NVIDIA A40, 580.178.04, 46068 MiB",
+    "2, NVIDIA A40, 580.178.04, 46068 MiB",
+    "3, NVIDIA A40, 580.178.04, 46068 MiB"
+  ],
+  "threads": "OMP_NUM_THREADS=1; OPENBLAS_NUM_THREADS=1; torch.set_num_threads(1)",
+  "feature_precision": "float32; no autocast",
+  "model_forward_for_environment_record": false
+}

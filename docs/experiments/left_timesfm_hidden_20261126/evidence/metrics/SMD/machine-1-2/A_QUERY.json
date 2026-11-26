@@ -1,0 +1,33 @@
+{
+  "rows": [
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "method": "A",
+      "panel": "mixed",
+      "role": "QUERY",
+      "start": 9024,
+      "stop": 23616,
+      "points": 14592,
+      "positives": 402,
+      "score_sha256": "44c2054c3465505b7b9c35a94a1475f4d455c070549aa453af9a734a15b0e2d3",
+      "AP": 0.4451469457369173,
+      "ROC_AUC": 0.9475283904648708,
+      "VUS_PR": 0.49025001852392275,
+      "VUS_ROC": 0.9711749032008826,
+      "independent_AP_ROC_error": 0.0
+    }
+  ],
+  "operations": [
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "method": "A",
+      "cal_points": 512,
+      "cal_legal_points": 438,
+      "status": "NA: fixed CAL lacks legal full history"
+    }
+  ],
+  "events": [],
+  "seconds": 2.4182619201019406
+}

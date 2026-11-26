@@ -1,0 +1,30 @@
+{
+  "domain": "PSM",
+  "arm": "B",
+  "group": "normal_SELECT",
+  "checkpoint": "d02de4bd8f4470256dbb7626601b12e4fb2ae7fa2de899f685778eca86b30ac2",
+  "sha256": "4a49d614a2eb6f621f184d166ea45f7fe0a7978e8dc882f8951f8bd21c2e9302",
+  "seconds": 0.09070072509348392,
+  "effective_history": 256,
+  "input_archive_sha256": "f5f902c37ef5d6395f7d1a985112e81be16e7303e71008eb5d6a7be7f05fbca3",
+  "history_donors": [
+    0,
+    0,
+    1,
+    2,
+    0,
+    4,
+    2,
+    5,
+    5,
+    3,
+    1,
+    4,
+    0,
+    3,
+    9,
+    6
+  ],
+  "singleton_record_identity": false,
+  "labels_read": false
+}

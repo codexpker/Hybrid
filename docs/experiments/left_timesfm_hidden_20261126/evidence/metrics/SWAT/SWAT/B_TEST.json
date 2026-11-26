@@ -1,0 +1,41 @@
+{
+  "rows": [
+    {
+      "domain": "SWAT",
+      "entity": "SWAT",
+      "method": "B",
+      "panel": "complete",
+      "role": "TEST",
+      "start": 495576,
+      "stop": 944856,
+      "points": 449280,
+      "positives": 54621,
+      "score_sha256": "4b0870c707249e30eb8b0f203945ef2447bb5fbfa8dd372bed257753b560c7df",
+      "AP": 0.7228224152006487,
+      "ROC_AUC": 0.8118286494760834,
+      "VUS_PR": 0.4976509937268155,
+      "VUS_ROC": 0.6652306684337745,
+      "independent_AP_ROC_error": 1.1102230246251565e-16
+    },
+    {
+      "domain": "SWAT",
+      "entity": "SWAT",
+      "method": "B",
+      "panel": "external",
+      "role": "TEST",
+      "start": 495576,
+      "stop": 944856,
+      "points": 449280,
+      "positives": 54621,
+      "score_sha256": "4b0870c707249e30eb8b0f203945ef2447bb5fbfa8dd372bed257753b560c7df",
+      "AP": 0.7228224152006487,
+      "ROC_AUC": 0.8118286494760834,
+      "VUS_PR": 0.4976509937268155,
+      "VUS_ROC": 0.6652306684337745,
+      "independent_AP_ROC_error": 1.1102230246251565e-16
+    }
+  ],
+  "operations": [],
+  "events": [],
+  "seconds": 28.20176064223051
+}

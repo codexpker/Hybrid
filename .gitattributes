@@ -77,3 +77,11 @@ src/hybrid_tsad/controlled_complementarity_design.py -text whitespace=cr-at-eol
 tests/test_controlled_complementarity_design.py -text whitespace=cr-at-eol
 configs/controlled-complementarity-design-20261121.json -text whitespace=cr-at-eol
 docs/experiments/controlled_complementarity_20261121/** -text whitespace=cr-at-eol
+
+# Preserve the executed TimesFM hidden-conditioning source and receipt bytes.
+src/hybrid_tsad/timesfm_hidden.py -text whitespace=cr-at-eol
+src/hybrid_tsad/left_timesfm_*.py -text whitespace=cr-at-eol
+scripts/*left_timesfm* -text whitespace=cr-at-eol
+docs/experiments/left_timesfm_hidden_20261126/** -text whitespace=cr-at-eol
+# Saved unified-diff context contains a literal single-space blank line.
+docs/experiments/left_timesfm_hidden_20261126/**/*.patch -text whitespace=-blank-at-eol,cr-at-eol

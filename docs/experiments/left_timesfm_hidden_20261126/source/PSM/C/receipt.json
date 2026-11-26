@@ -1,0 +1,23 @@
+{
+  "domain": "PSM",
+  "arm": "C",
+  "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+  "sha256": "38ffde81c032ce976bbfc9e14eed8b9b857e4f8b6ed9af2633c5ffc757ca6546",
+  "plan_sha256": "8d2c3ceeb43da12f6a62460dbeab9c043651a0b213869e4cd2e6badda5848649",
+  "seed": 2025,
+  "updates": 2000,
+  "current_windows": 64000,
+  "endpoint": 6000,
+  "selection": "fixed endpoint",
+  "source_select_loss": 1.1595070157200098,
+  "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+  "native_rng_end": "5541909064ab95e5b68938ca1acdb6f34f45aeb62e59e5db01405e8b2ef7b377",
+  "native_parameters": 4519985,
+  "condition_parameters": 230529,
+  "history_encoder_pretrained_sha": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+  "history_encoder_random_sha": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680",
+  "shared_fold_elapsed_seconds": 5074.202452948783,
+  "peak_bytes": 4435472896,
+  "retained_feature_cache": "streamed FP32, per-step hashes; exact plans retained",
+  "shuffled_singletons": 586
+}

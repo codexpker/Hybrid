@@ -1,0 +1,306 @@
+{
+  "target": {
+    "domain": "SMD",
+    "entity": "machine-1-3",
+    "role": "U",
+    "record_id": "machine-1-3/test",
+    "role_start": 0,
+    "role_stop": 7901,
+    "grid_origin": 0,
+    "history": 512,
+    "current": 192,
+    "starts": [
+      576,
+      768,
+      960,
+      1152,
+      1344,
+      1536,
+      1728,
+      1920,
+      2112,
+      2304,
+      2496,
+      2688,
+      2880,
+      3072,
+      3264,
+      3456,
+      3648,
+      3840,
+      4032,
+      4224,
+      4416,
+      4608,
+      4800,
+      4992,
+      5184,
+      5376,
+      5568,
+      5760,
+      5952,
+      6144,
+      6336,
+      6528,
+      6720,
+      6912,
+      7104,
+      7296,
+      7488,
+      7680
+    ],
+    "channel_mapping": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37
+    ],
+    "raw_sha256": "4c4549503bd7cbda374f4adc4c2d16ba990b8474f9f8c3df969a7c2df5822ef9",
+    "input_sha256": "259454f5208026a5df26a90d42342aad9b6859bd0f7ed24622ab559a6a6c741d",
+    "scaler_mean_sha256": "1aa42eb8f18643510bb684c700845ac391e46937aee53943000b2546cab6b62a",
+    "scaler_scale_sha256": "bb93030036822230e6a4765b94ef0c499cfdd15c30e1263b57f14b90ddb06943",
+    "scaler_role": [
+      0,
+      14221
+    ],
+    "labels_read": false
+  },
+  "source": [
+    [
+      {
+        "record_id": "TEP/run1",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "9aaa9972b06028a540f3a5e7e412e1d364de460c1ee2746393175a3c2d2818cf"
+      },
+      {
+        "record_id": "TEP/run2",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "53baddb5dabf2b3539c942148b39cdb280caf2251e663153fe177b1a33a1caf7"
+      },
+      {
+        "record_id": "TEP/run3",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "a59cfe3215ad0ffafa42e00e451ddcce793cff78789fab7290628fcb6748d1af"
+      },
+      {
+        "record_id": "TEP/run4",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "e9aeca77208b2a63b44fc4fcbaf21046fb80c26e8f535f25102c81b243030df9"
+      },
+      {
+        "record_id": "TEP/run5",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "8cc5bf6fa8689f8011ac4786fb2efd9caa291fbb0672aaae65bffe2f1cc8e49e"
+      },
+      {
+        "record_id": "TEP/run6",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "26af17af3d58e3bd8343e8b2091811c67f8ea96ad0bdee729c86fd46aacf962f"
+      },
+      {
+        "record_id": "TEP/run7",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "5515b1b1222cad0f598019668e094c4e7a64d40338f68d657f0ce87825f69b0f"
+      },
+      {
+        "record_id": "TEP/run8",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "c3bb28ced85fd2ea67d7082201a0b7b034e1e27454b5b23819612c1f776f6ac8"
+      },
+      {
+        "record_id": "TEP/run9",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "cc84d22d19925db5314456cc93fa098a8e8d7cf88f033e41d5de2ebd6816fb63"
+      },
+      {
+        "record_id": "TEP/run10",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "fd5a5352f3d0bf0c4f5723c2acf55e153cbf19bb7312e8ba5439c37f7a39571f"
+      },
+      {
+        "record_id": "TEP/run11",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "b8c0d1a1faef9aede65857a115ebef94b8264d88798d8d12f608e15848ed7a47"
+      },
+      {
+        "record_id": "TEP/run12",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "48c0a2716a71d2819e6eb2e45e9190ed8f1bd97bbab74cdadf9907fca2aa608a"
+      },
+      {
+        "record_id": "TEP/run13",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "75c3cf7c99668805805b14aa6a8e0016e158c1bf69220b75e30b874d74967152"
+      },
+      {
+        "record_id": "TEP/run14",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "4c3d5348cde39bcf22e1b7adeb7c2b2e860d2dc102806e9e7317362437439a87"
+      },
+      {
+        "record_id": "TEP/run15",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "93a65032bcfae87038b4183769a6d73ec551db1aafbc80d5ab1e820a51642468"
+      },
+      {
+        "record_id": "TEP/run16",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "9f05cedc1765e5523ab49d4cfbf32c703251fd05cf49e03a075d178cfdb1bfd8"
+      },
+      {
+        "record_id": "TEP/run17",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "495389a7bbe371e8c62554a5da2aabf079a8d47979b4038b07705f6a0969faa5"
+      },
+      {
+        "record_id": "TEP/run18",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "ce701f09e8fd8706b9df9d9cf84e0c74871c9b50d5c658364fb9b1fe9b16cd42"
+      },
+      {
+        "record_id": "TEP/run19",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "8b182d7e2a912f612f13f5856e5fb3fcd3939e56ae279d288de0c6bfb5167382"
+      },
+      {
+        "record_id": "TEP/run20",
+        "role": "fit",
+        "shape": [
+          500,
+          52
+        ],
+        "normalized_sha256": "2f0ca88292b72570b1deb6f804eec5ab198ff017db39f7b2ea6380fb399d6573"
+      }
+    ],
+    [
+      {
+        "record_id": "HAI/train1",
+        "role": "fit",
+        "shape": [
+          216001,
+          79
+        ],
+        "normalized_sha256": "9299c570f962252cd99afe3360400e2ac893c9e4e8f4fb54d411c98481e9ef87"
+      },
+      {
+        "record_id": "HAI/train3",
+        "role": "fit",
+        "shape": [
+          478801,
+          79
+        ],
+        "normalized_sha256": "b0d7512a47076f8d886593b33e4f3cc72901d66b0d02171cf7e5444987c92d52"
+      }
+    ]
+  ]
+}

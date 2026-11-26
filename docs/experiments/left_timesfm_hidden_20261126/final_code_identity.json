@@ -1,0 +1,66 @@
+{
+  "base_commit": "19a84a118f560eecad976ecd86ec5fb09253dde9",
+  "scope": "Final checked-in execution and derivation entrypoints; historical deployed snapshots and per-run identities remain in evidence. No scientific changes during final packaging.",
+  "files": [
+    {
+      "path": "src/hybrid_tsad/timesfm_hidden.py",
+      "sha256": "29b5357d964196d3813c7394836a5a412214f5fa1c0799419a19310450e35c8d",
+      "bytes": 8957
+    },
+    {
+      "path": "src/hybrid_tsad/left_timesfm_adaptation.py",
+      "sha256": "a740881e3390fec82ec12d4a20f047625ee0f93a3acaf29f1976f6b1ed699659",
+      "bytes": 22139
+    },
+    {
+      "path": "src/hybrid_tsad/left_timesfm_condition.py",
+      "sha256": "15097d7365ed8613a8db4408b6bed58bbd8e871ad4ab467a8fe9f825e785a994",
+      "bytes": 4832
+    },
+    {
+      "path": "src/hybrid_tsad/left_timesfm_evaluation.py",
+      "sha256": "71713b1dd81808b9b46315596c236ddf6014a2607555478c6220438a2d758bb7",
+      "bytes": 36395
+    },
+    {
+      "path": "src/hybrid_tsad/left_timesfm_report.py",
+      "sha256": "5a9ad52bf9658b9e4e94ebb1ee59c502bbc3d1ae71b69f9ef49601e602c0fd1d",
+      "bytes": 25014
+    },
+    {
+      "path": "src/hybrid_tsad/left_timesfm_training.py",
+      "sha256": "11c5b8fe2ffc0e51c34732eaa04bdcd82159848460f358557e02d1e70d8e1227",
+      "bytes": 15848
+    },
+    {
+      "path": "scripts/archive_left_timesfm.py",
+      "sha256": "79ce1823728e865b327af9404b4d97d0c843226164727f766714d666e6df2d8b",
+      "bytes": 2168
+    },
+    {
+      "path": "scripts/complete_left_timesfm.py",
+      "sha256": "bb85054a9e65a94176e48dc1e09fca790e1982cdf7578749e8f67f278c8e3e17",
+      "bytes": 3892
+    },
+    {
+      "path": "scripts/plot_left_timesfm.py",
+      "sha256": "d6f93398548af1b5b945a36c8632a3103c2a7f13eab33eeca6c05daf4bb094c6",
+      "bytes": 2991
+    },
+    {
+      "path": "scripts/recheck_left_timesfm.py",
+      "sha256": "fd6da552580e2f3a9c6514293725a952f9d5fd75a30597215c8ec836ed6f2611",
+      "bytes": 6313
+    },
+    {
+      "path": "scripts/relocate_left_timesfm_cache.py",
+      "sha256": "23b54abed01a5a50152902d0d0103a5a2001942d2201f989000534c6d21c011a",
+      "bytes": 2737
+    },
+    {
+      "path": "scripts/run_left_timesfm_source.sh",
+      "sha256": "ae307ff9a8d0298b8bd0efe1d6210377984f26ac209c44b3c2ab8ab1ae342ccb",
+      "bytes": 537
+    }
+  ]
+}

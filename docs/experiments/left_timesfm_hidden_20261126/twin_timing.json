@@ -1,0 +1,14 @@
+{
+  "batch": 32,
+  "channels": 38,
+  "seconds": 2.260805961675942,
+  "peak_bytes": 3991909376,
+  "resident_bytes": 2858130432,
+  "shape": [
+    32,
+    38,
+    16,
+    1280
+  ],
+  "random_finite": true
+}

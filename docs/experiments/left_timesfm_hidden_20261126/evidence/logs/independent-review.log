@@ -1,0 +1,13 @@
+results/left_timesfm_hidden_20261126_v1/SWAT/INDEPENDENT_SOURCE_REVIEW.json
+results/left_timesfm_hidden_20261126_v1/SMD/INDEPENDENT_SOURCE_REVIEW.json
+Traceback (most recent call last):
+  File "/tmp/left_timesfm_independent_20261127.py", line 646, in <module>
+    result=final(official)
+           ^^^^^^^^^^^^^^^
+  File "/tmp/left_timesfm_independent_20261127.py", line 599, in final
+    aggregation=aggregates(frame)
+                ^^^^^^^^^^^^^^^^^
+  File "/tmp/left_timesfm_independent_20261127.py", line 466, in aggregates
+    check(len(seeds)==int(r["archived_seeds"]) and all(len(s)==int(r["entities"]) for s in seeds))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '3.0'
