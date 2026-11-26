@@ -1,0 +1,19 @@
+{
+  "matched_scratch_cache_max_error": {
+    "AP": 2.220446049250313e-16,
+    "ROC_AUC": 1.1102230246251565e-16,
+    "VUS_PR": 1.1102230246251565e-16,
+    "VUS_ROC": 1.1102230246251565e-16
+  },
+  "banks_per_role": {
+    "external_common": 84,
+    "mixed": 168,
+    "public": 84
+  },
+  "max_ap_roc_absolute_discrepancy": 3.3306690738754696e-16,
+  "operations_rows": 336,
+  "thresholds": "q99/higher reproduced by sorted order statistic",
+  "point_counts": "strict and non-backfilled consecutive-three TP/FP independently checked",
+  "vus": "Pinned LEFT VUS implementation; checked aggregation and axes, no second VUS implementation",
+  "paired_review": "Entity joins verified equal interval, point count and class count"
+}

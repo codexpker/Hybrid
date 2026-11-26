@@ -1,0 +1,13 @@
+panel,arm,AP,ROC_AUC,VUS_PR,VUS_ROC
+external_common,N,28,28,28,28
+external_common,scratch_N,28,28,28,28
+external_common,source,28,28,28,28
+mixed,ordinary,28,28,28,28
+mixed,random_u,28,28,28,28
+mixed,replay,28,28,28,28
+mixed,source,28,28,28,28
+mixed,source_only,28,28,28,28
+mixed,window,28,28,28,28
+public,N,28,28,28,28
+public,scratch_N,28,28,28,28
+public,source,28,28,28,28

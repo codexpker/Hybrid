@@ -173,8 +173,18 @@ def check(w, d):
     return results
 
 
+PERMUTATION_OUT = Path("results/left_window_permutation_20261126_v1")
+
+
+def permutation_plan():
+    # Common permutation across domains/conditions, isolated from all learning RNG.
+    rng = np.random.default_rng(np.random.SeedSequence([2025, 20261126, 16]))
+    return np.stack([rng.permutation(16) for _ in range(2000)])
+
+
 def run(w, d, arm):
-    folder = w / OUT / d / arm
+    shuffled = arm.startswith("permuted_")
+    folder = w / (PERMUTATION_OUT if shuffled else OUT) / d / arm
     folder.mkdir(parents=True, exist_ok=True)
     if arm == "prepare":
         prepare(w, d)
@@ -198,9 +208,20 @@ def run(w, d, arm):
     parent = base.restore(w, model, d)
     opt = torch.optim.Adam(model.parameters(), lr=1e-4)
     weights = weights_file(w, d, k)
+    perm = permutation_plan() if shuffled else None
+    if shuffled:
+        assert np.all(np.sort(perm, axis=1) == np.arange(16))
+        np.save(folder / "permutation.npy", perm)
     curve = []
     for i, x in enumerate(batches(w, d, "replay_" + k)):
-        set_weights(model, torch.tensor(weights[i], device=x.device), mode == "local")
+        target_weights = torch.tensor(weights[i], device=x.device)
+        if shuffled:
+            original = target_weights.mean(1)
+            target_weights = target_weights[torch.as_tensor(perm[i], device=x.device)]
+            assert torch.equal(
+                original.sort().values, target_weights.mean(1).sort().values
+            )
+        set_weights(model, target_weights, mode == "local")
         opt.zero_grad(set_to_none=True)
         loss = model(x, None, None, None)[0]
         loss.backward()
@@ -225,6 +246,14 @@ def run(w, d, arm):
             source_windows=32000,
             plan_sha256=base.sha(w / EXPOSURE / d / "plan" / (k + ".npz")),
             weights_sha256=base.sha(w / OUT / d / "weights" / (k + ".npy")),
+            **(
+                {
+                    "permutation_sha256": base.sha(folder / "permutation.npy"),
+                    "unchanged_slots": int((perm == np.arange(16)).sum()),
+                }
+                if shuffled
+                else {}
+            ),
             seconds=time.monotonic() - start,
             peak_bytes=torch.cuda.max_memory_allocated(),
             device=torch.cuda.get_device_name(),
@@ -236,6 +265,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("workspace", type=Path)
     parser.add_argument("domain", choices=base.WIDTH)
-    parser.add_argument("arm", choices=(*ARMS, "prepare"))
+    parser.add_argument(
+        "arm", choices=(*ARMS, *("permuted_" + k for k in "ABC"), "prepare")
+    )
     args = parser.parse_args()
     run(args.workspace, args.domain, args.arm)

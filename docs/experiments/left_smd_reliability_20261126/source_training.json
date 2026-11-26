@@ -1,0 +1,172 @@
+{
+  "updates": 4000,
+  "selected": 4000,
+  "fingerprint": "c646b4bf8c3e8136e86c4afd85d7d36486f83523f3cd3b517e1f8402245025d0",
+  "curve": [
+    {
+      "step": 400,
+      "fit_loss": 0.5372171125560999,
+      "lam": 0.0
+    },
+    {
+      "step": 800,
+      "fit_loss": 0.5243267976492644,
+      "lam": 0.0
+    },
+    {
+      "step": 1200,
+      "fit_loss": 0.5207642002403736,
+      "lam": 0.020000000000000004
+    },
+    {
+      "step": 1600,
+      "fit_loss": 0.5192241343855858,
+      "lam": 0.06
+    },
+    {
+      "step": 2000,
+      "fit_loss": 0.5167404895275831,
+      "lam": 0.1
+    },
+    {
+      "step": 2400,
+      "fit_loss": 0.5167579402774573,
+      "lam": 0.13999999999999999
+    },
+    {
+      "step": 2800,
+      "fit_loss": 0.5164120108634234,
+      "lam": 0.18000000000000002
+    },
+    {
+      "step": 3200,
+      "fit_loss": 0.5151883862912655,
+      "lam": 0.2,
+      "select_loss": 0.5248486809432507
+    },
+    {
+      "step": 3600,
+      "fit_loss": 0.5128110425174236,
+      "lam": 0.2,
+      "select_loss": 0.524212496355176
+    },
+    {
+      "step": 4000,
+      "fit_loss": 0.5122876536101103,
+      "lam": 0.2,
+      "select_loss": 0.5234643332660198
+    }
+  ],
+  "active_updates": 3000,
+  "full_strength_updates": 1001,
+  "source_exposure": 128000,
+  "tep_exposure": 64000,
+  "hai_exposure": 64000,
+  "target_exposure": 0,
+  "select_windows": 1024,
+  "warmup": 1000,
+  "ramp": 2000,
+  "lambda_max": 0.2,
+  "shapes": {
+    "Et": {
+      "net.0.weight": [
+        128,
+        38,
+        5
+      ],
+      "net.0.bias": [
+        128
+      ],
+      "net.3.weight": [
+        128,
+        128,
+        3
+      ],
+      "net.3.bias": [
+        128
+      ],
+      "net.6.weight": [
+        128,
+        128,
+        1
+      ],
+      "net.6.bias": [
+        128
+      ]
+    },
+    "Ef": {
+      "net.0.weight": [
+        128,
+        76,
+        3,
+        3
+      ],
+      "net.0.bias": [
+        128
+      ],
+      "net.3.weight": [
+        128,
+        128,
+        3,
+        3
+      ],
+      "net.3.bias": [
+        128
+      ],
+      "proj.weight": [
+        128,
+        128,
+        1
+      ],
+      "proj.bias": [
+        128
+      ]
+    },
+    "Dt": {
+      "net.0.weight": [
+        128,
+        128
+      ],
+      "net.0.bias": [
+        128
+      ],
+      "net.2.weight": [
+        7296,
+        128
+      ],
+      "net.2.bias": [
+        7296
+      ]
+    },
+    "Df": {
+      "net.0.weight": [
+        128,
+        128
+      ],
+      "net.0.bias": [
+        128
+      ],
+      "net.2.weight": [
+        64220,
+        128
+      ],
+      "net.2.bias": [
+        64220
+      ]
+    }
+  },
+  "seed": 2025,
+  "window": 192,
+  "width": 38,
+  "sha256": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+  "seconds": 152.54347494291142,
+  "device": "NVIDIA A40",
+  "peak_bytes": 624922624,
+  "fit_domains": [
+    "TEP FaultFree Training",
+    "HAI 21.03"
+  ],
+  "excluded_domain": "SMD",
+  "hai_receipt_sha256": "3fc48f233be276beab39dc06b8a9da43aae61be54db9ed43309b857ca4ab2515",
+  "tep_array_sha256": "2c4e24dc41b14a7a521de71a8bbac87cef3788fcf46c9dd321aab5a14f38c698"
+}

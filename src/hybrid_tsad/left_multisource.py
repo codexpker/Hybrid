@@ -94,11 +94,13 @@ def restore(w,model,d):
 
 
 def source(w,d,dest):
-    model=initialize(w,d)
-    pools=source_records(w)
+    return train_source(initialize(w,d), source_records(w), WIDTH[d], dest, d, source_names=("tep", "smd"))
+
+
+def train_source(model, pools, width, dest, d, source_names):
     rng=np.random.default_rng(2025)
     select_rng=np.random.default_rng(2026)
-    panel=[torch.from_numpy(source_batch(pools["select"],WIDTH[d],BATCH,select_rng)).cuda() for _ in range(32)]
+    panel=[torch.from_numpy(source_batch(pools["select"],width,BATCH,select_rng)).cuda() for _ in range(32)]
     opt=torch.optim.Adam(model.parameters(),lr=1e-4)
     curve=[]
     best=float("inf")
@@ -106,7 +108,7 @@ def source(w,d,dest):
     loss_sum=0.
     for step in range(1,SOURCE_STEPS+1):
         model.train()
-        loss_sum+=update(model,opt,source_batch(pools["fit"],WIDTH[d],BATCH,rng))
+        loss_sum+=update(model,opt,source_batch(pools["fit"],width,BATCH,rng))
         lam=model._curriculum_lambda()
         active+=int(lam>0)
         plateau+=int(lam>=model.lambda_max)
@@ -129,7 +131,7 @@ def source(w,d,dest):
             curve.append(row)
     return dict(updates=SOURCE_STEPS,selected=selected,fingerprint=selected_fp,curve=curve,
         active_updates=active,full_strength_updates=plateau,source_exposure=SOURCE_STEPS*BATCH,
-        tep_exposure=SOURCE_STEPS*BATCH//2,smd_exposure=SOURCE_STEPS*BATCH//2,target_exposure=0,
+        **{name + "_exposure": SOURCE_STEPS*BATCH//2 for name in source_names},target_exposure=0,
         select_windows=32*BATCH,warmup=model.warmup_steps,ramp=model.ramp_steps,lambda_max=model.lambda_max,
         shapes={name:{n:list(p.shape) for n,p in getattr(model,name).named_parameters()} for name in ("Et","Ef","Dt","Df")})
 
