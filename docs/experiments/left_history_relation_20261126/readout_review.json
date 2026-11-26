@@ -1,0 +1,33 @@
+{
+  "PSM": {
+    "entities": 1,
+    "checked_real_blocks": 18,
+    "max_simple_abs_error": 2.0302505010505456e-08,
+    "max_joint_abs_error": 1.1920928955078125e-07,
+    "sampled_entities": [
+      "PSM"
+    ],
+    "matching_exposure_and_rng": true
+  },
+  "SWAT": {
+    "entities": 1,
+    "checked_real_blocks": 18,
+    "max_simple_abs_error": 1.944615157789542e-08,
+    "max_joint_abs_error": 2.384185791015625e-07,
+    "sampled_entities": [
+      "SWAT"
+    ],
+    "matching_exposure_and_rng": true
+  },
+  "SMD": {
+    "entities": 28,
+    "checked_real_blocks": 36,
+    "max_simple_abs_error": 1.4871429476759346e-08,
+    "max_joint_abs_error": 1.1920928955078125e-07,
+    "sampled_entities": [
+      "machine-1-1",
+      "machine-3-9"
+    ],
+    "matching_exposure_and_rng": true
+  }
+}

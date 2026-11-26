@@ -1,0 +1,605 @@
+{
+  "PSM": {
+    "continue": {
+      "domain": "PSM",
+      "arm": "continue",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+      "sha256": "8b87b709b4a7d2a498fc389c9e53eb0305dc68632a3c8c9010532785073286c3",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 3.61163342843529e-08,
+        "gradient_norms": {}
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 1.03161264359951,
+          "relation": 0.0
+        },
+        {
+          "step": 400,
+          "left": 1.0349868488311769,
+          "relation": 0.0
+        },
+        {
+          "step": 600,
+          "left": 1.0371314066648483,
+          "relation": 0.0
+        },
+        {
+          "step": 800,
+          "left": 1.0332770392298698,
+          "relation": 0.0
+        },
+        {
+          "step": 1000,
+          "left": 1.0335579806566237,
+          "relation": 0.0
+        },
+        {
+          "step": 1200,
+          "left": 1.0308436417579652,
+          "relation": 0.0
+        },
+        {
+          "step": 1400,
+          "left": 1.0354102328419685,
+          "relation": 0.0
+        },
+        {
+          "step": 1600,
+          "left": 1.030470094382763,
+          "relation": 0.0
+        },
+        {
+          "step": 1800,
+          "left": 1.036521655023098,
+          "relation": 0.0
+        },
+        {
+          "step": 2000,
+          "left": 1.0294082394242288,
+          "relation": 0.0
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "56e2e0e7373f395cccc235034e01a80986099b8e89921c0e007dd0b6a66d41a5",
+      "source_select_plan_sha256": "34aeb6545cd2791de8ac512dea34848a39425aebfbbd04904fb9e2d3ce43c50f",
+      "scales": {
+        "native": 0.5613454832781221,
+        "simple": 0.12477568537027157
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "simple": 6144
+      },
+      "parent_scales": {
+        "native": 0.5622906737558727,
+        "simple": 0.12477568537027157
+      },
+      "native_parameters": 4519985,
+      "added_parameters": 0,
+      "source_domains": [
+        "TEP",
+        "SMD"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 514081280,
+      "seconds": 75.94460198981687,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "5541909064ab95e5b68938ca1acdb6f34f45aeb62e59e5db01405e8b2ef7b377"
+    },
+    "joint": {
+      "domain": "PSM",
+      "arm": "joint",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+      "sha256": "4b2f76d4ba37cbea0a5d937189d4ba80343f59955f0f94e8b1f7e8dd4cd76177",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 3.61163342843529e-08,
+        "gradient_norms": {
+          "shared_patch": 0.023417814749783234,
+          "shared_encoder": 0.2591932278733358,
+          "head": 0.6367994617320524
+        }
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 1.0320404577255249,
+          "relation": 0.12211845546960831
+        },
+        {
+          "step": 400,
+          "left": 1.0353592374920846,
+          "relation": 0.100513452924788
+        },
+        {
+          "step": 600,
+          "left": 1.037416196167469,
+          "relation": 0.096378068998456
+        },
+        {
+          "step": 800,
+          "left": 1.0335079911351204,
+          "relation": 0.09511267259716988
+        },
+        {
+          "step": 1000,
+          "left": 1.0337805718183517,
+          "relation": 0.09375558335334062
+        },
+        {
+          "step": 1200,
+          "left": 1.0310450333356858,
+          "relation": 0.09234691698104143
+        },
+        {
+          "step": 1400,
+          "left": 1.0356411108374595,
+          "relation": 0.09243099618703127
+        },
+        {
+          "step": 1600,
+          "left": 1.0306988528370857,
+          "relation": 0.09029211916029453
+        },
+        {
+          "step": 1800,
+          "left": 1.036779415011406,
+          "relation": 0.09048572227358818
+        },
+        {
+          "step": 2000,
+          "left": 1.0296607211232185,
+          "relation": 0.08916159853339195
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "56e2e0e7373f395cccc235034e01a80986099b8e89921c0e007dd0b6a66d41a5",
+      "source_select_plan_sha256": "34aeb6545cd2791de8ac512dea34848a39425aebfbbd04904fb9e2d3ce43c50f",
+      "scales": {
+        "native": 0.5615080469365239,
+        "self": 0.09816123193013482,
+        "cross": 0.06959589295972061,
+        "relation": 0.08387856243098213,
+        "simple": 0.12477568537027157
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "self": 6144,
+        "cross": 6144,
+        "relation": 6144,
+        "simple": 6144
+      },
+      "parent_scales": null,
+      "native_parameters": 4519985,
+      "added_parameters": 54954,
+      "source_domains": [
+        "TEP",
+        "SMD"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 557663232,
+      "seconds": 82.93685948802158,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "5541909064ab95e5b68938ca1acdb6f34f45aeb62e59e5db01405e8b2ef7b377"
+    }
+  },
+  "SWAT": {
+    "continue": {
+      "domain": "SWAT",
+      "arm": "continue",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+      "sha256": "114aaf2ac33a009c4746cc326a9a03f107690ee80b0088daa1521bb258179f14",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 5.190189455994698e-08,
+        "gradient_norms": {}
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 0.3569592644274235,
+          "relation": 0.0
+        },
+        {
+          "step": 400,
+          "left": 0.35796358063817024,
+          "relation": 0.0
+        },
+        {
+          "step": 600,
+          "left": 0.3599753141403198,
+          "relation": 0.0
+        },
+        {
+          "step": 800,
+          "left": 0.3586843022704124,
+          "relation": 0.0
+        },
+        {
+          "step": 1000,
+          "left": 0.3581898379325867,
+          "relation": 0.0
+        },
+        {
+          "step": 1200,
+          "left": 0.3596022473275661,
+          "relation": 0.0
+        },
+        {
+          "step": 1400,
+          "left": 0.3586194793879986,
+          "relation": 0.0
+        },
+        {
+          "step": 1600,
+          "left": 0.3578665487468243,
+          "relation": 0.0
+        },
+        {
+          "step": 1800,
+          "left": 0.3570497567951679,
+          "relation": 0.0
+        },
+        {
+          "step": 2000,
+          "left": 0.3566166490316391,
+          "relation": 0.0
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "615f2b904a8336cf90cfa9298767c304620da47d6249a96a4709d19b6f488e58",
+      "source_select_plan_sha256": "6318e78b88bf78630ccdb2060715bf2a6a7b94ad9f163ffae6698cdac52d6696",
+      "scales": {
+        "native": 0.27118722663401557,
+        "simple": 0.12524656178963292
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "simple": 6144
+      },
+      "parent_scales": {
+        "native": 0.27548596027600897,
+        "simple": 0.12524656178963292
+      },
+      "native_parameters": 3742202,
+      "added_parameters": 0,
+      "source_domains": [
+        "TEP",
+        "SMD"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 512187392,
+      "seconds": 80.62446570117027,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "cccb49dc4628f675c7c6328f37333bd1c9c0b2bc1fea47e5f4944b6cac306c1a"
+    },
+    "joint": {
+      "domain": "SWAT",
+      "arm": "joint",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+      "sha256": "600294a2469d785f1a8bf33718d80f84d8cce4df0897977604feafa6f79e1b89",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 5.190189455994698e-08,
+        "gradient_norms": {
+          "shared_patch": 0.0176644473990348,
+          "shared_encoder": 0.35512489543779613,
+          "head": 0.5938982401567608
+        }
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 0.3575398829579353,
+          "relation": 0.12352185141295195
+        },
+        {
+          "step": 400,
+          "left": 0.35825774654746056,
+          "relation": 0.09996446046978236
+        },
+        {
+          "step": 600,
+          "left": 0.3602101655304432,
+          "relation": 0.09653443831950426
+        },
+        {
+          "step": 800,
+          "left": 0.3589193639159203,
+          "relation": 0.09574935756623745
+        },
+        {
+          "step": 1000,
+          "left": 0.35840810239315035,
+          "relation": 0.09392590053379536
+        },
+        {
+          "step": 1200,
+          "left": 0.35986312314867974,
+          "relation": 0.0930205263569951
+        },
+        {
+          "step": 1400,
+          "left": 0.3589421136677265,
+          "relation": 0.09128395672887564
+        },
+        {
+          "step": 1600,
+          "left": 0.35821819767355917,
+          "relation": 0.08993494037538767
+        },
+        {
+          "step": 1800,
+          "left": 0.3573766630887985,
+          "relation": 0.08919593967497348
+        },
+        {
+          "step": 2000,
+          "left": 0.35695376217365266,
+          "relation": 0.0887906464934349
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "615f2b904a8336cf90cfa9298767c304620da47d6249a96a4709d19b6f488e58",
+      "source_select_plan_sha256": "6318e78b88bf78630ccdb2060715bf2a6a7b94ad9f163ffae6698cdac52d6696",
+      "scales": {
+        "native": 0.27168624650843815,
+        "self": 0.09902775153568655,
+        "cross": 0.07052194599843158,
+        "relation": 0.08477484867580642,
+        "simple": 0.12524656178963292
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "self": 6144,
+        "cross": 6144,
+        "relation": 6144,
+        "simple": 6144
+      },
+      "parent_scales": null,
+      "native_parameters": 3742202,
+      "added_parameters": 54954,
+      "source_domains": [
+        "TEP",
+        "SMD"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 600221696,
+      "seconds": 85.50560734514147,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "cccb49dc4628f675c7c6328f37333bd1c9c0b2bc1fea47e5f4944b6cac306c1a"
+    }
+  },
+  "SMD": {
+    "continue": {
+      "domain": "SMD",
+      "arm": "continue",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+      "sha256": "4705e78d0e41cd9e30edf241b1b9787f8a776491504ecbd00f7cfbcb7d794289",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 7.56553365510726e-08,
+        "gradient_norms": {}
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 0.511541748046875,
+          "relation": 0.0
+        },
+        {
+          "step": 400,
+          "left": 0.5094674025475979,
+          "relation": 0.0
+        },
+        {
+          "step": 600,
+          "left": 0.510034883916378,
+          "relation": 0.0
+        },
+        {
+          "step": 800,
+          "left": 0.5102418486773967,
+          "relation": 0.0
+        },
+        {
+          "step": 1000,
+          "left": 0.5085979191958905,
+          "relation": 0.0
+        },
+        {
+          "step": 1200,
+          "left": 0.5070998959243298,
+          "relation": 0.0
+        },
+        {
+          "step": 1400,
+          "left": 0.5072166855633259,
+          "relation": 0.0
+        },
+        {
+          "step": 1600,
+          "left": 0.5067902332544327,
+          "relation": 0.0
+        },
+        {
+          "step": 1800,
+          "left": 0.5069818025827408,
+          "relation": 0.0
+        },
+        {
+          "step": 2000,
+          "left": 0.5069294428825378,
+          "relation": 0.0
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "6b44040b8c81428885f7551e61697b541405a4605afae491c4ccfab6b26a312b",
+      "source_select_plan_sha256": "98a9f8fafd3e81ba2192bd62f7e6a1789a4973436d61148653cc328d19ee1bdf",
+      "scales": {
+        "native": 1.1559085916693828,
+        "simple": 0.196113310384438
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "simple": 6144
+      },
+      "parent_scales": {
+        "native": 1.1877306818296347,
+        "simple": 0.196113310384438
+      },
+      "native_parameters": 10162030,
+      "added_parameters": 0,
+      "source_domains": [
+        "TEP",
+        "HAI"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 669135872,
+      "seconds": 81.65372937219217,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "f6599da0a287588fa4806dd3f4f8352c2647f5f4e31ccb9d404c0be4e40db5ab"
+    },
+    "joint": {
+      "domain": "SMD",
+      "arm": "joint",
+      "seed": 2025,
+      "steps": 2000,
+      "initial_step": 4000,
+      "endpoint": 6000,
+      "parent": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+      "sha256": "9e98407f81c6c9a94a642c3d05c8163f16db03e217b81bd6522993092f3643c6",
+      "checks": {
+        "reference_checks": 16,
+        "max_correlation_error": 7.56553365510726e-08,
+        "gradient_norms": {
+          "shared_patch": 0.033896859847494715,
+          "shared_encoder": 0.2178359855979573,
+          "head": 0.48048470649358455
+        }
+      },
+      "curve": [
+        {
+          "step": 200,
+          "left": 0.5128516221046447,
+          "relation": 0.18516462452709676
+        },
+        {
+          "step": 400,
+          "left": 0.5103826369345188,
+          "relation": 0.1470727177709341
+        },
+        {
+          "step": 600,
+          "left": 0.510810224711895,
+          "relation": 0.1394017106294632
+        },
+        {
+          "step": 800,
+          "left": 0.5109798073768616,
+          "relation": 0.13551480930298568
+        },
+        {
+          "step": 1000,
+          "left": 0.5093934912979603,
+          "relation": 0.13284863535314798
+        },
+        {
+          "step": 1200,
+          "left": 0.507951981574297,
+          "relation": 0.1303830648586154
+        },
+        {
+          "step": 1400,
+          "left": 0.5080784012377262,
+          "relation": 0.1294205267354846
+        },
+        {
+          "step": 1600,
+          "left": 0.5076510356366635,
+          "relation": 0.12785636145621537
+        },
+        {
+          "step": 1800,
+          "left": 0.5079161179065704,
+          "relation": 0.12729447159916163
+        },
+        {
+          "step": 2000,
+          "left": 0.5078414583206177,
+          "relation": 0.1266855961456895
+        }
+      ],
+      "optimizer": "Adam lr=1e-4",
+      "selection": "fixed endpoint",
+      "lambda_relation": 1.0,
+      "training_windows": 64000,
+      "training_plan_sha256": "6b44040b8c81428885f7551e61697b541405a4605afae491c4ccfab6b26a312b",
+      "source_select_plan_sha256": "98a9f8fafd3e81ba2192bd62f7e6a1789a4973436d61148653cc328d19ee1bdf",
+      "scales": {
+        "native": 1.1622786292437013,
+        "self": 0.1332036214225809,
+        "cross": 0.10715745088540037,
+        "relation": 0.12018053612579631,
+        "simple": 0.196113310384438
+      },
+      "scale_valid_counts": {
+        "native": 196608,
+        "self": 6144,
+        "cross": 6144,
+        "relation": 6144,
+        "simple": 6144
+      },
+      "parent_scales": null,
+      "native_parameters": 10162030,
+      "added_parameters": 54954,
+      "source_domains": [
+        "TEP",
+        "HAI"
+      ],
+      "device": "NVIDIA A40",
+      "peak_bytes": 773507584,
+      "seconds": 84.44164172373712,
+      "native_rng_start": "dbfa819b55641cd75e6ecdf469e301dc68d823d6e200923e14e3e5f4df93ff29",
+      "native_rng_end": "f6599da0a287588fa4806dd3f4f8352c2647f5f4e31ccb9d404c0be4e40db5ab"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "full_records": {
+    "PSM": 1,
+    "SWAT": 1,
+    "SMD": 28
+  },
+  "entity_metric_rows": 1146,
+  "paired_record_contrasts": 450,
+  "mirror_score_banks_sha256_verified": 60,
+  "macro_max_abs": 2.7755575615628914e-17,
+  "independent_AP_ROC_max_abs": 3.3306690738754696e-16,
+  "score_seconds": 13.941991685424,
+  "metric_worker_seconds": 4364.104212178383
+}

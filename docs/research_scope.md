@@ -4,7 +4,9 @@
 
 正式主线为公开多变量 TSAD 的多源预训练与目标域使用或适配。主稿先给出完整检测器的公开比较，再按 Z、U、F、自然混合与受控污染、核心机制和检测代价展开。[唯一工作骨架及本地主表](../manuscript/next_generation_20261115/draft.md) · [两阶段方法及数据角色](../manuscript/next_generation_20261115/method_definition.md) · [因果与逐种子补表](../manuscript/next_generation_20261115/README.md)。
 
-当前基座采用完整 LEFT，使用 TEP FaultFree Training 和 SMD28 正常训练记录学习两份维度专用的跨域源模型，并分别检验冻结使用、目标正常训练和自然混合更新。[两阶段公开验证](experiments/left_multisource_20261126/RESULTS.md)。历史人工干预实验对完整预训练 TimeRadar 的原生副本方差开展人工编辑配对学习，项目源记录为 TEP FaultFree Training 和 SMD 正常训练段，两个目标域为 PSM 与 SWaT。[源检测与自然混合 U 的完整结果](experiments/intervention_reference_20261126/RESULTS.md)。已结束的 Hankel 方案从多源正常轨迹学习分频段滞后子空间，在混合目标记录上交替估计正常轨迹、局部偏离和目标子空间。PSM、SWaT 首轮已完成。冻结源模型在两域公开排序上优于两种目标正常更新，但均落后于 LEFT；混合 U 未建立超出二次损失适配的排序增量。[固定结果](experiments/trajectory_subspace_20261126/RESULTS.md)。仅使用公开数据。SWaT 作为项目源排除目标时，新的两源折使用 TEP 正常训练与 SMD 正常训练。历史末点 V 折用过 SWaT 真实事件与 SMD 正常源，实测结论仍归其[冻结阶段稿](../manuscript/native_endpoint_v_research_20261126/manuscript.md)。下方日期条目为历史记录。
+本轮在 `28c0d297fc442b645f349762641ec72d6c3d598e` 的三个完整 LEFT 源模型上检验严格历史参考。历史覆盖同一条记录的前256点，当前192点形成六个局部关系目标。PSM、SWaT及全SMD28在共同轴上与匹配源续训、简单滞后相关和完整外部检测器比较。另用已知滞后和同能量幅值干预检验机制。该候选的实测范围是源学习及冻结迁移 Z，U/F 仍待验证。[本轮公共与受控结果](experiments/left_history_relation_20261126/RESULTS.md)。
+
+此前的两个目标折采用完整 LEFT，使用 TEP FaultFree Training 和 SMD28 正常训练记录学习两份维度专用的跨域源模型，并分别检验冻结使用、目标正常训练和自然混合更新。[两阶段公开验证](experiments/left_multisource_20261126/RESULTS.md)。历史人工干预实验对完整预训练 TimeRadar 的原生副本方差开展人工编辑配对学习，项目源记录为 TEP FaultFree Training 和 SMD 正常训练段，两个目标域为 PSM 与 SWaT。[源检测与自然混合 U 的完整结果](experiments/intervention_reference_20261126/RESULTS.md)。已结束的 Hankel 方案从多源正常轨迹学习分频段滞后子空间，在混合目标记录上交替估计正常轨迹、局部偏离和目标子空间。PSM、SWaT 首轮已完成。冻结源模型在两域公开排序上优于两种目标正常更新，但均落后于 LEFT；混合 U 未建立超出二次损失适配的排序增量。[固定结果](experiments/trajectory_subspace_20261126/RESULTS.md)。仅使用公开数据。SWaT 作为项目源排除目标时，新的两源折使用 TEP 正常训练与 SMD 正常训练。历史末点 V 折用过 SWaT 真实事件与 SMD 正常源，实测结论仍归其[冻结阶段稿](../manuscript/native_endpoint_v_research_20261126/manuscript.md)。下方日期条目为历史记录。
 
 
 ## 2026-11-22 公开 TSAD 方法论文归位

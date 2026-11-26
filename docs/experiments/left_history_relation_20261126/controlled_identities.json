@@ -1,0 +1,46 @@
+{
+  "PSM": {
+    "arrays": {
+      "coupled_AR.npz": "f7d1cb7a31c0c9620273f953b14a4f7bbd0dce0a023083b0c71f9ee127a01baf",
+      "normal_SELECT.npz": "f5f902c37ef5d6395f7d1a985112e81be16e7303e71008eb5d6a7be7f05fbca3"
+    },
+    "origin": {
+      "coupled_AR": "SeedSequence([20261126,width,record])",
+      "normal_SELECT": "9b805d0916774a10d51f091bc80e0e85c59d4e979e257edf466335a32bdd5472"
+    },
+    "seed": 20261126,
+    "positions": [
+      "clean",
+      "weak",
+      "weak_control",
+      "lag",
+      "lag_amplitude",
+      "synchronous"
+    ],
+    "producer_sha256": "70a45fa45c88247fc9654ddb8d27e945ec09dc098cc9f2d7eed7fb73aa631b3a",
+    "width": 25,
+    "input_diagnostics_sha256": "c6a742f206d34d19a5a422ae2378e0da0fe03806fe8ab0147c86d582f4244097"
+  },
+  "SWAT": {
+    "arrays": {
+      "coupled_AR.npz": "b75073105c0e820cfd89f712bfe8c31a805e1599d823b97a4b877a00ba07b505",
+      "normal_SELECT.npz": "166f7083a0d59a149c4538b346cfc29b061be3dd29e6ab12191e5e75ed0285cb"
+    },
+    "origin": {
+      "coupled_AR": "SeedSequence([20261126,width,record])",
+      "normal_SELECT": "556156b4c4a7308de832c49be99310f6763dc5729a5427dd363b1e13cb176ed9"
+    },
+    "seed": 20261126,
+    "positions": [
+      "clean",
+      "weak",
+      "weak_control",
+      "lag",
+      "lag_amplitude",
+      "synchronous"
+    ],
+    "producer_sha256": "5e1418040e1745294f56a919ff6bf4d0f6251d142f5d4a27047310046aac36af",
+    "width": 31,
+    "input_diagnostics_sha256": "b3500b24bea789d375f071033b9cf9a24ec79f6d897d130d8acaf8db285a9236"
+  }
+}
