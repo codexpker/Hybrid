@@ -4,7 +4,7 @@
 
 Can public source records teach a detector which local dynamics recur across sensors, and can the detector learn new normal dynamics from a target record that also contains anomalies? We study this question in two stages. A complete public detection benchmark establishes the performance that a proposed method must reach. Separate experiments examine zero target updates (Z), mixed-unlabeled learning (U), a fixed labeled support set (F), controlled extra abnormal exposure and the mechanism of the update.
 
-The current study tests whether a pretrained TimeRadar decoder can learn from an artificial edit of an unlabeled target window while retaining the native score of its original input. The source comparison uses normal TEP and SMD records. The matched target comparison changes the ranking reference from one fixed source-normal value to the frozen score of the corresponding target point. Both use the same edited windows, decoder capacity, drift correction and original-score anchor. The [method specification](method_definition.md) and [complete comparison](../../docs/experiments/intervention_reference_20261126/RESULTS.md) distinguish synthetic source evidence from outcomes on real public events.
+The current study asks whether complete LEFT detectors pretrained on two public normal sources provide a useful initialization for a new multivariate target. The comparison separates frozen detection, normal-target training and mixed-unlabeled updates. Each source model sees the target number of variables through window-wise ordered channel sampling from TEP and SMD. Normal-only and mixed experiments retain their respective training and calibration permissions. [Method and data permissions](method_definition.md)
 
 ## Public benchmark
 
@@ -147,7 +147,11 @@ Published VUS-PR and VUS-ROC are provided independently of local AP, preprocessi
 | ModernTCN (LEFT benchmark) | VUS-PR | .1596 | .4668 | .0941 | .3010 | .1395 |
 | ModernTCN (LEFT benchmark) | VUS-ROC | .7707 | .6480 | .2735 | .7747 | .5470 |
 
-### Synthetic supervision of the pretrained variance detector
+### Complete LEFT after normal-source pretraining
+
+Two source models trained on fault-free TEP and normal SMD records were transferred intact at the matching width. On the complete PSM axis, frozen transfer, target-normal continuation and target-normal training from scratch achieved AP of 0.4964, 0.5544 and 0.5766. Target-normal continuation fell below the from-scratch model on all four metrics. On SWaT, the corresponding AP values were 0.7239, 0.5425 and 0.5439. The frozen model exceeded the archived pretrained TimeRadar AP of 0.6393, while pointwise level deviation reached 0.7448. At matched target-normal training, the source initialization improved SWaT ROC-AUC from 0.8209 to 0.8556 and VUS-ROC from 0.8093 to 0.8431, with small decreases in both PR measures. Transfer value therefore depends on both the target task and the operating question. [Complete external benchmark, training contrasts and costs](../../docs/experiments/left_multisource_20261126/RESULTS.md)
+
+### Archived synthetic supervision of the pretrained variance detector
 
 On the complete public axes, frozen official TimeRadar, source reconstruction and source intervention training attained AP of 0.4481, 0.4557 and 0.4556 on PSM, and 0.6423, 0.6558 and 0.6562 on SWaT. Most of the AP improvement over the official checkpoint was already present after normal reconstruction. Source pairing improved SWaT VUS-PR by 0.0030 and VUS-ROC by 0.0045 over reconstruction, with near-identical AP. On PSM, target-trained LEFT and PCA exceeded the paired model in AP. On SWaT its AP exceeded LEFT but remained below pointwise level deviation, and LEFT retained higher VUS-PR.
 
@@ -156,6 +160,12 @@ On the separate mixed-target suffixes the local intervention reference changed A
 ## Use conditions, contamination and mechanism
 
 Establish the complete detector on the public benchmark before attributing gains. The source-excluded Z, separate U and labeled F lanes share one score. Report the zero-update comparator again on the same untouched target suffix where a comparison requires it. Controlled abnormal exposure compares fixed abnormal and nominal replacements of the same slots. Seek a net improvement in absolute detection and measure false alarms, matched events, delay and sustained coverage. Sparse deviation estimates are statistical residuals. Their existence supplies no physical fault-channel labels. The prior PSM mixed CAL was entirely attack-labeled; NASA small-sample empirical q99 can equal the maximum. The actual use of each CAL governs what can be inferred about normal false alarms.
+
+### Mixed learning from a cross-domain LEFT initialization
+
+On the isolated PSM suffix the source model scored 0.5043 AP. Ordinary mixed-target training raised this to 0.5770. The random-initialization control reached 0.5809 with exactly the same target windows, while source replay reached 0.5919. Ordinary U improved ROC-AUC and both VUS measures relative to random U. Replay traded some ROC-AUC for higher AP and VUS-PR than ordinary U. Its confirmed-three normal FPR fell from 16.27% for Z to 12.89%, alongside a decline from 23 to 21 one-to-one event matches and from 74.27% to 67.09% long-event macro coverage. All 512 PSM CAL points were labeled as attacks in the post-training evaluation.
+
+On SWaT, Z reached 0.7914 AP. Ordinary U, replay U and random U reached 0.7800, 0.7861 and 0.7882, respectively. Adaptation produced small improvements over Z on the VUS measures. Ordinary U increased confirmed event matches from 9/22 to 13/22 and reduced the normal point FPR from 72.30% to 53.27%, while long-event macro coverage fell from 60.52% to 27.27%. Replay recovered some of that coverage (57.83%) at a higher FPR (62.91%). The data support studying this initialization and replay under identifiable task and operating conditions. They provide no general advantage of pretrained U over random U. These comparisons evaluate complete training procedures under fixed window budgets on two exposed tasks and one development seed. [Four-metric matched results, offline availability and individual events](../../docs/experiments/left_multisource_20261126/RESULTS.md)
 
 ## Archived fixed trajectory-subspace mixed-target results
 

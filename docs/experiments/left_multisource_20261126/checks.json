@@ -1,0 +1,378 @@
+{
+  "PSM": {
+    "prototype_parameter_change_norm": {
+      "proto_t": 0.5818321108818054,
+      "proto_f": 0.5357494950294495
+    },
+    "upstream": {
+      "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+      "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+      "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+      "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+      "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+      "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+      "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863"
+    },
+    "config_files": {
+      "model_configs_0.json": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f",
+      "model_configs_Left.json": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4",
+      "train_configs.json": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab"
+    },
+    "scaler_sha256": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+    "source_selection": [
+      {
+        "step": 3200,
+        "fit_loss": 1.0404670129716396,
+        "lam": 0.3,
+        "select_loss": 1.1264500580728054
+      },
+      {
+        "step": 3600,
+        "fit_loss": 1.039367946535349,
+        "lam": 0.3,
+        "select_loss": 1.1253827139735222
+      },
+      {
+        "step": 4000,
+        "fit_loss": 1.0389023514091968,
+        "lam": 0.3,
+        "select_loss": 1.1241647638380527
+      }
+    ],
+    "scratch_checkpoint_sha256": "d8430bd59ad5aa35a189761e3f7d0357c4a557ff11dc770d6ee17f0d05988042",
+    "scratch_score_sha256": "d8a7dbb09a342b7cc5ff159796272cb090f2ad0c6bc79cf9ac2d72bb7f6f492e",
+    "stage2_contract": {
+      "domain": "PSM",
+      "arm": "native",
+      "seed": 2025,
+      "official_reference_revision": "3fadb4811797075e233076b9faceb0d8ec59b697",
+      "upstream_files": {
+        "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+        "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+        "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+        "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+        "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+        "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+        "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863"
+      },
+      "configuration": {
+        "model_configs_0.json": "d63598c5be2e2371756efd498fb15eb0852e66aa74d7b3b1e6614793a22a161f",
+        "model_configs_Left.json": "d90309c5c215c13135c334adc328ab63b3e703d5659e5e962c93860fd5f5b5d4",
+        "train_configs.json": "b0d8bd8476a2794db17dc52fd114e249c593199f3109d7ed3dc1d66eecd9b9ab"
+      },
+      "common_initial_state_sha256": "eabb8090bc4974ce6fa1626031795d1e3cd36e44774cc935bbbe190d662da206",
+      "scaler_sha256": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+      "normal_values_sha256": "9b805d0916774a10d51f091bc80e0e85c59d4e979e257edf466335a32bdd5472",
+      "FIT": [
+        0,
+        105984
+      ],
+      "SELECT": [
+        105984,
+        132481
+      ],
+      "FIT_stride": 1,
+      "SELECT_stride": 192,
+      "channels": 25,
+      "window": 192,
+      "scaler_fit": [
+        0,
+        132481
+      ],
+      "curriculum": {
+        "warmup": 1000,
+        "ramp": 2000,
+        "maximum": 0.3
+      },
+      "batch": 128,
+      "max_epochs": 20,
+      "early_stop_patience": 3,
+      "optimizer": "adam",
+      "lr": 0.0001,
+      "lr_schedule": "type2",
+      "labels_read": false
+    },
+    "normal_validation": [
+      {
+        "epoch": 1,
+        "loss": 0.5639061629772186,
+        "step": 4827
+      },
+      {
+        "epoch": 2,
+        "loss": 0.5409639179706573,
+        "step": 5654
+      },
+      {
+        "epoch": 3,
+        "loss": 0.5121788829565048,
+        "step": 6481
+      },
+      {
+        "epoch": 4,
+        "loss": 0.4979180097579956,
+        "step": 7308
+      },
+      {
+        "epoch": 5,
+        "loss": 0.4936966001987457,
+        "step": 8135
+      },
+      {
+        "epoch": 6,
+        "loss": 0.4895869046449661,
+        "step": 8962
+      },
+      {
+        "epoch": 7,
+        "loss": 0.4861263930797577,
+        "step": 9789
+      },
+      {
+        "epoch": 8,
+        "loss": 0.483831450343132,
+        "step": 10616
+      },
+      {
+        "epoch": 9,
+        "loss": 0.48336198925971985,
+        "step": 11443
+      },
+      {
+        "epoch": 10,
+        "loss": 0.48257696628570557,
+        "step": 12270
+      },
+      {
+        "epoch": 11,
+        "loss": 0.4824488013982773,
+        "step": 13097
+      },
+      {
+        "epoch": 12,
+        "loss": 0.48212283849716187,
+        "step": 13924
+      },
+      {
+        "epoch": 13,
+        "loss": 0.4816575199365616,
+        "step": 14751
+      },
+      {
+        "epoch": 14,
+        "loss": 0.48142771422863007,
+        "step": 15578
+      },
+      {
+        "epoch": 15,
+        "loss": 0.48090653121471405,
+        "step": 16405
+      },
+      {
+        "epoch": 16,
+        "loss": 0.4810846745967865,
+        "step": 17232
+      },
+      {
+        "epoch": 17,
+        "loss": 0.48112332820892334,
+        "step": 18059
+      },
+      {
+        "epoch": 18,
+        "loss": 0.4809142053127289,
+        "step": 18886
+      }
+    ],
+    "CAL_Z_max_abs_diff_vs_full_test": 4.172325134277344e-07,
+    "QUERY_Z_max_abs_diff_vs_full_test": 1.1920928955078125e-07
+  },
+  "SWAT": {
+    "prototype_parameter_change_norm": {
+      "proto_t": 0.4156855046749115,
+      "proto_f": 0.45595183968544006
+    },
+    "upstream": {
+      "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+      "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+      "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+      "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+      "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+      "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+      "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863"
+    },
+    "config_files": {
+      "model_configs_0.json": "a8a62c8e72191b276710dcd8433193e99e1c828d4250c20f6a7431fca4ea9440",
+      "model_configs_Left.json": "2574e826155a684389026c3c08db24a20586d3f51040281876cc2eb6a28129d6",
+      "train_configs.json": "0a6b4cc8bb0b53f8ed63bfd1ad71741a15114ab7b458827b819054a90bbf6995"
+    },
+    "scaler_sha256": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+    "source_selection": [
+      {
+        "step": 3200,
+        "fit_loss": 0.3609791644662619,
+        "lam": 0.3,
+        "select_loss": 0.3865008344873786
+      },
+      {
+        "step": 3600,
+        "fit_loss": 0.3600073463469744,
+        "lam": 0.3,
+        "select_loss": 0.3861388163641095
+      },
+      {
+        "step": 4000,
+        "fit_loss": 0.359564922824502,
+        "lam": 0.3,
+        "select_loss": 0.3856271915137768
+      }
+    ],
+    "scratch_checkpoint_sha256": "7d8188bed6d6c521322cd8617a0ca78571d0880e0087dddc7d00866050755b6e",
+    "scratch_score_sha256": "4a45d5839917cecffff01b9cc4f096c367428b19c9517fdcf17f4e915cc770c8",
+    "stage2_contract": {
+      "domain": "SWAT",
+      "arm": "native",
+      "seed": 2025,
+      "official_reference_revision": "3fadb4811797075e233076b9faceb0d8ec59b697",
+      "upstream_files": {
+        "exp/exp_anomaly_detection.py": "38d5b344d3548aadcd0ec826cb9a8188d83eb30c7aca409a3afc1950f3c4964f",
+        "data_provider/data_provider.py": "8ea8225e43790d88650e7960f003a87b3f41ee574a7c5774be0e9f7cbaead246",
+        "models/Left/LEFT.py": "059cc92f3e63a78ca3d348b9b046844f05668820cd7fcd008bd9a43546a41ace",
+        "models/Left/Tools.py": "0ad478d91e227eda0b3d75708f137673ab489240d220b2c68ad4dd422344ad7c",
+        "models/Left/Utils.py": "262290e1690d0dfc29fe6cf5cbbc0b1a7fcd2c4663f87eb6dfa7cb54d0a14a4a",
+        "models/Left/EncDec.py": "035c7704e6abfb9457c9e9e7ab061eadb40a4d02f7cbddf200bb736d41860c83",
+        "models/Left/Attention_Blocks.py": "03a6923f7d312c2e58b207b9775c25fd39505c689a414e524da6b993c55e1863"
+      },
+      "configuration": {
+        "model_configs_0.json": "a8a62c8e72191b276710dcd8433193e99e1c828d4250c20f6a7431fca4ea9440",
+        "model_configs_Left.json": "2574e826155a684389026c3c08db24a20586d3f51040281876cc2eb6a28129d6",
+        "train_configs.json": "0a6b4cc8bb0b53f8ed63bfd1ad71741a15114ab7b458827b819054a90bbf6995"
+      },
+      "common_initial_state_sha256": "ea09fedd91ec539057ac01c6ac22deee0a85425aacc7af70312f026c0d040038",
+      "scaler_sha256": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+      "normal_values_sha256": "556156b4c4a7308de832c49be99310f6763dc5729a5427dd363b1e13cb176ed9",
+      "FIT": [
+        0,
+        396000
+      ],
+      "SELECT": [
+        396000,
+        495000
+      ],
+      "FIT_stride": 1,
+      "SELECT_stride": 192,
+      "channels": 31,
+      "window": 192,
+      "scaler_fit": [
+        0,
+        495000
+      ],
+      "curriculum": {
+        "warmup": 500,
+        "ramp": 1000,
+        "maximum": 0.3
+      },
+      "batch": 128,
+      "max_epochs": 20,
+      "early_stop_patience": 3,
+      "optimizer": "adam",
+      "lr": 0.0001,
+      "lr_schedule": "type1",
+      "labels_read": false
+    },
+    "normal_validation": [
+      {
+        "epoch": 1,
+        "loss": 0.03139040544629097,
+        "step": 7093
+      },
+      {
+        "epoch": 2,
+        "loss": 0.02677430957555771,
+        "step": 10186
+      },
+      {
+        "epoch": 3,
+        "loss": 0.024480043351650237,
+        "step": 13279
+      },
+      {
+        "epoch": 4,
+        "loss": 0.02176188938319683,
+        "step": 16372
+      },
+      {
+        "epoch": 5,
+        "loss": 0.020959381386637686,
+        "step": 19465
+      },
+      {
+        "epoch": 6,
+        "loss": 0.020714795961976052,
+        "step": 22558
+      },
+      {
+        "epoch": 7,
+        "loss": 0.020558780804276467,
+        "step": 25651
+      },
+      {
+        "epoch": 8,
+        "loss": 0.020487404242157937,
+        "step": 28744
+      },
+      {
+        "epoch": 9,
+        "loss": 0.0204826258122921,
+        "step": 31837
+      },
+      {
+        "epoch": 10,
+        "loss": 0.02045297771692276,
+        "step": 34930
+      },
+      {
+        "epoch": 11,
+        "loss": 0.02044619508087635,
+        "step": 38023
+      },
+      {
+        "epoch": 12,
+        "loss": 0.02044697292149067,
+        "step": 41116
+      },
+      {
+        "epoch": 13,
+        "loss": 0.02044585272669792,
+        "step": 44209
+      },
+      {
+        "epoch": 14,
+        "loss": 0.02044251412153244,
+        "step": 47302
+      },
+      {
+        "epoch": 15,
+        "loss": 0.020441730692982673,
+        "step": 50395
+      },
+      {
+        "epoch": 16,
+        "loss": 0.020442180708050726,
+        "step": 53488
+      },
+      {
+        "epoch": 17,
+        "loss": 0.020441798120737077,
+        "step": 56581
+      },
+      {
+        "epoch": 18,
+        "loss": 0.020442034304141998,
+        "step": 59674
+      }
+    ],
+    "CAL_Z_max_abs_diff_vs_full_test": 1.1920928955078125e-07,
+    "QUERY_Z_max_abs_diff_vs_full_test": 4.76837158203125e-07
+  }
+}
