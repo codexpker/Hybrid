@@ -1,0 +1,37 @@
+{
+  "clean_rebuild_files": {
+    "docs/experiments/left_evidence_freeze_20261128/abc_contrasts.csv": "ea2158af0828411ed95fd1d258f5d965282aa1ce187aac559d775130aba99942",
+    "docs/experiments/left_evidence_freeze_20261128/abc_metrics.csv": "55bdb7784acb031dbc549d9a804820a3eed16ec861a9ba9e330f184053b8e29c",
+    "docs/experiments/left_evidence_freeze_20261128/main_metrics.csv": "1de040a4f9fe0a7f8551f96d138d055b97f7aa93e8b4ff1f36a07220025ccfe9",
+    "docs/experiments/left_evidence_freeze_20261128/smd_entities.csv": "3c593a7e577ffa46ef07512e832109be9c8790971ef8144319c6b894693f6008",
+    "docs/experiments/left_evidence_freeze_20261128/source_manifest.csv": "628fde5ce43e233caa0aed7ffbf5506b28782e8f7aaef7e84918a7f0390c9dd4",
+    "docs/experiments/left_evidence_freeze_20261128/inputs.json": "59438a065de403c3ad8826d102b71d034e4e3bb41905e4eb192546072c4f5f76",
+    "manuscript/next_generation_20261115/draft.md": "42a2fef4c2a1b6cdc5979522c09d243d34f118dd808f02c5f6c3117144a7df05",
+    "manuscript/next_generation_20261115/figures/controlled_exposure.svg": "1f536f0a67863a19c3e6655cb5df42f9b004d46172dc45d1afde16f388f61bff",
+    "manuscript/next_generation_20261115/figures/natural_adaptation.svg": "3cb66b11cb9e751709c2480d47fa7f925b3ebceee17c2548fff5b1b0ad0abcf0",
+    "manuscript/next_generation_20261115/figures/smd28_heterogeneity.svg": "816add7640209db7cff3300341e607c92c1ebe3b0c74db412f4b298608400452",
+    "docs/experiments/left_fixed_exposure_repeats_20261128/endpoints.csv": "6eacefa689ea29636dd97465a8dad4b74ad53332d92497bdb0b7d42ff98616ab",
+    "docs/experiments/left_fixed_exposure_repeats_20261128/paired.csv": "e394c91dce04085ccb08d495c5fd7c979f026ea3e04e95f4ef100c9af2bf9b59",
+    "docs/experiments/left_fixed_exposure_repeats_20261128/paired_summary.csv": "3581fccb73eecb2570d798cdb05e73a5d985984d60e9e873f8d1b6f52fb8dd1b"
+  },
+  "paired_summary_rows_independently_recomputed": 48,
+  "new_endpoints": 24,
+  "PDF_pages": 14,
+  "PDF_caption_pages": {
+    "Table 1.": 4,
+    "Table 2.": 5,
+    "Table 3.": 6,
+    "Figure 1.": 8,
+    "Figure 2.": 8,
+    "Table 4.": 9,
+    "Table 5.": 9,
+    "Table 6.": 10,
+    "Table 7.": 10,
+    "Figure 3.": 10
+  },
+  "resolved_repository_links": 80,
+  "PDF_mathml_and_three_svg_figures": true,
+  "VUS": "Pinned implementation; recomputed temporal VUS for the 24 banks, with no independent VUS implementation",
+  "PDF_pages_visually_checked": 14,
+  "PDF_render_unchanged_after_SVG_whitespace_normalization": true
+}

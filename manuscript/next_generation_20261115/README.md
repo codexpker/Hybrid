@@ -1,6 +1,6 @@
 # Public benchmark supplement and evidence index
 
-The active manuscript is [Source transfer and mixed-unlabeled adaptation for multivariate time-series anomaly detection](draft.md). The [frozen evidence index](../../docs/experiments/left_evidence_freeze_20261128/README.md) defines the evaluated methods, claims and table identities. The [method index](method_definition.md) and `draft.tex` retain historical material. The supplementary panels below are separate archived evaluations with their own protocols.
+The active manuscript is [Source transfer and mixed-unlabeled adaptation with LEFT](draft.md). The [frozen evidence index](../../docs/experiments/left_evidence_freeze_20261128/README.md) defines the evaluated methods, claims and table identities. The [method index](method_definition.md) and `draft.tex` retain historical material. The current [typeset manuscript](manuscript.pdf), [reproducibility guide](REPRODUCIBILITY.md) and [fixed-exposure repeat evidence](../../docs/experiments/left_fixed_exposure_repeats_20261128/README.md) accompany the active draft. The supplementary panels below are separate archived evaluations with their own protocols.
 
 ## C. Matched causal suffix, scores available at the current observation
 

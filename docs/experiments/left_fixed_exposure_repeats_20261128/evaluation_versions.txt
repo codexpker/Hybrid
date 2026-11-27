@@ -1,0 +1,8 @@
+Worker system: Linux 6.8.0-147-generic, NVIDIA A40, NVIDIA driver 580.178.04
+Python 3.12.13 (Anaconda), PyTorch 2.12.0+cu130 with CUDA runtime 13.0
+NumPy 2.4.6, SciPy 1.15.3, scikit-learn 1.7.2, threadpoolctl 3.6.0
+VUS source SHA-256: 808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc
+Deployed training module SHA-256: 8daf0caec06ad9cdd260399f1aeedf93d2fc84df4d9442df01497fc0a2beeec7
+Deployed four-lane runner SHA-256: 53a2003c7d1d6a9c7b27dcbeec0963f2f00743792a15857113f3193374a75553
+Deployed summary/evaluation script SHA-256: 72ca607da4fa0ebb68508a2e70012a02045ffed9061741530de1194187e9946d
+Local export: Matplotlib 3.10.8, Pandoc 3.8, Chromium/MathML.

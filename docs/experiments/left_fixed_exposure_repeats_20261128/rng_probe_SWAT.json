@@ -1,0 +1,30 @@
+{
+  "batch": "f880d4544249f69059072b711b3d784fe8d6417be922ce9b75e4d93d1c2c3747",
+  "domain": "SWAT",
+  "observations": {
+    "2026": {
+      "rng_start": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+      "rng_end": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+      "loss": 0.25474169850349426,
+      "dropout_calls": 22,
+      "first_dropout": {
+        "p": 0.1,
+        "output": "59273a2b4a6b68041ce8ff1228505f8fa902c0568fe7e0a0c71312fe37a5d730"
+      },
+      "state_after": "db84ddcb08fa8480e1976246fa9c6fd142b7a149cc46aad9c482cc873e1db562"
+    },
+    "2027": {
+      "rng_start": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+      "rng_end": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+      "loss": 0.25477269291877747,
+      "dropout_calls": 22,
+      "first_dropout": {
+        "p": 0.1,
+        "output": "98564dd0ce55e3c1a4546e9a50879bea0a051b4f888f0a08661a5e9037821f7a"
+      },
+      "state_after": "b208add658898c16f849b231e64e1718181c9314dbe657609f42b2cdb7c2d2e7"
+    }
+  },
+  "seconds": 6.6178647060878575,
+  "device": "NVIDIA A40"
+}

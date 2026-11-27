@@ -1,0 +1,2119 @@
+{
+  "jobs": [
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "A",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "fadbd52c5f890fafb38fe02616db8dc5750ad2fd97632edc1660821ae6e3e0eb",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "f9dc7bb862cdb85775509ba136e2557efc6e083cbf2c2d1b12837a7168af2b69",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 76.51745014172047,
+        "peak_bytes": 463859712,
+        "visible_devices": "0",
+        "pid": 241470,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "fa5632ceeae6196f1202dbd74e30974b0864381c029799ddca0e2e8c36bbbde5",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.748695969581604
+          },
+          {
+            "update": 2,
+            "batch": "a96acd52a5c544504d7ba900f1d0041dc3090374bb039cf92be2efeb7d5a4297",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7330873608589172
+          },
+          {
+            "update": 3,
+            "batch": "d624ec30de8ceb73794f02e9835be79ef27aef94e309ce5865ecdfe64e07015d",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.7517279982566833
+          },
+          {
+            "update": 4,
+            "batch": "ac9dba5a268c51338c4ac013035c7ebeb827a1cc0dd67a5b6f94d3557bc204eb",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 0.8166316747665405
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7511828541755676
+          },
+          {
+            "update": 800,
+            "loss": 0.7192555665969849
+          },
+          {
+            "update": 1200,
+            "loss": 0.7120351195335388
+          },
+          {
+            "update": 1600,
+            "loss": 0.6981948018074036
+          },
+          {
+            "update": 2000,
+            "loss": 0.6854854226112366
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.398354274686426,
+        "sha256": "53c9123273f78848384a2402d7ea9185d4f4f7275b662abaaf83b173759060c4",
+        "checkpoint_sha256": "f9dc7bb862cdb85775509ba136e2557efc6e083cbf2c2d1b12837a7168af2b69",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "A",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "fadbd52c5f890fafb38fe02616db8dc5750ad2fd97632edc1660821ae6e3e0eb",
+        "teacher_weights": "a914b94bbbfda9d3029f56417b249fe3b4828962ee7740a5dcfecf9749e8a13b",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "15c64bfaeb32d8b8939f4c14b9a83726fc347590a04170dbbe32b751c6302f42",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 75.4630309608765,
+        "peak_bytes": 463860736,
+        "visible_devices": "0",
+        "pid": 242781,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "fa5632ceeae6196f1202dbd74e30974b0864381c029799ddca0e2e8c36bbbde5",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.7358024716377258
+          },
+          {
+            "update": 2,
+            "batch": "a96acd52a5c544504d7ba900f1d0041dc3090374bb039cf92be2efeb7d5a4297",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7188358902931213
+          },
+          {
+            "update": 3,
+            "batch": "d624ec30de8ceb73794f02e9835be79ef27aef94e309ce5865ecdfe64e07015d",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.732557475566864
+          },
+          {
+            "update": 4,
+            "batch": "ac9dba5a268c51338c4ac013035c7ebeb827a1cc0dd67a5b6f94d3557bc204eb",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 0.793279230594635
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7329415678977966
+          },
+          {
+            "update": 800,
+            "loss": 0.707394003868103
+          },
+          {
+            "update": 1200,
+            "loss": 0.69888836145401
+          },
+          {
+            "update": 1600,
+            "loss": 0.6836434006690979
+          },
+          {
+            "update": 2000,
+            "loss": 0.6710420250892639
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.2086297669447958,
+        "sha256": "b81ced363243706dc9f04e42de800dd668157cc5b60dc20b4ca7d1fa28e9b287",
+        "checkpoint_sha256": "15c64bfaeb32d8b8939f4c14b9a83726fc347590a04170dbbe32b751c6302f42",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "B",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "442620e5c69f9f641c44b5004368e356a8e798d37367f5f0e4409221ba3af4e1",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "2c4e23c924afc116206559612ebbf6575cb526f331b00cc3e1493b1f2677100a",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 75.04570121271536,
+        "peak_bytes": 463859712,
+        "visible_devices": "0",
+        "pid": 244003,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "74f65b6447af55aacc8ca4650e18ed7cc5e6db70d6ca5a396f1132d1547b76c2",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.9654977917671204
+          },
+          {
+            "update": 2,
+            "batch": "27e71f12d51260a796fb91ea37b219885f7c59c195cdf1b21f3e10f8dfb4b9df",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7515273094177246
+          },
+          {
+            "update": 3,
+            "batch": "48379cda40dd30cad759fff331804e8606376c526f46b71f1d77fdd897167c9d",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.7594574689865112
+          },
+          {
+            "update": 4,
+            "batch": "ec510931aa1b05c43b5aed1c534f093966ad60e24d66a4b5635ee23f15a899fb",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 1.0038275718688965
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7777170538902283
+          },
+          {
+            "update": 800,
+            "loss": 0.7388513684272766
+          },
+          {
+            "update": 1200,
+            "loss": 0.725614607334137
+          },
+          {
+            "update": 1600,
+            "loss": 0.7034630179405212
+          },
+          {
+            "update": 2000,
+            "loss": 0.6882859468460083
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.20621306495741,
+        "sha256": "a3aca4ba030f2eba454ef7fbd8dc089fe06f01dce8178c0d1572efcc442e8732",
+        "checkpoint_sha256": "2c4e23c924afc116206559612ebbf6575cb526f331b00cc3e1493b1f2677100a",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "B",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "442620e5c69f9f641c44b5004368e356a8e798d37367f5f0e4409221ba3af4e1",
+        "teacher_weights": "1888d9c3cb97805e53bf6fe263b34f1ee414cb21c49db7dff4fbcb53b61135dc",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "2fe29d7fbcb9b1200951cd638c44215a83951cb910b02067e9fd94aa12f2c329",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 75.29930938733742,
+        "peak_bytes": 463860736,
+        "visible_devices": "0",
+        "pid": 245151,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "74f65b6447af55aacc8ca4650e18ed7cc5e6db70d6ca5a396f1132d1547b76c2",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.863865315914154
+          },
+          {
+            "update": 2,
+            "batch": "27e71f12d51260a796fb91ea37b219885f7c59c195cdf1b21f3e10f8dfb4b9df",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7350928783416748
+          },
+          {
+            "update": 3,
+            "batch": "48379cda40dd30cad759fff331804e8606376c526f46b71f1d77fdd897167c9d",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.7399919033050537
+          },
+          {
+            "update": 4,
+            "batch": "ec510931aa1b05c43b5aed1c534f093966ad60e24d66a4b5635ee23f15a899fb",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 0.8848643898963928
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7514376044273376
+          },
+          {
+            "update": 800,
+            "loss": 0.7203394770622253
+          },
+          {
+            "update": 1200,
+            "loss": 0.710281252861023
+          },
+          {
+            "update": 1600,
+            "loss": 0.6951899528503418
+          },
+          {
+            "update": 2000,
+            "loss": 0.6824747323989868
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.2075392031110823,
+        "sha256": "5c509c6ade5afe4f22ce0ceb268f296ca699878129ffc72056db85c1d0f2671b",
+        "checkpoint_sha256": "2fe29d7fbcb9b1200951cd638c44215a83951cb910b02067e9fd94aa12f2c329",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "C",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "f4c958946c78a21d823e87117b35c18e478d8ff6a1532eb999b597e41a9c4309",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "007060a40ca80a4f03fca38b10248afb314c693e88cbd06c0c15d760d9b90040",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 76.13495835103095,
+        "peak_bytes": 463859712,
+        "visible_devices": "0",
+        "pid": 246425,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "a8215a313c032545df8390e9d2419a7679c52efe659f879d8c1e533be20dedb8",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.75694739818573
+          },
+          {
+            "update": 2,
+            "batch": "4763eb0e871d17b94d2174f39a276e67ab9da215db878d57d3481c08b1e1118e",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7316054105758667
+          },
+          {
+            "update": 3,
+            "batch": "6c52f5cfa63098f3a6d4064f31aec23cb636292e84a492cb567ece8724e33411",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.7426058053970337
+          },
+          {
+            "update": 4,
+            "batch": "4725a9ad79b1da88bf319c05e987da3d73a5b6343040bbdbe81bc77e62f94e39",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 0.7985022068023682
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7475324869155884
+          },
+          {
+            "update": 800,
+            "loss": 0.7149814367294312
+          },
+          {
+            "update": 1200,
+            "loss": 0.7075031995773315
+          },
+          {
+            "update": 1600,
+            "loss": 0.6945599317550659
+          },
+          {
+            "update": 2000,
+            "loss": 0.6822043657302856
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.1756352777592838,
+        "sha256": "6e4a3e1bda1ac024e53a1baabb8a27baf65bfe85598e6fc93a73f37c6650f1cc",
+        "checkpoint_sha256": "007060a40ca80a4f03fca38b10248afb314c693e88cbd06c0c15d760d9b90040",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "C",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "f4c958946c78a21d823e87117b35c18e478d8ff6a1532eb999b597e41a9c4309",
+        "teacher_weights": "b13f4c4527e873f42e24d89e63ebd2b6f21f4a34a40372ed0c30b5be6d4960a6",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "223a73061bef7eab6c65c3d09ed4d181042fb62438f72db5c42cf515586ae681",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 73.25327931437641,
+        "peak_bytes": 463860736,
+        "visible_devices": "0",
+        "pid": 247658,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "a8215a313c032545df8390e9d2419a7679c52efe659f879d8c1e533be20dedb8",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "loss": 0.744992733001709
+          },
+          {
+            "update": 2,
+            "batch": "4763eb0e871d17b94d2174f39a276e67ab9da215db878d57d3481c08b1e1118e",
+            "rng_before": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+            "rng_after": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "loss": 0.7218374013900757
+          },
+          {
+            "update": 3,
+            "batch": "6c52f5cfa63098f3a6d4064f31aec23cb636292e84a492cb567ece8724e33411",
+            "rng_before": "daeb8296b6e3075af961e99450f0a7695176ccb20eaa4209461d1940f25aa2d2",
+            "rng_after": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "loss": 0.7288318872451782
+          },
+          {
+            "update": 4,
+            "batch": "4725a9ad79b1da88bf319c05e987da3d73a5b6343040bbdbe81bc77e62f94e39",
+            "rng_before": "2c022a8f3a294649a23fd76294116573c6547d962ce6508880aa8b6d2d1adc17",
+            "rng_after": "e90b9c46eb88de0ddb55617696e78166dd6873e0fcaa7ae27a7198ce1fb5bf87",
+            "loss": 0.7833840847015381
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.729984700679779
+          },
+          {
+            "update": 800,
+            "loss": 0.7040190696716309
+          },
+          {
+            "update": 1200,
+            "loss": 0.6951180100440979
+          },
+          {
+            "update": 1600,
+            "loss": 0.6802368760108948
+          },
+          {
+            "update": 2000,
+            "loss": 0.6683255434036255
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.1976488148793578,
+        "sha256": "221e6bdbec677c8bf35f2580dca940a5adad9c4684cd680a5633c22fd6c44c4d",
+        "checkpoint_sha256": "223a73061bef7eab6c65c3d09ed4d181042fb62438f72db5c42cf515586ae681",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "A",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "fadbd52c5f890fafb38fe02616db8dc5750ad2fd97632edc1660821ae6e3e0eb",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "e370831989edbdc07ad245afcaf075e54692f70715539407bae2c25b27a45268",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 76.71449789730832,
+        "peak_bytes": 463859712,
+        "visible_devices": "1",
+        "pid": 241473,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "fa5632ceeae6196f1202dbd74e30974b0864381c029799ddca0e2e8c36bbbde5",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.7486631870269775
+          },
+          {
+            "update": 2,
+            "batch": "a96acd52a5c544504d7ba900f1d0041dc3090374bb039cf92be2efeb7d5a4297",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7331715226173401
+          },
+          {
+            "update": 3,
+            "batch": "d624ec30de8ceb73794f02e9835be79ef27aef94e309ce5865ecdfe64e07015d",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7521023154258728
+          },
+          {
+            "update": 4,
+            "batch": "ac9dba5a268c51338c4ac013035c7ebeb827a1cc0dd67a5b6f94d3557bc204eb",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 0.8163791298866272
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7511351704597473
+          },
+          {
+            "update": 800,
+            "loss": 0.7191560864448547
+          },
+          {
+            "update": 1200,
+            "loss": 0.7119355797767639
+          },
+          {
+            "update": 1600,
+            "loss": 0.6981021761894226
+          },
+          {
+            "update": 2000,
+            "loss": 0.6855028867721558
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.3421954442746937,
+        "sha256": "aca098865f30956f43131d1ed64b688e18d8e3b1e9d332abb071c295b5f89e09",
+        "checkpoint_sha256": "e370831989edbdc07ad245afcaf075e54692f70715539407bae2c25b27a45268",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "A",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "fadbd52c5f890fafb38fe02616db8dc5750ad2fd97632edc1660821ae6e3e0eb",
+        "teacher_weights": "a914b94bbbfda9d3029f56417b249fe3b4828962ee7740a5dcfecf9749e8a13b",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "e63021d78ba06cbbb9c2c1daa9878622372c03aa31b5c955d0615cafc1df673d",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 72.15184960188344,
+        "peak_bytes": 463860736,
+        "visible_devices": "1",
+        "pid": 242782,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "fa5632ceeae6196f1202dbd74e30974b0864381c029799ddca0e2e8c36bbbde5",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.7357239723205566
+          },
+          {
+            "update": 2,
+            "batch": "a96acd52a5c544504d7ba900f1d0041dc3090374bb039cf92be2efeb7d5a4297",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7189220786094666
+          },
+          {
+            "update": 3,
+            "batch": "d624ec30de8ceb73794f02e9835be79ef27aef94e309ce5865ecdfe64e07015d",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7328779697418213
+          },
+          {
+            "update": 4,
+            "batch": "ac9dba5a268c51338c4ac013035c7ebeb827a1cc0dd67a5b6f94d3557bc204eb",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 0.7930917739868164
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7328701019287109
+          },
+          {
+            "update": 800,
+            "loss": 0.7072403430938721
+          },
+          {
+            "update": 1200,
+            "loss": 0.6987816691398621
+          },
+          {
+            "update": 1600,
+            "loss": 0.6834903359413147
+          },
+          {
+            "update": 2000,
+            "loss": 0.6709017157554626
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.2851975611411035,
+        "sha256": "9747a33f3912f3feeb038d73cf95a649d60c534bca5c5ce7c0ae82fc924e65c3",
+        "checkpoint_sha256": "e63021d78ba06cbbb9c2c1daa9878622372c03aa31b5c955d0615cafc1df673d",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "B",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "442620e5c69f9f641c44b5004368e356a8e798d37367f5f0e4409221ba3af4e1",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "b61e1bbc1e99b2c36466f2f8644f7e9bdf3dae3017f897850f52b0112a059f02",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 75.50527930399403,
+        "peak_bytes": 463859712,
+        "visible_devices": "1",
+        "pid": 243951,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "74f65b6447af55aacc8ca4650e18ed7cc5e6db70d6ca5a396f1132d1547b76c2",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.9653369188308716
+          },
+          {
+            "update": 2,
+            "batch": "27e71f12d51260a796fb91ea37b219885f7c59c195cdf1b21f3e10f8dfb4b9df",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7516005039215088
+          },
+          {
+            "update": 3,
+            "batch": "48379cda40dd30cad759fff331804e8606376c526f46b71f1d77fdd897167c9d",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7598982453346252
+          },
+          {
+            "update": 4,
+            "batch": "ec510931aa1b05c43b5aed1c534f093966ad60e24d66a4b5635ee23f15a899fb",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 1.0033777952194214
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7776832580566406
+          },
+          {
+            "update": 800,
+            "loss": 0.738767147064209
+          },
+          {
+            "update": 1200,
+            "loss": 0.7255627512931824
+          },
+          {
+            "update": 1600,
+            "loss": 0.7032490372657776
+          },
+          {
+            "update": 2000,
+            "loss": 0.6880396008491516
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.2254195143468678,
+        "sha256": "e65b6acf26607fcb92bc6fcf263492080272bf851114b59e5e28fe23ac1b1212",
+        "checkpoint_sha256": "b61e1bbc1e99b2c36466f2f8644f7e9bdf3dae3017f897850f52b0112a059f02",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "B",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "442620e5c69f9f641c44b5004368e356a8e798d37367f5f0e4409221ba3af4e1",
+        "teacher_weights": "1888d9c3cb97805e53bf6fe263b34f1ee414cb21c49db7dff4fbcb53b61135dc",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "1538a34082a36f71a8598fe916ba8e6333df777c3921a5331a0faed970a0bf66",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 76.61273988103494,
+        "peak_bytes": 463860736,
+        "visible_devices": "1",
+        "pid": 245127,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "74f65b6447af55aacc8ca4650e18ed7cc5e6db70d6ca5a396f1132d1547b76c2",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.8638094663619995
+          },
+          {
+            "update": 2,
+            "batch": "27e71f12d51260a796fb91ea37b219885f7c59c195cdf1b21f3e10f8dfb4b9df",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7351824641227722
+          },
+          {
+            "update": 3,
+            "batch": "48379cda40dd30cad759fff331804e8606376c526f46b71f1d77fdd897167c9d",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7403736114501953
+          },
+          {
+            "update": 4,
+            "batch": "ec510931aa1b05c43b5aed1c534f093966ad60e24d66a4b5635ee23f15a899fb",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 0.8845796585083008
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7514422535896301
+          },
+          {
+            "update": 800,
+            "loss": 0.7203130722045898
+          },
+          {
+            "update": 1200,
+            "loss": 0.7103034257888794
+          },
+          {
+            "update": 1600,
+            "loss": 0.6951809525489807
+          },
+          {
+            "update": 2000,
+            "loss": 0.682439386844635
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.2103270520456135,
+        "sha256": "5e93fe06eef1111d7df84d2e0770a60ce84cc3cef101c3344e61b66ad424ec92",
+        "checkpoint_sha256": "1538a34082a36f71a8598fe916ba8e6333df777c3921a5331a0faed970a0bf66",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "R",
+        "condition": "C",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "f4c958946c78a21d823e87117b35c18e478d8ff6a1532eb999b597e41a9c4309",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "a008f731cd7704af3d2cc41a53d7c3870b0fa449a901115f3a463ea72c4cf3e2",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 74.68744071479887,
+        "peak_bytes": 463859712,
+        "visible_devices": "1",
+        "pid": 246401,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "a8215a313c032545df8390e9d2419a7679c52efe659f879d8c1e533be20dedb8",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.7572371363639832
+          },
+          {
+            "update": 2,
+            "batch": "4763eb0e871d17b94d2174f39a276e67ab9da215db878d57d3481c08b1e1118e",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7316101789474487
+          },
+          {
+            "update": 3,
+            "batch": "6c52f5cfa63098f3a6d4064f31aec23cb636292e84a492cb567ece8724e33411",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7429763674736023
+          },
+          {
+            "update": 4,
+            "batch": "4725a9ad79b1da88bf319c05e987da3d73a5b6343040bbdbe81bc77e62f94e39",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 0.7983816862106323
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7475202679634094
+          },
+          {
+            "update": 800,
+            "loss": 0.714896023273468
+          },
+          {
+            "update": 1200,
+            "loss": 0.7074440121650696
+          },
+          {
+            "update": 1600,
+            "loss": 0.6944405436515808
+          },
+          {
+            "update": 2000,
+            "loss": 0.6821275949478149
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.204118084628135,
+        "sha256": "05ce8f984e30bc218f83753af1b3e3accde569bf66450a2069d9751ba915473e",
+        "checkpoint_sha256": "a008f731cd7704af3d2cc41a53d7c3870b0fa449a901115f3a463ea72c4cf3e2",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "PSM",
+        "method": "W",
+        "condition": "C",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+        "numeric_plan": "f4c958946c78a21d823e87117b35c18e478d8ff6a1532eb999b597e41a9c4309",
+        "teacher_weights": "b13f4c4527e873f42e24d89e63ebd2b6f21f4a34a40372ed0c30b5be6d4960a6",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "cd03a08093befcccd4fdf356617cbcc97c4ce93b1d9c5718a12dbb1f53290a13",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 72.91903543286026,
+        "peak_bytes": 463860736,
+        "visible_devices": "1",
+        "pid": 247616,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "a8215a313c032545df8390e9d2419a7679c52efe659f879d8c1e533be20dedb8",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "loss": 0.7452542781829834
+          },
+          {
+            "update": 2,
+            "batch": "4763eb0e871d17b94d2174f39a276e67ab9da215db878d57d3481c08b1e1118e",
+            "rng_before": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+            "rng_after": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "loss": 0.7218525409698486
+          },
+          {
+            "update": 3,
+            "batch": "6c52f5cfa63098f3a6d4064f31aec23cb636292e84a492cb567ece8724e33411",
+            "rng_before": "5391d06552f90ac8342204762f39807231c915022bfa880aed18c7dd17aaa3b4",
+            "rng_after": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "loss": 0.7291498780250549
+          },
+          {
+            "update": 4,
+            "batch": "4725a9ad79b1da88bf319c05e987da3d73a5b6343040bbdbe81bc77e62f94e39",
+            "rng_before": "663e5c4742558e3e8845d839a4b6548b251845a5d645319f20f474a6cf7e85b5",
+            "rng_after": "0e2076b3e05502fe9afcb1de8b9ab3b53d48e9df54e8ff02e8507794183f7839",
+            "loss": 0.7832525372505188
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.7299383878707886
+          },
+          {
+            "update": 800,
+            "loss": 0.7039280533790588
+          },
+          {
+            "update": 1200,
+            "loss": 0.6950498223304749
+          },
+          {
+            "update": 1600,
+            "loss": 0.6801149845123291
+          },
+          {
+            "update": 2000,
+            "loss": 0.6681241393089294
+          }
+        ]
+      },
+      "bank": {
+        "start": 22656,
+        "stop": 87744,
+        "points": 65088,
+        "role": "QUERY",
+        "seconds": 1.196158142760396,
+        "sha256": "3557e77d68f11587e40c1c58afeacece6d195a6ec757a76df81f450ae182cec2",
+        "checkpoint_sha256": "cd03a08093befcccd4fdf356617cbcc97c4ce93b1d9c5718a12dbb1f53290a13",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "A",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "47d8abe23b443ca35431c2e09bc0647334b3f61dec135e981ab46f36f557dd3d",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "498d26756b6da15657ffe9d34913be1620c50e4e1bcfc885906bff88629e9487",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 78.60599213792011,
+        "peak_bytes": 454060032,
+        "visible_devices": "2",
+        "pid": 241474,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "f880d4544249f69059072b711b3d784fe8d6417be922ce9b75e4d93d1c2c3747",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.25474169850349426
+          },
+          {
+            "update": 2,
+            "batch": "e06d17dd249728fb59e78594ec74a5be9b6d767b8cd1f6a02dbce37cadb9c13a",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.22641447186470032
+          },
+          {
+            "update": 3,
+            "batch": "e64cf2519459da2b8cc16df29360f56e9ddc9e30d2f3e1c918d89fc7249f2a81",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.22158506512641907
+          },
+          {
+            "update": 4,
+            "batch": "c6f568ca47b4c1bb2b87d46c398bee985a08138c65fb7fcd288d9ef6388955df",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23573094606399536
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.2222791463136673
+          },
+          {
+            "update": 800,
+            "loss": 0.21082237362861633
+          },
+          {
+            "update": 1200,
+            "loss": 0.21041065454483032
+          },
+          {
+            "update": 1600,
+            "loss": 0.20970740914344788
+          },
+          {
+            "update": 2000,
+            "loss": 0.20935916900634766
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.8542963271029294,
+        "sha256": "473574d080fec232d4095d488dcff8be55a4a5801df3f2cf9ed8ce8244884b98",
+        "checkpoint_sha256": "498d26756b6da15657ffe9d34913be1620c50e4e1bcfc885906bff88629e9487",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "A",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "47d8abe23b443ca35431c2e09bc0647334b3f61dec135e981ab46f36f557dd3d",
+        "teacher_weights": "ff3976e6e852cad54dcd4f7a8d2aec042df4cbb421b3a74426d2cb9f8c98414d",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "69a79d5c93a2845b31b87f7b672f4a8b07f53511d9f29cf1699f136a62b86c27",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 79.89675606694072,
+        "peak_bytes": 454257152,
+        "visible_devices": "2",
+        "pid": 242816,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "f880d4544249f69059072b711b3d784fe8d6417be922ce9b75e4d93d1c2c3747",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.25108444690704346
+          },
+          {
+            "update": 2,
+            "batch": "e06d17dd249728fb59e78594ec74a5be9b6d767b8cd1f6a02dbce37cadb9c13a",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.22601549327373505
+          },
+          {
+            "update": 3,
+            "batch": "e64cf2519459da2b8cc16df29360f56e9ddc9e30d2f3e1c918d89fc7249f2a81",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.22025835514068604
+          },
+          {
+            "update": 4,
+            "batch": "c6f568ca47b4c1bb2b87d46c398bee985a08138c65fb7fcd288d9ef6388955df",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23395289480686188
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.21784812211990356
+          },
+          {
+            "update": 800,
+            "loss": 0.20611269772052765
+          },
+          {
+            "update": 1200,
+            "loss": 0.20592105388641357
+          },
+          {
+            "update": 1600,
+            "loss": 0.20503120124340057
+          },
+          {
+            "update": 2000,
+            "loss": 0.20462030172348022
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.8371480461210012,
+        "sha256": "8015bceed68b59b47f634c755f8051a1c2f7a0a4665b23b5a09268f26d013a1a",
+        "checkpoint_sha256": "69a79d5c93a2845b31b87f7b672f4a8b07f53511d9f29cf1699f136a62b86c27",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "B",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "6f853a667de0d91295f8c9e5435823ec1ce2962a399ed13a50b513bf81cc41ed",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "82de24a05a5fffc8cf33641a32945a2e97222789a40bc4fe29ab702b12d09430",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 72.40070289792493,
+        "peak_bytes": 454060032,
+        "visible_devices": "2",
+        "pid": 244156,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "e1a7c07edb8a3f6f66d53e209e60e4888ac23728c1fefe47143e92482212299f",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.2573416531085968
+          },
+          {
+            "update": 2,
+            "batch": "23311017217e49b9a8f6eaac3cd363e336aeed2aa860933c00db2f28981c02cd",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.23185758292675018
+          },
+          {
+            "update": 3,
+            "batch": "28f6efe9010a65871ad0ecc3fa7ed06e4c919a07cb28df11d4efc8b8c284b724",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.2399066537618637
+          },
+          {
+            "update": 4,
+            "batch": "e1243d6c4c14f262f42c2ca45c0713cdde047228f2f30b217122ba5a0fe0e7ce",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23346348106861115
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.23147709667682648
+          },
+          {
+            "update": 800,
+            "loss": 0.22031310200691223
+          },
+          {
+            "update": 1200,
+            "loss": 0.2179623544216156
+          },
+          {
+            "update": 1600,
+            "loss": 0.2189594805240631
+          },
+          {
+            "update": 2000,
+            "loss": 0.2168613225221634
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.854269051924348,
+        "sha256": "e47dbeb6f701654b4d04101470e7a253a66e3d7c4df6e20ae20388c708caedea",
+        "checkpoint_sha256": "82de24a05a5fffc8cf33641a32945a2e97222789a40bc4fe29ab702b12d09430",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "B",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "6f853a667de0d91295f8c9e5435823ec1ce2962a399ed13a50b513bf81cc41ed",
+        "teacher_weights": "a403f463bdc6a9b0f8ab1f6c7bf82851b06a0f456ff559d158cd19db6314c1ef",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "f07b1e8e3989a9a49bbacc50624b902a2a1a9e230fd9a15db15b524b83af9b09",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 77.82425278006122,
+        "peak_bytes": 454257152,
+        "visible_devices": "2",
+        "pid": 245361,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "e1a7c07edb8a3f6f66d53e209e60e4888ac23728c1fefe47143e92482212299f",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.2523305118083954
+          },
+          {
+            "update": 2,
+            "batch": "23311017217e49b9a8f6eaac3cd363e336aeed2aa860933c00db2f28981c02cd",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.2292678952217102
+          },
+          {
+            "update": 3,
+            "batch": "28f6efe9010a65871ad0ecc3fa7ed06e4c919a07cb28df11d4efc8b8c284b724",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.2298680543899536
+          },
+          {
+            "update": 4,
+            "batch": "e1243d6c4c14f262f42c2ca45c0713cdde047228f2f30b217122ba5a0fe0e7ce",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23167288303375244
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.22311332821846008
+          },
+          {
+            "update": 800,
+            "loss": 0.21171934902668
+          },
+          {
+            "update": 1200,
+            "loss": 0.2103288620710373
+          },
+          {
+            "update": 1600,
+            "loss": 0.21046136319637299
+          },
+          {
+            "update": 2000,
+            "loss": 0.20921830832958221
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.8193143839016557,
+        "sha256": "ec6c6cc2d84aaa374f6b61eabf5dcc0080ed1a47a48c0832ca2f880f621c36e2",
+        "checkpoint_sha256": "f07b1e8e3989a9a49bbacc50624b902a2a1a9e230fd9a15db15b524b83af9b09",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "C",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "57a16ce895d6fe08b9db58d0fc5792056d52ea76ac06fc128632eb58dc9a6a74",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "cd02c588942681cfcc048a5cfc888263adcc89ad16f8c2de8e93791ceb0eaa8f",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 68.2067566649057,
+        "peak_bytes": 454060032,
+        "visible_devices": "2",
+        "pid": 246618,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "064309fa32fb4f7229397b8829155a7063ce75bf4fbb81374c4e490f471f1304",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.25161001086235046
+          },
+          {
+            "update": 2,
+            "batch": "326a461d81ad9778fee4b146f04ba7beeff9c4a5938dc0520aadd2a2cacf26bb",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.23143379390239716
+          },
+          {
+            "update": 3,
+            "batch": "93bb60263fa759534c60a4c3bc9299b1939246467a7acbf999e8913f0d33e1a0",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.22519551217556
+          },
+          {
+            "update": 4,
+            "batch": "6e0bd15e6633f21346974ae4cbb32f6b2310b601ecab1feb46143d63a4d613c9",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23720070719718933
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.22173045575618744
+          },
+          {
+            "update": 800,
+            "loss": 0.20981471240520477
+          },
+          {
+            "update": 1200,
+            "loss": 0.2097601592540741
+          },
+          {
+            "update": 1600,
+            "loss": 0.208914652466774
+          },
+          {
+            "update": 2000,
+            "loss": 0.20863834023475647
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.842470274772495,
+        "sha256": "7def1236397aeae296ffda1c35f5d3a9f446f015126bc1fc4e4988f4cb0cd979",
+        "checkpoint_sha256": "cd02c588942681cfcc048a5cfc888263adcc89ad16f8c2de8e93791ceb0eaa8f",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "C",
+        "seed": 2026,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "57a16ce895d6fe08b9db58d0fc5792056d52ea76ac06fc128632eb58dc9a6a74",
+        "teacher_weights": "b628d0ba876ab3b637b3db8c4860d27a9e17e03016b3b2f7fdb7babb75b0be0f",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "cbd5147675a3818e15485a2986260a1d39b15d6c7d99687f236a4182f9798200",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 74.61220166599378,
+        "peak_bytes": 454257152,
+        "visible_devices": "2",
+        "pid": 247779,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "064309fa32fb4f7229397b8829155a7063ce75bf4fbb81374c4e490f471f1304",
+            "rng_before": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+            "rng_after": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "loss": 0.24900168180465698
+          },
+          {
+            "update": 2,
+            "batch": "326a461d81ad9778fee4b146f04ba7beeff9c4a5938dc0520aadd2a2cacf26bb",
+            "rng_before": "f4be74e8621d2a40e76d6b9f49b189ee1948bb01b6938b7222d0f142f08ae620",
+            "rng_after": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "loss": 0.22929292917251587
+          },
+          {
+            "update": 3,
+            "batch": "93bb60263fa759534c60a4c3bc9299b1939246467a7acbf999e8913f0d33e1a0",
+            "rng_before": "1cf12495920fbcfe1a5256c5d4cc9c2e10c8cb69989ed5ef0eb46fc7699e3b42",
+            "rng_after": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "loss": 0.22370855510234833
+          },
+          {
+            "update": 4,
+            "batch": "6e0bd15e6633f21346974ae4cbb32f6b2310b601ecab1feb46143d63a4d613c9",
+            "rng_before": "5d9183241424a4065cf31b9c25f48b31036d9caf8342de28972c5e14e1f47b80",
+            "rng_after": "c9bc3a051240b9c7dcaa9ce0fc1e62ffec5473b9f77a7033628eb8b5c289b418",
+            "loss": 0.23438450694084167
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.21755753457546234
+          },
+          {
+            "update": 800,
+            "loss": 0.2055387794971466
+          },
+          {
+            "update": 1200,
+            "loss": 0.20554481446743011
+          },
+          {
+            "update": 1600,
+            "loss": 0.20458434522151947
+          },
+          {
+            "update": 2000,
+            "loss": 0.2040286809206009
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.828454288188368,
+        "sha256": "4ff04d5d71bbaac4533d4eb6d1ddf5dabdb32cae394e2571e6e38b6503ed9d3b",
+        "checkpoint_sha256": "cbd5147675a3818e15485a2986260a1d39b15d6c7d99687f236a4182f9798200",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "A",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "47d8abe23b443ca35431c2e09bc0647334b3f61dec135e981ab46f36f557dd3d",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "28cb5d275ecd210b94409bd75fa6ed69b43381ef3ea6502e547d88f606cb90af",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 73.44665779173374,
+        "peak_bytes": 454060032,
+        "visible_devices": "3",
+        "pid": 241466,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "f880d4544249f69059072b711b3d784fe8d6417be922ce9b75e4d93d1c2c3747",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.25477269291877747
+          },
+          {
+            "update": 2,
+            "batch": "e06d17dd249728fb59e78594ec74a5be9b6d767b8cd1f6a02dbce37cadb9c13a",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.22643789649009705
+          },
+          {
+            "update": 3,
+            "batch": "e64cf2519459da2b8cc16df29360f56e9ddc9e30d2f3e1c918d89fc7249f2a81",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.22159746289253235
+          },
+          {
+            "update": 4,
+            "batch": "c6f568ca47b4c1bb2b87d46c398bee985a08138c65fb7fcd288d9ef6388955df",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.23581063747406006
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.22225648164749146
+          },
+          {
+            "update": 800,
+            "loss": 0.21082022786140442
+          },
+          {
+            "update": 1200,
+            "loss": 0.21039700508117676
+          },
+          {
+            "update": 1600,
+            "loss": 0.20970824360847473
+          },
+          {
+            "update": 2000,
+            "loss": 0.20929081737995148
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.854246234986931,
+        "sha256": "add8ea56d1918159ecd188ea0aa8c5947e9eef66e66ae54b2ef90374a5344d45",
+        "checkpoint_sha256": "28cb5d275ecd210b94409bd75fa6ed69b43381ef3ea6502e547d88f606cb90af",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "A",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "47d8abe23b443ca35431c2e09bc0647334b3f61dec135e981ab46f36f557dd3d",
+        "teacher_weights": "ff3976e6e852cad54dcd4f7a8d2aec042df4cbb421b3a74426d2cb9f8c98414d",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "5921bebc3e4f4f111a743607ad22acb6b3e8c14adb99f12e898fb8c923bdf39b",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 78.30883858306333,
+        "peak_bytes": 454257152,
+        "visible_devices": "3",
+        "pid": 242757,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "f880d4544249f69059072b711b3d784fe8d6417be922ce9b75e4d93d1c2c3747",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.25110554695129395
+          },
+          {
+            "update": 2,
+            "batch": "e06d17dd249728fb59e78594ec74a5be9b6d767b8cd1f6a02dbce37cadb9c13a",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.22608289122581482
+          },
+          {
+            "update": 3,
+            "batch": "e64cf2519459da2b8cc16df29360f56e9ddc9e30d2f3e1c918d89fc7249f2a81",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.22022895514965057
+          },
+          {
+            "update": 4,
+            "batch": "c6f568ca47b4c1bb2b87d46c398bee985a08138c65fb7fcd288d9ef6388955df",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.2340938150882721
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.21785426139831543
+          },
+          {
+            "update": 800,
+            "loss": 0.20610299706459045
+          },
+          {
+            "update": 1200,
+            "loss": 0.2059120088815689
+          },
+          {
+            "update": 1600,
+            "loss": 0.20503002405166626
+          },
+          {
+            "update": 2000,
+            "loss": 0.2045753300189972
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.9959330051206052,
+        "sha256": "c2e8565f1d429e2efe4239874f61f4b742a34e9eb73a97f8ed6d590d424bc67b",
+        "checkpoint_sha256": "5921bebc3e4f4f111a743607ad22acb6b3e8c14adb99f12e898fb8c923bdf39b",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "B",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "6f853a667de0d91295f8c9e5435823ec1ce2962a399ed13a50b513bf81cc41ed",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "8923d77b96404bfc956cf8aa1f5739da2ad4426fc2fb39a3226ddba5ac0c37f1",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 77.5105515671894,
+        "peak_bytes": 454060032,
+        "visible_devices": "3",
+        "pid": 244035,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "e1a7c07edb8a3f6f66d53e209e60e4888ac23728c1fefe47143e92482212299f",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.2574306130409241
+          },
+          {
+            "update": 2,
+            "batch": "23311017217e49b9a8f6eaac3cd363e336aeed2aa860933c00db2f28981c02cd",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.23167532682418823
+          },
+          {
+            "update": 3,
+            "batch": "28f6efe9010a65871ad0ecc3fa7ed06e4c919a07cb28df11d4efc8b8c284b724",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.23980578780174255
+          },
+          {
+            "update": 4,
+            "batch": "e1243d6c4c14f262f42c2ca45c0713cdde047228f2f30b217122ba5a0fe0e7ce",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.23330073058605194
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.23147845268249512
+          },
+          {
+            "update": 800,
+            "loss": 0.22029505670070648
+          },
+          {
+            "update": 1200,
+            "loss": 0.2179267853498459
+          },
+          {
+            "update": 1600,
+            "loss": 0.21891352534294128
+          },
+          {
+            "update": 2000,
+            "loss": 0.2168305516242981
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.815707400906831,
+        "sha256": "7d5254afe5bf8d6493569e4e71ba0b4368a4d98431a46ca602b33991df2379c4",
+        "checkpoint_sha256": "8923d77b96404bfc956cf8aa1f5739da2ad4426fc2fb39a3226ddba5ac0c37f1",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "B",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "6f853a667de0d91295f8c9e5435823ec1ce2962a399ed13a50b513bf81cc41ed",
+        "teacher_weights": "a403f463bdc6a9b0f8ab1f6c7bf82851b06a0f456ff559d158cd19db6314c1ef",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "9ea9ca74315ed55ef38510a21afad958a8d8d875efc2e5c658343d3fd30d5f15",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 74.40253942459822,
+        "peak_bytes": 454257152,
+        "visible_devices": "3",
+        "pid": 245293,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "e1a7c07edb8a3f6f66d53e209e60e4888ac23728c1fefe47143e92482212299f",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.25239330530166626
+          },
+          {
+            "update": 2,
+            "batch": "23311017217e49b9a8f6eaac3cd363e336aeed2aa860933c00db2f28981c02cd",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.22916865348815918
+          },
+          {
+            "update": 3,
+            "batch": "28f6efe9010a65871ad0ecc3fa7ed06e4c919a07cb28df11d4efc8b8c284b724",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.22976729273796082
+          },
+          {
+            "update": 4,
+            "batch": "e1243d6c4c14f262f42c2ca45c0713cdde047228f2f30b217122ba5a0fe0e7ce",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.23162226378917694
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.22316543757915497
+          },
+          {
+            "update": 800,
+            "loss": 0.2117287963628769
+          },
+          {
+            "update": 1200,
+            "loss": 0.2103075236082077
+          },
+          {
+            "update": 1600,
+            "loss": 0.21044126152992249
+          },
+          {
+            "update": 2000,
+            "loss": 0.20921219885349274
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.858844909351319,
+        "sha256": "364d1b60c869ed2b1aa3779a8ce222ab2366d0e295679c4c75ba4588afcc5a9e",
+        "checkpoint_sha256": "9ea9ca74315ed55ef38510a21afad958a8d8d875efc2e5c658343d3fd30d5f15",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "R",
+        "condition": "C",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "57a16ce895d6fe08b9db58d0fc5792056d52ea76ac06fc128632eb58dc9a6a74",
+        "teacher_weights": null,
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "f4d98648c1f8dbddd6e77a50ee131a5f996db60dbd3ff6b947106bb4bf9b3e93",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 76.68428730499,
+        "peak_bytes": 454060032,
+        "visible_devices": "3",
+        "pid": 246567,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "064309fa32fb4f7229397b8829155a7063ce75bf4fbb81374c4e490f471f1304",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.2516484260559082
+          },
+          {
+            "update": 2,
+            "batch": "326a461d81ad9778fee4b146f04ba7beeff9c4a5938dc0520aadd2a2cacf26bb",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.23155704140663147
+          },
+          {
+            "update": 3,
+            "batch": "93bb60263fa759534c60a4c3bc9299b1939246467a7acbf999e8913f0d33e1a0",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.22509825229644775
+          },
+          {
+            "update": 4,
+            "batch": "6e0bd15e6633f21346974ae4cbb32f6b2310b601ecab1feb46143d63a4d613c9",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.2373742014169693
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.22174827754497528
+          },
+          {
+            "update": 800,
+            "loss": 0.2098267376422882
+          },
+          {
+            "update": 1200,
+            "loss": 0.20975491404533386
+          },
+          {
+            "update": 1600,
+            "loss": 0.20893719792366028
+          },
+          {
+            "update": 2000,
+            "loss": 0.20867282152175903
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.8450936749577522,
+        "sha256": "e57646fc89d70f379a7810034b5120bddde893f8b89418e9db80412eada94262",
+        "checkpoint_sha256": "f4d98648c1f8dbddd6e77a50ee131a5f996db60dbd3ff6b947106bb4bf9b3e93",
+        "step": 6000
+      }
+    },
+    {
+      "training": {
+        "domain": "SWAT",
+        "method": "W",
+        "condition": "C",
+        "seed": 2027,
+        "updates": 2000,
+        "initial_step": 4000,
+        "step": 6000,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+        "numeric_plan": "57a16ce895d6fe08b9db58d0fc5792056d52ea76ac06fc128632eb58dc9a6a74",
+        "teacher_weights": "b628d0ba876ab3b637b3db8c4860d27a9e17e03016b3b2f7fdb7babb75b0be0f",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "training_labels_read": false,
+        "sha256": "82c2b83f7ddb7d7264935b7a0e46fccf1db2e58db5dd8c0351e18038ea48ddb2",
+        "device": "NVIDIA A40",
+        "torch_version": "2.12.0+cu130",
+        "cuda_version": "13.0",
+        "seconds": 78.54912343388423,
+        "peak_bytes": 454257152,
+        "visible_devices": "3",
+        "pid": 247825,
+        "trace": [
+          {
+            "update": 1,
+            "batch": "064309fa32fb4f7229397b8829155a7063ce75bf4fbb81374c4e490f471f1304",
+            "rng_before": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+            "rng_after": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "loss": 0.24902845919132233
+          },
+          {
+            "update": 2,
+            "batch": "326a461d81ad9778fee4b146f04ba7beeff9c4a5938dc0520aadd2a2cacf26bb",
+            "rng_before": "f65d654a30cb4aee24f5ee7785607976cd42992b729454d1b6437ac3edecbd60",
+            "rng_after": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "loss": 0.22933822870254517
+          },
+          {
+            "update": 3,
+            "batch": "93bb60263fa759534c60a4c3bc9299b1939246467a7acbf999e8913f0d33e1a0",
+            "rng_before": "851be2d04bbb0ab24b0dfd2cb3685b596217404a3f292382d99c8256b4cac20e",
+            "rng_after": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "loss": 0.2236214578151703
+          },
+          {
+            "update": 4,
+            "batch": "6e0bd15e6633f21346974ae4cbb32f6b2310b601ecab1feb46143d63a4d613c9",
+            "rng_before": "ee07a5aa5d701189b52300fca155f7231eaab9d0dcf81dd9fbd7062261cb2dbf",
+            "rng_after": "5109c58bb39802e18e5aa62e451e134b8c279fffcd92649312242078ba7f2959",
+            "loss": 0.23449556529521942
+          }
+        ],
+        "curve": [
+          {
+            "update": 400,
+            "loss": 0.21753841638565063
+          },
+          {
+            "update": 800,
+            "loss": 0.2055194228887558
+          },
+          {
+            "update": 1200,
+            "loss": 0.20551328361034393
+          },
+          {
+            "update": 1600,
+            "loss": 0.20459479093551636
+          },
+          {
+            "update": 2000,
+            "loss": 0.20407147705554962
+          }
+        ]
+      },
+      "bank": {
+        "start": 608088,
+        "stop": 944856,
+        "points": 336768,
+        "role": "QUERY",
+        "seconds": 2.875241215340793,
+        "sha256": "2ca902d9eb76569d1ac28db1072479e69c79663c9309b99033911bfa4e083391",
+        "checkpoint_sha256": "82c2b83f7ddb7d7264935b7a0e46fccf1db2e58db5dd8c0351e18038ea48ddb2",
+        "step": 6000
+      }
+    }
+  ],
+  "CPU_wall_seconds": 108.96294170618057,
+  "independent_AP_ROC_max_error": 2.220446049250313e-16,
+  "VUS_verification": "Pinned implementation only; no second independent implementation"
+}

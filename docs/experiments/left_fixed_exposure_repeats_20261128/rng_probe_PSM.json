@@ -1,0 +1,30 @@
+{
+  "batch": "fa5632ceeae6196f1202dbd74e30974b0864381c029799ddca0e2e8c36bbbde5",
+  "domain": "PSM",
+  "observations": {
+    "2026": {
+      "rng_start": "a8f02cd10262012d33a1c2be90b4ab03bbf252d62bb11f5371301bcfccc7b1a7",
+      "rng_end": "cc6b14224bebcc82f220db14de8f1b8f88d20bf1c6142cc04070259bd37a1d6d",
+      "loss": 0.748695969581604,
+      "dropout_calls": 21,
+      "first_dropout": {
+        "p": 0.1,
+        "output": "fdeebde8450b94d915c18bbb72f40df8e5dbcc7e0f3d84e5e4de8dbc433575cc"
+      },
+      "state_after": "9ed1f10e9bc1dfa447e3d6ea12475c411f6e70bc98707ecb80a17b715b0c02b0"
+    },
+    "2027": {
+      "rng_start": "68a77a28beca092c5371d84ad1b65793b78a4c15c0ee04800f638140be4eddbb",
+      "rng_end": "5f27edb493c6f2792535b44696a8536b6b0a496fd7c0d0c7ae0af43c18ca6341",
+      "loss": 0.7486631870269775,
+      "dropout_calls": 21,
+      "first_dropout": {
+        "p": 0.1,
+        "output": "863d79e2939dad4a3f74b2d16ba408acf94ceef092982a86ea56768d4a39b3ef"
+      },
+      "state_after": "dbe6223cfd47af5f5d818a16df92f29a46897a8c5a3771bf65284f2abf9cee98"
+    }
+  },
+  "seconds": 5.492024746257812,
+  "device": "NVIDIA A40"
+}

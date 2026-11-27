@@ -1,0 +1,216 @@
+{
+  "folds": {
+    "PSM": {
+      "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+      "scaler": "3d94153b59c3729c0d10311664b9f6e61385b3efddd4b90874235e3235960f7d",
+      "teacher": "b58175ec0f5e11b3d825ec79cd15e4f8300d33a069a96f9bd609cad35fef9b03",
+      "audit_slots": "1071e85f495250d803affeb863260bc3afd406468cea54b2ec135f5397a8f9ee",
+      "conditions": {
+        "A": {
+          "plan_sha256": "fadbd52c5f890fafb38fe02616db8dc5750ad2fd97632edc1660821ae6e3e0eb",
+          "weights_sha256": "a914b94bbbfda9d3029f56417b249fe3b4828962ee7740a5dcfecf9749e8a13b",
+          "changed_from_A": 0,
+          "archived_R": "7739fcc71f8209f5cd8f7cff8756329c56be7576af1ad7cbb1bdab8df0f936f5",
+          "archived_W": "fd05e9a38f9bb3c73ee5e8c2dda217981c89a7895ec3269dfbee5f16cacb35b8"
+        },
+        "B": {
+          "plan_sha256": "442620e5c69f9f641c44b5004368e356a8e798d37367f5f0e4409221ba3af4e1",
+          "weights_sha256": "1888d9c3cb97805e53bf6fe263b34f1ee414cb21c49db7dff4fbcb53b61135dc",
+          "changed_from_A": 3200,
+          "archived_R": "83bf873b68e5d6726d37b1e7612e955de8348d4ddb5f97be32b0bebf78d0d08b",
+          "archived_W": "b8ffac0c689e89e34da6741f99fcb3a00d5c08134157e98cbbf93a54e7176931"
+        },
+        "C": {
+          "plan_sha256": "f4c958946c78a21d823e87117b35c18e478d8ff6a1532eb999b597e41a9c4309",
+          "weights_sha256": "b13f4c4527e873f42e24d89e63ebd2b6f21f4a34a40372ed0c30b5be6d4960a6",
+          "changed_from_A": 3199,
+          "archived_R": "353e2edc95ec0f35301f2372b6030bd410f4c7c4152fa3190316b63c9180ab97",
+          "archived_W": "6dd9aec6b941420a31c555f31e968dfdf4d6572a873402b1b8e1b2378b8c20ae"
+        }
+      }
+    },
+    "SWAT": {
+      "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+      "scaler": "ce405a0e9727f59a319acefc578187954d982885e48d81b7524792d735bd2748",
+      "teacher": "477ce188b65ccb0283371535e72365b9076ceacd790afe6a27b70a25589d41b8",
+      "audit_slots": "1071e85f495250d803affeb863260bc3afd406468cea54b2ec135f5397a8f9ee",
+      "conditions": {
+        "A": {
+          "plan_sha256": "47d8abe23b443ca35431c2e09bc0647334b3f61dec135e981ab46f36f557dd3d",
+          "weights_sha256": "ff3976e6e852cad54dcd4f7a8d2aec042df4cbb421b3a74426d2cb9f8c98414d",
+          "changed_from_A": 0,
+          "archived_R": "4babbcf1e21451e81fa67d6462016bddf572135d32abbb95310cae42bad47c76",
+          "archived_W": "4459cf5afab78b694d6ff882b1b9307833fce061cc64a91149cc055fed60ff3c"
+        },
+        "B": {
+          "plan_sha256": "6f853a667de0d91295f8c9e5435823ec1ce2962a399ed13a50b513bf81cc41ed",
+          "weights_sha256": "a403f463bdc6a9b0f8ab1f6c7bf82851b06a0f456ff559d158cd19db6314c1ef",
+          "changed_from_A": 3200,
+          "archived_R": "a91f9724cb2bcb9b6cfef1002070bfc36c85a6dc06cad9acb56da0e970500a56",
+          "archived_W": "86c69f6ad12a54a9cae71b41fd862c87d88314d6bea3175d8cab0fbd1364cfac"
+        },
+        "C": {
+          "plan_sha256": "57a16ce895d6fe08b9db58d0fc5792056d52ea76ac06fc128632eb58dc9a6a74",
+          "weights_sha256": "b628d0ba876ab3b637b3db8c4860d27a9e17e03016b3b2f7fdb7babb75b0be0f",
+          "changed_from_A": 3200,
+          "archived_R": "517a8a9498d66fb812a4c210d2396475c0fed71007449bc089731ca519c49f0f",
+          "archived_W": "08b2cdbb26934a0db03dea1a21a1c16edb77ab4b3eb286a18e0c5ae7bb03a00c"
+        }
+      }
+    }
+  },
+  "archive_commit": "20331f57939693cc34d2ab7128504713752fd130",
+  "sampling_and_teacher_seed": 2025,
+  "adaptation_seeds": [
+    2026,
+    2027
+  ],
+  "budget_updates": 2000,
+  "jobs": [
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "A",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "A",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "B",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "B",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "C",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "C",
+      "seed": 2026
+    },
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "A",
+      "seed": 2027
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "A",
+      "seed": 2027
+    },
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "B",
+      "seed": 2027
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "B",
+      "seed": 2027
+    },
+    {
+      "domain": "PSM",
+      "method": "R",
+      "condition": "C",
+      "seed": 2027
+    },
+    {
+      "domain": "PSM",
+      "method": "W",
+      "condition": "C",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "A",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "A",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "B",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "B",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "C",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "C",
+      "seed": 2026
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "A",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "A",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "B",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "B",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "R",
+      "condition": "C",
+      "seed": 2027
+    },
+    {
+      "domain": "SWAT",
+      "method": "W",
+      "condition": "C",
+      "seed": 2027
+    }
+  ],
+  "query_labels_loaded": false
+}

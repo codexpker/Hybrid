@@ -1,0 +1,26 @@
+{
+  "planned": 24,
+  "completed": 24,
+  "independently_hash_verified_checkpoints": 24,
+  "independently_hash_verified_query_banks": 24,
+  "successful_training_seconds": 1810.7532325191423,
+  "successful_GPU_scoring_seconds": 49.138455014210194,
+  "four_lane_wall_seconds": {
+    "PSM-2026": 494.66874647140503,
+    "PSM-2027": 491.21803975105286,
+    "SWAT-2026": 503.6872766017914,
+    "SWAT-2027": 511.5205867290497
+  },
+  "lane_overhead_seconds": 141.20296201994643,
+  "successful_preflight_seconds": {
+    "PSM": 5.492024746257812,
+    "SWAT": 6.6178647060878575
+  },
+  "failed_GPU_seconds": 0.0,
+  "all_lane_and_probe_seconds": 2013.2045390056446,
+  "accounted_A40_hours": 0.5592234830571235,
+  "A40_hours_limit": 2,
+  "artifact_bytes": 666602578,
+  "durable_copy_seconds": 16.7570832,
+  "location": "Author-managed research archive, left_fixed_exposure_repeats_20261128_v1; public repository contains receipts and metrics only"
+}
