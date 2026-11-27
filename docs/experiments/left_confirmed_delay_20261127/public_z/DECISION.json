@@ -1,0 +1,57 @@
+{
+  "minimum_AP_increment": 0.005,
+  "practical": false,
+  "independent_confirmation": false,
+  "outcome": "close",
+  "practical_domains": [],
+  "AP_contrasts": [
+    {
+      "domain": "PSM",
+      "contrast": "D-A",
+      "AP": -0.14920645598366888
+    },
+    {
+      "domain": "PSM",
+      "contrast": "D-B",
+      "AP": 0.05237417498695762
+    },
+    {
+      "domain": "PSM",
+      "contrast": "D-C",
+      "AP": 0.027044865174951527
+    },
+    {
+      "domain": "SWAT",
+      "contrast": "D-A",
+      "AP": -0.02549213622107893
+    },
+    {
+      "domain": "SWAT",
+      "contrast": "D-B",
+      "AP": -0.025433713721901174
+    },
+    {
+      "domain": "SWAT",
+      "contrast": "D-C",
+      "AP": -0.018289121688997878
+    },
+    {
+      "domain": "SMD",
+      "contrast": "D-A",
+      "AP": -0.1929520301452901
+    },
+    {
+      "domain": "SMD",
+      "contrast": "D-B",
+      "AP": 0.00019493177837845706
+    },
+    {
+      "domain": "SMD",
+      "contrast": "D-C",
+      "AP": -0.0008796922540236658
+    }
+  ],
+  "metric_wall_seconds": 84.84271763218567,
+  "AP_ROC_max_check_error": 2.220446049250313e-16,
+  "workers": 6
+}

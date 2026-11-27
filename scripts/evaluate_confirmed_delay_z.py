@@ -274,7 +274,7 @@ def metrics_job(task):
             int(idx[-1]) + 1,
             len(idx),
         )
-        computed = prior.independent_check(y, score)
+        computed = np.asarray(prior.independent_check(y, score))
         error = float(np.max(np.abs(computed - [row["AP"], row["ROC_AUC"]])))
         assert error < 1e-10
         result = {key: row[key] for key in M}

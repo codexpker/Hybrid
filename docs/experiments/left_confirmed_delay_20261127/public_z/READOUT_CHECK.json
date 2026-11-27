@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "entities": 30,
+  "points": 1226304,
+  "joint_score_values": 3678912,
+  "native_cache_exact": true,
+  "independent_tail_recomposition_exact": true,
+  "covers_C_ge_D_at_all_blocks": true,
+  "point_level_labels_read": false,
+  "framework_forwards": 0,
+  "seconds": 1.2226638360880315
+}

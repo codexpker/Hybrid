@@ -1,0 +1,39 @@
+{
+  "domain": "SWAT",
+  "entity": "SWAT",
+  "sha256": "60dd747ff803c6f7877059a70ee6f9b930075d328f2e356ef16ad461a36e4027",
+  "old_score_sha256": "6e343075f7d5db28d76aeb3cb4fb401ac120ffbf87cb8769e271fc540286b90f",
+  "source_reference_sha256": "08641cac044dc23891a25a3ada85019c1b10fffa3c25dbda618ad6b3e432ace4",
+  "native_model_sha256": "929c31509dd0c0a5857edfe2a7d72dd3a76b1e04f01aa4f64455193ce9abc14f",
+  "labels_read": false,
+  "start": 495576,
+  "stop": 944856,
+  "points": 449280,
+  "input_sha256": "d6c928482bf1f08817a4b96c6ff3eee9e2cec5534ed9bd259133b92520771947",
+  "record": "SWAT/original",
+  "scaler_mean_sha256": "e708243087b497db639fd76f1db31cd848750af0dab48b37cd162e0092268a0a",
+  "scaler_scale_sha256": "a8a13a1fd9f763480ff7b6fdd25b54ad3d7862253ad4f694d64dd18a82ac4939",
+  "role_start": 495000,
+  "role_stop": 944919,
+  "excluded_prefix": 576,
+  "excluded_tail": 63,
+  "windows": 2340,
+  "blocks": 7020,
+  "history_no_reference_windows": 185,
+  "abstained_blocks": 788,
+  "no_legal_alternative_blocks": 788,
+  "eligible_blocks_without_confirmation": 5857,
+  "relation_nonzero": {
+    "B": 6232,
+    "C": 4863,
+    "D": 375
+  },
+  "exceeds_native_tail_points": {
+    "B": 232849,
+    "C": 153932,
+    "D": 20647
+  },
+  "relation_seconds": 12.055619157850742,
+  "composition_seconds": 0.08320835093036294,
+  "added_test_forwards": 0
+}

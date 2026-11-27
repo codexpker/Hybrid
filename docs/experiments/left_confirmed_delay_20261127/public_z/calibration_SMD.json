@@ -1,0 +1,15 @@
+{
+  "domain": "SMD",
+  "role": "SOURCE SELECT",
+  "windows": 1024,
+  "native_forward_calls": 32,
+  "checkpoint": "03939add13b1cfff065f0bc9234a33defd0051479261d2b56fa2c6e96c91ac60",
+  "plan_sha256": "90212521e0a5ceca0d374649dbde7809d4842c10301dd2aa61957fa7f7e9b6ab",
+  "source_catalog_sha256": "a53cff3c45a17d90fb94d238f740463be436510cfd230a50be1cacec7d19ed41",
+  "sha256": "426942f1b1e8c7ddd6478cdaa430be144cf442697a42c8793f8fb34a1f9fe225",
+  "labels_read": false,
+  "total_seconds": 12.966770282946527,
+  "native_inference_seconds": 0.3107443950138986,
+  "relation_seconds": 12.42951109400019,
+  "training_updates": 0
+}

@@ -8,7 +8,7 @@
 
 连续片段留出比较已完成 PSM、SWaT 和完整 SMD28 的三个匹配历史臂。PSM 正常 N 及 SMD 冻结 Z 给出官方历史相对两条留出对照的有限正项。三域同预算原生 LEFT 的 N 仍有更高 AP。非重叠历史替换和现有受控对照未建立正确历史对应关系或微弱异常、时滞机制的稳定收益。固定 TimesFM 条件化及留出重建系列在 `3a849977f7471a62ad679cf4022746e9764b0da0` 收口，证据范围为公开 Z、正常 N 和固定机制对照。 [留出结果与成本](experiments/left_holdout_history_20261127/RESULTS.md)
 
-一个独立的 CPU 原型比较正常参考滞后与双半块确认的替代滞后。已知生成关系的正对照通过，同历史的绝对残差在现有合成银行也已接近满分。确认判据尚无可归因增量，当前停在原型阶段，保留多源 LEFT 为完整检测基座。 [数学定义、可执行探针和取舍](experiments/left_confirmed_delay_20261127/PROBE.md)
+独立 CPU 原型的已知关系正对照通过，同历史绝对残差在原合成银行已接近满分，原门槛未通过且在两组不可达。随后四臂冻结公共 Z 验证覆盖 PSM、SWaT 和全部 SMD28。PSM 的确认时延相对附加残差及无确认分支有局部正项，完整方法在三域 AP 均低于原生 LEFT。依事前实用收益判据结束该候选，主要研究目标和多源 LEFT 基座仍由完整检测证据组织。 [合成探针](experiments/left_confirmed_delay_20261127/PROBE.md) · [公共 Z 四臂结果](experiments/left_confirmed_delay_20261127/PUBLIC_Z_RESULTS.md)
 
 此前的固定 Pearson Self-lag/Cross-lag 关系预测头及关系误差评分已结束扩展。其256点历史、192点当前窗口及独立受控结果保留于[历史结果](experiments/left_history_relation_20261126/RESULTS.md)，不并入新架构的分数或贡献。
 

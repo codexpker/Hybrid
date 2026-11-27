@@ -1,0 +1,39 @@
+{
+  "domain": "SMD",
+  "entity": "machine-1-1",
+  "sha256": "d51bbd360a255fdd4f6bd3cf923bb84a0b5cb64a9f70737ca9f10e9242f2e038",
+  "old_score_sha256": "b60437036603b12bd769c34e99dc5e3f02bf684517becabb8b4984ea7f626a3b",
+  "source_reference_sha256": "426942f1b1e8c7ddd6478cdaa430be144cf442697a42c8793f8fb34a1f9fe225",
+  "native_model_sha256": "03939add13b1cfff065f0bc9234a33defd0051479261d2b56fa2c6e96c91ac60",
+  "labels_read": false,
+  "start": 576,
+  "stop": 28416,
+  "points": 27840,
+  "input_sha256": "bfe868076292aa50c4eaad1148a8f7acaf38db222039a128ca719cef6e5b70d3",
+  "record": "machine-1-1/test",
+  "scaler_mean_sha256": "47df246bc5f0027d4160cf337af29aca1c8ce1c33f295523f04d9fb715e551ad",
+  "scaler_scale_sha256": "75874ee3b486fe34a3fa0a765c899e5e4ce08fc599bbcd485f8eb61d1857f42a",
+  "role_start": 0,
+  "role_stop": 28479,
+  "excluded_prefix": 576,
+  "excluded_tail": 63,
+  "windows": 145,
+  "blocks": 435,
+  "history_no_reference_windows": 2,
+  "abstained_blocks": 8,
+  "no_legal_alternative_blocks": 8,
+  "eligible_blocks_without_confirmation": 292,
+  "relation_nonzero": {
+    "B": 427,
+    "C": 374,
+    "D": 135
+  },
+  "exceeds_native_tail_points": {
+    "B": 7300,
+    "C": 8333,
+    "D": 4582
+  },
+  "relation_seconds": 1.7085059401579201,
+  "composition_seconds": 0.03657703474164009,
+  "added_test_forwards": 0
+}

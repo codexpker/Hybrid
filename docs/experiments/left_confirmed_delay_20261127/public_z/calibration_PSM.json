@@ -1,0 +1,15 @@
+{
+  "domain": "PSM",
+  "role": "SOURCE SELECT",
+  "windows": 1024,
+  "native_forward_calls": 32,
+  "checkpoint": "ab5794cff3e65ce8c8f783c6b74d2e00ef13d21e0fdc684a3259b007ad619db5",
+  "plan_sha256": "8d2c3ceeb43da12f6a62460dbeab9c043651a0b213869e4cd2e6badda5848649",
+  "source_catalog_sha256": "2acdcfbf0eb5d17618f176b5fde628dbad07ac38319f4938cfb58ab92b041e6e",
+  "sha256": "06bba9ebd77058757c20d20d15e61c2c01aca13af588cb74f94071bfc7f76227",
+  "labels_read": false,
+  "total_seconds": 8.997385868337005,
+  "native_inference_seconds": 0.9070873674936593,
+  "relation_seconds": 7.9500589412637055,
+  "training_updates": 0
+}

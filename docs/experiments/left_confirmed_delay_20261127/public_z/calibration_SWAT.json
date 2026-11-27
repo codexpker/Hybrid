@@ -1,0 +1,15 @@
+{
+  "domain": "SWAT",
+  "role": "SOURCE SELECT",
+  "windows": 1024,
+  "native_forward_calls": 32,
+  "checkpoint": "929c31509dd0c0a5857edfe2a7d72dd3a76b1e04f01aa4f64455193ce9abc14f",
+  "plan_sha256": "f07d2aff11d10f29ddb4ef104cff3c5c4f310e1df32841d302e2506278686d21",
+  "source_catalog_sha256": "2acdcfbf0eb5d17618f176b5fde628dbad07ac38319f4938cfb58ab92b041e6e",
+  "sha256": "08641cac044dc23891a25a3ada85019c1b10fffa3c25dbda618ad6b3e432ace4",
+  "labels_read": false,
+  "total_seconds": 10.791624838020653,
+  "native_inference_seconds": 0.31954640056937933,
+  "relation_seconds": 10.347397083416581,
+  "training_updates": 0
+}

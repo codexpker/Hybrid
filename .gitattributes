@@ -90,3 +90,6 @@ docs/experiments/left_timesfm_hidden_20261126/**/*.patch -text whitespace=-blank
 docs/experiments/left_holdout_history_20261127/evidence/** -text whitespace=cr-at-eol
 scripts/*left_holdout* -text whitespace=cr-at-eol
 src/hybrid_tsad/left_holdout*.py -text whitespace=cr-at-eol
+
+# Seal receipt digests for the confirmed-delay public Z comparison.
+docs/experiments/left_confirmed_delay_20261127/public_z/** -text whitespace=cr-at-eol

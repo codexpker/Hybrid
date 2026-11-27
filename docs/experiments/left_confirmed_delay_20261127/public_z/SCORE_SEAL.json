@@ -1,0 +1,277 @@
+{
+  "labels_read": false,
+  "entities": [
+    [
+      "PSM",
+      "PSM"
+    ],
+    [
+      "SWAT",
+      "SWAT"
+    ],
+    [
+      "SMD",
+      "machine-1-1"
+    ],
+    [
+      "SMD",
+      "machine-1-2"
+    ],
+    [
+      "SMD",
+      "machine-1-3"
+    ],
+    [
+      "SMD",
+      "machine-1-4"
+    ],
+    [
+      "SMD",
+      "machine-1-5"
+    ],
+    [
+      "SMD",
+      "machine-1-6"
+    ],
+    [
+      "SMD",
+      "machine-1-7"
+    ],
+    [
+      "SMD",
+      "machine-1-8"
+    ],
+    [
+      "SMD",
+      "machine-2-1"
+    ],
+    [
+      "SMD",
+      "machine-2-2"
+    ],
+    [
+      "SMD",
+      "machine-2-3"
+    ],
+    [
+      "SMD",
+      "machine-2-4"
+    ],
+    [
+      "SMD",
+      "machine-2-5"
+    ],
+    [
+      "SMD",
+      "machine-2-6"
+    ],
+    [
+      "SMD",
+      "machine-2-7"
+    ],
+    [
+      "SMD",
+      "machine-2-8"
+    ],
+    [
+      "SMD",
+      "machine-2-9"
+    ],
+    [
+      "SMD",
+      "machine-3-1"
+    ],
+    [
+      "SMD",
+      "machine-3-10"
+    ],
+    [
+      "SMD",
+      "machine-3-11"
+    ],
+    [
+      "SMD",
+      "machine-3-2"
+    ],
+    [
+      "SMD",
+      "machine-3-3"
+    ],
+    [
+      "SMD",
+      "machine-3-4"
+    ],
+    [
+      "SMD",
+      "machine-3-5"
+    ],
+    [
+      "SMD",
+      "machine-3-6"
+    ],
+    [
+      "SMD",
+      "machine-3-7"
+    ],
+    [
+      "SMD",
+      "machine-3-8"
+    ],
+    [
+      "SMD",
+      "machine-3-9"
+    ]
+  ],
+  "inputs": [
+    {
+      "domain": "PSM",
+      "entity": "PSM",
+      "receipt_sha256": "0f5b86fba8feb7d95a6a9462b3fc9175f31dc0de2bfc50ebed27a2bbb87620cb"
+    },
+    {
+      "domain": "SWAT",
+      "entity": "SWAT",
+      "receipt_sha256": "cfa6449db2ca5d25c646f4c02374b3add6768765e3ffa9d051f50af68367e35c"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-1",
+      "receipt_sha256": "ff7a08d71d46b2369891ebd13c3085767b1d4fe03aeddc0ad78a19f73c0e5d82"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-2",
+      "receipt_sha256": "601132883b26465589cc7fe23448d08b3a7905488a705c10d815134cb917c155"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-3",
+      "receipt_sha256": "bf74ac25ab2094c6743d5fa8878d60803ba39d4c468679e60cca1c9ad5814e9d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-4",
+      "receipt_sha256": "42f5a9187f7b80c93e2a0127d482cfc53a575727b1077dd555aafc3fe994b055"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-5",
+      "receipt_sha256": "312126af45874089ca91c042be76e7b781abc9ca51e084140171d5473763be80"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-6",
+      "receipt_sha256": "4479a41cc4d12737bd0ad82316d01a740686c58483d2bc94a7b3f4ca341ebe53"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-7",
+      "receipt_sha256": "1401c0392796e5844948a6ee222bf1cc7b7ad08636820e6be3f24c440d66883e"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-1-8",
+      "receipt_sha256": "4248787101e93fc8d642d087b5a058e91b357b4200d8984a2e02f2f013a6cca8"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-1",
+      "receipt_sha256": "15278eeb83854a4bb22655cd63c8eb47aea26a5efd484d2d3645e388c54a2c03"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-2",
+      "receipt_sha256": "2a5f6ecc6584ed463505d54198cec3e58acfd8b96746a8f1a3c706879dbca91f"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-3",
+      "receipt_sha256": "fa376e881a2c7a36305cc59074f1e3e995d459695eb0e159f765a88936d45980"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-4",
+      "receipt_sha256": "643fe7ba005cc7470eb4ef9b177298ccdd9cb815bb763e8c6a22eaafe9094330"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-5",
+      "receipt_sha256": "d27f3a6805be7bf5c9e8ea066c66dc8650bb07f6911984b4587486646fec65c1"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-6",
+      "receipt_sha256": "a412433a2d05777a1fc9d27fe67ef7b3402b1c2f009b4b6229ac454d91f22148"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-7",
+      "receipt_sha256": "ef8c83eba883c81b33f2eb48d73837b71b124fad08ddcb8c28a8fc65328de58f"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-8",
+      "receipt_sha256": "4b78d26c2e2f3ebfe75da1dc16f5bffc2b74ef6414fb453cf244776a743f4eb4"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-2-9",
+      "receipt_sha256": "05f74e519972244676d97b7044effacd00969782bb0a47fc9037c26b98f60bbd"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-1",
+      "receipt_sha256": "88c8e0138b2f9ae93b7328839a96ea0aae6a0f7bb397f164d4c487b0fc8d3270"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-10",
+      "receipt_sha256": "b7e416e6682b9a6d5cc19156e2fcc470cb8503b2c046ad633fc1814463bb32d1"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-11",
+      "receipt_sha256": "219b124e582b9479c47936849470e8d6ed073bbd74607e6099526a741f1c02e3"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-2",
+      "receipt_sha256": "17400f535af139085c9421568fb8e4cd675a8a6157f195ad0a2d760ce132117d"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-3",
+      "receipt_sha256": "9439fc9323f4893160faab590a48fd41cbe1136d75296888b33416c7d136908f"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-4",
+      "receipt_sha256": "c5961d310288853a349fd250c2250a1f38efbe2faf023ba3a60eca19b9d57d01"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-5",
+      "receipt_sha256": "00c67832c2ed5910ee801f590475257b56db41dd4d64f8757f3b59549812c961"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-6",
+      "receipt_sha256": "203e5306d03cf95483d690ee2f2aa12ad35a388f81e83e6f2ee17f1c32bcbc8a"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-7",
+      "receipt_sha256": "260b9f8d73ea379eddad1cc6b08592269057a162ab8b0d070c63757ea230402c"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-8",
+      "receipt_sha256": "6f77ea9568a38c795ba6f06bffdaaed3659cccc9e07e7c451cbccc8910b12164"
+    },
+    {
+      "domain": "SMD",
+      "entity": "machine-3-9",
+      "receipt_sha256": "673579cdb464ccdb064373b66032e67b779586ac473f9e9ad9e2bd21a5d39f2e"
+    }
+  ]
+}
