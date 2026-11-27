@@ -1,6 +1,89 @@
-# Method index for the frozen evidence study
+# 当前完整方法设计
 
-The active draft defines the executed native LEFT detector, its normal-source and target-adaptation protocols, and the fixed window-reliability comparison. The contribution decision retains window weighting as a strong control and limits the manuscript claim to measured transfer, adaptation and exposure behavior. The following sections preserve the earlier method definitions. [Active draft](draft.md) · [Frozen method and contribution scope](../../docs/experiments/left_evidence_freeze_20261128/README.md)
+**状态**　方法设计待验证，未经训练与检测。第二篇维持公开多变量混合无标签 TSAD 方法论文。现有 LEFT 实证稿、PDF 和适配结果保留于 [c65c81d 完整快照](https://github.com/codexpker/Hybrid/tree/c65c81d0d0a4df3db204225714e9a39984158dc3)，作为基线与探索证据。
+
+## 科学问题和可识别范围
+
+**在目标异常标签不可用时，能否用时间上分离的目标块中的双向时频共同改善，识别值得保留的混合适配更新，从而改善独立 QUERY 上的异常检测？** 这里测试更新能否在隔离足迹上重现，关注同一时间块能否同时支持两个循环方向。跨度足够长的正常变化可能重复出现，局部异常带来的拟合收益可能只留在少数时间块。这是待检验假设。时间块彼此分离仍可能共享工况或异常，持续异常也可能在多数块重复。
+
+- **存在实际检测问题。** PSM 普通重放的 B−C AP 在三条轨迹上为 −0.020624、−0.015249、−0.010998，SWaT 为 −0.005484、−0.005754、−0.006902。窗口加权的交互在两域三次均为正，但幅度依赖任务。SWaT 的自然混合加权 AP 增量虽为正，均值只有 +0.000850，且两项 VUS 平均下降。SMD28 自然混合的窗口加权宏 AP 相对重放为 −0.001477。B/C 匹配槽位及替换次数，供体工况和全计划重排名的作用尚未分离。现有结果也没有直接证明跨块双向改善与检测净收益相连。[三种子同计划结果](../../docs/experiments/left_fixed_exposure_repeats_20261128/README.md) · [SMD28 实体与宏平均](../../docs/experiments/left_smd_reliability_20261126/SMD_RESULTS.md)
+- **已缩小的解释。** 受观测的 28,000 次更新中没有原生显式 EMA 写入，此组退化不能由观测到的目标异常 EMA 写入解释。源梯度投影改变一阶更新几何，未取得有分量的检测增量。固定输入修正只得到源代理结果，不能回答真实目标问题。TimesFM 条件化和留出重建的内部正项不足以超过匹配原生 LEFT。M1 的代理排序没有带来双域实用 U 增量，M2 停在设计阶段。上述结果各自限定在对应合同内。[EMA 路径](../../docs/experiments/left_memory_exposure_20261126/RESULTS.md) · [源投影](../../docs/experiments/left_source_constraints_20261126/RESULTS.md) · [输入修正](../../docs/experiments/left_input_correction_20261127/RESULTS.md) · [留出历史](../../docs/experiments/left_holdout_history_20261127/RESULTS.md) · [M1 实测](../../docs/experiments/left_proxy_rank_20261127/RESULTS.md) · [M2 审查](../../docs/experiments/left_detection_oriented_source_20261127/REVIEW.md)
+
+## 两阶段方法
+
+**源学习与 Z。** 用完整 LEFT `3fadb4811797075e233076b9faceb0d8ec59b697` 的原生三视图编码、原型、解码、损失和状态规则。设 $X\in\mathbb R^{192\times C}$。记可学习时频变换 $T_\theta$、其逆变换 $T_\theta^{-1}$，以及联合表示给出的时域、频域解码 $\widehat X_\theta,\widehat S_\theta$。以下两项为同一原生前向中的循环分量，计算采用源码既有 SmoothL1 的元素均值。
+
+$$
+\begin{aligned}
+\ell_{\mathrm{tf}}(X;\theta)&=\mathrm{SmoothL1}\big(T_\theta(\widehat X_\theta),T_\theta(X)\big),\\
+\ell_{\mathrm{ft}}(X;\theta)&=\mathrm{SmoothL1}\big(T_\theta^{-1}(\widehat S_\theta),X\big),\\
+L_{\mathrm{LEFT}}&=\alpha_{\mathrm{cyc}}(\ell_{\mathrm{tf}}+\ell_{\mathrm{ft}})
++\alpha_{\mathrm{ms}} L_{\mathrm{ms}}+\alpha_{\mathrm{cons}} L_{\mathrm{cons}} .
+\end{aligned}
+$$
+
+正常源 FIT 仍按原合同训练，SOURCE SELECT 正常风险选权，直接复用 25/31/38 通道端点。PSM、SWaT 折为 TEP FaultFree＋SMD 正常记录。SMD28 折为 TEP FaultFree＋HAI 正常记录。Z 用源端点直接冻结评分。沿用归档标准化权限，PSM/SWaT 使用目标正常前缀统计，因此这里的 Z 指零目标参数更新。单独从源 SELECT 的固定 64 个合法正常窗口（两源各 32，固定独立抽样流）计算 $a_v=\max(10^{-6},\operatorname{median}_i h_v(X_i;q_0))$，只用于计算更新证据。原生分数和 CAL 不受这些尺度影响。[源折、初始化和评分资产](../../docs/experiments/left_multisource_20261126/RESULTS.md) · [38 通道合同](../../docs/experiments/left_smd_reliability_20261126/SMD_RESULTS.md) · [LEFT 论文与官方实现](https://doi.org/10.1145/3770855.3818044)
+
+**更新证据使用固定度量。** 源码 `TFTransform.window_param` 可训练。直接比较前后原生频谱循环损失，会同时改变预测和频谱度量。验证因此冻结源端分析算子 $T_0=T_{\theta_0}$。保持候选各自的原生前向，取同一数据上两项可比的损失
+
+$$
+h_{\mathrm{tf}}(X;q)=\mathrm{SmoothL1}\big(T_0(\widehat X_q),T_0(X)\big),\qquad
+h_{\mathrm{ft}}(X;q)=\ell_{\mathrm{ft}}(X;q).
+$$
+
+频到时分量已在共同波形坐标上度量，保留候选自己的逆变换。源端的 $h_{\mathrm{tf}}$ 等于原生 $\ell_{\mathrm{tf}}$。只有更新验证使用固定频谱度量。训练保持原生损失，推理保持原生分数。
+
+**目标 U 的唯一新增机制。** 用同一模型的真实更新前后差，要求**同一批隔离足迹中的多数时间块同时改善时到频与频到时的原生循环**。一般的按视图分别计票允许两个视图各自受益于不同时间段。这里先对每块取较弱的改善，再在时间块上做多数归约。训练损失、可训练参数和部署读出沿用原生模型。
+
+1. 仅在预先隔离的目标 U-FIT 内规划数值样本。以角色起点为原点，将完整 W192 网格划成五个按时间近等长的区间。若共有 $n$ 个完整窗，第 $b$ 段为窗口索引区间 $[l_b,r_b)=[\lfloor(b-1)n/5\rfloor,\lfloor bn/5\rfloor)$。令 $c_b=\lfloor(l_b+r_b-3)/2\rfloor$，取 $c_b,c_b+1,c_b+2$ 三窗组成 $V_b$，两侧各保留一个 W192 间隔。训练提议池 $P$ 只包含完整足迹不触碰这五组窗口和间隔的窗口。对合法起点均匀有放回抽样。任一段放不下五窗或 $P$ 少于 16 个合法起点时，记此折不具备当前协议条件。分块和足迹清单在分数及标签可见前固定。时间顺序、间隔与合法性不依赖分数。所有验证窗口都保留，低分、高分和难正常样本均无选择性删除。
+2. 从源端点及 fresh Adam 出发，用固定提议计划运行 20 个区间，每次 100 个原生更新。单步 batch32 中，16 个来自 $P$，8＋8 来自两个正常源，Adam 学习率 $10^{-4}$。记当前已经接受的状态为 $q_j=(\theta_j,\beta_j,m_j,k_j)$，其中 $\beta$ 包括原型等持久缓冲，$m$ 含 Adam 各参数组与状态，$k$ 是 LEFT 课程计数。记同一状态出发的 100 步真实结果为 $\widetilde q_j=\mathrm{Replay}_{100}(q_j;P_j,S_j)$。原型梯度和 EMA 均按原生规则执行。
+3. 对同样的 $V_b$ 无梯度、关闭 dropout 地测量提议前后的两个循环。定义 $H_{bv}(q)=|V_b|^{-1}\sum_{X\in V_b}h_v(X;q)$，计算
+   $$
+   d_{bv}=\frac{H_{bv}(q_j)-H_{bv}(\widetilde q_j)}{a_v},\quad
+   G_j=\operatorname{median}_{b=1,\ldots,5}\min_{v\in\{\mathrm{tf},\mathrm{ft}\}} d_{bv}.
+   $$
+   若全部所需量有限且 $G_j>10^{-4}$，接受 $\widetilde q_j$。否则恢复 $q_j$ 的全部模型和优化状态。每次提议消耗固定计划中的下一段，即使恢复也不补步。提议序号与可恢复的模型课程计数分别记录，每段使用事先分配的训练 RNG，避免回滚后重复同段随机流。所有执行更新的 U 对照尝试 2,000 次，实际保留的更新数可不同。阈值为预定的源尺度相对数值容差，不由目标指标调节。
+4. 用最后一次被接受的完整状态评分。若全部拒绝，模型等于 Z，记录为无有效适配，不能将保留 Z 检测能力计为适配收益。U-FIT 检查块反复用于这一训练规则，属于目标训练权限。对整个流程的检验使用隔离的 QUERY。
+
+对任意实数 $d$，$G_j>\epsilon$ 等价于至少三个验证块的两个 $d_{bv}$ 都大于 $\epsilon$。因此，只在两个验证块造成损失下降的提议不通过。分别检查两视图中位数的对照可在每视图三个改善块仅交叠一个时通过。这个确定性性质只约束所测损失的分布，不证明它能识别正常、保证异常分离或推出跨域迁移。异常跨块重复、同时改善两项损失却削弱排名、少见的合法工况被拒绝，以及反复使用 $V_b$ 导致的过拟合，都是可观察的反例。
+
+**部署读出与 F 接口。** 对合法非重叠 W192 窗口，始终对原生 `infer` 输出按通道求均值，$s_\theta(t)=C^{-1}\sum_c [\mathrm{infer}_\theta(X)]_{t,c}$，分数在窗末可用。验证增益和块权重不进入异常评分。SWaT 归档配置的 `alpha_cycle_s=0`，两循环仍参与训练，部署变化只能经共同学习的表示和原生多尺度读出体现。不得把两循环的改进直接写成 SWaT 评分改进。F 是后续独立权限模式，仍从同一源端点开始，保留 U 的数值权限并额外读取预留公开支持集。拟在单步提议损失中加入固定系数 0.1 的支持事件配对项 $\mathrm{softplus}(1+\log(1+s^-/a_s)-\log(1+s^+/a_s))$，$s^\pm$ 为支持窗内合法标注位置的原生分数均值，$a_s$ 为源 SELECT 点分数中位数下限 $10^{-6}$。支持事件、正常支持及窗口足迹须与 $P,V,\mathrm{CAL},\mathrm{QUERY}$ 分离，事件预算先登记。缺失则报 NA。F 用同一无标签检查门和部署分数，对同权限的无支持监督 U 比较。当前只给出 F 接口，效果范围聚焦 U。[原生读出实现和时序](../../src/hybrid_tsad/left_multisource_eval.py) · [SWaT 分量的已核对状态](../../docs/experiments/left_proxy_rank_20261127/RESULTS.md)
+
+## 最近邻与实质差异
+
+- **MAMS 是最接近的同领域先例。** IEEE TII 的出版页明确记载掩码元训练、在线只更新解码器、条件回滚和多尺度评分。已有证据足以排除将「重构式 TSAD 加条件回滚」作为新颖性主张。当前可审阅差异集中在固定观测坐标下、同一混合目标块中双向改善的多数提交规则，以及离线 U-FIT 与 QUERY 权限。已核验 MAMS 出版摘要和作者项目页，尚未取得可核对的回滚公式。最终新颖性判断须比对其具体判据与取样权限。[IEEE TII Early Access](https://doi.org/10.1109/TII.2026.3733708) · [作者说明](https://faculty.neu.edu.cn/yaoyu/en/lwcg/117075/content/62908.htm)
+- **跨任务更新后的判定已有先例。** LiteST-TTA 有基于代理值的回滚及更新次数和帧身份对照，研究对象为手术器械分割，最终配置关闭回滚。Wang 等的预印本对实际适配后的分割输出按碎片化路由，阈值由有标签数据校准。本设计的可验证差别限于无异常标签的隔离时间块双向增益。有关更新计数的控制只能缩小混淆，保留相同步数仍可能得到不同轨迹。[LiteST-TTA](https://doi.org/10.3389/frobt.2026.1991989) · [分割路由预印本](https://arxiv.org/abs/2609.20700)
+- **LEFT 与时频共识域适配。** LEFT 原方法提供两个循环、异常分数和原型课程。TFCDA 用时域及频域特征的一致性做域适配。本设计的改动在目标更新接受规则，以固定度量计算同一模型真实状态变化的隔离时间块损失差，再验证两个循环是否在**同一**分离时间块共同改善。时频一致性、重构和预训练均为继承部分。[LEFT](https://doi.org/10.1145/3770855.3818044) · [TFCDA 原文](https://www.cse.cuhk.edu.hk/~sinnopan/publications/%5BTAI2026%5DBoosting%20Time-series%20Domain%20Adaptation%20via%20A%20Time-Frequency%20Consensus%20Framework.pdf)
+- **CANDI、M2N2 与 SAR。** CANDI 通过分数和相似性筛选适配样本并训练 SANA，M2N2 对在线数据以模型估计的正常位置更新。SAR 已有滤除噪声样本、锐度优化和模型恢复。这里的决策单位是已经计算出的原生模型更新，依据混合目标中隔离足迹的共同有限步增益。恢复到上个接受状态并包含优化器及原型。回滚或适配筛选本身已有先例。[CANDI](https://doi.org/10.1609/aaai.v40i17.38524) · [M2N2](https://arxiv.org/abs/2312.11976) · [SAR](https://arxiv.org/abs/2302.12400)
+- **Fish、已有源约束及元学习。** Fish 在训练环境间提高梯度的内积以促进域外泛化。项目过去的投影限制参考源梯度与参数位移的一阶内积。这里在独立目标块实测整段更新的前后差，原生更新方向未被投影。Kumagai 等用有标签查询风险优化适配初始化，本设计只用无标签验证值决定本次是否接受，不向初态反传。无标签域适配的模型选择也已有工作，具体可检验差异是同块双向增益的联合多数规则及其对目标更新的作用。[Fish](https://arxiv.org/abs/2104.09937) · [Kumagai 等](https://proceedings.mlr.press/v206/kumagai23a.html) · [Deep Embedded Validation 原文](https://ise.thss.tsinghua.edu.cn/~mlong/doc/deep-embedded-validation-icml19.pdf)
+
+现有核对支持将上述区别作为开发假设。最薄弱的一环是循环损失能否度量真实检测收益。已有时序异常检测预印本也观察到正常样本自适配未必改善排序。若同块联合规则无附加检测价值，结论应收紧到对实际更新状态做验证或限制更新本身的价值。文献筛查范围内尚无最终原创性结论。[正常更新的目标错配研究](https://arxiv.org/abs/2611.23761)
+
+## 可直接实现的代码改动
+
+- 检查路径从固定原生 `_forward` 的既有返回值读取 `X_hat`、`X_hat_from_S` 和 `x_enc`。无需修改 [left_decoder_context.py](../../src/hybrid_tsad/left_decoder_context.py) 的训练前向。单独复制冻结源 `TFTransform`，用其对 `X_hat` 和 `x_enc` 计算固定频谱差。逐窗取元素均值，合批时在块归约前保留逐窗值。波形分量直接用原生出参。此路径不新增训练参数。
+- 在 [left_multisource.py](../../src/hybrid_tsad/left_multisource.py) 的适配入口增加一个选择项。隔离的 `left_block_acceptance.py` 负责角色规划、证据读出、增益归约和完整状态接受或恢复。重用 `initialize`、`restore`、`source_batch`、`update`。提议与优化器完全快照。验证在独立评估实例使用 `eval/no_grad`，隔离原生前向写入的临时缓存（例如 `last_x_res`）。验证前后检查活动训练实例的 `step`、原型、参数、缓冲和 RNG 未变。接受回执记录 $d_{bv}$、模型和优化状态哈希、步数、参数位移和额外前向。可缓存未改变状态的检查值，所以每折每个检查臂最多 21 次五块面板评分，外加每折一次源尺度计算。入选端点仍交给[现行评分和评价](../../src/hybrid_tsad/left_multisource_eval.py)。
+- 必要工程核对为默认分数数值、源初态下按窗验证循环与原循环归约等价、只改变候选频谱窗参数时固定度量保持不变（输入和输出均固定）、禁用检查时训练轨迹、拒绝时 Adam/原型/计数准确回滚、无重叠足迹，以及不同独立随机流不互相消耗。简单数值反例可单测联合规则和边际规则的区别。源权重和原外部评分按时间轴及统计权限直接复用。历史真实 R/W 端点保留为已有结果。从 U-FIT 划出新隔离块会改变原训练计划，旧的 R/W 权重和系数不能冒充严格匹配端点。若走到实证阶段，只为必要匹配臂生成此合同的新端点。源模型、现行原生公开比较和关闭候选都不重做。
+
+## 最小能决定机制的比较
+
+先在既有开发折 PSM 和 SWaT 用一份固定种子及同一提议计划，单列 Z 与真实自然混合 U，报告相同 QUERY 上 AP、ROC-AUC、VUS-PR、VUS-ROC 和合法操作指标。旧 CAL 限制不变。开发折已曝光。参数与规则冻结后才能进行更广正式评价，优先完整 SMD28，保留逐实体和宏平均。首轮可以围绕同一机制做针对性定位，不使用 QUERY 选择移除哪个块、变更容差或种子。
+
+| 对照 | 能区分什么 |
+| --- | --- |
+| Z 与同计划普通重放 | 是否真有适配净收益，接受规则能否超出单纯在同批样本上更新。 |
+| 同计划窗口加权重放 | 同块验证是否有超出成熟可靠性加权的实际价值。保持冻结教师定义，在同一合法提议池重建系数。 |
+| 边际视图对照 $\min_v\operatorname{median}_b d_{bv}$ | 只交换两种归约的次序。额外前向、参数容量、源重放、尝试更新和部署评分相同。 |
+| 接受次数匹配的置乱对照 | 用情形固定的隔离 RNG 在前 10 段和后 10 段内置乱完整方法的接受序列。各阶段尝试步数和保留步数相同。实际梯度、Adam 轨迹和更新范数可能不同，逐一报告。序列只读取 U 过程，在 QUERY 评分前封存。若某阶段全部接受或全部拒绝，置乱不会改变该阶段，直接记录该对照的可辨识限制。 |
+
+可用四个预定事务索引 1、6、11、16 做同父比较。训练时保留该事务的前、后两个检查点及联合、边际决策，所有正式端点封存后才由独立评价器读 QUERY，计算各提议相对其实际父状态的 AP 变化。只作过程诊断，禁止用它重选检查点。成对检查能揭示共同循环下降却损害检测的反例，端点差仍由完整方法对照承担。
+
+用既有 B/C 供体原则可做随后独立的匹配曝光验证。若采用新的 $P,V$ 划分，供体也须完全留在 $P$，冻结同一 $V$ 面板及计划间的配对。旧 B/C 数值只作动机与参照。判断应同时看真实 U 相对 Z、R、W 的排序和操作代价，及同块规则相对边际与置乱对照的增量。若收益可由置乱复现，证据无法区分接受规则与少更新或接受时序的作用。若两视图总在同块共同变动，边际与联合轨迹近乎相同，这个设置无法区分机制。若能够通过检查却反复失去检测能力，说明循环改善对异常分离的代理假设在该设置下不足。弱异常、时滞能力和污染鲁棒性需要各自匹配验证，当前没有这些结论。
+
+
+## 历史方法档案
+
+此前 LEFT 实证稿及方法记录保存于 [基线与探索正文](draft.md) 和 [冻结证据表](../../docs/experiments/left_evidence_freeze_20261128/README.md)。以下各节保留原方法定义。
 
 ## Archived multi-source LEFT experiments on historical context
 

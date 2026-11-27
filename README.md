@@ -1,6 +1,6 @@
 # Hybrid TSAD 独立研究工程
 
-当前第二篇以多源预训练、目标使用或适配的公开多变量 TSAD 方法为研究对象。[公开基准主表](manuscript/next_generation_20261115/draft.md) · [当前方法设计](manuscript/next_generation_20261115/method_definition.md) · [研究协议](docs/research_scope.md)。末点 V 的训练及其结论保留在[冻结阶段稿](manuscript/native_endpoint_v_research_20261126/manuscript.md)。以下为历史进度。
+第二篇为公开多变量 TSAD 方法研究，采用多源预训练和目标 Z／U／F 的两阶段组织。**基线与实验基础较充分；原定主方法尚未确立。** [研究范围](docs/research_scope.md) · [当前方法设计](manuscript/next_generation_20261115/method_definition.md)。LEFT 跨域、重放与窗口加权正文及其 PDF 为[基线与探索实验报告](manuscript/next_generation_20261115/draft.md)。末点 V 保留于[冻结阶段稿](manuscript/native_endpoint_v_research_20261126/manuscript.md)。以下为历史进度。
 
 
 ## 2026-11-22 原生 LEFT 局部跨通道评分保持，源端前检完成
