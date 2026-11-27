@@ -1,0 +1,25 @@
+{
+  "status": "runnable_prototype",
+  "scientific_training": false,
+  "target_evaluation": false,
+  "GPU_hours": 0,
+  "source_code_sha256": "465b25fddde0419fa985b61bca9763790fbc4a494f0482e4f3d9ec7bd22afb37",
+  "check_code_sha256": "516d5ac8e5696a2643f556e94f6ea65f45df3fa22912e24ec0828bdd7ad8ce79",
+  "official_source_sha256": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "official_weight_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "checks": [
+    "zero-initialized native output parity",
+    "native V arithmetic",
+    "finite history and decoder gradients after initial zero projection",
+    "original nondecoder weights unchanged",
+    "history replacement affects reconstructions and V",
+    "channel permutation equivariance of context",
+    "past-patch causal isolation",
+    "256/512 history lengths",
+    "all 1/25/31/38 channel layouts",
+    "cross-role footprint rejected",
+    "native B1 logical update",
+    "RNG and model state isolation"
+  ],
+  "execution_scope": "TEP normal run with first 3 variables; other C checks repeat a single variable for tensor layout only"
+}

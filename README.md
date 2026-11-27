@@ -1,6 +1,6 @@
 # Hybrid TSAD 独立研究工程
 
-第二篇为公开多变量 TSAD 方法研究，采用多源预训练和目标 Z／U／F 的两阶段组织。**基线与实验基础较充分；原定主方法尚未确立。** [研究范围](docs/research_scope.md) · [当前方法设计](manuscript/next_generation_20261115/method_definition.md)。LEFT 跨域、重放与窗口加权正文及其 PDF 为[基线与探索实验报告](manuscript/next_generation_20261115/draft.md)。末点 V 保留于[冻结阶段稿](manuscript/native_endpoint_v_research_20261126/manuscript.md)。以下为历史进度。
+第二篇以完整 TimeRadar 为主体研发公开多变量 TSAD 方法，新增可训练的因果历史、多变量、多尺度上下文路径，以多源预训练及目标 Z/U/F 组织。**基线与实验基础较充分；主方法仍待检测验证。** [当前完整原型、架构和矩阵](manuscript/next_generation_20261115/method_definition.md) · [代码](src/hybrid_tsad/timeradar_history_context.py) · [研究范围](docs/research_scope.md)。LEFT 实证稿保留为[基线与探索实验报告](manuscript/next_generation_20261115/draft.md)。以下为历史进度。
 
 
 ## 2026-11-22 原生 LEFT 局部跨通道评分保持，源端前检完成

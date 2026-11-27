@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "scope": "CPU normal-source integration; three engineering updates, no scientific fit",
+  "source_sha256": "2c4e24dc41b14a7a521de71a8bbac87cef3788fcf46c9dd321aab5a14f38c698",
+  "official_source": "881e8912e4c5b298b202e5b7ac2fe58107c7dcf1b56acf733e28c99f2ffc0317",
+  "official_weights": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "parameters": 1804811,
+  "new_parameters": 168768,
+  "trainable_parameters": 962378,
+  "zero_context_max_error": 0.0,
+  "gradient": {
+    "0": {
+      "history": 0.0,
+      "cross": 0.0,
+      "projection": 3.345786452293396,
+      "decoder": 69.05377673357725
+    },
+    "1": {
+      "history": 0.12154022856702795,
+      "cross": 0.0747604058124125,
+      "projection": 3.038886249065399,
+      "decoder": 65.71856361627579
+    }
+  },
+  "history_replacement_output_max_change": 0.0014136135578155518,
+  "path_bypass_output_max_change": 0.012605935335159302,
+  "history_replacement_V_max_change": 0.00044208765029907227,
+  "native_nondecoder_unchanged": true,
+  "isolated_rng": true,
+  "elapsed_seconds": 3.287757548969239
+}

@@ -8,7 +8,9 @@
 
 用户撤销将 LEFT 跨域、重放与窗口加权实证结果作为第二篇最终贡献的裁定。原正文、14 页 PDF、24 个适配重复、历史指标、复现工具与权重身份在 [c65c81d 完整快照](https://github.com/codexpker/Hybrid/tree/c65c81d0d0a4df3db204225714e9a39984158dc3) 保持原状，作为基线与探索实验报告。停止该稿的投稿准备。[基线正文](../manuscript/next_generation_20261115/draft.md) · [固定源端点与曝光计划下的重复](experiments/left_fixed_exposure_repeats_20261128/README.md) · [主表及协议身份](experiments/left_evidence_freeze_20261128/README.md)
 
-当前研发检验分离时间块上的双向时频循环共同改善，能否在无异常标签的条件下帮助保留目标更新，并在独立异常检测中优于匹配对照。具体状态转移、对照和信息边界见[当前完整方法设计](../manuscript/next_generation_20261115/method_definition.md)。设计阶段尚无实现或检测结果。公开基准先保持完整方法比较，再分别验证 Z／U／F、自然混合与受控污染、机制及检测代价。
+当前优先级恢复为以完整 TimeRadar 为主体，联合训练因果历史、多变量、多尺度上下文，在当前复数时频表示与原生重构之间交互，首版保持原生副本方差评分。多源学习及目标 Z/U/F 属于同一模型。重放和加权作为工具与匹配对照。首个完整原型与三组矩阵见[当前方法定义](../manuscript/next_generation_20261115/method_definition.md)，实际模型见[timeradar_history_context.py](../src/hybrid_tsad/timeradar_history_context.py)。已有真实源 CPU 接线回执，正式源训练及检测效果尚待验证。
+
+五块双循环更新接受门暂停作为主方法执行，无已启动实验需续接，不默认加入作业队列。保留原数学定义及CPU归约检查。TimeRadar、TimesFM和LEFT各自归属及历史负结果保持独立，当前原型的作用检查不计为检测增量。
 
 ## 已归档的公开 TSAD 验证
 
