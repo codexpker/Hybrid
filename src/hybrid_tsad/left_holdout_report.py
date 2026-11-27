@@ -86,17 +86,16 @@ def gate(root):
         and r["contrast"] in ("B-A", "B-C")
     }
     assert len(comparisons) == 8
-    support = []
-    for d in DEVELOPMENT:
-        floor = {
-            s: min(comparisons[d, s, c] for c in ("B-A", "B-C")) for s in ("Z", "N")
-        }
-        if min(floor.values()) > 0 and max(floor.values()) >= MIN_AP:
-            support.append(d)
+    support = [
+        dict(domain=d, stage=s)
+        for d in DEVELOPMENT
+        for s in ("Z", "N")
+        if min(comparisons[d, s, c] for c in ("B-A", "B-C")) >= MIN_AP
+    ]
     record = dict(
         expand_to_all_SMD28=bool(support),
-        supporting_development_domains=support,
-        rule="Within at least one development domain, B AP exceeds both A and C on Z and N; the smaller of the two gains reaches 0.005 AP in at least one stage.",
+        supporting_development_panels=support,
+        rule="On at least one fixed development domain and stage, B AP exceeds A and C by at least 0.005 each.",
         interpretation="A development trigger for a full-domain check; not an uncertainty estimate or a mechanism claim.",
         contrasts=[
             dict(domain=d, stage=s, contrast=c, AP=v)

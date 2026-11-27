@@ -5,7 +5,8 @@ set -euo pipefail
 root=$(realpath "$1")
 domain=$2
 gpu=$3
-source_pid=$4
+source_pid=${4:-}
+shard=${5:-0}
 cd "$root"
 python=envs/timeradar/bin/python
 output=results/left_holdout_history_20261127_v1
@@ -13,7 +14,7 @@ export CUDA_VISIBLE_DEVICES="$gpu" OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 mkdir -p "$output/logs"
 
 if [[ "$domain" == SMD ]]; then
-    "$python" -m hybrid_tsad.left_holdout_report "$root" gate
+    "$python" -c 'import json,sys; assert json.load(open(sys.argv[1]))["expand_to_all_SMD28"]' "$output/EXPANSION.json"
 fi
 
 if [[ -n "$source_pid" ]]; then
@@ -38,6 +39,7 @@ normal() {
 
 if [[ "$domain" == SMD ]]; then
     "$python" -c 'from pathlib import Path; from hybrid_tsad.left_history_public import members; print(*members(Path.cwd(),"SMD"),sep="\n")' |
+    awk -v shard="$shard" '(NR-1)%4==shard' |
     while read -r entity; do
         normal --entity "$entity"
         evaluate score --stage Z --entity "$entity"
