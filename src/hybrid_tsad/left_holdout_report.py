@@ -102,7 +102,11 @@ def gate(root):
             for (d, s, c), v in comparisons.items()
         ],
     )
-    dump(output / "EXPANSION.json", record)
+    path = output / "EXPANSION.json"
+    if path.exists():
+        assert read(path) == record
+    else:
+        dump(path, record)
     return record
 
 
@@ -168,6 +172,11 @@ def learning_and_cost(out, domains, files):
                 native_forwards=z["native_forwards"],
                 history_forwards=sum(r["calls"] for r in feature),
                 history_seconds=sum(r["seconds"] for r in feature),
+                history_encoder_seconds=sum(
+                    sum(r.get("encoder_seconds", {}).values()) for r in feature
+                )
+                if any("encoder_seconds" in r for r in feature)
+                else None,
                 peak_bytes=z["peak_bytes"],
             )
         )
@@ -200,6 +209,31 @@ def learning_and_cost(out, domains, files):
         )
     for file in files:
         domain, entity = file.parent.parent.name, file.parent.name
+        cpu_receipt = file.parent / "EVAL_COST.json"
+        if cpu_receipt.exists():
+            cost.append(
+                dict(
+                    domain=domain,
+                    object=entity,
+                    stage="CPU ranking metric computation",
+                    **read(cpu_receipt),
+                )
+            )
+        elif domain == "PSM":
+            latest_control = max(
+                p.stat().st_mtime
+                for p in (out / "controlled" / domain).glob("N_*.json")
+            )
+            cost.append(
+                dict(
+                    domain=domain,
+                    object=entity,
+                    stage="CPU ranking metric computation",
+                    seconds=file.stat().st_mtime - latest_control,
+                    workers=1,
+                    timing_scope="outer interval from final controlled receipt to metric seal",
+                )
+            )
         folder = out / domain / "N" / entity
         n = read(folder / "COMPLETE.json")
         feature = n["history_feature_cost"]

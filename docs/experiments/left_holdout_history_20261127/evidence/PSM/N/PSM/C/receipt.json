@@ -1,0 +1,14 @@
+{
+  "arm": "C",
+  "entity": "PSM",
+  "seed": 2025,
+  "parent": "415668d759580c49851066d84e5f93b45f70172ed218196b7bf74c6143c534a7",
+  "selected": 5,
+  "selected_updates": 90,
+  "normal_select_objective": 0.3759430444350949,
+  "selection": "earliest minimum of epochs 1\u201320",
+  "input_sha256": "6a45487870ecd1a9870b508c113284d980ef31b60d97037bf80b6a483818bb57",
+  "order_sha256": "4eab703c2b5ad31b02dc54cbb45d70ad890a177fbf5aaf30949d6bf4f0efc34a",
+  "sha256": "5a44a08cce6d8c43cd9f2a8cb82d7e3c80d61ab0010b8aba11be60466ecfd798",
+  "native_step": 6090
+}

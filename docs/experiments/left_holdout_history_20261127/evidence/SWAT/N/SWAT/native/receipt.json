@@ -1,0 +1,14 @@
+{
+  "arm": "native",
+  "entity": "SWAT",
+  "seed": 2025,
+  "parent": "929c31509dd0c0a5857edfe2a7d72dd3a76b1e04f01aa4f64455193ce9abc14f",
+  "selected": 20,
+  "selected_updates": 1300,
+  "normal_select_objective": 0.04096625733654946,
+  "selection": "earliest minimum of epochs 1\u201320",
+  "input_sha256": "60cab5fa788546e81970b879d6718a94824757da28f1f19f2827bc3e47c0047a",
+  "order_sha256": "fe05ab3a7b69c09895af4db6ab450e883a1b350e66d483d7099c9382b84772ba",
+  "sha256": "48a7a45660a576ae0e01f2e49fbb6ddb17af952ddb6b09bc45634077f6931a29",
+  "native_step": 7300
+}

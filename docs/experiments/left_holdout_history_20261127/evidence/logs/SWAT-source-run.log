@@ -1,0 +1,19 @@
+Loading weights from local directory
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/a312/tsad_research/tmp/left_holdout_src/hybrid_tsad/left_holdout_training.py", line 420, in <module>
+    train_source(args.workspace, args.domain)
+  File "/home/a312/tsad_research/tmp/left_holdout_src/hybrid_tsad/left_holdout_training.py", line 239, in train_source
+    base.dump(check_file, check(w, domain, pack, feature))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/tmp/left_holdout_src/hybrid_tsad/left_holdout_training.py", line 146, in check
+    return dict(arms=stats, prior_C=prior_bypass(w, domain, old),
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/miniconda3/envs/pytorch/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/a312/tsad_research/tmp/left_holdout_src/hybrid_tsad/left_holdout_training.py", line 94, in prior_bypass
+    assert len(tokens) == 3 and torch.equal(tokens[1], tokens[2])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

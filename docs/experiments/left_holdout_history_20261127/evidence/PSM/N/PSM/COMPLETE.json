@@ -1,0 +1,30 @@
+{
+  "domain": "PSM",
+  "entity": "PSM",
+  "seconds": 198.989647293929,
+  "history_feature_cost": [
+    {
+      "calls": 46,
+      "windows": 1368,
+      "seconds": 29.830384257249534,
+      "state_sha256": {
+        "B": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+        "C": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680"
+      }
+    },
+    {
+      "calls": 46,
+      "windows": 1368,
+      "seconds": 29.81764761544764,
+      "state_sha256": {
+        "B": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+        "C": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680"
+      }
+    }
+  ],
+  "updates_each": 360,
+  "fit_windows_each": 10980,
+  "select_windows_each": 135,
+  "native_forwards": 2740,
+  "peak_bytes": 3708400640
+}

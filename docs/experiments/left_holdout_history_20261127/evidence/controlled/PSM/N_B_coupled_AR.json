@@ -1,0 +1,11 @@
+{
+  "sha256": "20a593e7b42cb51e806a3d64c83e3144cb9790e1e3a8be62a752999141002a76",
+  "stage": "N",
+  "checkpoint": "2ef262262b2e37204f73a1accbe41d39508d1591f4953ff17835f03f7b544217",
+  "inputs": "f7d1cb7a31c0c9620273f953b14a4f7bbd0dce0a023083b0c71f9ee127a01baf",
+  "features": "8ae287aadb0642920dac84581d51023eb46da25860b4b45a299b20f0331dcc57",
+  "native_forwards": 48,
+  "window_forwards": 1536,
+  "seconds": 0.9206879129633307,
+  "nonoverlap_replacement": "NA: archived controlled records have one legal history"
+}

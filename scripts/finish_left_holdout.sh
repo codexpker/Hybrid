@@ -25,7 +25,8 @@ wait_fold PSM "$psm_worker"
 wait_fold SWAT "$swat_worker"
 CUDA_VISIBLE_DEVICES="" "$python" -u -m hybrid_tsad.left_holdout_evaluation "$root" PSM controlled-metrics
 if CUDA_VISIBLE_DEVICES="" "$python" -m hybrid_tsad.left_holdout_report "$root" gate; then
-    CUDA_VISIBLE_DEVICES=0 "$python" -u -m hybrid_tsad.left_holdout_training "$root" SMD source
+    LEFT_HOLDOUT_PARALLEL_HISTORY=1 CUDA_VISIBLE_DEVICES=0,1,2 \
+        "$python" -u -m hybrid_tsad.left_holdout_training "$root" SMD source
     workers=()
     for gpu in 0 1 2 3; do
         bash "$runner" "$root" SMD "$gpu" "" "$gpu" >"$output/logs/SMD-shard-$gpu.log" 2>&1 &

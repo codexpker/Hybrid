@@ -1,0 +1,29 @@
+{
+  "domain": "SMD",
+  "entity": "machine-2-9",
+  "seconds": 74.04183494998142,
+  "history_feature_cost": [
+    {
+      "calls": 10,
+      "windows": 288,
+      "seconds": 9.563786361832172,
+      "state_sha256": {
+        "B": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+        "C": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680"
+      },
+      "encoder_seconds": {
+        "B": 4.889657227322459,
+        "C": 4.673658414278179
+      },
+      "devices": {
+        "B": "cuda:0",
+        "C": "cuda:0"
+      }
+    }
+  ],
+  "updates_each": 80,
+  "fit_windows_each": 2340,
+  "select_windows_each": 27,
+  "native_forwards": 580,
+  "peak_bytes": 4301810176
+}

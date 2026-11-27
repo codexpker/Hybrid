@@ -1,0 +1,61 @@
+{
+  "expand_to_all_SMD28": true,
+  "supporting_development_panels": [
+    {
+      "domain": "PSM",
+      "stage": "N"
+    }
+  ],
+  "rule": "On at least one fixed development domain and stage, B AP exceeds A and C by at least 0.005 each.",
+  "interpretation": "A development trigger for a full-domain check; not an uncertainty estimate or a mechanism claim.",
+  "contrasts": [
+    {
+      "domain": "PSM",
+      "stage": "Z",
+      "contrast": "B-A",
+      "AP": -0.0005675964088318608
+    },
+    {
+      "domain": "PSM",
+      "stage": "Z",
+      "contrast": "B-C",
+      "AP": -0.00016572029668715516
+    },
+    {
+      "domain": "PSM",
+      "stage": "N",
+      "contrast": "B-A",
+      "AP": 0.0075091789176087165
+    },
+    {
+      "domain": "PSM",
+      "stage": "N",
+      "contrast": "B-C",
+      "AP": 0.008521008316200063
+    },
+    {
+      "domain": "SWAT",
+      "stage": "Z",
+      "contrast": "B-A",
+      "AP": -0.0015082838127637999
+    },
+    {
+      "domain": "SWAT",
+      "stage": "Z",
+      "contrast": "B-C",
+      "AP": -0.000436523942502709
+    },
+    {
+      "domain": "SWAT",
+      "stage": "N",
+      "contrast": "B-A",
+      "AP": 0.0001797072854475834
+    },
+    {
+      "domain": "SWAT",
+      "stage": "N",
+      "contrast": "B-C",
+      "AP": 0.00023239067068825392
+    }
+  ]
+}

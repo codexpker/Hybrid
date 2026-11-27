@@ -1,0 +1,12 @@
+{
+  "arm": "A",
+  "parent": "0d4a0c940bef5f7a82c53d9740ce8b356a4c0cf4cc3fa8dffc04d1b41e5e6094",
+  "seed": 2025,
+  "selected": 2000,
+  "updates": 2000,
+  "selection": "fixed endpoint",
+  "source_plan_sha256": "90212521e0a5ceca0d374649dbde7809d4842c10301dd2aa61957fa7f7e9b6ab",
+  "normal_select_objective": 0.3873517750762403,
+  "sha256": "0fbb1e42c78b11caa0e7b15ed1ddf94bc9db79ed0ede4ff29fe68e9cdadd4694",
+  "native_step": 6000
+}

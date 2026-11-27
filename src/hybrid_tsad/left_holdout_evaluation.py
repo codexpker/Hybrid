@@ -3,6 +3,7 @@
 import argparse
 import math
 import time
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -73,7 +74,12 @@ def historical_cache(w, domain, entity, descriptor, values, offset, starts, fold
             seconds=time.monotonic() - began,
             cache_storage="entity-local RAM",
         )
-    base.dump(folder / "INPUTS.json", dict(**descriptor, historical_features=bindings))
+    binding_file = folder / "INPUTS.json"
+    identity = dict(**descriptor, historical_features=bindings)
+    if binding_file.exists():
+        assert base.read(binding_file) == identity
+    else:
+        base.dump(binding_file, identity)
     return caches
 
 
@@ -282,10 +288,16 @@ def read_bank(path):
     return index, score, md["sha256"]
 
 
+def ranking_task(args):
+    y, scores, author = args
+    return prior.ranking(y, scores, prior.load_author_metric(author))
+
+
 def metrics(w, domain, entity):
     folder = w / train.OUT / "public" / domain / entity
     if (folder / "METRICS.json").exists():
         return
+    began = time.monotonic()
     rows = []
     current = {
         stage: {
@@ -321,7 +333,6 @@ def metrics(w, domain, entity):
         if domain in ("PSM", "SMD")
         else index[-1] + 1
     )
-    metric = prior.load_author_metric(w / prior.AUTHOR)
     previous_metrics = w / prior.OUT / "metrics" / domain / entity
     archive_rows = {}
     for file, alias in (
@@ -333,7 +344,7 @@ def metrics(w, domain, entity):
             name = alias or row["method"]
             assert row["score_sha256"] == external[name][2]
             archive_rows[(name, row["start"], row["stop"])] = row
-    measured_rows = {}
+    jobs = {}
     for stage, scores in current.items():
         ablation = scores["B_nonoverlap"][0]
         for panel, axis, methods in (
@@ -357,17 +368,16 @@ def metrics(w, domain, entity):
                 np.testing.assert_array_equal(ix[loc], axis)
                 key = (name, int(axis[0]), int(axis[-1] + 1))
                 saved = archive_rows.get(key)
+                value_key = None
                 if saved:
                     assert saved["positives"] == int(y[axis].sum())
                     measured = {m: saved[m] for m in prior.METRICS}
                     error = saved["independent_AP_ROC_error"]
                 else:
                     value_key = (digest, *key[1:])
-                    if value_key not in measured_rows:
-                        measured_rows[value_key] = prior.ranking(
-                            y[axis], s[loc], metric
-                        )
-                    measured, error = measured_rows[value_key]
+                    if value_key not in jobs:
+                        jobs[value_key] = y[axis], s[loc], w / prior.AUTHOR
+                    measured, error = {}, None
                 rows.append(
                     dict(
                         domain=domain,
@@ -381,9 +391,27 @@ def metrics(w, domain, entity):
                         positives=int(y[axis].sum()),
                         score_sha256=digest,
                         AP_ROC_check_error=error,
+                        metric_job=value_key,
                         **measured,
                     )
                 )
+    with ProcessPoolExecutor(max_workers=4) as executor:
+        measured_rows = dict(
+            zip(jobs, executor.map(ranking_task, jobs.values()), strict=True)
+        )
+    for row in rows:
+        key = row.pop("metric_job")
+        if key is not None:
+            measured, error = measured_rows[key]
+            row.update(measured, AP_ROC_check_error=error)
+    base.dump(
+        folder / "EVAL_COST.json",
+        dict(
+            seconds=time.monotonic() - began,
+            workers=4,
+            unique_recomputed_panels=len(jobs),
+        ),
+    )
     base.dump(folder / "METRICS.json", rows)
 
 

@@ -85,3 +85,8 @@ scripts/*left_timesfm* -text whitespace=cr-at-eol
 docs/experiments/left_timesfm_hidden_20261126/** -text whitespace=cr-at-eol
 # Saved unified-diff context contains a literal single-space blank line.
 docs/experiments/left_timesfm_hidden_20261126/**/*.patch -text whitespace=-blank-at-eol,cr-at-eol
+
+# Preserve holdout run evidence and its SHA-256 manifest.
+docs/experiments/left_holdout_history_20261127/evidence/** -text whitespace=cr-at-eol
+scripts/*left_holdout* -text whitespace=cr-at-eol
+src/hybrid_tsad/left_holdout*.py -text whitespace=cr-at-eol

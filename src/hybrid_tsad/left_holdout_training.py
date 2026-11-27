@@ -1,7 +1,10 @@
 """Matched source and normal-target learning for pre-view holdout LEFT."""
 
 import argparse
+import json
+import os
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -18,25 +21,63 @@ ARMS = ("A", "B", "C")
 BATCH, SOURCE_STEPS, EPOCHS = 32, 2000, 20
 
 
+def write_latest(path, record):
+    """Replace a rolling record atomically, leaving sealed records immutable."""
+    part = path.with_suffix(path.suffix + ".part")
+    part.write_text(
+        json.dumps(record, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    part.replace(path)
+
+
 class Features:
     def __init__(self, w):
-        self.encoders = {
-            arm: timesfm_hidden.load_encoder(w, random=arm == "C") for arm in ("B", "C")
+        self.parallel = os.environ.get("LEFT_HOLDOUT_PARALLEL_HISTORY") == "1"
+        self.devices = {
+            arm: torch.device("cuda", index if self.parallel else 0)
+            for index, arm in enumerate(("B", "C"), 1)
         }
+        self.encoders = {}
+        for arm, device in self.devices.items():
+            with torch.cuda.device(device):
+                self.encoders[arm] = timesfm_hidden.load_encoder(
+                    w, random=arm == "C", device=device
+                )
         self.identities = {
             a: timesfm_hidden.model_sha(m) for a, m in self.encoders.items()
         }
         self.calls = 0
         self.windows = 0
         self.seconds = 0.0
+        self.encoder_seconds = dict.fromkeys(self.encoders, 0.0)
+        self.pool = ThreadPoolExecutor(max_workers=2) if self.parallel else None
+
+    def extract(self, arm, past, lengths):
+        device = self.devices[arm]
+        with torch.cuda.device(device):
+            start = time.monotonic()
+            values = prior_train.feature_call(
+                self.encoders[arm], past.to(device), lengths.to(device)
+            )
+            result = tuple(value.to(past.device) for value in values)
+            torch.cuda.synchronize(device)
+        return result, time.monotonic() - start
 
     def __call__(self, past, lengths):
         torch.cuda.synchronize()
         started = time.monotonic()
-        result = {
-            arm: prior_train.feature_call(encoder, past, lengths)
-            for arm, encoder in self.encoders.items()
-        }
+        if self.pool:
+            pending = {
+                arm: self.pool.submit(self.extract, arm, past, lengths)
+                for arm in self.encoders
+            }
+            outputs = {arm: job.result() for arm, job in pending.items()}
+        else:
+            outputs = {arm: self.extract(arm, past, lengths) for arm in self.encoders}
+        result = {}
+        for arm, (value, seconds) in outputs.items():
+            result[arm] = value
+            self.encoder_seconds[arm] += seconds
         torch.cuda.synchronize()
         self.calls += len(self.encoders)
         self.windows += len(past) * len(self.encoders)
@@ -44,6 +85,8 @@ class Features:
         return result
 
     def receipt(self):
+        if self.pool:
+            self.pool.shutdown()
         assert self.identities == {
             a: timesfm_hidden.model_sha(m) for a, m in self.encoders.items()
         }
@@ -52,6 +95,8 @@ class Features:
             windows=self.windows,
             seconds=self.seconds,
             state_sha256=self.identities,
+            encoder_seconds=self.encoder_seconds,
+            devices={a: str(d) for a, d in self.devices.items()},
         )
 
 
@@ -197,7 +242,7 @@ def save(folder, arm, model, record):
     torch.save(dict(state=model.state_dict(), step=core(model, arm).step), part)
     part.replace(ck)
     record.update(sha256=base.sha(ck), native_step=core(model, arm).step)
-    base.dump(dest / "receipt.json", record)
+    write_latest(dest / "receipt.json", record)
 
 
 def load(w, domain, stage, arm, entity=None):
@@ -310,6 +355,9 @@ def train_source(w, domain):
         }
         assert prior_train.array_hash(x.cpu().numpy()) == expected["current"]
         assert prior_train.array_hash(past.cpu().numpy()) == expected["history"]
+        if feature.parallel:
+            # Off-device execution is an engineering optimization only.
+            assert hashes["B"] == expected["C"] and hashes["C"] == expected["E"]
         batch_receipts.append(
             dict(
                 step=step + 1,
@@ -485,7 +533,10 @@ def train_normal(w, domain, entity):
         np.testing.assert_array_equal(np.load(order), plan)
     else:
         np.save(order, plan)
-    progress = dest / "progress.pt"
+    scratch = os.environ.get("LEFT_HOLDOUT_N_PROGRESS")
+    progress_dir = Path(scratch) / domain / entity if scratch else dest
+    progress_dir.mkdir(parents=True, exist_ok=True)
+    progress = progress_dir / "progress.pt"
     initial_epoch, preceding = 1, 0.0
     feature_intervals = [feature_receipt]
     if progress.exists():
@@ -545,7 +596,7 @@ def train_normal(w, domain, entity):
             fit={a: v / len(fit[0]) for a, v in totals.items()},
         )
         trace.append(record)
-        base.dump(dest / "CURVES.json", trace)
+        write_latest(dest / "CURVES.json", trace)
         part = progress.with_suffix(".part")
         torch.save(
             dict(

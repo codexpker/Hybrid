@@ -4,7 +4,9 @@
 
 正式主线为公开多变量 TSAD 的多源预训练与目标域使用或适配。主稿先给出完整检测器的公开比较，再按 Z、U、F、自然混合与受控污染、核心机制和检测代价展开。[唯一工作骨架及本地主表](../manuscript/next_generation_20261115/draft.md) · [两阶段方法及数据角色](../manuscript/next_generation_20261115/method_definition.md) · [因果与逐种子补表](../manuscript/next_generation_20261115/README.md)。
 
-本轮完成官方完整 TimesFM 3.0 冻结历史隐藏表示条件化 LEFT：三个源折的五臂源续训、PSM／SWaT／SMD28 的 Z 评价，以及全部30个目标的原生 LEFT／历史条件模型配对重放 U，共15份源端与60份适配终点。原生 LEFT 分数保持不变，没有使用预测残差融合。该固定架构未建立相对匹配 LEFT 的有意义增量，受控弱变化及相对时滞对照也未支持异常特异收益；按本轮规则结束该架构扩展，保留小幅正项、逐机 U 收益与所有负项。不自动开展额外种子、污染、F 或新模块。新增历史足迹不能覆盖原512点 CAL 全集，当前操作指标记 NA，不重选校准点。仅关闭此次架构，不否定公开 TSAD、多源预训练和混合目标学习的总体问题。[完整结果](experiments/left_timesfm_hidden_20261126/RESULTS.md) · [同轴外部主表](experiments/left_timesfm_hidden_20261126/PUBLIC_Z.md)。
+此前完成官方完整 TimesFM 3.0 冻结历史隐藏表示条件化 LEFT：三个源折的五臂源续训、PSM／SWaT／SMD28 的 Z 评价，以及全部30个目标的原生 LEFT／历史条件模型配对重放 U，共15份源端与60份适配终点。原生 LEFT 分数保持不变，没有使用预测残差融合。该固定架构未建立相对匹配 LEFT 的有意义增量，受控弱变化及相对时滞对照也未支持异常特异收益；按本轮规则结束该架构扩展，保留小幅正项、逐机 U 收益与所有负项。不自动开展额外种子、污染、F 或新模块。新增历史足迹不能覆盖原512点 CAL 全集，当前操作指标记 NA，不重选校准点。仅关闭此次架构，不否定公开 TSAD、多源预训练和混合目标学习的总体问题。[完整结果](experiments/left_timesfm_hidden_20261126/RESULTS.md) · [同轴外部主表](experiments/left_timesfm_hidden_20261126/PUBLIC_Z.md)。
+
+连续片段留出比较已完成 PSM、SWaT 和完整 SMD28 的三个匹配历史臂。PSM 正常 N 及 SMD 冻结 Z 给出官方历史相对两条留出对照的有限正项。三域同预算原生 LEFT 的 N 仍有更高 AP。非重叠历史替换和现有受控对照未建立正确历史对应关系或微弱异常、时滞机制的稳定收益。当前结果的科学范围为公开 Z、正常 N 和固定机制对照。[留出结果与成本](experiments/left_holdout_history_20261127/RESULTS.md)
 
 此前的固定 Pearson Self-lag/Cross-lag 关系预测头及关系误差评分已结束扩展。其256点历史、192点当前窗口及独立受控结果保留于[历史结果](experiments/left_history_relation_20261126/RESULTS.md)，不并入新架构的分数或贡献。
 

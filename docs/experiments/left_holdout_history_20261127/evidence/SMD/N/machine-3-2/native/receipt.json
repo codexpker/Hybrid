@@ -1,0 +1,14 @@
+{
+  "arm": "native",
+  "entity": "machine-3-2",
+  "seed": 2025,
+  "parent": "03939add13b1cfff065f0bc9234a33defd0051479261d2b56fa2c6e96c91ac60",
+  "selected": 20,
+  "selected_updates": 60,
+  "normal_select_objective": 0.394458144903183,
+  "selection": "earliest minimum of epochs 1\u201320",
+  "input_sha256": "fa58d62ea3e3df277af3cbd54ceb444e6c0e9702ac9c90283baeee78136332d0",
+  "order_sha256": "ab40e4170856962a378993d31ca3cd5f583ddd3eea07717583a2a790c3954ff8",
+  "sha256": "ee32488f58f55b9d50ddc3cd4fe3f0bea80788030015f5263f97649aca0febf6",
+  "native_step": 6060
+}

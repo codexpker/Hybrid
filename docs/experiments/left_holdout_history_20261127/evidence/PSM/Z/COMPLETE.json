@@ -1,0 +1,19 @@
+{
+  "domain": "PSM",
+  "seconds": 3388.7147599542513,
+  "feature_intervals": [
+    {
+      "calls": 4066,
+      "windows": 130052,
+      "seconds": 2821.379433029797,
+      "state_sha256": {
+        "B": "b20ef55e020503c3fd059d624e06eb0bb0cf38108124eae4ad7f7f233fb7bf67",
+        "C": "c9ca6c52b87bb5187298a876db5c6048de32df8e9de24f297b94d801bbe61680"
+      }
+    }
+  ],
+  "select_windows": 1024,
+  "native_forwards": 6384,
+  "current_presentations_each": 64000,
+  "peak_bytes": 4060838912
+}

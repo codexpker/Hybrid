@@ -14,6 +14,7 @@ export CUDA_VISIBLE_DEVICES="$gpu" OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
 mkdir -p "$output/logs"
 
 if [[ "$domain" == SMD ]]; then
+    export LEFT_HOLDOUT_N_PROGRESS=${LEFT_HOLDOUT_N_PROGRESS:-/dev/shm/left_holdout_history_20261127}
     "$python" -c 'import json,sys; assert json.load(open(sys.argv[1]))["expand_to_all_SMD28"]' "$output/EXPANSION.json"
 fi
 

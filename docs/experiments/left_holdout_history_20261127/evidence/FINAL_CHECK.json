@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "selected_checkpoints": 129,
+  "score_banks": 270,
+  "raw_AP_ROC_rows": 540,
+  "maximum_error": {
+    "AP": 0.0,
+    "ROC_AUC": 0.0
+  },
+  "source_feature_parity": {
+    "PSM": {
+      "official_hashes_equal": 2000,
+      "random_hashes_equal": 2000
+    },
+    "SWAT": {
+      "official_hashes_equal": 2000,
+      "random_hashes_equal": 2000
+    },
+    "SMD": {
+      "official_hashes_equal": 2000,
+      "random_hashes_equal": 2000
+    }
+  },
+  "controlled_rows": 576,
+  "VUS_scope": "Sealed metric rows and macro summaries only",
+  "CPU_seconds": 21.493710890877992,
+  "model_forwards": 0
+}

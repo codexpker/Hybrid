@@ -1,0 +1,12 @@
+{
+  "sha256": "6343ca537028cdc07ad6f5b7c405a67f00265b8addb02627c4c3387aaeaf0472",
+  "checkpoint": "705aa07de145c01e4b827c6f37df3a4c06130d48e440899e20046f877c5138b0",
+  "input_receipt_sha256": "02b5e180de89abee7a2050b5ee26bbef5162e3b7ccee2ef740b3aef9defc9f71",
+  "stage": "N",
+  "arm": "C",
+  "nonoverlap_replacement": false,
+  "native_forwards": 20,
+  "window_forwards": 580,
+  "seconds": 0.5263419249095023,
+  "labels_read": false
+}
