@@ -45,8 +45,10 @@ def sample(records, rng):
     return np.array(record[start:start+100], dtype=np.float32, copy=True)
 
 
-def edit(x, kind, rng):
+def edit(x, kind, rng, *, start=40):
     y = x.copy()
+    stop = start + 20
+    support = slice(start, stop)
     cols = rng.choice(x.shape[1], size=max(1, (x.shape[1]+3)//4), replace=False)
     sign = rng.choice([-1, 1])
     envelope = np.sin(np.pi*(np.arange(20)+0.5)/20)**2
@@ -54,8 +56,10 @@ def edit(x, kind, rng):
         change = sign * rng.uniform(1, 2) * envelope[:, None]
     else:
         lag = int(rng.choice([3, 6]))
-        change = envelope[:, None]*(x[40+sign*lag:60+sign*lag, cols]-x[SUPPORT, cols])
-    y[SUPPORT, cols] += change
+        if not 0 <= start+sign*lag < stop+sign*lag <= len(x):
+            raise ValueError("Shift donor would leave the current window")
+        change = envelope[:, None]*(x[start+sign*lag:stop+sign*lag, cols]-x[support, cols])
+    y[support, cols] += change
     return y
 
 

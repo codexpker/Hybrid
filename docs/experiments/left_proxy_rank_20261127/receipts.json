@@ -1,0 +1,608 @@
+{
+  "runs": [
+    {
+      "domain": "PSM",
+      "arm": "C",
+      "lane_seconds": 173.0,
+      "Z": {
+        "checkpoint": {
+          "domain": "PSM",
+          "arm": "C",
+          "stage": "Z",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 79968,
+          "visible_devices": "0",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 466350080,
+          "seconds": 79.49238515412435,
+          "sha256": "5b928dcac2af99eece9eaacc87592a27f761e27cccfa80062d55a5fb822c0c9b",
+          "labels_read": false,
+          "updates": 2000,
+          "initial_step": 4000,
+          "model_step": 6000,
+          "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+          "normal_plan_sha256": "8c5a5b241a37fbd8b1762e09a914a2ecef40cb5c46605cbc577a3b214c26e2e1",
+          "scale": null,
+          "scale_inputs_sha256": null,
+          "normal_exposure": 64000,
+          "pair_clean_exposure": 0,
+          "pair_edited_exposure": 0,
+          "magnitude_pairs": 0,
+          "shift_pairs": 0,
+          "edit_seconds": 0.0,
+          "source_seconds": 79.49096997268498,
+          "pair_forward_seconds": 0.0,
+          "pair_backward_seconds": 0.0,
+          "curve": [
+            {
+              "update": 0,
+              "select": 1.1241647638380527
+            },
+            {
+              "update": 400,
+              "native": 1.0360506772994995,
+              "curriculum": 0.3,
+              "select": 1.1231748163700104
+            },
+            {
+              "update": 800,
+              "native": 1.037832260131836,
+              "curriculum": 0.3,
+              "select": 1.1222513020038605
+            },
+            {
+              "update": 1200,
+              "native": 1.0333900451660156,
+              "curriculum": 0.3,
+              "select": 1.1215004697442055
+            },
+            {
+              "update": 1600,
+              "native": 1.0370454788208008,
+              "curriculum": 0.3,
+              "select": 1.1206012591719627
+            },
+            {
+              "update": 2000,
+              "native": 1.0333983898162842,
+              "curriculum": 0.3,
+              "select": 1.1185823418200016
+            }
+          ],
+          "target_exposure": 0
+        },
+        "QUERY_bank": {
+          "start": 22656,
+          "stop": 87744,
+          "points": 65088,
+          "role": "QUERY",
+          "seconds": 1.3465361730195582,
+          "sha256": "e06663ade9f5c8b438f8cfa030415418edade12b0b58c66004931455b5ec8066",
+          "checkpoint_sha256": "5b928dcac2af99eece9eaacc87592a27f761e27cccfa80062d55a5fb822c0c9b",
+          "step": 6000
+        }
+      },
+      "U": {
+        "checkpoint": {
+          "domain": "PSM",
+          "arm": "C",
+          "stage": "U",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 81553,
+          "visible_devices": "0",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 463858688,
+          "seconds": 78.21376975020394,
+          "sha256": "9621ba34cfd65bdcae3663a18fec74e89a38918c4f0659eca59000105956eb8e",
+          "labels_read": false,
+          "updates": 2000,
+          "selected": 2000,
+          "initial_step": 6000,
+          "model_step": 8000,
+          "parent": "5b928dcac2af99eece9eaacc87592a27f761e27cccfa80062d55a5fb822c0c9b",
+          "source_exposure": 32000,
+          "target_exposure": 32000,
+          "curve": [
+            {
+              "step": 400,
+              "loss": 0.74066400796175,
+              "lam": 0.3
+            },
+            {
+              "step": 800,
+              "loss": 0.7105492323637008,
+              "lam": 0.3
+            },
+            {
+              "step": 1200,
+              "loss": 0.6945458170771599,
+              "lam": 0.3
+            },
+            {
+              "step": 1600,
+              "loss": 0.6764743378758431,
+              "lam": 0.3
+            },
+            {
+              "step": 2000,
+              "loss": 0.6646470043063164,
+              "lam": 0.3
+            }
+          ]
+        },
+        "QUERY_bank": {
+          "start": 22656,
+          "stop": 87744,
+          "points": 65088,
+          "role": "QUERY",
+          "seconds": 1.334063723217696,
+          "sha256": "decc887c57d110c53e4d2af49b2cb4ecf123e5ba5c30ee25e019fdf2efe560fa",
+          "checkpoint_sha256": "9621ba34cfd65bdcae3663a18fec74e89a38918c4f0659eca59000105956eb8e",
+          "step": 8000
+        }
+      }
+    },
+    {
+      "domain": "PSM",
+      "arm": "M1",
+      "lane_seconds": 243.0,
+      "Z": {
+        "checkpoint": {
+          "domain": "PSM",
+          "arm": "M1",
+          "stage": "Z",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 79971,
+          "visible_devices": "1",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 818459648,
+          "seconds": 154.4750092830509,
+          "sha256": "a21a5c3b5a9336df176556cb2f57891ac44d691824e6126c2b67d57dba8c944e",
+          "labels_read": false,
+          "updates": 2000,
+          "initial_step": 4000,
+          "model_step": 6000,
+          "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+          "normal_plan_sha256": "8c5a5b241a37fbd8b1762e09a914a2ecef40cb5c46605cbc577a3b214c26e2e1",
+          "scale": 0.5662378072738647,
+          "scale_inputs_sha256": "003095a787499957598bbcfe1fbfdcedfaa7c0f77fc126b9dcf9a4215fd54c91",
+          "normal_exposure": 64000,
+          "pair_clean_exposure": 64000,
+          "pair_edited_exposure": 64000,
+          "magnitude_pairs": 32000,
+          "shift_pairs": 32000,
+          "edit_seconds": 6.397027608938515,
+          "source_seconds": 154.4612611248158,
+          "pair_forward_seconds": 28.633702210426332,
+          "pair_backward_seconds": 45.58485529899597,
+          "curve": [
+            {
+              "update": 0,
+              "select": 1.1241647638380527
+            },
+            {
+              "update": 400,
+              "native": 1.0360687971115112,
+              "curriculum": 0.3,
+              "select": 1.1231731232255697,
+              "pair": 1.2816581726074219,
+              "transformed_gap": 0.045198701322078705
+            },
+            {
+              "update": 800,
+              "native": 1.0378763675689697,
+              "curriculum": 0.3,
+              "select": 1.1223407834768295,
+              "pair": 1.2786377668380737,
+              "transformed_gap": 0.04970063641667366
+            },
+            {
+              "update": 1200,
+              "native": 1.0334380865097046,
+              "curriculum": 0.3,
+              "select": 1.1214512586593628,
+              "pair": 1.2768195867538452,
+              "transformed_gap": 0.05234919488430023
+            },
+            {
+              "update": 1600,
+              "native": 1.0370945930480957,
+              "curriculum": 0.3,
+              "select": 1.1207587849348783,
+              "pair": 1.2762668132781982,
+              "transformed_gap": 0.053194448351860046
+            },
+            {
+              "update": 2000,
+              "native": 1.0334504842758179,
+              "curriculum": 0.3,
+              "select": 1.118535777553916,
+              "pair": 1.2762458324432373,
+              "transformed_gap": 0.05318833887577057
+            }
+          ],
+          "target_exposure": 0
+        },
+        "QUERY_bank": {
+          "start": 22656,
+          "stop": 87744,
+          "points": 65088,
+          "role": "QUERY",
+          "seconds": 1.2918778900057077,
+          "sha256": "c8191e62ad23a2fd38e1450b0501b7eb941561bc3d6495fd3ce12494c73feabe",
+          "checkpoint_sha256": "a21a5c3b5a9336df176556cb2f57891ac44d691824e6126c2b67d57dba8c944e",
+          "step": 6000
+        }
+      },
+      "U": {
+        "checkpoint": {
+          "domain": "PSM",
+          "arm": "M1",
+          "stage": "U",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 82808,
+          "visible_devices": "1",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 463858688,
+          "seconds": 73.39970157109201,
+          "sha256": "d9af45e8ca73f6beff77dbaf88e2c176720532df900c86c18ac5d24238aa6e6a",
+          "labels_read": false,
+          "updates": 2000,
+          "selected": 2000,
+          "initial_step": 6000,
+          "model_step": 8000,
+          "parent": "a21a5c3b5a9336df176556cb2f57891ac44d691824e6126c2b67d57dba8c944e",
+          "source_exposure": 32000,
+          "target_exposure": 32000,
+          "curve": [
+            {
+              "step": 400,
+              "loss": 0.7407191827893257,
+              "lam": 0.3
+            },
+            {
+              "step": 800,
+              "loss": 0.7108495442569256,
+              "lam": 0.3
+            },
+            {
+              "step": 1200,
+              "loss": 0.695632146447897,
+              "lam": 0.3
+            },
+            {
+              "step": 1600,
+              "loss": 0.676737473756075,
+              "lam": 0.3
+            },
+            {
+              "step": 2000,
+              "loss": 0.6651922905445099,
+              "lam": 0.3
+            }
+          ]
+        },
+        "QUERY_bank": {
+          "start": 22656,
+          "stop": 87744,
+          "points": 65088,
+          "role": "QUERY",
+          "seconds": 1.3342952211387455,
+          "sha256": "8b55626753255b6939f66d5eddff8d23b0cc3d9cedecbaecb02afddadd83a892",
+          "checkpoint_sha256": "d9af45e8ca73f6beff77dbaf88e2c176720532df900c86c18ac5d24238aa6e6a",
+          "step": 8000
+        }
+      }
+    },
+    {
+      "domain": "SWAT",
+      "arm": "C",
+      "lane_seconds": 180.0,
+      "Z": {
+        "checkpoint": {
+          "domain": "SWAT",
+          "arm": "C",
+          "stage": "Z",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 79970,
+          "visible_devices": "2",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 455474688,
+          "seconds": 82.25885170698166,
+          "sha256": "9c750e34dabcaecd435a4ead7e623e3abc05506419c7e9fd9c321413e3817e34",
+          "labels_read": false,
+          "updates": 2000,
+          "initial_step": 4000,
+          "model_step": 6000,
+          "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+          "normal_plan_sha256": "bac5bd3b40a75dcbd04640b8e19ebe44660fabe7033b3f4a6f65e84e210ff1bb",
+          "scale": null,
+          "scale_inputs_sha256": null,
+          "normal_exposure": 64000,
+          "pair_clean_exposure": 0,
+          "pair_edited_exposure": 0,
+          "magnitude_pairs": 0,
+          "shift_pairs": 0,
+          "edit_seconds": 0.0,
+          "source_seconds": 82.2573130778037,
+          "pair_forward_seconds": 0.0,
+          "pair_backward_seconds": 0.0,
+          "curve": [
+            {
+              "update": 0,
+              "select": 0.3856271915137768
+            },
+            {
+              "update": 400,
+              "native": 0.3584318161010742,
+              "curriculum": 0.3,
+              "select": 0.3853412317112088
+            },
+            {
+              "update": 800,
+              "native": 0.3592345714569092,
+              "curriculum": 0.3,
+              "select": 0.384965599514544
+            },
+            {
+              "update": 1200,
+              "native": 0.3593110144138336,
+              "curriculum": 0.3,
+              "select": 0.38446153048425913
+            },
+            {
+              "update": 1600,
+              "native": 0.3578432500362396,
+              "curriculum": 0.3,
+              "select": 0.3842260269448161
+            },
+            {
+              "update": 2000,
+              "native": 0.3580501973628998,
+              "curriculum": 0.3,
+              "select": 0.3837862843647599
+            }
+          ],
+          "target_exposure": 0
+        },
+        "QUERY_bank": {
+          "start": 608088,
+          "stop": 944856,
+          "points": 336768,
+          "role": "QUERY",
+          "seconds": 3.0164939700625837,
+          "sha256": "67106ed5bdff7fc59fef65989c224769e11f65ee2a674998ebf629394a917973",
+          "checkpoint_sha256": "9c750e34dabcaecd435a4ead7e623e3abc05506419c7e9fd9c321413e3817e34",
+          "step": 6000
+        }
+      },
+      "U": {
+        "checkpoint": {
+          "domain": "SWAT",
+          "arm": "C",
+          "stage": "U",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 81603,
+          "visible_devices": "2",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 453297152,
+          "seconds": 79.18090248899534,
+          "sha256": "bf3f5598d144b1114476bf214e4a6d1c157d33d9b75302ad71f5ecf35010d888",
+          "labels_read": false,
+          "updates": 2000,
+          "selected": 2000,
+          "initial_step": 6000,
+          "model_step": 8000,
+          "parent": "9c750e34dabcaecd435a4ead7e623e3abc05506419c7e9fd9c321413e3817e34",
+          "source_exposure": 32000,
+          "target_exposure": 32000,
+          "curve": [
+            {
+              "step": 400,
+              "loss": 0.22199735105037688,
+              "lam": 0.3
+            },
+            {
+              "step": 800,
+              "loss": 0.20983575370162724,
+              "lam": 0.3
+            },
+            {
+              "step": 1200,
+              "loss": 0.2094757215678692,
+              "lam": 0.3
+            },
+            {
+              "step": 1600,
+              "loss": 0.2084601220116019,
+              "lam": 0.3
+            },
+            {
+              "step": 2000,
+              "loss": 0.20673079039901496,
+              "lam": 0.3
+            }
+          ]
+        },
+        "QUERY_bank": {
+          "start": 608088,
+          "stop": 944856,
+          "points": 336768,
+          "role": "QUERY",
+          "seconds": 2.883950748015195,
+          "sha256": "cb703949bf2398167f8fe83711dbd2610262cbd4b18f2b61995f935128d50668",
+          "checkpoint_sha256": "bf3f5598d144b1114476bf214e4a6d1c157d33d9b75302ad71f5ecf35010d888",
+          "step": 8000
+        }
+      }
+    },
+    {
+      "domain": "SWAT",
+      "arm": "M1",
+      "lane_seconds": 245.0,
+      "Z": {
+        "checkpoint": {
+          "domain": "SWAT",
+          "arm": "M1",
+          "stage": "Z",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 79969,
+          "visible_devices": "3",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 784565248,
+          "seconds": 150.60983219370246,
+          "sha256": "e3265164428a6d5da7ca31ea9aaa4c02b028b3f02968f87b9459daed5d5be42d",
+          "labels_read": false,
+          "updates": 2000,
+          "initial_step": 4000,
+          "model_step": 6000,
+          "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+          "normal_plan_sha256": "bac5bd3b40a75dcbd04640b8e19ebe44660fabe7033b3f4a6f65e84e210ff1bb",
+          "scale": 0.22366030514240265,
+          "scale_inputs_sha256": "7b47c7fa4c3605c5b83fbd25ddce70eaa1c7cc5a21ef005a36c3346a54667369",
+          "normal_exposure": 64000,
+          "pair_clean_exposure": 64000,
+          "pair_edited_exposure": 64000,
+          "magnitude_pairs": 32000,
+          "shift_pairs": 32000,
+          "edit_seconds": 5.757179322652519,
+          "source_seconds": 150.59464258793741,
+          "pair_forward_seconds": 28.945895449638368,
+          "pair_backward_seconds": 42.085956684112546,
+          "curve": [
+            {
+              "update": 0,
+              "select": 0.3856271915137768
+            },
+            {
+              "update": 400,
+              "native": 0.3589284121990204,
+              "curriculum": 0.3,
+              "select": 0.38833339884877205,
+              "pair": 1.2562017440795898,
+              "transformed_gap": 0.08665508031845093
+            },
+            {
+              "update": 800,
+              "native": 0.36144447326660156,
+              "curriculum": 0.3,
+              "select": 0.6616898439824581,
+              "pair": 1.1820499897003174,
+              "transformed_gap": 0.25541117787361145
+            },
+            {
+              "update": 1200,
+              "native": 0.360151082277298,
+              "curriculum": 0.3,
+              "select": 0.8604928944259882,
+              "pair": 1.1210923194885254,
+              "transformed_gap": 0.45896628499031067
+            },
+            {
+              "update": 1600,
+              "native": 0.35854530334472656,
+              "curriculum": 0.3,
+              "select": 1.2377844378352165,
+              "pair": 1.0986965894699097,
+              "transformed_gap": 0.512002170085907
+            },
+            {
+              "update": 2000,
+              "native": 0.3591991066932678,
+              "curriculum": 0.3,
+              "select": 0.8244433384388685,
+              "pair": 1.0481277704238892,
+              "transformed_gap": 0.5962761640548706
+            }
+          ],
+          "target_exposure": 0
+        },
+        "QUERY_bank": {
+          "start": 608088,
+          "stop": 944856,
+          "points": 336768,
+          "role": "QUERY",
+          "seconds": 2.862370172981173,
+          "sha256": "ad924b7cc768223e010aa415aae447ce9512548529ae3de8973b5e83f8de937f",
+          "checkpoint_sha256": "e3265164428a6d5da7ca31ea9aaa4c02b028b3f02968f87b9459daed5d5be42d",
+          "step": 6000
+        }
+      },
+      "U": {
+        "checkpoint": {
+          "domain": "SWAT",
+          "arm": "M1",
+          "stage": "U",
+          "seed": 2025,
+          "gpu": "NVIDIA A40",
+          "pid": 82711,
+          "visible_devices": "3",
+          "torch_version": "2.12.0+cu130",
+          "peak_bytes": 453297152,
+          "seconds": 75.74482876621187,
+          "sha256": "493717052307ef45df1c49cb83c7443bf754dd0dbcb5905fd24af71b69960d7c",
+          "labels_read": false,
+          "updates": 2000,
+          "selected": 2000,
+          "initial_step": 6000,
+          "model_step": 8000,
+          "parent": "e3265164428a6d5da7ca31ea9aaa4c02b028b3f02968f87b9459daed5d5be42d",
+          "source_exposure": 32000,
+          "target_exposure": 32000,
+          "curve": [
+            {
+              "step": 400,
+              "loss": 0.22176658444106578,
+              "lam": 0.3
+            },
+            {
+              "step": 800,
+              "loss": 0.21018650714308024,
+              "lam": 0.3
+            },
+            {
+              "step": 1200,
+              "loss": 0.20972597792744638,
+              "lam": 0.3
+            },
+            {
+              "step": 1600,
+              "loss": 0.20871330935508012,
+              "lam": 0.3
+            },
+            {
+              "step": 2000,
+              "loss": 0.2070148103684187,
+              "lam": 0.3
+            }
+          ]
+        },
+        "QUERY_bank": {
+          "start": 608088,
+          "stop": 944856,
+          "points": 336768,
+          "role": "QUERY",
+          "seconds": 3.0565665527246892,
+          "sha256": "f9bd75e99680ea373e553c4fc58869e0abe068453595ab38d549214ff500b24e",
+          "checkpoint_sha256": "493717052307ef45df1c49cb83c7443bf754dd0dbcb5905fd24af71b69960d7c",
+          "step": 8000
+        }
+      }
+    }
+  ],
+  "exact_deployed_file_hashes": {
+    "docs/experiments/left_proxy_rank_20261127/PROTOCOL.md": "314c1490fe59db7402d41fb8cbb2cec9df99ef50faa670654bba1ead33108c43",
+    "scripts/run_left_proxy_rank.sh": "af35380af6b9fc0bb8dd9d68669f9e4d99f965b22035d6a6d64de053c184dac9",
+    "src/hybrid_tsad/left_proxy_rank.py": "e1cd102324df3721f51bcd7a1051bdf0563e221652b2eda30e9a489fb6109c71",
+    "src/hybrid_tsad/left_multisource.py": "f6d3e415d4568345e26081cf7db0eef46fc6f518572efac4d481bb2243ea4298",
+    "src/hybrid_tsad/left_multisource_eval.py": "0c2470c2315def794e602c7c19068c125bc930c3c4b4154ba7d62641ae19bfcf",
+    "src/hybrid_tsad/intervention_reference.py": "fd5981c4a4ec79f367c7121cf7a12266a05a8b429227cdebc37be2d228b2ed4b"
+  }
+}

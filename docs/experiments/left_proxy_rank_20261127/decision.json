@@ -1,0 +1,29 @@
+{
+  "continue_fixed_candidate": false,
+  "both_AP_gains_at_least_005": [],
+  "all_AP_differences_at_least_minus_005": false,
+  "mean_AP_differences": {
+    "M1-C": -0.0015404561878443745,
+    "M1-M0": -0.007653599577416292
+  },
+  "other_metric_regressions_exceeding_01": [
+    {
+      "domain": "PSM",
+      "contrast": "M1-C",
+      "metric": "VUS_PR",
+      "difference": -0.012790253665987072
+    },
+    {
+      "domain": "PSM",
+      "contrast": "M1-M0",
+      "metric": "VUS_PR",
+      "difference": -0.02509448286821503
+    },
+    {
+      "domain": "PSM",
+      "contrast": "M1-M0",
+      "metric": "VUS_ROC",
+      "difference": -0.015425087154772643
+    }
+  ]
+}

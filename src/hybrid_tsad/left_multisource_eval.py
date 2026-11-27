@@ -18,19 +18,19 @@ MIXED={"PSM":PSM_AXES["QUERY"],"SWAT":SW_AXIS}
 
 
 @torch.no_grad()
-def bank(w,d,arm,role):
-    dest=w/OUT/d/"banks"
+def bank(w,d,arm,role,*,root=OUT):
+    dest=w/root/d/"banks"
     dest.mkdir(parents=True,exist_ok=True)
     path=dest/(arm+"_"+role+".npz")
     if path.with_suffix(".json").exists():
         assert sha(path)==read(path.with_suffix(".json"))["sha256"]
         return
     start=time.monotonic()
-    root=w/OUT/d/arm
-    receipt=read(root/"receipt.json")
-    assert sha(root/"selected.pt")==receipt["sha256"]
+    checkpoint=w/root/d/arm
+    receipt=read(checkpoint/"receipt.json")
+    assert sha(checkpoint/"selected.pt")==receipt["sha256"]
     model=initialize(w,d).eval()
-    ck=torch.load(root/"selected.pt",map_location="cpu",weights_only=True)
+    ck=torch.load(checkpoint/"selected.pt",map_location="cpu",weights_only=True)
     # Official N training profiles FLOPs with thop. Stored counters have no model role.
     params={k:v for k,v in ck["state"].items() if k.split(".")[-1] not in ("total_ops","total_params")}
     model.load_state_dict(params,strict=True)
@@ -55,8 +55,8 @@ def bank(w,d,arm,role):
         seconds=time.monotonic()-start,sha256=sha(path),checkpoint_sha256=receipt["sha256"],step=step))
 
 
-def read_score(w,d,arm,role):
-    path=w/OUT/d/"banks"/(arm+"_"+role+".npz")
+def read_score(w,d,arm,role,*,root=OUT):
+    path=w/root/d/"banks"/(arm+"_"+role+".npz")
     assert sha(path)==read(path.with_suffix(".json"))["sha256"]
     with np.load(path) as z:
         return z["index"],z["score"],z["available"]

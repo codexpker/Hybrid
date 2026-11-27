@@ -24,7 +24,7 @@ U_STEPS = 2000
 BATCH = 32
 
 
-def initialize(w, domain, ema_selector=None, weighted_reductions=None):
+def initialize(w, domain, ema_selector=None, weighted_reductions=None, *, device="cuda"):
     random.seed(2025)
     np.random.seed(2025)
     torch.manual_seed(2025)
@@ -33,7 +33,7 @@ def initialize(w, domain, ema_selector=None, weighted_reductions=None):
     official, cfgs, _ = environment(w,domain)
     cfg = official.Configs(str(cfgs/domain/"model_configs_Left.json"))
     model = model_class(official.Left,"native",ema_selector=ema_selector,
-                        weighted_reductions=weighted_reductions)(cfg).cuda()
+                        weighted_reductions=weighted_reductions)(cfg).to(device)
     assert model.enc_in == WIDTH[domain] and model.seq_len == WINDOW
     return model
 
@@ -136,11 +136,11 @@ def train_source(model, pools, width, dest, d, source_names):
         shapes={name:{n:list(p.shape) for n,p in getattr(model,name).named_parameters()} for name in ("Et","Ef","Dt","Df")})
 
 
-def mixed(w,d,arm,dest):
+def mixed(w,d,arm,dest,*,initial=None):
     model=initialize(w,d)
     parent=None
     if arm!="random_u":
-        parent=restore(w,model,d)["sha256"]
+        parent=(restore(w,model,d) if initial is None else initial(model))["sha256"]
     start_step=model.step
     _,_,scaler,_=target_inputs(w,d)
     data=scaler.transform(target(w,d,"U")).astype(np.float32)
