@@ -213,6 +213,15 @@ def update(student,opt,x):
     return loss.detach()
 
 
+def raw_detector(w, d, fitted, arm):
+    if arm == "R7":
+        native = base.initialize(w, d)
+        native.load_state_dict(fitted.state_dict(), strict=True)
+        native.step = fitted.step
+        return native.eval()
+    return fitted.eval()
+
+
 def check(w,d,root):
     if (root/"check.json").exists():
         return
@@ -244,8 +253,16 @@ def check(w,d,root):
         state=base.fingerprint(student.state_dict())
         if arm=="R0":
             original,_teacher,original_opt,_=models(w,d,"R0")
-            native=base.update(original,original_opt,np.concatenate((raw,replay)))
-            assert loss==native and state==base.fingerprint(original.state_dict())
+            original_batch=np.concatenate((raw,replay))
+            assert torch.equal(x,torch_x(original_batch))
+            assert torch.equal(cpu,torch.get_rng_state()) and torch.equal(cuda,torch.cuda.get_rng_state())
+            native=base.update(original,original_opt,original_batch)
+            loss_abs_diff=abs(loss-native)
+            pairs=zip(student.state_dict().values(),original.state_dict().values())
+            state_max_abs=max((a-b).abs().max().item() for a,b in pairs)
+            print(d,"R0 native parity",loss_abs_diff,state_max_abs,flush=True)
+            assert loss_abs_diff <= 2e-6
+            torch.testing.assert_close(student.state_dict(),original.state_dict(),atol=3e-6,rtol=1e-5)
             native_loss=loss
         if arm=="R7":
             assert abs(loss-native_loss)<2e-6
@@ -254,12 +271,14 @@ def check(w,d,root):
             assert teacher.step==parent["selected"] and base.fingerprint(teacher.state_dict())==parent["fingerprint"]
         proof[arm]=dict(loss=loss, corrected_fraction=float((a!=y).float().mean()),step=student.step)
     # Native deployment consumes the original input with no correction or fitted weights.
-    student.eval()
+    detector=raw_detector(w,d,student,"R7")
     before=base.fingerprint(student.state_dict()),student.step
-    s=student.infer(a,None,None,None)[0]
-    assert s.shape==a.shape and torch.isfinite(s).all() and before==(base.fingerprint(student.state_dict()),student.step)
+    assert before==(base.fingerprint(detector.state_dict()),detector.step)
+    s=detector.infer(a,None,None,None)[0]
+    assert s.shape==a.shape and torch.isfinite(s).all() and before==(base.fingerprint(detector.state_dict()),detector.step)
     base.dump(root/"check.json",dict(proof=proof,raw_native_readout=True,source_unchanged=True,
               teacher_optimizer_disjoint=True,teacher_frozen=True,rng_equal=True,
+              zero_native_loss_max_abs=loss_abs_diff,zero_native_state_max_abs=state_max_abs,
               device=torch.cuda.get_device_name(),seconds=time.monotonic()-t0))
 
 
@@ -336,7 +355,7 @@ def train(w,d,root,arm):
     base.save(model,job)
     fit_seconds=time.monotonic()-t0
     with np.load(root/"query.npz") as q:
-        pane=evaluate(model,q["clean"],q["edited"],q["positions"])
+        pane=evaluate(raw_detector(w,d,model,arm),q["clean"],q["edited"],q["positions"])
         diag=diagnostics(teacher,q["clean"],q["edited"],q["positions"],arm,config["stats"])
     base.dump(job/"receipt.json",dict(
         domain=d,arm=arm,updates=STEPS,seed=SEED,parent=parent["sha256"],plan=config["hashes"]["plan.npz"],

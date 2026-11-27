@@ -1,0 +1,119 @@
+{
+  "rows": [
+    {
+      "width": 25,
+      "source": "TEP",
+      "family": "amplitude",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.6558502912521362,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.8451450892857143,
+        "0.99": 0.9541294642857143
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 25,
+      "source": "SMD",
+      "family": "amplitude",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.6767563223838806,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.9631696428571429,
+        "0.99": 0.9905133928571429
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 25,
+      "source": "TEP",
+      "family": "shift",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.9781867265701294,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.9586096501257718,
+        "0.99": 0.9952549737022639
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 25,
+      "source": "SMD",
+      "family": "shift",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.9889833331108093,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.9735105407882676,
+        "0.99": 0.9837763519706691
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 31,
+      "source": "TEP",
+      "family": "amplitude",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.7518429756164551,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.8423828125,
+        "0.99": 0.95625
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 31,
+      "source": "SMD",
+      "family": "amplitude",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.7585036754608154,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.957568359375,
+        "0.99": 0.985205078125
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 31,
+      "source": "TEP",
+      "family": "shift",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.9913747310638428,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.9594025661587811,
+        "0.99": 0.9955392943063353
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    },
+    {
+      "width": 31,
+      "source": "SMD",
+      "family": "shift",
+      "nonzero_edit_windows": 128,
+      "copy_like_windows": 0,
+      "median_relative_teacher_response_error": 0.9918689131736755,
+      "untriggered_actual_edit_coordinates": {
+        "0.95": 0.9802347127856702,
+        "0.99": 0.990117356392835
+      },
+      "copy_like_coordinates": 0,
+      "copy_like_coordinates_below_q95": null
+    }
+  ],
+  "seconds": 15.833712438121438,
+  "device": "cpu",
+  "target_query_opened": false
+}

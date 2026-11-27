@@ -1,0 +1,9 @@
+{
+  "exact_deployed_sha256": {
+    "src/hybrid_tsad/left_input_correction.py": "b6d4de0ca2105cf703b65ab7503ab47762383e220afaa3dca18cc11deee43afe",
+    "scripts/run_left_input_correction.sh": "cb6f91dc58e1d1a0f70b825cda6daade889fa712102ff4594b3efc4f456384e3",
+    "docs/experiments/left_input_correction_20261127/PROTOCOL.md": "e054458fb9d9f020a6bac954a32a371a5f8687f12ab0b7d4b97a32e6bb0c130c",
+    "scripts/summarize_left_input_correction.py": "114c9cb4c9efb307f3bc22ba12440060badbd7371ba4bdb28235eceb00f820b2"
+  },
+  "original_baseline_commit": "6bea2ec2c15446142347d0a7290fabf85897345b"
+}

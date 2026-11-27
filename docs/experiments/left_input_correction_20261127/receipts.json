@@ -1,0 +1,2784 @@
+{
+  "PSM": {
+    "prepare": {
+      "domain": "PSM",
+      "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+      "teacher_parameters": 4519985,
+      "teacher_state_unchanged": true,
+      "stats": {
+        "0.95": 1.5008045434951782,
+        "0.99": 2.1744675636291504,
+        "low": -2.475886821746826,
+        "high": 2.829265832901001
+      },
+      "frozen_query": {
+        "normal_risk": {
+          "TEP": 1.4330428689718246,
+          "SMD": 0.7631955742835999
+        },
+        "panels": [
+          {
+            "family": "amplitude",
+            "source": "TEP",
+            "AP": 0.6398292615482237,
+            "ROC_AUC": 0.6511335754394532,
+            "score_gap_mean": 0.0639132633805275
+          },
+          {
+            "family": "amplitude",
+            "source": "SMD",
+            "AP": 0.6218336510664234,
+            "ROC_AUC": 0.6604939270019531,
+            "score_gap_mean": 0.08292493969202042
+          },
+          {
+            "family": "shift",
+            "source": "TEP",
+            "AP": 0.46397922827128796,
+            "ROC_AUC": 0.4455867767333984,
+            "score_gap_mean": -0.020683038979768753
+          },
+          {
+            "family": "shift",
+            "source": "SMD",
+            "AP": 0.4955444816509906,
+            "ROC_AUC": 0.49578941345214844,
+            "score_gap_mean": -0.0046578021720051765
+          }
+        ],
+        "macro_AP": 0.5552966556342315
+      },
+      "seconds": 25.57050871802494,
+      "hashes": {
+        "plan.npz": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "roles.json": "1c345ceb019254db79640dfb9a5ccddc9a155a6ec3fa95dbbc3e0b42bb906f02",
+        "query.npz": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "R7.npy": "4bb085d80fb2bcaffb1580fa88b8b15836691733f2c3f22db1604cd4191c8a54"
+      },
+      "device": "NVIDIA A40",
+      "peak_bytes": 129193472,
+      "labels_read": false
+    },
+    "check": {
+      "proof": {
+        "R0": {
+          "loss": 1.1024225950241089,
+          "corrected_fraction": 0.0,
+          "step": 4001
+        },
+        "R2": {
+          "loss": 1.0746257305145264,
+          "corrected_fraction": 0.04906250163912773,
+          "step": 4001
+        },
+        "R7": {
+          "loss": 1.1024225950241089,
+          "corrected_fraction": 0.0,
+          "step": 4001
+        }
+      },
+      "raw_native_readout": true,
+      "source_unchanged": true,
+      "teacher_optimizer_disjoint": true,
+      "teacher_frozen": true,
+      "rng_equal": true,
+      "zero_native_loss_max_abs": 0.0,
+      "zero_native_state_max_abs": 2.4726614356040955e-07,
+      "device": "NVIDIA A40",
+      "seconds": 6.578762303106487
+    },
+    "roles": {
+      "reference": [
+        [
+          {
+            "record": "TEP/run-1",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-2",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-3",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-4",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-1",
+            "start": 0,
+            "stop": 22783
+          },
+          {
+            "record": "machine-1-2",
+            "start": 0,
+            "stop": 18955
+          },
+          {
+            "record": "machine-1-3",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-1-4",
+            "start": 0,
+            "stop": 18964
+          },
+          {
+            "record": "machine-1-5",
+            "start": 0,
+            "stop": 18964
+          },
+          {
+            "record": "machine-1-6",
+            "start": 0,
+            "stop": 18950
+          }
+        ]
+      ],
+      "support": [
+        [
+          {
+            "record": "TEP/run-5",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-6",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-7",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-8",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-9",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-10",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-11",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-12",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-7",
+            "start": 0,
+            "stop": 18957
+          },
+          {
+            "record": "machine-1-8",
+            "start": 0,
+            "stop": 18958
+          },
+          {
+            "record": "machine-2-1",
+            "start": 0,
+            "stop": 18954
+          },
+          {
+            "record": "machine-2-2",
+            "start": 0,
+            "stop": 18959
+          },
+          {
+            "record": "machine-2-3",
+            "start": 0,
+            "stop": 18950
+          },
+          {
+            "record": "machine-2-4",
+            "start": 0,
+            "stop": 18951
+          },
+          {
+            "record": "machine-2-5",
+            "start": 0,
+            "stop": 18950
+          },
+          {
+            "record": "machine-2-6",
+            "start": 0,
+            "stop": 22994
+          },
+          {
+            "record": "machine-2-7",
+            "start": 0,
+            "stop": 18956
+          },
+          {
+            "record": "machine-2-8",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-2-9",
+            "start": 0,
+            "stop": 22977
+          }
+        ]
+      ],
+      "replay": [
+        [
+          {
+            "record": "TEP/run-13",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-14",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-15",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-16",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-17",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-18",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-19",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-20",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-3-1",
+            "start": 0,
+            "stop": 22960
+          },
+          {
+            "record": "machine-3-10",
+            "start": 0,
+            "stop": 18953
+          },
+          {
+            "record": "machine-3-11",
+            "start": 0,
+            "stop": 22956
+          },
+          {
+            "record": "machine-3-2",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-3-3",
+            "start": 0,
+            "stop": 18962
+          },
+          {
+            "record": "machine-3-4",
+            "start": 0,
+            "stop": 18949
+          },
+          {
+            "record": "machine-3-5",
+            "start": 0,
+            "stop": 18952
+          },
+          {
+            "record": "machine-3-6",
+            "start": 0,
+            "stop": 22980
+          },
+          {
+            "record": "machine-3-7",
+            "start": 0,
+            "stop": 22964
+          },
+          {
+            "record": "machine-3-8",
+            "start": 0,
+            "stop": 22962
+          },
+          {
+            "record": "machine-3-9",
+            "start": 0,
+            "stop": 22970
+          }
+        ]
+      ],
+      "query": [
+        [
+          {
+            "record": "TEP/run-61",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-62",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-63",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-64",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-65",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-1",
+            "start": 22783,
+            "stop": 28479
+          },
+          {
+            "record": "machine-1-2",
+            "start": 18955,
+            "stop": 23694
+          },
+          {
+            "record": "machine-1-3",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-1-4",
+            "start": 18964,
+            "stop": 23706
+          },
+          {
+            "record": "machine-1-5",
+            "start": 18964,
+            "stop": 23705
+          },
+          {
+            "record": "machine-1-6",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-1-7",
+            "start": 18957,
+            "stop": 23697
+          },
+          {
+            "record": "machine-1-8",
+            "start": 18958,
+            "stop": 23698
+          },
+          {
+            "record": "machine-2-1",
+            "start": 18954,
+            "stop": 23693
+          },
+          {
+            "record": "machine-2-2",
+            "start": 18959,
+            "stop": 23699
+          },
+          {
+            "record": "machine-2-3",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-2-4",
+            "start": 18951,
+            "stop": 23689
+          },
+          {
+            "record": "machine-2-5",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-2-6",
+            "start": 22994,
+            "stop": 28743
+          },
+          {
+            "record": "machine-2-7",
+            "start": 18956,
+            "stop": 23696
+          },
+          {
+            "record": "machine-2-8",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-2-9",
+            "start": 22977,
+            "stop": 28722
+          },
+          {
+            "record": "machine-3-1",
+            "start": 22960,
+            "stop": 28700
+          },
+          {
+            "record": "machine-3-10",
+            "start": 18953,
+            "stop": 23692
+          },
+          {
+            "record": "machine-3-11",
+            "start": 22956,
+            "stop": 28695
+          },
+          {
+            "record": "machine-3-2",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-3-3",
+            "start": 18962,
+            "stop": 23703
+          },
+          {
+            "record": "machine-3-4",
+            "start": 18949,
+            "stop": 23687
+          },
+          {
+            "record": "machine-3-5",
+            "start": 18952,
+            "stop": 23690
+          },
+          {
+            "record": "machine-3-6",
+            "start": 22980,
+            "stop": 28726
+          },
+          {
+            "record": "machine-3-7",
+            "start": 22964,
+            "stop": 28705
+          },
+          {
+            "record": "machine-3-8",
+            "start": 22962,
+            "stop": 28703
+          },
+          {
+            "record": "machine-3-9",
+            "start": 22970,
+            "stop": 28713
+          }
+        ]
+      ]
+    },
+    "arms": {
+      "R0": {
+        "domain": "PSM",
+        "arm": "R0",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "9abd3cd5dc377462d46592033fe7669feba3b165325b00cc0a75b9549b63567f",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.029399037361145,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 800,
+            "loss": 1.0332993268966675,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1200,
+            "loss": 1.0289723873138428,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1600,
+            "loss": 1.0307278633117676,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 2000,
+            "loss": 1.0292844772338867,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4303141236305237,
+            "SMD": 0.7557583153247833
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6394864844008121,
+              "ROC_AUC": 0.6507000732421876,
+              "score_gap_mean": 0.06369095295667648
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6230644875488094,
+              "ROC_AUC": 0.6618126678466798,
+              "score_gap_mean": 0.08228294551372528
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4640018682913651,
+              "ROC_AUC": 0.44553115844726565,
+              "score_gap_mean": -0.02067975141108036
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.495492037675529,
+              "ROC_AUC": 0.4956050872802734,
+              "score_gap_mean": -0.004748911131173372
+            }
+          ],
+          "macro_AP": 0.555511219479129
+        },
+        "diagnostics": {
+          "clean_changed": 0.0,
+          "clean_rms": 0.0,
+          "eligible_edit_fraction": [
+            0.0,
+            0.0
+          ],
+          "clean_relative_edit_rms": [
+            1.0,
+            1.0
+          ],
+          "off_edit_rms": [
+            0.0,
+            0.0
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 464474112,
+        "seconds": 65.02358798263595,
+        "fit_seconds": 64.45754238776863,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 202467
+      },
+      "R1": {
+        "domain": "PSM",
+        "arm": "R1",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "8c0bf9e7adee5cc239fe106ae9d065fa9746ade281adfbe62c9b78c34f9f9584",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.0148025751113892,
+            "correction_rms": 0.08079103020965654,
+            "changed": 0.04972146824002266
+          },
+          {
+            "updates": 800,
+            "loss": 1.018698811531067,
+            "correction_rms": 0.08359887673352599,
+            "changed": 0.04964982345700264
+          },
+          {
+            "updates": 1200,
+            "loss": 1.014182686805725,
+            "correction_rms": 0.08513778335367735,
+            "changed": 0.049810681492090225
+          },
+          {
+            "updates": 1600,
+            "loss": 1.015936017036438,
+            "correction_rms": 0.08586202091950981,
+            "changed": 0.04979339614510536
+          },
+          {
+            "updates": 2000,
+            "loss": 1.0145107507705688,
+            "correction_rms": 0.08480557673623708,
+            "changed": 0.04970397427678108
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4302877485752106,
+            "SMD": 0.7558669894933701
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6394451191587133,
+              "ROC_AUC": 0.6506803131103516,
+              "score_gap_mean": 0.06361992657184601
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.623044399018795,
+              "ROC_AUC": 0.6619122314453125,
+              "score_gap_mean": 0.0822446420788765
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4640036277513402,
+              "ROC_AUC": 0.4455016326904297,
+              "score_gap_mean": -0.020678874105215073
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49554370465780306,
+              "ROC_AUC": 0.4956497192382812,
+              "score_gap_mean": -0.004747564438730478
+            }
+          ],
+          "macro_AP": 0.555509212646663
+        },
+        "diagnostics": {
+          "clean_changed": 0.04940022900700569,
+          "clean_rms": 0.3610006272792816,
+          "eligible_edit_fraction": [
+            0.0958426371216774,
+            0.03566650301218033
+          ],
+          "clean_relative_edit_rms": [
+            0.9896979928016663,
+            0.9833248257637024
+          ],
+          "off_edit_rms": [
+            0.3661644756793976,
+            0.36354339122772217
+          ],
+          "teacher_copied_below_q99": [
+            0.9723493456840515,
+            0.9908457398414612
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 494887936,
+        "seconds": 86.56806769175455,
+        "fit_seconds": 85.81251382408664,
+        "teacher_train_seconds": 15.371531044006348,
+        "labels_read": false,
+        "pid": 202465
+      },
+      "R2": {
+        "domain": "PSM",
+        "arm": "R2",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "520df1bb5d93641b326119a0b293bda11e445e399531ae0e47857e20c32beb82",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.0006814002990723,
+            "correction_rms": 0.16158206041931308,
+            "changed": 0.04972146824002266
+          },
+          {
+            "updates": 800,
+            "loss": 1.0045740604400635,
+            "correction_rms": 0.16719775346705198,
+            "changed": 0.04964982345700264
+          },
+          {
+            "updates": 1200,
+            "loss": 0.9998727440834045,
+            "correction_rms": 0.1702755667073547,
+            "changed": 0.049810681492090225
+          },
+          {
+            "updates": 1600,
+            "loss": 1.001625657081604,
+            "correction_rms": 0.17172404183901963,
+            "changed": 0.04979339614510536
+          },
+          {
+            "updates": 2000,
+            "loss": 1.0002210140228271,
+            "correction_rms": 0.16961115347247416,
+            "changed": 0.04970397427678108
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.430273488163948,
+            "SMD": 0.756179004907608
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6393551448730306,
+              "ROC_AUC": 0.6506593322753906,
+              "score_gap_mean": 0.06355638802051544
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6231754390691621,
+              "ROC_AUC": 0.6622955322265625,
+              "score_gap_mean": 0.08221537619829178
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.46396868178843775,
+              "ROC_AUC": 0.44548706054687504,
+              "score_gap_mean": -0.020678069442510605
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.4956953565116256,
+              "ROC_AUC": 0.49565925598144533,
+              "score_gap_mean": -0.004751560743898153
+            }
+          ],
+          "macro_AP": 0.555548655560564
+        },
+        "diagnostics": {
+          "clean_changed": 0.04940022900700569,
+          "clean_rms": 0.7220012545585632,
+          "eligible_edit_fraction": [
+            0.0958426371216774,
+            0.03566650301218033
+          ],
+          "clean_relative_edit_rms": [
+            0.9880698919296265,
+            1.017485499382019
+          ],
+          "off_edit_rms": [
+            0.7323290109634399,
+            0.7270867228507996
+          ],
+          "teacher_copied_below_q99": [
+            0.9723493456840515,
+            0.9908457398414612
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 494887936,
+        "seconds": 89.69593144906685,
+        "fit_seconds": 88.94077610736713,
+        "teacher_train_seconds": 16.108118091106416,
+        "labels_read": false,
+        "pid": 203427
+      },
+      "R3": {
+        "domain": "PSM",
+        "arm": "R3",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "e1d727f9f64c1debd4a86d9fc6e961555a882fc846b2a4e8bac789a7d14580a0",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.0232850313186646,
+            "correction_rms": 0.07273604666635802,
+            "changed": 0.009961164556443691
+          },
+          {
+            "updates": 800,
+            "loss": 1.027165174484253,
+            "correction_rms": 0.07589907580630974,
+            "changed": 0.009920830838382244
+          },
+          {
+            "updates": 1200,
+            "loss": 1.0226746797561646,
+            "correction_rms": 0.07731535214422666,
+            "changed": 0.010002928785979748
+          },
+          {
+            "updates": 1600,
+            "loss": 1.024418592453003,
+            "correction_rms": 0.07816326575132908,
+            "changed": 0.009955431334674358
+          },
+          {
+            "updates": 2000,
+            "loss": 1.0229809284210205,
+            "correction_rms": 0.0769276538075288,
+            "changed": 0.009955734014511108
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4302836209535599,
+            "SMD": 0.7559084668755531
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6394644887758584,
+              "ROC_AUC": 0.6507000732421875,
+              "score_gap_mean": 0.06365899741649628
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6232133477856464,
+              "ROC_AUC": 0.6621368408203125,
+              "score_gap_mean": 0.08229891955852509
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.463995691913745,
+              "ROC_AUC": 0.4455125427246094,
+              "score_gap_mean": -0.02067820355296135
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49571729387468955,
+              "ROC_AUC": 0.4957005310058593,
+              "score_gap_mean": -0.004740770906209946
+            }
+          ],
+          "macro_AP": 0.5555977055874848
+        },
+        "diagnostics": {
+          "clean_changed": 0.011133627034723759,
+          "clean_rms": 0.357817143201828,
+          "eligible_edit_fraction": [
+            0.02765066921710968,
+            0.009154285304248333
+          ],
+          "clean_relative_edit_rms": [
+            0.9986826777458191,
+            0.9838799238204956
+          ],
+          "off_edit_rms": [
+            0.36297863721847534,
+            0.3604593575000763
+          ],
+          "teacher_copied_below_q99": [
+            0.9723493456840515,
+            0.9908457398414612
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 494887936,
+        "seconds": 88.23101935908198,
+        "fit_seconds": 87.47887665219605,
+        "teacher_train_seconds": 15.745052795886993,
+        "labels_read": false,
+        "pid": 203771
+      },
+      "R4": {
+        "domain": "PSM",
+        "arm": "R4",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "400d38fda257dc58775d75786edd2b404b401f5a0170da8f3b0c6c8776d56727",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.0173017978668213,
+            "correction_rms": 0.14547209333271605,
+            "changed": 0.009961164556443691
+          },
+          {
+            "updates": 800,
+            "loss": 1.0211637020111084,
+            "correction_rms": 0.15179815161261948,
+            "changed": 0.009920830838382244
+          },
+          {
+            "updates": 1200,
+            "loss": 1.016513705253601,
+            "correction_rms": 0.15463070428845332,
+            "changed": 0.010002928785979748
+          },
+          {
+            "updates": 1600,
+            "loss": 1.0182483196258545,
+            "correction_rms": 0.15632653150265816,
+            "changed": 0.009955431334674358
+          },
+          {
+            "updates": 2000,
+            "loss": 1.016819715499878,
+            "correction_rms": 0.15385529550858398,
+            "changed": 0.009955734014511108
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4302644282579422,
+            "SMD": 0.7560516893863678
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6394800983334337,
+              "ROC_AUC": 0.6507105255126953,
+              "score_gap_mean": 0.06363269686698914
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6231570635679766,
+              "ROC_AUC": 0.6621378326416015,
+              "score_gap_mean": 0.08231725543737411
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4639703412318667,
+              "ROC_AUC": 0.4455023193359375,
+              "score_gap_mean": -0.020677873864769936
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.4956927084577827,
+              "ROC_AUC": 0.4956684875488281,
+              "score_gap_mean": -0.004751455970108509
+            }
+          ],
+          "macro_AP": 0.555575052897765
+        },
+        "diagnostics": {
+          "clean_changed": 0.011133627034723759,
+          "clean_rms": 0.7156342267990112,
+          "eligible_edit_fraction": [
+            0.02765066921710968,
+            0.009154285304248333
+          ],
+          "clean_relative_edit_rms": [
+            1.0028423070907593,
+            1.01401686668396
+          ],
+          "off_edit_rms": [
+            0.7259572744369507,
+            0.7209187150001526
+          ],
+          "teacher_copied_below_q99": [
+            0.9723493456840515,
+            0.9908457398414612
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 494887936,
+        "seconds": 90.37226430885494,
+        "fit_seconds": 89.61371422512457,
+        "teacher_train_seconds": 16.16812965297699,
+        "labels_read": false,
+        "pid": 204881
+      },
+      "R5": {
+        "domain": "PSM",
+        "arm": "R5",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "ebf029a2b3b6ec3a7e7c6019f26933b6a32025cb65d89fa1398745abcd53b77a",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.6376934051513672,
+            "correction_rms": 0.7390341577882014,
+            "changed": 1.0
+          },
+          {
+            "updates": 800,
+            "loss": 0.642044186592102,
+            "correction_rms": 0.7437312083715367,
+            "changed": 0.9999998211860657
+          },
+          {
+            "updates": 1200,
+            "loss": 0.6365194320678711,
+            "correction_rms": 0.7478896889740002,
+            "changed": 0.9999998211860657
+          },
+          {
+            "updates": 1600,
+            "loss": 0.6369092464447021,
+            "correction_rms": 0.7498069355745391,
+            "changed": 1.0
+          },
+          {
+            "updates": 2000,
+            "loss": 0.636316180229187,
+            "correction_rms": 0.7473041243339428,
+            "changed": 1.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4303557723760605,
+            "SMD": 0.7549105361104012
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6397355983333839,
+              "ROC_AUC": 0.6509154510498045,
+              "score_gap_mean": 0.06379492580890656
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6238963077033826,
+              "ROC_AUC": 0.663619842529297,
+              "score_gap_mean": 0.08261474221944809
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4639680516641022,
+              "ROC_AUC": 0.4454570007324219,
+              "score_gap_mean": -0.02068827673792839
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49559535758752293,
+              "ROC_AUC": 0.4956144714355468,
+              "score_gap_mean": -0.004774126689881086
+            }
+          ],
+          "macro_AP": 0.5557988288220979
+        },
+        "diagnostics": {
+          "clean_changed": 1.0,
+          "clean_rms": 1.6010396480560303,
+          "eligible_edit_fraction": [
+            1.0,
+            1.0
+          ],
+          "clean_relative_edit_rms": [
+            0.9103413820266724,
+            1.3456741571426392
+          ],
+          "off_edit_rms": [
+            1.6206549406051636,
+            1.6090072393417358
+          ],
+          "teacher_copied_below_q99": [
+            0.9723493456840515,
+            0.9908457398414612
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 494580736,
+        "seconds": 90.99308542022482,
+        "fit_seconds": 90.21812832215801,
+        "teacher_train_seconds": 16.61319841527939,
+        "labels_read": false,
+        "pid": 205284
+      },
+      "R6": {
+        "domain": "PSM",
+        "arm": "R6",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "23879d3bf13ca4d0fe537e34d1dda72c0599126bef689a871b86628e15018590",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 1.0080610513687134,
+            "correction_rms": 0.30486648144381295,
+            "changed": 0.009622528217732906
+          },
+          {
+            "updates": 800,
+            "loss": 1.0119129419326782,
+            "correction_rms": 0.3135398610697788,
+            "changed": 0.009921678341925144
+          },
+          {
+            "updates": 1200,
+            "loss": 1.0069293975830078,
+            "correction_rms": 0.3237888519437374,
+            "changed": 0.009808010421693325
+          },
+          {
+            "updates": 1600,
+            "loss": 1.0086519718170166,
+            "correction_rms": 0.3268030991441453,
+            "changed": 0.009822688065469265
+          },
+          {
+            "updates": 2000,
+            "loss": 1.0074241161346436,
+            "correction_rms": 0.3213911618969103,
+            "changed": 0.009452573023736477
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4302241653203964,
+            "SMD": 0.756371445953846
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.639541885419374,
+              "ROC_AUC": 0.6507684326171875,
+              "score_gap_mean": 0.06368940323591232
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6231877669557053,
+              "ROC_AUC": 0.6624241638183594,
+              "score_gap_mean": 0.08245428651571274
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4639931390542344,
+              "ROC_AUC": 0.4455427551269531,
+              "score_gap_mean": -0.020675329491496086
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49567789371150867,
+              "ROC_AUC": 0.4956282043457031,
+              "score_gap_mean": -0.004763267934322357
+            }
+          ],
+          "macro_AP": 0.5556001712852056
+        },
+        "diagnostics": {
+          "clean_changed": 0.012282715179026127,
+          "clean_rms": 1.4506163597106934,
+          "eligible_edit_fraction": [
+            0.04260602593421936,
+            0.011759735643863678
+          ],
+          "clean_relative_edit_rms": [
+            1.0222190618515015,
+            1.2884982824325562
+          ],
+          "off_edit_rms": [
+            1.4714816808700562,
+            1.4600310325622559
+          ],
+          "teacher_copied_below_q99": []
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 464781312,
+        "seconds": 70.18204362690449,
+        "fit_seconds": 69.59907301701605,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 206396
+      },
+      "R7": {
+        "domain": "PSM",
+        "arm": "R7",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "2c506dbc27d2c95e258d47d66a5c71184d33c79f30f4fa9e0cebc59e885f3df4",
+        "plan": "157a1dcb168b399ae115e40669e58e284c0d24ab5ed53ab5b46a8bc42d6b1c3d",
+        "query": "8df1f5a8a2149897c110d1f0b6232357f0576833cf65d71d10e4ac57976edbda",
+        "checkpoint_sha256": "9488524a1891a92434ebb1b44e83b5ee9dce6e98e2a33842318d7594d3adb054",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.9697513580322266,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 800,
+            "loss": 0.974430501461029,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1200,
+            "loss": 0.9708176255226135,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1600,
+            "loss": 0.9724828600883484,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 2000,
+            "loss": 0.9713844060897827,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 1.4303355067968369,
+            "SMD": 0.7553276643157005
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.639592373621998,
+              "ROC_AUC": 0.6507746124267578,
+              "score_gap_mean": 0.06372702121734619
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.623395592080999,
+              "ROC_AUC": 0.6621593475341796,
+              "score_gap_mean": 0.08252982795238495
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4639816020461623,
+              "ROC_AUC": 0.44551231384277346,
+              "score_gap_mean": -0.020682087168097496
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.4955109396412824,
+              "ROC_AUC": 0.4956246948242188,
+              "score_gap_mean": -0.004708172287791967
+            }
+          ],
+          "macro_AP": 0.5556201268476104
+        },
+        "diagnostics": {
+          "clean_changed": 0.0,
+          "clean_rms": 0.0,
+          "eligible_edit_fraction": [
+            0.0,
+            0.0
+          ],
+          "clean_relative_edit_rms": [
+            1.0,
+            1.0
+          ],
+          "off_edit_rms": [
+            0.0,
+            0.0
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 464475136,
+        "seconds": 78.72734546009451,
+        "fit_seconds": 78.09011260326952,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 206692
+      }
+    }
+  },
+  "SWAT": {
+    "prepare": {
+      "domain": "SWAT",
+      "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+      "teacher_parameters": 3742202,
+      "teacher_state_unchanged": true,
+      "stats": {
+        "0.95": 1.6211483478546143,
+        "0.99": 2.321403741836548,
+        "low": -2.493147373199463,
+        "high": 3.145247459411621
+      },
+      "frozen_query": {
+        "normal_risk": {
+          "TEP": 0.5131954252719879,
+          "SMD": 0.2917526140809059
+        },
+        "panels": [
+          {
+            "family": "amplitude",
+            "source": "TEP",
+            "AP": 0.6138892193695904,
+            "ROC_AUC": 0.6152507781982421,
+            "score_gap_mean": 0.04683037847280502
+          },
+          {
+            "family": "amplitude",
+            "source": "SMD",
+            "AP": 0.6324987310834015,
+            "ROC_AUC": 0.6900221252441406,
+            "score_gap_mean": 0.06618189066648483
+          },
+          {
+            "family": "shift",
+            "source": "TEP",
+            "AP": 0.46155505706895555,
+            "ROC_AUC": 0.4468898010253906,
+            "score_gap_mean": -0.018017487600445747
+          },
+          {
+            "family": "shift",
+            "source": "SMD",
+            "AP": 0.4955066529201149,
+            "ROC_AUC": 0.49447097778320315,
+            "score_gap_mean": -0.0030683737713843584
+          }
+        ],
+        "macro_AP": 0.5508624151105156
+      },
+      "seconds": 25.91881564958021,
+      "hashes": {
+        "plan.npz": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "roles.json": "1c345ceb019254db79640dfb9a5ccddc9a155a6ec3fa95dbbc3e0b42bb906f02",
+        "query.npz": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "R7.npy": "ac904184dc641c3a00f95516c086ef699188969add3242040b28608375e85fb0"
+      },
+      "device": "NVIDIA A40",
+      "peak_bytes": 141378560,
+      "labels_read": false
+    },
+    "check": {
+      "proof": {
+        "R0": {
+          "loss": 0.34575456380844116,
+          "corrected_fraction": 0.0,
+          "step": 4001
+        },
+        "R2": {
+          "loss": 0.3379792273044586,
+          "corrected_fraction": 0.0452473945915699,
+          "step": 4001
+        },
+        "R7": {
+          "loss": 0.34575456380844116,
+          "corrected_fraction": 0.0,
+          "step": 4001
+        }
+      },
+      "raw_native_readout": true,
+      "source_unchanged": true,
+      "teacher_optimizer_disjoint": true,
+      "teacher_frozen": true,
+      "rng_equal": true,
+      "zero_native_loss_max_abs": 0.0,
+      "zero_native_state_max_abs": 1.3206154108047485e-06,
+      "device": "NVIDIA A40",
+      "seconds": 6.436424461659044
+    },
+    "roles": {
+      "reference": [
+        [
+          {
+            "record": "TEP/run-1",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-2",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-3",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-4",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-1",
+            "start": 0,
+            "stop": 22783
+          },
+          {
+            "record": "machine-1-2",
+            "start": 0,
+            "stop": 18955
+          },
+          {
+            "record": "machine-1-3",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-1-4",
+            "start": 0,
+            "stop": 18964
+          },
+          {
+            "record": "machine-1-5",
+            "start": 0,
+            "stop": 18964
+          },
+          {
+            "record": "machine-1-6",
+            "start": 0,
+            "stop": 18950
+          }
+        ]
+      ],
+      "support": [
+        [
+          {
+            "record": "TEP/run-5",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-6",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-7",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-8",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-9",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-10",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-11",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-12",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-7",
+            "start": 0,
+            "stop": 18957
+          },
+          {
+            "record": "machine-1-8",
+            "start": 0,
+            "stop": 18958
+          },
+          {
+            "record": "machine-2-1",
+            "start": 0,
+            "stop": 18954
+          },
+          {
+            "record": "machine-2-2",
+            "start": 0,
+            "stop": 18959
+          },
+          {
+            "record": "machine-2-3",
+            "start": 0,
+            "stop": 18950
+          },
+          {
+            "record": "machine-2-4",
+            "start": 0,
+            "stop": 18951
+          },
+          {
+            "record": "machine-2-5",
+            "start": 0,
+            "stop": 18950
+          },
+          {
+            "record": "machine-2-6",
+            "start": 0,
+            "stop": 22994
+          },
+          {
+            "record": "machine-2-7",
+            "start": 0,
+            "stop": 18956
+          },
+          {
+            "record": "machine-2-8",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-2-9",
+            "start": 0,
+            "stop": 22977
+          }
+        ]
+      ],
+      "replay": [
+        [
+          {
+            "record": "TEP/run-13",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-14",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-15",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-16",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-17",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-18",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-19",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-20",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-3-1",
+            "start": 0,
+            "stop": 22960
+          },
+          {
+            "record": "machine-3-10",
+            "start": 0,
+            "stop": 18953
+          },
+          {
+            "record": "machine-3-11",
+            "start": 0,
+            "stop": 22956
+          },
+          {
+            "record": "machine-3-2",
+            "start": 0,
+            "stop": 18961
+          },
+          {
+            "record": "machine-3-3",
+            "start": 0,
+            "stop": 18962
+          },
+          {
+            "record": "machine-3-4",
+            "start": 0,
+            "stop": 18949
+          },
+          {
+            "record": "machine-3-5",
+            "start": 0,
+            "stop": 18952
+          },
+          {
+            "record": "machine-3-6",
+            "start": 0,
+            "stop": 22980
+          },
+          {
+            "record": "machine-3-7",
+            "start": 0,
+            "stop": 22964
+          },
+          {
+            "record": "machine-3-8",
+            "start": 0,
+            "stop": 22962
+          },
+          {
+            "record": "machine-3-9",
+            "start": 0,
+            "stop": 22970
+          }
+        ]
+      ],
+      "query": [
+        [
+          {
+            "record": "TEP/run-61",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-62",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-63",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-64",
+            "start": 0,
+            "stop": 500
+          },
+          {
+            "record": "TEP/run-65",
+            "start": 0,
+            "stop": 500
+          }
+        ],
+        [
+          {
+            "record": "machine-1-1",
+            "start": 22783,
+            "stop": 28479
+          },
+          {
+            "record": "machine-1-2",
+            "start": 18955,
+            "stop": 23694
+          },
+          {
+            "record": "machine-1-3",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-1-4",
+            "start": 18964,
+            "stop": 23706
+          },
+          {
+            "record": "machine-1-5",
+            "start": 18964,
+            "stop": 23705
+          },
+          {
+            "record": "machine-1-6",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-1-7",
+            "start": 18957,
+            "stop": 23697
+          },
+          {
+            "record": "machine-1-8",
+            "start": 18958,
+            "stop": 23698
+          },
+          {
+            "record": "machine-2-1",
+            "start": 18954,
+            "stop": 23693
+          },
+          {
+            "record": "machine-2-2",
+            "start": 18959,
+            "stop": 23699
+          },
+          {
+            "record": "machine-2-3",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-2-4",
+            "start": 18951,
+            "stop": 23689
+          },
+          {
+            "record": "machine-2-5",
+            "start": 18950,
+            "stop": 23688
+          },
+          {
+            "record": "machine-2-6",
+            "start": 22994,
+            "stop": 28743
+          },
+          {
+            "record": "machine-2-7",
+            "start": 18956,
+            "stop": 23696
+          },
+          {
+            "record": "machine-2-8",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-2-9",
+            "start": 22977,
+            "stop": 28722
+          },
+          {
+            "record": "machine-3-1",
+            "start": 22960,
+            "stop": 28700
+          },
+          {
+            "record": "machine-3-10",
+            "start": 18953,
+            "stop": 23692
+          },
+          {
+            "record": "machine-3-11",
+            "start": 22956,
+            "stop": 28695
+          },
+          {
+            "record": "machine-3-2",
+            "start": 18961,
+            "stop": 23702
+          },
+          {
+            "record": "machine-3-3",
+            "start": 18962,
+            "stop": 23703
+          },
+          {
+            "record": "machine-3-4",
+            "start": 18949,
+            "stop": 23687
+          },
+          {
+            "record": "machine-3-5",
+            "start": 18952,
+            "stop": 23690
+          },
+          {
+            "record": "machine-3-6",
+            "start": 22980,
+            "stop": 28726
+          },
+          {
+            "record": "machine-3-7",
+            "start": 22964,
+            "stop": 28705
+          },
+          {
+            "record": "machine-3-8",
+            "start": 22962,
+            "stop": 28703
+          },
+          {
+            "record": "machine-3-9",
+            "start": 22970,
+            "stop": 28713
+          }
+        ]
+      ]
+    },
+    "arms": {
+      "R0": {
+        "domain": "SWAT",
+        "arm": "R0",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "9a8b48e9034898eaa6440a15ec7cd8e3aaae97a9ea90d8e3e6fec5511ebde072",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.3568364679813385,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 800,
+            "loss": 0.3570203185081482,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3568496108055115,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1600,
+            "loss": 0.35638412833213806,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 2000,
+            "loss": 0.35554277896881104,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5113753527402878,
+            "SMD": 0.28968624398112297
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6137946732958792,
+              "ROC_AUC": 0.6143302917480469,
+              "score_gap_mean": 0.04620599374175072
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.63143369663314,
+              "ROC_AUC": 0.6878660583496092,
+              "score_gap_mean": 0.06460078060626984
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4610063135874752,
+              "ROC_AUC": 0.4464006805419921,
+              "score_gap_mean": -0.018027301877737045
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49543305571602214,
+              "ROC_AUC": 0.49440261840820315,
+              "score_gap_mean": -0.0030638915486633778
+            }
+          ],
+          "macro_AP": 0.5504169348081291
+        },
+        "diagnostics": {
+          "clean_changed": 0.0,
+          "clean_rms": 0.0,
+          "eligible_edit_fraction": [
+            0.0,
+            0.0
+          ],
+          "clean_relative_edit_rms": [
+            1.0,
+            1.0
+          ],
+          "off_edit_rms": [
+            0.0,
+            0.0
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 454821888,
+        "seconds": 80.69414084218442,
+        "fit_seconds": 80.07945436798036,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 202470
+      },
+      "R1": {
+        "domain": "SWAT",
+        "arm": "R1",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "feb358e14c0546aeba857f2cb1eb7166e7016ec46d62755b9e9926b73fc9370b",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.35161253809928894,
+            "correction_rms": 0.07945260109630238,
+            "changed": 0.049342893064022064
+          },
+          {
+            "updates": 800,
+            "loss": 0.3516587018966675,
+            "correction_rms": 0.08741544646608762,
+            "changed": 0.04949412867426872
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3514631986618042,
+            "correction_rms": 0.08705578725216535,
+            "changed": 0.04942974075675011
+          },
+          {
+            "updates": 1600,
+            "loss": 0.3511108458042145,
+            "correction_rms": 0.08265067576143235,
+            "changed": 0.04939369112253189
+          },
+          {
+            "updates": 2000,
+            "loss": 0.3503747582435608,
+            "correction_rms": 0.07950013903558467,
+            "changed": 0.049275677651166916
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5113736316561699,
+            "SMD": 0.2898059580475092
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6137233004786691,
+              "ROC_AUC": 0.6142182922363282,
+              "score_gap_mean": 0.046141620725393295
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6313496450784335,
+              "ROC_AUC": 0.6877534484863281,
+              "score_gap_mean": 0.06456233561038971
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.46100430829768546,
+              "ROC_AUC": 0.44639114379882816,
+              "score_gap_mean": -0.018025722354650497
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49540567679343017,
+              "ROC_AUC": 0.49435180664062506,
+              "score_gap_mean": -0.0030651043634861708
+            }
+          ],
+          "macro_AP": 0.5503707326620545
+        },
+        "diagnostics": {
+          "clean_changed": 0.04653635248541832,
+          "clean_rms": 0.8178646564483643,
+          "eligible_edit_fraction": [
+            0.10002441704273224,
+            0.03236688673496246
+          ],
+          "clean_relative_edit_rms": [
+            1.0090612173080444,
+            0.97506183385849
+          ],
+          "off_edit_rms": [
+            0.8283075094223022,
+            0.826653778553009
+          ],
+          "teacher_copied_below_q99": [
+            0.9707275629043579,
+            0.9934050440788269
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 481965568,
+        "seconds": 92.1143029872328,
+        "fit_seconds": 91.30104362498969,
+        "teacher_train_seconds": 16.12098041152954,
+        "labels_read": false,
+        "pid": 202471
+      },
+      "R2": {
+        "domain": "SWAT",
+        "arm": "R2",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "a6aaa97446bcd25677e50e039901dda5d9ecd98477b79afd4a57f7a1181f2889",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.3465672731399536,
+            "correction_rms": 0.15890520219260476,
+            "changed": 0.049342893064022064
+          },
+          {
+            "updates": 800,
+            "loss": 0.34647688269615173,
+            "correction_rms": 0.17483089825916606,
+            "changed": 0.04949412867426872
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3462560176849365,
+            "correction_rms": 0.1741115745043307,
+            "changed": 0.049429792910814285
+          },
+          {
+            "updates": 1600,
+            "loss": 0.34601446986198425,
+            "correction_rms": 0.1653013515228647,
+            "changed": 0.04939374327659607
+          },
+          {
+            "updates": 2000,
+            "loss": 0.3453826904296875,
+            "correction_rms": 0.15900027807116934,
+            "changed": 0.049275726079940796
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5113711208105087,
+            "SMD": 0.2898171804845333
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6135093123758768,
+              "ROC_AUC": 0.6140545654296875,
+              "score_gap_mean": 0.04604377597570419
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6312099610608021,
+              "ROC_AUC": 0.687662353515625,
+              "score_gap_mean": 0.0644945353269577
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4610479876631714,
+              "ROC_AUC": 0.44641555786132814,
+              "score_gap_mean": -0.018022235482931137
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49537843651839264,
+              "ROC_AUC": 0.4943266296386719,
+              "score_gap_mean": -0.0030697621405124664
+            }
+          ],
+          "macro_AP": 0.5502864244045608
+        },
+        "diagnostics": {
+          "clean_changed": 0.04653635248541832,
+          "clean_rms": 1.6357293128967285,
+          "eligible_edit_fraction": [
+            0.10002441704273224,
+            0.03236688673496246
+          ],
+          "clean_relative_edit_rms": [
+            1.0731523036956787,
+            0.9646372199058533
+          ],
+          "off_edit_rms": [
+            1.6566150188446045,
+            1.653307557106018
+          ],
+          "teacher_copied_below_q99": [
+            0.9707275629043579,
+            0.9934050440788269
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 481965568,
+        "seconds": 90.70410366402939,
+        "fit_seconds": 89.8889923216775,
+        "teacher_train_seconds": 16.628117786884307,
+        "labels_read": false,
+        "pid": 203728
+      },
+      "R3": {
+        "domain": "SWAT",
+        "arm": "R3",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "91ad61714c135823559318318d08c625b573525c6a3bf51a8763d73c34ea22fa",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.35463622212409973,
+            "correction_rms": 0.07082485250175062,
+            "changed": 0.009904677048325539
+          },
+          {
+            "updates": 800,
+            "loss": 0.35469481348991394,
+            "correction_rms": 0.07938279971995597,
+            "changed": 0.009958832524716854
+          },
+          {
+            "updates": 1200,
+            "loss": 0.35449522733688354,
+            "correction_rms": 0.07889780835045213,
+            "changed": 0.009978344663977623
+          },
+          {
+            "updates": 1600,
+            "loss": 0.35413211584091187,
+            "correction_rms": 0.07434185697587538,
+            "changed": 0.009884834289550781
+          },
+          {
+            "updates": 2000,
+            "loss": 0.35337963700294495,
+            "correction_rms": 0.07105391075187867,
+            "changed": 0.009858843870460987
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5113713592290878,
+            "SMD": 0.289813743904233
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6138480991117332,
+              "ROC_AUC": 0.6143130493164062,
+              "score_gap_mean": 0.04619085043668747
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6314219210100049,
+              "ROC_AUC": 0.6878073120117187,
+              "score_gap_mean": 0.06459236890077591
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.46098278876800336,
+              "ROC_AUC": 0.44637840270996093,
+              "score_gap_mean": -0.01802496239542961
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.4954166640496296,
+              "ROC_AUC": 0.4943669128417969,
+              "score_gap_mean": -0.003062103409320116
+            }
+          ],
+          "macro_AP": 0.5504173682348428
+        },
+        "diagnostics": {
+          "clean_changed": 0.010255218483507633,
+          "clean_rms": 0.815239667892456,
+          "eligible_edit_fraction": [
+            0.02927246131002903,
+            0.006594942882657051
+          ],
+          "clean_relative_edit_rms": [
+            1.0176966190338135,
+            0.9786201119422913
+          ],
+          "off_edit_rms": [
+            0.8256937861442566,
+            0.8240246772766113
+          ],
+          "teacher_copied_below_q99": [
+            0.9707275629043579,
+            0.9934050440788269
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 481965568,
+        "seconds": 90.15374328382313,
+        "fit_seconds": 89.16979696787894,
+        "teacher_train_seconds": 17.292272276878357,
+        "labels_read": false,
+        "pid": 203883
+      },
+      "R4": {
+        "domain": "SWAT",
+        "arm": "R4",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "3d16b2b57ff88442b76c8495cbc45e6ee9235621e76f9f2468152e8b7d750159",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.35248851776123047,
+            "correction_rms": 0.14164971815315844,
+            "changed": 0.009904703125357628
+          },
+          {
+            "updates": 800,
+            "loss": 0.3524225652217865,
+            "correction_rms": 0.15876559943991195,
+            "changed": 0.009958832524716854
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3521934449672699,
+            "correction_rms": 0.15779561670090425,
+            "changed": 0.009978344663977623
+          },
+          {
+            "updates": 1600,
+            "loss": 0.35193178057670593,
+            "correction_rms": 0.14868372647931696,
+            "changed": 0.009884834289550781
+          },
+          {
+            "updates": 2000,
+            "loss": 0.3512671887874603,
+            "correction_rms": 0.14210782150375734,
+            "changed": 0.009858843870460987
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.511367104947567,
+            "SMD": 0.28985201194882393
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6137658115360352,
+              "ROC_AUC": 0.6142244720458985,
+              "score_gap_mean": 0.046146318316459656
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6313509072774133,
+              "ROC_AUC": 0.6877516174316406,
+              "score_gap_mean": 0.06454963982105255
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4610055037439989,
+              "ROC_AUC": 0.4463938140869141,
+              "score_gap_mean": -0.018021894618868828
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49542616752697305,
+              "ROC_AUC": 0.49435409545898434,
+              "score_gap_mean": -0.0030673216097056866
+            }
+          ],
+          "macro_AP": 0.550387097521105
+        },
+        "diagnostics": {
+          "clean_changed": 0.010255218483507633,
+          "clean_rms": 1.630479335784912,
+          "eligible_edit_fraction": [
+            0.02927246131002903,
+            0.006594942882657051
+          ],
+          "clean_relative_edit_rms": [
+            1.0840822458267212,
+            0.9695959091186523
+          ],
+          "off_edit_rms": [
+            1.6513875722885132,
+            1.648049235343933
+          ],
+          "teacher_copied_below_q99": [
+            0.9707275629043579,
+            0.9934050440788269
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 481965568,
+        "seconds": 89.58122006617486,
+        "fit_seconds": 88.74290354782715,
+        "teacher_train_seconds": 16.036930285930634,
+        "labels_read": false,
+        "pid": 205250
+      },
+      "R5": {
+        "domain": "SWAT",
+        "arm": "R5",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "8f27afa7d1c7ec0ffcbc8bf7e718b5cbe1d711cedc9a205d95db7c7c24fda471",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.20842520892620087,
+            "correction_rms": 0.7867522837699955,
+            "changed": 0.9999998211860657
+          },
+          {
+            "updates": 800,
+            "loss": 0.20803576707839966,
+            "correction_rms": 0.8015618218313103,
+            "changed": 0.9999998807907104
+          },
+          {
+            "updates": 1200,
+            "loss": 0.20792487263679504,
+            "correction_rms": 0.8006758085473258,
+            "changed": 0.9999998211860657
+          },
+          {
+            "updates": 1600,
+            "loss": 0.2075660675764084,
+            "correction_rms": 0.792524504598597,
+            "changed": 0.9999998211860657
+          },
+          {
+            "updates": 2000,
+            "loss": 0.2076292634010315,
+            "correction_rms": 0.7857498657852723,
+            "changed": 1.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5118823274970055,
+            "SMD": 0.28940832428634167
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6126004805031509,
+              "ROC_AUC": 0.6138224792480469,
+              "score_gap_mean": 0.045829612761735916
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6302070794986432,
+              "ROC_AUC": 0.6874107360839844,
+              "score_gap_mean": 0.06417911499738693
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4612067128639821,
+              "ROC_AUC": 0.4465472412109375,
+              "score_gap_mean": -0.0180236604064703
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49541526833817984,
+              "ROC_AUC": 0.49432273864746096,
+              "score_gap_mean": -0.003080067690461874
+            }
+          ],
+          "macro_AP": 0.5498573853009889
+        },
+        "diagnostics": {
+          "clean_changed": 1.0,
+          "clean_rms": 3.3644111156463623,
+          "eligible_edit_fraction": [
+            1.0,
+            1.0
+          ],
+          "clean_relative_edit_rms": [
+            1.2744522094726562,
+            1.144312858581543
+          ],
+          "off_edit_rms": [
+            3.4056787490844727,
+            3.398651361465454
+          ],
+          "teacher_copied_below_q99": [
+            0.9707275629043579,
+            0.9934050440788269
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 481584640,
+        "seconds": 88.81676890794188,
+        "fit_seconds": 88.00852971104905,
+        "teacher_train_seconds": 16.146269961357117,
+        "labels_read": false,
+        "pid": 205402
+      },
+      "R6": {
+        "domain": "SWAT",
+        "arm": "R6",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "9d19ccd039b27ccb49f53023a09a7e757611b16a3d3fd907595aaf35997fca7f",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.34953129291534424,
+            "correction_rms": 0.2925243567653072,
+            "changed": 0.007856338284909725
+          },
+          {
+            "updates": 800,
+            "loss": 0.3494746685028076,
+            "correction_rms": 0.3216276616617573,
+            "changed": 0.007466765586286783
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3491203188896179,
+            "correction_rms": 0.3225517159033888,
+            "changed": 0.0075269099324941635
+          },
+          {
+            "updates": 1600,
+            "loss": 0.34907066822052,
+            "correction_rms": 0.30143000256497926,
+            "changed": 0.007554574869573116
+          },
+          {
+            "updates": 2000,
+            "loss": 0.3485175669193268,
+            "correction_rms": 0.28814034675554506,
+            "changed": 0.007667746394872665
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5113693922758102,
+            "SMD": 0.29012586921453476
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6131264162658915,
+              "ROC_AUC": 0.6138048553466797,
+              "score_gap_mean": 0.04593115672469139
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6310064672184763,
+              "ROC_AUC": 0.6876615905761718,
+              "score_gap_mean": 0.06449435651302338
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.46107249341064227,
+              "ROC_AUC": 0.44641860961914065,
+              "score_gap_mean": -0.01801399327814579
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.4954816464822308,
+              "ROC_AUC": 0.49438201904296875,
+              "score_gap_mean": -0.0030622375197708607
+            }
+          ],
+          "macro_AP": 0.5501717558443102
+        },
+        "diagnostics": {
+          "clean_changed": 0.01050854753702879,
+          "clean_rms": 3.2741246223449707,
+          "eligible_edit_fraction": [
+            0.04335937649011612,
+            0.009451738558709621
+          ],
+          "clean_relative_edit_rms": [
+            1.3541797399520874,
+            0.9928470849990845
+          ],
+          "off_edit_rms": [
+            3.3158223628997803,
+            3.309453248977661
+          ],
+          "teacher_copied_below_q99": []
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 455202816,
+        "seconds": 78.14328943938017,
+        "fit_seconds": 77.50327436299995,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 206673
+      },
+      "R7": {
+        "domain": "SWAT",
+        "arm": "R7",
+        "updates": 2000,
+        "seed": 2025,
+        "parent": "f276921a9b6b5c323d8802fc9bb4d72f26eb2cfb27c05a9c9b515c111b2436eb",
+        "plan": "1e810161d3cae40209e96a841dcb1c0e108338c75404dc5e9e091ed355407a9a",
+        "query": "f4eec1f94286877c785426be0e40b18b7d6dc5ab46b27f49aca785fc4b84c841",
+        "checkpoint_sha256": "b2f7659085a892b715efddb52379f9285810c8aa7ea4b95b7956e160430567a1",
+        "target_exposure": 32000,
+        "source_exposure": 32000,
+        "edited_proxy_exposure": 8000,
+        "model_step": 6000,
+        "curve": [
+          {
+            "updates": 400,
+            "loss": 0.33351054787635803,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 800,
+            "loss": 0.333748996257782,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1200,
+            "loss": 0.3337211608886719,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 1600,
+            "loss": 0.3335951566696167,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          },
+          {
+            "updates": 2000,
+            "loss": 0.33212241530418396,
+            "correction_rms": 0.0,
+            "changed": 0.0
+          }
+        ],
+        "proxy": {
+          "normal_risk": {
+            "TEP": 0.5114773735404015,
+            "SMD": 0.2895658817142248
+          },
+          "panels": [
+            {
+              "family": "amplitude",
+              "source": "TEP",
+              "AP": 0.6137214833116019,
+              "ROC_AUC": 0.6143004608154297,
+              "score_gap_mean": 0.046170346438884735
+            },
+            {
+              "family": "amplitude",
+              "source": "SMD",
+              "AP": 0.6315040569083568,
+              "ROC_AUC": 0.687926025390625,
+              "score_gap_mean": 0.06463273614645004
+            },
+            {
+              "family": "shift",
+              "source": "TEP",
+              "AP": 0.4610269889119823,
+              "ROC_AUC": 0.44638916015625,
+              "score_gap_mean": -0.018033230677247047
+            },
+            {
+              "family": "shift",
+              "source": "SMD",
+              "AP": 0.49544174914273226,
+              "ROC_AUC": 0.4944035339355468,
+              "score_gap_mean": -0.0030678524635732174
+            }
+          ],
+          "macro_AP": 0.5504235695686682
+        },
+        "diagnostics": {
+          "clean_changed": 0.0,
+          "clean_rms": 0.0,
+          "eligible_edit_fraction": [
+            0.0,
+            0.0
+          ],
+          "clean_relative_edit_rms": [
+            1.0,
+            1.0
+          ],
+          "off_edit_rms": [
+            0.0,
+            0.0
+          ]
+        },
+        "device": "NVIDIA A40",
+        "peak_bytes": 455019008,
+        "seconds": 79.78349235421047,
+        "fit_seconds": 79.1021058531478,
+        "teacher_train_seconds": 0.0,
+        "labels_read": false,
+        "pid": 206808
+      }
+    }
+  }
+}
