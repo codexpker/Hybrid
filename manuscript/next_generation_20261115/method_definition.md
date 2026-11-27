@@ -1,6 +1,14 @@
-# Frozen TimesFM history conditioning of the multi-source LEFT detector
+# Multi-source LEFT experiments on historical context
 
-## Frozen TimesFM history conditioning
+## Contiguous holdout reconstruction
+
+The new development test changes the observation available to the detector. For every current W192 window, remove two 24-point patches across all variables before constructing any current view. Four complementary masks cover each position once. The temporal, spectral and multiscale paths receive this same masked tensor. Retain the native encoders, fusion, learnable multiscale analysis, decoders and prototype state. The hidden values supply targets only after prediction.
+
+The underlying learning objective closes the time-to-frequency cycle on a completed window that combines visible observations with temporal predictions at hidden positions. The inverse-frequency and fine multiscale outputs reconstruct hidden truth with SmoothL1. Their consistency is evaluated on the same hidden indices and retains the native stop-gradient on the inverse-frequency output. Each term retains the corresponding native coefficient. The coarse target losses are omitted, the band regularizer is retained, and native EMA estimates its reliability from masked input. Readout uses each position's own held-out temporal and inverse-frequency absolute errors plus fine multiscale SmoothL1, using the native component coefficients and channel averaging. All scores become available at the window end.
+
+The three arms vary the history input: none, frozen official pretrained TimesFM, or frozen random TimesFM of the same architecture. All three use the same source sampling and fixed optimization budget. The two history arms also share the original conditioner architecture and initialization. Normal target training (N) uses a separate FIT/SELECT program with identical exposure across arms. Z and N use the same legal TEST axis. The source checkpoint, random encoder, history permissions, loss, masking, selection and predeclared SMD28 expansion decision are specified in the [fixed protocol](../../docs/experiments/left_holdout_history_20261127/PROTOCOL.md).
+
+## Archived unmasked TimesFM history conditioning
 
 The fixed experiment is complete: fifteen source endpoints, three-domain Z evaluation and sixty matched replay endpoints across PSM, SWaT and all SMD machines. The architecture is not advanced to more seeds, pollution or F because the public comparisons and fixed controlled inputs did not establish a useful incremental advantage. The following definition describes the executed architecture; it is not a claim that the project's final method has been established. [Complete results and evidence boundary](../../docs/experiments/left_timesfm_hidden_20261126/RESULTS.md)
 
