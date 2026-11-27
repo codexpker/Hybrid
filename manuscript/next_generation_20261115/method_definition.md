@@ -1,4 +1,8 @@
-# Multi-source LEFT experiments on historical context
+# Method index for the frozen evidence study
+
+The active draft defines the executed native LEFT detector, its normal-source and target-adaptation protocols, and the fixed window-reliability comparison. The contribution decision retains window weighting as a strong control and limits the manuscript claim to measured transfer, adaptation and exposure behavior. The following sections preserve the earlier method definitions. [Active draft](draft.md) · [Frozen method and contribution scope](../../docs/experiments/left_evidence_freeze_20261128/README.md)
+
+## Archived multi-source LEFT experiments on historical context
 
 ## Contiguous holdout reconstruction
 

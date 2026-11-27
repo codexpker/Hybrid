@@ -1,0 +1,25 @@
+{
+  "archive_commit": "a1ada3751e8840212b75400e3291422a302a9ed0",
+  "archived_lf_sha256": {
+    "docs/experiments/left_input_correction_20261127/selection.json": "82f80539ebb16b65bd6aaff9f8e52dff74c69fdc4b464cff88592970a7a19cea",
+    "docs/experiments/left_local_reliability_20261126/contrasts.csv": "03a322b1144c07544a8e58d8833fc7e8be446252b06b544b665b1df672b21ce6",
+    "docs/experiments/left_local_reliability_20261126/methods.csv": "36348d10c490dae621292004263edee31f24b902893d6b811259b637008fbbad",
+    "docs/experiments/left_local_reliability_20261126/receipts.json": "5740c887529142b4f824320924703354516e1a641ecd4086b5bfd410915841d5",
+    "docs/experiments/left_memory_exposure_20261126/methods.csv": "ea4638223614bc966359359f199965abc0efd90d5d173d39732bba9e0e814cde",
+    "docs/experiments/left_memory_exposure_20261126/receipts.json": "84393730acf461db49358a24a87145c5cb0d752cd3bdbff41726ae8db049e998",
+    "docs/experiments/left_multisource_20261126/PSM/mixed.csv": "df8ea885a8f8f82f3df190a2844dd66ca6da3c7e3401fb55d1861c809bdf46ed",
+    "docs/experiments/left_multisource_20261126/SWAT/mixed.csv": "8c7e2a31803136d64357170bbc437846f61f24df101ee44a1de68d25de3c370e",
+    "docs/experiments/left_multisource_20261126/banks.json": "04794f593f5f8992f20a3bd86e3520fb79600f62636e7896a26571deaf77e2c0",
+    "docs/experiments/left_multisource_20261126/training.csv": "dda907b2a2960ff8ca055b2f42b676897dc7fa8dcc57e615a85301285b3c3459",
+    "docs/experiments/left_proxy_rank_20261127/methods.csv": "3a3a2a8bd0def9af6a6e96eb37f7cf159502950902c3b4f75f1c6ebc1406bf51",
+    "docs/experiments/left_smd_reliability_20261126/permutation_methods.csv": "e8980be26041d9455e941fc5e473ad197ff49e86ba29b5e4f518f2bd9c73ea7a",
+    "docs/experiments/left_smd_reliability_20261126/permutation_review.csv": "a97dda86f6d1a69deb82853526a2761f2da57ae11c79631e87da77d8234062af",
+    "docs/experiments/left_smd_reliability_20261126/psm_catch_seeds.csv": "db181ee8886ea7395fd96e18ad40e763b49f9c6d02733e54c921f80cafbd2c9c",
+    "docs/experiments/left_smd_reliability_20261126/public_methods.csv": "3600d6d2eb22e19e104fae1f048150caa21e0f05d3ace211b5c48d9f3dac8972",
+    "docs/experiments/left_smd_reliability_20261126/smd_entity_metrics.csv": "f0c915b9bcf2193270c5dcf8dd0df5e828cb346280af2be8fa9caaeb50fdc735",
+    "docs/experiments/left_smd_reliability_20261126/source_training.json": "ffed22defbd08b897bd0711b7005ed9710c516138914cc5f028c975b07612db3",
+    "docs/experiments/left_smd_reliability_20261126/training_review.json": "9b55f016d09c4ff1448df4598039613a9bf6f0cbb178867d095240e8da211635",
+    "docs/experiments/left_source_constraints_20261126/RESULTS.md": "5116f2d7c452cbc44f7e5c311ae537b8f80173107ae6e252b83ec019ef72db6b",
+    "docs/experiments/left_source_constraints_20261126/receipts.json": "02417d2e67075ae319a7f236c83b835ce934186a501b7c05b42dc86da5af6643"
+  }
+}

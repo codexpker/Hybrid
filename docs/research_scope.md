@@ -2,6 +2,8 @@
 
 ## 当前公开 TSAD 协议
 
+当前送导师审阅的贡献范围冻结为完整多源 LEFT 的跨域、混合适配及固定污染响应证据。普通源重放、窗口加权和局部加权保留对照身份。窗口加权在固定 PSM 异常替换上有正向排序证据，在 SMD28 自然适配上平均 AP 下降，近邻审查未支持以该组合成立新算法。本轮配对复验条件未触发。有界输入修正已在源代理任务按事前规则选 R0 后封存，真实目标 QUERY 未评价。代理 R0/R7 与真实目标 U 权重分别归档。 [证据主表与贡献冻结](experiments/left_evidence_freeze_20261128/README.md) · [当前导师稿](../manuscript/next_generation_20261115/draft.md)
+
 正式主线为公开多变量 TSAD 的多源预训练与目标域使用或适配。主稿先给出完整检测器的公开比较，再按 Z、U、F、自然混合与受控污染、核心机制和检测代价展开。[唯一工作骨架及本地主表](../manuscript/next_generation_20261115/draft.md) · [两阶段方法及数据角色](../manuscript/next_generation_20261115/method_definition.md) · [因果与逐种子补表](../manuscript/next_generation_20261115/README.md)。
 
 此前完成官方完整 TimesFM 3.0 冻结历史隐藏表示条件化 LEFT：三个源折的五臂源续训、PSM／SWaT／SMD28 的 Z 评价，以及全部30个目标的原生 LEFT／历史条件模型配对重放 U，共15份源端与60份适配终点。原生 LEFT 分数保持不变，没有使用预测残差融合。该固定架构未建立相对匹配 LEFT 的有意义增量，受控弱变化及相对时滞对照也未支持异常特异收益；按本轮规则结束该架构扩展，保留小幅正项、逐机 U 收益与所有负项。不自动开展额外种子、污染、F 或新模块。新增历史足迹不能覆盖原512点 CAL 全集，当前操作指标记 NA，不重选校准点。仅关闭此次架构，不否定公开 TSAD、多源预训练和混合目标学习的总体问题。[完整结果](experiments/left_timesfm_hidden_20261126/RESULTS.md) · [同轴外部主表](experiments/left_timesfm_hidden_20261126/PUBLIC_Z.md)。

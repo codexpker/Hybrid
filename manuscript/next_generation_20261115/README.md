@@ -1,6 +1,6 @@
 # Public benchmark supplement and evidence index
 
-The active manuscript is [Public multivariate anomaly detection after multi-source pretraining](draft.md). Its [method specification](method_definition.md) defines the candidate. Numerical sources below are frozen local evaluations. Read panel A for complete-window coverage, B for the external intersection and C for causal suffix coverage.
+The active manuscript is [Source transfer and mixed-unlabeled adaptation for multivariate time-series anomaly detection](draft.md). The [frozen evidence index](../../docs/experiments/left_evidence_freeze_20261128/README.md) defines the evaluated methods, claims and table identities. The [method index](method_definition.md) and `draft.tex` retain historical material. The supplementary panels below are separate archived evaluations with their own protocols.
 
 ## C. Matched causal suffix, scores available at the current observation
 
