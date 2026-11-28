@@ -1,0 +1,49 @@
+{
+  "datasets": 28,
+  "banks": 56,
+  "metrics": {
+    "AP": {
+      "native_mean": 0.508680416382733,
+      "history_mean": 0.5100734666534728,
+      "paired_difference_mean": 0.0013930502707397146,
+      "paired_difference_sample_SD": 0.010416541555450645,
+      "wins": 15,
+      "ties": 0,
+      "losses": 13,
+      "eligible": 28
+    },
+    "ROC_AUC": {
+      "native_mean": 0.8231372379339233,
+      "history_mean": 0.8248755837213391,
+      "paired_difference_mean": 0.0017383457874156746,
+      "paired_difference_sample_SD": 0.013308025941561297,
+      "wins": 18,
+      "ties": 0,
+      "losses": 10,
+      "eligible": 28
+    },
+    "VUS_PR": {
+      "native_mean": 0.5227231419267604,
+      "history_mean": 0.524997236660323,
+      "paired_difference_mean": 0.002274094733562643,
+      "paired_difference_sample_SD": 0.014777822429798278,
+      "wins": 18,
+      "ties": 0,
+      "losses": 10,
+      "eligible": 28
+    },
+    "VUS_ROC": {
+      "native_mean": 0.8762047574847379,
+      "history_mean": 0.8779451719912673,
+      "paired_difference_mean": 0.0017404145065294094,
+      "paired_difference_sample_SD": 0.00911466322180206,
+      "wins": 16,
+      "ties": 0,
+      "losses": 12,
+      "eligible": 28
+    }
+  },
+  "GPU_worker_hours": 3.226241593081116,
+  "peak_scoring_MiB": 134.59423828125,
+  "maximum_AP_ROC_independent_error": 4.440892098500626e-16
+}
