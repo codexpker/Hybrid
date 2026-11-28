@@ -1,0 +1,80 @@
+{
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "source_records_verified": true,
+  "labels_read": false,
+  "by_domain": {
+    "PSM": {
+      "decoder_L2": 14.998054178344226,
+      "history_L2": 0.0,
+      "frozen_tensor_count": 143,
+      "parameter_hashes_exact": true,
+      "samples": [
+        {
+          "index": 23115,
+          "terminal_V": 0.011113617569208145,
+          "history_start": 22504,
+          "current_start": 23016
+        },
+        {
+          "index": 55429,
+          "terminal_V": 0.07064605504274368,
+          "history_start": 54818,
+          "current_start": 55330
+        },
+        {
+          "index": 87743,
+          "terminal_V": 0.010816105641424656,
+          "history_start": 87132,
+          "current_start": 87644
+        }
+      ],
+      "inference_process_seconds": 889.8037795280106,
+      "checkpoint_sha256": "79bcaa9cc376d1215b436afba5b1690f23f1d7aa1fa90c95be084d98d15c78bd",
+      "source_sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+      "score_numeric_sha256": "a19cf49a2b097315c3e749f1bc59ccdc969a8be803fac3ed5f2b83c5cf162d35",
+      "query_bounds": [
+        23115,
+        87744
+      ],
+      "training_seconds": 1549.5536839207634,
+      "peak_bytes": 316847616
+    },
+    "SWAT": {
+      "decoder_L2": 14.030662597997614,
+      "history_L2": 0.0,
+      "frozen_tensor_count": 143,
+      "parameter_hashes_exact": true,
+      "samples": [
+        {
+          "index": 608634,
+          "terminal_V": 0.003293942427262664,
+          "history_start": 608023,
+          "current_start": 608535
+        },
+        {
+          "index": 776745,
+          "terminal_V": 0.006935542449355125,
+          "history_start": 776134,
+          "current_start": 776646
+        },
+        {
+          "index": 944855,
+          "terminal_V": 0.016439836472272873,
+          "history_start": 944244,
+          "current_start": 944756
+        }
+      ],
+      "inference_process_seconds": 4953.652351940982,
+      "checkpoint_sha256": "8d4fd1a7b99ea6893a28a8eeb6dd230d89eda0231c3df5dc383a48fdbc623238",
+      "source_sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+      "score_numeric_sha256": "658daa812b9c5a025dc8577c1951447770285a009c7e59e6aec97412c8510ef2",
+      "query_bounds": [
+        608634,
+        944856
+      ],
+      "training_seconds": 1614.5800702869892,
+      "peak_bytes": 326172672
+    }
+  },
+  "review_process_seconds": 5.768106604926288
+}

@@ -1,0 +1,26 @@
+{
+  "scope": "CPU support qualification only",
+  "fits": 0,
+  "domains": [
+    {
+      "domain": "PSM",
+      "earliest_eligible_normal_block_verified": true,
+      "normal_endpoint_count": 413,
+      "raw_endpoint_count": 505,
+      "all_footprints_U_FIT_only": true,
+      "annotations_excluded_from_learner_arrays": true,
+      "query_start": 22504,
+      "query_data_used": false
+    },
+    {
+      "domain": "SWAT",
+      "earliest_eligible_normal_block_verified": true,
+      "normal_endpoint_count": 413,
+      "raw_endpoint_count": 1254,
+      "all_footprints_U_FIT_only": true,
+      "annotations_excluded_from_learner_arrays": true,
+      "query_start": 608023,
+      "query_data_used": false
+    }
+  ]
+}

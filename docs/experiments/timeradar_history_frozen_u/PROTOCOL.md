@@ -17,7 +17,9 @@ and complex output projection. All of these still run for every history
 forward, feeding the original decoder. The only changed optimizer membership
 is exclusion of these parameters. The first logical batch checks exact
 history-hook call counts, frozen hashes, finite decoder gradients, actual
-decoder movement and equality of the copy loss to archived A.
+decoder movement and agreement of the copy loss with archived A to
+absolute tolerance 1e-7. The observed absolute differences are
+8.85e-9 (PSM) and 1.12e-8 (SWaT). Frozen tensors are checked by exact hashes.
 
 Both B runs use seed 2025, the original source parent, the same fixed replay
 plan and target normal-prefix scaler as A. Each of 2,000 steps presents
@@ -75,9 +77,10 @@ AP/ROC calculations. VUS uses the same pinned implementation.
 Use the chronological first complete support event as previously sealed.
 Choose the earliest 512-point label-normal block for which *every* W100
 current window has 512 preceding numeric U-FIT points. The normal block is
-therefore required to start at least 512 points into U-FIT. Eligibility
-uses input bounds and support labels only. Numeric history can include
-unlabeled abnormal values and need not itself be declared normal.
+therefore required to start at least 512 points into U-FIT. The offline
+qualifier scans public U-FIT annotations to locate eligible support. The
+learner receives only the selected positive/normal roles and numeric
+footprints. Numeric history can include unlabeled abnormal values.
 
 | Task | Anomaly support (half-open) | Normal support (half-open) | Legal abnormal / normal endpoints | Numeric footprint union (half-open) |
 | --- | --- | --- | ---: | --- |
@@ -95,5 +98,17 @@ Preparation was executed on CPU. The old support files retain their original
 identities. Formal F fitting and F scoring are deferred. When a final model
 is fixed, matched F starts from the appropriate source endpoint and reuses the
 240-step copy/pair procedure and shared scale construction on the revised
-normal panel. A no-source initialization resets the full native and history
+normal panel. For example, run the following only when the matched F study
+is authorized to start. Use the same revised support contract for both
+arms and each later F scoring call.
+
+```bash
+"$py" -m hybrid_tsad.timeradar_history_f prepare "$w" "$out" --support-contract full-normal-block
+CUDA_VISIBLE_DEVICES=0 "$py" -m hybrid_tsad.timeradar_history_f fit "$w" "$out" --domain PSM --arm history --support-contract full-normal-block
+CUDA_VISIBLE_DEVICES=0 "$py" -m hybrid_tsad.timeradar_history_evaluation score "$w" "$out" --domain PSM --arm history --stage F --support-contract full-normal-block
+```
+
+Use a new results root for support preparation, or reuse the already
+generated immutable support inputs in this round's results root.
+A no-source initialization resets the full native and history
 state. The U scope choice must not be inferred to apply to F automatically.

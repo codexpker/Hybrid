@@ -1,0 +1,68 @@
+{
+  "reference_commit": "59ea8402272080aa95392355cee2b587e14dda53",
+  "implementation_commit": "5c554338862ec952f6b5eb60e547b3c0ada9a863",
+  "source_parent_sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "fits": 2,
+  "steps_per_fit": 2000,
+  "warmup_steps": 200,
+  "learning_rate": 0.0001,
+  "betas": [
+    0.9,
+    0.95
+  ],
+  "epsilon": 1e-08,
+  "weight_decay": [
+    0.1,
+    0.0
+  ],
+  "seed": 2025,
+  "mask_seed": 84551,
+  "batch_slots": {
+    "TEP": 8,
+    "SMD": 8,
+    "target": 16
+  },
+  "trainable": "native decoder only",
+  "active_history": true,
+  "final_step": 2000,
+  "axes": {
+    "PSM": [
+      23115,
+      87744
+    ],
+    "SWAT": [
+      608634,
+      944856
+    ]
+  },
+  "source_fits": 0,
+  "F_fits": 0,
+  "python": "3.12.13",
+  "torch": "2.12.0+cu130",
+  "GPU": "NVIDIA A40",
+  "physical_run_root_relative": "results/timeradar_history_frozen_u_v1",
+  "runtime_model_diff_from_git": "Only CRLF versus LF line endings in the pre-existing context module",
+  "code_sha256": {
+    "src/hybrid_tsad/timeradar_history_context.py": {
+      "git_blob_sha256": "465b25fddde0419fa985b61bca9763790fbc4a494f0482e4f3d9ec7bd22afb37",
+      "runtime_sha256": "104935347d7bc1468a8aa868b8454f72fa530ccb2228c080c985cdf879f7ebed"
+    },
+    "src/hybrid_tsad/timeradar_history_experiment.py": {
+      "git_blob_sha256": "514849866e457137081ccc4504997bc733f1f16f9bdba6ae57748aad6d7f529e",
+      "runtime_sha256": "514849866e457137081ccc4504997bc733f1f16f9bdba6ae57748aad6d7f529e"
+    },
+    "src/hybrid_tsad/timeradar_history_evaluation.py": {
+      "git_blob_sha256": "16579759c6a0a0166150ba139b312bfb8e1ed75ef40b3fa49bd7cf1f60918cf8",
+      "runtime_sha256": "16579759c6a0a0166150ba139b312bfb8e1ed75ef40b3fa49bd7cf1f60918cf8"
+    },
+    "src/hybrid_tsad/timeradar_history_f.py": {
+      "git_blob_sha256": "98d3f8cd744c93ee5bcb68393f1f5ba3579af080dc3f025efeace4513226a01f",
+      "runtime_sha256": "98d3f8cd744c93ee5bcb68393f1f5ba3579af080dc3f025efeace4513226a01f"
+    },
+    "scripts/evaluate_timeradar_frozen_history_u.py": {
+      "git_blob_sha256": "59aecd3588170f662c8c4bdf435ee6fb6ba5580000a22799886f2aeeb1ddb4a5",
+      "runtime_sha256": "59aecd3588170f662c8c4bdf435ee6fb6ba5580000a22799886f2aeeb1ddb4a5"
+    }
+  }
+}

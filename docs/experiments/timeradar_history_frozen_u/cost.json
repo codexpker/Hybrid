@@ -1,0 +1,24 @@
+{
+  "PSM": {
+    "training_seconds": 1549.5536839207634,
+    "scoring_shard_seconds": 889.8037795280106,
+    "peak_training_MiB": 302.16943359375
+  },
+  "SWAT": {
+    "training_seconds": 1614.5800702869892,
+    "scoring_shard_seconds": 4953.652351940982,
+    "peak_training_MiB": 311.0625
+  },
+  "train_A40_process_hours": 0.8789260428354868,
+  "score_A40_process_hours": 1.6231822587413869,
+  "main_GPU_process_hours": 2.502108301576874,
+  "training_phase_wall_seconds": 1617,
+  "scoring_phase_wall_seconds": 1475,
+  "end_to_end_GPU_phase_wall_seconds": 3092,
+  "readonly_review_process_seconds": 5.768106604926288,
+  "metric_process_seconds": 34.165486454963684,
+  "cost_definition": "Sum of measured per-device process spans, including setup for those processes. Not kernel-only time. Read-only review separate. CPU F preparation separate.",
+  "fits": 2,
+  "steps_per_fit": 2000,
+  "total_scored_endpoints": 400851
+}
