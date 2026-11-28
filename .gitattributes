@@ -99,3 +99,5 @@ docs/experiments/timeradar_history_development/** -text whitespace=cr-at-eol
 src/hybrid_tsad/timeradar_history_*.py text eol=lf
 scripts/*timeradar_history*.py text eol=lf
 scripts/*timeradar_history*.sh text eol=lf
+
+docs/experiments/timeradar_history_development/*.patch -text whitespace=-blank-at-eol,cr-at-eol

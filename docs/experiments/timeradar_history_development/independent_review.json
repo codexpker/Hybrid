@@ -1,0 +1,389 @@
+{
+  "source_selection": [
+    {
+      "arm": "native",
+      "selected_step": 240,
+      "copy": 0.9331550044007599
+    },
+    {
+      "arm": "history",
+      "selected_step": 240,
+      "copy": 0.9195197355002165
+    }
+  ],
+  "update_checks": [
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "steps": 2000,
+      "decoder_displacement": 15.568298402405597,
+      "history_displacement": 0.0
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "steps": 2000,
+      "decoder_displacement": 13.265970367229226,
+      "history_displacement": 3.439453579667314
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "steps": 2000,
+      "decoder_displacement": 13.94608949840926,
+      "history_displacement": 0.0
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "steps": 2000,
+      "decoder_displacement": 12.46965265670392,
+      "history_displacement": 3.595000713944451
+    }
+  ],
+  "AP_ROC_checks": [
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "Z",
+      "panel": "public",
+      "AP": 0.4928704577853881,
+      "ROC_AUC": 0.7170440792553746
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "Z",
+      "panel": "QUERY",
+      "AP": 0.49140550937294797,
+      "ROC_AUC": 0.7091066303952146
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "U",
+      "panel": "QUERY",
+      "AP": 0.47899194320591687,
+      "ROC_AUC": 0.7047710565547708
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "Z",
+      "panel": "public",
+      "AP": 0.49552352978478714,
+      "ROC_AUC": 0.719033961525455
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "Z",
+      "panel": "QUERY",
+      "AP": 0.4948040812353686,
+      "ROC_AUC": 0.7110875933991437
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "U",
+      "panel": "QUERY",
+      "AP": 0.4454426104814118,
+      "ROC_AUC": 0.6931695332396997
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "Z",
+      "panel": "public",
+      "AP": 0.7228472678857635,
+      "ROC_AUC": 0.834579970763377
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "Z",
+      "panel": "QUERY",
+      "AP": 0.7848919312024369,
+      "ROC_AUC": 0.8513131142495722
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "U",
+      "panel": "QUERY",
+      "AP": 0.7523744519312858,
+      "ROC_AUC": 0.84651679198245
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "Z",
+      "panel": "public",
+      "AP": 0.7289712948782371,
+      "ROC_AUC": 0.8386612205980677
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "Z",
+      "panel": "QUERY",
+      "AP": 0.7875925732945054,
+      "ROC_AUC": 0.8554929658080772
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "U",
+      "panel": "QUERY",
+      "AP": 0.7563193751449108,
+      "ROC_AUC": 0.8491554604382481
+    }
+  ],
+  "raw_score_samples": [
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "Z",
+      "index": 611,
+      "score": 0.06290073692798615,
+      "exact_forward_readback": true,
+      "history_start": 0,
+      "current_start": 512
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "Z",
+      "index": 44177,
+      "score": 0.026844948530197144,
+      "exact_forward_readback": true,
+      "history_start": 43566,
+      "current_start": 44078
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "Z",
+      "index": 87743,
+      "score": 0.03133275359869003,
+      "exact_forward_readback": true,
+      "history_start": 87132,
+      "current_start": 87644
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "U",
+      "index": 23115,
+      "score": 0.02271033264696598,
+      "exact_forward_readback": true,
+      "history_start": 22504,
+      "current_start": 23016
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "U",
+      "index": 55429,
+      "score": 0.09039876610040665,
+      "exact_forward_readback": true,
+      "history_start": 54818,
+      "current_start": 55330
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "stage": "U",
+      "index": 87743,
+      "score": 0.013328676111996174,
+      "exact_forward_readback": true,
+      "history_start": 87132,
+      "current_start": 87644
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "Z",
+      "index": 611,
+      "score": 0.0850616842508316,
+      "exact_forward_readback": true,
+      "history_start": 0,
+      "current_start": 512
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "Z",
+      "index": 44177,
+      "score": 0.03637010604143143,
+      "exact_forward_readback": true,
+      "history_start": 43566,
+      "current_start": 44078
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "Z",
+      "index": 87743,
+      "score": 0.04868131875991821,
+      "exact_forward_readback": true,
+      "history_start": 87132,
+      "current_start": 87644
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "U",
+      "index": 23115,
+      "score": 0.007947709411382675,
+      "exact_forward_readback": true,
+      "history_start": 22504,
+      "current_start": 23016
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "U",
+      "index": 55429,
+      "score": 0.09243345260620117,
+      "exact_forward_readback": true,
+      "history_start": 54818,
+      "current_start": 55330
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "stage": "U",
+      "index": 87743,
+      "score": 0.012290377169847488,
+      "exact_forward_readback": true,
+      "history_start": 87132,
+      "current_start": 87644
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "Z",
+      "index": 495611,
+      "score": 0.02912008762359619,
+      "exact_forward_readback": true,
+      "history_start": 495000,
+      "current_start": 495512
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "Z",
+      "index": 720233,
+      "score": 0.0878830999135971,
+      "exact_forward_readback": true,
+      "history_start": 719622,
+      "current_start": 720134
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "Z",
+      "index": 944855,
+      "score": 0.16704820096492767,
+      "exact_forward_readback": true,
+      "history_start": 944244,
+      "current_start": 944756
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "U",
+      "index": 608634,
+      "score": 0.007544134743511677,
+      "exact_forward_readback": true,
+      "history_start": 608023,
+      "current_start": 608535
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "U",
+      "index": 776745,
+      "score": 0.010367389768362045,
+      "exact_forward_readback": true,
+      "history_start": 776134,
+      "current_start": 776646
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "stage": "U",
+      "index": 944855,
+      "score": 0.018681857734918594,
+      "exact_forward_readback": true,
+      "history_start": 944244,
+      "current_start": 944756
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "Z",
+      "index": 495611,
+      "score": 0.03738817572593689,
+      "exact_forward_readback": true,
+      "history_start": 495000,
+      "current_start": 495512
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "Z",
+      "index": 720233,
+      "score": 0.09236562997102737,
+      "exact_forward_readback": true,
+      "history_start": 719622,
+      "current_start": 720134
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "Z",
+      "index": 944855,
+      "score": 0.18374352157115936,
+      "exact_forward_readback": true,
+      "history_start": 944244,
+      "current_start": 944756
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "U",
+      "index": 608634,
+      "score": 0.0022701220586895943,
+      "exact_forward_readback": true,
+      "history_start": 608023,
+      "current_start": 608535
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "U",
+      "index": 776745,
+      "score": 0.004137976095080376,
+      "exact_forward_readback": true,
+      "history_start": 776134,
+      "current_start": 776646
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "stage": "U",
+      "index": 944855,
+      "score": 0.012414015829563141,
+      "exact_forward_readback": true,
+      "history_start": 944244,
+      "current_start": 944756
+    }
+  ],
+  "seconds": 5.815276084002107,
+  "VUS_scope": "same pinned implementation in main evaluator; no independent VUS reimplementation",
+  "source_scope": "saved native nondecoder tensors compared to official; selected source risk rechecked",
+  "query_scope": "no optimization or selection; fixed three endpoint samples per bank after sealing",
+  "reviewer": "separate executable and ranking calculation, not an independent human or agent review"
+}

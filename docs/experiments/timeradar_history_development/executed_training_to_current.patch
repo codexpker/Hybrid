@@ -1,0 +1,19 @@
+--- a/src/hybrid_tsad/timeradar_history_experiment.py
++++ b/src/hybrid_tsad/timeradar_history_experiment.py
+@@ -114,6 +114,8 @@
+     m=model(w,arm)
+     if domain is not None:
+         p=out/"source"/arm/"selected.pt"
++        parent_receipt=json.loads(p.with_name("receipt.json").read_text())
++        assert sha(p)==parent_receipt["sha256"]
+         m.load_state_dict(torch.load(p,map_location="cpu",weights_only=True)["model"])
+     opt=optimizer(m)
+     data=pools(w)
+@@ -194,6 +196,7 @@
+     dump(dest/"select.json",select)
+     dump(dest/"receipt.json",dict(arm=arm,domain=domain,steps=steps,selected_step=selected,
+          sha256=sha(dest/"selected.pt"),plan_sha256=sha(out/"plans.npz"),parent=WEIGHT_SHA,
++         source_checkpoint_sha256=sha(out/"source"/arm/"selected.pt") if domain else None,
+          seconds=time.monotonic()-started,peak_bytes=torch.cuda.max_memory_allocated(),
+          input_exposures=32*steps,frozen_native_encoder=True,checkpoint_selection="source normal copy MSE; earliest minimum" if not domain else "fixed endpoint",
+          GPU=torch.cuda.get_device_name()))

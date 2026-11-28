@@ -1,0 +1,6242 @@
+[
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04389531910419464,
+        "copy": 0.6640617847442627,
+        "E_full": 0.6246182322502136,
+        "V_full": 0.0438261404633522
+      },
+      "bypass": {
+        "V_terminal": 0.04389531910419464,
+        "copy": 0.6640617847442627,
+        "E_full": 0.6246182322502136,
+        "V_full": 0.0438261404633522
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.024372026324272156,
+        "copy": 0.2752000689506531,
+        "E_full": 0.2039850652217865,
+        "V_full": 0.07912775129079819
+      },
+      "bypass": {
+        "V_terminal": 0.024372026324272156,
+        "copy": 0.2752000689506531,
+        "E_full": 0.2039850652217865,
+        "V_full": 0.07912775129079819
+      },
+      "mismatch": {
+        "V_terminal": 0.024372026324272156,
+        "copy": 0.2752000689506531,
+        "E_full": 0.2039850652217865,
+        "V_full": 0.07912775129079819
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04316651076078415,
+        "copy": 0.6449465751647949,
+        "E_full": 0.6048519015312195,
+        "V_full": 0.04454968869686127
+      },
+      "bypass": {
+        "V_terminal": 0.04316651076078415,
+        "copy": 0.6449465751647949,
+        "E_full": 0.6048519015312195,
+        "V_full": 0.04454968869686127
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.025042103603482246,
+        "copy": 0.2019067406654358,
+        "E_full": 0.1705152541399002,
+        "V_full": 0.034879423677921295
+      },
+      "bypass": {
+        "V_terminal": 0.025042103603482246,
+        "copy": 0.2019067406654358,
+        "E_full": 0.1705152541399002,
+        "V_full": 0.034879423677921295
+      },
+      "mismatch": {
+        "V_terminal": 0.025042103603482246,
+        "copy": 0.2019067406654358,
+        "E_full": 0.1705152541399002,
+        "V_full": 0.034879423677921295
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.050961047410964966,
+        "copy": 0.6883285045623779,
+        "E_full": 0.645214319229126,
+        "V_full": 0.04790463298559189
+      },
+      "bypass": {
+        "V_terminal": 0.050961047410964966,
+        "copy": 0.6883285045623779,
+        "E_full": 0.645214319229126,
+        "V_full": 0.04790463298559189
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.6056546568870544,
+        "copy": 1.5541350841522217,
+        "E_full": 0.9632092714309692,
+        "V_full": 0.6565842032432556
+      },
+      "bypass": {
+        "V_terminal": 0.6056546568870544,
+        "copy": 1.5541350841522217,
+        "E_full": 0.9632092714309692,
+        "V_full": 0.6565842032432556
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03756692260503769,
+        "copy": 0.6475675106048584,
+        "E_full": 0.6118152737617493,
+        "V_full": 0.0397246889770031
+      },
+      "bypass": {
+        "V_terminal": 0.03756692260503769,
+        "copy": 0.6475675106048584,
+        "E_full": 0.6118152737617493,
+        "V_full": 0.0397246889770031
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.004953315481543541,
+        "copy": 0.1168610155582428,
+        "E_full": 0.11356855928897858,
+        "V_full": 0.0036582814063876867
+      },
+      "bypass": {
+        "V_terminal": 0.004953315481543541,
+        "copy": 0.1168610155582428,
+        "E_full": 0.11356855928897858,
+        "V_full": 0.0036582814063876867
+      },
+      "mismatch": {
+        "V_terminal": 0.004953315481543541,
+        "copy": 0.1168610155582428,
+        "E_full": 0.11356855928897858,
+        "V_full": 0.0036582814063876867
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0290224589407444,
+        "copy": 0.9351094365119934,
+        "E_full": 0.8755201101303101,
+        "V_full": 0.06621038168668747
+      },
+      "bypass": {
+        "V_terminal": 0.0290224589407444,
+        "copy": 0.9351094365119934,
+        "E_full": 0.8755201101303101,
+        "V_full": 0.06621038168668747
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0011512417113408446,
+        "copy": 0.17845094203948975,
+        "E_full": 0.17594918608665466,
+        "V_full": 0.0027797194197773933
+      },
+      "bypass": {
+        "V_terminal": 0.0011512417113408446,
+        "copy": 0.17845094203948975,
+        "E_full": 0.17594918608665466,
+        "V_full": 0.0027797194197773933
+      },
+      "mismatch": {
+        "V_terminal": 0.0011512417113408446,
+        "copy": 0.17845094203948975,
+        "E_full": 0.17594918608665466,
+        "V_full": 0.0027797194197773933
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.025225404649972916,
+        "copy": 0.7176205515861511,
+        "E_full": 0.6784257292747498,
+        "V_full": 0.04354986920952797
+      },
+      "bypass": {
+        "V_terminal": 0.025225404649972916,
+        "copy": 0.7176205515861511,
+        "E_full": 0.6784257292747498,
+        "V_full": 0.04354986920952797
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.002964782528579235,
+        "copy": 0.46303191781044006,
+        "E_full": 0.42670902609825134,
+        "V_full": 0.04035878926515579
+      },
+      "bypass": {
+        "V_terminal": 0.002964782528579235,
+        "copy": 0.46303191781044006,
+        "E_full": 0.42670902609825134,
+        "V_full": 0.04035878926515579
+      },
+      "mismatch": {
+        "V_terminal": 0.002964782528579235,
+        "copy": 0.46303191781044006,
+        "E_full": 0.42670902609825134,
+        "V_full": 0.04035878926515579
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.036654189229011536,
+        "copy": 0.7011838555335999,
+        "E_full": 0.6455655694007874,
+        "V_full": 0.061798155307769775
+      },
+      "bypass": {
+        "V_terminal": 0.036654189229011536,
+        "copy": 0.7011838555335999,
+        "E_full": 0.6455655694007874,
+        "V_full": 0.061798155307769775
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.023048454895615578,
+        "copy": 0.17763935029506683,
+        "E_full": 0.14329661428928375,
+        "V_full": 0.0381585918366909
+      },
+      "bypass": {
+        "V_terminal": 0.023048454895615578,
+        "copy": 0.17763935029506683,
+        "E_full": 0.14329661428928375,
+        "V_full": 0.0381585918366909
+      },
+      "mismatch": {
+        "V_terminal": 0.023048454895615578,
+        "copy": 0.17763935029506683,
+        "E_full": 0.14329661428928375,
+        "V_full": 0.0381585918366909
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03459329903125763,
+        "copy": 0.6402326822280884,
+        "E_full": 0.5989606380462646,
+        "V_full": 0.04585789144039154
+      },
+      "bypass": {
+        "V_terminal": 0.03459329903125763,
+        "copy": 0.6402326822280884,
+        "E_full": 0.5989606380462646,
+        "V_full": 0.04585789144039154
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.22197656333446503,
+        "copy": 0.32779666781425476,
+        "E_full": 0.18612706661224365,
+        "V_full": 0.1574106216430664
+      },
+      "bypass": {
+        "V_terminal": 0.22197656333446503,
+        "copy": 0.32779666781425476,
+        "E_full": 0.18612706661224365,
+        "V_full": 0.1574106216430664
+      },
+      "mismatch": {
+        "V_terminal": 0.22197656333446503,
+        "copy": 0.32779666781425476,
+        "E_full": 0.18612706661224365,
+        "V_full": 0.1574106216430664
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.06258819252252579,
+        "copy": 0.6442944407463074,
+        "E_full": 0.6034839749336243,
+        "V_full": 0.045344945043325424
+      },
+      "bypass": {
+        "V_terminal": 0.06258819252252579,
+        "copy": 0.6442944407463074,
+        "E_full": 0.6034839749336243,
+        "V_full": 0.045344945043325424
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.05863173305988312,
+        "copy": 0.22808495163917542,
+        "E_full": 0.18037262558937073,
+        "V_full": 0.053013719618320465
+      },
+      "bypass": {
+        "V_terminal": 0.05863173305988312,
+        "copy": 0.22808495163917542,
+        "E_full": 0.18037262558937073,
+        "V_full": 0.053013719618320465
+      },
+      "mismatch": {
+        "V_terminal": 0.05863173305988312,
+        "copy": 0.22808495163917542,
+        "E_full": 0.18037262558937073,
+        "V_full": 0.053013719618320465
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03215043991804123,
+        "copy": 0.7256600856781006,
+        "E_full": 0.6847010254859924,
+        "V_full": 0.045510053634643555
+      },
+      "bypass": {
+        "V_terminal": 0.03215043991804123,
+        "copy": 0.7256600856781006,
+        "E_full": 0.6847010254859924,
+        "V_full": 0.045510053634643555
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.12205662578344345,
+        "copy": 0.399153470993042,
+        "E_full": 0.2299518883228302,
+        "V_full": 0.18800176680088043
+      },
+      "bypass": {
+        "V_terminal": 0.12205662578344345,
+        "copy": 0.399153470993042,
+        "E_full": 0.2299518883228302,
+        "V_full": 0.18800176680088043
+      },
+      "mismatch": {
+        "V_terminal": 0.12205662578344345,
+        "copy": 0.399153470993042,
+        "E_full": 0.2299518883228302,
+        "V_full": 0.18800176680088043
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02915082685649395,
+        "copy": 0.6577625870704651,
+        "E_full": 0.6205164790153503,
+        "V_full": 0.04138459265232086
+      },
+      "bypass": {
+        "V_terminal": 0.02915082685649395,
+        "copy": 0.6577625870704651,
+        "E_full": 0.6205164790153503,
+        "V_full": 0.04138459265232086
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.11000994592905045,
+        "copy": 9.824509620666504,
+        "E_full": 9.73941421508789,
+        "V_full": 0.0945495069026947
+      },
+      "bypass": {
+        "V_terminal": 0.11000994592905045,
+        "copy": 9.824509620666504,
+        "E_full": 9.73941421508789,
+        "V_full": 0.0945495069026947
+      },
+      "mismatch": {
+        "V_terminal": 0.11000994592905045,
+        "copy": 9.824509620666504,
+        "E_full": 9.73941421508789,
+        "V_full": 0.0945495069026947
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.044929374009370804,
+        "copy": 0.9155955910682678,
+        "E_full": 0.8569783568382263,
+        "V_full": 0.06513024866580963
+      },
+      "bypass": {
+        "V_terminal": 0.044929374009370804,
+        "copy": 0.9155955910682678,
+        "E_full": 0.8569783568382263,
+        "V_full": 0.06513024866580963
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.004340799991041422,
+        "copy": 1.3063777685165405,
+        "E_full": 1.2823598384857178,
+        "V_full": 0.02668645977973938
+      },
+      "bypass": {
+        "V_terminal": 0.004340799991041422,
+        "copy": 1.3063777685165405,
+        "E_full": 1.2823598384857178,
+        "V_full": 0.02668645977973938
+      },
+      "mismatch": {
+        "V_terminal": 0.004340799991041422,
+        "copy": 1.3063777685165405,
+        "E_full": 1.2823598384857178,
+        "V_full": 0.02668645977973938
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.030077654868364334,
+        "copy": 0.6716901063919067,
+        "E_full": 0.6317489147186279,
+        "V_full": 0.04437911882996559
+      },
+      "bypass": {
+        "V_terminal": 0.030077654868364334,
+        "copy": 0.6716901063919067,
+        "E_full": 0.6317489147186279,
+        "V_full": 0.04437911882996559
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00040245457785204053,
+        "copy": 1.418527603149414,
+        "E_full": 1.4069607257843018,
+        "V_full": 0.012851971201598644
+      },
+      "bypass": {
+        "V_terminal": 0.00040245457785204053,
+        "copy": 1.418527603149414,
+        "E_full": 1.4069607257843018,
+        "V_full": 0.012851971201598644
+      },
+      "mismatch": {
+        "V_terminal": 0.00040245457785204053,
+        "copy": 1.418527603149414,
+        "E_full": 1.4069607257843018,
+        "V_full": 0.012851971201598644
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03736301138997078,
+        "copy": 0.6430310606956482,
+        "E_full": 0.6040858626365662,
+        "V_full": 0.0432724803686142
+      },
+      "bypass": {
+        "V_terminal": 0.03736301138997078,
+        "copy": 0.6430310606956482,
+        "E_full": 0.6040858626365662,
+        "V_full": 0.0432724803686142
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.004486957099288702,
+        "copy": 0.30031707882881165,
+        "E_full": 0.27106741070747375,
+        "V_full": 0.03249963000416756
+      },
+      "bypass": {
+        "V_terminal": 0.004486957099288702,
+        "copy": 0.30031707882881165,
+        "E_full": 0.27106741070747375,
+        "V_full": 0.03249963000416756
+      },
+      "mismatch": {
+        "V_terminal": 0.004486957099288702,
+        "copy": 0.30031707882881165,
+        "E_full": 0.27106741070747375,
+        "V_full": 0.03249963000416756
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.024523822590708733,
+        "copy": 0.6438689827919006,
+        "E_full": 0.608656108379364,
+        "V_full": 0.039125412702560425
+      },
+      "bypass": {
+        "V_terminal": 0.024523822590708733,
+        "copy": 0.6438689827919006,
+        "E_full": 0.608656108379364,
+        "V_full": 0.039125412702560425
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.08472451567649841,
+        "copy": 0.8177680969238281,
+        "E_full": 0.725580632686615,
+        "V_full": 0.10243044793605804
+      },
+      "bypass": {
+        "V_terminal": 0.08472451567649841,
+        "copy": 0.8177680969238281,
+        "E_full": 0.725580632686615,
+        "V_full": 0.10243044793605804
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.050256382673978806,
+        "copy": 0.6506559252738953,
+        "E_full": 0.611082136631012,
+        "V_full": 0.04397093504667282
+      },
+      "bypass": {
+        "V_terminal": 0.050256382673978806,
+        "copy": 0.6506559252738953,
+        "E_full": 0.611082136631012,
+        "V_full": 0.04397093504667282
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "native",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.006874277256429195,
+        "copy": 1.079590082168579,
+        "E_full": 1.0616086721420288,
+        "V_full": 0.019979313015937805
+      },
+      "bypass": {
+        "V_terminal": 0.006874277256429195,
+        "copy": 1.079590082168579,
+        "E_full": 1.0616086721420288,
+        "V_full": 0.019979313015937805
+      },
+      "mismatch": {
+        "V_terminal": 0.006874277256429195,
+        "copy": 1.079590082168579,
+        "E_full": 1.0616086721420288,
+        "V_full": 0.019979313015937805
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.035914693027734756,
+        "copy": 0.6601005792617798,
+        "E_full": 0.6267502307891846,
+        "V_full": 0.03705603629350662
+      },
+      "bypass": {
+        "V_terminal": 0.06626377999782562,
+        "copy": 0.7028225660324097,
+        "E_full": 0.6361187100410461,
+        "V_full": 0.07411535084247589
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.03501430153846741,
+        "copy": 0.26123547554016113,
+        "E_full": 0.18536613881587982,
+        "V_full": 0.08429926633834839
+      },
+      "bypass": {
+        "V_terminal": 0.03094768524169922,
+        "copy": 0.27686822414398193,
+        "E_full": 0.1966932713985443,
+        "V_full": 0.08908329904079437
+      },
+      "mismatch": {
+        "V_terminal": 0.031255632638931274,
+        "copy": 0.26063820719718933,
+        "E_full": 0.18866266310214996,
+        "V_full": 0.07997280359268188
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03422953560948372,
+        "copy": 0.6410749554634094,
+        "E_full": 0.6079131364822388,
+        "V_full": 0.036846473813056946
+      },
+      "bypass": {
+        "V_terminal": 0.0632726177573204,
+        "copy": 0.6798063516616821,
+        "E_full": 0.613142728805542,
+        "V_full": 0.07407063245773315
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.034578658640384674,
+        "copy": 0.19987119734287262,
+        "E_full": 0.16391105949878693,
+        "V_full": 0.039955709129571915
+      },
+      "bypass": {
+        "V_terminal": 0.03398698568344116,
+        "copy": 0.2046273648738861,
+        "E_full": 0.16551099717617035,
+        "V_full": 0.04346262663602829
+      },
+      "mismatch": {
+        "V_terminal": 0.03354760259389877,
+        "copy": 0.1968386471271515,
+        "E_full": 0.15954281389713287,
+        "V_full": 0.041439808905124664
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.043537430465221405,
+        "copy": 0.6853954195976257,
+        "E_full": 0.6476143598556519,
+        "V_full": 0.04197900369763374
+      },
+      "bypass": {
+        "V_terminal": 0.0758524090051651,
+        "copy": 0.7240932583808899,
+        "E_full": 0.6561904549598694,
+        "V_full": 0.07544761896133423
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.7568836212158203,
+        "copy": 1.4157425165176392,
+        "E_full": 0.7899065613746643,
+        "V_full": 0.6953732371330261
+      },
+      "bypass": {
+        "V_terminal": 0.7134667634963989,
+        "copy": 1.510643720626831,
+        "E_full": 0.9030791521072388,
+        "V_full": 0.6750715374946594
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03069988265633583,
+        "copy": 0.6443012356758118,
+        "E_full": 0.6138169765472412,
+        "V_full": 0.033871352672576904
+      },
+      "bypass": {
+        "V_terminal": 0.05141618847846985,
+        "copy": 0.6825358867645264,
+        "E_full": 0.6248059272766113,
+        "V_full": 0.06414450705051422
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00757925771176815,
+        "copy": 0.11533662676811218,
+        "E_full": 0.11194396018981934,
+        "V_full": 0.003769641974940896
+      },
+      "bypass": {
+        "V_terminal": 0.006831563077867031,
+        "copy": 0.1236107125878334,
+        "E_full": 0.11827386915683746,
+        "V_full": 0.005929816979914904
+      },
+      "mismatch": {
+        "V_terminal": 0.0033901729620993137,
+        "copy": 0.11753953248262405,
+        "E_full": 0.11536750942468643,
+        "V_full": 0.0024133636616170406
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.024047430604696274,
+        "copy": 0.9341407418251038,
+        "E_full": 0.8845069408416748,
+        "V_full": 0.05514875054359436
+      },
+      "bypass": {
+        "V_terminal": 0.042031217366456985,
+        "copy": 0.9732972979545593,
+        "E_full": 0.8891674876213074,
+        "V_full": 0.09347753971815109
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0016480982303619385,
+        "copy": 0.17590759694576263,
+        "E_full": 0.1732369363307953,
+        "V_full": 0.002967385109513998
+      },
+      "bypass": {
+        "V_terminal": 0.0015523098409175873,
+        "copy": 0.1866443008184433,
+        "E_full": 0.18226487934589386,
+        "V_full": 0.004866007249802351
+      },
+      "mismatch": {
+        "V_terminal": 0.0016478825127705932,
+        "copy": 0.17941688001155853,
+        "E_full": 0.17700543999671936,
+        "V_full": 0.0026793412398546934
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02112007699906826,
+        "copy": 0.7139866352081299,
+        "E_full": 0.6788576245307922,
+        "V_full": 0.03903229534626007
+      },
+      "bypass": {
+        "V_terminal": 0.0369141548871994,
+        "copy": 0.7597289681434631,
+        "E_full": 0.6946520209312439,
+        "V_full": 0.07230787724256516
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.003838977077975869,
+        "copy": 0.463386595249176,
+        "E_full": 0.4199652671813965,
+        "V_full": 0.04824591428041458
+      },
+      "bypass": {
+        "V_terminal": 0.003715604543685913,
+        "copy": 0.4708734452724457,
+        "E_full": 0.41621148586273193,
+        "V_full": 0.06073551997542381
+      },
+      "mismatch": {
+        "V_terminal": 0.003082500770688057,
+        "copy": 0.46188271045684814,
+        "E_full": 0.42545992136001587,
+        "V_full": 0.040469735860824585
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.030752696096897125,
+        "copy": 0.7021762728691101,
+        "E_full": 0.656009316444397,
+        "V_full": 0.051296573132276535
+      },
+      "bypass": {
+        "V_terminal": 0.055813807994127274,
+        "copy": 0.7346373200416565,
+        "E_full": 0.6531879901885986,
+        "V_full": 0.09049928188323975
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.03157319873571396,
+        "copy": 0.17094458639621735,
+        "E_full": 0.1316576600074768,
+        "V_full": 0.04365213215351105
+      },
+      "bypass": {
+        "V_terminal": 0.028700483962893486,
+        "copy": 0.17822004854679108,
+        "E_full": 0.13737989962100983,
+        "V_full": 0.045377932488918304
+      },
+      "mismatch": {
+        "V_terminal": 0.029475068673491478,
+        "copy": 0.17582179605960846,
+        "E_full": 0.13940906524658203,
+        "V_full": 0.04045860469341278
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.028033124282956123,
+        "copy": 0.6365853548049927,
+        "E_full": 0.6027273535728455,
+        "V_full": 0.037620026618242264
+      },
+      "bypass": {
+        "V_terminal": 0.051564499735832214,
+        "copy": 0.6750745177268982,
+        "E_full": 0.6072749495506287,
+        "V_full": 0.07533285766839981
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.23456749320030212,
+        "copy": 0.30788442492485046,
+        "E_full": 0.16890209913253784,
+        "V_full": 0.15442480146884918
+      },
+      "bypass": {
+        "V_terminal": 0.26040658354759216,
+        "copy": 0.3223283290863037,
+        "E_full": 0.17381659150123596,
+        "V_full": 0.16501303017139435
+      },
+      "mismatch": {
+        "V_terminal": 0.22251848876476288,
+        "copy": 0.3220736086368561,
+        "E_full": 0.18922202289104462,
+        "V_full": 0.14761283993721008
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04939278960227966,
+        "copy": 0.6393808722496033,
+        "E_full": 0.6061257719993591,
+        "V_full": 0.036949992179870605
+      },
+      "bypass": {
+        "V_terminal": 0.09378694742918015,
+        "copy": 0.6832873821258545,
+        "E_full": 0.6155683994293213,
+        "V_full": 0.07524329423904419
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.07267708331346512,
+        "copy": 0.21654219925403595,
+        "E_full": 0.16943004727363586,
+        "V_full": 0.05234680324792862
+      },
+      "bypass": {
+        "V_terminal": 0.07685750722885132,
+        "copy": 0.2286035120487213,
+        "E_full": 0.1766560673713684,
+        "V_full": 0.05771934613585472
+      },
+      "mismatch": {
+        "V_terminal": 0.06474187225103378,
+        "copy": 0.22548195719718933,
+        "E_full": 0.18236950039863586,
+        "V_full": 0.04790271818637848
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.025761472061276436,
+        "copy": 0.7215230464935303,
+        "E_full": 0.6851917505264282,
+        "V_full": 0.04036816582083702
+      },
+      "bypass": {
+        "V_terminal": 0.04655619338154793,
+        "copy": 0.7705630660057068,
+        "E_full": 0.7035197019577026,
+        "V_full": 0.07449266314506531
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.1583012044429779,
+        "copy": 0.3531418740749359,
+        "E_full": 0.17957566678524017,
+        "V_full": 0.19285133481025696
+      },
+      "bypass": {
+        "V_terminal": 0.14713044464588165,
+        "copy": 0.39408236742019653,
+        "E_full": 0.22233915328979492,
+        "V_full": 0.19082576036453247
+      },
+      "mismatch": {
+        "V_terminal": 0.15404176712036133,
+        "copy": 0.3615571856498718,
+        "E_full": 0.18929019570350647,
+        "V_full": 0.19140775501728058
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.024492526426911354,
+        "copy": 0.6543713808059692,
+        "E_full": 0.6224554181098938,
+        "V_full": 0.035462167114019394
+      },
+      "bypass": {
+        "V_terminal": 0.041498199105262756,
+        "copy": 0.6930827498435974,
+        "E_full": 0.6309059262275696,
+        "V_full": 0.06908537447452545
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.1138288751244545,
+        "copy": 9.84606647491455,
+        "E_full": 9.749473571777344,
+        "V_full": 0.10732633620500565
+      },
+      "bypass": {
+        "V_terminal": 0.13938842713832855,
+        "copy": 10.156526565551758,
+        "E_full": 10.040409088134766,
+        "V_full": 0.1290198564529419
+      },
+      "mismatch": {
+        "V_terminal": 0.11873887479305267,
+        "copy": 9.907074928283691,
+        "E_full": 9.802578926086426,
+        "V_full": 0.11610560119152069
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.037320327013731,
+        "copy": 0.9141448736190796,
+        "E_full": 0.8644291162490845,
+        "V_full": 0.055239807814359665
+      },
+      "bypass": {
+        "V_terminal": 0.06526688486337662,
+        "copy": 0.9527749419212341,
+        "E_full": 0.8701635599136353,
+        "V_full": 0.09179044514894485
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00485712755471468,
+        "copy": 1.264731526374817,
+        "E_full": 1.2452412843704224,
+        "V_full": 0.021655889227986336
+      },
+      "bypass": {
+        "V_terminal": 0.005615117494016886,
+        "copy": 1.3614022731781006,
+        "E_full": 1.3242477178573608,
+        "V_full": 0.04128274321556091
+      },
+      "mismatch": {
+        "V_terminal": 0.00381438503973186,
+        "copy": 1.393357515335083,
+        "E_full": 1.3635810613632202,
+        "V_full": 0.0330849215388298
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.024694209918379784,
+        "copy": 0.6678939461708069,
+        "E_full": 0.6328327655792236,
+        "V_full": 0.03895699605345726
+      },
+      "bypass": {
+        "V_terminal": 0.044636160135269165,
+        "copy": 0.7130133509635925,
+        "E_full": 0.6471632122993469,
+        "V_full": 0.07316680997610092
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0006289848242886364,
+        "copy": 1.3693443536758423,
+        "E_full": 1.361699104309082,
+        "V_full": 0.008494686335325241
+      },
+      "bypass": {
+        "V_terminal": 0.000497536500915885,
+        "copy": 1.4819825887680054,
+        "E_full": 1.4585880041122437,
+        "V_full": 0.02599385380744934
+      },
+      "mismatch": {
+        "V_terminal": 0.0006689932197332382,
+        "copy": 1.4587308168411255,
+        "E_full": 1.4413294792175293,
+        "V_full": 0.019334830343723297
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02923749014735222,
+        "copy": 0.6404533982276917,
+        "E_full": 0.6088603734970093,
+        "V_full": 0.035103313624858856
+      },
+      "bypass": {
+        "V_terminal": 0.05440223589539528,
+        "copy": 0.6764386296272278,
+        "E_full": 0.6112677454948425,
+        "V_full": 0.07241210341453552
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.009275234304368496,
+        "copy": 0.2973375916481018,
+        "E_full": 0.26177945733070374,
+        "V_full": 0.03950904309749603
+      },
+      "bypass": {
+        "V_terminal": 0.007150614634156227,
+        "copy": 0.30472245812416077,
+        "E_full": 0.2677623927593231,
+        "V_full": 0.041066724807024
+      },
+      "mismatch": {
+        "V_terminal": 0.00397680327296257,
+        "copy": 0.3276999294757843,
+        "E_full": 0.3097423017024994,
+        "V_full": 0.019952887669205666
+      }
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.01989385299384594,
+        "copy": 0.6408303380012512,
+        "E_full": 0.610993504524231,
+        "V_full": 0.03315206617116928
+      },
+      "bypass": {
+        "V_terminal": 0.033809076994657516,
+        "copy": 0.6802572011947632,
+        "E_full": 0.6228309273719788,
+        "V_full": 0.06380695104598999
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.1031033843755722,
+        "copy": 0.7772210836410522,
+        "E_full": 0.6848742365837097,
+        "V_full": 0.1026076003909111
+      },
+      "bypass": {
+        "V_terminal": 0.10308129340410233,
+        "copy": 0.8312585949897766,
+        "E_full": 0.7339193820953369,
+        "V_full": 0.10815457999706268
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0393247976899147,
+        "copy": 0.6478835344314575,
+        "E_full": 0.6156967282295227,
+        "V_full": 0.03576306998729706
+      },
+      "bypass": {
+        "V_terminal": 0.07395710051059723,
+        "copy": 0.6857373714447021,
+        "E_full": 0.6196145415306091,
+        "V_full": 0.07346983999013901
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "Z",
+    "domain": null,
+    "arm": "history",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00936372671276331,
+        "copy": 1.0456948280334473,
+        "E_full": 1.0278419256210327,
+        "V_full": 0.019836662337183952
+      },
+      "bypass": {
+        "V_terminal": 0.011011584661900997,
+        "copy": 1.1128358840942383,
+        "E_full": 1.089805245399475,
+        "V_full": 0.025589577853679657
+      },
+      "mismatch": {
+        "V_terminal": 0.010051533579826355,
+        "copy": 1.0719547271728516,
+        "E_full": 1.0519537925720215,
+        "V_full": 0.022223301231861115
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.039109762758016586,
+        "copy": 0.6543933153152466,
+        "E_full": 0.6207575798034668,
+        "V_full": 0.03737309202551842
+      },
+      "bypass": {
+        "V_terminal": 0.039109762758016586,
+        "copy": 0.6543933153152466,
+        "E_full": 0.6207575798034668,
+        "V_full": 0.03737309202551842
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.014092814177274704,
+        "copy": 0.2017456591129303,
+        "E_full": 0.1800585240125656,
+        "V_full": 0.024096814915537834
+      },
+      "bypass": {
+        "V_terminal": 0.014092814177274704,
+        "copy": 0.2017456591129303,
+        "E_full": 0.1800585240125656,
+        "V_full": 0.024096814915537834
+      },
+      "mismatch": {
+        "V_terminal": 0.014092814177274704,
+        "copy": 0.2017456591129303,
+        "E_full": 0.1800585240125656,
+        "V_full": 0.024096814915537834
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04213699698448181,
+        "copy": 0.6346174478530884,
+        "E_full": 0.600382387638092,
+        "V_full": 0.038038935512304306
+      },
+      "bypass": {
+        "V_terminal": 0.04213699698448181,
+        "copy": 0.6346174478530884,
+        "E_full": 0.600382387638092,
+        "V_full": 0.038038935512304306
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.010619723238050938,
+        "copy": 0.1770540177822113,
+        "E_full": 0.16086925566196442,
+        "V_full": 0.01798303797841072
+      },
+      "bypass": {
+        "V_terminal": 0.010619723238050938,
+        "copy": 0.1770540177822113,
+        "E_full": 0.16086925566196442,
+        "V_full": 0.01798303797841072
+      },
+      "mismatch": {
+        "V_terminal": 0.010619723238050938,
+        "copy": 0.1770540177822113,
+        "E_full": 0.16086925566196442,
+        "V_full": 0.01798303797841072
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04734231159090996,
+        "copy": 0.6740887761116028,
+        "E_full": 0.6391151547431946,
+        "V_full": 0.03885963559150696
+      },
+      "bypass": {
+        "V_terminal": 0.04734231159090996,
+        "copy": 0.6740887761116028,
+        "E_full": 0.6391151547431946,
+        "V_full": 0.03885963559150696
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.30942606925964355,
+        "copy": 0.6944800615310669,
+        "E_full": 0.51651531457901,
+        "V_full": 0.19773849844932556
+      },
+      "bypass": {
+        "V_terminal": 0.30942606925964355,
+        "copy": 0.6944800615310669,
+        "E_full": 0.51651531457901,
+        "V_full": 0.19773849844932556
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03608570620417595,
+        "copy": 0.637210488319397,
+        "E_full": 0.607522189617157,
+        "V_full": 0.03298705816268921
+      },
+      "bypass": {
+        "V_terminal": 0.03608570620417595,
+        "copy": 0.637210488319397,
+        "E_full": 0.607522189617157,
+        "V_full": 0.03298705816268921
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.003920854534953833,
+        "copy": 0.11116403341293335,
+        "E_full": 0.10926680266857147,
+        "V_full": 0.0021080246660858393
+      },
+      "bypass": {
+        "V_terminal": 0.003920854534953833,
+        "copy": 0.11116403341293335,
+        "E_full": 0.10926680266857147,
+        "V_full": 0.0021080246660858393
+      },
+      "mismatch": {
+        "V_terminal": 0.003920854534953833,
+        "copy": 0.11116403341293335,
+        "E_full": 0.10926680266857147,
+        "V_full": 0.0021080246660858393
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.030845964327454567,
+        "copy": 0.9112145304679871,
+        "E_full": 0.8669799566268921,
+        "V_full": 0.04914948716759682
+      },
+      "bypass": {
+        "V_terminal": 0.030845964327454567,
+        "copy": 0.9112145304679871,
+        "E_full": 0.8669799566268921,
+        "V_full": 0.04914948716759682
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0005531054339371622,
+        "copy": 0.1726401150226593,
+        "E_full": 0.17162761092185974,
+        "V_full": 0.0011250328971073031
+      },
+      "bypass": {
+        "V_terminal": 0.0005531054339371622,
+        "copy": 0.1726401150226593,
+        "E_full": 0.17162761092185974,
+        "V_full": 0.0011250328971073031
+      },
+      "mismatch": {
+        "V_terminal": 0.0005531054339371622,
+        "copy": 0.1726401150226593,
+        "E_full": 0.17162761092185974,
+        "V_full": 0.0011250328971073031
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02123802900314331,
+        "copy": 0.7063120603561401,
+        "E_full": 0.6739351749420166,
+        "V_full": 0.03597431257367134
+      },
+      "bypass": {
+        "V_terminal": 0.02123802900314331,
+        "copy": 0.7063120603561401,
+        "E_full": 0.6739351749420166,
+        "V_full": 0.03597431257367134
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0029218816198408604,
+        "copy": 0.4569815993309021,
+        "E_full": 0.4240846335887909,
+        "V_full": 0.03655214607715607
+      },
+      "bypass": {
+        "V_terminal": 0.0029218816198408604,
+        "copy": 0.4569815993309021,
+        "E_full": 0.4240846335887909,
+        "V_full": 0.03655214607715607
+      },
+      "mismatch": {
+        "V_terminal": 0.0029218816198408604,
+        "copy": 0.4569815993309021,
+        "E_full": 0.4240846335887909,
+        "V_full": 0.03655214607715607
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.033083394169807434,
+        "copy": 0.6768384575843811,
+        "E_full": 0.6370145082473755,
+        "V_full": 0.04424891993403435
+      },
+      "bypass": {
+        "V_terminal": 0.033083394169807434,
+        "copy": 0.6768384575843811,
+        "E_full": 0.6370145082473755,
+        "V_full": 0.04424891993403435
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.007534405216574669,
+        "copy": 0.14529810845851898,
+        "E_full": 0.1286901980638504,
+        "V_full": 0.018453219905495644
+      },
+      "bypass": {
+        "V_terminal": 0.007534405216574669,
+        "copy": 0.14529810845851898,
+        "E_full": 0.1286901980638504,
+        "V_full": 0.018453219905495644
+      },
+      "mismatch": {
+        "V_terminal": 0.007534405216574669,
+        "copy": 0.14529810845851898,
+        "E_full": 0.1286901980638504,
+        "V_full": 0.018453219905495644
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03261790797114372,
+        "copy": 0.6292848587036133,
+        "E_full": 0.5937397480010986,
+        "V_full": 0.039494458585977554
+      },
+      "bypass": {
+        "V_terminal": 0.03261790797114372,
+        "copy": 0.6292848587036133,
+        "E_full": 0.5937397480010986,
+        "V_full": 0.039494458585977554
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.11124502867460251,
+        "copy": 0.15256519615650177,
+        "E_full": 0.11485852301120758,
+        "V_full": 0.0418962724506855
+      },
+      "bypass": {
+        "V_terminal": 0.11124502867460251,
+        "copy": 0.15256519615650177,
+        "E_full": 0.11485852301120758,
+        "V_full": 0.0418962724506855
+      },
+      "mismatch": {
+        "V_terminal": 0.11124502867460251,
+        "copy": 0.15256519615650177,
+        "E_full": 0.11485852301120758,
+        "V_full": 0.0418962724506855
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.05823609605431557,
+        "copy": 0.6336463093757629,
+        "E_full": 0.5989249348640442,
+        "V_full": 0.03857934847474098
+      },
+      "bypass": {
+        "V_terminal": 0.05823609605431557,
+        "copy": 0.6336463093757629,
+        "E_full": 0.5989249348640442,
+        "V_full": 0.03857934847474098
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.03110191784799099,
+        "copy": 0.1762266606092453,
+        "E_full": 0.1628534346818924,
+        "V_full": 0.01485913060605526
+      },
+      "bypass": {
+        "V_terminal": 0.03110191784799099,
+        "copy": 0.1762266606092453,
+        "E_full": 0.1628534346818924,
+        "V_full": 0.01485913060605526
+      },
+      "mismatch": {
+        "V_terminal": 0.03110191784799099,
+        "copy": 0.1762266606092453,
+        "E_full": 0.1628534346818924,
+        "V_full": 0.01485913060605526
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.025208720937371254,
+        "copy": 0.7109736800193787,
+        "E_full": 0.6774961352348328,
+        "V_full": 0.03719732165336609
+      },
+      "bypass": {
+        "V_terminal": 0.025208720937371254,
+        "copy": 0.7109736800193787,
+        "E_full": 0.6774961352348328,
+        "V_full": 0.03719732165336609
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.052070170640945435,
+        "copy": 0.16788800060749054,
+        "E_full": 0.13560724258422852,
+        "V_full": 0.03586750477552414
+      },
+      "bypass": {
+        "V_terminal": 0.052070170640945435,
+        "copy": 0.16788800060749054,
+        "E_full": 0.13560724258422852,
+        "V_full": 0.03586750477552414
+      },
+      "mismatch": {
+        "V_terminal": 0.052070170640945435,
+        "copy": 0.16788800060749054,
+        "E_full": 0.13560724258422852,
+        "V_full": 0.03586750477552414
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.027530059218406677,
+        "copy": 0.6490131616592407,
+        "E_full": 0.6164050102233887,
+        "V_full": 0.03623123839497566
+      },
+      "bypass": {
+        "V_terminal": 0.027530059218406677,
+        "copy": 0.6490131616592407,
+        "E_full": 0.6164050102233887,
+        "V_full": 0.03623123839497566
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0964239165186882,
+        "copy": 8.215651512145996,
+        "E_full": 8.176017761230469,
+        "V_full": 0.04403667524456978
+      },
+      "bypass": {
+        "V_terminal": 0.0964239165186882,
+        "copy": 8.215651512145996,
+        "E_full": 8.176017761230469,
+        "V_full": 0.04403667524456978
+      },
+      "mismatch": {
+        "V_terminal": 0.0964239165186882,
+        "copy": 8.215651512145996,
+        "E_full": 8.176017761230469,
+        "V_full": 0.04403667524456978
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.040748681873083115,
+        "copy": 0.8899361491203308,
+        "E_full": 0.8486238121986389,
+        "V_full": 0.045902665704488754
+      },
+      "bypass": {
+        "V_terminal": 0.040748681873083115,
+        "copy": 0.8899361491203308,
+        "E_full": 0.8486238121986389,
+        "V_full": 0.045902665704488754
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0026425367686897516,
+        "copy": 1.2384110689163208,
+        "E_full": 1.2259572744369507,
+        "V_full": 0.01383763737976551
+      },
+      "bypass": {
+        "V_terminal": 0.0026425367686897516,
+        "copy": 1.2384110689163208,
+        "E_full": 1.2259572744369507,
+        "V_full": 0.01383763737976551
+      },
+      "mismatch": {
+        "V_terminal": 0.0026425367686897516,
+        "copy": 1.2384110689163208,
+        "E_full": 1.2259572744369507,
+        "V_full": 0.01383763737976551
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.027675412595272064,
+        "copy": 0.6635102033615112,
+        "E_full": 0.628154456615448,
+        "V_full": 0.03928424045443535
+      },
+      "bypass": {
+        "V_terminal": 0.027675412595272064,
+        "copy": 0.6635102033615112,
+        "E_full": 0.628154456615448,
+        "V_full": 0.03928424045443535
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00023474174668081105,
+        "copy": 1.3480256795883179,
+        "E_full": 1.3439159393310547,
+        "V_full": 0.004566163290292025
+      },
+      "bypass": {
+        "V_terminal": 0.00023474174668081105,
+        "copy": 1.3480256795883179,
+        "E_full": 1.3439159393310547,
+        "V_full": 0.004566163290292025
+      },
+      "mismatch": {
+        "V_terminal": 0.00023474174668081105,
+        "copy": 1.3480256795883179,
+        "E_full": 1.3439159393310547,
+        "V_full": 0.004566163290292025
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.037605248391628265,
+        "copy": 0.6324684619903564,
+        "E_full": 0.5992177724838257,
+        "V_full": 0.0369451530277729
+      },
+      "bypass": {
+        "V_terminal": 0.037605248391628265,
+        "copy": 0.6324684619903564,
+        "E_full": 0.5992177724838257,
+        "V_full": 0.0369451530277729
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.005085465032607317,
+        "copy": 0.2773773968219757,
+        "E_full": 0.2586429715156555,
+        "V_full": 0.020816011354327202
+      },
+      "bypass": {
+        "V_terminal": 0.005085465032607317,
+        "copy": 0.2773773968219757,
+        "E_full": 0.2586429715156555,
+        "V_full": 0.020816011354327202
+      },
+      "mismatch": {
+        "V_terminal": 0.005085465032607317,
+        "copy": 0.2773773968219757,
+        "E_full": 0.2586429715156555,
+        "V_full": 0.020816011354327202
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02302020788192749,
+        "copy": 0.6314449906349182,
+        "E_full": 0.6029725074768066,
+        "V_full": 0.03163615241646767
+      },
+      "bypass": {
+        "V_terminal": 0.02302020788192749,
+        "copy": 0.6314449906349182,
+        "E_full": 0.6029725074768066,
+        "V_full": 0.03163615241646767
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03811849281191826,
+        "copy": 0.6759251952171326,
+        "E_full": 0.6551710963249207,
+        "V_full": 0.023060113191604614
+      },
+      "bypass": {
+        "V_terminal": 0.03811849281191826,
+        "copy": 0.6759251952171326,
+        "E_full": 0.6551710963249207,
+        "V_full": 0.023060113191604614
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04458247497677803,
+        "copy": 0.6398929953575134,
+        "E_full": 0.6061742305755615,
+        "V_full": 0.037465326488018036
+      },
+      "bypass": {
+        "V_terminal": 0.04458247497677803,
+        "copy": 0.6398929953575134,
+        "E_full": 0.6061742305755615,
+        "V_full": 0.037465326488018036
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "native",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.008068408817052841,
+        "copy": 1.0113688707351685,
+        "E_full": 1.0064318180084229,
+        "V_full": 0.005485688801854849
+      },
+      "bypass": {
+        "V_terminal": 0.008068408817052841,
+        "copy": 1.0113688707351685,
+        "E_full": 1.0064318180084229,
+        "V_full": 0.005485688801854849
+      },
+      "mismatch": {
+        "V_terminal": 0.008068408817052841,
+        "copy": 1.0113688707351685,
+        "E_full": 1.0064318180084229,
+        "V_full": 0.005485688801854849
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03561645373702049,
+        "copy": 0.6500521302223206,
+        "E_full": 0.619127094745636,
+        "V_full": 0.03436112031340599
+      },
+      "bypass": {
+        "V_terminal": 0.05980001389980316,
+        "copy": 0.7158031463623047,
+        "E_full": 0.652118980884552,
+        "V_full": 0.07076026499271393
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.009849117137491703,
+        "copy": 0.19409281015396118,
+        "E_full": 0.17173631489276886,
+        "V_full": 0.024840543046593666
+      },
+      "bypass": {
+        "V_terminal": 0.023593874648213387,
+        "copy": 0.23954060673713684,
+        "E_full": 0.1881822645664215,
+        "V_full": 0.05706479400396347
+      },
+      "mismatch": {
+        "V_terminal": 0.008632429875433445,
+        "copy": 0.19563065469264984,
+        "E_full": 0.17206433415412903,
+        "V_full": 0.02618478797376156
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03708801418542862,
+        "copy": 0.6310476064682007,
+        "E_full": 0.600371778011322,
+        "V_full": 0.03408432379364967
+      },
+      "bypass": {
+        "V_terminal": 0.05685121566057205,
+        "copy": 0.6917535662651062,
+        "E_full": 0.6279551386833191,
+        "V_full": 0.07088711112737656
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.012141133658587933,
+        "copy": 0.17627133429050446,
+        "E_full": 0.15743592381477356,
+        "V_full": 0.02092823199927807
+      },
+      "bypass": {
+        "V_terminal": 0.023428238928318024,
+        "copy": 0.19084511697292328,
+        "E_full": 0.16242189705371857,
+        "V_full": 0.03158134967088699
+      },
+      "mismatch": {
+        "V_terminal": 0.012320945039391518,
+        "copy": 0.16921983659267426,
+        "E_full": 0.15192292630672455,
+        "V_full": 0.019218800589442253
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04371962696313858,
+        "copy": 0.6715015172958374,
+        "E_full": 0.6370589733123779,
+        "V_full": 0.03826947882771492
+      },
+      "bypass": {
+        "V_terminal": 0.06778760254383087,
+        "copy": 0.7347759008407593,
+        "E_full": 0.6722108721733093,
+        "V_full": 0.06951665878295898
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.18785928189754486,
+        "copy": 0.6022932529449463,
+        "E_full": 0.4639759361743927,
+        "V_full": 0.15368583798408508
+      },
+      "bypass": {
+        "V_terminal": 0.4467903971672058,
+        "copy": 0.8553318381309509,
+        "E_full": 0.5328456163406372,
+        "V_full": 0.35831791162490845
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03461302071809769,
+        "copy": 0.6318357586860657,
+        "E_full": 0.6029426455497742,
+        "V_full": 0.03210347145795822
+      },
+      "bypass": {
+        "V_terminal": 0.047326479107141495,
+        "copy": 0.6953635811805725,
+        "E_full": 0.6411713361740112,
+        "V_full": 0.060213569551706314
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.003033046843484044,
+        "copy": 0.11165530979633331,
+        "E_full": 0.10933635383844376,
+        "V_full": 0.002576613100245595
+      },
+      "bypass": {
+        "V_terminal": 0.005459285341203213,
+        "copy": 0.1248202845454216,
+        "E_full": 0.12029849737882614,
+        "V_full": 0.0050242021679878235
+      },
+      "mismatch": {
+        "V_terminal": 0.002335297642275691,
+        "copy": 0.1155121698975563,
+        "E_full": 0.11355041712522507,
+        "V_full": 0.002179714385420084
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02707880362868309,
+        "copy": 0.9097808599472046,
+        "E_full": 0.864698588848114,
+        "V_full": 0.05009134113788605
+      },
+      "bypass": {
+        "V_terminal": 0.04060561954975128,
+        "copy": 0.9733628034591675,
+        "E_full": 0.9008111953735352,
+        "V_full": 0.08061295747756958
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0008205234189517796,
+        "copy": 0.17197385430335999,
+        "E_full": 0.17030000686645508,
+        "V_full": 0.0018598355818539858
+      },
+      "bypass": {
+        "V_terminal": 0.0010492414003238082,
+        "copy": 0.18835236132144928,
+        "E_full": 0.18503615260124207,
+        "V_full": 0.003684683470055461
+      },
+      "mismatch": {
+        "V_terminal": 0.00044982018880546093,
+        "copy": 0.17859284579753876,
+        "E_full": 0.1767590194940567,
+        "V_full": 0.0020375719759613276
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.020795157179236412,
+        "copy": 0.7013904452323914,
+        "E_full": 0.6713781356811523,
+        "V_full": 0.03334704414010048
+      },
+      "bypass": {
+        "V_terminal": 0.03165723755955696,
+        "copy": 0.7760592699050903,
+        "E_full": 0.7132143974304199,
+        "V_full": 0.0698276236653328
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0031378455460071564,
+        "copy": 0.447762131690979,
+        "E_full": 0.4093543589115143,
+        "V_full": 0.04267524182796478
+      },
+      "bypass": {
+        "V_terminal": 0.0036198394373059273,
+        "copy": 0.47597309947013855,
+        "E_full": 0.42222699522972107,
+        "V_full": 0.05971786379814148
+      },
+      "mismatch": {
+        "V_terminal": 0.0026534702628850937,
+        "copy": 0.4461919069290161,
+        "E_full": 0.41234779357910156,
+        "V_full": 0.037604548037052155
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03315000608563423,
+        "copy": 0.6791596412658691,
+        "E_full": 0.6365802884101868,
+        "V_full": 0.047310374677181244
+      },
+      "bypass": {
+        "V_terminal": 0.0491504967212677,
+        "copy": 0.7363613247871399,
+        "E_full": 0.6645119190216064,
+        "V_full": 0.07983272522687912
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.003593909088522196,
+        "copy": 0.13900573551654816,
+        "E_full": 0.12182922661304474,
+        "V_full": 0.019085010513663292
+      },
+      "bypass": {
+        "V_terminal": 0.01787148416042328,
+        "copy": 0.1595759391784668,
+        "E_full": 0.13093173503875732,
+        "V_full": 0.03182689845561981
+      },
+      "mismatch": {
+        "V_terminal": 0.004237618297338486,
+        "copy": 0.14540156722068787,
+        "E_full": 0.13045693933963776,
+        "V_full": 0.016605140641331673
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.031865254044532776,
+        "copy": 0.6246396899223328,
+        "E_full": 0.5914719700813293,
+        "V_full": 0.036853063851594925
+      },
+      "bypass": {
+        "V_terminal": 0.04806215316057205,
+        "copy": 0.6884275078773499,
+        "E_full": 0.6232051253318787,
+        "V_full": 0.07246927917003632
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.09868211299180984,
+        "copy": 0.14038214087486267,
+        "E_full": 0.10660058259963989,
+        "V_full": 0.037535056471824646
+      },
+      "bypass": {
+        "V_terminal": 0.1944202184677124,
+        "copy": 0.20401956140995026,
+        "E_full": 0.1259775310754776,
+        "V_full": 0.08671335130929947
+      },
+      "mismatch": {
+        "V_terminal": 0.10682442039251328,
+        "copy": 0.14852933585643768,
+        "E_full": 0.10970889031887054,
+        "V_full": 0.043133821338415146
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.05333417281508446,
+        "copy": 0.6282814145088196,
+        "E_full": 0.5964708924293518,
+        "V_full": 0.03534507006406784
+      },
+      "bypass": {
+        "V_terminal": 0.08809683471918106,
+        "copy": 0.6962138414382935,
+        "E_full": 0.6309924125671387,
+        "V_full": 0.07246825098991394
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.026291070505976677,
+        "copy": 0.1727142184972763,
+        "E_full": 0.15900292992591858,
+        "V_full": 0.015234745107591152
+      },
+      "bypass": {
+        "V_terminal": 0.06178224831819534,
+        "copy": 0.2036021649837494,
+        "E_full": 0.17236509919166565,
+        "V_full": 0.034707844257354736
+      },
+      "mismatch": {
+        "V_terminal": 0.0390719473361969,
+        "copy": 0.1765298694372177,
+        "E_full": 0.1601945012807846,
+        "V_full": 0.018150409683585167
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02380429394543171,
+        "copy": 0.7070073485374451,
+        "E_full": 0.6760832667350769,
+        "V_full": 0.034360021352767944
+      },
+      "bypass": {
+        "V_terminal": 0.03715987130999565,
+        "copy": 0.7804810404777527,
+        "E_full": 0.7171230912208557,
+        "V_full": 0.07039779424667358
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.03178980574011803,
+        "copy": 0.14998869597911835,
+        "E_full": 0.12908102571964264,
+        "V_full": 0.023230750113725662
+      },
+      "bypass": {
+        "V_terminal": 0.10622908920049667,
+        "copy": 0.2297637164592743,
+        "E_full": 0.14516867697238922,
+        "V_full": 0.09399448335170746
+      },
+      "mismatch": {
+        "V_terminal": 0.03760277107357979,
+        "copy": 0.15962675213813782,
+        "E_full": 0.13403357565402985,
+        "V_full": 0.028436841443181038
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.026340249925851822,
+        "copy": 0.645480751991272,
+        "E_full": 0.6146067976951599,
+        "V_full": 0.0343044176697731
+      },
+      "bypass": {
+        "V_terminal": 0.03697377070784569,
+        "copy": 0.7101049423217773,
+        "E_full": 0.6486101746559143,
+        "V_full": 0.06832753121852875
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.044482361525297165,
+        "copy": 8.40899658203125,
+        "E_full": 8.365152359008789,
+        "V_full": 0.048715561628341675
+      },
+      "bypass": {
+        "V_terminal": 0.1112796887755394,
+        "copy": 9.7704439163208,
+        "E_full": 9.670164108276367,
+        "V_full": 0.11142171174287796
+      },
+      "mismatch": {
+        "V_terminal": 0.05120665580034256,
+        "copy": 8.493470191955566,
+        "E_full": 8.438042640686035,
+        "V_full": 0.06158669665455818
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0380958653986454,
+        "copy": 0.8895847797393799,
+        "E_full": 0.8456062078475952,
+        "V_full": 0.04886501654982567
+      },
+      "bypass": {
+        "V_terminal": 0.05795489251613617,
+        "copy": 0.9570044875144958,
+        "E_full": 0.886372447013855,
+        "V_full": 0.07848018407821655
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0016999682411551476,
+        "copy": 1.231406807899475,
+        "E_full": 1.2186702489852905,
+        "V_full": 0.014151837676763535
+      },
+      "bypass": {
+        "V_terminal": 0.0032482987735420465,
+        "copy": 1.3400535583496094,
+        "E_full": 1.3116878271102905,
+        "V_full": 0.03151746839284897
+      },
+      "mismatch": {
+        "V_terminal": 0.004017396364361048,
+        "copy": 1.3466508388519287,
+        "E_full": 1.3229069709777832,
+        "V_full": 0.0263820793479681
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.026108218356966972,
+        "copy": 0.6575510501861572,
+        "E_full": 0.624496340751648,
+        "V_full": 0.03672746568918228
+      },
+      "bypass": {
+        "V_terminal": 0.040446747094392776,
+        "copy": 0.7316914200782776,
+        "E_full": 0.6669963002204895,
+        "V_full": 0.07188338786363602
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00031076051527634263,
+        "copy": 1.3410123586654663,
+        "E_full": 1.3351850509643555,
+        "V_full": 0.006474726367741823
+      },
+      "bypass": {
+        "V_terminal": 0.0004320547741372138,
+        "copy": 1.460456132888794,
+        "E_full": 1.4429216384887695,
+        "V_full": 0.01948278583586216
+      },
+      "mismatch": {
+        "V_terminal": 0.0013138665817677975,
+        "copy": 1.4356271028518677,
+        "E_full": 1.4232337474822998,
+        "V_full": 0.013770241290330887
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0319814495742321,
+        "copy": 0.6300233602523804,
+        "E_full": 0.6004640460014343,
+        "V_full": 0.0328436940908432
+      },
+      "bypass": {
+        "V_terminal": 0.05398266389966011,
+        "copy": 0.6892151236534119,
+        "E_full": 0.6260918974876404,
+        "V_full": 0.0701369196176529
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.009855781681835651,
+        "copy": 0.285408616065979,
+        "E_full": 0.26321837306022644,
+        "V_full": 0.024655800312757492
+      },
+      "bypass": {
+        "V_terminal": 0.007974216714501381,
+        "copy": 0.3022270202636719,
+        "E_full": 0.2720499038696289,
+        "V_full": 0.03353011980652809
+      },
+      "mismatch": {
+        "V_terminal": 0.004623317625373602,
+        "copy": 0.2896732985973358,
+        "E_full": 0.26842013001441956,
+        "V_full": 0.023614635691046715
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02112721838057041,
+        "copy": 0.6267971396446228,
+        "E_full": 0.5988065004348755,
+        "V_full": 0.0311006847769022
+      },
+      "bypass": {
+        "V_terminal": 0.030323171988129616,
+        "copy": 0.6939253211021423,
+        "E_full": 0.6397423148155212,
+        "V_full": 0.06020338833332062
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.028674649074673653,
+        "copy": 0.6678987145423889,
+        "E_full": 0.6480324268341064,
+        "V_full": 0.02207355946302414
+      },
+      "bypass": {
+        "V_terminal": 0.08094252645969391,
+        "copy": 0.7492176294326782,
+        "E_full": 0.6947531700134277,
+        "V_full": 0.06051598861813545
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03996982052922249,
+        "copy": 0.6365774273872375,
+        "E_full": 0.6069210767745972,
+        "V_full": 0.03295151889324188
+      },
+      "bypass": {
+        "V_terminal": 0.06628857553005219,
+        "copy": 0.6972110867500305,
+        "E_full": 0.6337041854858398,
+        "V_full": 0.07056323438882828
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "PSM",
+    "arm": "history",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.011670511215925217,
+        "copy": 1.0092514753341675,
+        "E_full": 1.0041836500167847,
+        "V_full": 0.005630927626043558
+      },
+      "bypass": {
+        "V_terminal": 0.010292095132172108,
+        "copy": 1.081023931503296,
+        "E_full": 1.0670799016952515,
+        "V_full": 0.015493303537368774
+      },
+      "mismatch": {
+        "V_terminal": 0.01071438193321228,
+        "copy": 1.0277081727981567,
+        "E_full": 1.0213762521743774,
+        "V_full": 0.007035337388515472
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0432179719209671,
+        "copy": 0.6566294431686401,
+        "E_full": 0.6221520304679871,
+        "V_full": 0.03830820694565773
+      },
+      "bypass": {
+        "V_terminal": 0.0432179719209671,
+        "copy": 0.6566294431686401,
+        "E_full": 0.6221520304679871,
+        "V_full": 0.03830820694565773
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.017100123688578606,
+        "copy": 0.21002495288848877,
+        "E_full": 0.18270231783390045,
+        "V_full": 0.030358469113707542
+      },
+      "bypass": {
+        "V_terminal": 0.017100123688578606,
+        "copy": 0.21002495288848877,
+        "E_full": 0.18270231783390045,
+        "V_full": 0.030358469113707542
+      },
+      "mismatch": {
+        "V_terminal": 0.017100123688578606,
+        "copy": 0.21002495288848877,
+        "E_full": 0.18270231783390045,
+        "V_full": 0.030358469113707542
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.044311221688985825,
+        "copy": 0.6372359991073608,
+        "E_full": 0.6018617749214172,
+        "V_full": 0.03930472955107689
+      },
+      "bypass": {
+        "V_terminal": 0.044311221688985825,
+        "copy": 0.6372359991073608,
+        "E_full": 0.6018617749214172,
+        "V_full": 0.03930472955107689
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.013731601648032665,
+        "copy": 0.18045061826705933,
+        "E_full": 0.16163280606269836,
+        "V_full": 0.02090865559875965
+      },
+      "bypass": {
+        "V_terminal": 0.013731601648032665,
+        "copy": 0.18045061826705933,
+        "E_full": 0.16163280606269836,
+        "V_full": 0.02090865559875965
+      },
+      "mismatch": {
+        "V_terminal": 0.013731601648032665,
+        "copy": 0.18045061826705933,
+        "E_full": 0.16163280606269836,
+        "V_full": 0.02090865559875965
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.052352167665958405,
+        "copy": 0.6769195199012756,
+        "E_full": 0.6410280466079712,
+        "V_full": 0.039879489690065384
+      },
+      "bypass": {
+        "V_terminal": 0.052352167665958405,
+        "copy": 0.6769195199012756,
+        "E_full": 0.6410280466079712,
+        "V_full": 0.039879489690065384
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.35930925607681274,
+        "copy": 0.8238519430160522,
+        "E_full": 0.5778732299804688,
+        "V_full": 0.2733096480369568
+      },
+      "bypass": {
+        "V_terminal": 0.35930925607681274,
+        "copy": 0.8238519430160522,
+        "E_full": 0.5778732299804688,
+        "V_full": 0.2733096480369568
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03809298202395439,
+        "copy": 0.6397907137870789,
+        "E_full": 0.6096663475036621,
+        "V_full": 0.033471494913101196
+      },
+      "bypass": {
+        "V_terminal": 0.03809298202395439,
+        "copy": 0.6397907137870789,
+        "E_full": 0.6096663475036621,
+        "V_full": 0.033471494913101196
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.003996031824499369,
+        "copy": 0.11192648857831955,
+        "E_full": 0.10995684564113617,
+        "V_full": 0.002188490005210042
+      },
+      "bypass": {
+        "V_terminal": 0.003996031824499369,
+        "copy": 0.11192648857831955,
+        "E_full": 0.10995684564113617,
+        "V_full": 0.002188490005210042
+      },
+      "mismatch": {
+        "V_terminal": 0.003996031824499369,
+        "copy": 0.11192648857831955,
+        "E_full": 0.10995684564113617,
+        "V_full": 0.002188490005210042
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.030966831371188164,
+        "copy": 0.9129939675331116,
+        "E_full": 0.8677706122398376,
+        "V_full": 0.05024820193648338
+      },
+      "bypass": {
+        "V_terminal": 0.030966831371188164,
+        "copy": 0.9129939675331116,
+        "E_full": 0.8677706122398376,
+        "V_full": 0.05024820193648338
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0007470851414836943,
+        "copy": 0.17308016121387482,
+        "E_full": 0.17201681435108185,
+        "V_full": 0.0011814780300483108
+      },
+      "bypass": {
+        "V_terminal": 0.0007470851414836943,
+        "copy": 0.17308016121387482,
+        "E_full": 0.17201681435108185,
+        "V_full": 0.0011814780300483108
+      },
+      "mismatch": {
+        "V_terminal": 0.0007470851414836943,
+        "copy": 0.17308016121387482,
+        "E_full": 0.17201681435108185,
+        "V_full": 0.0011814780300483108
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.023292992264032364,
+        "copy": 0.7090650200843811,
+        "E_full": 0.6757816076278687,
+        "V_full": 0.03698163479566574
+      },
+      "bypass": {
+        "V_terminal": 0.023292992264032364,
+        "copy": 0.7090650200843811,
+        "E_full": 0.6757816076278687,
+        "V_full": 0.03698163479566574
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0030828681774437428,
+        "copy": 0.46248766779899597,
+        "E_full": 0.43065664172172546,
+        "V_full": 0.03536779806017876
+      },
+      "bypass": {
+        "V_terminal": 0.0030828681774437428,
+        "copy": 0.46248766779899597,
+        "E_full": 0.43065664172172546,
+        "V_full": 0.03536779806017876
+      },
+      "mismatch": {
+        "V_terminal": 0.0030828681774437428,
+        "copy": 0.46248766779899597,
+        "E_full": 0.43065664172172546,
+        "V_full": 0.03536779806017876
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03551750257611275,
+        "copy": 0.6807357668876648,
+        "E_full": 0.6395025849342346,
+        "V_full": 0.045814696699380875
+      },
+      "bypass": {
+        "V_terminal": 0.03551750257611275,
+        "copy": 0.6807357668876648,
+        "E_full": 0.6395025849342346,
+        "V_full": 0.045814696699380875
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.010740249417722225,
+        "copy": 0.14933522045612335,
+        "E_full": 0.13062311708927155,
+        "V_full": 0.020791219547390938
+      },
+      "bypass": {
+        "V_terminal": 0.010740249417722225,
+        "copy": 0.14933522045612335,
+        "E_full": 0.13062311708927155,
+        "V_full": 0.020791219547390938
+      },
+      "mismatch": {
+        "V_terminal": 0.010740249417722225,
+        "copy": 0.14933522045612335,
+        "E_full": 0.13062311708927155,
+        "V_full": 0.020791219547390938
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03402474522590637,
+        "copy": 0.631231963634491,
+        "E_full": 0.5951218605041504,
+        "V_full": 0.04012239724397659
+      },
+      "bypass": {
+        "V_terminal": 0.03402474522590637,
+        "copy": 0.631231963634491,
+        "E_full": 0.5951218605041504,
+        "V_full": 0.04012239724397659
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.13795094192028046,
+        "copy": 0.17901548743247986,
+        "E_full": 0.12228166311979294,
+        "V_full": 0.06303756684064865
+      },
+      "bypass": {
+        "V_terminal": 0.13795094192028046,
+        "copy": 0.17901548743247986,
+        "E_full": 0.12228166311979294,
+        "V_full": 0.06303756684064865
+      },
+      "mismatch": {
+        "V_terminal": 0.13795094192028046,
+        "copy": 0.17901548743247986,
+        "E_full": 0.12228166311979294,
+        "V_full": 0.06303756684064865
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.06277470290660858,
+        "copy": 0.6358212232589722,
+        "E_full": 0.6003929972648621,
+        "V_full": 0.03936461731791496
+      },
+      "bypass": {
+        "V_terminal": 0.06277470290660858,
+        "copy": 0.6358212232589722,
+        "E_full": 0.6003929972648621,
+        "V_full": 0.03936461731791496
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.04095247760415077,
+        "copy": 0.18197277188301086,
+        "E_full": 0.16578078269958496,
+        "V_full": 0.01799110136926174
+      },
+      "bypass": {
+        "V_terminal": 0.04095247760415077,
+        "copy": 0.18197277188301086,
+        "E_full": 0.16578078269958496,
+        "V_full": 0.01799110136926174
+      },
+      "mismatch": {
+        "V_terminal": 0.04095247760415077,
+        "copy": 0.18197277188301086,
+        "E_full": 0.16578078269958496,
+        "V_full": 0.01799110136926174
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02831910364329815,
+        "copy": 0.7144956588745117,
+        "E_full": 0.6798567175865173,
+        "V_full": 0.038487695157527924
+      },
+      "bypass": {
+        "V_terminal": 0.02831910364329815,
+        "copy": 0.7144956588745117,
+        "E_full": 0.6798567175865173,
+        "V_full": 0.038487695157527924
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.06443744897842407,
+        "copy": 0.1942937821149826,
+        "E_full": 0.14128758013248444,
+        "V_full": 0.0588957779109478
+      },
+      "bypass": {
+        "V_terminal": 0.06443744897842407,
+        "copy": 0.1942937821149826,
+        "E_full": 0.14128758013248444,
+        "V_full": 0.0588957779109478
+      },
+      "mismatch": {
+        "V_terminal": 0.06443744897842407,
+        "copy": 0.1942937821149826,
+        "E_full": 0.14128758013248444,
+        "V_full": 0.0588957779109478
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02853601798415184,
+        "copy": 0.6512956619262695,
+        "E_full": 0.6174403429031372,
+        "V_full": 0.03761705756187439
+      },
+      "bypass": {
+        "V_terminal": 0.02853601798415184,
+        "copy": 0.6512956619262695,
+        "E_full": 0.6174403429031372,
+        "V_full": 0.03761705756187439
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.023241715505719185,
+        "copy": 7.550554275512695,
+        "E_full": 7.529407978057861,
+        "V_full": 0.023494860157370567
+      },
+      "bypass": {
+        "V_terminal": 0.023241715505719185,
+        "copy": 7.550554275512695,
+        "E_full": 7.529407978057861,
+        "V_full": 0.023494860157370567
+      },
+      "mismatch": {
+        "V_terminal": 0.023241715505719185,
+        "copy": 7.550554275512695,
+        "E_full": 7.529407978057861,
+        "V_full": 0.023494860157370567
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.04201097786426544,
+        "copy": 0.8924515843391418,
+        "E_full": 0.8504396677017212,
+        "V_full": 0.04667993262410164
+      },
+      "bypass": {
+        "V_terminal": 0.04201097786426544,
+        "copy": 0.8924515843391418,
+        "E_full": 0.8504396677017212,
+        "V_full": 0.04667993262410164
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0027421133127063513,
+        "copy": 1.240570306777954,
+        "E_full": 1.2278679609298706,
+        "V_full": 0.014113731682300568
+      },
+      "bypass": {
+        "V_terminal": 0.0027421133127063513,
+        "copy": 1.240570306777954,
+        "E_full": 1.2278679609298706,
+        "V_full": 0.014113731682300568
+      },
+      "mismatch": {
+        "V_terminal": 0.0027421133127063513,
+        "copy": 1.240570306777954,
+        "E_full": 1.2278679609298706,
+        "V_full": 0.014113731682300568
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02978651039302349,
+        "copy": 0.6652658581733704,
+        "E_full": 0.6292632222175598,
+        "V_full": 0.04000285267829895
+      },
+      "bypass": {
+        "V_terminal": 0.02978651039302349,
+        "copy": 0.6652658581733704,
+        "E_full": 0.6292632222175598,
+        "V_full": 0.04000285267829895
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0002824366092681885,
+        "copy": 1.347802996635437,
+        "E_full": 1.3434832096099854,
+        "V_full": 0.004799860529601574
+      },
+      "bypass": {
+        "V_terminal": 0.0002824366092681885,
+        "copy": 1.347802996635437,
+        "E_full": 1.3434832096099854,
+        "V_full": 0.004799860529601574
+      },
+      "mismatch": {
+        "V_terminal": 0.0002824366092681885,
+        "copy": 1.347802996635437,
+        "E_full": 1.3434832096099854,
+        "V_full": 0.004799860529601574
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03908435255289078,
+        "copy": 0.6347944736480713,
+        "E_full": 0.6006084084510803,
+        "V_full": 0.03798453137278557
+      },
+      "bypass": {
+        "V_terminal": 0.03908435255289078,
+        "copy": 0.6347944736480713,
+        "E_full": 0.6006084084510803,
+        "V_full": 0.03798453137278557
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0050619058310985565,
+        "copy": 0.28102588653564453,
+        "E_full": 0.26136428117752075,
+        "V_full": 0.021846214309334755
+      },
+      "bypass": {
+        "V_terminal": 0.0050619058310985565,
+        "copy": 0.28102588653564453,
+        "E_full": 0.26136428117752075,
+        "V_full": 0.021846214309334755
+      },
+      "mismatch": {
+        "V_terminal": 0.0050619058310985565,
+        "copy": 0.28102588653564453,
+        "E_full": 0.26136428117752075,
+        "V_full": 0.021846214309334755
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02358955144882202,
+        "copy": 0.6335328221321106,
+        "E_full": 0.6046143174171448,
+        "V_full": 0.03213167563080788
+      },
+      "bypass": {
+        "V_terminal": 0.02358955144882202,
+        "copy": 0.6335328221321106,
+        "E_full": 0.6046143174171448,
+        "V_full": 0.03213167563080788
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.05137261003255844,
+        "copy": 0.6906546950340271,
+        "E_full": 0.6600963473320007,
+        "V_full": 0.03395361453294754
+      },
+      "bypass": {
+        "V_terminal": 0.05137261003255844,
+        "copy": 0.6906546950340271,
+        "E_full": 0.6600963473320007,
+        "V_full": 0.03395361453294754
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.050841011106967926,
+        "copy": 0.6412696838378906,
+        "E_full": 0.6066713333129883,
+        "V_full": 0.03844266012310982
+      },
+      "bypass": {
+        "V_terminal": 0.050841011106967926,
+        "copy": 0.6412696838378906,
+        "E_full": 0.6066713333129883,
+        "V_full": 0.03844266012310982
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "native",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.008560203947126865,
+        "copy": 1.0158038139343262,
+        "E_full": 1.00921630859375,
+        "V_full": 0.0073194485157728195
+      },
+      "bypass": {
+        "V_terminal": 0.008560203947126865,
+        "copy": 1.0158038139343262,
+        "E_full": 1.00921630859375,
+        "V_full": 0.0073194485157728195
+      },
+      "mismatch": {
+        "V_terminal": 0.008560203947126865,
+        "copy": 1.0158038139343262,
+        "E_full": 1.00921630859375,
+        "V_full": 0.0073194485157728195
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 0,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 359,
+    "history_start": 103,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03800634667277336,
+        "copy": 0.6508857011795044,
+        "E_full": 0.6183516979217529,
+        "V_full": 0.03614901751279831
+      },
+      "bypass": {
+        "V_terminal": 0.053994838148355484,
+        "copy": 0.7032816410064697,
+        "E_full": 0.652726948261261,
+        "V_full": 0.05617189779877663
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 1,
+    "source_domain": 1,
+    "record": 17,
+    "current_start": 2838,
+    "history_start": 2326,
+    "mismatch_history": [
+      1814,
+      2326
+    ],
+    "mismatch_input_RMS": 0.9798848032951355,
+    "mismatch_input_relative_RMS": 1.2140027695062474,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.01046792697161436,
+        "copy": 0.20135366916656494,
+        "E_full": 0.17787140607833862,
+        "V_full": 0.02609139494597912
+      },
+      "bypass": {
+        "V_terminal": 0.023851124569773674,
+        "copy": 0.24247150123119354,
+        "E_full": 0.192984476685524,
+        "V_full": 0.05498555675148964
+      },
+      "mismatch": {
+        "V_terminal": 0.012933854945003986,
+        "copy": 0.20278795063495636,
+        "E_full": 0.1759098619222641,
+        "V_full": 0.029864536598324776
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 2,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 331,
+    "history_start": 75,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.039018191397190094,
+        "copy": 0.6319109797477722,
+        "E_full": 0.5994478464126587,
+        "V_full": 0.03607015311717987
+      },
+      "bypass": {
+        "V_terminal": 0.04996975138783455,
+        "copy": 0.6807548999786377,
+        "E_full": 0.629403293132782,
+        "V_full": 0.05705730617046356
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 3,
+    "source_domain": 1,
+    "record": 26,
+    "current_start": 5403,
+    "history_start": 4891,
+    "mismatch_history": [
+      4379,
+      4891
+    ],
+    "mismatch_input_RMS": 0.8713154792785645,
+    "mismatch_input_relative_RMS": 1.2596074241301463,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.012539289891719818,
+        "copy": 0.1793723702430725,
+        "E_full": 0.1609448790550232,
+        "V_full": 0.02047496847808361
+      },
+      "bypass": {
+        "V_terminal": 0.022879788652062416,
+        "copy": 0.19376252591609955,
+        "E_full": 0.16707921028137207,
+        "V_full": 0.029648132622241974
+      },
+      "mismatch": {
+        "V_terminal": 0.013115078210830688,
+        "copy": 0.17258940637111664,
+        "E_full": 0.15448489785194397,
+        "V_full": 0.020116101950407028
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 4,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 313,
+    "history_start": 57,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.046901851892471313,
+        "copy": 0.6728420853614807,
+        "E_full": 0.6363053321838379,
+        "V_full": 0.04059641808271408
+      },
+      "bypass": {
+        "V_terminal": 0.05858904495835304,
+        "copy": 0.7227570414543152,
+        "E_full": 0.6724981069564819,
+        "V_full": 0.055843304842710495
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 5,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 713,
+    "history_start": 201,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.2493617683649063,
+        "copy": 0.6921371221542358,
+        "E_full": 0.5053976774215698,
+        "V_full": 0.20748816430568695
+      },
+      "bypass": {
+        "V_terminal": 0.4741608500480652,
+        "copy": 0.9821831583976746,
+        "E_full": 0.6292391419410706,
+        "V_full": 0.39215990900993347
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 6,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 324,
+    "history_start": 68,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03584374859929085,
+        "copy": 0.6333152651786804,
+        "E_full": 0.603660523891449,
+        "V_full": 0.032949741929769516
+      },
+      "bypass": {
+        "V_terminal": 0.04291186109185219,
+        "copy": 0.6849257946014404,
+        "E_full": 0.6416074633598328,
+        "V_full": 0.04813148081302643
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 7,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 3317,
+    "history_start": 2805,
+    "mismatch_history": [
+      2293,
+      2805
+    ],
+    "mismatch_input_RMS": 0.9368143081665039,
+    "mismatch_input_relative_RMS": 1.6095097166767194,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0026390005368739367,
+        "copy": 0.11187006533145905,
+        "E_full": 0.10996221750974655,
+        "V_full": 0.0021198345348238945
+      },
+      "bypass": {
+        "V_terminal": 0.0045623513869941235,
+        "copy": 0.12487199157476425,
+        "E_full": 0.12090048938989639,
+        "V_full": 0.004412789363414049
+      },
+      "mismatch": {
+        "V_terminal": 0.0035162160638719797,
+        "copy": 0.11308710277080536,
+        "E_full": 0.11124389618635178,
+        "V_full": 0.002048010239377618
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 8,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 364,
+    "history_start": 108,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02785397134721279,
+        "copy": 0.9120104908943176,
+        "E_full": 0.8640511631965637,
+        "V_full": 0.053288161754608154
+      },
+      "bypass": {
+        "V_terminal": 0.035422272980213165,
+        "copy": 0.9632034301757812,
+        "E_full": 0.9009237885475159,
+        "V_full": 0.0691995844244957
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 9,
+    "source_domain": 1,
+    "record": 10,
+    "current_start": 2945,
+    "history_start": 2433,
+    "mismatch_history": [
+      1921,
+      2433
+    ],
+    "mismatch_input_RMS": 1.0282362699508667,
+    "mismatch_input_relative_RMS": 1.2743705064271307,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0007295724935829639,
+        "copy": 0.1718214899301529,
+        "E_full": 0.17051251232624054,
+        "V_full": 0.0014544191071763635
+      },
+      "bypass": {
+        "V_terminal": 0.0009119295282289386,
+        "copy": 0.18812836706638336,
+        "E_full": 0.18515615165233612,
+        "V_full": 0.003302475670352578
+      },
+      "mismatch": {
+        "V_terminal": 0.0005062819109298289,
+        "copy": 0.17858664691448212,
+        "E_full": 0.17703773081302643,
+        "V_full": 0.0017210034420713782
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 10,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 348,
+    "history_start": 92,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.022638674825429916,
+        "copy": 0.7032055854797363,
+        "E_full": 0.6710115671157837,
+        "V_full": 0.03577110916376114
+      },
+      "bypass": {
+        "V_terminal": 0.029603781178593636,
+        "copy": 0.7597079277038574,
+        "E_full": 0.709161639213562,
+        "V_full": 0.056162647902965546
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 11,
+    "source_domain": 1,
+    "record": 9,
+    "current_start": 4610,
+    "history_start": 4098,
+    "mismatch_history": [
+      3586,
+      4098
+    ],
+    "mismatch_input_RMS": 1.1515775918960571,
+    "mismatch_input_relative_RMS": 1.431752407471125,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0029961299151182175,
+        "copy": 0.4507973790168762,
+        "E_full": 0.4159502685070038,
+        "V_full": 0.03871900960803032
+      },
+      "bypass": {
+        "V_terminal": 0.003173931734636426,
+        "copy": 0.47666817903518677,
+        "E_full": 0.4313912093639374,
+        "V_full": 0.050307679921388626
+      },
+      "mismatch": {
+        "V_terminal": 0.0027315206825733185,
+        "copy": 0.4552631080150604,
+        "E_full": 0.42527398467063904,
+        "V_full": 0.03332119807600975
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 12,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 296,
+    "history_start": 40,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.034369729459285736,
+        "copy": 0.681905210018158,
+        "E_full": 0.6366947293281555,
+        "V_full": 0.05023379996418953
+      },
+      "bypass": {
+        "V_terminal": 0.04282981902360916,
+        "copy": 0.7252642512321472,
+        "E_full": 0.6646235585212708,
+        "V_full": 0.06737856566905975
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 13,
+    "source_domain": 1,
+    "record": 16,
+    "current_start": 5087,
+    "history_start": 4575,
+    "mismatch_history": [
+      4063,
+      4575
+    ],
+    "mismatch_input_RMS": 1.2938448190689087,
+    "mismatch_input_relative_RMS": 1.8068440800051409,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.005311253946274519,
+        "copy": 0.14306600391864777,
+        "E_full": 0.12579584121704102,
+        "V_full": 0.019189076498150826
+      },
+      "bypass": {
+        "V_terminal": 0.018419627100229263,
+        "copy": 0.1645423173904419,
+        "E_full": 0.13716712594032288,
+        "V_full": 0.030416864901781082
+      },
+      "mismatch": {
+        "V_terminal": 0.006049564108252525,
+        "copy": 0.14702068269252777,
+        "E_full": 0.1304643452167511,
+        "V_full": 0.018395921215415
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 14,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 298,
+    "history_start": 42,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03261347860097885,
+        "copy": 0.6259735226631165,
+        "E_full": 0.5914034247398376,
+        "V_full": 0.038411203771829605
+      },
+      "bypass": {
+        "V_terminal": 0.03967997804284096,
+        "copy": 0.676780104637146,
+        "E_full": 0.6244885921478271,
+        "V_full": 0.05810164660215378
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 15,
+    "source_domain": 1,
+    "record": 15,
+    "current_start": 2059,
+    "history_start": 1547,
+    "mismatch_history": [
+      1035,
+      1547
+    ],
+    "mismatch_input_RMS": 1.3345082998275757,
+    "mismatch_input_relative_RMS": 1.7958473864509832,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.13835465908050537,
+        "copy": 0.16646263003349304,
+        "E_full": 0.11799177527427673,
+        "V_full": 0.0538564957678318
+      },
+      "bypass": {
+        "V_terminal": 0.20798417925834656,
+        "copy": 0.2222517877817154,
+        "E_full": 0.1384856253862381,
+        "V_full": 0.0930735170841217
+      },
+      "mismatch": {
+        "V_terminal": 0.15348826348781586,
+        "copy": 0.17447267472743988,
+        "E_full": 0.11962051689624786,
+        "V_full": 0.06094684451818466
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 16,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 268,
+    "history_start": 12,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.05551375076174736,
+        "copy": 0.6297106742858887,
+        "E_full": 0.5964543223381042,
+        "V_full": 0.03695155680179596
+      },
+      "bypass": {
+        "V_terminal": 0.07755627483129501,
+        "copy": 0.6825578212738037,
+        "E_full": 0.6303479075431824,
+        "V_full": 0.05801107734441757
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 17,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2160,
+    "history_start": 1648,
+    "mismatch_history": [
+      1136,
+      1648
+    ],
+    "mismatch_input_RMS": 1.1127305030822754,
+    "mismatch_input_relative_RMS": 2.301396369225512,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.0339389443397522,
+        "copy": 0.17695307731628418,
+        "E_full": 0.1619611233472824,
+        "V_full": 0.016657739877700806
+      },
+      "bypass": {
+        "V_terminal": 0.06066271662712097,
+        "copy": 0.2082700878381729,
+        "E_full": 0.17765524983406067,
+        "V_full": 0.03401649370789528
+      },
+      "mismatch": {
+        "V_terminal": 0.04669661447405815,
+        "copy": 0.18161030113697052,
+        "E_full": 0.16284146904945374,
+        "V_full": 0.020854245871305466
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 18,
+    "source_domain": 0,
+    "record": 3,
+    "current_start": 356,
+    "history_start": 100,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02567574568092823,
+        "copy": 0.7087531685829163,
+        "E_full": 0.6755480766296387,
+        "V_full": 0.03689457103610039
+      },
+      "bypass": {
+        "V_terminal": 0.034279000014066696,
+        "copy": 0.765066385269165,
+        "E_full": 0.713692843914032,
+        "V_full": 0.05708185210824013
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 19,
+    "source_domain": 1,
+    "record": 19,
+    "current_start": 2703,
+    "history_start": 2191,
+    "mismatch_history": [
+      1679,
+      2191
+    ],
+    "mismatch_input_RMS": 1.180297613143921,
+    "mismatch_input_relative_RMS": 1.3973126188030314,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.038890574127435684,
+        "copy": 0.16545574367046356,
+        "E_full": 0.13328000903129578,
+        "V_full": 0.03575081750750542
+      },
+      "bypass": {
+        "V_terminal": 0.11219840496778488,
+        "copy": 0.24927552044391632,
+        "E_full": 0.15555152297019958,
+        "V_full": 0.10413776338100433
+      },
+      "mismatch": {
+        "V_terminal": 0.05017208307981491,
+        "copy": 0.1774323731660843,
+        "E_full": 0.139743834733963,
+        "V_full": 0.04187611863017082
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 20,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.027823083102703094,
+        "copy": 0.6462748050689697,
+        "E_full": 0.614323616027832,
+        "V_full": 0.035501230508089066
+      },
+      "bypass": {
+        "V_terminal": 0.03244413062930107,
+        "copy": 0.6996051073074341,
+        "E_full": 0.6504529714584351,
+        "V_full": 0.05461342632770538
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 21,
+    "source_domain": 1,
+    "record": 3,
+    "current_start": 4313,
+    "history_start": 3801,
+    "mismatch_history": [
+      3289,
+      3801
+    ],
+    "mismatch_input_RMS": 3.1622724533081055,
+    "mismatch_input_relative_RMS": 1.0529171454205777,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.024165580049157143,
+        "copy": 7.372548580169678,
+        "E_full": 7.341780185699463,
+        "V_full": 0.03418729454278946
+      },
+      "bypass": {
+        "V_terminal": 0.02595408819615841,
+        "copy": 8.1691312789917,
+        "E_full": 8.131546974182129,
+        "V_full": 0.04175958409905434
+      },
+      "mismatch": {
+        "V_terminal": 0.03298491612076759,
+        "copy": 7.546374797821045,
+        "E_full": 7.495060443878174,
+        "V_full": 0.05701502785086632
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 22,
+    "source_domain": 0,
+    "record": 4,
+    "current_start": 355,
+    "history_start": 99,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.040096163749694824,
+        "copy": 0.8923245072364807,
+        "E_full": 0.8460386991500854,
+        "V_full": 0.05142860859632492
+      },
+      "bypass": {
+        "V_terminal": 0.052578363567590714,
+        "copy": 0.9459543228149414,
+        "E_full": 0.885392963886261,
+        "V_full": 0.06729038059711456
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 23,
+    "source_domain": 1,
+    "record": 21,
+    "current_start": 2787,
+    "history_start": 2275,
+    "mismatch_history": [
+      1763,
+      2275
+    ],
+    "mismatch_input_RMS": 1.218117594718933,
+    "mismatch_input_relative_RMS": 1.2479932475092343,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.002822272013872862,
+        "copy": 1.2350512742996216,
+        "E_full": 1.2207711935043335,
+        "V_full": 0.015866698697209358
+      },
+      "bypass": {
+        "V_terminal": 0.002820799592882395,
+        "copy": 1.333747148513794,
+        "E_full": 1.307867407798767,
+        "V_full": 0.02875518798828125
+      },
+      "mismatch": {
+        "V_terminal": 0.00391031987965107,
+        "copy": 1.3626359701156616,
+        "E_full": 1.337345004081726,
+        "V_full": 0.028101030737161636
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 24,
+    "source_domain": 0,
+    "record": 1,
+    "current_start": 365,
+    "history_start": 109,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.027635473757982254,
+        "copy": 0.6589964032173157,
+        "E_full": 0.624159574508667,
+        "V_full": 0.038707613945007324
+      },
+      "bypass": {
+        "V_terminal": 0.03503849729895592,
+        "copy": 0.716734766960144,
+        "E_full": 0.6643669009208679,
+        "V_full": 0.058186497539281845
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 25,
+    "source_domain": 1,
+    "record": 13,
+    "current_start": 3033,
+    "history_start": 2521,
+    "mismatch_history": [
+      2009,
+      2521
+    ],
+    "mismatch_input_RMS": 0.8321662545204163,
+    "mismatch_input_relative_RMS": 0.9527099701237345,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.00018346073920838535,
+        "copy": 1.3415181636810303,
+        "E_full": 1.336565375328064,
+        "V_full": 0.005502946674823761
+      },
+      "bypass": {
+        "V_terminal": 0.0003883237368427217,
+        "copy": 1.4495577812194824,
+        "E_full": 1.4348329305648804,
+        "V_full": 0.016360701993107796
+      },
+      "mismatch": {
+        "V_terminal": 0.0009595510782673955,
+        "copy": 1.4400850534439087,
+        "E_full": 1.4285153150558472,
+        "V_full": 0.012855478562414646
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 26,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 328,
+    "history_start": 72,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03364826366305351,
+        "copy": 0.630295991897583,
+        "E_full": 0.5990528464317322,
+        "V_full": 0.034714583307504654
+      },
+      "bypass": {
+        "V_terminal": 0.046133145689964294,
+        "copy": 0.6769714951515198,
+        "E_full": 0.6267343163490295,
+        "V_full": 0.05581919848918915
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 27,
+    "source_domain": 1,
+    "record": 22,
+    "current_start": 1146,
+    "history_start": 634,
+    "mismatch_history": [
+      122,
+      634
+    ],
+    "mismatch_input_RMS": 1.24033784866333,
+    "mismatch_input_relative_RMS": 1.7557818608046938,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.009931930340826511,
+        "copy": 0.28328511118888855,
+        "E_full": 0.2624754011631012,
+        "V_full": 0.02312190644443035
+      },
+      "bypass": {
+        "V_terminal": 0.005391854792833328,
+        "copy": 0.3065855801105499,
+        "E_full": 0.27891311049461365,
+        "V_full": 0.03074716590344906
+      },
+      "mismatch": {
+        "V_terminal": 0.004198597278445959,
+        "copy": 0.29895514249801636,
+        "E_full": 0.27883267402648926,
+        "V_full": 0.02235833741724491
+      }
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 28,
+    "source_domain": 0,
+    "record": 0,
+    "current_start": 309,
+    "history_start": 53,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.02186204306781292,
+        "copy": 0.6279247999191284,
+        "E_full": 0.5988182425498962,
+        "V_full": 0.0323406383395195
+      },
+      "bypass": {
+        "V_terminal": 0.028238998726010323,
+        "copy": 0.6804962158203125,
+        "E_full": 0.6375818848609924,
+        "V_full": 0.04768265411257744
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 29,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 684,
+    "history_start": 172,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.03443297743797302,
+        "copy": 0.6760130524635315,
+        "E_full": 0.6522634029388428,
+        "V_full": 0.026388440281152725
+      },
+      "bypass": {
+        "V_terminal": 0.08249195665121078,
+        "copy": 0.7472811937332153,
+        "E_full": 0.6904304027557373,
+        "V_full": 0.06316755712032318
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 30,
+    "source_domain": 0,
+    "record": 2,
+    "current_start": 327,
+    "history_start": 71,
+    "mismatch_history": null,
+    "mismatch_input_RMS": null,
+    "mismatch_input_relative_RMS": null,
+    "mismatch_NA_reason": "No legal past nonoverlapping history; no overlap substituted",
+    "score": {
+      "correct": {
+        "V_terminal": 0.0422172024846077,
+        "copy": 0.6368942856788635,
+        "E_full": 0.6050492525100708,
+        "V_full": 0.035383440554142
+      },
+      "bypass": {
+        "V_terminal": 0.05859414488077164,
+        "copy": 0.6846106648445129,
+        "E_full": 0.6338024735450745,
+        "V_full": 0.05645350366830826
+      },
+      "mismatch": null
+    }
+  },
+  {
+    "stage": "U",
+    "domain": "SWAT",
+    "arm": "history",
+    "panel": 31,
+    "source_domain": 1,
+    "record": 2,
+    "current_start": 1456,
+    "history_start": 944,
+    "mismatch_history": [
+      432,
+      944
+    ],
+    "mismatch_input_RMS": 1.3992738723754883,
+    "mismatch_input_relative_RMS": 1.2344695617239514,
+    "mismatch_NA_reason": null,
+    "score": {
+      "correct": {
+        "V_terminal": 0.010363975539803505,
+        "copy": 1.010305643081665,
+        "E_full": 1.0046924352645874,
+        "V_full": 0.006237007211893797
+      },
+      "bypass": {
+        "V_terminal": 0.007772502955049276,
+        "copy": 1.0707621574401855,
+        "E_full": 1.0573952198028564,
+        "V_full": 0.014852210879325867
+      },
+      "mismatch": {
+        "V_terminal": 0.009905116632580757,
+        "copy": 1.0359917879104614,
+        "E_full": 1.0283186435699463,
+        "V_full": 0.008525610901415348
+      }
+    }
+  }
+]

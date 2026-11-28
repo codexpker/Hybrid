@@ -1,0 +1,9 @@
+domain,stage,arm,scored_endpoint_count,allocated_chunk_wall_seconds,note
+PSM,Z,native,87133,1873.420195186045,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+PSM,Z,history,87133,1854.4788128468208,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+PSM,U,native,64629,1115.616554070497,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+PSM,U,history,64629,1482.908513240749,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+SWAT,Z,native,449245,11254.142986104824,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+SWAT,Z,history,449245,11189.966887777206,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+SWAT,U,native,336222,5779.033630386461,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency
+SWAT,U,history,336222,6111.835808541626,shared-pair chunks apportion joint wall time; not exclusive GPU time or separate latency

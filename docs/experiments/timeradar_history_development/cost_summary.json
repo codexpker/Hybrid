@@ -1,0 +1,17 @@
+{
+  "formal_source_fits": 2,
+  "formal_U_fits": 4,
+  "formal_F_fits": 0,
+  "formal_optimizer_updates": 8480,
+  "formal_training_current_window_presentations": 271360,
+  "source_SELECT_forward_windows": 448,
+  "formal_scored_model_endpoints": 1874458,
+  "frozen_encoder_window_evaluations_from_completed_chunk_ledgers": 1231229,
+  "training_process_wall_seconds": 10512.798933914397,
+  "completed_independent_score_chunk_wall_seconds": 7644.928472048137,
+  "completed_paired_score_chunk_wall_seconds": 33016.47491610609,
+  "summed_process_seconds_are_not_exclusive_A40_hours": true,
+  "execution": "four A40 devices; independent processes shared devices to improve B1 throughput",
+  "exclusions": "library startup, interrupted uncompleted scoring chunks and some CPU preparation lack complete timers; they are not silently counted as zero",
+  "optimization": "frozen encoder reuse is bitwise checked; distinct decoder/history computations retained"
+}

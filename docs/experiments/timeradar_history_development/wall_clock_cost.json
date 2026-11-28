@@ -1,0 +1,10 @@
+{
+  "GPU_phase_wall_seconds": 6924.692821025848,
+  "GPU_phase_wall_hours": 1.9235257836182913,
+  "four_device_envelope_upper_bound_A40_hours": 7.694103134473165,
+  "meaning": "file timestamps minus recorded training duration; four-device envelope includes early idle and scheduling; not kernel time or a sum of overlapping processes",
+  "diagnostics_wall_seconds_from_files": 12.358757734298706,
+  "metrics_CPU_wall_seconds_from_files": 458.9243266582489,
+  "numerical_review_wall_seconds_from_files": 7.909198045730591,
+  "main_four_device_envelope_plus_GPU0_readonly_checks_upper_A40_hours": 7.69973312218984
+}

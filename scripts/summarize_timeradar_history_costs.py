@@ -32,7 +32,10 @@ def run(root, dest):
     for domain in ("PSM", "SWAT"):
         for stage in ("Z", "U"):
             for arm in ("native", "history"):
-                chunks = [read(p) for p in (root / domain / "scores" / (stage + "_" + arm)).glob("*_chunk*.json")]
+                directory=root / domain / "scores" / (stage + "_" + arm)
+                complete=read(directory/"part0.json")
+                chunks = [read(p) for p in directory.glob("*_chunk*.json")]
+                assert sum(r["points"] for r in chunks)==complete["stop"]-complete["start"]
                 scoring.append(dict(domain=domain, stage=stage, arm=arm,
                     scored_endpoint_count=sum(r["points"] for r in chunks),
                     allocated_chunk_wall_seconds=sum(r["seconds"] for r in chunks),

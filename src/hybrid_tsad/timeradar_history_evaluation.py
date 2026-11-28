@@ -20,21 +20,25 @@ from .left_decoder_context_metrics import AUTHOR
 
 def bounds(d,stage):
     lo,hi=AXES[d]
-    if stage=="U":
+    if stage in ("U","F"):
         lo=max(MIXED[d][0],ROLES[d]["QUERY"][0]+611)
     else:
         lo+=611
     return lo,hi
 
 
-def score(w,out,d,arm,stage,part=0,parts=1):
-    dest=out/d/"scores"/f"{stage}_{arm}"
+def score_name(stage,arm,initial="source"):
+    return f"{stage}_{arm}"+("_official_initialization" if stage=="F" and initial=="official" else "")
+
+
+def score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
+    dest=out/d/"scores"/score_name(stage,arm,initial)
     dest.mkdir(parents=True,exist_ok=True)
-    if (out/"paired_encoder_reuse.json").is_file():
+    if stage!="F" and (out/"paired_encoder_reuse.json").is_file():
         assert part==0 and parts==1
         _paired_score(w,out,d,stage)
     else:
-        _score(w,out,d,arm,stage,part,parts)
+        _score(w,out,d,arm,stage,part,parts,initial)
 
 
 def _paired_score(w,out,d,stage):
@@ -139,8 +143,8 @@ def _paired_score(w,out,d,stage):
         print("PAIRED_SCORED",d,stage,flush=True)
 
 
-def _score(w,out,d,arm,stage,part=0,parts=1):
-    dest=out/d/"scores"/f"{stage}_{arm}"
+def _score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
+    dest=out/d/"scores"/score_name(stage,arm,initial)
     dest.mkdir(parents=True,exist_ok=True)
     finished=dest/f"part{part}.json"
     if finished.exists():
@@ -148,7 +152,10 @@ def _score(w,out,d,arm,stage,part=0,parts=1):
     started=time.monotonic()
     torch.set_num_threads(1)
     m=model(w,arm)
-    ck=out/("source" if stage=="Z" else d)/arm/"selected.pt"
+    if stage=="F":
+        ck=out/d/score_name(stage,arm,initial)/"selected.pt"
+    else:
+        ck=out/("source" if stage=="Z" else d)/arm/"selected.pt"
     receipt=json.loads(ck.with_name("receipt.json").read_text())
     assert sha(ck)==receipt["sha256"]
     state=torch.load(ck,map_location="cpu",weights_only=True)
@@ -210,8 +217,8 @@ def _score(w,out,d,arm,stage,part=0,parts=1):
     print("SCORED",d,arm,stage,part,flush=True)
 
 
-def bank(out,d,arm,stage):
-    dest=out/d/"scores"/f"{stage}_{arm}"
+def bank(out,d,arm,stage,initial="source"):
+    dest=out/d/"scores"/score_name(stage,arm,initial)
     receipts=[json.loads(p.read_text()) for p in dest.glob("part*.json") if "_chunk" not in p.name]
     assert receipts and len(receipts)==receipts[0]["parts"]
     rows=[]
@@ -266,6 +273,8 @@ def evaluate(w,out):
             idx=i[take]
             np.testing.assert_array_equal(idx,np.arange(lo,hi))
             metrics,_=continuous_metrics(y[idx],s[take],load_author_metric(w/AUTHOR))
+            np.testing.assert_allclose(independent_check(y[idx],s[take]),
+                [metrics["AP"],metrics["ROC_AUC"]],atol=1e-11,rtol=0)
             results.append(dict(domain=d,method="multisource_LEFT",stage="Z",panel=panel,
                  start=lo,stop=hi,points=len(idx),positive_points=int(y[idx].sum()),**metrics))
             # Target-normal LEFT is a stronger existing background reference.
@@ -287,6 +296,22 @@ def evaluate(w,out):
     dump(out/"axis_manifest.json",axes)
 
 
+def evaluate_F(w,out,initial="source"):
+    rows=[]
+    for d in ("PSM","SWAT"):
+        y=labels(w,d)
+        for arm in ("native","history"):
+            data=bank(out,d,arm,"F",initial)
+            idx=data["index"]
+            metrics,_=continuous_metrics(y[idx],data["score"],load_author_metric(w/AUTHOR))
+            np.testing.assert_allclose(independent_check(y[idx],data["score"]),
+                [metrics["AP"],metrics["ROC_AUC"]],atol=1e-11,rtol=0)
+            lo,hi=bounds(d,"F")
+            rows.append(dict(domain=d,method=arm,initial=initial,stage="F",panel="QUERY",
+                             start=lo,stop=hi,points=len(idx),**metrics))
+    save_rows(out/("F_metrics"+("_official_initialization" if initial=="official" else "")+".csv"),rows)
+
+
 def worker(w,out):
     while True:
         pending=False
@@ -305,15 +330,17 @@ def worker(w,out):
 
 if __name__=="__main__":
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("action",choices=("score","evaluate","worker"))
+    p.add_argument("action",choices=("score","evaluate","worker","evaluate-F"))
     p.add_argument("workspace",type=Path)
     p.add_argument("output",type=Path)
     p.add_argument("--domain",choices=("PSM","SWAT"))
     p.add_argument("--arm",choices=("native","history"))
-    p.add_argument("--stage",choices=("Z","U"))
+    p.add_argument("--stage",choices=("Z","U","F"))
+    p.add_argument("--initial",choices=("source","official"),default="source")
     p.add_argument("--part",type=int,default=0)
     p.add_argument("--parts",type=int,default=1)
     a=p.parse_args()
     if a.action=="evaluate": evaluate(a.workspace,a.output)
+    elif a.action=="evaluate-F":evaluate_F(a.workspace,a.output,a.initial)
     elif a.action=="worker": worker(a.workspace,a.output)
-    else: score(a.workspace,a.output,a.domain,a.arm,a.stage,a.part,a.parts)
+    else: score(a.workspace,a.output,a.domain,a.arm,a.stage,a.part,a.parts,a.initial)

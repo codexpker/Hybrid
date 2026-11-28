@@ -6,9 +6,9 @@
 
 按[2026-11-18 的任务定义](#2026-11-18-混合无标签外部参照进度)和[2026-11-22 的方法论文归位](#2026-11-22-公开-tsad-方法论文归位)执行。第二篇研究训练异常标签不可用、正常与异常混合的公开多变量序列上的时频—时序表征、检测判据和目标学习。多源预训练与目标 Z／U／F 是同一方法的两阶段组织，各使用方式按实测范围报告。第一篇数据和企业数据排除。LEFT、TimeRadar、TimesFM、普通源重放及窗口加权保持原有归属与对照身份。固定候选的结论只约束其经验证的训练、评分和数据合同。研究类型的调整由用户决定。
 
-用户撤销将 LEFT 跨域、重放与窗口加权实证结果作为第二篇最终贡献的裁定。原正文、14 页 PDF、24 个适配重复、历史指标、复现工具与权重身份在 [c65c81d 完整快照](https://github.com/codexpker/Hybrid/tree/c65c81d0d0a4df3db204225714e9a39984158dc3) 保持原状，作为基线与探索实验报告。停止该稿的投稿准备。[基线正文](../manuscript/next_generation_20261115/draft.md) · [固定源端点与曝光计划下的重复](experiments/left_fixed_exposure_repeats_20261128/README.md) · [主表及协议身份](experiments/left_evidence_freeze_20261128/README.md)
+用户撤销将 LEFT 跨域、重放与窗口加权实证结果作为第二篇最终贡献的裁定。原正文、14 页 PDF、24 个适配重复、历史指标、复现工具与权重身份在 [c65c81d 完整快照](https://github.com/codexpker/Hybrid/tree/c65c81d0d0a4df3db204225714e9a39984158dc3) 保持原状，作为基线与探索实验报告。停止该稿的投稿准备。[归档基线正文](../manuscript/next_generation_20261115/draft_left_empirical_before_history_development.md) · [固定源端点与曝光计划下的重复](experiments/left_fixed_exposure_repeats_20261128/README.md) · [主表及协议身份](experiments/left_evidence_freeze_20261128/README.md)
 
-当前优先级恢复为以完整 TimeRadar 为主体，联合训练因果历史、多变量、多尺度上下文，在当前复数时频表示与原生重构之间交互，首版保持原生副本方差评分。多源学习及目标 Z/U/F 属于同一模型。重放和加权作为工具与匹配对照。首个完整原型与三组矩阵见[当前方法定义](../manuscript/next_generation_20261115/method_definition.md)，实际模型见[timeradar_history_context.py](../src/hybrid_tsad/timeradar_history_context.py)。已有真实源 CPU 接线回执，正式源训练及检测效果尚待验证。
+当前优先级恢复为以完整 TimeRadar 为主体，联合训练因果历史、多变量、多尺度上下文，在当前复数时频表示与原生重构之间交互，首版保持原生副本方差评分。多源学习及目标 Z/U/F 属于同一模型。重放和加权作为工具与匹配对照。首个完整原型与三组矩阵见[当前方法定义](../manuscript/next_generation_20261115/method_definition.md)，实际模型见[timeradar_history_context.py](../src/hybrid_tsad/timeradar_history_context.py)。首轮两个共享源模型及四个完整U已经完成。公共Z相对匹配原生的AP差为PSM +0.002653、SWaT +0.006124；同轴U相对匹配原生为−0.033549、+0.003945，两域均未建立自身AP净适配收益。历史路径在固定正常源面板有实际作用和对应性，但不能据此宣称异常检测贡献成立。六份权重、八个新评分银行、实际成本和必要复算见[完整结果](experiments/timeradar_history_development/RESULTS.md)。F支持及训练/评分入口已准备，正式F尚未执行；支持正常块各仅有1个合法末点的限制保留。若进入同一架构第二轮，唯一优先定位U期历史路径更新范围，尚未认定其为退化根因，不增加新损失/评分/骨干，也不因首轮负项更改论文类型。
 
 五块双循环更新接受门暂停作为主方法执行，无已启动实验需续接，不默认加入作业队列。保留原数学定义及CPU归约检查。TimeRadar、TimesFM和LEFT各自归属及历史负结果保持独立，当前原型的作用检查不计为检测增量。
 

@@ -1,0 +1,66 @@
+{
+  "scope": "CPU state roundtrip only; no new model forward, optimizer update or training repeat",
+  "seconds": 2.0047159800305963,
+  "checks": [
+    {
+      "domain": "source",
+      "arm": "native",
+      "step": 240,
+      "optimizer_parameter_states": 9,
+      "minimum_optimizer_counter": 240.0,
+      "maximum_optimizer_counter": 240.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    },
+    {
+      "domain": "source",
+      "arm": "history",
+      "step": 240,
+      "optimizer_parameter_states": 51,
+      "minimum_optimizer_counter": 240.0,
+      "maximum_optimizer_counter": 240.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "step": 2000,
+      "optimizer_parameter_states": 9,
+      "minimum_optimizer_counter": 2000.0,
+      "maximum_optimizer_counter": 2000.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "step": 2000,
+      "optimizer_parameter_states": 51,
+      "minimum_optimizer_counter": 2000.0,
+      "maximum_optimizer_counter": 2000.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "step": 2000,
+      "optimizer_parameter_states": 9,
+      "minimum_optimizer_counter": 2000.0,
+      "maximum_optimizer_counter": 2000.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "step": 2000,
+      "optimizer_parameter_states": 51,
+      "minimum_optimizer_counter": 2000.0,
+      "maximum_optimizer_counter": 2000.0,
+      "model_and_optimizer_restored": true,
+      "selected_matches_final_resume": true
+    }
+  ]
+}

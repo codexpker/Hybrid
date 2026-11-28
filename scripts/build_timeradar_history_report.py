@@ -11,6 +11,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+matplotlib.rcParams["svg.hashsalt"] = "timeradar_history_development_v1"
 
 METRICS = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC")
 DATASETS = {"PSM": "PSM", "SWAT": "SWaT"}
@@ -33,6 +34,14 @@ def write_csv(path, values):
         writer = csv.DictWriter(stream, fieldnames=list(values[0]))
         writer.writeheader()
         writer.writerows(values)
+
+
+def write_svg(fig, path):
+    fig.savefig(path, metadata={"Date": None})
+    # Matplotlib emits trailing spaces in multiline SVG path attributes. Keep
+    # their newline separators while making generated review diffs clean.
+    content="\n".join(line.rstrip() for line in path.read_text(encoding="utf-8").splitlines())+"\n"
+    path.write_text(content,encoding="utf-8",newline="\n")
 
 
 def build(run, dest):
@@ -97,7 +106,7 @@ def build(run, dest):
             ax.set(xlabel="Source optimizer updates", ylabel=title)
             ax.grid(alpha=.2)
     axes[0].legend(fontsize=8)
-    fig.savefig(dest / "source_select.svg")
+    write_svg(fig,dest / "source_select.svg")
     fig.savefig(dest / "source_select.png", dpi=180)
     plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(8, 3.5), constrained_layout=True)
@@ -108,9 +117,31 @@ def build(run, dest):
         ax.set(xticks=(0, 1), xticklabels=("Z", "U (2000 updates)"), ylabel="AP", title=DATASETS[domain])
         ax.grid(alpha=.2)
     axes[0].legend(fontsize=8)
-    fig.savefig(dest / "query_Z_U.svg")
+    write_svg(fig,dest / "query_Z_U.svg")
     fig.savefig(dest / "query_Z_U.png", dpi=180)
     plt.close(fig)
+    diagnostics = json.loads((run / "history_diagnostics.json").read_text())
+    summary = []
+    for stage, domain in (("Z", None), ("U", "PSM"), ("U", "SWAT")):
+        for arm in ("native", "history"):
+            group = [g for g in diagnostics if (g["stage"], g["domain"], g["arm"]) == (stage, domain, arm)]
+            row = dict(stage=stage, domain=domain or "shared_source", arm=arm, n=len(group))
+            for key in ("copy", "E_full", "V_full", "V_terminal"):
+                row["correct_" + key] = float(np.mean([g["score"]["correct"][key] for g in group]))
+                row["bypass_minus_correct_" + key] = float(np.mean([
+                    g["score"]["bypass"][key] - g["score"]["correct"][key] for g in group]))
+            valid = [g for g in group if g["score"]["mismatch"] is not None]
+            changes = [g["score"]["mismatch"]["copy"]-g["score"]["correct"]["copy"] for g in valid]
+            row.update(legal_nonoverlap_windows=len(valid),
+                median_mismatch_input_relative_RMS=float(np.median([g["mismatch_input_relative_RMS"] for g in valid])),
+                mean_mismatch_minus_correct_copy=float(np.mean(changes)),
+                median_absolute_mismatch_V_change=float(np.median([
+                    abs(g["score"]["mismatch"]["V_terminal"]-g["score"]["correct"]["V_terminal"]) for g in valid])),
+                mismatch_copy_worse=sum(v>0 for v in changes), mismatch_copy_tie=sum(v==0 for v in changes),
+                mismatch_copy_better=sum(v<0 for v in changes),
+                distinct_records_in_mismatch_panel=len(set((g["source_domain"],g["record"]) for g in valid)))
+            summary.append(row)
+    write_csv(dest / "history_diagnostic_summary.csv", summary)
 
 
 if __name__ == "__main__":

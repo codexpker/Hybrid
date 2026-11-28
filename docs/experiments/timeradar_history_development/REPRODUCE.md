@@ -88,13 +88,25 @@ from `metrics.csv` is a lighter reproduction level than rerunning models.
 ```bash
 $py -m hybrid_tsad.timeradar_history_f prepare "$PWD" "$out"
 CUDA_VISIBLE_DEVICES=0 $py -m hybrid_tsad.timeradar_history_f fit "$PWD" "$out" --domain PSM --arm history
+CUDA_VISIBLE_DEVICES=0 $py -m hybrid_tsad.timeradar_history_evaluation score "$PWD" "$out" --domain PSM --arm history --stage F
 # The paired native arm uses the identical frozen support plan.
 # A later two-stage ablation can use --initial official: this resets both the
 # complete native initial state and the new history path, not just one branch.
 ```
+
+After explicitly completing both arms on both domains, `evaluate-F` writes a
+separate `F_metrics.csv` on the same isolated QUERY grid. It does not change the
+Z/U table. The optional `--initial official` must be passed consistently to the
+F trainer, scorer and `evaluate-F`; its checkpoint/bank names are separate. The
+background worker only queues Z/U and never starts F. These F entry points are
+prepared and compiled; this run has no complete F fits or F score banks.
 
 The offline qualifier alone receives U-FIT support annotations. The learner sees
 only fixed numeric footprints and endpoint plans. The recorded earliest legal
 normal support block provides only **one** independent eligible normal endpoint
 in each domain; repeated draws do not increase that support. Full F endpoints
 must not be represented as completed by the disposable entry check.
+
+## Executed verification scope
+
+The six actual source/U fits and all eight new-model banks were run. A separate executable verifies 12 new-model AP/ROC rows and three fixed raw-forward endpoints per bank (24 total); the main evaluator checks all 24 ranking rows with an independent rank calculation. VUS uses the pinned implementation only. All six saved model/Adam states were restored on CPU without a further optimizer step. No second full retraining or second full-axis GPU readout is claimed. A clean table/figure rebuild is byte-identical for seven generated files. The current source entry differs from the executed one only by parent identity checks/receipt metadata; `executed_training_to_current.patch` records those additions. Original receipts retain their original upstream `parent` field; `sealed_models.json` separately records the actual project source parent for U.

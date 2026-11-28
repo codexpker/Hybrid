@@ -1,6 +1,6 @@
 # TimeRadar 主体的历史多变量多尺度上下文模型
 
-状态为已完成匹配源训练、正在执行首轮完整 Z/U 的模型候选。两类共享源模型均正常选中第240步；四个2000步U按固定合同执行，检测结论以封存评分为准。以官方 TimeRadar 权重为初态，所有新增路径联合训练。TimesFM 3.0 提供 patch 历史及变量交互的设计参考，LEFT 提供多尺度经验。该模型复用完整 TimeRadar，历史编码与交互层为项目实现。[代码](../../src/hybrid_tsad/timeradar_history_context.py) · [真实源输入 CPU 回执](../../docs/experiments/timeradar_history_context/CPU_CHECK.json) · [首轮实际训练合同与回执](../../docs/experiments/timeradar_history_development/PROTOCOL.md)
+状态为已完成匹配源训练和首轮双域完整 Z/U 的模型候选。两类共享源模型均正常选中第240步；四个2000步U全部完成。公共Z相对匹配原生有小幅AP正项，PSM的U额外下降、两域均未建立自身AP净适配收益；历史路径在正常源面板有对应性作用，不等于检测贡献已成立。以官方 TimeRadar 权重为初态，所有新增路径联合训练。TimesFM 3.0 提供 patch 历史及变量交互的设计参考，LEFT 提供多尺度经验。该模型复用完整 TimeRadar，历史编码与交互层为项目实现。[代码](../../src/hybrid_tsad/timeradar_history_context.py) · [真实源输入 CPU 回执](../../docs/experiments/timeradar_history_context/CPU_CHECK.json) · [首轮实际训练合同与回执](../../docs/experiments/timeradar_history_development/PROTOCOL.md)
 
 ## 唯一方法问题
 
@@ -74,6 +74,8 @@ $$
 开发首版 seed2025，源训练固定240更新、逻辑批量32逐窗梯度累积、fresh AdamW沿用原重构续训的 lr=1e-4、betas=(0.9,0.95)、eps=1e-8、普通参数weight_decay=0.1、bias/LayerNorm为0的设置、24步warmup，固定32窗SOURCE SELECT面板在0/40/.../240评估正常copy损失，最早最低选权。全模型与原生继续训练使用相同612或356点完整足迹及当前窗口计划，不能以旧无历史计划冒充匹配。两目标使用完整TEP52变量及SMD38变量的同一源合同，模型参数不依赖变量数，故共享两个源端点。两者已各完成240步，均选中240；正常验证仍在下降，只能视为有限源预算，不能称已充分收敛。U采用普通重放2000步、lr1e-4、batch32、200步warmup和固定终点。预算增加只能属于同模型有限开发修订并整组匹配，最多两轮。[可运行训练与评分入口](../../docs/experiments/timeradar_history_development/REPRODUCE.md)
 
 F的固定支持已按完整612点足迹核定：PSM首个完整支持事件为[3248,3439)，SWaT为[496754,497694)，均只使用U-FIT。最早合法512点正常支持块各仅提供1个合法正常末点，异常支持分别提供92和841个末点；此限制必须保留，不把重复曝光当成独立正常样本。事件标签、512正常点标签与额外无标签历史分别登记。两个方法共享240步、32正常copy窗、15配对窗、三个时间层的合法正例末点数权重、系数1、margin1、log1p及官方初态的正常支持V中位数尺度（下限1e-8）。已完成四个一次性内存更新的入口检查，未生成正式F端点。模型冻结后再执行。无项目源阶段的入口同时重置官方初态和初始历史路径，不能只重置历史层。[支持与入口回执](../../docs/experiments/timeradar_history_development/F_entry_check.json)
+
+本轮实际四指标、同轴Z→U、正常E/V、历史干预和成本见[首轮完整结果](../../docs/experiments/timeradar_history_development/RESULTS.md)。只读数值复算核对12行新模型AP/ROC、24个固定末点、源选权及真实参数更新；VUS未另写独立实现。第一轮已交付，不自动扩大SMD/F/种子矩阵。若进入同模型第二轮，唯一优先定位U期历史路径更新范围，不预先认定其为退化根因，也不叠加新损失或评分。
 
 ## 三组实验与数据范围
 

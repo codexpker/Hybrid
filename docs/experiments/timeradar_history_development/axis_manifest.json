@@ -1,0 +1,64 @@
+[
+  {
+    "domain": "PSM",
+    "released_TEST_role": [
+      0,
+      87841
+    ],
+    "old_public_axis": [
+      0,
+      87744
+    ],
+    "public_axis": [
+      611,
+      87744
+    ],
+    "QUERY_role": [
+      22504,
+      87841
+    ],
+    "legacy_mixed_axis": [
+      22656,
+      87744
+    ],
+    "QUERY_axis": [
+      23115,
+      87744
+    ],
+    "public_left_warmup_points": 611,
+    "public_left_warmup_positive_points": 3,
+    "right_tail_excluded_for_existing_common_axis": 97,
+    "QUERY_additional_left_crop_from_legacy": 459
+  },
+  {
+    "domain": "SWAT",
+    "released_TEST_role": [
+      495000,
+      944919
+    ],
+    "old_public_axis": [
+      495000,
+      944856
+    ],
+    "public_axis": [
+      495611,
+      944856
+    ],
+    "QUERY_role": [
+      608023,
+      944919
+    ],
+    "legacy_mixed_axis": [
+      608535,
+      944856
+    ],
+    "QUERY_axis": [
+      608634,
+      944856
+    ],
+    "public_left_warmup_points": 611,
+    "public_left_warmup_positive_points": 0,
+    "right_tail_excluded_for_existing_common_axis": 63,
+    "QUERY_additional_left_crop_from_legacy": 99
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "server_persistent_relative": "results/timeradar_history_development_v1",
+  "author_local_relative": "results/timeradar_history_development_v1",
+  "original_GPU_run_root": "/dev/shm/timeradar_history_development_v1",
+  "scope": "Six selected weights, optimizer resume states, exact plans, eight new score banks, official sidecars, support footprints and run logs preserved. Raw arrays and weights are not Git assets; access requires authorized author workspace.",
+  "formal_F_fits": 0
+}
