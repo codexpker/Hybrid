@@ -32,7 +32,10 @@ needed for the four ranking metrics.
 
 ## Matched training and evaluation
 
-Seed 2025 and per-window mask seed 84551. Both source arms use the same
+Seed 2025 and per-window mask seed 84551. Within each source domain, draw
+the record uniformly and then the legal window start uniformly within
+that record. Each target machine has its own deterministic sampling
+stream, shared by A/B/C. Both source arms use the same
 official parent, logical batch 32, 16 windows per source domain, 240 updates,
 24-step warmup, and normal source SELECT at 0/40/80/120/160/200/240.
 Minimum native copy MSE selects the earliest minimum. The native arm trains
@@ -92,3 +95,7 @@ the same sealed run. Verified stored endpoints and banks are reused.
 The training entry automatically resumes from the last saved update.
 Public Git carries code, metrics and hashes, while the arrays and
 weights remain in the author workspace.
+
+Upon completion, `scripts/build_timeradar_history_smd28_report.py`
+exports full-precision tables, summaries, and audit receipts from that
+run. The existing PSM/SWaT source weights play no role in this fold.

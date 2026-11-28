@@ -1,0 +1,16 @@
+{
+  "arm": "native",
+  "domain": null,
+  "steps": 240,
+  "selected_step": 240,
+  "sha256": "03e5d7edd9e1ee2e880f5f2f689180ff2db27eba38720b55d5410fc75ede9437",
+  "plan_sha256": "8723876f1249df333e522de2d29b97ff9f11f3472969d806500ae830d0d6c220",
+  "parent": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "source_checkpoint_sha256": null,
+  "seconds": 189.15284413984045,
+  "peak_bytes": 459527168,
+  "input_exposures": 7680,
+  "frozen_native_encoder": true,
+  "checkpoint_selection": "source normal copy MSE; earliest minimum",
+  "GPU": "NVIDIA A40"
+}
