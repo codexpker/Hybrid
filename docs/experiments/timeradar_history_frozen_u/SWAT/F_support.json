@@ -1,0 +1,51 @@
+{
+  "status": "ready",
+  "domain": "SWAT",
+  "U_bounds": [
+    495000,
+    585000
+  ],
+  "support_contract": "full-normal-block",
+  "abnormal_event": [
+    496754,
+    497694
+  ],
+  "normal_support": [
+    495512,
+    496024
+  ],
+  "anomaly_label_points": 940,
+  "normal_label_points": 512,
+  "earliest_history": 495000,
+  "latest_current_stop": 497694,
+  "numeric_footprint_intervals": [
+    [
+      495000,
+      496024
+    ],
+    [
+      496242,
+      497694
+    ]
+  ],
+  "numeric_union_points": 2476,
+  "additional_unlabeled_history_points": 1024,
+  "history_labels_used": false,
+  "history_permission": "numeric U-FIT, may include unlabeled abnormal points",
+  "positive_endpoints": 841,
+  "normal_endpoints": 413,
+  "plan_sha256": "ca4c062847ff13d83923329405282b2023d2ef9d9840811d44ec383dbfdce065",
+  "inputs_sha256": "573091d16a97e39cb562f6c63b6e856d5300a1d7d33a72283dd45a523d914a0b",
+  "steps": 240,
+  "warmup": 24,
+  "copy_batch": 32,
+  "pair_batch": 15,
+  "pair_coefficient": 1,
+  "margin": 1,
+  "loss": "copy normal + weighted softplus(1-log1p(Vpos/aF)+log1p(Vneg/aF))",
+  "scale": "official native V median on all legal normal support ends, floor1e-8, shared between arms",
+  "initial": "selected source endpoint directly, never U",
+  "checkpoint": "fixed240, step0 diagnostic, no selection",
+  "teacher_and_sample_rng": 2025,
+  "source_replay": false
+}

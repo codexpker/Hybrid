@@ -1,0 +1,32 @@
+{
+  "trained_names": [
+    "native.decoder.ib1",
+    "native.decoder.ib2",
+    "native.decoder.ib3",
+    "native.decoder.rb1",
+    "native.decoder.rb2",
+    "native.decoder.rb3",
+    "native.decoder.w1",
+    "native.decoder.w2",
+    "native.decoder.w3"
+  ],
+  "trainable_parameters": 793610,
+  "optimizer_decoder_only": true,
+  "fresh_adamw": true,
+  "frozen_gradients_absent": true,
+  "post_first_update_frozen_hashes_equal": true,
+  "decoder_changed": true,
+  "history_forward_calls": {
+    "past_context": 32,
+    "query": 32,
+    "cross": 32,
+    "output": 32
+  },
+  "copy_loss": 0.9726791069842875,
+  "archived_A_copy_loss": 0.972679115831852,
+  "native_eval": true,
+  "target_normal_prefix_sha256": "9b805d0916774a10d51f091bc80e0e85c59d4e979e257edf466335a32bdd5472",
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "mask_seed": 84551,
+  "sampling_seed": 2025
+}

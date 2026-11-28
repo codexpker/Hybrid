@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from torch_frft.frft_module import ifrft
 
-from .timeradar_history_experiment import model, forward
+from .timeradar_history_experiment import FROZEN_HISTORY, model, forward
 from .native_v_conditioning import load_native, sha, fixed_native_rng
 from .trajectory_experiment import ROLES, target, dump
 from .left_multisource import target_inputs, NATIVE
@@ -27,18 +27,26 @@ def bounds(d,stage):
     return lo,hi
 
 
-def score_name(stage,arm,initial="source"):
-    return f"{stage}_{arm}"+("_official_initialization" if stage=="F" and initial=="official" else "")
+def score_name(stage,arm,initial="source",support_contract="original"):
+    name = f"{stage}_{arm}"
+    if stage=="F":
+        if initial=="official":
+            name += "_official_initialization"
+        if support_contract=="full-normal-block":
+            name += "_full_normal_block"
+    return name
 
 
-def score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
-    dest=out/d/"scores"/score_name(stage,arm,initial)
+def score(w,out,d,arm,stage,part=0,parts=1,initial="source",support_contract="original"):
+    if arm==FROZEN_HISTORY and stage!="U":
+        raise ValueError("Frozen-History is a U-only arm")
+    dest=out/d/"scores"/score_name(stage,arm,initial,support_contract)
     dest.mkdir(parents=True,exist_ok=True)
-    if stage!="F" and (out/"paired_encoder_reuse.json").is_file():
+    if stage!="F" and arm!=FROZEN_HISTORY and (out/"paired_encoder_reuse.json").is_file():
         assert part==0 and parts==1
         _paired_score(w,out,d,stage)
     else:
-        _score(w,out,d,arm,stage,part,parts,initial)
+        _score(w,out,d,arm,stage,part,parts,initial,support_contract)
 
 
 def _paired_score(w,out,d,stage):
@@ -143,8 +151,9 @@ def _paired_score(w,out,d,stage):
         print("PAIRED_SCORED",d,stage,flush=True)
 
 
-def _score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
-    dest=out/d/"scores"/score_name(stage,arm,initial)
+def _score(w,out,d,arm,stage,part=0,parts=1,initial="source",support_contract="original"):
+    name=score_name(stage,arm,initial,support_contract)
+    dest=out/d/"scores"/name
     dest.mkdir(parents=True,exist_ok=True)
     finished=dest/f"part{part}.json"
     if finished.exists():
@@ -153,7 +162,7 @@ def _score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
     torch.set_num_threads(1)
     m=model(w,arm)
     if stage=="F":
-        ck=out/d/score_name(stage,arm,initial)/"selected.pt"
+        ck=out/d/name/"selected.pt"
     else:
         ck=out/("source" if stage=="Z" else d)/arm/"selected.pt"
     receipt=json.loads(ck.with_name("receipt.json").read_text())
@@ -189,7 +198,7 @@ def _score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
                 current=values[j-99:j+1][None]
                 history=values[j-611:j-99][None]
                 rep,copies=m(history,current,history_start=int(t)-611,current_start=int(t)-99,
-                              bypass=arm!="history")
+                              bypass=arm=="native")
                 scores.append(copies.var(0,correction=1).mean(-1)[0,-1].item())
                 if original is not None:
                     # Frozen encoder and order are identical; only decoder differs.
@@ -217,8 +226,8 @@ def _score(w,out,d,arm,stage,part=0,parts=1,initial="source"):
     print("SCORED",d,arm,stage,part,flush=True)
 
 
-def bank(out,d,arm,stage,initial="source"):
-    dest=out/d/"scores"/score_name(stage,arm,initial)
+def bank(out,d,arm,stage,initial="source",support_contract="original"):
+    dest=out/d/"scores"/score_name(stage,arm,initial,support_contract)
     receipts=[json.loads(p.read_text()) for p in dest.glob("part*.json") if "_chunk" not in p.name]
     assert receipts and len(receipts)==receipts[0]["parts"]
     rows=[]
@@ -296,12 +305,12 @@ def evaluate(w,out):
     dump(out/"axis_manifest.json",axes)
 
 
-def evaluate_F(w,out,initial="source"):
+def evaluate_F(w,out,initial="source",support_contract="original"):
     rows=[]
     for d in ("PSM","SWAT"):
         y=labels(w,d)
         for arm in ("native","history"):
-            data=bank(out,d,arm,"F",initial)
+            data=bank(out,d,arm,"F",initial,support_contract)
             idx=data["index"]
             metrics,_=continuous_metrics(y[idx],data["score"],load_author_metric(w/AUTHOR))
             np.testing.assert_allclose(independent_check(y[idx],data["score"]),
@@ -309,7 +318,8 @@ def evaluate_F(w,out,initial="source"):
             lo,hi=bounds(d,"F")
             rows.append(dict(domain=d,method=arm,initial=initial,stage="F",panel="QUERY",
                              start=lo,stop=hi,points=len(idx),**metrics))
-    save_rows(out/("F_metrics"+("_official_initialization" if initial=="official" else "")+".csv"),rows)
+    name=score_name("F","metrics",initial,support_contract)
+    save_rows(out/(name+".csv"),rows)
 
 
 def worker(w,out):
@@ -334,13 +344,14 @@ if __name__=="__main__":
     p.add_argument("workspace",type=Path)
     p.add_argument("output",type=Path)
     p.add_argument("--domain",choices=("PSM","SWAT"))
-    p.add_argument("--arm",choices=("native","history"))
+    p.add_argument("--arm",choices=("native","history",FROZEN_HISTORY))
     p.add_argument("--stage",choices=("Z","U","F"))
     p.add_argument("--initial",choices=("source","official"),default="source")
+    p.add_argument("--support-contract",choices=("original","full-normal-block"),default="original")
     p.add_argument("--part",type=int,default=0)
     p.add_argument("--parts",type=int,default=1)
     a=p.parse_args()
     if a.action=="evaluate": evaluate(a.workspace,a.output)
-    elif a.action=="evaluate-F":evaluate_F(a.workspace,a.output,a.initial)
+    elif a.action=="evaluate-F":evaluate_F(a.workspace,a.output,a.initial,a.support_contract)
     elif a.action=="worker": worker(a.workspace,a.output)
-    else: score(a.workspace,a.output,a.domain,a.arm,a.stage,a.part,a.parts,a.initial)
+    else: score(a.workspace,a.output,a.domain,a.arm,a.stage,a.part,a.parts,a.initial,a.support_contract)

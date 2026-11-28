@@ -1,0 +1,51 @@
+{
+  "status": "ready",
+  "domain": "PSM",
+  "U_bounds": [
+    0,
+    17568
+  ],
+  "support_contract": "full-normal-block",
+  "abnormal_event": [
+    3248,
+    3439
+  ],
+  "normal_support": [
+    512,
+    1024
+  ],
+  "anomaly_label_points": 191,
+  "normal_label_points": 512,
+  "earliest_history": 0,
+  "latest_current_stop": 3439,
+  "numeric_footprint_intervals": [
+    [
+      0,
+      1024
+    ],
+    [
+      2736,
+      3439
+    ]
+  ],
+  "numeric_union_points": 1727,
+  "additional_unlabeled_history_points": 1024,
+  "history_labels_used": false,
+  "history_permission": "numeric U-FIT, may include unlabeled abnormal points",
+  "positive_endpoints": 92,
+  "normal_endpoints": 413,
+  "plan_sha256": "267e3da849a38c16e3831d078da6315d753b035963934dd63d14badf106db902",
+  "inputs_sha256": "2a55b52adb0f0ebdb90e278ed55f33f1deed4bbeac85ed169b73e39226f222e7",
+  "steps": 240,
+  "warmup": 24,
+  "copy_batch": 32,
+  "pair_batch": 15,
+  "pair_coefficient": 1,
+  "margin": 1,
+  "loss": "copy normal + weighted softplus(1-log1p(Vpos/aF)+log1p(Vneg/aF))",
+  "scale": "official native V median on all legal normal support ends, floor1e-8, shared between arms",
+  "initial": "selected source endpoint directly, never U",
+  "checkpoint": "fixed240, step0 diagnostic, no selection",
+  "teacher_and_sample_rng": 2025,
+  "source_replay": false
+}

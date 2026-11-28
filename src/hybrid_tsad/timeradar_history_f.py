@@ -34,9 +34,15 @@ def numeric_intervals(ends,origin):
     return spans
 
 
-def prepare(w,out):
+def support_directory(out, domain, contract):
+    return out/domain/("F_support" if contract=="original" else "F_support_full_normal_block")
+
+
+def prepare(w,out,contract="original"):
     for d in ("PSM","SWAT"):
-        dest=out/d/"F_support"
+        dest=support_directory(out,d,contract)
+        if contract!="original" and dest.exists():
+            raise FileExistsError(dest)
         dest.mkdir(parents=True,exist_ok=True)
         lo,hi=ROLES[d]["U"]
         y=labels(w,d)[lo:hi]
@@ -49,7 +55,9 @@ def prepare(w,out):
                 positive=(a,b,ends);break
         normal=None
         for a,b in intervals(1-y):
-            start=max(a,100)  # first512 point block with a legal endpoint >=611
+            # For the revised contract, even the first current W100 in the
+            # normal block must have 512 preceding numeric U-FIT points.
+            start=max(a,512 if contract=="full-normal-block" else 100)
             if start+512<=b:
                 ends=np.arange(max(start+99,611),start+512)
                 if len(ends):
@@ -59,6 +67,8 @@ def prepare(w,out):
             continue
         rngs=[np.random.default_rng(r) for r in np.random.SeedSequence(2025).spawn(3)]
         pe,ne=positive[2],normal[2]
+        if contract=="full-normal-block":
+            assert len(ne)==413
         strata=np.array_split(pe,3)
         plan=dict(copy=rngs[0].choice(ne,(240,32)),
                   positive=np.column_stack([rngs[1].choice(g,240*5).reshape(240,5) for g in strata if len(g)]),
@@ -75,12 +85,14 @@ def prepare(w,out):
         footprints=np.stack([sc.transform(values[t-611:t+1]).astype(np.float32) for t in ends])
         assert all(t-611>=0 and t+1<=len(y) for t in ends)
         np.savez_compressed(dest/"inputs.npz",ends=ends,footprints=footprints,normal_ends=ne)
-        dump(dest/"support.json",dict(status="ready",domain=d,U_bounds=[lo,hi],
+        spans=numeric_intervals(ends,lo)
+        dump(dest/"support.json",dict(status="ready",domain=d,U_bounds=[lo,hi],support_contract=contract,
              abnormal_event=[int(positive[0]+lo),int(positive[1]+lo)],
              normal_support=[int(normal[0]+lo),int(normal[1]+lo)],
              anomaly_label_points=int(positive[1]-positive[0]),normal_label_points=512,
              earliest_history=int(ends.min()-611+lo),latest_current_stop=int(ends.max()+1+lo),
-             numeric_footprint_intervals=numeric_intervals(ends,lo),
+             numeric_footprint_intervals=spans,numeric_union_points=sum(b-a for a,b in spans),
+             additional_unlabeled_history_points=int(sum(b-a for a,b in spans)-512-(positive[1]-positive[0])),
              history_labels_used=False,history_permission="numeric U-FIT, may include unlabeled abnormal points",
              positive_endpoints=len(pe),normal_endpoints=len(ne),plan_sha256=sha(dest/"plan.npz"),
              inputs_sha256=sha(dest/"inputs.npz"),steps=240,warmup=24,copy_batch=32,pair_batch=15,
@@ -92,8 +104,8 @@ def prepare(w,out):
         print(d,positive[:2],normal[:2],len(pe),len(ne),flush=True)
 
 
-def fit(w,out,d,arm,initial="source"):
-    root=out/d/"F_support"
+def fit(w,out,d,arm,initial="source",support_contract="original"):
+    root=support_directory(out,d,support_contract)
     meta=json.loads((root/"support.json").read_text())
     assert meta["status"]=="ready"
     assert sha(root/"inputs.npz")==meta["inputs_sha256"] and sha(root/"plan.npz")==meta["plan_sha256"]
@@ -117,6 +129,8 @@ def fit(w,out,d,arm,initial="source"):
         m.load_state_dict(torch.load(source,map_location="cpu",weights_only=True)["model"])
     opt=optimizer(m)
     dest=out/d/("F_"+arm+("_official_initialization" if initial=="official" else ""))
+    if support_contract!="original":
+        dest=dest.with_name(dest.name+"_full_normal_block")
     dest.mkdir(exist_ok=False)
     started=time.monotonic();curve=[]
     def one(end):
@@ -157,6 +171,7 @@ if __name__=="__main__":
     p.add_argument("--domain",choices=("PSM","SWAT"))
     p.add_argument("--arm",choices=("native","history"))
     p.add_argument("--initial",choices=("source","official"),default="source")
+    p.add_argument("--support-contract",choices=("original","full-normal-block"),default="original")
     a=p.parse_args()
-    if a.action=="prepare":prepare(a.workspace,a.output)
-    else:fit(a.workspace,a.output,a.domain,a.arm,a.initial)
+    if a.action=="prepare":prepare(a.workspace,a.output,a.support_contract)
+    else:fit(a.workspace,a.output,a.domain,a.arm,a.initial,a.support_contract)
