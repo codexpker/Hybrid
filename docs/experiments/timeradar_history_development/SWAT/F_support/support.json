@@ -1,0 +1,38 @@
+{
+  "status": "ready",
+  "domain": "SWAT",
+  "U_bounds": [
+    495000,
+    585000
+  ],
+  "abnormal_event": [
+    496754,
+    497694
+  ],
+  "normal_support": [
+    495100,
+    495612
+  ],
+  "anomaly_label_points": 940,
+  "normal_label_points": 512,
+  "earliest_history": 495000,
+  "latest_current_stop": 497694,
+  "history_labels_used": false,
+  "history_permission": "numeric U-FIT, may include unlabeled abnormal points",
+  "positive_endpoints": 841,
+  "normal_endpoints": 1,
+  "plan_sha256": "580a437a3ae7e539a3429b9a5841015b92b38f6745e403ccd755964094295a65",
+  "inputs_sha256": "3a5e73ff02d9855989a64f72208b180742bd30ccc8e6fdeb12d21ca5b9a25531",
+  "steps": 240,
+  "warmup": 24,
+  "copy_batch": 32,
+  "pair_batch": 15,
+  "pair_coefficient": 1,
+  "margin": 1,
+  "loss": "copy normal + weighted softplus(1-log1p(Vpos/aF)+log1p(Vneg/aF))",
+  "scale": "official native V median on all legal normal support ends, floor1e-8, shared between arms",
+  "initial": "selected source endpoint directly, never U",
+  "checkpoint": "fixed240, step0 diagnostic, no selection",
+  "teacher_and_sample_rng": 2025,
+  "source_replay": false
+}

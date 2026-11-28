@@ -1,0 +1,18 @@
+{
+  "loss": 0.5890973105560988,
+  "gradient": {
+    "history": 0.0,
+    "cross": 0.0,
+    "output": 1.517287790775299,
+    "decoder": 20.772155951708555
+  },
+  "endpoint_V": {
+    "correct": 0.06442342698574066,
+    "replacement": 0.06442271173000336,
+    "bypass": 0.06442951411008835
+  },
+  "seconds": 1.292974544223398,
+  "peak_bytes": 368987648,
+  "replacement_is_engineering_time_reversal": true,
+  "planned_nonoverlap_diagnostic_separate": true
+}

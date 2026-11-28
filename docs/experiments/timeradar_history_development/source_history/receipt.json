@@ -1,0 +1,15 @@
+{
+  "arm": "history",
+  "domain": null,
+  "steps": 240,
+  "selected_step": 240,
+  "sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "parent": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "seconds": 319.3422796181403,
+  "peak_bytes": 377465344,
+  "input_exposures": 7680,
+  "frozen_native_encoder": true,
+  "checkpoint_selection": "source normal copy MSE; earliest minimum",
+  "GPU": "NVIDIA A40"
+}
