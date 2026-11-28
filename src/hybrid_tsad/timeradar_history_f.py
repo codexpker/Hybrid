@@ -22,6 +22,18 @@ def intervals(y):
     return list(zip(np.flatnonzero(change==1),np.flatnonzero(change==-1)))
 
 
+def numeric_intervals(ends,origin):
+    """Exact union of legal numeric footprints, distinct from annotation budget."""
+    spans=[]
+    for end in np.sort(ends):
+        start,stop=int(end)-611+origin,int(end)+1+origin
+        if spans and start<=spans[-1][1]:
+            spans[-1][1]=max(spans[-1][1],stop)
+        else:
+            spans.append([start,stop])
+    return spans
+
+
 def prepare(w,out):
     for d in ("PSM","SWAT"):
         dest=out/d/"F_support"
@@ -68,6 +80,7 @@ def prepare(w,out):
              normal_support=[int(normal[0]+lo),int(normal[1]+lo)],
              anomaly_label_points=int(positive[1]-positive[0]),normal_label_points=512,
              earliest_history=int(ends.min()-611+lo),latest_current_stop=int(ends.max()+1+lo),
+             numeric_footprint_intervals=numeric_intervals(ends,lo),
              history_labels_used=False,history_permission="numeric U-FIT, may include unlabeled abnormal points",
              positive_endpoints=len(pe),normal_endpoints=len(ne),plan_sha256=sha(dest/"plan.npz"),
              inputs_sha256=sha(dest/"inputs.npz"),steps=240,warmup=24,copy_batch=32,pair_batch=15,
@@ -79,7 +92,7 @@ def prepare(w,out):
         print(d,positive[:2],normal[:2],len(pe),len(ne),flush=True)
 
 
-def fit(w,out,d,arm):
+def fit(w,out,d,arm,initial="source"):
     root=out/d/"F_support"
     meta=json.loads((root/"support.json").read_text())
     assert meta["status"]=="ready"
@@ -97,9 +110,13 @@ def fit(w,out,d,arm):
     scale=max(1e-8,float(np.median(v)))
     del official
     m=model(w,arm)
-    m.load_state_dict(torch.load(out/"source"/arm/"selected.pt",map_location="cpu",weights_only=True)["model"])
+    source=out/"source"/arm/"selected.pt"
+    if initial=="source":
+        parent=json.loads(source.with_name("receipt.json").read_text())
+        assert sha(source)==parent["sha256"]
+        m.load_state_dict(torch.load(source,map_location="cpu",weights_only=True)["model"])
     opt=optimizer(m)
-    dest=out/d/("F_"+arm)
+    dest=out/d/("F_"+arm+("_official_initialization" if initial=="official" else ""))
     dest.mkdir(exist_ok=False)
     started=time.monotonic();curve=[]
     def one(end):
@@ -124,7 +141,9 @@ def fit(w,out,d,arm):
         opt.step()
         curve.append(dict(step=step+1,copy=copy,pair=pair.item()))
     save(dest/"selected.pt",dict(model=m.state_dict(),step=240,arm=arm))
-    dump(dest/"receipt.json",dict(steps=240,source=sha(out/"source"/arm/"selected.pt"),
+    dump(dest/"receipt.json",dict(steps=240,initial=initial,
+         source=sha(source) if initial=="source" else None,
+         full_official_and_initial_history_state=initial=="official",
          sha256=sha(dest/"selected.pt"),scale=scale,seconds=time.monotonic()-started,
          support_plan=meta["plan_sha256"],support_values=meta["inputs_sha256"]))
     dump(dest/"curve.json",curve)
@@ -137,6 +156,7 @@ if __name__=="__main__":
     p.add_argument("output",type=Path)
     p.add_argument("--domain",choices=("PSM","SWAT"))
     p.add_argument("--arm",choices=("native","history"))
+    p.add_argument("--initial",choices=("source","official"),default="source")
     a=p.parse_args()
     if a.action=="prepare":prepare(a.workspace,a.output)
-    else:fit(a.workspace,a.output,a.domain,a.arm)
+    else:fit(a.workspace,a.output,a.domain,a.arm,a.initial)

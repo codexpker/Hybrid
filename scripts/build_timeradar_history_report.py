@@ -13,11 +13,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 METRICS = ("AP", "ROC_AUC", "VUS_PR", "VUS_ROC")
+DATASETS = {"PSM": "PSM", "SWAT": "SWaT"}
 NAMES = {
     "history": "TimeRadar + trainable history context",
     "native": "Matched native decoder continuation",
     "official": "Official TimeRadar, matched project readout",
     "multisource_LEFT": "Frozen multi-source LEFT (offline W192)",
+    "target_normal_LEFT": "Native LEFT, target-normal training (offline W192)",
 }
 
 
@@ -60,20 +62,30 @@ def build(run, dest):
             "All ranking differences are computed on identical ticks within a panel. "
             "LEFT retains its offline context permission. No calibration threshold is introduced.", ""]
     for stage, panel in (("Z", "public"), ("Z", "QUERY"), ("U", "QUERY")):
-        text.extend([f"## {stage}: {panel}", "", "| Method | Dataset | AP | ROC-AUC | VUS-PR | VUS-ROC | Axis |",
-                     "| --- | --- | ---: | ---: | ---: | ---: | --- |"])
+        header="| Method | PSM AP | PSM ROC-AUC | PSM VUS-PR | PSM VUS-ROC | SWaT AP | SWaT ROC-AUC | SWaT VUS-PR | SWaT VUS-ROC |"
+        text.extend([f"## {stage}: {panel}", "",header,"| --- |"+" ---: |"*8])
         for method in NAMES:
+            columns=[]
             for domain in ("PSM", "SWAT"):
                 row = lookup.get((domain, method, stage, panel))
+                if method == "target_normal_LEFT" and stage == "Z":
+                    row = lookup.get((domain, method, "N", panel))
                 if row:
-                    values = " | ".join(f"{row[m]:.6f}" for m in METRICS)
-                    text.append(f"| {NAMES[method]} | {domain} | {values} | [{row['start']},{row['stop']}) |")
+                    columns.extend(f"{row[m]:.6f}" for m in METRICS)
+                else:
+                    columns.extend(["NA"]*4)
+            if any(v!="NA" for v in columns):
+                text.append(f"| {NAMES[method]} | "+" | ".join(columns)+" |")
+        axis_rows=[lookup[domain,"history",stage,panel] for domain in ("PSM","SWAT")]
+        text.extend(["", "Axes: "+"; ".join(f"{DATASETS[r['domain']]} [{r['start']},{r['stop']})" for r in axis_rows)+"."])
+        if stage=="Z":
+            text.append("The target-normal LEFT row is an N background reference, not source-frozen Z. Both LEFT rows are offline W192; TimeRadar rows are causal endpoints. Target normal-prefix statistics include normal SELECT for every row.")
         text.append("")
     text.extend(["## Paired differences", "", "| Comparison | Dataset | Stage/panel | AP | ROC-AUC | VUS-PR | VUS-ROC |",
                  "| --- | --- | --- | ---: | ---: | ---: | ---: |"])
     for row in differences:
         values = " | ".join(f"{row[m]:+.6f}" for m in METRICS)
-        text.append(f"| {row['comparison']} | {row['domain']} | {row['stage']}/{row['panel']} | {values} |")
+        text.append(f"| {row['comparison']} | {DATASETS[row['domain']]} | {row['stage']}/{row['panel']} | {values} |")
     text.append("")
     (dest / "TABLES.md").write_text("\n".join(text), encoding="utf-8")
 
@@ -93,7 +105,7 @@ def build(run, dest):
         for arm, label in (("native", "Native continuation"), ("history", "History context")):
             ap = [lookup[domain, arm, stage, "QUERY"]["AP"] for stage in ("Z", "U")]
             ax.plot((0, 1), ap, "o-", label=label)
-        ax.set(xticks=(0, 1), xticklabels=("Z", "U (2000 updates)"), ylabel="AP", title=domain)
+        ax.set(xticks=(0, 1), xticklabels=("Z", "U (2000 updates)"), ylabel="AP", title=DATASETS[domain])
         ax.grid(alpha=.2)
     axes[0].legend(fontsize=8)
     fig.savefig(dest / "query_Z_U.svg")

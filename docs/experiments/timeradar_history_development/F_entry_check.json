@@ -1,0 +1,59 @@
+{
+  "scope": "one copy window and one pair; one disposable update per domain/arm",
+  "reported_F_endpoints": 0,
+  "seconds": 4.38917468721047,
+  "checks": [
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "scale": 0.06702078878879547,
+      "copy": 0.19404403865337372,
+      "pair": 0.2349238246679306,
+      "finite_gradient": true,
+      "decoder_and_history_scope_only": true,
+      "parameter_displacement": 0.08870966377378332,
+      "source_checkpoint_unchanged": true,
+      "normal_endpoint": 611,
+      "positive_endpoint": 3363
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "scale": 0.06702078878879547,
+      "copy": 0.17679810523986816,
+      "pair": 0.2337178885936737,
+      "finite_gradient": true,
+      "decoder_and_history_scope_only": true,
+      "parameter_displacement": 0.0977837776877618,
+      "source_checkpoint_unchanged": true,
+      "normal_endpoint": 611,
+      "positive_endpoint": 3363
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "scale": 0.029872197657823563,
+      "copy": 0.17810720205307007,
+      "pair": 1.1919671297073364,
+      "finite_gradient": true,
+      "decoder_and_history_scope_only": true,
+      "parameter_displacement": 0.08880619117781259,
+      "source_checkpoint_unchanged": true,
+      "normal_endpoint": 611,
+      "positive_endpoint": 2002
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "scale": 0.029872197657823563,
+      "copy": 0.1675342172384262,
+      "pair": 1.1687679290771484,
+      "finite_gradient": true,
+      "decoder_and_history_scope_only": true,
+      "parameter_displacement": 0.0979064911540476,
+      "source_checkpoint_unchanged": true,
+      "normal_endpoint": 611,
+      "positive_endpoint": 2002
+    }
+  ]
+}

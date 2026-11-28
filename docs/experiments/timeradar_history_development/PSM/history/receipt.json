@@ -1,0 +1,15 @@
+{
+  "arm": "history",
+  "domain": "PSM",
+  "steps": 2000,
+  "selected_step": 2000,
+  "sha256": "9074b41812a1d606a72c201f2ee992f0787097a2f8674eaced16821d0a31949e",
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "parent": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "seconds": 3316.793146044947,
+  "peak_bytes": 379469312,
+  "input_exposures": 64000,
+  "frozen_native_encoder": true,
+  "checkpoint_selection": "fixed endpoint",
+  "GPU": "NVIDIA A40"
+}

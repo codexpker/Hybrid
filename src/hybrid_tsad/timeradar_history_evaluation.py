@@ -12,7 +12,7 @@ from torch_frft.frft_module import ifrft
 from .timeradar_history_experiment import model, forward
 from .native_v_conditioning import load_native, sha, fixed_native_rng
 from .trajectory_experiment import ROLES, target, dump
-from .left_multisource import target_inputs
+from .left_multisource import target_inputs, NATIVE
 from .left_multisource_eval import AXES, MIXED, read_score
 from .trajectory_evaluation import labels, continuous_metrics, independent_check, load_author_metric, save_rows
 from .left_decoder_context_metrics import AUTHOR
@@ -30,7 +30,113 @@ def bounds(d,stage):
 def score(w,out,d,arm,stage,part=0,parts=1):
     dest=out/d/"scores"/f"{stage}_{arm}"
     dest.mkdir(parents=True,exist_ok=True)
-    _score(w,out,d,arm,stage,part,parts)
+    if (out/"paired_encoder_reuse.json").is_file():
+        assert part==0 and parts==1
+        _paired_score(w,out,d,stage)
+    else:
+        _score(w,out,d,arm,stage,part,parts)
+
+
+def _paired_score(w,out,d,stage):
+    """Reuse only the identical frozen encoder; each decoder/history stays distinct.
+
+    Calls the complete history forward with its original encoder's known output.
+    Its hooks, conditioner, native transforms and decoder still run. Exact copy
+    parity is checked against an independent, uncached history forward.
+    """
+    roots={arm:out/("source" if stage=="Z" else d)/arm for arm in ("native","history")}
+    if not all((root/"receipt.json").is_file() for root in roots.values()): return
+    dests={arm:out/d/"scores"/f"{stage}_{arm}" for arm in roots}
+    if all((p/"part0.json").is_file() for p in dests.values()): return
+    torch.set_num_threads(1)
+    models={arm:model(w,arm) for arm in roots}
+    digests={}
+    for arm,m in models.items():
+        ck=roots[arm]/"selected.pt"
+        digests[arm]=sha(ck)
+        assert digests[arm]==json.loads((roots[arm]/"receipt.json").read_text())["sha256"]
+        m.load_state_dict(torch.load(ck,map_location="cpu",weights_only=True)["model"])
+        m.eval()
+        dests[arm].mkdir(parents=True,exist_ok=True)
+    native,history=models["native"],models["history"]
+    common=native.native.state_dict()
+    assert all(torch.equal(v,history.native.state_dict()[k]) for k,v in common.items() if not k.startswith("decoder."))
+    official=load_native(w,"cuda") if stage=="Z" else None
+    _,_,sc,binding=target_inputs(w,d)
+    values=torch.from_numpy(sc.transform(target(w,d,"TEST")).astype(np.float32)).cuda()
+    assert torch.isfinite(values).all()
+    origin=ROLES[d]["TEST"][0]
+    lo,hi=bounds(d,stage)
+    queue=out/d/"scores"/("paired_"+stage)
+    queue.mkdir(parents=True,exist_ok=True)
+    checked_native=False; checked_history=False
+    for chunk,start in enumerate(range(lo,hi,1000)):
+        paths={arm:p/f"part0_chunk{chunk}.npz" for arm,p in dests.items()}
+        missing=[arm for arm,p in paths.items() if not p.with_suffix(".json").exists()]
+        if not missing: continue
+        claim=queue/f"{chunk}.claim"
+        try: descriptor=os.open(claim,os.O_CREAT|os.O_EXCL|os.O_WRONLY)
+        except FileExistsError: continue
+        with os.fdopen(descriptor,"w") as f: f.write(str(os.getpid()))
+        assert not any(p.with_suffix(".claim").exists() for p in paths.values())
+        idx=np.arange(start,min(hi,start+1000))
+        scores={arm:[] for arm in missing}; official_scores=[]
+        tick=time.monotonic()
+        with torch.no_grad():
+            for t in idx:
+                j=int(t)-origin
+                current=values[j-99:j+1][None]
+                past=values[j-611:j-99][None]
+                meta=dict(history_start=int(t)-611,current_start=int(t)-99)
+                rep,yn=native(past,current,**meta,bypass=True)
+                if "native" in missing:
+                    scores["native"].append(yn.var(0,correction=1).mean(-1)[0,-1])
+                    if official is not None:
+                        order=native.native.net(current[0].T.mean(0)).squeeze()
+                        raw=ifrft(official.decoder(rep),order,dim=-1).abs()
+                        yo=raw.reshape(10,1,current.shape[2],100).permute(0,1,3,2)
+                        official_scores.append(yo.var(0,correction=1).mean(-1)[0,-1])
+                        if not checked_native:
+                            with fixed_native_rng(current.device):
+                                _,independent=official(current,norm=0,mask_mode="c",copies=10)
+                            torch.testing.assert_close(yo,independent,rtol=0,atol=0)
+                            checked_native=True
+                if "history" in missing:
+                    previous=history.native.encoder.forward
+                    history.native.encoder.forward=lambda *args,**kwargs:rep
+                    try: _,yh=history(past,current,**meta)
+                    finally: history.native.encoder.forward=previous
+                    if not checked_history:
+                        _,independent=history(past,current,**meta)
+                        torch.testing.assert_close(yh,independent,rtol=0,atol=0)
+                        dump(queue/f"parity_{os.getpid()}_{chunk}.json",dict(index=int(t),
+                             full_copies_bitwise_equal=True,native_nondecoder_equal=True,checkpoints=digests))
+                        checked_history=True
+                    scores["history"].append(yh.var(0,correction=1).mean(-1)[0,-1])
+        elapsed=time.monotonic()-tick
+        for arm in missing:
+            numeric=torch.stack(scores[arm]).cpu().numpy().astype(np.float64)
+            assert np.isfinite(numeric).all()
+            extra=(torch.stack(official_scores).cpu().numpy().astype(np.float64)
+                   if arm=="native" and official is not None else np.array([]))
+            path=paths[arm]
+            np.savez_compressed(path,index=idx,score=numeric,official=extra,available=idx,
+                                history_start=idx-611,current_start=idx-99)
+            dump(path.with_suffix(".json"),dict(sha256=sha(path),points=len(idx),
+                 seconds=elapsed/len(missing),seconds_are_shared_pair_apportionment=True,
+                 joint_chunk_seconds=elapsed,physical_GPU=os.environ.get("CUDA_VISIBLE_DEVICES"),
+                 frozen_encoder_reused=True))
+        dump(queue/f"{chunk}.json",dict(seconds=elapsed,columns=missing,points=len(idx),
+             physical_GPU=os.environ.get("CUDA_VISIBLE_DEVICES"),frozen_encoder_forwards=len(idx)))
+        claim.unlink()
+        if chunk%10==0: print("PAIRED_READ",d,stage,chunk,len(idx),elapsed,flush=True)
+    count=(hi-lo+999)//1000
+    if all((dest/f"part0_chunk{k}.json").is_file() for dest in dests.values() for k in range(count)):
+        for arm,dest in dests.items():
+            dump(dest/"part0.json",dict(checkpoint=digests[arm],domain=d,arm=arm,stage=stage,
+                 part=0,parts=1,start=lo,stop=hi,scoring_B=1,normal_values_sha256=binding,
+                 frozen_encoder_reuse=True,pair_ledger=str(queue.relative_to(out))))
+        print("PAIRED_SCORED",d,stage,flush=True)
 
 
 def _score(w,out,d,arm,stage,part=0,parts=1):
@@ -123,9 +229,17 @@ def bank(out,d,arm,stage):
 
 
 def evaluate(w,out):
-    results=[]
+    results=[];axes=[]
     for d in ("PSM","SWAT"):
         y=labels(w,d)
+        public=bounds(d,"Z");query=bounds(d,"U")
+        axes.append(dict(domain=d,released_TEST_role=list(ROLES[d]["TEST"]),
+            old_public_axis=list(AXES[d]),public_axis=list(public),
+            QUERY_role=list(ROLES[d]["QUERY"]),legacy_mixed_axis=list(MIXED[d]),QUERY_axis=list(query),
+            public_left_warmup_points=public[0]-ROLES[d]["TEST"][0],
+            public_left_warmup_positive_points=int(y[ROLES[d]["TEST"][0]:public[0]].sum()),
+            right_tail_excluded_for_existing_common_axis=ROLES[d]["TEST"][1]-public[1],
+            QUERY_additional_left_crop_from_legacy=query[0]-MIXED[d][0]))
         for arm in ("native","history"):
             for stage in ("Z","U"):
                 data=bank(out,d,arm,stage)
@@ -142,7 +256,7 @@ def evaluate(w,out):
                         ap,roc=independent_check(y[idx],data[col][mask])
                         np.testing.assert_allclose([ap,roc],[metrics["AP"],metrics["ROC_AUC"]],atol=1e-11,rtol=0)
                         results.append(dict(domain=d,method=name,stage=stage,panel=panel,
-                            start=lo,stop=hi,points=len(idx),**metrics))
+                            start=lo,stop=hi,points=len(idx),positive_points=int(y[idx].sum()),**metrics))
         # Native LEFT scores cover the same ticks but retain offline W192 permission.
         for panel in ("public","QUERY"):
             role="TEST" if panel=="public" else "QUERY"
@@ -153,8 +267,24 @@ def evaluate(w,out):
             np.testing.assert_array_equal(idx,np.arange(lo,hi))
             metrics,_=continuous_metrics(y[idx],s[take],load_author_metric(w/AUTHOR))
             results.append(dict(domain=d,method="multisource_LEFT",stage="Z",panel=panel,
-                 start=lo,stop=hi,points=len(idx),**metrics))
+                 start=lo,stop=hi,points=len(idx),positive_points=int(y[idx].sum()),**metrics))
+            # Target-normal LEFT is a stronger existing background reference.
+            # Its scaler is exactly the scaler already bound by target_inputs.
+            root=w/NATIVE/d/"native"
+            path=root/"raw_scores.npz"
+            assert sha(path)==json.loads((root/"SCORE_RECEIPT.json").read_text())["bank_sha256"]
+            with np.load(path) as z:
+                external_index=z["absolute_time_index"]-(132481 if d=="PSM" else 0)
+                hit=(external_index>=lo)&(external_index<hi)
+                np.testing.assert_array_equal(external_index[hit],idx)
+                values=z["canonical_score"][hit]
+            metrics,_=continuous_metrics(y[idx],values,load_author_metric(w/AUTHOR))
+            np.testing.assert_allclose(independent_check(y[idx],values),
+                [metrics["AP"],metrics["ROC_AUC"]],atol=1e-11,rtol=0)
+            results.append(dict(domain=d,method="target_normal_LEFT",stage="N",panel=panel,
+                 start=lo,stop=hi,points=len(idx),positive_points=int(y[idx].sum()),**metrics))
     save_rows(out/"metrics.csv",results)
+    dump(out/"axis_manifest.json",axes)
 
 
 def worker(w,out):

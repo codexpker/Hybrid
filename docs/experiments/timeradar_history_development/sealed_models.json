@@ -1,0 +1,73 @@
+{
+  "UTC": "2026-11-28T06:46:49.031986+00:00",
+  "before_new_QUERY_metric_evaluation": true,
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "models": [
+    {
+      "domain": "source",
+      "arm": "native",
+      "path": "source/native/selected.pt",
+      "sha256": "37e89c19cda85c468192ce0af31660d2d6b873bfffe228ae3d7175c8f8dfb90d",
+      "source_parent_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "steps": 240,
+      "selected_step": 240,
+      "bytes": 7278317,
+      "receipt_sha256": "836ecf520117be40ff3dbc22342e57be314b5bf81d41c2571b2e6642dbb5b76a"
+    },
+    {
+      "domain": "source",
+      "arm": "history",
+      "path": "source/history/selected.pt",
+      "sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+      "source_parent_sha256": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+      "steps": 240,
+      "selected_step": 240,
+      "bytes": 7278317,
+      "receipt_sha256": "b0eec1fea5907bf4499696804368a322757e7c938664d451bc8a69ac59f11b0a"
+    },
+    {
+      "domain": "PSM",
+      "arm": "native",
+      "path": "PSM/native/selected.pt",
+      "sha256": "ff610335437ef45e88285315f68b838371f39ccc874c70134c5e926b81ea98f3",
+      "source_parent_sha256": "37e89c19cda85c468192ce0af31660d2d6b873bfffe228ae3d7175c8f8dfb90d",
+      "steps": 2000,
+      "selected_step": 2000,
+      "bytes": 7278317,
+      "receipt_sha256": "198c48147e170215ac3ff9490014950857cd697c38c480cd7ba8752d1efbd3f1"
+    },
+    {
+      "domain": "PSM",
+      "arm": "history",
+      "path": "PSM/history/selected.pt",
+      "sha256": "9074b41812a1d606a72c201f2ee992f0787097a2f8674eaced16821d0a31949e",
+      "source_parent_sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+      "steps": 2000,
+      "selected_step": 2000,
+      "bytes": 7278317,
+      "receipt_sha256": "f7494c199610fd23309a7c0f330174f0d4b90ef564565c0d979eadaf9cfc8a19"
+    },
+    {
+      "domain": "SWAT",
+      "arm": "native",
+      "path": "SWAT/native/selected.pt",
+      "sha256": "d49c3d188934c3d940489e86fd8d67ec17af10fcb6b1e96cf8e086b092609595",
+      "source_parent_sha256": "37e89c19cda85c468192ce0af31660d2d6b873bfffe228ae3d7175c8f8dfb90d",
+      "steps": 2000,
+      "selected_step": 2000,
+      "bytes": 7278317,
+      "receipt_sha256": "b04d4b7e3fdc70f5091e102ca481e89b4a260d4221f608905ca89f99b4e4feb4"
+    },
+    {
+      "domain": "SWAT",
+      "arm": "history",
+      "path": "SWAT/history/selected.pt",
+      "sha256": "f68a1e97a6981f0c6eddd1212da0b8905e93c7f3c653ba78f7842beeea596e69",
+      "source_parent_sha256": "9c80a133e0867440d6d8c9dad63b3351bbc6ddc1e25affd6eb5fcca436f52fc7",
+      "steps": 2000,
+      "selected_step": 2000,
+      "bytes": 7278317,
+      "receipt_sha256": "c5bf2d6f9ecca5f844bf1a569481db09cf41679ceb92196baf747797b4ccd83e"
+    }
+  ]
+}

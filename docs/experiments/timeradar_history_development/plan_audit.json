@@ -1,0 +1,62 @@
+{
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "panels": [
+    {
+      "name": "source",
+      "role": "fit",
+      "windows": 7680,
+      "unique_TEP_windows": 2146,
+      "unique_SMD_windows": 3831,
+      "footprint": "356 points in TEP; 612 points in SMD; one record and role"
+    },
+    {
+      "name": "select",
+      "role": "select",
+      "windows": 32,
+      "unique_TEP_windows": 16,
+      "unique_SMD_windows": 16,
+      "footprint": "356 points in TEP; 612 points in SMD; one record and role"
+    },
+    {
+      "name": "replay",
+      "role": "fit",
+      "windows": 32000,
+      "unique_TEP_windows": 2893,
+      "unique_SMD_windows": 15761,
+      "footprint": "356 points in TEP; 612 points in SMD; one record and role"
+    },
+    {
+      "name": "PSM",
+      "role": "U-FIT",
+      "windows": 32000,
+      "unique_current_windows": 14385,
+      "bounds": [
+        0,
+        17568
+      ],
+      "labels_read": false
+    },
+    {
+      "name": "SWAT",
+      "role": "U-FIT",
+      "windows": 32000,
+      "unique_current_windows": 26909,
+      "bounds": [
+        495000,
+        585000
+      ],
+      "labels_read": false
+    }
+  ],
+  "initial_SELECT_exact_equal": true,
+  "maximum_copy_minus_E_minus_point9V": {
+    "native": 5.052861524329488e-08,
+    "history": 5.052861524329488e-08
+  },
+  "SELECT_mean_negative_input_fraction": 0.5094040991902834,
+  "SELECT_nonnegative_reconstruction_MSE_lower_bound": 0.5943360273381469,
+  "lower_bound_reason": "norm0 retains standardized signed inputs; official abs output remains nonnegative; shared by both methods",
+  "source_records_and_roles_checked": true,
+  "target_labels_read": false,
+  "audit_scope": "CPU footprint, exposure, initial SELECT and copy decomposition; no efficacy test"
+}

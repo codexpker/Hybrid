@@ -93,3 +93,9 @@ src/hybrid_tsad/left_holdout*.py -text whitespace=cr-at-eol
 
 # Seal receipt digests for the confirmed-delay public Z comparison.
 docs/experiments/left_confirmed_delay_20261127/public_z/** -text whitespace=cr-at-eol
+
+# Preserve the history-model run evidence and executable LF scripts.
+docs/experiments/timeradar_history_development/** -text whitespace=cr-at-eol
+src/hybrid_tsad/timeradar_history_*.py text eol=lf
+scripts/*timeradar_history*.py text eol=lf
+scripts/*timeradar_history*.sh text eol=lf

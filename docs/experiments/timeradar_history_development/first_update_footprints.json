@@ -1,0 +1,82 @@
+[
+  {
+    "domain": "source",
+    "arm": "native",
+    "probe_receipt_sha256": "e2857346f44933026dd4ab288c88c6302a6020892778e0238473d5dd47a21efc",
+    "history_start": 7078,
+    "current_start": 7590,
+    "current_stop": 7690,
+    "scored_endpoint": 7689,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "SOURCE_FIT",
+    "source_domain": 1,
+    "source_record": 7
+  },
+  {
+    "domain": "source",
+    "arm": "history",
+    "probe_receipt_sha256": "188cbac580d400e2fcf0dfc6a03c59eeb21a06533f10bf04eebcaae401300d8a",
+    "history_start": 7078,
+    "current_start": 7590,
+    "current_stop": 7690,
+    "scored_endpoint": 7689,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "SOURCE_FIT",
+    "source_domain": 1,
+    "source_record": 7
+  },
+  {
+    "domain": "PSM",
+    "arm": "native",
+    "probe_receipt_sha256": "1b4416a307616c958e9d0018672650126e4de7f3fcee5d5f87c1cdda97ac8297",
+    "history_start": 7787,
+    "current_start": 8299,
+    "current_stop": 8399,
+    "scored_endpoint": 8398,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "U-FIT",
+    "target": "PSM"
+  },
+  {
+    "domain": "PSM",
+    "arm": "history",
+    "probe_receipt_sha256": "126dd4e11bc722c96c3f3c812b6bcf023aec86e0df38ae9b5516b4ddea596c97",
+    "history_start": 7787,
+    "current_start": 8299,
+    "current_stop": 8399,
+    "scored_endpoint": 8398,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "U-FIT",
+    "target": "PSM"
+  },
+  {
+    "domain": "SWAT",
+    "arm": "native",
+    "probe_receipt_sha256": "bbc9b2c6fbbb2d1cae4b8c923c37cdace697adb6da507f6fa3f0f6d9ee37897e",
+    "history_start": 527534,
+    "current_start": 528046,
+    "current_stop": 528146,
+    "scored_endpoint": 528145,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "U-FIT",
+    "target": "SWAT"
+  },
+  {
+    "domain": "SWAT",
+    "arm": "history",
+    "probe_receipt_sha256": "c5c12e6217e9debd21a1f518a34f246ea5896fc91b5fa3bf25db7790bf55a143",
+    "history_start": 527534,
+    "current_start": 528046,
+    "current_stop": 528146,
+    "scored_endpoint": 528145,
+    "post_optimizer_step": 1,
+    "footprint_reconstructed_from_immutable_plan": true,
+    "role": "U-FIT",
+    "target": "SWAT"
+  }
+]

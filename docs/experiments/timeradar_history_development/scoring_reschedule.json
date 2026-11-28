@@ -1,0 +1,22 @@
+{
+  "UTC": "2026-11-28T06:19:22.138051+00:00",
+  "stopped_readonly_PIDs": [
+    1302993,
+    1302994,
+    1302995,
+    1302996,
+    1320381,
+    1320922
+  ],
+  "released_dead_claims": [
+    "SWAT/scores/U_native/part0_chunk16.claim",
+    "SWAT/scores/Z_history/part0_chunk256.claim",
+    "SWAT/scores/Z_history/part0_chunk255.claim",
+    "SWAT/scores/Z_history/part0_chunk254.claim",
+    "SWAT/scores/Z_history/part0_chunk253.claim",
+    "PSM/scores/U_native/part0_chunk19.claim"
+  ],
+  "training_untouched": true,
+  "completed_chunks_reused": true,
+  "partial_chunk_cost_not_precisely_metered": true
+}

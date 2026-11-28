@@ -1,0 +1,24 @@
+{
+  "architecture_git": "6f6cf181daac386d9371048c6d92f690caf5469a",
+  "python": "3.12.13 | packaged by Anaconda, Inc. | (main, Mar 19 2026, 20:20:58) [GCC 14.3.0]",
+  "packages": {
+    "torch": "2.12.0",
+    "numpy": "2.4.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "torch-frft": "0.8.1"
+  },
+  "CUDA_runtime": "13.0",
+  "matmul_allow_tf32": false,
+  "source_plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "code_sha256": {
+    "timeradar_history_context.py": "104935347d7bc1468a8aa868b8454f72fa530ccb2228c080c985cdf879f7ebed",
+    "timeradar_history_experiment.py": "7ee3a51b2f81254d719f7bfd1abc8f51dd9b7f4a44926a02193cc79056d1fce9",
+    "timeradar_history_evaluation.py": "6f6d4d023328068c5ae022fb82780f710ef38b3660a062488e8cc8b186856f00",
+    "timeradar_history_f.py": "b3f4bf347b83e847da7b3fedfc276bcfce9c8a3ddb610f9e0654ef467305ed66",
+    "timeradar_history_diagnostics.py": "59d4bfb31899aa89b8f5a768653932bdce8dce27e1e6bf4135288cc9a36a9db1"
+  },
+  "metric_file": "preparations/native_pair_rank_psm_20261122_v1/left_author_metric.py",
+  "metric_sha256": "808a07460a84d31c87edce1d803e1df231111ec53ffa702ee32eb54a79897dfc",
+  "code_identity_note": "SHA256 of deployed working-tree bytes; source training script stayed unchanged during all six fits; scoring later used parity-checked frozen-encoder reuse; no claim of one executable Git commit for all scheduling revisions"
+}

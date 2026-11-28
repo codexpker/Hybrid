@@ -34,5 +34,17 @@
   "initial": "selected source endpoint directly, never U",
   "checkpoint": "fixed240, step0 diagnostic, no selection",
   "teacher_and_sample_rng": 2025,
-  "source_replay": false
+  "source_replay": false,
+  "numeric_footprint_intervals": [
+    [
+      0,
+      612
+    ],
+    [
+      2736,
+      3439
+    ]
+  ],
+  "numeric_union_points": 1315,
+  "additional_unlabeled_history_points": 612
 }

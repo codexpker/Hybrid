@@ -1,0 +1,15 @@
+{
+  "arm": "native",
+  "domain": "SWAT",
+  "steps": 2000,
+  "selected_step": 2000,
+  "sha256": "d49c3d188934c3d940489e86fd8d67ec17af10fcb6b1e96cf8e086b092609595",
+  "plan_sha256": "732fbe17707a24e5716ca1e85a3bc4473c9287d37255ec1c92cc7b3ff12ff905",
+  "parent": "528aea6e803f9e6b1ea5d07e64e44162309bdb016cc7721a8ac3753d942e6c7c",
+  "seconds": 1710.5036346749403,
+  "peak_bytes": 326172672,
+  "input_exposures": 64000,
+  "frozen_native_encoder": true,
+  "checkpoint_selection": "fixed endpoint",
+  "GPU": "NVIDIA A40"
+}

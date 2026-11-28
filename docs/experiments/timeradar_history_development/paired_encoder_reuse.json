@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "check_sha256": "1ed1364baf8b6775c78a51b6b133138c4073dfd69540eb509c175dd32c52c0e4",
+  "scientific_configuration_changed": false,
+  "scope": "identical frozen native encoder; full-history copy parity checked; distinct history and decoder paths retained"
+}
