@@ -104,9 +104,9 @@ def validate(m,arm,records,plan):
     return np.mean(rows,axis=0).tolist()
 
 
-def fit(w,out,arm,domain=None,reference=None):
+def fit(w,out,arm,domain=None,reference=None,*,smd_fold=False):
     frozen_history = arm == FROZEN_HISTORY
-    if frozen_history and (domain is None or reference is None):
+    if frozen_history and (domain is None or (reference is None and not smd_fold)):
         raise ValueError("Frozen-History U requires a target and the sealed A run")
     dest=out/("source" if domain is None else domain)/arm
     if (dest/"receipt.json").exists():
@@ -130,17 +130,26 @@ def fit(w,out,arm,domain=None,reference=None):
         assert trainable == decoder and len(optimizer_params) == len(decoder)
         assert set(optimizer_params) == {id(p) for name, p in m.named_parameters() if name in decoder}
         assert not opt.state and all(not module.training for module in m.modules())
-        a_receipt = json.loads((reference/domain/"history"/"receipt.json").read_text())
-        a_part = json.loads((reference/domain/"scores"/"U_history"/"part0.json").read_text())
-        assert sha(out/"plans.npz") == sha(reference/"plans.npz") == a_receipt["plan_sha256"]
-        assert sha(p) == sha(reference/"source"/"history"/"selected.pt")
-        assert a_receipt["steps"] == a_receipt["selected_step"] == 2000
-    data=pools(w)
+        if not smd_fold:
+            a_receipt = json.loads((reference/domain/"history"/"receipt.json").read_text())
+            a_part = json.loads((reference/domain/"scores"/"U_history"/"part0.json").read_text())
+            assert sha(out/"plans.npz") == sha(reference/"plans.npz") == a_receipt["plan_sha256"]
+            assert sha(p) == sha(reference/"source"/"history"/"selected.pt")
+            assert a_receipt["steps"] == a_receipt["selected_step"] == 2000
+    if smd_fold:
+        from .timeradar_history_smd import load_fold, smd_values
+        data, contract = load_fold(w,out)
+    else:
+        data=pools(w)
     with np.load(out/"plans.npz") as z: plan={k:z[k] for k in z.files}
     target_values=None
     if domain:
-        _,_,sc,scaler_binding=target_inputs(w,domain)
-        target_values=torch.as_tensor(sc.transform(target(w,domain,"U")).astype(np.float32),device="cuda")
+        if smd_fold:
+            x, scaler_binding = smd_values(w,contract,domain,"U")
+        else:
+            _,_,sc,scaler_binding=target_inputs(w,domain)
+            x=sc.transform(target(w,domain,"U")).astype(np.float32)
+        target_values=torch.as_tensor(x,device="cuda")
     steps=2000 if domain else 240
     warmup=200 if domain else 24
     curve=[]; select=[]; best=float("inf"); selected=0
@@ -155,7 +164,8 @@ def fit(w,out,arm,domain=None,reference=None):
             choice=min(select,key=lambda row:(row["copy"],row["step"]))
             best,selected=choice["copy"],choice["step"]
     if frozen_history:
-        assert scaler_binding == a_part["normal_values_sha256"]
+        if not smd_fold:
+            assert scaler_binding == a_part["normal_values_sha256"]
         assert plan["replay"].shape == (2000, 16, 3) and plan[domain].shape == (2000, 16)
         assert (plan[domain]>=512).all() and (plan[domain]+100<=len(target_values)).all()
         if first_step:
@@ -216,7 +226,7 @@ def fit(w,out,arm,domain=None,reference=None):
                 updated = state_hashes(m)
                 assert all(updated[k] == v for k,v in source_hashes.items() if not k.startswith("native.decoder."))
                 assert any(updated[k] != v for k,v in source_hashes.items() if k.startswith("native.decoder."))
-                a_first = json.loads((reference/domain/"history"/"first_update.json").read_text())
+                a_first = json.loads(((out if smd_fold else reference)/domain/"history"/"first_update.json").read_text())
                 np.testing.assert_allclose(loss_total, a_first["loss"], atol=1e-7, rtol=0)
                 dump(dest/"update_scope_check.json", dict(
                     trained_names=sorted(decoder), trainable_parameters=sum(p.numel() for p in m.parameters() if p.requires_grad),
