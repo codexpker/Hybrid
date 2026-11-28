@@ -1,0 +1,11 @@
+{
+  "entity": "machine-1-1",
+  "arm": "history",
+  "steps": 2000,
+  "seconds": 2636.8632040917873,
+  "seconds_per_step": 1.3184316020458937,
+  "peak_bytes": 563926016,
+  "gpu_concurrency": 4,
+  "equal_joint_cost_for_all_arms_envelope_worker_hours": 61.52680809547504,
+  "pilot_included_in_final_results": true
+}

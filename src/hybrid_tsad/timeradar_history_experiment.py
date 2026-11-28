@@ -227,12 +227,16 @@ def fit(w,out,arm,domain=None,reference=None,*,smd_fold=False):
                 assert all(updated[k] == v for k,v in source_hashes.items() if not k.startswith("native.decoder."))
                 assert any(updated[k] != v for k,v in source_hashes.items() if k.startswith("native.decoder."))
                 a_first = json.loads(((out if smd_fold else reference)/domain/"history"/"first_update.json").read_text())
-                np.testing.assert_allclose(loss_total, a_first["loss"], atol=1e-7, rtol=0)
+                # Differentiable and frozen paths may round differently at float32 precision.
+                relative_tolerance = float(np.finfo(np.float32).eps) if smd_fold else 0.0
+                np.testing.assert_allclose(loss_total, a_first["loss"], atol=1e-7, rtol=relative_tolerance)
                 dump(dest/"update_scope_check.json", dict(
                     trained_names=sorted(decoder), trainable_parameters=sum(p.numel() for p in m.parameters() if p.requires_grad),
                     optimizer_decoder_only=True, fresh_adamw=True, frozen_gradients_absent=True,
                     post_first_update_frozen_hashes_equal=True, decoder_changed=True, history_forward_calls=call_counts,
                     copy_loss=loss_total, archived_A_copy_loss=a_first["loss"], native_eval=True,
+                    first_copy_loss_absolute_difference=abs(loss_total-a_first["loss"]),
+                    first_copy_loss_atol=1e-7, first_copy_loss_rtol=relative_tolerance,
                     target_normal_prefix_sha256=scaler_binding, plan_sha256=sha(out/"plans.npz"),
                     mask_seed=84551, sampling_seed=SEED))
                 print("UPDATE_SCOPE_OK", domain, call_counts, flush=True)
